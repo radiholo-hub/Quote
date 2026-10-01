@@ -20,19 +20,19 @@
 
   var todayN = dayNumber(new Date()), cur = todayN;
   var $ = function (id) { return document.getElementById(id); };
-  var lang = "both";
-  try { lang = localStorage.getItem("lang") || "both"; } catch (e) {}
+  var lang = "zh";
+  try { lang = localStorage.getItem("lang") || "zh"; } catch (e) {}
 
   function fmtDate(n) {
     var d = new Date(EPOCH + n * DAY);
     return d.getUTCFullYear() + " 年 " + (d.getUTCMonth() + 1) + " 月 " + d.getUTCDate() + " 日 · " +
-      d.toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
+      "星期" + "日一二三四五六".charAt(d.getUTCDay());
   }
 
   function render() {
     var r = quoteFor(cur);
-    $("date").textContent = fmtDate(cur) + (cur === todayN ? " · 今天 Today" : cur === todayN - 1 ? " · 昨天 Yesterday" : cur === todayN + 1 ? " · 明天 Tomorrow" : "");
-    $("zh").textContent = r.q.zh; $("en").textContent = r.q.en; $("by").textContent = r.q.by;
+    $("date").textContent = fmtDate(cur) + (cur === todayN ? " · 今天" : cur === todayN - 1 ? " · 昨天" : cur === todayN + 1 ? " · 明天" : "");
+    $("zh").textContent = r.q.zh; $("en").textContent = r.q.en; $("by").textContent = lang === "zh" ? r.q.by.replace(/^(.*?[\u4e00-\u9fff》）])\s+[A-Za-z].*$/, "$1") : r.q.by;
     $("meta").textContent = "共 " + N + " 句 · 每 " + N + " 天循環一輪 · 目前第 " + (r.cycle + 1) + " 輪第 " + (r.pos + 1) + " 天";
     $("card").className = "card" + (lang === "zh" ? " only-zh" : lang === "en" ? " only-en" : "");
     document.querySelectorAll(".langs button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
@@ -80,8 +80,8 @@
   $("copy").onclick = function () {
     var b = $("copy");
     (navigator.clipboard ? navigator.clipboard.writeText(text()) : Promise.reject()).then(function () {
-      b.textContent = "已複製 ✓"; setTimeout(function () { b.textContent = "複製 Copy"; }, 1500);
-    }, function () { window.prompt("複製 Copy:", text()); });
+      b.textContent = "已複製 ✓"; setTimeout(function () { b.textContent = "複製"; }, 1500);
+    }, function () { window.prompt("複製:", text()); });
   };
   $("share").onclick = function () {
     if (navigator.share) navigator.share({ title: "每日佳句", text: text(), url: location.href }).catch(function () {});
