@@ -47,14 +47,27 @@
   $("auto").checked = autoRead;
   if (!synth) { $("speak").hidden = true; $("auto").parentNode.hidden = true; }
 
+  // 優先選台灣華語語音(zh-TW / cmn-TW / Mei-Jia 等),避免誤選粵語(zh-HK)或大陸口音(zh-CN)
   function pickVoice(code) {
-    var vs = synth.getVoices(), pre = code.slice(0, 2);
-    return vs.filter(function (v) { return v.lang.replace("_", "-") === code; })[0] ||
-           vs.filter(function (v) { return v.lang.slice(0, 2) === pre; })[0] || null;
+    var vs = synth.getVoices();
+    if (code !== "zh-TW") {
+      return vs.filter(function (v) { return v.lang.replace("_", "-") === code; })[0] ||
+             vs.filter(function (v) { return v.lang.slice(0, 2) === code.slice(0, 2); })[0] || null;
+    }
+    function score(v) {
+      var l = v.lang.replace("_", "-").toLowerCase(), n = v.name;
+      if (/(zh|cmn)(-hant)?-tw$/.test(l) || /Mei-?Jia|台灣|臺灣|Taiwan/i.test(n)) return 3;
+      if (/yue|zh-hk|zh-cn|zh-hans|cmn-cn/.test(l) || /香港|粵|Cantonese|Sin-?ji/i.test(n)) return 0;
+      return l.slice(0, 2) === "zh" || l.slice(0, 3) === "cmn" ? 1 : 0;
+    }
+    var best = null, top = 0;
+    vs.forEach(function (v) { var s = score(v); if (s > top) { top = s; best = v; } });
+    return best;
   }
   function say(str, code) {
     var u = new SpeechSynthesisUtterance(str); u.lang = code; u.rate = 0.9;
     var v = pickVoice(code); if (v) u.voice = v;
+    if (code === "zh-TW") $("speak").title = v ? "語音:" + v.name + "(" + v.lang + ")" : "找不到台灣華語語音,使用系統預設";
     synth.speak(u);
   }
   function speak() {
