@@ -1,0 +1,25 @@
+:root{--bg:#faf6ef;--fg:#2b2622;--muted:#8a7f73;--card:#fff;--accent:#b5532f;--line:#e8dfd2}
+@media (prefers-color-scheme:dark){:root{--bg:#171413;--fg:#efe8de;--muted:#9b9286;--card:#221e1c;--accent:#e08a62;--line:#383230}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Noto Serif TC","PingFang TC","Microsoft JhengHei",Georgia,serif;line-height:1.6}
+main{max-width:720px;margin:0 auto;padding:32px 16px 48px;text-align:center}
+h1{font-size:1.6rem;margin:0}
+h1 span{display:block;font-size:.9rem;color:var(--muted);font-weight:400;letter-spacing:.15em;text-transform:uppercase}
+.tag{color:var(--muted);margin:8px 0 20px;font-size:.95rem}
+.langs{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-bottom:20px}
+.langs button{border:0;background:none;color:var(--muted);padding:6px 16px;font:inherit;font-size:.85rem;cursor:pointer}
+.langs button[aria-pressed=true]{background:var(--accent);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:36px 24px;box-shadow:0 4px 24px rgba(0,0,0,.06);min-height:260px;display:flex;flex-direction:column;justify-content:center}
+.date{color:var(--accent);font-size:.85rem;letter-spacing:.1em;margin-bottom:16px}
+blockquote{margin:0}
+.zh{font-size:clamp(1.4rem,5vw,2rem);margin:0 0 14px;font-weight:600}
+.en{font-size:clamp(1rem,3.6vw,1.2rem);margin:0;font-style:italic;color:var(--muted);font-family:Georgia,serif}
+.card.only-zh .en,.card.only-en .zh{display:none}
+.card.only-en .en{font-size:clamp(1.25rem,4.5vw,1.7rem);color:var(--fg)}
+.by{margin-top:20px;color:var(--muted);font-size:.9rem}
+.by::before{content:"— "}
+.actions{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.actions button{background:none;border:1px solid var(--line);color:var(--fg);padding:8px 16px;border-radius:8px;font:inherit;font-size:.9rem;cursor:pointer}
+.actions button:hover,.langs button:hover{border-color:var(--accent);color:var(--accent)}
+.langs button[aria-pressed=true]:hover{color:#fff}
+.meta{color:var(--muted);font-size:.8rem;margin-top:28px}

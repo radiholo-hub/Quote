@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>每日佳句 Daily Quotes</title>
+<meta name="description" content="每天一句中英文名人佳句，相信語言的力量，日日精進。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>每日佳句 <span>Daily Quotes</span></h1>
+    <p class="tag">語言有力量。每天讀一句，人生慢慢進步。</p>
+  </header>
+
+  <div class="langs" role="group" aria-label="語言 Language">
+    <button data-lang="both" aria-pressed="true">中 / EN</button>
+    <button data-lang="zh" aria-pressed="false">中文</button>
+    <button data-lang="en" aria-pressed="false">English</button>
+  </div>
+
+  <article class="card" id="card" aria-live="polite">
+    <div class="date" id="date"></div>
+    <blockquote>
+      <p class="zh" id="zh"></p>
+      <p class="en" id="en"></p>
+    </blockquote>
+    <div class="by" id="by"></div>
+  </article>
+
+  <nav class="actions">
+    <button id="prev" aria-label="前一天 Previous day">← 前一天</button>
+    <button id="today">今天 Today</button>
+    <button id="next" aria-label="後一天 Next day">後一天 →</button>
+  </nav>
+  <nav class="actions">
+    <button id="copy">複製 Copy</button>
+    <button id="share">分享 Share</button>
+  </nav>
+
+  <p class="meta" id="meta"></p>
+</main>
+<script src="quotes.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
