@@ -25,3 +25,5 @@ blockquote{margin:0}
 .meta{color:var(--muted);font-size:.8rem;margin-top:28px}
 .auto{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.85rem;cursor:pointer}
 .actions button.on{border-color:var(--accent);color:var(--accent)}
+.voice{margin:16px 0 0;color:var(--muted);font-size:.8rem}
+.voice select{max-width:100%;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:4px}

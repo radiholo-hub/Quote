@@ -57,17 +57,39 @@
     function score(v) {
       var l = v.lang.replace("_", "-").toLowerCase(), n = v.name;
       if (/(zh|cmn)(-hant)?-tw$/.test(l) || /Mei-?Jia|台灣|臺灣|Taiwan/i.test(n)) return 3;
-      if (/yue|zh-hk|zh-cn|zh-hans|cmn-cn/.test(l) || /香港|粵|Cantonese|Sin-?ji/i.test(n)) return 0;
+      if (/yue|zh-hk/.test(l) || /香港|粵|Cantonese|Sin-?ji|Sinji/i.test(n)) return 0;
       return l.slice(0, 2) === "zh" || l.slice(0, 3) === "cmn" ? 1 : 0;
     }
+    var chosen = null;
+    try { chosen = localStorage.getItem("voice"); } catch (e) {}
+    var pick = chosen && vs.filter(function (v) { return v.name === chosen; })[0];
+    if (pick) return pick;
     var best = null, top = 0;
     vs.forEach(function (v) { var s = score(v); if (s > top) { top = s; best = v; } });
     return best;
   }
+  var sel = $("voice");
+  function fillVoices() {
+    if (!synth) return;
+    var zh = synth.getVoices().filter(function (v) { return /^(zh|cmn|yue)/i.test(v.lang.replace("_", "-")); });
+    sel.hidden = zh.length === 0;
+    var cur = pickVoice("zh-TW");
+    sel.innerHTML = "";
+    zh.forEach(function (v) {
+      var o = document.createElement("option"); o.value = v.name;
+      o.textContent = v.name + "(" + v.lang + ")"; o.selected = !!cur && cur.name === v.name; sel.appendChild(o);
+    });
+  }
+  sel.onchange = function () { try { localStorage.setItem("voice", sel.value); } catch (e) {} speak(); };
+  if (synth) { synth.onvoiceschanged = fillVoices; fillVoices(); }
+
   function say(str, code) {
     var u = new SpeechSynthesisUtterance(str); u.lang = code; u.rate = 0.9;
     var v = pickVoice(code); if (v) u.voice = v;
-    if (code === "zh-TW") $("speak").title = v ? "語音:" + v.name + "(" + v.lang + ")" : "找不到台灣華語語音,使用系統預設";
+    if (code === "zh-TW") {
+      if (!v) { alert("這個裝置找不到國語語音,為避免唸成粵語,已停止朗讀。請在裝置設定安裝繁體中文(台灣)語音。"); return; }
+      u.lang = v.lang;
+    }
     synth.speak(u);
   }
   function speak() {
