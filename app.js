@@ -91,51 +91,29 @@
       if (/yue|zh-hk/.test(l) || /香港|粵|Cantonese|Sin-?ji|Sinji/i.test(n)) return 0;
       return l.slice(0, 2) === "zh" || l.slice(0, 3) === "cmn" ? 1 : 0;
     }
-    var chosen = null;
-    try { chosen = localStorage.getItem("voice"); } catch (e) {}
-    var pick = chosen && vs.filter(function (v) { return v.name === chosen; })[0];
-    if (pick) return pick;
     var best = null, top = 0;
     vs.forEach(function (v) { var s = score(v); if (s > top) { top = s; best = v; } });
     return best;
   }
-  var sel = $("voice");
-  function fillVoices() {
-    if (!synth) return;
-    var zh = synth.getVoices().filter(function (v) { return /^(zh|cmn|yue)/i.test(v.lang.replace("_", "-")); });
-    sel.hidden = zh.length === 0;
-    var cur = pickVoice("zh-TW");
-    sel.innerHTML = "";
-    zh.forEach(function (v) {
-      var o = document.createElement("option"); o.value = v.name;
-      o.textContent = v.name + "(" + v.lang + ")"; o.selected = !!cur && cur.name === v.name; sel.appendChild(o);
-    });
-  }
-  sel.onchange = function () { try { localStorage.setItem("voice", sel.value); } catch (e) {} speak(); };
-  if (synth) { synth.onvoiceschanged = fillVoices; fillVoices(); }
-
   function say(str, code) {
     var u = new SpeechSynthesisUtterance(str); u.lang = code; u.rate = 0.9;
     var v = pickVoice(code); if (v) u.voice = v;
     if (code === "zh-TW") {
       if (!v) { alert("這個裝置找不到國語語音,為避免唸成粵語,已停止朗讀。請在裝置設定安裝繁體中文(台灣)語音。"); return; }
       u.lang = v.lang;
-      $("vstatus").textContent = "目前使用:" + v.name + "(" + v.lang + ")" + (/tw/i.test(v.lang) ? "" : " ← 不是台灣語音");
     }
     synth.speak(u);
   }
   // 優先播放預先錄好的台灣國語音檔 audio/NNN.mp3;沒有音檔才改用瀏覽器語音。
   var player = null;
   function stopAll() { if (player) { player.pause(); player = null; } if (synth) synth.cancel(); }
-  function speakEn(q) { if (synth && lang !== "zh") say(q.en, "en-US"); }
   function speak() {
     stopAll();
     var r = quoteFor(cur), q = r.q;
-    if (lang === "en") return speakEn(q);
     var idx = Q.indexOf(q) + 1, a = new Audio("audio/" + ("00" + idx).slice(-3) + ".mp3");
     player = a;
-    a.onended = function () { if (player === a) { player = null; speakEn(q); } };
-    a.onerror = function () { if (player !== a) return; player = null; if (synth) { say(q.zh, "zh-TW"); speakEn(q); } };
+    a.onended = function () { if (player === a) player = null; };
+    a.onerror = function () { if (player !== a) return; player = null; if (synth) say(q.zh, "zh-TW"); };
     var p = a.play(); if (p && p.catch) p.catch(function () {});
   }
   $("speak").onclick = function () { if (player || (synth && synth.speaking)) stopAll(); else speak(); };
