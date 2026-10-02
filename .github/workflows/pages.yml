@@ -1,11 +1,11 @@
 name: Deploy site
 on:
   push:
-    branches: [main]
+    branches: [claude/daily-quotes-website-lbh2wi]
   workflow_run:
     workflows: ["Generate audio"]
     types: [completed]
-    branches: [main]
+    branches: [claude/daily-quotes-website-lbh2wi]
   workflow_dispatch:
 permissions:
   contents: read

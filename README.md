@@ -7,7 +7,7 @@
 - 音檔由 `tools/make_audio.py` 產生(中文 `audio/`、英文 `audio/en/`)
 
 ## 部署到 GitHub Pages
-1. 把分支合併到 `main`
+1. 預設分支就是目前這個分支,推送後會自動部署(之後若改用 main,請同步修改 `.github/workflows/pages.yml` 的 branches)
 2. 到 Settings → Pages → Source 選 **GitHub Actions**
 3. `Deploy site` 工作流程會發布到 `https://<帳號>.github.io/Quote/`
 
