@@ -103,18 +103,26 @@
       u.lang = v.lang;
     }
     synth.speak(u);
+    return u;
   }
-  // 優先播放預先錄好的台灣國語音檔 audio/NNN.mp3;沒有音檔才改用瀏覽器語音。
+  // 優先播放預先錄好的音檔:中文 audio/NNN.mp3(台灣國語)、英文 audio/en/NNN.mp3;
+  // 依語言模式播放中文、英文或先中後英;沒有音檔才改用瀏覽器語音。
   var player = null;
   function stopAll() { if (player) { player.pause(); player = null; } if (synth) synth.cancel(); }
+  function playClip(src, fallbackText, code, done) {
+    var a = new Audio(src); player = a;
+    a.onended = function () { if (player === a) { player = null; done(); } };
+    a.onerror = function () {
+      if (player !== a) return; player = null;
+      if (synth) { var u = say(fallbackText, code); if (u) u.onend = done; } else done();
+    };
+    var p = a.play(); if (p && p.catch) p.catch(function () {});
+  }
   function speak() {
     stopAll();
-    var r = quoteFor(cur), q = r.q;
-    var idx = Q.indexOf(q) + 1, a = new Audio("audio/" + ("00" + idx).slice(-3) + ".mp3");
-    player = a;
-    a.onended = function () { if (player === a) player = null; };
-    a.onerror = function () { if (player !== a) return; player = null; if (synth) say(q.zh, "zh-TW"); };
-    var p = a.play(); if (p && p.catch) p.catch(function () {});
+    var q = quoteFor(cur).q, id = ("00" + (Q.indexOf(q) + 1)).slice(-3) + ".mp3";
+    var en = function () { if (lang !== "zh") playClip("audio/en/" + id, q.en, "en-US", function () {}); };
+    if (lang === "en") en(); else playClip("audio/" + id, q.zh, "zh-TW", en);
   }
   $("speak").onclick = function () { if (player || (synth && synth.speaking)) stopAll(); else speak(); };
   $("auto").onchange = function () {
