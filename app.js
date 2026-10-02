@@ -114,22 +114,59 @@
     a.onended = function () { if (player === a) { player = null; done(); } };
     a.onerror = function () {
       if (player !== a) return; player = null;
-      if (synth) { var u = say(fallbackText, code); if (u) u.onend = done; } else done();
+      var u = synth && say(fallbackText, code);
+      if (u) u.onend = done; else done();
     };
     var p = a.play(); if (p && p.catch) p.catch(function () {});
   }
-  function speak() {
+  function speak(done) {
+    done = done || function () {};
     stopAll();
     var q = quoteFor(cur).q, id = ("00" + (Q.indexOf(q) + 1)).slice(-3) + ".mp3";
-    var en = function () { if (lang !== "zh") playClip("audio/en/" + id, q.en, "en-US", function () {}); };
+    var en = function () { if (lang !== "zh") playClip("audio/en/" + id, q.en, "en-US", done); else done(); };
     if (lang === "en") en(); else playClip("audio/" + id, q.zh, "zh-TW", en);
   }
+  // 跟著唸:先播範例 → 開始錄音(按「完成」結束)→ 播放你自己的錄音。錄音只留在這個分頁的記憶體,不會上傳。
+  var rec = null, mine = null;
+  function sstatus(t) { $("sstatus").textContent = t; }
+  function stopShadow() {
+    if (rec && rec.state !== "inactive") { rec.onstop = null; rec.stop(); }
+    if (rec && rec.stream) rec.stream.getTracks().forEach(function (t) { t.stop(); });
+    rec = null; if (mine) { mine.pause(); mine = null; }
+    $("shadow").textContent = "🎤 跟著唸"; $("shadow").classList.remove("on");
+  }
+  function startRecording() {
+    if (!navigator.mediaDevices || !window.MediaRecorder) { sstatus("這個瀏覽器不支援錄音。"); return; }
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+      var chunks = [], r = new MediaRecorder(stream); rec = r;
+      r.ondataavailable = function (e) { if (e.data.size) chunks.push(e.data); };
+      r.onstop = function () {
+        stream.getTracks().forEach(function (t) { t.stop() });
+        var url = URL.createObjectURL(new Blob(chunks, { type: r.mimeType || "audio/webm" }));
+        $("shadow").textContent = "🎤 跟著唸"; $("shadow").classList.remove("on"); rec = null;
+        sstatus("播放你的錄音…");
+        mine = new Audio(url);
+        mine.onended = function () { mine = null; sstatus("再按一次「🎤 跟著唸」可以重來。"); };
+        mine.play().catch(function () { sstatus("無法播放錄音,請檢查音量。"); });
+      };
+      r.start();
+      $("shadow").textContent = "⏹ 唸完了"; $("shadow").classList.add("on");
+      sstatus("🔴 錄音中,請跟著唸,唸完按「唸完了」");
+    }, function () { stopShadow(); sstatus("無法使用麥克風。請允許瀏覽器使用麥克風,或確認裝置有麥克風。"); });
+  }
+  $("shadow").onclick = function () {
+    if (rec && rec.state === "recording") { rec.stop(); return; }
+    stopAll(); stopShadow();
+    sstatus("先聽範例…");
+    speak(startRecording);
+  };
+
   $("speak").onclick = function () { if (player || (synth && synth.speaking)) stopAll(); else speak(); };
   $("auto").onchange = function () {
     autoRead = this.checked; try { localStorage.setItem("auto", autoRead ? "1" : "0"); } catch (e) {}
     if (autoRead) speak();
   };
-  function go(n) { cur = n; render(); stopAll(); if (autoRead) speak(); }
+  function go(n) { cur = n; render(); stopShadow(); sstatus(""); stopAll(); if (autoRead) speak(); }
 
   $("prev").onclick = function () { go(cur - 1); };
   $("next").onclick = function () { go(cur + 1); };
