@@ -76,7 +76,7 @@
   var synth = window.speechSynthesis, autoRead = false;
   try { autoRead = localStorage.getItem("auto") === "1"; } catch (e) {}
   $("auto").checked = autoRead;
-  if (!synth) { $("speak").hidden = true; $("auto").parentNode.hidden = true; }
+  
 
   // 優先選台灣華語語音(zh-TW / cmn-TW / Mei-Jia 等),避免誤選粵語(zh-HK)或大陸口音(zh-CN)
   function pickVoice(code) {
@@ -124,19 +124,26 @@
     }
     synth.speak(u);
   }
+  // 優先播放預先錄好的台灣國語音檔 audio/NNN.mp3;沒有音檔才改用瀏覽器語音。
+  var player = null;
+  function stopAll() { if (player) { player.pause(); player = null; } if (synth) synth.cancel(); }
+  function speakEn(q) { if (synth && lang !== "zh") say(q.en, "en-US"); }
   function speak() {
-    if (!synth) return;
-    synth.cancel();
-    var q = quoteFor(cur).q;
-    if (lang !== "en") say(q.zh, "zh-TW");
-    if (lang !== "zh") say(q.en, "en-US");
+    stopAll();
+    var r = quoteFor(cur), q = r.q;
+    if (lang === "en") return speakEn(q);
+    var idx = Q.indexOf(q) + 1, a = new Audio("audio/" + ("00" + idx).slice(-3) + ".mp3");
+    player = a;
+    a.onended = function () { if (player === a) { player = null; speakEn(q); } };
+    a.onerror = function () { if (player !== a) return; player = null; if (synth) { say(q.zh, "zh-TW"); speakEn(q); } };
+    var p = a.play(); if (p && p.catch) p.catch(function () {});
   }
-  $("speak").onclick = function () { if (synth.speaking) synth.cancel(); else speak(); };
+  $("speak").onclick = function () { if (player || (synth && synth.speaking)) stopAll(); else speak(); };
   $("auto").onchange = function () {
     autoRead = this.checked; try { localStorage.setItem("auto", autoRead ? "1" : "0"); } catch (e) {}
     if (autoRead) speak();
   };
-  function go(n) { cur = n; render(); if (synth) { synth.cancel(); if (autoRead) speak(); } }
+  function go(n) { cur = n; render(); stopAll(); if (autoRead) speak(); }
 
   $("prev").onclick = function () { go(cur - 1); };
   $("next").onclick = function () { go(cur + 1); };
