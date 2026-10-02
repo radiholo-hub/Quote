@@ -59,12 +59,32 @@
       }, function () { photoCache[n] = null; });
   }
 
+  function renderTicks(r) {
+    var box = $("ticks"), base = cur - r.pos;
+    if (box.children.length !== N) {
+      box.innerHTML = "";
+      for (var i = 0; i < N; i++) (function (i) {
+        var b = document.createElement("button"); b.type = "button";
+        b.onclick = function () { go(cur - quoteFor(cur).pos + i); };
+        box.appendChild(b);
+      })(i);
+    }
+    for (var j = 0; j < N; j++) {
+      var b = box.children[j];
+      b.className = (j === r.pos ? "now" : j < r.pos ? "past" : "") + (base + j === todayN ? " today" : "");
+      b.setAttribute("aria-label", "第 " + (j + 1) + " 天");
+      b.setAttribute("aria-current", j === r.pos ? "true" : "false");
+    }
+  }
+
   function render() {
     var r = quoteFor(cur);
     $("date").textContent = fmtDate(cur) + (cur === todayN ? " · 今天" : cur === todayN - 1 ? " · 昨天" : cur === todayN + 1 ? " · 明天" : "");
     showAvatar(r.q.by);
     $("zh").textContent = r.q.zh; $("en").textContent = r.q.en; $("by").textContent = lang === "zh" ? r.q.by.replace(/^(.*?[\u4e00-\u9fff》）])\s+[A-Za-z].*$/, "$1") : r.q.by;
-    $("meta").textContent = "共 " + N + " 句 · 每 " + N + " 天循環一輪 · 目前第 " + (r.cycle + 1) + " 輪第 " + (r.pos + 1) + " 天";
+    $("daynum").textContent = "第 " + (r.pos + 1) + " / " + N + " 天";
+    $("meta").textContent = "共 " + N + " 句,每 " + N + " 天循環一輪,現在是第 " + (r.cycle + 1) + " 輪。點刻度可跳到這一輪的任一天。";
+    renderTicks(r);
     $("card").className = "card" + (lang === "zh" ? " only-zh" : lang === "en" ? " only-en" : "");
     document.querySelectorAll(".langs button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
     $("next").disabled = false;
@@ -128,12 +148,13 @@
   }
   // 跟著唸:先播範例 → 開始錄音(按「完成」結束)→ 播放你自己的錄音。錄音只留在這個分頁的記憶體,不會上傳。
   var rec = null, mine = null;
+  function setLbl(btn, t) { btn.querySelector(".lbl").textContent = t; }
   function sstatus(t) { $("sstatus").textContent = t; }
   function stopShadow() {
     if (rec && rec.state !== "inactive") { rec.onstop = null; rec.stop(); }
     if (rec && rec.stream) rec.stream.getTracks().forEach(function (t) { t.stop(); });
     rec = null; if (mine) { mine.pause(); mine = null; }
-    $("shadow").textContent = "🎤 跟著唸"; $("shadow").classList.remove("on");
+    setLbl($("shadow"), "跟著唸"); $("shadow").classList.remove("on");
   }
   function startRecording() {
     if (!navigator.mediaDevices || !window.MediaRecorder) { sstatus("這個瀏覽器不支援錄音。"); return; }
@@ -143,15 +164,15 @@
       r.onstop = function () {
         stream.getTracks().forEach(function (t) { t.stop() });
         var url = URL.createObjectURL(new Blob(chunks, { type: r.mimeType || "audio/webm" }));
-        $("shadow").textContent = "🎤 跟著唸"; $("shadow").classList.remove("on"); rec = null;
+        setLbl($("shadow"), "跟著唸"); $("shadow").classList.remove("on"); rec = null;
         sstatus("播放你的錄音…");
         mine = new Audio(url);
-        mine.onended = function () { mine = null; sstatus("再按一次「🎤 跟著唸」可以重來。"); };
+        mine.onended = function () { mine = null; sstatus("再按一次「跟著唸」可以重來。"); };
         mine.play().catch(function () { sstatus("無法播放錄音,請檢查音量。"); });
       };
       r.start();
-      $("shadow").textContent = "⏹ 唸完了"; $("shadow").classList.add("on");
-      sstatus("🔴 錄音中,請跟著唸,唸完按「唸完了」");
+      setLbl($("shadow"), "唸完了"); $("shadow").classList.add("on");
+      sstatus("錄音中,請跟著唸,唸完按「唸完了」");
     }, function () { stopShadow(); sstatus("無法使用麥克風。請允許瀏覽器使用麥克風,或確認裝置有麥克風。"); });
   }
   $("shadow").onclick = function () {
@@ -177,7 +198,7 @@
   $("copy").onclick = function () {
     var b = $("copy");
     (navigator.clipboard ? navigator.clipboard.writeText(text()) : Promise.reject()).then(function () {
-      b.textContent = "已複製 ✓"; setTimeout(function () { b.textContent = "複製"; }, 1500);
+      setLbl(b, "已複製"); setTimeout(function () { setLbl(b, "複製"); }, 1500);
     }, function () { window.prompt("複製:", text()); });
   };
   $("share").onclick = function () {

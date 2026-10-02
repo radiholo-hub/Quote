@@ -2,51 +2,69 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>每日佳句</title>
-<meta name="description" content="每天一句中英文名人佳句，相信語言的力量，日日精進。">
+<meta name="description" content="每天一句近百年名人的中英佳句,附台灣國語與英語朗讀。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 15V6.5A2.5 2.5 0 017.5 4H15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5M5 13v5a2 2 0 002 2h10a2 2 0 002-2v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
 <main>
-  <header>
+  <header class="top">
     <h1>每日佳句</h1>
-    <p class="tag">語言有力量。每天讀一句，人生慢慢進步。</p>
+    <div class="langs" role="group" aria-label="顯示語言">
+      <button data-lang="both" aria-pressed="false">中英對照</button>
+      <button data-lang="zh" aria-pressed="true">中文</button>
+      <button data-lang="en" aria-pressed="false">英文</button>
+    </div>
   </header>
 
-  <div class="langs" role="group" aria-label="語言">
-    <button data-lang="both" aria-pressed="true">中英對照</button>
-    <button data-lang="zh" aria-pressed="false">只看中文</button>
-    <button data-lang="en" aria-pressed="false">英文</button>
-  </div>
-
   <article class="card" id="card" aria-live="polite">
-    <div class="avatar" id="avatar" aria-hidden="true"></div>
-    <div class="date" id="date"></div>
+    <div class="when">
+      <div class="date" id="date"></div>
+      <div class="daynum" id="daynum"></div>
+    </div>
     <blockquote>
       <p class="zh" id="zh"></p>
       <p class="en" id="en"></p>
     </blockquote>
-    <div class="by" id="by"></div>
-    <div class="credit" id="credit"></div>
+    <footer class="who">
+      <div class="avatar" id="avatar" aria-hidden="true"></div>
+      <div class="who-text">
+        <div class="by" id="by"></div>
+        <div class="credit" id="credit"></div>
+      </div>
+    </footer>
   </article>
 
-  <nav class="actions">
-    <button id="prev" aria-label="昨天">← 昨天</button>
-    <button id="today">今天</button>
-    <button id="next" aria-label="明天">明天 →</button>
-  </nav>
-  <nav class="actions">
-    <button id="speak">🔊 朗讀</button>
-    <button id="shadow">🎤 跟著唸</button>
-    <label class="auto"><input type="checkbox" id="auto"> 自動朗讀</label>
-    <button id="copy">複製</button>
-    <button id="share">分享</button>
-  </nav>
-
-  <p class="voice" id="sstatus" aria-live="polite"></p>
-
+  <div class="ticks" id="ticks" role="group" aria-label="這一輪的每一天"></div>
   <p class="meta" id="meta"></p>
+
+  <nav class="bar nav" aria-label="切換日期">
+    <button id="prev" aria-label="昨天"><svg><use href="#i-left"/></svg><span class="lbl">昨天</span></button>
+    <button id="today"><span class="lbl">今天</span></button>
+    <button id="next" aria-label="明天"><span class="lbl">明天</span><svg><use href="#i-right"/></svg></button>
+  </nav>
+
+  <nav class="bar tools" aria-label="朗讀與分享">
+    <button id="speak" class="primary"><svg><use href="#i-play"/></svg><span class="lbl">朗讀</span></button>
+    <button id="shadow"><svg><use href="#i-mic"/></svg><span class="lbl">跟著唸</span></button>
+    <button id="copy"><svg><use href="#i-copy"/></svg><span class="lbl">複製</span></button>
+    <button id="share"><svg><use href="#i-share"/></svg><span class="lbl">分享</span></button>
+    <label class="auto"><input type="checkbox" id="auto"> 切換時自動朗讀</label>
+  </nav>
+
+  <p class="status" id="sstatus" aria-live="polite"></p>
 </main>
 <script src="quotes.js"></script>
 <script src="app.js"></script>
