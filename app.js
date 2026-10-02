@@ -127,7 +127,19 @@
   }
   // 優先播放預先錄好的音檔:中文 audio/NNN.mp3(台灣國語)、英文 audio/en/NNN.mp3;
   // 依語言模式播放中文、英文或先中後英;沒有音檔才改用瀏覽器語音。
-  var player = null;
+  var player = null, gender = "f";
+  try { gender = localStorage.getItem("gender") === "m" ? "m" : "f"; } catch (e) {}
+  function dir() { return gender === "m" ? "audio/m/" : "audio/"; }
+  function showGender() {
+    document.querySelectorAll(".voices button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.g === gender)); });
+  }
+  document.querySelectorAll(".voices button").forEach(function (b) {
+    b.onclick = function () {
+      gender = b.dataset.g; try { localStorage.setItem("gender", gender); } catch (e) {}
+      showGender(); stopShadow(); stopAll(); speak();
+    };
+  });
+  showGender();
   function stopAll() { if (player) { player.pause(); player = null; } if (synth) synth.cancel(); }
   function playClip(src, fallbackText, code, done) {
     var a = new Audio(src); player = a;
@@ -143,8 +155,8 @@
     done = done || function () {};
     stopAll();
     var q = quoteFor(cur).q, id = ("00" + (Q.indexOf(q) + 1)).slice(-3) + ".mp3";
-    var en = function () { if (lang !== "zh") playClip("audio/en/" + id, q.en, "en-US", done); else done(); };
-    if (lang === "en") en(); else playClip("audio/" + id, q.zh, "zh-TW", en);
+    var en = function () { if (lang !== "zh") playClip(dir() + "en/" + id, q.en, "en-US", done); else done(); };
+    if (lang === "en") en(); else playClip(dir() + id, q.zh, "zh-TW", en);
   }
   // 跟著唸:先播範例 → 開始錄音(按「完成」結束)→ 播放你自己的錄音。錄音只留在這個分頁的記憶體,不會上傳。
   var rec = null, mine = null;

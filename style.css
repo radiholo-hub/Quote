@@ -67,3 +67,6 @@ blockquote{margin:0;display:flex;flex-direction:column;gap:18px;flex:1;justify-c
 
 @media (max-width:480px){.tools button{flex:1 1 calc(50% - 8px)}.auto{margin-left:0;flex-basis:100%}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.voices{display:inline-flex;background:var(--soft);border-radius:12px;padding:3px}
+.bar .voices button{min-height:36px;padding:0 14px;border:0;background:none;border-radius:9px;color:var(--muted);font-size:.85rem}
+.bar .voices button[aria-pressed=true]{background:var(--surface);color:var(--ink);font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.14)}
