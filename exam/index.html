@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>國中會考考古題練習</title>
+<title>國中會考英語考古題</title>
 <meta name="description" content="國中教育會考考古題線上練習：依科目、年度篩選，作答後立即看解析，錯題自動收藏。">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main>
   <header>
-    <h1>國中會考 考古題練習</h1>
-    <p class="tag">選科目、選年度，作答後立即看解析；答錯的題目自動收進錯題本。</p>
+    <h1>國中會考 英語考古題</h1>
+    <p class="tag">選題型、選年度，作答後立即看解析；答錯的題目自動收進錯題本。</p>
   </header>
 
   <section class="filters" aria-label="篩選">
-    <label>科目
+    <label>題型
       <select id="f-subject"></select>
     </label>
     <label>年度
@@ -36,6 +36,7 @@
 
   <article class="card" id="card" aria-live="polite">
     <div class="qmeta" id="qmeta"></div>
+    <div class="passage" id="passage" hidden></div>
     <div class="stem" id="stem"></div>
     <ol class="options" id="options"></ol>
     <div class="result" id="result" hidden></div>

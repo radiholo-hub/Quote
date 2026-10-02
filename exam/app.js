@@ -16,7 +16,7 @@
     });
   }
   function uniq(k){return Q.map(function(q){return String(q[k])}).filter(function(v,i,a){return a.indexOf(v)===i})}
-  fill($('f-subject'),uniq('subject'),'全部科目');
+  fill($('f-subject'),uniq('type'),'全部題型');
   fill($('f-year'),uniq('year').sort().reverse(),'全部年度');
 
   function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
@@ -24,7 +24,7 @@
   function build(){
     var s=$('f-subject').value,y=$('f-year').value,m=$('f-mode').value;
     list=Q.filter(function(q){
-      if(s!=='all'&&q.subject!==s)return false;
+      if(s!=='all'&&q.type!==s)return false;
       if(y!=='all'&&String(q.year)!==y)return false;
       var a=st.a[q.id];
       if(m==='todo')return a===undefined;
@@ -40,12 +40,13 @@
     var card=$('card'),q=list[idx];
     $('stats').textContent=statText();
     if(!q){
-      $('qmeta').textContent='';$('stem').innerHTML='<div class="empty">這個範圍沒有題目。</div>';
+      $('qmeta').textContent='';$('passage').hidden=true;$('stem').innerHTML='<div class="empty">這個範圍沒有題目。</div>';
       $('options').innerHTML='';$('result').hidden=true;$('progress').textContent='';
       $('star').textContent='☆ 標記';$('star').classList.remove('on');return;
     }
     $('progress').textContent='第 '+(idx+1)+' / '+list.length+' 題';
-    $('qmeta').textContent=q.year+' 年　'+q.subject+(q.topic?'　· '+q.topic:'')+(q.sample?'　（範例題）':'');
+    $('qmeta').textContent=q.year+' 年　'+q.type+(q.sample?'　（範例題）':'');
+    var p=$('passage');p.hidden=!q.passage;p.textContent=q.passage||'';
     $('stem').innerHTML=q.html?q.question:esc(q.question);
     var ol=$('options');ol.innerHTML='';
     q.options.forEach(function(t,i){
