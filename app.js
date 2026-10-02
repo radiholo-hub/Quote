@@ -29,9 +29,40 @@
       "星期" + "日一二三四五六".charAt(d.getUTCDay());
   }
 
+  // 人像:執行時向維基百科查詢該人物的公開頭像,查不到(或被封鎖)就顯示姓名縮寫。
+  var TITLES = { "Paul Graham": "Paul_Graham_(programmer)", "Franklin D. Roosevelt": "Franklin_D._Roosevelt", "Martin Luther King Jr.": "Martin_Luther_King_Jr." };
+  var photoCache = {};
+  function enName(by) { return by.replace(/^.*?[\u4e00-\u9fff》）]\s+/, ""); }
+  function initials(n) { return n.split(/\s+/).filter(function (w) { return /^[A-Za-z]/.test(w) && !/^(Jr\.?|D\.?)$/.test(w); }).map(function (w) { return w[0]; }).slice(0, 2).join("").toUpperCase(); }
+  function showAvatar(by) {
+    var n = enName(by), box = $("avatar"), cr = $("credit");
+    box.textContent = initials(n); cr.textContent = "";
+    var want = n;
+    function apply(info) {
+      if (!info || enName(quoteFor(cur).q.by) !== want) return;
+      var img = new Image(); img.alt = n; img.referrerPolicy = "no-referrer";
+      img.onload = function () {
+        if (enName(quoteFor(cur).q.by) !== want) return;
+        box.textContent = ""; box.appendChild(img);
+        cr.innerHTML = '照片:<a target="_blank" rel="noopener" href="' + info.page + '">維基百科</a>';
+      };
+      img.src = info.thumb;
+    }
+    if (n in photoCache) return apply(photoCache[n]);
+    fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(TITLES[n] || n.replace(/ /g, "_")))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        // 避免誤配同名頁面:要有縮圖,且為人物頁(非消歧義)
+        var ok = j && j.type === "standard" && j.thumbnail;
+        photoCache[n] = ok ? { thumb: j.thumbnail.source, page: j.content_urls.desktop.page } : null;
+        apply(photoCache[n]);
+      }, function () { photoCache[n] = null; });
+  }
+
   function render() {
     var r = quoteFor(cur);
     $("date").textContent = fmtDate(cur) + (cur === todayN ? " · 今天" : cur === todayN - 1 ? " · 昨天" : cur === todayN + 1 ? " · 明天" : "");
+    showAvatar(r.q.by);
     $("zh").textContent = r.q.zh; $("en").textContent = r.q.en; $("by").textContent = lang === "zh" ? r.q.by.replace(/^(.*?[\u4e00-\u9fff》）])\s+[A-Za-z].*$/, "$1") : r.q.by;
     $("meta").textContent = "共 " + N + " 句 · 每 " + N + " 天循環一輪 · 目前第 " + (r.cycle + 1) + " 輪第 " + (r.pos + 1) + " 天";
     $("card").className = "card" + (lang === "zh" ? " only-zh" : lang === "en" ? " only-en" : "");
