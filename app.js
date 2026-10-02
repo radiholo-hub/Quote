@@ -120,6 +120,7 @@
     if (code === "zh-TW") {
       if (!v) { alert("這個裝置找不到國語語音,為避免唸成粵語,已停止朗讀。請在裝置設定安裝繁體中文(台灣)語音。"); return; }
       u.lang = v.lang;
+      $("vstatus").textContent = "目前使用:" + v.name + "(" + v.lang + ")" + (/tw/i.test(v.lang) ? "" : " ← 不是台灣語音");
     }
     synth.speak(u);
   }
