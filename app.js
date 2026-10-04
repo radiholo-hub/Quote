@@ -81,6 +81,8 @@
     var r = quoteFor(cur);
     $("date").textContent = fmtDate(cur) + (cur === todayN ? " · 今天" : cur === todayN - 1 ? " · 昨天" : cur === todayN + 1 ? " · 明天" : "");
     showAvatar(r.q.by);
+    var ig = $("ig");
+    if (r.q.ig) { ig.href = "https://www.instagram.com/" + r.q.ig + "/"; ig.textContent = "Instagram @" + r.q.ig; ig.hidden = false; } else ig.hidden = true;
     $("zh").textContent = r.q.zh; $("en").textContent = r.q.en; $("by").textContent = lang === "zh" ? r.q.by.replace(/^(.*?[\u4e00-\u9fff》）])\s+[A-Za-z].*$/, "$1") : r.q.by;
     $("daynum").textContent = "第 " + (r.pos + 1) + " / " + N + " 天";
     $("meta").textContent = "共 " + N + " 句,每 " + N + " 天循環一輪,現在是第 " + (r.cycle + 1) + " 輪。點刻度可跳到這一輪的任一天。";
