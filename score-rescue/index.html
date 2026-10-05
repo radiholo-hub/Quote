@@ -259,6 +259,15 @@ footer{padding:36px 20px 56px;border-top:1px solid var(--line);color:var(--muted
 .price-big{font-size:2rem;font-weight:700;color:var(--fire-d);font-variant-numeric:tabular-nums}
 .price-sub{color:var(--muted);font-size:.88rem}
 
+.sc-pct{font-weight:700;font-size:1.3rem;margin:0 0 12px!important;color:var(--muted)}
+.sc-strip{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:0 auto 14px}
+.sc-dot{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-size:.85rem;font-weight:700;border:1.5px solid}
+.sc-dot.ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.sc-dot.bad{background:var(--fire-soft);border-color:var(--fire);color:var(--fire-d)}
+.sc-wrong{text-align:left;margin:20px auto 24px;max-width:34em}
+.sc-wrong h3{font-size:1rem;margin-bottom:8px}
+.sc-wrong ul{display:grid;gap:10px}
+.sc-wrong li{padding:10px 12px;border-left:3px solid var(--fire);background:#F4F6F9;border-radius:6px}
 /* modal */
 .modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:rgba(39,43,51,.6)}
 .modal-box{position:relative;width:100%;max-width:460px;max-height:92vh;overflow:auto;background:#fff;border-radius:14px;padding:30px 26px 26px}
@@ -1205,6 +1214,23 @@ async function doUnlock(){
   else if(r.reason==='empty')msg.textContent='請先輸入解鎖碼。';
   else msg.textContent='解鎖碼不正確，請確認後再輸入一次，或聯絡客服。';
 }
+/* 練習結束後的分數畫面:答對題數、百分比、逐題對錯,以及答錯題的正解 */
+function showScore(r,label){
+  const n=r.list.length;
+  const rows=r.list.map((q,i)=>({q:q,ok:r.ans[i]===q.a,i:i}));
+  const ok=rows.filter(x=>x.ok).length,pct=Math.round(ok/n*100);
+  const msg=pct>=90?'非常穩，這一組幾乎都掌握了。':pct>=70?'不錯，再把答錯的題目看一遍就更穩。':pct>=50?'有進步空間，建議回頭看答錯題的解析。':'這一組還不熟，明天會再安排相關練習。';
+  const strip=rows.map(x=>'<span class="sc-dot '+(x.ok?'ok':'bad')+'" title="第 '+(x.i+1)+' 題">'+(x.ok?'✓':'✗')+'</span>').join('');
+  const wrong=rows.filter(x=>!x.ok).map(x=>{
+    const q=x.q,txt=q.passages?q.q:esc(q.q.replace('___',q.o[q.a]));
+    return '<li><p class="serif">'+(q.passages?esc(txt):txt)+'</p><p class="fine">正確答案：<b>'+LET[q.a]+'. '+esc(q.o[q.a])+'</b>'+(r.ans[x.i]!=null&&r.ans[x.i]!==q.a?'　你選了：'+LET[r.ans[x.i]]+'. '+esc(q.o[r.ans[x.i]]):'')+'</p></li>';
+  }).join('');
+  $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">'+esc(label)+'</p><p class="big">'+ok+' / '+n+'</p>'+
+    '<p class="sc-pct">'+pct+'%</p><div class="sc-strip" aria-label="逐題對錯">'+strip+'</div><p>'+msg+'</p>'+
+    (wrong?'<div class="sc-wrong"><h3>答錯的題目</h3><ul>'+wrong+'</ul></div>':'')+
+    '<button class="btn fire lg" type="button" data-go="plan">回我的 14 天計畫</button></section>';
+  show('done');
+}
 function startPlanDay(day){
   if(!S.res)return;
   const specs=daySpecs(S.res.ranked),spec=specs.find(x=>x.day===day);
@@ -1223,7 +1249,8 @@ function startPlanDay(day){
   else list=pickFor(S.res.weak,5);
   runQuiz({list:list,mode:'day',title:'Day '+day+' · '+spec.title,back:'plan',onDone:r=>{
     r.list.forEach((q,i)=>{if(q.passages)S.readSeen[q.id]=r.ans[i]===q.a;else S.extra[q.id]=r.ans[i]===q.a});
-    S.daysDone[day]=true;if(day===1)S.dayDone=true;save();go('plan');
+    S.daysDone[day]=true;if(day===1)S.dayDone=true;save();
+    showScore(r,'Day '+day+' 完成');
   }});
 }
 
