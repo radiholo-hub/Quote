@@ -823,7 +823,8 @@ function placeStep(P,q,ok){P.seq.push(q.lv);P.d=Math.max(1,Math.min(3,q.lv+(ok?1
 function placeLevel(P){return (P.seq.reduce((a,b)=>a+b,0)+P.d)/(P.seq.length+1)}
 
 /* ---------- 發音 ---------- */
-const CAN_SPEAK='speechSynthesis' in window;
+const CAN_SPEAK=true;
+const HAS_TTS='speechSynthesis' in window;
 let speakingText=null;
 function ttsSplit(text){
   const t=text.replace(/\b([ap])\.m\./gi,m=>m.replace(/\./g,'\u2024')).replace(/\b(Mr|Ms|Mrs|Dr|St)\./g,m=>m.replace('.','\u2024'));
@@ -841,11 +842,24 @@ function ttsChunks(text,max){
   if(cur)chunks.push(cur);
   return chunks;
 }
-function speak(text){
-  if(!CAN_SPEAK)return;
+/* 優先播放預先產生的美式女聲 Aria(en-US-AriaNeural)mp3;找不到檔案才退回瀏覽器內建語音。
+   檔名由文字雜湊而來,要和 tools/make_score_rescue_audio.py 的 sr_hash() 完全一致。 */
+function srHash(str){
+  let h1=0xdeadbeef,h2=0x41c6ce57;
+  for(let i=0;i<str.length;i++){const ch=str.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677)}
+  h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);
+  h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
+  return (4294967296*(2097151&h2)+(h1>>>0)).toString(16);
+}
+let audioEl=null;
+function stopSpeak(){
+  try{if(audioEl){audioEl.pause();audioEl=null}}catch(e){}
+  try{if(HAS_TTS)speechSynthesis.cancel()}catch(e){}
+}
+function speakFallback(text){
+  if(!HAS_TTS)return;
   try{
     const synth=speechSynthesis;
-    if(synth.speaking&&speakingText===text){synth.cancel();speakingText=null;return}
     synth.cancel();speakingText=text;
     const chunks=ttsChunks(text);
     chunks.forEach((c,i)=>{
@@ -854,6 +868,18 @@ function speak(text){
       synth.speak(u);
     });
   }catch(e){}
+}
+function speak(text){
+  if(speakingText===text){stopSpeak();speakingText=null;return}
+  stopSpeak();speakingText=text;
+  let a;
+  try{a=new Audio('audio/'+srHash(text)+'.mp3')}catch(e){speakFallback(text);return}
+  audioEl=a;
+  const fall=()=>{if(audioEl===a){audioEl=null;speakFallback(text)}};
+  a.addEventListener('error',fall);
+  a.addEventListener('ended',()=>{if(audioEl===a){audioEl=null;speakingText=null}});
+  const pr=a.play();
+  if(pr&&pr.catch)pr.catch(fall);
 }
 function speakBtnHTML(text,extraClass,label){
   if(!CAN_SPEAK)return'';

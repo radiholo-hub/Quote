@@ -28,6 +28,7 @@ jobs:
           mkdir _site
           cp index.html style.css app.js quotes.js _site/
           cp -r audio _site/audio
+          cp -r score-rescue _site/score-rescue
       - uses: actions/upload-pages-artifact@v3
         with: { path: _site }
       - id: deployment
