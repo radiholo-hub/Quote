@@ -766,8 +766,8 @@ async function tryUnlockOnline(code){
 /* ---------- 登入與雲端同步(Supabase)----------
    把下面兩個值換成你 Supabase 專案的 Project URL 與 anon public key(設定步驟見 ACCOUNT_SETUP.md)。
    兩個都留空時,登入功能會自動隱藏,網站照常使用本機儲存與備份碼。 */
-const SB_URL='';
-const SB_KEY='';
+const SB_URL='https://uzesrnvtbplloqqgmhcl.supabase.co';
+const SB_KEY='sb_publishable_jrTIfxDHkliZJ8ySXIZyYg_jjKuA5I5';
 let sb=null,sbUser=null,pushTimer=null,pulling=false;
 function cloudReady(){return !!(SB_URL&&SB_KEY)}
 function hasProgress(){return !!(S.res||S.unlocked||Object.keys(S.daysDone||{}).length)}
