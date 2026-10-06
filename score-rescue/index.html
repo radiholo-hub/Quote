@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Score Rescue｜英文滅火隊</title>
+<title>Score Rescue｜英文助攻隊</title>
 <meta name="description" content="依你的程度抽出 30 題，找出 TOEIC® 最大失分原因，取得專屬 14 天修復計畫。300 到 900 分都適用。">
 <meta name="theme-color" content="#EEF1F5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -413,13 +413,14 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 <div id="view-home" class="view">
   <header class="site">
     <div class="wrap bar">
-      <a class="brand" href="#main" aria-label="Score Rescue 英文滅火隊">
+      <a class="brand" href="#main" aria-label="Score Rescue 英文助攻隊">
         <svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 6c1 3.2 5 5.2 5 9.2A5 5 0 0 1 14 20a5 5 0 0 1-5-4.8c0-1.9 1-3.2 2-4.2.2 1.2.8 2 1.6 2.4C12.3 11 12.7 8.2 14 6z" fill="#D63A1F"/></svg>
-        <span><b>Score Rescue</b> 英文滅火隊</span>
+        <span><b>Score Rescue</b> 英文助攻隊</span>
       </a>
       <nav class="nav" aria-label="主選單"><a href="#how">怎麼運作</a><a href="#sample">報告範例</a><a href="#pricing">方案</a></nav>
       <div class="bar-actions">
         <button class="link sm" id="btnRestoreToggle" type="button">還原備份碼</button>
+        <button class="btn line sm" id="btnAccount" type="button" hidden>登入同步進度</button>
         <button class="btn line sm" id="btnContinue" data-go="plan" hidden>繼續學習</button>
         <button class="btn fire sm" data-start>免費診斷</button>
       </div>
@@ -517,7 +518,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <div class="exam-cards" id="examCards"></div>
     </section>
   </main>
-  <footer><div class="wrap">© Score Rescue 英文滅火隊　·　TOEIC® 是 ETS 的註冊商標，本網站與 ETS 無關。　·　<a href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener" class="line-link">加官方 LINE 聯絡我們</a></div></footer>
+  <footer><div class="wrap">© Score Rescue 英文助攻隊　·　TOEIC® 是 ETS 的註冊商標，本網站與 ETS 無關。　·　<a href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener" class="line-link">加官方 LINE 聯絡我們</a>　·　<button class="link fine" id="btnRestoreFoot" type="button" hidden>還原備份碼</button></div></footer>
 </div>
 
 <!-- ============ 選擇程度 ============ -->
@@ -610,6 +611,19 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 </div>
 
 <!-- ============ 轉帳訂購視窗 ============ -->
+<div class="modal" id="authModal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="aTitle">
+    <button class="x" id="aClose" type="button" aria-label="關閉">×</button>
+    <h2 id="aTitle">登入，進度自動同步</h2>
+    <p class="lead">輸入 Email，我們會寄一封登入連結給你，點開就登入，不用設密碼。換手機或電腦時用同一個 Email 登入，進度和解鎖狀態就會回來。</p>
+    <form id="authForm" novalidate>
+      <label>Email<input type="email" id="authEmail" autocomplete="email" placeholder="you@example.com" required></label>
+      <button class="btn fire lg" type="submit" id="authSend">寄登入連結</button>
+      <p class="err" id="authMsg" role="status"></p>
+    </form>
+    <p class="fine">只用來登入與同步進度，不會寄廣告信。</p>
+  </div>
+</div>
 <div class="modal" id="modal" hidden>
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
     <button class="x" id="mClose" type="button" aria-label="關閉">×</button>
@@ -694,12 +708,23 @@ RBANK.forEach((r,i)=>{r.id=i});
 /* ---------- 狀態與儲存 ---------- */
 const KEY='scoreRescue.v2';
 const S={diag:null,res:null,extra:{},dayDone:false,daysDone:{},unlocked:false,level:2,examScores:{},readSeen:{}};
-function save(){try{localStorage.setItem(KEY,JSON.stringify({diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,unlocked:S.unlocked,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}}
-function load(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.res&&j.diag&&j.res.ranked){S.diag=j.diag;S.res=j.res;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};if(S.dayDone)S.daysDone[1]=true;S.unlocked=!!j.unlocked;S.level=j.level||2}if(j&&j.examScores)S.examScores=j.examScores;if(j&&j.readSeen)S.readSeen=j.readSeen}catch(e){}}
+function save(){S.savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify({savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,unlocked:S.unlocked,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
+  if(typeof schedulePush==='function')schedulePush()}
+function load(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.res&&j.diag&&j.res.ranked){S.diag=j.diag;S.res=j.res;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};if(S.dayDone)S.daysDone[1]=true;S.unlocked=!!j.unlocked;S.level=j.level||2}S.savedAt=(j&&j.savedAt)||0;if(j&&j.examScores)S.examScores=j.examScores;if(j&&j.readSeen)S.readSeen=j.readSeen}catch(e){}}
 /* 備份碼：把解鎖狀態與學習進度編碼成一段文字，讓使用者換裝置/清快取時能自己還原。
    不含模擬試題的完整詳解內容（那部分體積太大），只保留分數本身；詳解可以重新測驗取得。 */
 function backupBlob(){
-  return{v:1,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,unlocked:S.unlocked,level:S.level,readSeen:S.readSeen};
+  return{v:1,savedAt:S.savedAt||0,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,unlocked:S.unlocked,level:S.level,readSeen:S.readSeen,examScores:slimExamScores()};
+}
+/* 模擬試題只同步分數(不含逐題內容,體積太大);逐題解析重新測驗即可取得 */
+function slimExamScores(){
+  const o={};
+  Object.keys(S.examScores||{}).forEach(id=>{const x=S.examScores[id];o[id]={correct:x.correct,total:x.total,byPart:x.byPart,totalByPart:x.totalByPart,at:x.at}});
+  return o;
+}
+function applyBlob(j){
+  S.diag=j.diag||null;S.res=j.res||null;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};S.unlocked=!!j.unlocked;S.level=j.level||2;S.readSeen=j.readSeen||{};
+  if(j.examScores)Object.keys(j.examScores).forEach(id=>{if(!S.examScores[id]||!S.examScores[id].items)S.examScores[id]=j.examScores[id]});
 }
 function exportBackupCode(){
   try{return btoa(unescape(encodeURIComponent(JSON.stringify(backupBlob()))))}catch(e){return ''}
@@ -708,7 +733,7 @@ function importBackupCode(code){
   try{
     const j=JSON.parse(decodeURIComponent(escape(atob((code||'').trim()))));
     if(!j||typeof j!=='object'||!j.v)return false;
-    S.diag=j.diag||null;S.res=j.res||null;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};S.unlocked=!!j.unlocked;S.level=j.level||2;S.readSeen=j.readSeen||{};
+    applyBlob(j);
     save();
     return true;
   }catch(e){return false}
@@ -737,6 +762,94 @@ async function tryUnlockOnline(code){
     return{ok:false,reason:'network'};
   }
 }
+
+/* ---------- 登入與雲端同步(Supabase)----------
+   把下面兩個值換成你 Supabase 專案的 Project URL 與 anon public key(設定步驟見 ACCOUNT_SETUP.md)。
+   兩個都留空時,登入功能會自動隱藏,網站照常使用本機儲存與備份碼。 */
+const SB_URL='https://uzesrnvtbplloqqgmhcl.supabase.co';
+const SB_KEY='sb_publishable_jrTIfxDHkliZJ8ySXIZyYg_jjKuA5I5';
+let sb=null,sbUser=null,pushTimer=null,pulling=false;
+function cloudReady(){return !!(SB_URL&&SB_KEY)}
+function hasProgress(){return !!(S.res||S.unlocked||Object.keys(S.daysDone||{}).length)}
+function loadScript(src){return new Promise((ok,bad)=>{const t=document.createElement('script');t.src=src;t.onload=ok;t.onerror=bad;document.head.appendChild(t)})}
+async function initCloud(){
+  const btn=$('#btnAccount');
+  if(!cloudReady()){return}
+  btn.hidden=false;$('#btnRestoreToggle').hidden=true;$('#btnRestoreFoot').hidden=false;
+  try{
+    await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
+    sb=window.supabase.createClient(SB_URL,SB_KEY);
+    const r=await sb.auth.getSession();
+    await onSession(r.data&&r.data.session);
+    sb.auth.onAuthStateChange((ev,sess)=>{if(ev==='SIGNED_IN'||ev==='SIGNED_OUT')onSession(sess)});
+  }catch(e){renderAccount()}
+}
+function renderAccount(){
+  const btn=$('#btnAccount');if(!btn||!cloudReady())return;
+  btn.textContent=sbUser?'已登入 · 登出':'登入同步進度';
+  btn.title=sbUser?sbUser.email:'';
+}
+async function onSession(sess){
+  const uid=sess&&sess.user?sess.user.id:null;
+  if((sbUser&&sbUser.id)===uid){renderAccount();return}
+  sbUser=sess?sess.user:null;renderAccount();
+  if(sbUser)await pullMerge();
+}
+/* 登入後比對雲端與本機,以「最後儲存時間」較新的為準 */
+async function pullMerge(){
+  if(!sb||!sbUser||pulling)return;
+  pulling=true;
+  try{
+    const r=await sb.from('progress').select('data').eq('user_id',sbUser.id).maybeSingle();
+    if(r.error)throw r.error;
+    const remote=r.data&&r.data.data;
+    if(!remote){if(hasProgress())await pushNow();return}
+    if(!hasProgress()||(remote.savedAt||0)>(S.savedAt||0)){
+      applyBlob(remote);S.savedAt=remote.savedAt||Date.now();
+      try{localStorage.setItem(KEY,JSON.stringify({savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,unlocked:S.unlocked,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
+      refreshHome();if(!$('#view-plan').hidden)renderPlan();
+      toast('已同步雲端進度');
+    }else await pushNow();
+  }catch(e){toast('同步失敗，稍後會再試')}
+  finally{pulling=false}
+}
+async function pushNow(){
+  if(!sb||!sbUser||!hasProgress())return;
+  const r=await sb.from('progress').upsert({user_id:sbUser.id,data:backupBlob(),updated_at:new Date().toISOString()});
+  if(r.error)throw r.error;
+}
+function schedulePush(){
+  if(!sb||!sbUser||pulling)return;
+  clearTimeout(pushTimer);
+  pushTimer=setTimeout(()=>{pushNow().catch(()=>{})},1500);
+}
+function toast(msg){
+  let t=$('#toast');
+  if(!t){t=document.createElement('div');t.id='toast';t.setAttribute('role','status');t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#272B33;color:#fff;padding:10px 18px;border-radius:999px;font-size:.92rem;z-index:60;max-width:90vw';document.body.appendChild(t)}
+  t.textContent=msg;t.hidden=false;clearTimeout(t._h);t._h=setTimeout(()=>{t.hidden=true},2600);
+}
+function openAuth(){$('#authMsg').textContent='';$('#authMsg').style.color='';$('#authModal').hidden=false;$('#authEmail').focus()}
+function closeAuth(){$('#authModal').hidden=true}
+$('#btnAccount').addEventListener('click',async()=>{
+  if(!sb){openAuth();return}
+  if(sbUser){
+    if(confirm('登出後，這個瀏覽器仍會保留目前的進度。確定要登出嗎？')){await sb.auth.signOut()}
+  }else openAuth();
+});
+$('#aClose').addEventListener('click',closeAuth);
+$('#authModal').addEventListener('mousedown',e=>{if(e.target.id==='authModal')closeAuth()});
+$('#authForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const email=$('#authEmail').value.trim(),msg=$('#authMsg'),btn=$('#authSend');
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){msg.style.color='';msg.textContent='請輸入正確的 Email。';return}
+  if(!sb){msg.textContent='登入服務暫時無法使用，請稍後再試。';return}
+  btn.disabled=true;msg.style.color='var(--ink)';msg.textContent='寄送中…';
+  const r=await sb.auth.signInWithOtp({email:email,options:{emailRedirectTo:location.origin+location.pathname}});
+  btn.disabled=false;
+  if(r.error){msg.style.color='';msg.textContent='寄送失敗：'+(r.error.message||'請稍後再試');return}
+  msg.style.color='var(--ok)';msg.textContent='已寄出！請到信箱點開登入連結（沒收到請看垃圾郵件）。';
+});
+$('#btnRestoreFoot').addEventListener('click',()=>$('#btnRestoreToggle').click());
 
 /* ---------- 頁面切換 ---------- */
 function show(name){$$('.view').forEach(v=>{v.hidden=v.id!=='view-'+name});window.scrollTo(0,0)}
@@ -967,6 +1080,7 @@ $('#quitBtn').addEventListener('click',function(){
   const back=R?R.back:'home';delete this.dataset.arm;this.textContent='離開';R=null;go(back);
 });
 document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&!$('#authModal').hidden){closeAuth();return}
   if(e.key==='Escape'&&!$('#modal').hidden){closeModal();return}
   if(!R||$('#view-quiz').hidden||e.ctrlKey||e.metaKey||e.altKey)return;
   const map={a:0,b:1,c:2,d:3,'1':0,'2':1,'3':2,'4':3},key=e.key.toLowerCase();
@@ -1178,12 +1292,13 @@ function renderPlan(){
    '<div class="cta-row"><button class="btn fire lg" type="button" data-act="day" data-day="1">'+(S.daysDone[1]?'再練一次 Day 1 · 5 題':'開始 Day 1 · 5 題')+'</button></div>'+
    '<section class="road-sec"><h2>你的個人化學習路線</h2><p class="lead">'+(S.unlocked?'點任一天開始；已完成的天數會打勾。':'🔒 表示解鎖後才能開始；Day 1 可以先完整體驗。')+'</p>'+roadHTML+'<p class="road-note">大多數天數都是沒做過的新題目；只有 Day 7（錯題回顧）和 Day 13–14（複習／再診斷）會刻意重出你之前答錯的題，幫助加深記憶。</p></section>'+
    unlockSection+
-   '<section class="sheet backup-box'+(justUnlocked?' just-unlocked':'')+'">'+
+   (cloudReady()?'<details class="sheet backup-box"><summary class="link">手動備份碼（進階，一般用登入同步就好）</summary>':'')+
+   '<section class="'+(cloudReady()?'':'sheet ')+'backup-box'+(justUnlocked?' just-unlocked':'')+'">'+
      (justUnlocked?'<p class="backup-flash">✅ 已自動複製備份碼，建議現在點「傳送到 LINE」存起來，之後就不怕進度不見</p>':'')+
      '<h2>備份你的進度</h2><p class="lead">你的進度只存在這個瀏覽器裡。換裝置、換瀏覽器或清除瀏覽器資料前，建議先把這組備份碼存起來，之後回到首頁右上角「還原備份碼」貼回去就能救回進度'+(S.unlocked?'（包含已解鎖狀態）':'')+'。</p>'+
      '<textarea id="backupOut" rows="3" readonly></textarea>'+
      '<div class="cta-row"><a class="btn fire" id="backupLineBtn" target="_blank" rel="noopener">傳送到 LINE 存起來</a><button class="btn line" type="button" id="backupCopyBtn">複製備份碼</button></div>'+
-   '</section>';
+   '</section>'+(cloudReady()?'</details>':'');
   const inp=$('#unlockInput');
   if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter')doUnlock()});
   const bo=$('#backupOut');
@@ -1320,7 +1435,7 @@ function examCardsHTML(){
       return '<div class="exam-card locked"><div><h3>'+e.title+'</h3><p class="ec-meta">閱讀 100 題 · 聽力製作中</p></div><div class="ec-right"><span class="soon-tag">即將推出</span></div></div>';
     }
     const right=score
-      ? '<span class="ec-score">'+score.correct+' / 100</span><button class="btn line sm" type="button" data-act="examReview" data-exam="'+e.id+'">看解析</button><button class="btn fire sm" type="button" data-act="examStart" data-exam="'+e.id+'">重新測驗</button>'
+      ? '<span class="ec-score">'+score.correct+' / 100</span>'+(score.items?'<button class="btn line sm" type="button" data-act="examReview" data-exam="'+e.id+'">看解析</button>':'')+'<button class="btn fire sm" type="button" data-act="examStart" data-exam="'+e.id+'">重新測驗</button>'
       : '<button class="btn fire sm" type="button" data-act="examStart" data-exam="'+e.id+'">開始測驗</button>';
     return '<div class="exam-card"><div><h3>'+e.title+'</h3><p class="ec-meta">閱讀 100 題（無聽力）· Part 5/6/7 · 約 75 分鐘</p></div><div class="ec-right">'+right+'</div></div>';
   }).join('');
@@ -1765,7 +1880,7 @@ document.addEventListener('keydown',e=>{
     box.appendChild(b);
   });
 })();
-load();refreshHome();show('home');
+load();refreshHome();show('home');initCloud();
 })();
 </script>
 </body>
