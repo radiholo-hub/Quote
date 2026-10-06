@@ -1,0 +1,7 @@
+name = "score-rescue-unlock"
+main = "unlock-worker.js"
+compatibility_date = "2024-11-01"
+
+[vars]
+# 允許呼叫的網站網址,多個用逗號分隔(換成你 GitHub Pages 的網址,不含路徑)
+ALLOWED_ORIGINS = "https://radiholo-hub.github.io"
