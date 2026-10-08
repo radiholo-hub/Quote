@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Score Rescue｜英文助攻隊</title>
 <meta name="description" content="依你的程度抽出 30 題，找出 TOEIC® 最大失分原因，取得專屬 14 天修復計畫。300 到 900 分都適用。">
 <meta name="theme-color" content="#EEF1F5">
@@ -377,6 +377,8 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
   .pass-pane .passage{max-height:calc(100vh - 130px)}
   .q-pane{margin-top:0}
 }
+.pp-toggle{display:flex;width:100%;align-items:center;justify-content:center;gap:6px;min-height:40px;margin-bottom:8px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-weight:700;font-size:.88rem;color:var(--muted);cursor:pointer}
+.pass-pane.collapsed .passage,.pass-pane.collapsed .ptabs{display:none}
 .exam-actions{display:flex;justify-content:space-between;gap:12px;margin-top:24px;padding-bottom:20px}
 
 /* result */
@@ -402,6 +404,40 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
   .score-part{grid-template-columns:1fr}
   .passage{max-height:38vh}
 }
+/* ---- 手機(窄螢幕)調整 ---- */
+@media (max-width:600px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .bar{gap:8px;min-height:58px}
+  .brand{gap:8px;min-width:0;font-size:1rem}
+  .brand b{display:none}
+  .brand svg{width:26px;height:26px;flex:none}
+  .bar-actions{margin-left:auto;gap:6px;flex-wrap:nowrap}
+  .bar-actions .btn,.bar-actions .link{white-space:nowrap;flex:none}
+  .btn.sm{padding:0 14px;min-height:44px}
+  .hero{padding:28px 16px 48px;gap:28px}
+  .sec,.sample{padding:44px 16px}
+  .sheet{padding:18px 16px 18px 28px}
+  .sheet::before{left:8px;width:6px}
+  .opt{min-height:56px;padding:10px 12px}
+  .opt .t{font-size:1.08rem}
+  .run-title{font-size:.95rem}
+  .runbar-in,.topbar .bar2{min-height:54px}
+  .runbar .link,.topbar .link{min-height:44px;min-width:44px;display:inline-flex;align-items:center}
+  .run-count{min-width:0;font-size:.9rem}
+  .speak-ic{width:2.4em;height:2.4em;font-size:.6em}
+  .q-actions{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+  .exam-actions{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+  .exam-actions .btn{flex:1}
+  .pass-pane .passage{max-height:26vh}
+  .exam-card .ec-right{margin-left:0;width:100%;flex-wrap:wrap}
+  .modal{align-items:end;padding:0}
+  .modal-box{max-width:none;border-radius:16px 16px 0 0;padding:26px 18px calc(22px + env(safe-area-inset-bottom))}
+  .nav-grid{grid-template-columns:repeat(auto-fill,40px);gap:6px}
+  .nav-grid button{width:40px;height:40px;font-size:.85rem}
+  input[type=text],input[type=email],textarea{font-size:16px}
+}
+@media (min-width:900px){.pp-toggle{display:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -420,7 +456,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <nav class="nav" aria-label="主選單"><a href="#how">怎麼運作</a><a href="#sample">報告範例</a><a href="#pricing">方案</a></nav>
       <div class="bar-actions">
         <button class="link sm" id="btnRestoreToggle" type="button">還原備份碼</button>
-        <button class="btn line sm" id="btnAccount" type="button" hidden>登入同步進度</button>
+        <button class="btn line sm" id="btnAccount" type="button" hidden>登入</button>
         <button class="btn line sm" id="btnContinue" data-go="plan" hidden>繼續學習</button>
         <button class="btn fire sm" data-start>免費診斷</button>
       </div>
@@ -786,7 +822,7 @@ async function initCloud(){
 }
 function renderAccount(){
   const btn=$('#btnAccount');if(!btn||!cloudReady())return;
-  btn.textContent=sbUser?'已登入 · 登出':'登入同步進度';
+  btn.textContent=sbUser?'登出':'登入';
   btn.title=sbUser?sbUser.email:'';
 }
 async function onSession(sess){
@@ -1530,6 +1566,7 @@ function joinGenres(arr){
 function directionsHTML(n1,n2,genre){
   return '<p class="p-direct">'+(n1===n2?('Question '+n1):('Questions '+n1+'–'+n2))+' refer'+(n1===n2?'s':'')+' to the following '+genre+'.</p>';
 }
+function ppToggleHTML(){return '<button type="button" class="pp-toggle" id="ppToggle" aria-expanded="'+(!EX.ppCollapsed)+'">'+(EX.ppCollapsed?'▼ 展開文章':'▲ 收合文章，專心看題目')+'</button>'}
 function examP5HTML(it){
   return '<div class="sheet q-sheet"><p class="q serif">'+blankify(it.q)+'</p>'+examOptsWrap(it,EX.cur,'id="examOpts"')+'</div>'+examNavHTML();
 }
@@ -1545,7 +1582,7 @@ function examP6HTML(it){
     return '<div class="p6-q"><p class="qn">第 '+(gi+1)+' 題</p>'+examOptsWrap(pit,gi,'data-group="'+gi+'"')+'</div>';
   }).join('');
   const p6n1=EX.items.indexOf(psgItems[0])+1,p6n2=EX.items.indexOf(psgItems[psgItems.length-1])+1;
-  return '<div class="exam-split"><div class="pass-pane">'+directionsHTML(p6n1,p6n2,P6_GENRE[it.passageIndex]||'text')+'<div class="passage"><p class="body">'+text+'</p></div></div>'+
+  return '<div class="exam-split"><div class="pass-pane'+(EX.ppCollapsed?' collapsed':'')+'">'+directionsHTML(p6n1,p6n2,P6_GENRE[it.passageIndex]||'text')+ppToggleHTML()+'<div class="passage"><p class="body">'+text+'</p></div></div>'+
    '<div class="q-pane"><div class="p6-qs">'+qHTML+'</div></div></div>'+examNavHTML();
 }
 function examP7HTML(it){
@@ -1558,7 +1595,7 @@ function examP7HTML(it){
     const gi=EX.items.indexOf(sit);
     return '<div class="p7-q"><p class="qn">第 '+(gi+1)+' 題</p><p class="qt">'+esc(sit.q)+'</p>'+examOptsWrap(sit,gi,'data-group="'+gi+'"')+'</div>';
   }).join('');
-  return '<div class="exam-split"><div class="pass-pane">'+directionsHTML(p7n1,p7n2,joinGenres(ps.map(p=>p.heading.toLowerCase())))+tabs+pass+'</div><div class="q-pane"><div class="p7-qs">'+qHTML+'</div></div></div>'+examNavHTML();
+  return '<div class="exam-split"><div class="pass-pane'+(EX.ppCollapsed?' collapsed':'')+'">'+directionsHTML(p7n1,p7n2,joinGenres(ps.map(p=>p.heading.toLowerCase())))+ppToggleHTML()+tabs+pass+'</div><div class="q-pane"><div class="p7-qs">'+qHTML+'</div></div></div>'+examNavHTML();
 }
 function examNavHTML(){
   const it=EX.items[EX.cur],[cs,ce]=examGroupBounds(EX.cur);
@@ -1588,6 +1625,8 @@ function examBindOptClicks(){
   });
 }
 function examBindTabs(){
+  const tg=$('#ppToggle');
+  if(tg)tg.addEventListener('click',()=>{EX.ppCollapsed=!EX.ppCollapsed;const pp=$('#examBody .pass-pane');pp.classList.toggle('collapsed',EX.ppCollapsed);tg.setAttribute('aria-expanded',String(!EX.ppCollapsed));tg.textContent=EX.ppCollapsed?'▼ 展開文章':'▲ 收合文章，專心看題目'});
   $$('#examBody .ptab').forEach(t=>t.addEventListener('click',()=>{
     const n=t.dataset.tab;
     $$('#examBody .ptab').forEach(x=>x.classList.toggle('on',x===t));
