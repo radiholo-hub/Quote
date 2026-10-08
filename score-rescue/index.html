@@ -90,6 +90,7 @@ mark{background:linear-gradient(transparent 58%,var(--hi) 58%);color:inherit;pad
 .hero h1{font-size:clamp(2.5rem,7.4vw,4.6rem)}
 .hero .lead{margin-top:22px;max-width:33em}
 .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:32px}
+.resume-bar{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
 .note{margin-top:14px;font-size:.92rem;color:var(--muted)}
 .demo-h{font-weight:700;color:var(--muted);font-size:.95rem;margin-bottom:10px}
 .demo-fb{min-height:1px}
@@ -482,6 +483,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
           <button class="btn fire lg" data-start>開始免費診斷</button>
           <a class="link" href="#sample">先看報告範例</a>
         </div>
+        <p class="resume-bar" id="resumeBar" hidden><button class="btn fire" type="button" id="resumeBtn" data-act="resumeDiag">繼續診斷</button> <button class="link fine" type="button" data-act="dropDraft">放棄，重新開始</button></p>
         <p class="note">免費 · 不用註冊 · 約 20 分鐘 · 依你的程度調整難度</p>
       </div>
       <div class="sheet demo">
@@ -744,9 +746,9 @@ RBANK.forEach((r,i)=>{r.id=i});
 /* ---------- 狀態與儲存 ---------- */
 const KEY='scoreRescue.v2';
 const S={diag:null,res:null,extra:{},dayDone:false,daysDone:{},unlocked:false,level:2,examScores:{},readSeen:{}};
-function save(){S.savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify({savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,unlocked:S.unlocked,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
+function save(){S.savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify({draft:S.draft||null,savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,unlocked:S.unlocked,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
   if(typeof schedulePush==='function')schedulePush()}
-function load(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.res&&j.diag&&j.res.ranked){S.diag=j.diag;S.res=j.res;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};if(S.dayDone)S.daysDone[1]=true;S.unlocked=!!j.unlocked;S.level=j.level||2}S.savedAt=(j&&j.savedAt)||0;if(j&&j.examScores)S.examScores=j.examScores;if(j&&j.readSeen)S.readSeen=j.readSeen}catch(e){}}
+function load(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.res&&j.diag&&j.res.ranked){S.diag=j.diag;S.res=j.res;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};if(S.dayDone)S.daysDone[1]=true;S.unlocked=!!j.unlocked;S.level=j.level||2}S.savedAt=(j&&j.savedAt)||0;S.draft=(j&&j.draft&&j.draft.list&&j.draft.i>0)?j.draft:null;if(j&&j.examScores)S.examScores=j.examScores;if(j&&j.readSeen)S.readSeen=j.readSeen}catch(e){}}
 /* 備份碼：把解鎖狀態與學習進度編碼成一段文字，讓使用者換裝置/清快取時能自己還原。
    不含模擬試題的完整詳解內容（那部分體積太大），只保留分數本身；詳解可以重新測驗取得。 */
 function backupBlob(){
@@ -896,7 +898,11 @@ function go(name){
   refreshHome();show(name);
   if(name==='result')growBars($('#resBody'));
 }
-function refreshHome(){$('#btnContinue').hidden=!S.res;refreshExamCards()}
+function refreshHome(){
+  $('#btnContinue').hidden=!S.res;refreshExamCards();
+  const rb=$('#resumeBar');
+  if(rb){rb.hidden=!S.draft;if(S.draft)$('#resumeBtn').textContent='繼續診斷（已做 '+S.draft.i+' / '+S.draft.list.length+' 題）'}
+}
 $$('.topbar-slot').forEach(el=>{el.outerHTML='<div class="topbar"><div class="wrap narrow bar2"><button class="link" type="button" data-go="home">← 回首頁</button><span class="brand"><b>Score Rescue</b></span></div></div>'});
 
 /* ---------- 選項與長條圖 ---------- */
@@ -1055,7 +1061,7 @@ document.addEventListener('click',e=>{
 /* ---------- 作答流程 ---------- */
 let R=null;
 function runQuiz(o){
-  R={list:o.list,mode:o.mode,title:o.title,onDone:o.onDone,back:o.back||'home',level:o.level,P:o.P,total:o.total||o.list.length,i:0,ans:[],times:[],sel:null,locked:false,t0:0};
+  R={list:o.list,mode:o.mode,title:o.title,onDone:o.onDone,back:o.back||'home',level:o.level,P:o.P,total:o.total||o.list.length,i:o.i||0,ans:o.ans||[],times:o.times||[],sel:null,locked:false,t0:0};
   $('#runTitle').textContent=o.title;show('quiz');renderQ();
 }
 function renderQ(){
@@ -1097,6 +1103,12 @@ function choose(k){
     $('#nextBtn').disabled=false;$('#nextBtn').focus();
   }else $('#nextBtn').disabled=false;
 }
+/* 診斷做到一半離開時保留進度,下次可從同一題繼續 */
+function saveDraft(){
+  if(!R||R.mode!=='diag'||R.i<1)return;
+  S.draft={list:R.list,ans:R.ans.slice(0,R.i),times:R.times.slice(0,R.i),i:R.i,level:R.level};
+  save();
+}
 function next(){
   if(!R||R.sel===null)return;
   if(R.mode==='diag'||R.mode==='place'){R.ans[R.i]=R.sel;R.times[R.i]=Math.min(120,(performance.now()-R.t0)/1000)}
@@ -1105,15 +1117,13 @@ function next(){
     if(R.i+1<R.total)R.list.push(pickPlace(R.P));
   }
   R.i++;
-  if(R.i>=R.list.length){const done=R;R=null;done.onDone(done)}else renderQ();
+  if(R.i>=R.list.length){const done=R;R=null;done.onDone(done)}else{if(R.mode==='diag')saveDraft();renderQ()}
 }
 $('#nextBtn').addEventListener('click',next);
 $('#quitBtn').addEventListener('click',function(){
-  if(R&&R.mode==='diag'&&!this.dataset.arm){
-    this.dataset.arm='1';this.textContent='確定離開？進度不會保留';
-    setTimeout(()=>{delete this.dataset.arm;this.textContent='離開'},3500);return;
-  }
-  const back=R?R.back:'home';delete this.dataset.arm;this.textContent='離開';R=null;go(back);
+  const back=R?R.back:'home',wasDiag=R&&R.mode==='diag'&&R.i>0;
+  R=null;go(back);
+  if(wasDiag)toast('進度已儲存，回首頁可以繼續');
 });
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'&&!$('#authModal').hidden){closeAuth();return}
@@ -1135,7 +1145,7 @@ function analyze(d){
   return{total:total,correct:correct,acc:acc,ranked:ranked,weak:ranked[0].t,level:d.level||2,avg:avg};
 }
 function finishDiag(r){
-  S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.level=r.level;S.res=analyze(S.diag);S.extra={};S.dayDone=false;S.daysDone={};save();go('result');
+  S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.level=r.level;S.res=analyze(S.diag);S.extra={};S.dayDone=false;S.daysDone={};S.draft=null;save();go('result');
 }
 function redoDiag(r){
   S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.res=analyze(S.diag);S.daysDone[14]=true;save();go('plan');
@@ -1149,6 +1159,7 @@ const LEVELS=[
 let pendingLevel=2,placeIds=new Set();
 function openLevel(){show('level')}
 function startDiagAt(level,skip){
+  S.draft=null;
   runQuiz({list:drawDiag(level,skip),mode:'diag',title:'弱點診斷',back:'home',level:level,onDone:finishDiag});
 }
 function startPlacement(){
@@ -1898,6 +1909,8 @@ document.addEventListener('click',e=>{
   else if(el.dataset.act==='drill')startDrill();
   else if(el.dataset.act==='day')startPlanDay(+el.dataset.day||1);
   else if(el.dataset.act==='unlock')doUnlock();
+  else if(el.dataset.act==='resumeDiag'&&S.draft){const d=S.draft;runQuiz({list:d.list,mode:'diag',title:'弱點診斷',back:'home',level:d.level,onDone:finishDiag,i:d.i,ans:d.ans,times:d.times})}
+  else if(el.dataset.act==='dropDraft'){S.draft=null;save();refreshHome()}
   else if(el.dataset.act==='beginDiag')startDiagAt(pendingLevel,placeIds);
   else if(el.dataset.act==='lvup')startDiagAt(Math.min(3,Math.round((S.diag&&S.diag.level)||S.level||2)+1));
   else if(el.dataset.act==='lvdown')startDiagAt(Math.max(1,Math.round((S.diag&&S.diag.level)||S.level||2)-1));
