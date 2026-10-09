@@ -551,11 +551,11 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
           <h3>30 天衝分</h3>
           <p class="price">NT$499</p>
           <p class="desc">適合考期確定、需要穩定節奏。</p>
-          <ul><li>完整 30 天計畫</li><li>每週能力追蹤</li><li>錯題循環複習</li><li>3 份完整模擬試題（閱讀 100 題）</li></ul>
+          <ul><li>包含 14 天方案的全部內容</li><li>再加 Day 15–30，八大弱點全部輪一遍</li><li>第 30 天總檢測</li><li>3 份完整模擬試題（閱讀 100 題）</li></ul>
           <button class="btn line" data-modal="30">轉帳訂購 30 天方案</button>
         </article>
       </div>
-      <p class="plan-note">目前採轉帳付款，轉帳後加官方 LINE 回報，確認後我們會傳一組解鎖碼給你；登入帳號後輸入解鎖碼即可使用，通常數小時內處理。</p>
+      <p class="plan-note">目前採轉帳付款，轉帳後加官方 LINE 回報，確認後我們會傳一組解鎖碼給你；登入帳號後輸入解鎖碼即可使用，通常數小時內處理。已買 14 天方案想升級 30 天，補差額 NT$200 即可。</p>
     </section>
 
     <section class="wrap sec" id="exams">
@@ -775,14 +775,14 @@ RBANK.forEach((r,i)=>{r.id=i});
 
 /* ---------- 狀態與儲存 ---------- */
 const KEY='scoreRescue.v2';
-const S={diag:null,res:null,extra:{},dayDone:false,daysDone:{},daysDone30:{},plans:[],planView:'14',level:2,examScores:{},readSeen:{}};
-function save(){S.savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify({draft:S.draft||null,savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,daysDone30:S.daysDone30,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
+const S={diag:null,res:null,extra:{},dayDone:false,daysDone:{},plans:[],planView:'14',level:2,examScores:{},readSeen:{}};
+function save(){S.savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify({draft:S.draft||null,savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
   if(typeof schedulePush==='function')schedulePush()}
-function load(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.res&&j.diag&&j.res.ranked){S.diag=j.diag;S.res=j.res;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};if(S.dayDone)S.daysDone[1]=true;S.daysDone30=j.daysDone30||{};S.level=j.level||2}S.savedAt=(j&&j.savedAt)||0;S.draft=(j&&j.draft&&j.draft.list&&j.draft.i>0)?j.draft:null;if(j&&j.examScores)S.examScores=j.examScores;if(j&&j.readSeen)S.readSeen=j.readSeen}catch(e){}}
+function load(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.res&&j.diag&&j.res.ranked){S.diag=j.diag;S.res=j.res;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};if(S.dayDone)S.daysDone[1]=true;S.level=j.level||2}S.savedAt=(j&&j.savedAt)||0;S.draft=(j&&j.draft&&j.draft.list&&j.draft.i>0)?j.draft:null;if(j&&j.examScores)S.examScores=j.examScores;if(j&&j.readSeen)S.readSeen=j.readSeen}catch(e){}}
 /* 備份碼：把解鎖狀態與學習進度編碼成一段文字，讓使用者換裝置/清快取時能自己還原。
    不含模擬試題的完整詳解內容（那部分體積太大），只保留分數本身；詳解可以重新測驗取得。 */
 function backupBlob(){
-  return{v:1,savedAt:S.savedAt||0,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,daysDone30:S.daysDone30,level:S.level,readSeen:S.readSeen,examScores:slimExamScores()};
+  return{v:1,savedAt:S.savedAt||0,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,level:S.level,readSeen:S.readSeen,examScores:slimExamScores()};
 }
 /* 模擬試題只同步分數(不含逐題內容,體積太大);逐題解析重新測驗即可取得 */
 function slimExamScores(){
@@ -791,7 +791,7 @@ function slimExamScores(){
   return o;
 }
 function applyBlob(j){
-  S.diag=j.diag||null;S.res=j.res||null;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};S.daysDone30=j.daysDone30||{};S.level=j.level||2;S.readSeen=j.readSeen||{};
+  S.diag=j.diag||null;S.res=j.res||null;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};S.level=j.level||2;S.readSeen=j.readSeen||{};
   if(j.examScores)Object.keys(j.examScores).forEach(id=>{if(!S.examScores[id]||!S.examScores[id].items)S.examScores[id]=j.examScores[id]});
 }
 function exportBackupCode(){
@@ -810,14 +810,18 @@ function importBackupCode(code){
    方案資格存在 Supabase 的 entitlements 表,只有伺服器端的 redeem_code() 能寫入,使用者無法自己改。
    S.plans 每次登入都從伺服器重新讀取,不信任瀏覽器本機的資料。設定步驟見 ENTITLEMENTS_SETUP.md。 */
 const PLAN_INFO={
-  '14':{days:14,price:'NT$299',unit:'平均一天不到 NT$22',name:'14 天弱點助攻',
+  '14':{days:14,price:'NT$299',unit:'平均一天不到 NT$22',name:'14 天弱點助攻',modal:'14',btn:'預約 14 天方案',
     points:['依你的診斷結果，自動排出剩下 13 天的個人化菜單','每天 5–15 題精準練習，15–20 分鐘內做完','每一題都有詳解＋中文翻譯，不用自己猜','Day 7 整理前 6 天的錯題、Day 14 再診斷一次，親眼看到自己的進步','附 1 份完整模擬試題（閱讀 100 題）']},
-  '30':{days:30,price:'NT$499',unit:'平均一天不到 NT$17',name:'30 天衝分',
-    points:['依診斷結果排出 30 天路線，8 大弱點全部輪一遍','每週一次錯題回顧；第 14 天與第 30 天各做一次再診斷','閱讀理解（Part 7）專項練習＋限時混合練習','每一題都有詳解＋中文翻譯','附 3 份完整模擬試題（閱讀 100 題）']}
+  '30':{days:30,price:'NT$499',unit:'平均一天不到 NT$17',name:'30 天衝分',modal:'30',btn:'預約 30 天方案',
+    points:['包含 14 天方案的全部內容（Day 1–14）','再加 Day 15–30：把八大弱點全部輪一遍，加上閱讀與限時混合','第 30 天做總檢測，對照第 1 天的結果','每一題都有詳解＋中文翻譯','附 3 份完整模擬試題（閱讀 100 題）']},
+  'up':{days:30,price:'NT$200',unit:'補差額（NT$499 − NT$299）',name:'升級為 30 天方案',modal:'up',btn:'預約升級（補差額）',
+    points:['你的 Day 1–14 進度完整保留','解鎖 Day 15–30 路線','模擬試題由 1 份增加為 3 份']}
 };
+/* 資格等級:0 = 未付費,14 = 14 天方案,30 = 30 天方案(包含 14 天內容) */
+function tier(){return hasPlan('30')?30:hasPlan('14')?14:0}
+function coveredDays(){const t=tier();return t>=30?30:t>=14?14:1}
 function hasPlan(p){return S.plans.indexOf(p)>=0}
-function examAllowed(id){return id===1?(hasPlan('14')||hasPlan('30')):hasPlan('30')}
-function planDays(p){return p==='30'?S.daysDone30:S.daysDone}
+function examAllowed(id){return id===1?tier()>=14:tier()>=30}
 async function fetchPlans(){
   if(!sb||!sbUser){S.plans=[];return}
   const r=await sb.from('entitlements').select('plan').eq('user_id',sbUser.id);
@@ -846,7 +850,7 @@ const SB_URL='https://uzesrnvtbplloqqgmhcl.supabase.co';
 const SB_KEY='sb_publishable_jrTIfxDHkliZJ8ySXIZyYg_jjKuA5I5';
 let sb=null,sbUser=null,pushTimer=null,pulling=false;
 function cloudReady(){return !!(SB_URL&&SB_KEY)}
-function hasProgress(){return !!(S.res||Object.keys(S.daysDone||{}).length||Object.keys(S.daysDone30||{}).length)}
+function hasProgress(){return !!(S.res||Object.keys(S.daysDone||{}).length)}
 function loadScript(src){return new Promise((ok,bad)=>{const t=document.createElement('script');t.src=src;t.onload=ok;t.onerror=bad;document.head.appendChild(t)})}
 async function initCloud(){
   const btn=$('#btnAccount');
@@ -884,7 +888,7 @@ async function pullMerge(){
     if(!remote){if(hasProgress())await pushNow();return}
     if(!hasProgress()||(remote.savedAt||0)>(S.savedAt||0)){
       applyBlob(remote);S.savedAt=remote.savedAt||Date.now();
-      try{localStorage.setItem(KEY,JSON.stringify({savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,daysDone30:S.daysDone30,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
+      try{localStorage.setItem(KEY,JSON.stringify({savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
       refreshHome();if(!$('#view-plan').hidden)renderPlan();
       toast('已同步雲端進度');
     }else await pushNow();
@@ -1191,10 +1195,10 @@ function analyze(d){
   return{total:total,correct:correct,acc:acc,ranked:ranked,weak:ranked[0].t,level:d.level||2,avg:avg};
 }
 function finishDiag(r){
-  S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.level=r.level;S.res=analyze(S.diag);S.extra={};S.dayDone=false;S.daysDone={};S.daysDone30={};S.draft=null;save();go('result');
+  S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.level=r.level;S.res=analyze(S.diag);S.extra={};S.dayDone=false;S.daysDone={};S.draft=null;save();go('result');
 }
 function redoDiag(r,plan,day){
-  S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.res=analyze(S.diag);planDays(plan||'14')[day||14]=true;save();go('plan');
+  S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.res=analyze(S.diag);S.daysDone[day||14]=true;save();go('plan');
 }
 const LEVELS=[
  {lv:1,title:'300–500 分',desc:'剛開始，或基本文法和單字還不穩'},
@@ -1307,32 +1311,21 @@ function daySpecs14(ranked){
    {day:14,kind:'diag',tag:null,title:'再診斷一次',sub:'30 題，看看進步多少'}
   ];
 }
-/* 30 天:四週路線,八大類弱點由弱到強全部輪一遍 */
+/* 30 天 = 14 天路線(Day 1–14 完全相同)再接 Day 15–30 */
 function daySpecs30(ranked){
   const t=ranked.map(x=>x.t);
   const review=d=>({day:d,kind:'review',tag:null,title:'錯題回顧',sub:'把前幾天答錯的題目重做一次'});
-  const diag=(d,sub)=>({day:d,kind:'diag',tag:null,title:'再診斷一次',sub:sub});
-  const mix=(d,n)=>({day:d,kind:'timedmix',tag:null,n:n,title:'混合複習練習',sub:n+' 題，模擬考試節奏'});
-  return[
-   // 第 1 週:最弱的三類
-   ruleDay(1,t[0]),drillDay(2,t[0]),ruleDay(3,t[1]),drillDay(4,t[1]),ruleDay(5,t[2]),drillDay(6,t[2]),review(7),
-   // 第 2 週:補第四類,加入閱讀與限時,週末再診斷
-   {day:8,kind:'timed',tags:[t[0],t[1]],title:TAGS[t[0]].name+'＋'+TAGS[t[1]].name,sub:'混合限時加強 · 8 題'},
-   ruleDay(9,t[3]),drillDay(10,t[3]),
-   {day:11,kind:'reading',skills:['purpose','detail','infer'],title:'閱讀理解（上）',sub:'主旨、細節、推論 · 5 題'},
-   {day:12,kind:'reading',skills:['vocab','cross','detail'],title:'閱讀理解（下）',sub:'字義辨析、跨文對照 · 5 題'},
-   mix(13,15),diag(14,'30 題期中檢測，看看前兩週進步多少'),
-   // 第 3 週:第五、六類
+  const mix20=d=>({day:d,kind:'timedmix',tag:null,n:20,title:'混合複習練習',sub:'20 題，模擬考試節奏'});
+  return daySpecs14(ranked).concat([
    ruleDay(15,t[4]),drillDay(16,t[4]),ruleDay(17,t[5]),drillDay(18,t[5]),
    {day:19,kind:'reading',skills:['infer','cross','purpose'],title:'閱讀理解（推論與跨文）',sub:'推論、跨文對照、主旨 · 5 題'},
    {day:20,kind:'timed',tags:[t[2],t[3]],title:TAGS[t[2]].name+'＋'+TAGS[t[3]].name,sub:'混合限時加強 · 8 題'},
    review(21),
-   // 第 4 週:第七、八類,再拉長限時混合
    ruleDay(22,t[6]),drillDay(23,t[6]),ruleDay(24,t[7]),drillDay(25,t[7]),
    {day:26,kind:'reading',skills:['detail','vocab','cross'],title:'閱讀理解（細節與字義）',sub:'細節、字義、跨文對照 · 5 題'},
-   mix(27,20),review(28),mix(29,20),
-   diag(30,'30 題總檢測，對照第 1 天的結果')
-  ];
+   mix20(27),review(28),mix20(29),
+   {day:30,kind:'diag',tag:null,title:'再診斷一次',sub:'30 題總檢測，對照第 1 天的結果'}
+  ]);
 }
 function daySpecs(ranked,plan){return plan==='30'?daySpecs30(ranked):daySpecs14(ranked)}
 function wrongReviewList(n){
@@ -1357,7 +1350,7 @@ function readingPlanList(skills,n){
   skills.forEach(s=>{list=list.concat(pickReadingFor(s,per))});
   return shuffle(list).slice(0,n);
 }
-function doneCount(plan){const d=planDays(plan||S.planView)||{};return Object.keys(d).filter(k=>d[k]).length}
+function doneCount(plan){const d=S.daysDone||{},max=plan==='30'?30:14;return Object.keys(d).filter(k=>d[k]&&+k<=max).length}
 function lineShareUrl(text){return 'https://line.me/R/msg/text/?'+encodeURIComponent(text)}
 const KIND_META={
  rule:{icon:'📘',label:'新觀念',bg:'#E8F0FE',fg:'#2454B8'},
@@ -1370,10 +1363,10 @@ const KIND_META={
 };
 function renderPlan(){
   const r=S.res,plan=S.planView==='30'?'30':'14',info=PLAN_INFO[plan],N=info.days;
-  const specs=daySpecs(r.ranked,plan),dd=planDays(plan),own=hasPlan(plan);
+  const specs=daySpecs(r.ranked,plan),dd=S.daysDone,covered=coveredDays(),own=covered>=N,promoKey=(plan==='30'&&tier()===14)?'up':plan,promo=PLAN_INFO[promoKey];
   const done=doneCount(plan),pct=Math.round(done/N*100);
   const rows=specs.map(x=>{
-    const open=x.day===1||own,isDone=!!dd[x.day],km=KIND_META[x.kind];
+    const open=x.day<=covered,isDone=!!dd[x.day],km=KIND_META[x.kind];
     const state=open?(isDone?'✓ 完成':'開始 →'):LOCK;
     return '<li class="'+(open?'open':'lock')+(isDone?' done':'')+'"'+(open?' data-act="day" data-day="'+x.day+'" data-plan="'+plan+'" tabindex="0" role="button"':'')+'>'+
       '<span class="dchip" style="background:'+km.bg+';color:'+km.fg+'">'+km.icon+'</span>'+
@@ -1383,21 +1376,21 @@ function renderPlan(){
   const roadHTML='<ol class="road">'+rows.slice(0,3).join('')+'</ol>'+
     (rows.length>3?'<details class="road-more"><summary>查看完整 '+N+' 天路線（還有 '+(rows.length-3)+' 天）</summary><ol class="road">'+rows.slice(3).join('')+'</ol></details>':'');
   const tabs='<div class="plan-tabs" role="group" aria-label="選擇方案">'+['14','30'].map(k=>
-    '<button type="button" class="plan-tab" data-act="planView" data-plan="'+k+'" aria-pressed="'+(plan===k)+'">'+k+' 天'+(hasPlan(k)?' ✓':'')+'</button>').join('')+'</div>';
+    '<button type="button" class="plan-tab" data-act="planView" data-plan="'+k+'" aria-pressed="'+(plan===k)+'">'+k+' 天'+(covered>=+k?' ✓':'')+'</button>').join('')+'</div>';
   let codeBox;
   if(!cloudReady())codeBox='<p class="code-label">解鎖功能尚未開放，請聯絡客服。</p>';
   else if(!sbUser)codeBox='<p class="code-label">已經付款了嗎？解鎖碼會綁定你的帳號，請先登入：</p><button class="btn line" type="button" data-act="openAuth">登入</button>';
   else codeBox='<p class="code-label">已經付款了嗎？在這裡輸入解鎖碼（登入帳號：'+esc(sbUser.email||'')+'）：</p>'+
     '<div class="unlock-code-row"><input type="text" id="unlockInput" placeholder="輸入解鎖碼" autocomplete="off" autocapitalize="characters"><button class="btn line" type="button" data-act="unlock">送出</button></div><p class="unlock-msg" id="unlockMsg" hidden></p>';
   const unlockSection=own
-    ? '<section class="sheet unlock"><h2>已解鎖 '+N+' 天方案</h2><p>點選上方任一天即可開始，進度會自動儲存。'+(plan==='30'?'3 份模擬試題在首頁下方。':'1 份模擬試題在首頁下方。')+'</p></section>'
+    ? '<section class="sheet unlock"><h2>已解鎖 '+N+' 天方案</h2><p>點選上方任一天即可開始，進度會自動儲存。'+(tier()>=30?'3 份模擬試題':'1 份模擬試題')+'在首頁下方。'+(plan==='14'&&tier()>=30?'（你已是 30 天方案，可切換到「30 天」繼續 Day 15–30。）':'')+'</p></section>'
     : '<section class="sheet unlock-promo">'+
-      '<div class="unlock-badge">🔓 解鎖 Day 2–'+N+'</div>'+
+      '<div class="unlock-badge">🔓 '+(promoKey==='up'?'升級解鎖 Day 15–30':'解鎖 Day 2–'+N)+'</div>'+
       '<h2>你已經抓到問題出在哪了，接下來呢？</h2>'+
       '<p class="lead">只做 Day 1 很容易三分鐘熱度。接下來這些天會持續用你答錯的題目調整菜單，把「看得懂」練成「考試當下直覺答對」。</p>'+
-      '<ul class="unlock-list">'+info.points.map(x=>'<li>'+x+'</li>').join('')+'</ul>'+
-      '<div class="unlock-price"><span class="price-big">'+info.price+'</span><span class="price-sub">一次付費・沒有自動續訂・'+info.unit+'</span></div>'+
-      '<button class="btn fire lg" type="button" data-modal="'+plan+'">預約 '+N+' 天方案</button>'+
+      '<ul class="unlock-list">'+promo.points.map(x=>'<li>'+x+'</li>').join('')+'</ul>'+
+      '<div class="unlock-price"><span class="price-big">'+promo.price+'</span><span class="price-sub">一次付費・沒有自動續訂・'+promo.unit+'</span></div>'+
+      '<button class="btn fire lg" type="button" data-modal="'+promo.modal+'">'+promo.btn+'</button>'+
       '<div class="code-box">'+codeBox+'</div></section>';
   const T=TAGS[r.weak];
   $('#planBody').innerHTML=
@@ -1434,12 +1427,12 @@ async function doUnlock(){
   const r=await redeemCode(inp.value);
   if(btn){btn.disabled=false;btn.textContent='送出'}
   if(r.ok){
-    S.planView=r.plan;afterPlansChanged();toast('已解鎖 '+r.plan+' 天方案');
+    S.planView=r.plan==='30'?'30':'14';afterPlansChanged();toast('已解鎖 '+r.plan+' 天方案');
     return;
   }
   const m=$('#unlockMsg');if(!m)return;
   m.hidden=false;m.className='unlock-msg bad';
-  const text={network:'目前連不上伺服器，請確認網路連線後再試一次。','not-configured':'解鎖服務尚未設定完成，請聯絡客服。',empty:'請先輸入解鎖碼。','not-logged-in':'請先登入，解鎖碼會綁定你的帳號。',used:'這組解鎖碼已經被使用過了，如有疑問請聯絡客服。',too_many:'嘗試次數太多，請一小時後再試，或聯絡客服。','server-error':'伺服器暫時有問題，請稍後再試。'};
+  const text={network:'目前連不上伺服器，請確認網路連線後再試一次。','not-configured':'解鎖服務尚未設定完成，請聯絡客服。',empty:'請先輸入解鎖碼。','not-logged-in':'請先登入，解鎖碼會綁定你的帳號。',used:'這組解鎖碼已經被使用過了，如有疑問請聯絡客服。',need_14:'這是「升級碼」，需要先有 14 天方案才能使用；如果你還沒買 14 天方案，請聯絡客服。',too_many:'嘗試次數太多，請一小時後再試，或聯絡客服。','server-error':'伺服器暫時有問題，請稍後再試。'};
   m.textContent=text[r.reason]||'解鎖碼不正確，請確認後再輸入一次，或聯絡客服。';
 }
 /* 練習結束後的分數畫面:答對題數、百分比、逐題對錯,以及答錯題的正解 */
@@ -1464,9 +1457,9 @@ function startPlanDay(day,plan){
   if(!S.res)return;
   const specs=daySpecs(S.res.ranked,plan),spec=specs.find(x=>x.day===day);
   if(!spec)return;
-  if(day>1&&!hasPlan(plan)){toast('這個方案還沒解鎖');return}
+  if(day>coveredDays()){toast('這個方案還沒解鎖');return}
   S.planView=plan;
-  const dd=planDays(plan);
+  const dd=S.daysDone;
   if(spec.kind==='diag'){
     runQuiz({list:drawDiag(S.level||2,new Set()),mode:'diag',title:'Day '+day+' · 再診斷一次',back:'plan',level:S.level,onDone:r=>{redoDiag(r,plan,day)}});
     return;
@@ -1935,7 +1928,7 @@ function copyText(text,btn){
 let lastFocus=null;
 function openModal(plan){
   lastFocus=document.activeElement;
-  $('#mPlan').textContent=plan==='30'?'30 天衝分 · NT$499，一次付費':plan==='14'?'14 天弱點助攻 · NT$299，一次付費':'NT$299 起，一次付費';
+  $('#mPlan').textContent=plan==='30'?'30 天衝分 · NT$499，一次付費':plan==='up'?'升級為 30 天方案（補差額）· NT$200，一次付費':plan==='14'?'14 天弱點助攻 · NT$299，一次付費':'NT$299 起，一次付費';
   $('#payBank').textContent=PAY_INFO.bank;
   $('#payAcct').textContent=PAY_INFO.acct;
   $('#lineBtn').href='https://line.me/R/ti/p/'+PAY_INFO.lineId;
