@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Score Rescue｜英文助攻隊</title>
-<meta name="description" content="依你的程度抽出 30 題，找出 TOEIC® 最大失分原因，取得專屬 14 天修復計畫。300 到 900 分都適用。">
+<meta name="description" content="依你的程度抽出 30 題，找出 TOEIC® 最大失分原因，取得專屬 14 天助攻計畫。300 到 900 分都適用。">
 <meta name="theme-color" content="#EEF1F5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -504,13 +504,13 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <ol class="steps">
         <li><span class="n">1</span><h3>找出失分原因</h3><p>先選你的程度（不確定就用 6 題判斷），再抽 30 題，涵蓋 8 種常見錯因，約 20 分鐘做完。</p></li>
         <li><span class="n">2</span><h3>答案之外，更重要的是錯因</h3><p>不只告訴你選 B，而是指出你缺的是詞性規則、關鍵單字，還是固定搭配。</p></li>
-        <li><span class="n">3</span><h3>每天只做最值得做的事</h3><p>練習跟著你的弱點走：答錯副詞題，下一組就集中修復同類觀念。每天 15–20 分鐘。</p></li>
+        <li><span class="n">3</span><h3>每天只做最值得做的事</h3><p>練習跟著你的弱點走：答錯副詞題，下一組就集中補強同類觀念。每天 15–20 分鐘。</p></li>
       </ol>
     </section>
 
     <section class="wrap sample" id="sample">
       <div>
-        <h2>診斷後，你會拿到一份「先修哪裡」的報告</h2>
+        <h2>診斷後，你會拿到一份「先補哪裡」的報告</h2>
         <p class="lead">不是只給你一個分數，而是告訴你哪一類先補、哪一類先放著。</p>
         <button class="btn fire" data-start>開始免費診斷</button>
       </div>
@@ -520,14 +520,14 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
           <div class="stat"><b>63%</b><span>答對 19 / 30 題</span></div>
           <div class="stat"><b>中階</b><span>題目難度（約 500–750 分）</span></div>
         </div>
-        <p class="rep-weak">最大弱點：<b><mark>詞性判斷</mark></b>　建議先修復，再練速度。</p>
+        <p class="rep-weak">最大弱點：<b><mark>詞性判斷</mark></b>　建議先補強，再練速度。</p>
         <ul class="bars" id="sampleBars"></ul>
         <p class="rep-task"><b>今日第一個任務</b>　副詞修飾動詞 · 5 題</p>
       </div>
     </section>
 
     <section class="wrap sec" id="pricing">
-      <h2>先免費看見問題，再決定要不要修復。</h2>
+      <h2>先免費看見問題，再決定要不要開始助攻。</h2>
       <div class="plans">
         <article class="plan">
           <h3>免費診斷</h3>
@@ -538,7 +538,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
         </article>
         <article class="plan hot">
           <span class="badge">最適合第一次衝分</span>
-          <h3>14 天弱點修復</h3>
+          <h3>14 天弱點助攻</h3>
           <p class="price">NT$299</p>
           <p class="desc">每天 20 分鐘，集中解決最大失分來源。</p>
           <ul><li>完整個人弱點報告</li><li>全部錯題老師式解析</li><li>14 天動態任務</li><li>同類題循環補強</li><li>1 份完整模擬試題（閱讀 100 題）</li></ul>
@@ -948,7 +948,7 @@ function buildOpts(box,opts,onPick){
 }
 function barsHTML(rows){
   return rows.map(r=>{
-    const p=r.n?r.c/r.n:1,k=p<.5?'low':p<.75?'mid':'ok',s=p<.5?'先修':p<.75?'加強':'穩定';
+    const p=r.n?r.c/r.n:1,k=p<.5?'low':p<.75?'mid':'ok',s=p<.5?'先補':p<.75?'加強':'穩定';
     return '<li class="'+k+'"><span class="nm">'+r.name+'</span><span class="trk"><i data-w="'+Math.round(p*100)+'"></i></span><span class="fr">'+r.c+'/'+r.n+'</span><span class="st">'+s+'</span></li>';
   }).join('');
 }
@@ -1225,7 +1225,7 @@ function adjustHTML(r){
 function renderResult(){
   const r=S.res,T=TAGS[r.weak],perfect=r.ranked[0].pct===1,lv=Math.round(r.level||2),pct=Math.round(r.acc*100);
   const speed=r.avg<=30?'速度不錯':r.avg<=50?'速度適中':'偏慢，練習時可以試著縮短每題的判斷時間';
-  let title='你的失分，不是因為不夠努力。',lead='我們找到了目前最值得優先修復的地方。';
+  let title='你的失分，不是因為不夠努力。',lead='我們找到了目前最值得優先補強的地方。';
   if(r.acc>=.85){title='基礎相當穩，剩下的是細節。';lead='我們找到了目前最值得再打磨的地方。'}
   else if(r.acc<=.4){title='先把最卡的地方補起來。';lead='一次診斷不代表你的實力，也可能是題目偏難。'}
   $('#resBody').innerHTML=
@@ -1365,7 +1365,7 @@ function renderPlan(){
   const T=TAGS[r.weak];
   $('#planBody').innerHTML=
    '<p class="streak">'+(done?'已完成 '+done+' / 14 天':'完成今天的任務，開始你的連續學習')+'</p>'+
-   '<h1 class="day-h">今天先把「'+T.name+'」救回來。</h1>'+
+   '<h1 class="day-h">今天的助攻目標：「'+T.name+'」。</h1>'+
    '<p class="lead">Day 1 / 14 · 約 15–20 分鐘 · 一句規則＋5 題精準練習 · 難度：'+LV_NAME[Math.round(S.level||2)]+'</p>'+
    '<div class="prog-line"><div class="progress"><i style="width:'+pct+'%"></i></div><span>'+pct+'%</span></div>'+
    '<section class="sheet"><h2 class="rule-t">'+T.rule+'</h2><p class="ex-en serif">'+esc(T.ex)+speakIconHTML(T.ex)+'</p><p class="ex-zh">'+T.exZh+'</p></section>'+
@@ -1893,7 +1893,7 @@ function copyText(text,btn){
 let lastFocus=null;
 function openModal(plan){
   lastFocus=document.activeElement;
-  $('#mPlan').textContent=plan==='30'?'30 天衝分 · NT$499，一次付費':plan==='14'?'14 天弱點修復 · NT$299，一次付費':'NT$299 起，一次付費';
+  $('#mPlan').textContent=plan==='30'?'30 天衝分 · NT$499，一次付費':plan==='14'?'14 天弱點助攻 · NT$299，一次付費':'NT$299 起，一次付費';
   $('#payBank').textContent=PAY_INFO.bank;
   $('#payAcct').textContent=PAY_INFO.acct;
   $('#lineBtn').href='https://line.me/R/ti/p/'+PAY_INFO.lineId;
