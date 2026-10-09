@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Score Rescue｜英文助攻隊</title>
 <meta name="description" content="依你的程度抽出 30 題，找出 TOEIC® 最大失分原因，取得專屬 14 天修復計畫。300 到 900 分都適用。">
 <meta name="theme-color" content="#EEF1F5">
@@ -90,6 +90,7 @@ mark{background:linear-gradient(transparent 58%,var(--hi) 58%);color:inherit;pad
 .hero h1{font-size:clamp(2.5rem,7.4vw,4.6rem)}
 .hero .lead{margin-top:22px;max-width:33em}
 .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:32px}
+.resume-bar{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
 .note{margin-top:14px;font-size:.92rem;color:var(--muted)}
 .demo-h{font-weight:700;color:var(--muted);font-size:.95rem;margin-bottom:10px}
 .demo-fb{min-height:1px}
@@ -268,6 +269,9 @@ footer{padding:36px 20px 56px;border-top:1px solid var(--line);color:var(--muted
 .sc-wrong h3{font-size:1rem;margin-bottom:8px}
 .sc-wrong ul{display:grid;gap:10px}
 .sc-wrong li{padding:10px 12px;border-left:3px solid var(--fire);background:#F4F6F9;border-radius:6px}
+.pv-body h3{font-size:1rem;margin:16px 0 4px}
+.pv-body p,.pv-body li{font-size:.95rem;color:#3C4350}
+.pv-body ul{display:grid;gap:6px;padding-left:1.1em;list-style:disc}
 /* modal */
 .modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:rgba(39,43,51,.6)}
 .modal-box{position:relative;width:100%;max-width:460px;max-height:92vh;overflow:auto;background:#fff;border-radius:14px;padding:30px 26px 26px}
@@ -368,7 +372,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 .q-pane{margin-top:14px}
 .q-pane .p6-qs,.q-pane .p7-qs{margin-top:0}
 .opts.short{grid-template-columns:1fr 1fr}
-.mini-opt .t{min-width:0;overflow-wrap:anywhere}
+.mini-opt .t{min-width:0;overflow-wrap:break-word;word-break:normal}
 .ph{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .ph h4{margin:0}
 @media (min-width:900px){
@@ -377,6 +381,8 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
   .pass-pane .passage{max-height:calc(100vh - 130px)}
   .q-pane{margin-top:0}
 }
+.pp-toggle{display:flex;width:100%;align-items:center;justify-content:center;gap:6px;min-height:40px;margin-bottom:8px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-weight:700;font-size:.88rem;color:var(--muted);cursor:pointer}
+.pass-pane.collapsed .passage,.pass-pane.collapsed .ptabs{display:none}
 .exam-actions{display:flex;justify-content:space-between;gap:12px;margin-top:24px;padding-bottom:20px}
 
 /* result */
@@ -402,6 +408,42 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
   .score-part{grid-template-columns:1fr}
   .passage{max-height:38vh}
 }
+/* ---- 手機(窄螢幕)調整 ---- */
+@media (max-width:600px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .bar{gap:8px;min-height:58px}
+  .brand{gap:8px;min-width:0;font-size:1rem}
+  .brand b{display:none}
+  .brand svg{width:26px;height:26px;flex:none}
+  .bar-actions{margin-left:auto;gap:6px;flex-wrap:nowrap}
+  .bar-actions .btn,.bar-actions .link{white-space:nowrap;flex:none}
+  .btn.sm{padding:0 14px;min-height:44px}
+  .hero{padding:28px 16px 48px;gap:28px}
+  .sec,.sample{padding:44px 16px}
+  .sheet{padding:18px 16px 18px 28px}
+  .sheet::before{left:8px;width:6px}
+  .opt{min-height:56px;padding:10px 12px}
+  .opt .t{font-size:1.08rem}
+  .run-title{font-size:.95rem}
+  .runbar-in,.topbar .bar2{min-height:54px}
+  .runbar .link,.topbar .link{min-height:44px;min-width:44px;display:inline-flex;align-items:center}
+  .run-count{min-width:0;font-size:.9rem}
+  .speak-ic{width:2.4em;height:2.4em;font-size:.6em}
+  .q-actions{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+  .exam-actions{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+  .exam-actions .btn{flex:1}
+  .pass-pane .passage{max-height:26vh}
+  .exam-card .ec-right{margin-left:0;width:100%;flex-wrap:wrap}
+  .modal{align-items:end;padding:0}
+  .modal-box{max-width:none;border-radius:16px 16px 0 0;padding:26px 18px calc(22px + env(safe-area-inset-bottom))}
+  .nav-grid{grid-template-columns:repeat(auto-fill,40px);gap:6px}
+  .nav-grid button{width:40px;height:40px;font-size:.85rem}
+  input[type=text],input[type=email],textarea{font-size:16px}
+  .opts.short{grid-template-columns:1fr}
+  .opt .t,.mini-opt .t{word-break:normal;overflow-wrap:break-word;hyphens:none}
+}
+@media (min-width:900px){.pp-toggle{display:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -420,7 +462,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <nav class="nav" aria-label="主選單"><a href="#how">怎麼運作</a><a href="#sample">報告範例</a><a href="#pricing">方案</a></nav>
       <div class="bar-actions">
         <button class="link sm" id="btnRestoreToggle" type="button">還原備份碼</button>
-        <button class="btn line sm" id="btnAccount" type="button" hidden>登入同步進度</button>
+        <button class="btn line sm" id="btnAccount" type="button" hidden>登入</button>
         <button class="btn line sm" id="btnContinue" data-go="plan" hidden>繼續學習</button>
         <button class="btn fire sm" data-start>免費診斷</button>
       </div>
@@ -446,6 +488,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
           <button class="btn fire lg" data-start>開始免費診斷</button>
           <a class="link" href="#sample">先看報告範例</a>
         </div>
+        <p class="resume-bar" id="resumeBar" hidden><button class="btn fire" type="button" id="resumeBtn" data-act="resumeDiag">繼續診斷</button> <button class="link fine" type="button" data-act="dropDraft">放棄，重新開始</button></p>
         <p class="note">免費 · 不用註冊 · 約 20 分鐘 · 依你的程度調整難度</p>
       </div>
       <div class="sheet demo">
@@ -518,7 +561,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <div class="exam-cards" id="examCards"></div>
     </section>
   </main>
-  <footer><div class="wrap">© Score Rescue 英文助攻隊　·　TOEIC® 是 ETS 的註冊商標，本網站與 ETS 無關。　·　<a href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener" class="line-link">加官方 LINE 聯絡我們</a>　·　<button class="link fine" id="btnRestoreFoot" type="button" hidden>還原備份碼</button></div></footer>
+  <footer><div class="wrap">© Score Rescue 英文助攻隊　·　TOEIC® 是 ETS 的註冊商標，本網站與 ETS 無關。　·　<a href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener" class="line-link">加官方 LINE 聯絡我們</a>　·　<button class="link fine" type="button" data-privacy>隱私權說明</button>　·　<button class="link fine" id="btnRestoreFoot" type="button" hidden>還原備份碼</button></div></footer>
 </div>
 
 <!-- ============ 選擇程度 ============ -->
@@ -621,7 +664,29 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <button class="btn fire lg" type="submit" id="authSend">寄登入連結</button>
       <p class="err" id="authMsg" role="status"></p>
     </form>
-    <p class="fine">只用來登入與同步進度，不會寄廣告信。</p>
+    <p class="fine">只用來登入與同步進度，不會寄廣告信。<button class="link fine" type="button" data-privacy>隱私權說明</button></p>
+  </div>
+</div>
+<div class="modal" id="privacyModal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="pvTitle">
+    <button class="x" id="pvClose" type="button" aria-label="關閉">×</button>
+    <h2 id="pvTitle">隱私權說明</h2>
+    <div class="pv-body">
+      <h3>我們收集什麼</h3>
+      <ul>
+        <li><b>不登入使用</b>：你的答題結果與進度只存在你自己的瀏覽器，不會傳到我們這裡。</li>
+        <li><b>用 Email 登入時</b>：我們會保存你的 Email，以及為了同步而上傳的學習進度（診斷結果、作答紀錄、每日練習完成狀況、模擬試題分數、是否已解鎖付費方案）。</li>
+      </ul>
+      <h3>用途</h3>
+      <p>只用來讓你登入、在不同裝置之間同步進度，以及在你聯絡我們時確認解鎖狀態。我們<b>不會寄廣告信</b>，不會把你的資料出售或提供給第三方做行銷。</p>
+      <h3>資料存放在哪</h3>
+      <p>帳號與進度存放在雲端資料庫服務 Supabase；登入連結信件透過寄信服務 Brevo 寄出。這兩家服務為了提供功能，會處理你的 Email。每位使用者只能讀寫自己的那一份資料。</p>
+      <h3>你的權利</h3>
+      <p>你可以隨時要求查詢、更正或刪除你的帳號與所有進度資料。請透過官方 LINE（<a href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener" class="line-link">@419zbhxy</a>）或 Email <b>scorerescue.tw@gmail.com</b> 聯絡我們，確認身分後會盡快處理。</p>
+      <h3>瀏覽器儲存</h3>
+      <p>網站會在你的瀏覽器儲存進度與設定（localStorage）。清除瀏覽器資料就會移除這些內容；已登入的雲端進度不受影響。</p>
+      <p class="fine">本說明如有調整，會更新在此頁面。TOEIC® 是 ETS 的註冊商標，本網站與 ETS 無關。</p>
+    </div>
   </div>
 </div>
 <div class="modal" id="modal" hidden>
@@ -708,9 +773,9 @@ RBANK.forEach((r,i)=>{r.id=i});
 /* ---------- 狀態與儲存 ---------- */
 const KEY='scoreRescue.v2';
 const S={diag:null,res:null,extra:{},dayDone:false,daysDone:{},unlocked:false,level:2,examScores:{},readSeen:{}};
-function save(){S.savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify({savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,unlocked:S.unlocked,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
+function save(){S.savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify({draft:S.draft||null,savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,unlocked:S.unlocked,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
   if(typeof schedulePush==='function')schedulePush()}
-function load(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.res&&j.diag&&j.res.ranked){S.diag=j.diag;S.res=j.res;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};if(S.dayDone)S.daysDone[1]=true;S.unlocked=!!j.unlocked;S.level=j.level||2}S.savedAt=(j&&j.savedAt)||0;if(j&&j.examScores)S.examScores=j.examScores;if(j&&j.readSeen)S.readSeen=j.readSeen}catch(e){}}
+function load(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.res&&j.diag&&j.res.ranked){S.diag=j.diag;S.res=j.res;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};if(S.dayDone)S.daysDone[1]=true;S.unlocked=!!j.unlocked;S.level=j.level||2}S.savedAt=(j&&j.savedAt)||0;S.draft=(j&&j.draft&&j.draft.list&&j.draft.i>0)?j.draft:null;if(j&&j.examScores)S.examScores=j.examScores;if(j&&j.readSeen)S.readSeen=j.readSeen}catch(e){}}
 /* 備份碼：把解鎖狀態與學習進度編碼成一段文字，讓使用者換裝置/清快取時能自己還原。
    不含模擬試題的完整詳解內容（那部分體積太大），只保留分數本身；詳解可以重新測驗取得。 */
 function backupBlob(){
@@ -786,7 +851,7 @@ async function initCloud(){
 }
 function renderAccount(){
   const btn=$('#btnAccount');if(!btn||!cloudReady())return;
-  btn.textContent=sbUser?'已登入 · 登出':'登入同步進度';
+  btn.textContent=sbUser?'登出':'登入';
   btn.title=sbUser?sbUser.email:'';
 }
 async function onSession(sess){
@@ -828,6 +893,11 @@ function toast(msg){
   if(!t){t=document.createElement('div');t.id='toast';t.setAttribute('role','status');t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#272B33;color:#fff;padding:10px 18px;border-radius:999px;font-size:.92rem;z-index:60;max-width:90vw';document.body.appendChild(t)}
   t.textContent=msg;t.hidden=false;clearTimeout(t._h);t._h=setTimeout(()=>{t.hidden=true},2600);
 }
+function openPrivacy(){$('#privacyModal').hidden=false;$('#pvClose').focus()}
+function closePrivacy(){$('#privacyModal').hidden=true}
+document.addEventListener('click',e=>{if(e.target.closest('[data-privacy]'))openPrivacy()});
+$('#pvClose').addEventListener('click',closePrivacy);
+$('#privacyModal').addEventListener('mousedown',e=>{if(e.target.id==='privacyModal')closePrivacy()});
 function openAuth(){$('#authMsg').textContent='';$('#authMsg').style.color='';$('#authModal').hidden=false;$('#authEmail').focus()}
 function closeAuth(){$('#authModal').hidden=true}
 $('#btnAccount').addEventListener('click',async()=>{
@@ -860,7 +930,11 @@ function go(name){
   refreshHome();show(name);
   if(name==='result')growBars($('#resBody'));
 }
-function refreshHome(){$('#btnContinue').hidden=!S.res;refreshExamCards()}
+function refreshHome(){
+  $('#btnContinue').hidden=!S.res;refreshExamCards();
+  const rb=$('#resumeBar');
+  if(rb){rb.hidden=!S.draft;if(S.draft)$('#resumeBtn').textContent='繼續診斷（已做 '+S.draft.i+' / '+S.draft.list.length+' 題）'}
+}
 $$('.topbar-slot').forEach(el=>{el.outerHTML='<div class="topbar"><div class="wrap narrow bar2"><button class="link" type="button" data-go="home">← 回首頁</button><span class="brand"><b>Score Rescue</b></span></div></div>'});
 
 /* ---------- 選項與長條圖 ---------- */
@@ -1019,7 +1093,7 @@ document.addEventListener('click',e=>{
 /* ---------- 作答流程 ---------- */
 let R=null;
 function runQuiz(o){
-  R={list:o.list,mode:o.mode,title:o.title,onDone:o.onDone,back:o.back||'home',level:o.level,P:o.P,total:o.total||o.list.length,i:0,ans:[],times:[],sel:null,locked:false,t0:0};
+  R={list:o.list,mode:o.mode,title:o.title,onDone:o.onDone,back:o.back||'home',level:o.level,P:o.P,total:o.total||o.list.length,i:o.i||0,ans:o.ans||[],times:o.times||[],sel:null,locked:false,t0:0};
   $('#runTitle').textContent=o.title;show('quiz');renderQ();
 }
 function renderQ(){
@@ -1061,6 +1135,12 @@ function choose(k){
     $('#nextBtn').disabled=false;$('#nextBtn').focus();
   }else $('#nextBtn').disabled=false;
 }
+/* 診斷做到一半離開時保留進度,下次可從同一題繼續 */
+function saveDraft(){
+  if(!R||R.mode!=='diag'||R.i<1)return;
+  S.draft={list:R.list,ans:R.ans.slice(0,R.i),times:R.times.slice(0,R.i),i:R.i,level:R.level};
+  save();
+}
 function next(){
   if(!R||R.sel===null)return;
   if(R.mode==='diag'||R.mode==='place'){R.ans[R.i]=R.sel;R.times[R.i]=Math.min(120,(performance.now()-R.t0)/1000)}
@@ -1069,17 +1149,16 @@ function next(){
     if(R.i+1<R.total)R.list.push(pickPlace(R.P));
   }
   R.i++;
-  if(R.i>=R.list.length){const done=R;R=null;done.onDone(done)}else renderQ();
+  if(R.i>=R.list.length){const done=R;R=null;done.onDone(done)}else{if(R.mode==='diag')saveDraft();renderQ()}
 }
 $('#nextBtn').addEventListener('click',next);
 $('#quitBtn').addEventListener('click',function(){
-  if(R&&R.mode==='diag'&&!this.dataset.arm){
-    this.dataset.arm='1';this.textContent='確定離開？進度不會保留';
-    setTimeout(()=>{delete this.dataset.arm;this.textContent='離開'},3500);return;
-  }
-  const back=R?R.back:'home';delete this.dataset.arm;this.textContent='離開';R=null;go(back);
+  const back=R?R.back:'home',wasDiag=R&&R.mode==='diag'&&R.i>0;
+  R=null;go(back);
+  if(wasDiag)toast('進度已儲存，回首頁可以繼續');
 });
 document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&!$('#privacyModal').hidden){closePrivacy();return}
   if(e.key==='Escape'&&!$('#authModal').hidden){closeAuth();return}
   if(e.key==='Escape'&&!$('#modal').hidden){closeModal();return}
   if(!R||$('#view-quiz').hidden||e.ctrlKey||e.metaKey||e.altKey)return;
@@ -1099,7 +1178,7 @@ function analyze(d){
   return{total:total,correct:correct,acc:acc,ranked:ranked,weak:ranked[0].t,level:d.level||2,avg:avg};
 }
 function finishDiag(r){
-  S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.level=r.level;S.res=analyze(S.diag);S.extra={};S.dayDone=false;S.daysDone={};save();go('result');
+  S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.level=r.level;S.res=analyze(S.diag);S.extra={};S.dayDone=false;S.daysDone={};S.draft=null;save();go('result');
 }
 function redoDiag(r){
   S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.res=analyze(S.diag);S.daysDone[14]=true;save();go('plan');
@@ -1113,6 +1192,7 @@ const LEVELS=[
 let pendingLevel=2,placeIds=new Set();
 function openLevel(){show('level')}
 function startDiagAt(level,skip){
+  S.draft=null;
   runQuiz({list:drawDiag(level,skip),mode:'diag',title:'弱點診斷',back:'home',level:level,onDone:finishDiag});
 }
 function startPlacement(){
@@ -1530,6 +1610,7 @@ function joinGenres(arr){
 function directionsHTML(n1,n2,genre){
   return '<p class="p-direct">'+(n1===n2?('Question '+n1):('Questions '+n1+'–'+n2))+' refer'+(n1===n2?'s':'')+' to the following '+genre+'.</p>';
 }
+function ppToggleHTML(){return '<button type="button" class="pp-toggle" id="ppToggle" aria-expanded="'+(!EX.ppCollapsed)+'">'+(EX.ppCollapsed?'▼ 展開文章':'▲ 收合文章，專心看題目')+'</button>'}
 function examP5HTML(it){
   return '<div class="sheet q-sheet"><p class="q serif">'+blankify(it.q)+'</p>'+examOptsWrap(it,EX.cur,'id="examOpts"')+'</div>'+examNavHTML();
 }
@@ -1545,7 +1626,7 @@ function examP6HTML(it){
     return '<div class="p6-q"><p class="qn">第 '+(gi+1)+' 題</p>'+examOptsWrap(pit,gi,'data-group="'+gi+'"')+'</div>';
   }).join('');
   const p6n1=EX.items.indexOf(psgItems[0])+1,p6n2=EX.items.indexOf(psgItems[psgItems.length-1])+1;
-  return '<div class="exam-split"><div class="pass-pane">'+directionsHTML(p6n1,p6n2,P6_GENRE[it.passageIndex]||'text')+'<div class="passage"><p class="body">'+text+'</p></div></div>'+
+  return '<div class="exam-split"><div class="pass-pane'+(EX.ppCollapsed?' collapsed':'')+'">'+directionsHTML(p6n1,p6n2,P6_GENRE[it.passageIndex]||'text')+ppToggleHTML()+'<div class="passage"><p class="body">'+text+'</p></div></div>'+
    '<div class="q-pane"><div class="p6-qs">'+qHTML+'</div></div></div>'+examNavHTML();
 }
 function examP7HTML(it){
@@ -1558,7 +1639,7 @@ function examP7HTML(it){
     const gi=EX.items.indexOf(sit);
     return '<div class="p7-q"><p class="qn">第 '+(gi+1)+' 題</p><p class="qt">'+esc(sit.q)+'</p>'+examOptsWrap(sit,gi,'data-group="'+gi+'"')+'</div>';
   }).join('');
-  return '<div class="exam-split"><div class="pass-pane">'+directionsHTML(p7n1,p7n2,joinGenres(ps.map(p=>p.heading.toLowerCase())))+tabs+pass+'</div><div class="q-pane"><div class="p7-qs">'+qHTML+'</div></div></div>'+examNavHTML();
+  return '<div class="exam-split"><div class="pass-pane'+(EX.ppCollapsed?' collapsed':'')+'">'+directionsHTML(p7n1,p7n2,joinGenres(ps.map(p=>p.heading.toLowerCase())))+ppToggleHTML()+tabs+pass+'</div><div class="q-pane"><div class="p7-qs">'+qHTML+'</div></div></div>'+examNavHTML();
 }
 function examNavHTML(){
   const it=EX.items[EX.cur],[cs,ce]=examGroupBounds(EX.cur);
@@ -1588,6 +1669,8 @@ function examBindOptClicks(){
   });
 }
 function examBindTabs(){
+  const tg=$('#ppToggle');
+  if(tg)tg.addEventListener('click',()=>{EX.ppCollapsed=!EX.ppCollapsed;const pp=$('#examBody .pass-pane');pp.classList.toggle('collapsed',EX.ppCollapsed);tg.setAttribute('aria-expanded',String(!EX.ppCollapsed));tg.textContent=EX.ppCollapsed?'▼ 展開文章':'▲ 收合文章，專心看題目'});
   $$('#examBody .ptab').forEach(t=>t.addEventListener('click',()=>{
     const n=t.dataset.tab;
     $$('#examBody .ptab').forEach(x=>x.classList.toggle('on',x===t));
@@ -1859,6 +1942,8 @@ document.addEventListener('click',e=>{
   else if(el.dataset.act==='drill')startDrill();
   else if(el.dataset.act==='day')startPlanDay(+el.dataset.day||1);
   else if(el.dataset.act==='unlock')doUnlock();
+  else if(el.dataset.act==='resumeDiag'&&S.draft){const d=S.draft;runQuiz({list:d.list,mode:'diag',title:'弱點診斷',back:'home',level:d.level,onDone:finishDiag,i:d.i,ans:d.ans,times:d.times})}
+  else if(el.dataset.act==='dropDraft'){S.draft=null;save();refreshHome()}
   else if(el.dataset.act==='beginDiag')startDiagAt(pendingLevel,placeIds);
   else if(el.dataset.act==='lvup')startDiagAt(Math.min(3,Math.round((S.diag&&S.diag.level)||S.level||2)+1));
   else if(el.dataset.act==='lvdown')startDiagAt(Math.max(1,Math.round((S.diag&&S.diag.level)||S.level||2)-1));
