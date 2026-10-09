@@ -369,7 +369,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 .q-pane{margin-top:14px}
 .q-pane .p6-qs,.q-pane .p7-qs{margin-top:0}
 .opts.short{grid-template-columns:1fr 1fr}
-.mini-opt .t{min-width:0;overflow-wrap:anywhere}
+.mini-opt .t{min-width:0;overflow-wrap:break-word;word-break:normal}
 .ph{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .ph h4{margin:0}
 @media (min-width:900px){
@@ -437,6 +437,8 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
   .nav-grid{grid-template-columns:repeat(auto-fill,40px);gap:6px}
   .nav-grid button{width:40px;height:40px;font-size:.85rem}
   input[type=text],input[type=email],textarea{font-size:16px}
+  .opts.short{grid-template-columns:1fr}
+  .opt .t,.mini-opt .t{word-break:normal;overflow-wrap:break-word;hyphens:none}
 }
 @media (min-width:900px){.pp-toggle{display:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
