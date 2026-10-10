@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Score Rescue｜英文助攻隊</title>
-<meta name="description" content="依你的程度抽出 30 題，找出 TOEIC® 最大失分原因，取得專屬 14 天助攻計畫。300 到 900 分都適用。">
+<meta name="description" content="依你的程度抽出 30 題，找出 TOEIC® 最大失分原因，取得專屬 30 天助攻計畫。300 到 900 分都適用。">
 <meta name="theme-color" content="#EEF1F5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,6 +126,7 @@ mark{background:linear-gradient(transparent 58%,var(--hi) 58%);color:inherit;pad
 .ok i{background:var(--ok)} .ok .st{color:var(--ok)}
 
 .plans{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:22px;align-items:stretch;margin-top:40px}
+.plans.two{grid-template-columns:1fr 1.08fr;max-width:820px;margin-left:auto;margin-right:auto}
 .plan{display:flex;flex-direction:column;position:relative;background:#fff;border:1.5px solid var(--ink);border-radius:12px;padding:28px 26px}
 .plan.hot{background:var(--ink);color:#fff;padding-top:40px;padding-bottom:40px}
 .plan.hot :focus-visible{outline-color:#fff}
@@ -375,6 +376,16 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 .q-pane{margin-top:14px}
 .q-pane .p6-qs,.q-pane .p7-qs{margin-top:0}
 .opts.short{grid-template-columns:1fr 1fr}
+.unsure{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:.92rem;color:var(--muted);cursor:pointer;min-height:44px}
+.unsure input{width:22px;height:22px;flex:none}
+.ex-group{margin-top:26px}
+.ex-group>summary{cursor:pointer;font-weight:700;color:var(--muted);min-height:44px;display:flex;align-items:center}
+.cmp{display:grid;gap:10px;margin-top:10px}
+.cmp li{padding:12px 14px;background:#fff;border:1.5px solid var(--line);border-radius:10px}
+.cmp li.lockc{border-style:dashed}
+.cmp .mine{color:var(--fire-d);font-weight:700}
+.cmp .right{color:var(--ok);font-weight:700}
+.lock-note{margin-top:6px;font-size:.85rem;color:var(--muted)}
 .mini-opt .t{min-width:0;overflow-wrap:break-word;word-break:normal}
 .ph{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .ph h4{margin:0}
@@ -486,7 +497,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
     <section class="wrap hero">
       <div>
         <h1>別再盲目刷題。<br>先找到失分原因。</h1>
-        <p class="lead">免費做 30 題診斷，看出你是卡在文法、單字、搭配詞，還是作答速度。再用 3 題解析和 3 題補強，確認這套方法適不適合你。</p>
+        <p class="lead">免費做 30 題診斷，看出你是卡在文法、單字、搭配詞，還是作答速度。再看最弱類別的完整解析，加上 3 題補強與 Day 1–3 免費體驗，確認這套方法適不適合你。</p>
         <div class="hero-cta">
           <button class="btn fire lg" data-start>開始免費診斷</button>
           <a class="link" href="#sample">先看報告範例</a>
@@ -531,31 +542,24 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 
     <section class="wrap sec" id="pricing">
       <h2>先免費看見問題，再決定要不要開始助攻。</h2>
-      <div class="plans">
+      <div class="plans two">
         <article class="plan">
-          <h3>免費診斷</h3>
+          <h3>免費體驗</h3>
           <p class="price">NT$0</p>
           <p class="desc">先確認你現在最該補哪裡，也先體驗我們怎麼教。</p>
-          <ul><li>依程度動態抽取 30 題</li><li>八大能力分析</li><li>3 題完整老師解析</li><li>3 題最大弱點補強</li></ul>
+          <ul><li>依程度動態抽取 30 題診斷</li><li>八大能力分析，標出猜對的題</li><li>最弱類別的完整解析</li><li>3 題補強＋ Day 1–3 每日練習</li><li>1 次錯題回顧體驗</li></ul>
           <button class="btn line" data-start>開始免費診斷</button>
         </article>
         <article class="plan hot">
-          <span class="badge">最適合第一次衝分</span>
-          <h3>14 天弱點助攻</h3>
-          <p class="price">NT$299</p>
-          <p class="desc">每天 20 分鐘，集中解決最大失分來源。</p>
-          <ul><li>完整個人弱點報告</li><li>全部錯題老師式解析</li><li>14 天動態任務</li><li>同類題循環補強</li><li>1 份完整模擬試題（閱讀 100 題）</li></ul>
-          <button class="btn fire" data-modal="14">轉帳訂購 14 天方案</button>
-        </article>
-        <article class="plan">
+          <span class="badge" id="promoBadge">開賣優惠</span>
           <h3>30 天衝分</h3>
-          <p class="price">NT$499</p>
-          <p class="desc">適合考期確定、需要穩定節奏。</p>
-          <ul><li>包含 14 天方案的全部內容</li><li>再加 Day 15–30，八大弱點全部輪一遍</li><li>第 30 天總檢測</li><li>3 份完整模擬試題（閱讀 100 題）</li></ul>
-          <button class="btn line" data-modal="30">轉帳訂購 30 天方案</button>
+          <p class="price" data-price>NT$399</p>
+          <p class="desc" id="promoDesc">開賣優惠價，至 11/30 止；之後恢復 NT$499。</p>
+          <ul><li>依診斷結果排出 30 天個人化路線</li><li>每天 15–20 分鐘，八大弱點全部輪一遍</li><li>錯題回顧、閱讀理解、限時混合、期中與總檢測</li><li>每題詳解＋中文翻譯＋發音</li><li>3 份完整模擬試題（閱讀 100 題）</li><li>買斷、永久使用，不自動續訂</li></ul>
+          <button class="btn fire" data-modal="30">轉帳訂購 30 天方案</button>
         </article>
       </div>
-      <p class="plan-note">目前採轉帳付款，轉帳後加官方 LINE 回報，確認後我們會傳一組解鎖碼給你；登入帳號後輸入解鎖碼即可使用，通常數小時內處理。已買 14 天方案想升級 30 天，補差額 NT$200 即可。</p>
+      <p class="plan-note">目前採轉帳付款，轉帳後加官方 LINE 回報，並告訴我們你要用來登入的 Email；我們登記後，你用那個 Email 登入就會自動解鎖，通常數小時內處理。</p>
     </section>
 
     <section class="wrap sec" id="exams">
@@ -594,6 +598,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
     <div class="sheet q-sheet">
       <p class="q serif" id="qText" tabindex="-1"></p>
       <div class="opts" id="qOpts" role="group" aria-label="選擇答案"></div>
+      <label class="unsure" id="unsureBox" hidden><input type="checkbox" id="unsureCb"> 這題我不太確定（猜的也請勾，結果會更準）</label>
       <div class="fb" id="qFb" aria-live="polite" hidden></div>
     </div>
     <div class="q-actions"><button class="btn fire lg" id="nextBtn" type="button" disabled>下一題</button></div>
@@ -650,7 +655,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
   <main class="wrap narrow page" id="examReviewBody"></main>
 </div>
 
-<!-- ============ 14 天計畫 ============ -->
+<!-- ============ 30 天計畫 ============ -->
 <div id="view-plan" class="view" hidden>
   <div class="topbar-slot"></div>
   <main class="wrap narrow page" id="planBody"></main>
@@ -678,10 +683,12 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <h3>我們收集什麼</h3>
       <ul>
         <li><b>不登入使用</b>：你的答題結果與進度只存在你自己的瀏覽器，不會傳到我們這裡。</li>
-        <li><b>用 Email 登入時</b>：我們會保存你的 Email，以及為了同步而上傳的學習進度（診斷結果、作答紀錄、每日練習完成狀況、模擬試題分數、是否已解鎖付費方案）。</li>
+        <li><b>用 Email 登入時</b>：我們會保存你的 Email，以及為了同步而上傳的學習進度（診斷結果、作答紀錄、每日練習完成狀況、模擬試題分數）。付費後，你的 Email 會被登記在付費名單，用來在你登入時自動解鎖。</li>
       </ul>
       <h3>用途</h3>
-      <p>只用來讓你登入、在不同裝置之間同步進度，以及在你聯絡我們時確認解鎖狀態。我們<b>不會寄廣告信</b>，不會把你的資料出售或提供給第三方做行銷。</p>
+      <p>只用來讓你登入、在不同裝置之間同步進度，以及確認你是否已付費解鎖。我們<b>不會寄廣告信</b>，不會把你的資料出售或提供給第三方做行銷。</p>
+      <h3>匿名使用統計</h3>
+      <p>為了知道哪些功能有人用、哪裡需要改善，網站會記錄「某個動作被觸發過」的次數，例如「完成診斷」「完成 Day 1」「開啟付款說明」。這些紀錄<b>只有事件名稱和時間，不含你的 Email 或任何可以辨識你的資料</b>，無法對應到特定的人。</p>
       <h3>資料存放在哪</h3>
       <p>帳號與進度存放在雲端資料庫服務 Supabase；登入連結信件透過寄信服務 Brevo 寄出。這兩家服務為了提供功能，會處理你的 Email。每位使用者只能讀寫自己的那一份資料。</p>
       <h3>你的權利</h3>
@@ -710,7 +717,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 
     <div class="line-cta">
       <a class="btn fire lg" id="lineBtn" href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener">轉帳後加官方 LINE 回報</a>
-      <p class="fine">加好友後傳：方案 ＋ 轉帳後五碼，我們確認後會傳解鎖碼給你。</p>
+      <p class="fine">加好友後傳：轉帳後五碼 ＋ 你要用來登入的 Email，我們登記後，登入就會自動解鎖。</p>
     </div>
   </div>
 </div>
@@ -775,14 +782,14 @@ RBANK.forEach((r,i)=>{r.id=i});
 
 /* ---------- 狀態與儲存 ---------- */
 const KEY='scoreRescue.v2';
-const S={diag:null,res:null,extra:{},dayDone:false,daysDone:{},plans:[],planView:'14',level:2,examScores:{},readSeen:{}};
-function save(){S.savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify({draft:S.draft||null,savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
+const S={diag:null,res:null,extra:{},dayDone:false,daysDone:{},paid:false,bonusReview:false,level:2,examScores:{},readSeen:{}};
+function save(){S.savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify({draft:S.draft||null,savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,bonusReview:!!S.bonusReview,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
   if(typeof schedulePush==='function')schedulePush()}
-function load(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.res&&j.diag&&j.res.ranked){S.diag=j.diag;S.res=j.res;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};if(S.dayDone)S.daysDone[1]=true;S.level=j.level||2}S.savedAt=(j&&j.savedAt)||0;S.draft=(j&&j.draft&&j.draft.list&&j.draft.i>0)?j.draft:null;if(j&&j.examScores)S.examScores=j.examScores;if(j&&j.readSeen)S.readSeen=j.readSeen}catch(e){}}
+function load(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&j.res&&j.diag&&j.res.ranked){S.diag=j.diag;S.res=j.res;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};if(S.dayDone)S.daysDone[1]=true;S.bonusReview=!!j.bonusReview;S.level=j.level||2}S.savedAt=(j&&j.savedAt)||0;S.draft=(j&&j.draft&&j.draft.list&&j.draft.i>0)?j.draft:null;if(j&&j.examScores)S.examScores=j.examScores;if(j&&j.readSeen)S.readSeen=j.readSeen}catch(e){}}
 /* 備份碼：把解鎖狀態與學習進度編碼成一段文字，讓使用者換裝置/清快取時能自己還原。
    不含模擬試題的完整詳解內容（那部分體積太大），只保留分數本身；詳解可以重新測驗取得。 */
 function backupBlob(){
-  return{v:1,savedAt:S.savedAt||0,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,level:S.level,readSeen:S.readSeen,examScores:slimExamScores()};
+  return{v:1,savedAt:S.savedAt||0,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,bonusReview:!!S.bonusReview,level:S.level,readSeen:S.readSeen,examScores:slimExamScores()};
 }
 /* 模擬試題只同步分數(不含逐題內容,體積太大);逐題解析重新測驗即可取得 */
 function slimExamScores(){
@@ -791,7 +798,7 @@ function slimExamScores(){
   return o;
 }
 function applyBlob(j){
-  S.diag=j.diag||null;S.res=j.res||null;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};S.level=j.level||2;S.readSeen=j.readSeen||{};
+  S.diag=j.diag||null;S.res=j.res||null;S.extra=j.extra||{};S.dayDone=!!j.dayDone;S.daysDone=j.daysDone||{};S.bonusReview=!!j.bonusReview;S.level=j.level||2;S.readSeen=j.readSeen||{};
   if(j.examScores)Object.keys(j.examScores).forEach(id=>{if(!S.examScores[id]||!S.examScores[id].items)S.examScores[id]=j.examScores[id]});
 }
 function exportBackupCode(){
@@ -806,42 +813,31 @@ function importBackupCode(code){
     return true;
   }catch(e){return false}
 }
-/* ---------- 付費方案(解鎖碼兌換)----------
-   方案資格存在 Supabase 的 entitlements 表,只有伺服器端的 redeem_code() 能寫入,使用者無法自己改。
-   S.plans 每次登入都從伺服器重新讀取,不信任瀏覽器本機的資料。設定步驟見 ENTITLEMENTS_SETUP.md。 */
-const PLAN_INFO={
-  '14':{days:14,price:'NT$299',unit:'平均一天不到 NT$22',name:'14 天弱點助攻',modal:'14',btn:'預約 14 天方案',
-    points:['依你的診斷結果，自動排出剩下 13 天的個人化菜單','每天 5–15 題精準練習，15–20 分鐘內做完','每一題都有詳解＋中文翻譯，不用自己猜','Day 7 整理前 6 天的錯題、Day 14 再診斷一次，親眼看到自己的進步','附 1 份完整模擬試題（閱讀 100 題）']},
-  '30':{days:30,price:'NT$499',unit:'平均一天不到 NT$17',name:'30 天衝分',modal:'30',btn:'預約 30 天方案',
-    points:['包含 14 天方案的全部內容（Day 1–14）','再加 Day 15–30：把八大弱點全部輪一遍，加上閱讀與限時混合','第 30 天做總檢測，對照第 1 天的結果','每一題都有詳解＋中文翻譯','附 3 份完整模擬試題（閱讀 100 題）']},
-  'up':{days:30,price:'NT$200',unit:'補差額（NT$499 − NT$299）',name:'升級為 30 天方案',modal:'up',btn:'預約升級（補差額）',
-    points:['你的 Day 1–14 進度完整保留','解鎖 Day 15–30 路線','模擬試題由 1 份增加為 3 份']}
-};
-/* 資格等級:0 = 未付費,14 = 14 天方案,30 = 30 天方案(包含 14 天內容) */
-function tier(){return hasPlan('30')?30:hasPlan('14')?14:0}
-function coveredDays(){const t=tier();return t>=30?30:t>=14?14:1}
-function hasPlan(p){return S.plans.indexOf(p)>=0}
-function examAllowed(id){return id===1?tier()>=14:tier()>=30}
-async function fetchPlans(){
-  if(!sb||!sbUser){S.plans=[];return}
-  const r=await sb.from('entitlements').select('plan').eq('user_id',sbUser.id);
+/* ---------- 付費(Email 名單)----------
+   付費名單存在 Supabase 的 paid_users 表,只有你(管理者)能新增;使用者登入後,伺服器只會告訴他
+   「自己的 Email 在不在名單裡」。S.paid 每次登入都重新讀取,不信任瀏覽器本機資料。設定見 PAID_SETUP.md。 */
+const PRICE={launch:399,regular:499,promoEnd:'2026-11-30'};   // 開賣優惠到這天(台灣時間)為止,之後自動恢復原價
+function priceNow(){
+  const end=new Date(PRICE.promoEnd+'T23:59:59+08:00').getTime();
+  return Date.now()<=end?{now:PRICE.launch,promo:true}:{now:PRICE.regular,promo:false};
+}
+function promoDate(){const d=PRICE.promoEnd.split('-');return +d[1]+'/'+(+d[2])}
+function refreshPrices(){
+  const pr=priceNow();
+  $$('[data-price]').forEach(el=>{el.textContent='NT$'+pr.now});
+  const dsc=$('#promoDesc'),bdg=$('#promoBadge');
+  if(dsc)dsc.textContent=pr.promo?'開賣優惠價，至 '+promoDate()+' 止；之後恢復 NT$'+PRICE.regular+'。':'每天 15–20 分鐘，補強最大失分來源。';
+  if(bdg)bdg.textContent=pr.promo?'開賣優惠':'最適合第一次衝分';
+}
+function coveredDays(){return S.paid?30:3}
+function examAllowed(){return !!S.paid}
+async function fetchPaid(){
+  if(!sb||!sbUser){S.paid=false;return}
+  const r=await sb.from('paid_users').select('email');
   if(r.error)throw r.error;
-  S.plans=(r.data||[]).map(x=>x.plan);
+  S.paid=(r.data||[]).length>0;
 }
-function afterPlansChanged(){refreshExamCards();if(!$('#view-plan').hidden)renderPlan()}
-async function redeemCode(code){
-  const c=(code||'').trim().toUpperCase();
-  if(!c)return{ok:false,reason:'empty'};
-  if(!cloudReady()||!sb)return{ok:false,reason:'not-configured'};
-  if(!sbUser)return{ok:false,reason:'not-logged-in'};
-  try{
-    const r=await sb.rpc('redeem_code',{p_code:c});
-    if(r.error)return{ok:false,reason:'server-error'};
-    const v=String(r.data||'');
-    if(v.indexOf('ok:')===0){const plan=v.slice(3);if(S.plans.indexOf(plan)<0)S.plans.push(plan);return{ok:true,plan:plan}}
-    return{ok:false,reason:v||'invalid'};
-  }catch(e){return{ok:false,reason:'network'}}
-}
+function afterPlansChanged(){refreshExamCards();refreshPrices();if(!$('#view-plan').hidden)renderPlan()}
 
 /* ---------- 登入與雲端同步(Supabase)----------
    把下面兩個值換成你 Supabase 專案的 Project URL 與 anon public key(設定步驟見 ACCOUNT_SETUP.md)。
@@ -873,7 +869,7 @@ async function onSession(sess){
   const uid=sess&&sess.user?sess.user.id:null;
   if((sbUser&&sbUser.id)===uid){renderAccount();return}
   sbUser=sess?sess.user:null;renderAccount();
-  try{await fetchPlans()}catch(e){S.plans=[]}
+  try{await fetchPaid()}catch(e){S.paid=false}
   afterPlansChanged();
   if(sbUser)await pullMerge();
 }
@@ -888,7 +884,7 @@ async function pullMerge(){
     if(!remote){if(hasProgress())await pushNow();return}
     if(!hasProgress()||(remote.savedAt||0)>(S.savedAt||0)){
       applyBlob(remote);S.savedAt=remote.savedAt||Date.now();
-      try{localStorage.setItem(KEY,JSON.stringify({savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
+      try{localStorage.setItem(KEY,JSON.stringify({savedAt:S.savedAt,diag:S.diag,res:S.res,extra:S.extra,dayDone:S.dayDone,daysDone:S.daysDone,bonusReview:!!S.bonusReview,level:S.level,examScores:S.examScores,readSeen:S.readSeen}))}catch(e){}
       refreshHome();if(!$('#view-plan').hidden)renderPlan();
       toast('已同步雲端進度');
     }else await pushNow();
@@ -899,6 +895,17 @@ async function pushNow(){
   if(!sb||!sbUser||!hasProgress())return;
   const r=await sb.from('progress').upsert({user_id:sbUser.id,data:backupBlob(),updated_at:new Date().toISOString()});
   if(r.error)throw r.error;
+}
+/* 匿名使用次數:只記「發生了什麼事」,不含 Email、不含任何個人資料;同一個分頁同一種事件只記一次 */
+function logEvent(name){
+  try{
+    if(!sb)return;
+    const k='ev_'+name;
+    if(sessionStorage.getItem(k))return;
+    sessionStorage.setItem(k,'1');
+    const r=sb.from('events').insert({name:name});
+    if(r&&r.then)r.then(function(){},function(){});
+  }catch(e){}
 }
 function schedulePush(){
   if(!sb||!sbUser||pulling)return;
@@ -915,7 +922,7 @@ function closePrivacy(){$('#privacyModal').hidden=true}
 document.addEventListener('click',e=>{if(e.target.closest('[data-privacy]'))openPrivacy()});
 $('#pvClose').addEventListener('click',closePrivacy);
 $('#privacyModal').addEventListener('mousedown',e=>{if(e.target.id==='privacyModal')closePrivacy()});
-function openAuth(){$('#authMsg').textContent='';$('#authMsg').style.color='';$('#authModal').hidden=false;$('#authEmail').focus()}
+function openAuth(){logEvent('login_open');$('#authMsg').textContent='';$('#authMsg').style.color='';$('#authModal').hidden=false;$('#authEmail').focus()}
 function closeAuth(){$('#authModal').hidden=true}
 $('#btnAccount').addEventListener('click',async()=>{
   if(!sb){openAuth();return}
@@ -934,7 +941,7 @@ $('#authForm').addEventListener('submit',async e=>{
   const r=await sb.auth.signInWithOtp({email:email,options:{emailRedirectTo:location.origin+location.pathname}});
   btn.disabled=false;
   if(r.error){msg.style.color='';msg.textContent='寄送失敗：'+(r.error.message||'請稍後再試');return}
-  msg.style.color='var(--ok)';msg.textContent='已寄出！請到信箱點開登入連結（沒收到請看垃圾郵件）。';
+  logEvent('login_sent');msg.style.color='var(--ok)';msg.textContent='已寄出！請到信箱點開登入連結（沒收到請看垃圾郵件）。';
 });
 $('#btnRestoreFoot').addEventListener('click',()=>$('#btnRestoreToggle').click());
 
@@ -948,7 +955,7 @@ function go(name){
   if(name==='result')growBars($('#resBody'));
 }
 function refreshHome(){
-  $('#btnContinue').hidden=!S.res;refreshExamCards();
+  $('#btnContinue').hidden=!S.res;refreshExamCards();refreshPrices();
   const rb=$('#resumeBar');
   if(rb){rb.hidden=!S.draft;if(S.draft)$('#resumeBtn').textContent='繼續診斷（已做 '+S.draft.i+' / '+S.draft.list.length+' 題）'}
 }
@@ -965,7 +972,7 @@ function buildOpts(box,opts,onPick){
 }
 function barsHTML(rows){
   return rows.map(r=>{
-    const p=r.n?r.c/r.n:1,k=p<.5?'low':p<.75?'mid':'ok',s=p<.5?'先補':p<.75?'加強':'穩定';
+    const p=r.p!==undefined?r.p:(r.n?r.c/r.n:1),k=p<.5?'low':p<.75?'mid':'ok',s=p<.5?'先補':p<.75?'加強':'穩定';
     return '<li class="'+k+'"><span class="nm">'+r.name+'</span><span class="trk"><i data-w="'+Math.round(p*100)+'"></i></span><span class="fr">'+r.c+'/'+r.n+'</span><span class="st">'+s+'</span></li>';
   }).join('');
 }
@@ -1110,7 +1117,7 @@ document.addEventListener('click',e=>{
 /* ---------- 作答流程 ---------- */
 let R=null;
 function runQuiz(o){
-  R={list:o.list,mode:o.mode,title:o.title,onDone:o.onDone,back:o.back||'home',level:o.level,P:o.P,total:o.total||o.list.length,i:o.i||0,ans:o.ans||[],times:o.times||[],sel:null,locked:false,t0:0};
+  R={list:o.list,mode:o.mode,title:o.title,onDone:o.onDone,back:o.back||'home',level:o.level,P:o.P,total:o.total||o.list.length,i:o.i||0,ans:o.ans||[],times:o.times||[],unsure:o.unsure||[],sel:null,locked:false,t0:0};
   $('#runTitle').textContent=o.title;show('quiz');renderQ();
 }
 function renderQ(){
@@ -1126,6 +1133,7 @@ function renderQ(){
   else{pbox.hidden=true;pbox.innerHTML=''}
   buildOpts($('#qOpts'),q.o,choose);
   const fb=$('#qFb');fb.hidden=true;fb.innerHTML='';fb.className='fb';
+  const ub=$('#unsureBox');if(ub){ub.hidden=true;$('#unsureCb').checked=false}
   R.sel=null;R.locked=false;R.t0=performance.now();
   const nb=$('#nextBtn');nb.disabled=true;
   const last=R.i===n-1;
@@ -1150,17 +1158,17 @@ function choose(k){
       ?'<p><b>'+(ok?'答對了。':'答錯了。')+'</b>'+esc(q.c)+'</p>'+(q.tr?'<p class="tr-zh">中文翻譯：'+esc(q.tr)+'</p>':'')
       :'<p class="fb-sent serif">'+esc(fullSentence)+speakIconHTML(fullSentence)+'</p>'+(q.tr?'<p class="tr-zh">中文翻譯：'+esc(q.tr)+'</p>':'')+'<p><b>'+(ok?'答對了。':'答錯了。')+'</b>'+esc(q.c)+'</p><p><b>選項差異</b>'+esc(q.d)+'</p>';
     $('#nextBtn').disabled=false;$('#nextBtn').focus();
-  }else $('#nextBtn').disabled=false;
+  }else{$('#nextBtn').disabled=false;if(R.mode==='diag'){const ub=$('#unsureBox');if(ub)ub.hidden=false}}
 }
 /* 診斷做到一半離開時保留進度,下次可從同一題繼續 */
 function saveDraft(){
   if(!R||R.mode!=='diag'||R.i<1)return;
-  S.draft={list:R.list,ans:R.ans.slice(0,R.i),times:R.times.slice(0,R.i),i:R.i,level:R.level};
+  S.draft={list:R.list,ans:R.ans.slice(0,R.i),times:R.times.slice(0,R.i),unsure:R.unsure.slice(0,R.i),i:R.i,level:R.level};
   save();
 }
 function next(){
   if(!R||R.sel===null)return;
-  if(R.mode==='diag'||R.mode==='place'){R.ans[R.i]=R.sel;R.times[R.i]=Math.min(120,(performance.now()-R.t0)/1000)}
+  if(R.mode==='diag'||R.mode==='place'){R.ans[R.i]=R.sel;R.times[R.i]=Math.min(120,(performance.now()-R.t0)/1000);if(R.mode==='diag')R.unsure[R.i]=!!$('#unsureCb').checked}
   if(R.mode==='place'){
     placeStep(R.P,R.list[R.i],R.sel===R.list[R.i].a);
     if(R.i+1<R.total)R.list.push(pickPlace(R.P));
@@ -1186,19 +1194,21 @@ document.addEventListener('keydown',e=>{
 
 /* ---------- 診斷分析 ---------- */
 function analyze(d){
-  const per={};ORDER.forEach(t=>{per[t]={n:0,c:0}});
-  d.qs.forEach((q,i)=>{per[q.tag].n++;if(d.ans[i]===q.a)per[q.tag].c++});
+  const per={};ORDER.forEach(t=>{per[t]={n:0,c:0,u:0}});
+  d.qs.forEach((q,i)=>{const t=per[q.tag];t.n++;if(d.ans[i]===q.a){t.c++;if(d.unsure&&d.unsure[i])t.u++}});
   const total=d.qs.length,correct=d.qs.reduce((s,q,i)=>s+(d.ans[i]===q.a?1:0),0),acc=correct/total;
-  const ranked=ORDER.map(t=>({t:t,n:per[t].n,c:per[t].c,pct:per[t].n?per[t].c/per[t].n:1}))
+  const unsureRight=d.qs.reduce((s,q,i)=>s+(d.ans[i]===q.a&&d.unsure&&d.unsure[i]?1:0),0);
+  // 答對但不確定的題,掌握度只算半題;顯示的 c 仍是實際答對題數
+  const ranked=ORDER.map(t=>{const e=per[t].c-0.5*per[t].u;return{t:t,n:per[t].n,c:per[t].c,u:per[t].u,pct:per[t].n?e/per[t].n:1}})
     .sort((x,y)=>x.pct-y.pct||(y.n-y.c)-(x.n-x.c)||ORDER.indexOf(x.t)-ORDER.indexOf(y.t));
   const avg=Math.round(d.times.reduce((a,b)=>a+b,0)/total);
-  return{total:total,correct:correct,acc:acc,ranked:ranked,weak:ranked[0].t,level:d.level||2,avg:avg};
+  return{total:total,correct:correct,unsureRight:unsureRight,acc:acc,ranked:ranked,weak:ranked[0].t,level:d.level||2,avg:avg};
 }
 function finishDiag(r){
-  S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.level=r.level;S.res=analyze(S.diag);S.extra={};S.dayDone=false;S.daysDone={};S.draft=null;save();go('result');
+  S.diag={qs:r.list,ans:r.ans,times:r.times,unsure:r.unsure||[],level:r.level};S.level=r.level;S.res=analyze(S.diag);S.extra={};S.dayDone=false;S.daysDone={};S.draft=null;save();logEvent('diag_done');go('result');
 }
 function redoDiag(r,plan,day){
-  S.diag={qs:r.list,ans:r.ans,times:r.times,level:r.level};S.res=analyze(S.diag);S.daysDone[day||14]=true;save();go('plan');
+  S.diag={qs:r.list,ans:r.ans,times:r.times,unsure:r.unsure||[],level:r.level};S.res=analyze(S.diag);S.daysDone[day||14]=true;save();go('plan');
 }
 const LEVELS=[
  {lv:1,title:'300–500 分',desc:'剛開始，或基本文法和單字還不穩'},
@@ -1209,7 +1219,7 @@ const LEVELS=[
 let pendingLevel=2,placeIds=new Set();
 function openLevel(){show('level')}
 function startDiagAt(level,skip){
-  S.draft=null;
+  S.draft=null;logEvent('diag_start');
   runQuiz({list:drawDiag(level,skip),mode:'diag',title:'弱點診斷',back:'home',level:level,onDone:finishDiag});
 }
 function startPlacement(){
@@ -1251,50 +1261,72 @@ function renderResult(){
     '<section class="sheet weak"><p class="lab">最大弱點</p><h2><mark>'+(perfect?'沒有明顯弱點':T.name)+'</mark></h2>'+
     '<p>'+(perfect?'這 30 題你全部答對。建議從「'+T.name+'」開始鞏固，並把重點放在作答速度。':'你在這一類答對 '+r.ranked[0].c+' / '+r.ranked[0].n+' 題。'+T.why)+'</p>'+
     '<p class="tip"><b>老師提醒</b>'+T.tip+'</p>'+
-    '<button class="btn fire lg" type="button" data-act="explain">免費看 3 題完整解析</button></section>'+
+    '<button class="btn fire lg" type="button" data-act="explain">看我的錯題與解析</button></section>'+
     '<section class="sheet score"><div class="stat"><b>'+pct+'%</b><span>答對 '+r.correct+' / '+r.total+' 題</span></div>'+
     '<div class="stat"><b>'+LV_NAME[lv]+'</b><span>這次的題目難度（'+LV_RANGE[lv]+' 分）</span></div>'+
     '<p class="fine">難度是依你的選擇（或程度判斷）設定的起點，不是官方分數。</p></section>'+
    '</div>'+
-   '<section class="abil"><h2>八大能力</h2><ul class="bars">'+barsHTML(r.ranked.map(x=>({name:TAGS[x.t].name,c:x.c,n:x.n})))+'</ul>'+
+   '<section class="abil"><h2>八大能力</h2><ul class="bars">'+barsHTML(r.ranked.map(x=>({name:TAGS[x.t].name,c:x.c,n:x.n,p:x.pct})))+'</ul>'+(r.unsureRight?'<p class="fine" style="margin-top:10px">其中 '+r.unsureRight+' 題你答對但標示「不太確定」，掌握度只算半題，因為可能是猜的。</p>':'')+
    '<p class="speed"><b>作答速度</b>　平均每題 '+r.avg+' 秒，'+speed+'。</p></section>'+
    adjustHTML(r)+
-   '<div class="res-foot"><button class="link" type="button" data-go="plan">預覽 14 天計畫</button><button class="link" type="button" data-start>重新做一次診斷</button></div>';
+   '<div class="res-foot"><button class="link" type="button" data-go="plan">看我的 30 天路線</button><button class="link" type="button" data-start>重新做一次診斷</button></div>';
 }
 
 /* ---------- 免費解析 ---------- */
 function renderExplain(){
-  const d=S.diag,r=S.res;
-  const wrong=d.qs.map((q,i)=>({q:q,i:i})).filter(x=>d.ans[x.i]!==x.q.a).sort((a,b)=>(a.q.tag===r.weak?0:1)-(b.q.tag===r.weak?0:1)).slice(0,3);
-  let h='<h1>不只看答案，要看懂自己為什麼會選錯。</h1><p class="lead">每題先看四個選項逐一對照，再看判斷線索和下次怎麼做。</p>';
-  if(!wrong.length)h+='<p class="fb ok" style="margin-top:24px">這次全部答對，沒有需要解析的錯題。直接做 3 題補強，看看還能加強哪裡。</p>';
-  wrong.forEach(x=>{
-    const q=x.q,my=d.ans[x.i],fullSentence=q.q.replace('___',q.o[q.a]);
+  logEvent('explain_view');
+  const d=S.diag,r=S.res,paid=!!S.paid;
+  const items=d.qs.map((q,i)=>({q:q,i:i,my:d.ans[i],right:d.ans[i]===q.a,unsure:!!(d.unsure&&d.unsure[i])}));
+  const wrong=items.filter(x=>!x.right).sort((a,b)=>(a.q.tag===r.weak?0:1)-(b.q.tag===r.weak?0:1));
+  const unsureRight=items.filter(x=>x.right&&x.unsure);
+  const sureRight=items.filter(x=>x.right&&!x.unsure);
+  const FREE_N=5,freeSet=new Set(wrong.filter(x=>x.q.tag===r.weak).slice(0,FREE_N).map(x=>x.i));
+  const full=x=>{
+    const q=x.q,my=x.my,fullSentence=q.q.replace('___',q.o[q.a]);
     const optRows=q.o.map((opt,k)=>{
       const isRight=k===q.a,isMine=k===my,cls=isRight?'right':(isMine?'wrong':'');
       const tag=isRight?'<span class="mk">正確答案</span>':(isMine?'<span class="mk">你的選擇</span>':'');
       return '<li class="opt-ex'+(cls?' '+cls:'')+'"><span class="bub">'+LET[k]+'</span><span class="t serif">'+esc(opt)+'</span>'+tag+'</li>';
     }).join('');
-    h+='<article class="sheet ex"><p class="ex-h">'+TAGS[q.tag].name+'</p><p class="q serif">'+blankify(q.q,q.o[q.a])+speakIconHTML(fullSentence)+'</p>'+
+    return '<article class="sheet ex"><p class="ex-h">'+TAGS[q.tag].name+(x.right?'　·　答對但不太確定':'')+'</p><p class="q serif">'+blankify(q.q,q.o[q.a])+speakIconHTML(fullSentence)+'</p>'+
     '<p class="ex-sub">選項分析</p><ul class="opts opt-ex-list">'+optRows+'</ul>'+
     '<dl class="ex-l">'+(q.tr?'<dt>中文翻譯</dt><dd>'+esc(q.tr)+'</dd>':'')+'<dt>判斷線索</dt><dd>'+esc(q.c)+'</dd><dt>選項差異</dt><dd>'+esc(q.d)+'</dd><dt>下次怎麼做</dt><dd>'+TAGS[q.tag].tip+'</dd></dl></article>';
-  });
+  };
+  const compact=(x,locked)=>{
+    const q=x.q;
+    return '<li class="'+(locked?'lockc':'')+'"><p class="ex-h" style="margin:0 0 4px">'+TAGS[q.tag].name+'</p><p class="serif">'+blankify(q.q,q.o[q.a])+'</p>'+
+      '<p class="fine">'+(x.right?'':'你選：<span class="mine">'+LET[x.my]+'. '+esc(q.o[x.my])+'</span>　')+'正確答案：<span class="right">'+LET[q.a]+'. '+esc(q.o[q.a])+'</span></p>'+
+      (locked?'<p class="lock-note">🔒 完整解析（判斷線索、選項差異、中文翻譯）在 30 天方案裡</p>':'')+'</li>';
+  };
+  let h='<h1>不只看答案，要看懂自己為什麼會選錯。</h1><p class="lead">所有錯題都列在這裡。你最弱那一類的錯題（最多 '+FREE_N+' 題）可以免費看完整解析。</p>';
+  if(!wrong.length)h+='<p class="fb ok" style="margin-top:24px">這次全部答對，沒有需要解析的錯題。直接做 3 題補強，看看還能加強哪裡。</p>';
+  // 1) 錯題:完整解析(免費那幾題或已付費),其餘只列題目與正解
+  const fullWrong=wrong.filter(x=>paid||freeSet.has(x.i)),restWrong=wrong.filter(x=>!(paid||freeSet.has(x.i)));
+  if(fullWrong.length)h+='<h2 class="ex-group" style="font-size:1.2rem">答錯的題目（'+wrong.length+' 題）</h2>'+fullWrong.map(full).join('');
+  if(restWrong.length)h+='<h2 class="ex-group" style="font-size:1.05rem">其他答錯的題目</h2><ul class="cmp">'+restWrong.map(x=>compact(x,true)).join('')+'</ul>'+
+    '<p class="fine" style="margin-top:10px">'+(restWrong.length)+' 題的完整解析在 <a class="line-link" href="#pricing" data-go="home">30 天方案</a>。</p>';
+  // 2) 答對但不確定:可能是猜的
+  if(unsureRight.length)h+='<h2 class="ex-group" style="font-size:1.2rem">答對，但你標示「不太確定」（'+unsureRight.length+' 題）</h2><p class="fine">這幾題可能是猜對的，建議當成還沒學會。</p>'+
+    (paid?unsureRight.map(full).join(''):'<ul class="cmp">'+unsureRight.map(x=>compact(x,true)).join('')+'</ul>');
+  // 3) 確定會的:收起來
+  if(sureRight.length)h+='<details class="ex-group"><summary>答對且有把握的題目（'+sureRight.length+' 題）</summary><ul class="cmp">'+sureRight.map(x=>compact(x,false)).join('')+'</ul></details>';
   h+='<div class="next-box"><button class="btn fire lg" type="button" data-act="drill">用 3 題新題確認弱點</button><span class="fine">題目會集中在你的最大弱點。</span></div>';
   $('#exBody').innerHTML=h;
 }
 
 /* ---------- 補強 ---------- */
 function startDrill(){
+  logEvent('drill_start');
   runQuiz({list:pickFor(S.res.weak,3),mode:'drill',title:'補強 3 題',back:'result',onDone:r=>{
     let ok=0;r.list.forEach((q,i)=>{const c=r.ans[i]===q.a;if(c)ok++;S.extra[q.id]=c});save();
     const T=TAGS[S.res.weak];
     const msg=ok===r.list.length?'你已經抓到「'+T.name+'」的訣竅，接下來的計畫會把它練成直覺。':ok>0?'方向對了，還有幾個細節要補。Day 1 會從規則開始，一步一步練。':'這一類確實是你目前最需要補的地方。Day 1 會從最基本的規則開始。';
-    $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">補強完成</p><p class="big">'+ok+' / '+r.list.length+'</p><p>'+msg+'</p><button class="btn fire lg" type="button" data-go="plan">看我的 14 天計畫</button></section>';
+    $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">補強完成</p><p class="big">'+ok+' / '+r.list.length+'</p><p>'+msg+'</p><button class="btn fire lg" type="button" data-go="plan">看我的 30 天計畫</button></section>';
     show('done');
   }});
 }
 
-/* ---------- 14 天計畫 ---------- */
+/* ---------- 30 天計畫 ---------- */
 const LOCK='<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" fill="currentColor"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
 function ruleDay(day,t){return{day:day,kind:'rule',tag:t,title:TAGS[t].name,sub:'學規則＋5 題精準練習'}}
 function drillDay(day,t){return{day:day,kind:'drill',tag:t,title:TAGS[t].name,sub:'同類題循環補強 · 5 題'}}
@@ -1327,7 +1359,7 @@ function daySpecs30(ranked){
    {day:30,kind:'diag',tag:null,title:'再診斷一次',sub:'30 題總檢測，對照第 1 天的結果'}
   ]);
 }
-function daySpecs(ranked,plan){return plan==='30'?daySpecs30(ranked):daySpecs14(ranked)}
+function daySpecs(ranked){return daySpecs30(ranked)}
 function wrongReviewList(n){
   const ids=Object.keys(S.extra).filter(id=>S.extra[id]===false).map(Number);
   let list=shuffle(ids).map(id=>BANK.find(q=>q.id===id)).filter(Boolean);
@@ -1350,7 +1382,7 @@ function readingPlanList(skills,n){
   skills.forEach(s=>{list=list.concat(pickReadingFor(s,per))});
   return shuffle(list).slice(0,n);
 }
-function doneCount(plan){const d=S.daysDone||{},max=plan==='30'?30:14;return Object.keys(d).filter(k=>d[k]&&+k<=max).length}
+function doneCount(){const d=S.daysDone||{};return Object.keys(d).filter(k=>d[k]&&+k<=30).length}
 function lineShareUrl(text){return 'https://line.me/R/msg/text/?'+encodeURIComponent(text)}
 const KIND_META={
  rule:{icon:'📘',label:'新觀念',bg:'#E8F0FE',fg:'#2454B8'},
@@ -1362,55 +1394,53 @@ const KIND_META={
  diag:{icon:'📊',label:'再診斷',bg:'var(--ok-soft)',fg:'var(--ok)'}
 };
 function renderPlan(){
-  const r=S.res,plan=S.planView==='30'?'30':'14',info=PLAN_INFO[plan],N=info.days;
-  const specs=daySpecs(r.ranked,plan),dd=S.daysDone,covered=coveredDays(),own=covered>=N,promoKey=(plan==='30'&&tier()===14)?'up':plan,promo=PLAN_INFO[promoKey];
-  const done=doneCount(plan),pct=Math.round(done/N*100);
+  const r=S.res,N=30,specs=daySpecs(r.ranked),dd=S.daysDone,covered=coveredDays(),paid=!!S.paid;
+  const done=doneCount(),pct=Math.round(done/N*100),pr=priceNow();
   const rows=specs.map(x=>{
     const open=x.day<=covered,isDone=!!dd[x.day],km=KIND_META[x.kind];
     const state=open?(isDone?'✓ 完成':'開始 →'):LOCK;
-    return '<li class="'+(open?'open':'lock')+(isDone?' done':'')+'"'+(open?' data-act="day" data-day="'+x.day+'" data-plan="'+plan+'" tabindex="0" role="button"':'')+'>'+
+    return '<li class="'+(open?'open':'lock')+(isDone?' done':'')+'"'+(open?' data-act="day" data-day="'+x.day+'" tabindex="0" role="button"':'')+'>'+
       '<span class="dchip" style="background:'+km.bg+';color:'+km.fg+'">'+km.icon+'</span>'+
       '<span class="dinfo"><b>Day '+x.day+'</b><span class="dtitle">'+x.title+'</span><span class="dtag" style="color:'+km.fg+'">'+km.label+'</span></span>'+
       '<span class="state">'+state+'</span></li>';
   });
-  const roadHTML='<ol class="road">'+rows.slice(0,3).join('')+'</ol>'+
-    (rows.length>3?'<details class="road-more"><summary>查看完整 '+N+' 天路線（還有 '+(rows.length-3)+' 天）</summary><ol class="road">'+rows.slice(3).join('')+'</ol></details>':'');
-  const tabs='<div class="plan-tabs" role="group" aria-label="選擇方案">'+['14','30'].map(k=>
-    '<button type="button" class="plan-tab" data-act="planView" data-plan="'+k+'" aria-pressed="'+(plan===k)+'">'+k+' 天'+(covered>=+k?' ✓':'')+'</button>').join('')+'</div>';
+  const bonusOpen=!!dd[3],bk=KIND_META.review;
+  const bonus='<li class="'+(bonusOpen?'open':'lock')+(S.bonusReview?' done':'')+'"'+(bonusOpen?' data-act="bonusReview" tabindex="0" role="button"':'')+'>'+
+    '<span class="dchip" style="background:'+bk.bg+';color:'+bk.fg+'">'+bk.icon+'</span>'+
+    '<span class="dinfo"><b>免費體驗</b><span class="dtitle">錯題回顧</span><span class="dtag" style="color:'+bk.fg+'">'+(bonusOpen?'把你答錯的題再做一次':'完成 Day 3 後開放')+'</span></span>'+
+    '<span class="state">'+(bonusOpen?(S.bonusReview?'✓ 完成':'開始 →'):LOCK)+'</span></li>';
+  const roadHTML='<ol class="road">'+rows.slice(0,3).join('')+bonus+'</ol>'+
+    '<details class="road-more"><summary>查看完整 '+N+' 天路線（還有 '+(rows.length-3)+' 天）</summary><ol class="road">'+rows.slice(3).join('')+'</ol></details>';
   let codeBox;
-  if(!cloudReady())codeBox='<p class="code-label">解鎖功能尚未開放，請聯絡客服。</p>';
-  else if(!sbUser)codeBox='<p class="code-label">已經付款了嗎？解鎖碼會綁定你的帳號，請先登入：</p><button class="btn line" type="button" data-act="openAuth">登入</button>';
-  else codeBox='<p class="code-label">已經付款了嗎？在這裡輸入解鎖碼（登入帳號：'+esc(sbUser.email||'')+'）：</p>'+
-    '<div class="unlock-code-row"><input type="text" id="unlockInput" placeholder="輸入解鎖碼" autocomplete="off" autocapitalize="characters"><button class="btn line" type="button" data-act="unlock">送出</button></div><p class="unlock-msg" id="unlockMsg" hidden></p>';
-  const unlockSection=own
-    ? '<section class="sheet unlock"><h2>已解鎖 '+N+' 天方案</h2><p>點選上方任一天即可開始，進度會自動儲存。'+(tier()>=30?'3 份模擬試題':'1 份模擬試題')+'在首頁下方。'+(plan==='14'&&tier()>=30?'（你已是 30 天方案，可切換到「30 天」繼續 Day 15–30。）':'')+'</p></section>'
+  if(!cloudReady())codeBox='<p class="code-label">付費功能尚未開放，請聯絡客服。</p>';
+  else if(!sbUser)codeBox='<p class="code-label">已經付款了嗎？請用你付款時告訴我們的 Email 登入，就會自動解鎖：</p><button class="btn line" type="button" data-act="openAuth">登入</button>';
+  else codeBox='<p class="code-label">你目前登入的是 <b>'+esc(sbUser.email||'')+'</b>，還不在付費名單裡。如果剛付款，請確認這個 Email 和你在 LINE 告訴我們的一致；我們登記後，按下面的按鈕重新檢查：</p><button class="btn line" type="button" data-act="recheckPaid">重新檢查</button><p class="unlock-msg" id="unlockMsg" hidden></p>';
+  const unlockSection=paid
+    ? '<section class="sheet unlock"><h2>已解鎖全部 30 天</h2><p>點選上方任一天即可開始，進度會自動儲存。3 份模擬試題在首頁下方。</p></section>'
     : '<section class="sheet unlock-promo">'+
-      '<div class="unlock-badge">🔓 '+(promoKey==='up'?'升級解鎖 Day 15–30':'解鎖 Day 2–'+N)+'</div>'+
+      '<div class="unlock-badge">🔓 解鎖 Day 4–30 與 3 份模擬試題</div>'+
       '<h2>你已經抓到問題出在哪了，接下來呢？</h2>'+
-      '<p class="lead">只做 Day 1 很容易三分鐘熱度。接下來這些天會持續用你答錯的題目調整菜單，把「看得懂」練成「考試當下直覺答對」。</p>'+
-      '<ul class="unlock-list">'+promo.points.map(x=>'<li>'+x+'</li>').join('')+'</ul>'+
-      '<div class="unlock-price"><span class="price-big">'+promo.price+'</span><span class="price-sub">一次付費・沒有自動續訂・'+promo.unit+'</span></div>'+
-      '<button class="btn fire lg" type="button" data-modal="'+promo.modal+'">'+promo.btn+'</button>'+
+      '<p class="lead">只做前 3 天很容易三分鐘熱度。接下來的路線會持續用你答錯的題目調整菜單，把「看得懂」練成「考試當下直覺答對」。</p>'+
+      '<ul class="unlock-list"><li>依診斷結果排出 30 天個人化路線，八大弱點全部輪一遍</li><li>每天 5–20 題精準練習，15–20 分鐘內做完</li><li>錯題回顧、閱讀理解、限時混合、期中與總檢測</li><li>每一題都有詳解＋中文翻譯＋發音</li><li>附 3 份完整模擬試題（閱讀 100 題）</li></ul>'+
+      '<div class="unlock-price"><span class="price-big">NT$'+pr.now+'</span><span class="price-sub">'+(pr.promo?'開賣優惠至 '+promoDate()+'，之後恢復 NT$'+PRICE.regular+'・':'')+'一次付費・沒有自動續訂</span></div>'+
+      '<button class="btn fire lg" type="button" data-modal="30">預約 30 天方案</button>'+
       '<div class="code-box">'+codeBox+'</div></section>';
   const T=TAGS[r.weak];
   $('#planBody').innerHTML=
-   tabs+
    '<p class="streak">'+(done?'已完成 '+done+' / '+N+' 天':'完成今天的任務，開始你的連續學習')+'</p>'+
    '<h1 class="day-h">今天的助攻目標：「'+T.name+'」。</h1>'+
    '<p class="lead">Day 1 / '+N+' · 約 15–20 分鐘 · 一句規則＋5 題精準練習 · 難度：'+LV_NAME[Math.round(S.level||2)]+'</p>'+
    '<div class="prog-line"><div class="progress"><i style="width:'+pct+'%"></i></div><span>'+pct+'%</span></div>'+
    '<section class="sheet"><h2 class="rule-t">'+T.rule+'</h2><p class="ex-en serif">'+esc(T.ex)+speakIconHTML(T.ex)+'</p><p class="ex-zh">'+T.exZh+'</p></section>'+
-   '<div class="cta-row"><button class="btn fire lg" type="button" data-act="day" data-day="1" data-plan="'+plan+'">'+(dd[1]?'再練一次 Day 1 · 5 題':'開始 Day 1 · 5 題')+'</button></div>'+
-   '<section class="road-sec"><h2>你的個人化學習路線</h2><p class="lead">'+(own?'點任一天開始；已完成的天數會打勾。':'🔒 表示解鎖後才能開始；Day 1 可以先完整體驗。')+'</p>'+roadHTML+'<p class="road-note">大多數天數都是沒做過的新題目；錯題回顧、複習與再診斷會刻意重出你之前答錯的題，幫助加深記憶。</p></section>'+
+   '<div class="cta-row"><button class="btn fire lg" type="button" data-act="day" data-day="1">'+(dd[1]?'再練一次 Day 1 · 5 題':'開始 Day 1 · 5 題')+'</button></div>'+
+   '<section class="road-sec"><h2>你的個人化學習路線</h2><p class="lead">'+(paid?'點任一天開始；已完成的天數會打勾。':'Day 1–3 免費體驗；🔒 表示解鎖後才能開始。')+'</p>'+roadHTML+'<p class="road-note">大多數天數都是沒做過的新題目；錯題回顧、複習與再診斷會刻意重出你之前答錯的題，幫助加深記憶。</p></section>'+
    unlockSection+
    (cloudReady()?'<details class="sheet backup-box"><summary class="link">手動備份碼（進階，一般用登入同步就好）</summary>':'')+
    '<section class="'+(cloudReady()?'':'sheet ')+'backup-box">'+
-     '<h2>備份你的進度</h2><p class="lead">你的進度只存在這個瀏覽器裡（登入後會自動同步）。換裝置、換瀏覽器或清除瀏覽器資料前，可以先把這組備份碼存起來，之後回到首頁「還原備份碼」貼回去就能救回進度。付費方案綁定帳號，不在備份碼裡。</p>'+
+     '<h2>備份你的進度</h2><p class="lead">你的進度只存在這個瀏覽器裡（登入後會自動同步）。換裝置、換瀏覽器或清除瀏覽器資料前，可以先把這組備份碼存起來，之後回到首頁「還原備份碼」貼回去就能救回進度。付費資格綁定登入的 Email，不在備份碼裡。</p>'+
      '<textarea id="backupOut" rows="3" readonly></textarea>'+
      '<div class="cta-row"><a class="btn fire" id="backupLineBtn" target="_blank" rel="noopener">傳送到 LINE 存起來</a><button class="btn line" type="button" id="backupCopyBtn">複製備份碼</button></div>'+
    '</section>'+(cloudReady()?'</details>':'');
-  const inp=$('#unlockInput');
-  if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter')doUnlock()});
   const bo=$('#backupOut');
   if(bo){
     const code=exportBackupCode();
@@ -1419,21 +1449,12 @@ function renderPlan(){
     $('#backupLineBtn').href=lineShareUrl('Score Rescue 備份碼（請勿刪除這則訊息）：\n'+code);
   }
 }
-async function doUnlock(){
-  const inp=$('#unlockInput'),msg=$('#unlockMsg'),btn=$('[data-act="unlock"]');
-  if(!inp)return;
-  if(btn){btn.disabled=true;btn.textContent='驗證中...'}
-  msg.hidden=false;msg.className='unlock-msg';msg.textContent='正在驗證，請稍候...';
-  const r=await redeemCode(inp.value);
-  if(btn){btn.disabled=false;btn.textContent='送出'}
-  if(r.ok){
-    S.planView=r.plan==='30'?'30':'14';afterPlansChanged();toast('已解鎖 '+r.plan+' 天方案');
-    return;
-  }
-  const m=$('#unlockMsg');if(!m)return;
-  m.hidden=false;m.className='unlock-msg bad';
-  const text={network:'目前連不上伺服器，請確認網路連線後再試一次。','not-configured':'解鎖服務尚未設定完成，請聯絡客服。',empty:'請先輸入解鎖碼。','not-logged-in':'請先登入，解鎖碼會綁定你的帳號。',used:'這組解鎖碼已經被使用過了，如有疑問請聯絡客服。',need_14:'這是「升級碼」，需要先有 14 天方案才能使用；如果你還沒買 14 天方案，請聯絡客服。',too_many:'嘗試次數太多，請一小時後再試，或聯絡客服。','server-error':'伺服器暫時有問題，請稍後再試。'};
-  m.textContent=text[r.reason]||'解鎖碼不正確，請確認後再輸入一次，或聯絡客服。';
+async function recheckPaid(){
+  const m=$('#unlockMsg');
+  try{await fetchPaid()}catch(e){if(m){m.hidden=false;m.className='unlock-msg bad';m.textContent='目前連不上伺服器，請稍後再試。'}return}
+  afterPlansChanged();
+  if(!S.paid){const m2=$('#unlockMsg');if(m2){m2.hidden=false;m2.className='unlock-msg bad';m2.textContent='還沒有找到這個 Email 的付費紀錄。請確認 Email 是否一致，或聯絡客服。'}}
+  else toast('已解鎖，歡迎開始 30 天路線');
 }
 /* 練習結束後的分數畫面:答對題數、百分比、逐題對錯,以及答錯題的正解 */
 function showScore(r,label){
@@ -1452,16 +1473,25 @@ function showScore(r,label){
     '<button class="btn fire lg" type="button" data-go="plan">回我的學習計畫</button></section>';
   show('done');
 }
-function startPlanDay(day,plan){
-  plan=plan==='30'?'30':'14';
+/* 「新觀念」的日子:先看規則卡(規則 + 例句 + 發音 + 翻譯),再開始 5 題 */
+function showRuleIntro(day,spec){
+  const T=TAGS[spec.tag];
+  $('#doneBody').innerHTML='<section class="sheet done-card rule-intro"><p class="lab">Day '+day+' · 新觀念</p><h2 class="rule-t" style="margin:6px 0 4px">'+esc(T.name)+'</h2>'+
+    '<p class="rule-t">'+T.rule+'</p><p class="ex-en serif">'+esc(T.ex)+speakIconHTML(T.ex)+'</p><p class="ex-zh">'+T.exZh+'</p>'+
+    '<p class="tip" style="text-align:left"><b>老師提醒</b>'+T.tip+'</p>'+
+    '<button class="btn fire lg" type="button" data-act="beginDay" data-day="'+day+'">開始 5 題練習</button>'+
+    '<p class="cta-row"><button class="link" type="button" data-go="plan">回我的學習計畫</button></p></section>';
+  show('done');
+}
+function startPlanDay(day,skipIntro){
   if(!S.res)return;
-  const specs=daySpecs(S.res.ranked,plan),spec=specs.find(x=>x.day===day);
+  const spec=daySpecs(S.res.ranked).find(x=>x.day===day);
   if(!spec)return;
-  if(day>coveredDays()){toast('這個方案還沒解鎖');return}
-  S.planView=plan;
+  if(day>coveredDays()){toast('Day 4 起需要解鎖 30 天方案');return}
+  if(spec.kind==='rule'&&!skipIntro){showRuleIntro(day,spec);return}
   const dd=S.daysDone;
   if(spec.kind==='diag'){
-    runQuiz({list:drawDiag(S.level||2,new Set()),mode:'diag',title:'Day '+day+' · 再診斷一次',back:'plan',level:S.level,onDone:r=>{redoDiag(r,plan,day)}});
+    runQuiz({list:drawDiag(S.level||2,new Set()),mode:'diag',title:'Day '+day+' · 再診斷一次',back:'plan',level:S.level,onDone:r=>{redoDiag(r,'30',day)}});
     return;
   }
   let list;
@@ -1473,8 +1503,16 @@ function startPlanDay(day,plan){
   else list=pickFor(S.res.weak,5);
   runQuiz({list:list,mode:'day',title:'Day '+day+' · '+spec.title,back:'plan',onDone:r=>{
     r.list.forEach((q,i)=>{if(q.passages)S.readSeen[q.id]=r.ans[i]===q.a;else S.extra[q.id]=r.ans[i]===q.a});
-    dd[day]=true;if(plan==='14'&&day===1)S.dayDone=true;save();
+    dd[day]=true;if(day===1)S.dayDone=true;save();logEvent('day_'+day);
     showScore(r,'Day '+day+' 完成');
+  }});
+}
+function startBonusReview(){
+  if(!S.res||!S.daysDone[3])return;
+  runQuiz({list:wrongReviewList(8),mode:'day',title:'錯題回顧體驗',back:'plan',onDone:r=>{
+    r.list.forEach((q,i)=>{if(q.passages)S.readSeen[q.id]=r.ans[i]===q.a;else S.extra[q.id]=r.ans[i]===q.a});
+    S.bonusReview=true;save();logEvent('bonus_review_done');
+    showScore(r,'錯題回顧體驗完成');
   }});
 }
 
@@ -1544,8 +1582,7 @@ function examCardsHTML(){
       return '<div class="exam-card locked"><div><h3>'+e.title+'</h3><p class="ec-meta">閱讀 100 題 · 聽力製作中</p></div><div class="ec-right"><span class="soon-tag">即將推出</span></div></div>';
     }
     if(!examAllowed(e.id)){
-      const need=e.id===1?'14 天或 30 天方案':'30 天方案';
-      return '<div class="exam-card locked"><div><h3>'+e.title+'</h3><p class="ec-meta">閱讀 100 題 · 付費方案（'+need+'）</p></div><div class="ec-right"><span class="soon-tag">🔒 需解鎖</span><a class="btn line sm" href="#pricing">看方案</a></div></div>';
+      return '<div class="exam-card locked"><div><h3>'+e.title+'</h3><p class="ec-meta">閱讀 100 題 · 30 天方案內含</p></div><div class="ec-right"><span class="soon-tag">🔒 需解鎖</span><a class="btn line sm" href="#pricing">看方案</a></div></div>';
     }
     const right=score
       ? '<span class="ec-score">'+score.correct+' / 100</span>'+(score.items?'<button class="btn line sm" type="button" data-act="examReview" data-exam="'+e.id+'">看解析</button>':'')+'<button class="btn fire sm" type="button" data-act="examStart" data-exam="'+e.id+'">重新測驗</button>'
@@ -1583,6 +1620,7 @@ function examStartScreen(examId){
 
 function examBegin(examId){
   if(!examAllowed(examId)){toast('這份模擬試題需要付費方案');return}
+  logEvent('exam_start');
   const items=buildExamItems(examId);
   EX={examId:examId,items:items,ans:new Array(items.length).fill(null),cur:0,startedAt:Date.now(),endAt:Date.now()+EXAM_DURATION_SEC*1000};
   show('exam');
@@ -1802,7 +1840,7 @@ function examStartWeakDrill(examId,weakTag){
   runQuiz({list:pickFor(weakTag,3),mode:'drill',title:'補強 3 題（來自模擬試題）',back:'exam-result',onDone:r=>{
     let ok=0;r.list.forEach((q,i)=>{const c=r.ans[i]===q.a;if(c)ok++;S.extra[q.id]=c});save();
     const T=TAGS[weakTag];
-    const msg=ok===r.list.length?'你已經抓到「'+T.name+'」的訣竅了，做得好。':ok>0?'方向對了，還有幾個細節要補，可以到 14 天計畫繼續練習。':'這一類確實是你目前最需要補的地方，建議到 14 天計畫做完整練習。';
+    const msg=ok===r.list.length?'你已經抓到「'+T.name+'」的訣竅了，做得好。':ok>0?'方向對了，還有幾個細節要補，可以到 30 天計畫繼續練習。':'這一類確實是你目前最需要補的地方，建議到 30 天計畫做完整練習。';
     $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">補強完成</p><p class="big">'+ok+' / '+r.list.length+'</p><p>'+msg+'</p><button class="btn fire lg" type="button" data-go="exam-result">回測驗結果</button></section>';
     show('done');
   }});
@@ -1928,7 +1966,7 @@ function copyText(text,btn){
 let lastFocus=null;
 function openModal(plan){
   lastFocus=document.activeElement;
-  $('#mPlan').textContent=plan==='30'?'30 天衝分 · NT$499，一次付費':plan==='up'?'升級為 30 天方案（補差額）· NT$200，一次付費':plan==='14'?'14 天弱點助攻 · NT$299，一次付費':'NT$299 起，一次付費';
+  logEvent('buy_modal_open');const pr=priceNow();$('#mPlan').textContent='30 天衝分 · NT$'+pr.now+'，一次付費'+(pr.promo?'（開賣優惠至 '+promoDate()+'，之後恢復 NT$'+PRICE.regular+'）':'');
   $('#payBank').textContent=PAY_INFO.bank;
   $('#payAcct').textContent=PAY_INFO.acct;
   $('#lineBtn').href='https://line.me/R/ti/p/'+PAY_INFO.lineId;
@@ -1975,11 +2013,12 @@ document.addEventListener('click',e=>{
   else if(el.dataset.modal!==undefined)openModal(el.dataset.modal);
   else if(el.dataset.act==='explain'){renderExplain();show('explain')}
   else if(el.dataset.act==='drill')startDrill();
-  else if(el.dataset.act==='day')startPlanDay(+el.dataset.day||1,el.dataset.plan);
-  else if(el.dataset.act==='planView'){S.planView=el.dataset.plan==='30'?'30':'14';renderPlan()}
+  else if(el.dataset.act==='day')startPlanDay(+el.dataset.day||1);
+  else if(el.dataset.act==='beginDay')startPlanDay(+el.dataset.day||1,true);
+  else if(el.dataset.act==='bonusReview')startBonusReview();
+  else if(el.dataset.act==='recheckPaid')recheckPaid();
   else if(el.dataset.act==='openAuth')openAuth();
-  else if(el.dataset.act==='unlock')doUnlock();
-  else if(el.dataset.act==='resumeDiag'&&S.draft){const d=S.draft;runQuiz({list:d.list,mode:'diag',title:'弱點診斷',back:'home',level:d.level,onDone:finishDiag,i:d.i,ans:d.ans,times:d.times})}
+  else if(el.dataset.act==='resumeDiag'&&S.draft){const d=S.draft;runQuiz({list:d.list,mode:'diag',title:'弱點診斷',back:'home',level:d.level,onDone:finishDiag,i:d.i,ans:d.ans,times:d.times,unsure:d.unsure||[]})}
   else if(el.dataset.act==='dropDraft'){S.draft=null;save();refreshHome()}
   else if(el.dataset.act==='beginDiag')startDiagAt(pendingLevel,placeIds);
   else if(el.dataset.act==='lvup')startDiagAt(Math.min(3,Math.round((S.diag&&S.diag.level)||S.level||2)+1));

@@ -32,5 +32,5 @@
 
 ## 注意
 - Supabase 內建寄信有次數限制(免費方案每小時很少),正式營運前請到 **Authentication → SMTP Settings** 接自己的寄信服務(例如 Resend、SendGrid)。
-- 付費資格另外存放,由伺服器管理,設定請看 `ENTITLEMENTS_SETUP.md`。
+- 付費名單與使用統計的設定,請看 `PAID_SETUP.md`。
 - 模擬試題只同步分數,逐題解析需重新測驗取得。
