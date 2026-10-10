@@ -176,6 +176,8 @@ footer{padding:36px 20px 56px;border-top:1px solid var(--line);color:var(--muted
 .speak-ic{display:inline-flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;margin-left:.2em;padding:0;border:1.5px solid var(--line);border-radius:50%;background:#fff;font-size:.62em;line-height:1;vertical-align:middle;cursor:pointer;transition:border-color .12s,background .12s;transform:translateY(-2px)}
 .speak-ic:hover{border-color:var(--ink);background:#F4F6F9}
 .fb-sent{font-size:1.05rem}
+.fb-opts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fb-opts b{flex-basis:100%}
 .ex-sub{margin-top:20px;font-weight:700;color:var(--muted);font-size:.92rem}
 .opt-ex-list{margin-top:10px;gap:8px}
 .opt-ex{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;font-size:1.02rem}
@@ -1157,6 +1159,7 @@ function choose(k){
     fb.innerHTML=q.passages
       ?'<p><b>'+(ok?'答對了。':'答錯了。')+'</b>'+esc(q.c)+'</p>'+(q.tr?'<p class="tr-zh">中文翻譯：'+esc(q.tr)+'</p>':'')
       :'<p class="fb-sent serif">'+esc(fullSentence)+speakIconHTML(fullSentence)+'</p>'+(q.tr?'<p class="tr-zh">中文翻譯：'+esc(q.tr)+'</p>':'')+'<p><b>'+(ok?'答對了。':'答錯了。')+'</b>'+esc(q.c)+'</p><p><b>選項差異</b>'+esc(q.d)+'</p>';
+    if(CAN_SPEAK)fb.insertAdjacentHTML('beforeend','<p class="fb-opts"><b>選項發音</b>'+q.o.map((o,j)=>speakBtnHTML(o,'',LET[j]+'. '+o)).join('')+'</p>');
     $('#nextBtn').disabled=false;$('#nextBtn').focus();
   }else{$('#nextBtn').disabled=false;if(R.mode==='diag'){const ub=$('#unsureBox');if(ub)ub.hidden=false}}
 }
@@ -1286,7 +1289,7 @@ function renderExplain(){
     const optRows=q.o.map((opt,k)=>{
       const isRight=k===q.a,isMine=k===my,cls=isRight?'right':(isMine?'wrong':'');
       const tag=isRight?'<span class="mk">正確答案</span>':(isMine?'<span class="mk">你的選擇</span>':'');
-      return '<li class="opt-ex'+(cls?' '+cls:'')+'"><span class="bub">'+LET[k]+'</span><span class="t serif">'+esc(opt)+'</span>'+tag+'</li>';
+      return '<li class="opt-ex'+(cls?' '+cls:'')+'"><span class="bub">'+LET[k]+'</span><span class="t serif">'+esc(opt)+'</span>'+tag+speakIconHTML(opt)+'</li>';
     }).join('');
     return '<article class="sheet ex"><p class="ex-h">'+TAGS[q.tag].name+(x.right?'　·　答對但不太確定':'')+'</p><p class="q serif">'+blankify(q.q,q.o[q.a])+speakIconHTML(fullSentence)+'</p>'+
     '<p class="ex-sub">選項分析</p><ul class="opts opt-ex-list">'+optRows+'</ul>'+
@@ -1921,7 +1924,7 @@ function examRenderReview(examId){
     const optRows=it.o.map((opt,k)=>{
       const isRight=k===it.a,isMine=k===mine,cls=isRight?'right':(isMine?'wrong':'');
       const tag=isRight?'<span class="mk">正確答案</span>':(isMine?'<span class="mk">你的選擇</span>':'');
-      return '<li class="opt-ex'+(cls?' '+cls:'')+'"><span class="bub">'+LET[k]+'</span><span class="t serif">'+esc(opt)+'</span>'+tag+'</li>';
+      return '<li class="opt-ex'+(cls?' '+cls:'')+'"><span class="bub">'+LET[k]+'</span><span class="t serif">'+esc(opt)+'</span>'+tag+speakIconHTML(opt)+'</li>';
     }).join('');
     const lab=it.part===7?(RTAGS[it.skill]&&RTAGS[it.skill].name):(TAGS[it.tag]&&TAGS[it.tag].name);
     const explainHTML=it.part===5
