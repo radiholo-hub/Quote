@@ -176,6 +176,8 @@ footer{padding:36px 20px 56px;border-top:1px solid var(--line);color:var(--muted
 .speak-ic{display:inline-flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;margin-left:.2em;padding:0;border:1.5px solid var(--line);border-radius:50%;background:#fff;font-size:.62em;line-height:1;vertical-align:middle;cursor:pointer;transition:border-color .12s,background .12s;transform:translateY(-2px)}
 .speak-ic:hover{border-color:var(--ink);background:#F4F6F9}
 .fb-sent{font-size:1.05rem}
+.fb-opts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.fb-opts b{flex-basis:100%}
 .ex-sub{margin-top:20px;font-weight:700;color:var(--muted);font-size:.92rem}
 .opt-ex-list{margin-top:10px;gap:8px}
 .opt-ex{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;font-size:1.02rem}
@@ -1157,6 +1159,7 @@ function choose(k){
     fb.innerHTML=q.passages
       ?'<p><b>'+(ok?'答對了。':'答錯了。')+'</b>'+esc(q.c)+'</p>'+(q.tr?'<p class="tr-zh">中文翻譯：'+esc(q.tr)+'</p>':'')
       :'<p class="fb-sent serif">'+esc(fullSentence)+speakIconHTML(fullSentence)+'</p>'+(q.tr?'<p class="tr-zh">中文翻譯：'+esc(q.tr)+'</p>':'')+'<p><b>'+(ok?'答對了。':'答錯了。')+'</b>'+esc(q.c)+'</p><p><b>選項差異</b>'+esc(q.d)+'</p>';
+    if(CAN_SPEAK)fb.insertAdjacentHTML('beforeend','<p class="fb-opts"><b>選項發音</b>'+q.o.map((o,j)=>speakBtnHTML(o,'',LET[j]+'. '+o)).join('')+'</p>');
     $('#nextBtn').disabled=false;$('#nextBtn').focus();
   }else{$('#nextBtn').disabled=false;if(R.mode==='diag'){const ub=$('#unsureBox');if(ub)ub.hidden=false}}
 }
