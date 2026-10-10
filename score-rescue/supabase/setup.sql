@@ -43,3 +43,17 @@ create policy "events_insert" on public.events
   for insert to anon, authenticated with check (true);
 grant insert on public.events to anon, authenticated;
 grant select on public.paid_users to authenticated;
+
+-- events 限流:全站每分鐘最多 60 筆,超過的直接丟掉(不報錯),避免被人灌爆
+create or replace function public.events_throttle() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if (select count(*) from public.events where created_at > now() - interval '1 minute') >= 60 then
+    return null;
+  end if;
+  return new;
+end $$;
+
+drop trigger if exists events_throttle on public.events;
+create trigger events_throttle before insert on public.events
+for each row execute function public.events_throttle();

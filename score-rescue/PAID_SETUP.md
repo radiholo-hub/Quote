@@ -47,3 +47,15 @@ group by 1, 2 order by 1 desc, 2;
 - 付費資格由伺服器判斷,使用者無法自己改成已付費。
 - 但 **Day 4 之後的題目與模擬試題內容仍寫在網頁檔裡**,懂程式的人可以直接從原始碼取得;要真正保護內容,需要把題目移到伺服器、驗證付費後才傳送。
 - `events` 表允許任何人新增(否則匿名使用者無法被統計),所以有人可能灌入垃圾資料;統計數字請當作粗略參考。
+
+## 音檔改用官方 Azure AI Speech(收費前請做)
+1. 註冊 Azure → 建立「Speech」資源(定價層選 Free F0 若有提供),記下 **金鑰** 與 **區域**(如 eastasia)。
+2. GitHub repo → Settings → Secrets and variables → Actions → New repository secret,新增:
+   - `AZURE_SPEECH_KEY`:金鑰
+   - `AZURE_SPEECH_REGION`:區域
+3. 刪掉 `score-rescue/audio/` 裡的舊 mp3(用 edge-tts 產的),到 Actions → Generate audio → Run workflow 重新產生。
+   沒設定這兩個 secret 時,程式會退回非官方 edge-tts,僅適合試用。
+4. 價格與免費額度請以 Azure 官網最新為準。
+
+## events 限流
+`setup.sql` 已加上「全站每分鐘最多 60 筆」的限制,更新後請在 SQL Editor 再執行一次整份檔案。

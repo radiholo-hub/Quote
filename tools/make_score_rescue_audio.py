@@ -1,9 +1,12 @@
 """為 score-rescue/index.html 裡所有會被 🔊 朗讀的英文內容,用美式女聲 Aria 產生 mp3。
-用法:  pip install edge-tts && python3 tools/make_score_rescue_audio.py
+用法:  設定環境變數 AZURE_SPEECH_KEY 與 AZURE_SPEECH_REGION(官方 Azure AI Speech,收費產品請用這個)
+       python3 tools/make_score_rescue_audio.py
+       沒設定時會退回非官方的 edge-tts(僅限試用:pip install edge-tts)
        python3 tools/make_score_rescue_audio.py --list   (只列出數量,不產生)
 檔名 = score-rescue/audio/<hash>.mp3,hash 由文字算出,要和 index.html 的 srHash() 完全一致。
 已存在的檔案會略過;文字改了就會算出新的檔名,舊檔可自行刪除。"""
-import asyncio, json, pathlib, re, sys
+import asyncio, json, os, pathlib, re, sys, urllib.request
+from xml.sax.saxutils import escape
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 HTML = ROOT / "score-rescue" / "index.html"
@@ -71,7 +74,33 @@ def collect():
                 texts.add(q["q"] + " Answer: " + q["o"][q["a"]])
     return sorted(texts)
 
+AZ_KEY = os.environ.get("AZURE_SPEECH_KEY", "")
+AZ_REGION = os.environ.get("AZURE_SPEECH_REGION", "")
+
+def azure_synth(text, path):
+    ssml = ('<speak version="1.0" xml:lang="en-US"><voice name="%s"><prosody rate="%s">%s</prosody></voice></speak>'
+            % (VOICE, RATE, escape(text)))
+    req = urllib.request.Request(
+        "https://%s.tts.speech.microsoft.com/cognitiveservices/v1" % AZ_REGION,
+        data=ssml.encode("utf-8"),
+        headers={"Ocp-Apim-Subscription-Key": AZ_KEY,
+                 "Content-Type": "application/ssml+xml",
+                 "X-Microsoft-OutputFormat": "audio-24khz-48kbitrate-mono-mp3",
+                 "User-Agent": "score-rescue-audio"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        path.write_bytes(r.read())
+
 async def synth(text, path):
+    if AZ_KEY and AZ_REGION:
+        for attempt in range(4):
+            try:
+                await asyncio.to_thread(azure_synth, text, path)
+                return True
+            except Exception as e:
+                print(f"  重試 {attempt + 1}: {type(e).__name__} {e}")
+                path.unlink(missing_ok=True)
+                await asyncio.sleep(2 * (attempt + 1))
+        return False
     import edge_tts
     for attempt in range(4):
         try:
@@ -99,6 +128,6 @@ async def main():
     if failed:
         print("失敗(下次執行會再試):", *failed, sep="\n  ")
         raise SystemExit(1)
-    print(f"完成,共 {len(texts)} 段 Aria 音檔")
+    print(f"完成,共 {len(texts)} 段 Aria 音檔(%s)" % ("Azure 官方" if AZ_KEY and AZ_REGION else "edge-tts 非官方"))
 
 asyncio.run(main())
