@@ -1286,7 +1286,7 @@ function renderExplain(){
     const optRows=q.o.map((opt,k)=>{
       const isRight=k===q.a,isMine=k===my,cls=isRight?'right':(isMine?'wrong':'');
       const tag=isRight?'<span class="mk">正確答案</span>':(isMine?'<span class="mk">你的選擇</span>':'');
-      return '<li class="opt-ex'+(cls?' '+cls:'')+'"><span class="bub">'+LET[k]+'</span><span class="t serif">'+esc(opt)+'</span>'+tag+'</li>';
+      return '<li class="opt-ex'+(cls?' '+cls:'')+'"><span class="bub">'+LET[k]+'</span><span class="t serif">'+esc(opt)+'</span>'+tag+speakIconHTML(opt)+'</li>';
     }).join('');
     return '<article class="sheet ex"><p class="ex-h">'+TAGS[q.tag].name+(x.right?'　·　答對但不太確定':'')+'</p><p class="q serif">'+blankify(q.q,q.o[q.a])+speakIconHTML(fullSentence)+'</p>'+
     '<p class="ex-sub">選項分析</p><ul class="opts opt-ex-list">'+optRows+'</ul>'+
@@ -1921,7 +1921,7 @@ function examRenderReview(examId){
     const optRows=it.o.map((opt,k)=>{
       const isRight=k===it.a,isMine=k===mine,cls=isRight?'right':(isMine?'wrong':'');
       const tag=isRight?'<span class="mk">正確答案</span>':(isMine?'<span class="mk">你的選擇</span>':'');
-      return '<li class="opt-ex'+(cls?' '+cls:'')+'"><span class="bub">'+LET[k]+'</span><span class="t serif">'+esc(opt)+'</span>'+tag+'</li>';
+      return '<li class="opt-ex'+(cls?' '+cls:'')+'"><span class="bub">'+LET[k]+'</span><span class="t serif">'+esc(opt)+'</span>'+tag+speakIconHTML(opt)+'</li>';
     }).join('');
     const lab=it.part===7?(RTAGS[it.skill]&&RTAGS[it.skill].name):(TAGS[it.tag]&&TAGS[it.tag].name);
     const explainHTML=it.part===5

@@ -53,12 +53,14 @@ def collect():
     # 單句填空(診斷、補強、解析、模擬試題 Part 5 的完整句子)
     for r in arr("RAW"):
         texts.add(r[1].replace("___", r[2][r[3]], 1))
+        texts.update(o for o in r[2] if o.strip())  # 每個選項單獨的發音(🔊 在 A/B/C/D 旁)
     # 第 1 天的範例句
     texts.update(re.findall(r"\bex:'(.*?)',", src))
     for n in (1, 2, 3):
         # Part 6:全文朗讀,以及每個空格所在的那一句
         for psg in arr("EXAM%d_P6" % n):
             ans = {str(i + 1): b["o"][b["a"]] for i, b in enumerate(psg["blanks"])}
+            texts.update(o for b in psg["blanks"] for o in b["o"] if o.strip())
             fill = lambda mk: re.sub(r"\{(\d)\}", lambda m: mk(m.group(1)), psg["text"])
             texts.add(fill(lambda d: ans[d]))
             for k in ans:
