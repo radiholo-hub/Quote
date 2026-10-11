@@ -1319,7 +1319,7 @@ function renderExplain(){
       const tag=isRight?'<span class="mk">正確答案</span>':(isMine?'<span class="mk">你的選擇</span>':'');
       return '<li class="opt-ex'+(cls?' '+cls:'')+'"><span class="bub">'+LET[k]+'</span><span class="t serif">'+esc(opt)+zhHTML(opt)+'</span>'+tag+speakIconHTML(opt)+'</li>';
     }).join('');
-    return '<article class="sheet ex"><p class="ex-h">'+TAGS[q.tag].name+(x.right?'　·　答對但不太確定':'')+'</p><p class="q serif">'+blankify(q.q,q.o[q.a])+speakIconHTML(fullSentence)+'</p>'+
+    return '<article class="sheet ex"><p class="ex-h">'+TAGS[q.tag].name+(x.right?(x.unsure?'　·　答對但不太確定':'　·　答對'):'')+'</p><p class="q serif">'+blankify(q.q,q.o[q.a])+speakIconHTML(fullSentence)+'</p>'+
     '<p class="ex-sub">選項分析</p><ul class="opts opt-ex-list">'+optRows+'</ul>'+
     exBlocks({tr:q.tr,clue:q.c,diff:q.d,tip:TAGS[q.tag].tip})+'</article>';
   };
@@ -1340,7 +1340,7 @@ function renderExplain(){
   if(unsureRight.length)h+='<h2 class="ex-group" style="font-size:1.2rem">答對，但你標示「不太確定」（'+unsureRight.length+' 題）</h2><p class="fine">這幾題可能是猜對的，建議當成還沒學會。</p>'+
     unsureRight.map(full).join('');
   // 3) 確定會的:收起來
-  if(sureRight.length)h+='<details class="ex-group"><summary>答對且有把握的題目（'+sureRight.length+' 題）</summary><ul class="cmp">'+sureRight.map(x=>compact(x,false)).join('')+'</ul></details>';
+  if(sureRight.length)h+='<details class="ex-group"><summary>答對且有把握的題目（'+sureRight.length+' 題）</summary>'+sureRight.map(full).join('')+'</details>';
   h+='<div class="next-box"><button class="btn fire lg" type="button" data-act="drill">用 3 題新題確認弱點</button><span class="fine">題目會集中在你的最大弱點。</span></div>';
   $('#exBody').innerHTML=h;
 }
