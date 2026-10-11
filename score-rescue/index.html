@@ -514,7 +514,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
     <section class="wrap hero">
       <div>
         <h1>別再盲目刷題。<br>先找到失分原因。</h1>
-        <p class="lead">免費做 30 題診斷，看出你是卡在文法、單字、搭配詞，還是作答速度。再看最弱類別的完整解析，加上 3 題補強與 Day 1–3 免費體驗，確認這套方法適不適合你。</p>
+        <p class="lead">免費做 30 題診斷，看出你是卡在文法、單字、搭配詞，還是作答速度。每一題錯題都附完整解析，加上 3 題補強與 Day 1–3 免費體驗，確認這套方法適不適合你。</p>
         <div class="hero-cta">
           <button class="btn fire lg" data-start>開始免費診斷</button>
           <a class="link" href="#sample">先看報告範例</a>
@@ -564,7 +564,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
           <h3>免費體驗</h3>
           <p class="price">NT$0</p>
           <p class="desc">先確認你現在最該補哪裡，也先體驗我們怎麼教。</p>
-          <ul><li>依程度動態抽取 30 題診斷</li><li>八大能力分析，標出猜對的題</li><li>最弱類別的完整解析</li><li>3 題補強＋ Day 1–3 每日練習</li><li>1 次錯題回顧體驗</li></ul>
+          <ul><li>依程度動態抽取 30 題診斷</li><li>八大能力分析，標出猜對的題</li><li>所有錯題的完整解析</li><li>3 題補強＋ Day 1–3 每日練習</li><li>1 次錯題回顧體驗</li></ul>
           <button class="btn line" data-start>開始免費診斷</button>
         </article>
         <article class="plan hot">
@@ -1312,7 +1312,6 @@ function renderExplain(){
   const wrong=items.filter(x=>!x.right).sort((a,b)=>(a.q.tag===r.weak?0:1)-(b.q.tag===r.weak?0:1));
   const unsureRight=items.filter(x=>x.right&&x.unsure);
   const sureRight=items.filter(x=>x.right&&!x.unsure);
-  const FREE_N=5,freeSet=new Set(wrong.filter(x=>x.q.tag===r.weak).slice(0,FREE_N).map(x=>x.i));
   const full=x=>{
     const q=x.q,my=x.my,fullSentence=q.q.replace('___',q.o[q.a]);
     const optRows=q.o.map((opt,k)=>{
@@ -1330,16 +1329,16 @@ function renderExplain(){
       '<p class="fine">'+(x.right?'':'你選：<span class="mine">'+LET[x.my]+'. '+esc(q.o[x.my])+'</span>　')+'正確答案：<span class="right">'+LET[q.a]+'. '+esc(q.o[q.a])+'</span></p>'+
       (locked?'<p class="lock-note">🔒 完整解析（判斷線索、選項差異、中文翻譯）在 30 天方案裡</p>':'')+'</li>';
   };
-  let h='<h1>不只看答案，要看懂自己為什麼會選錯。</h1><p class="lead">所有錯題都列在這裡。你最弱那一類的錯題（最多 '+FREE_N+' 題）可以免費看完整解析。</p>';
+  let h='<h1>不只看答案，要看懂自己為什麼會選錯。</h1><p class="lead">所有錯題都附完整解析，免費看。</p>';
   if(!wrong.length)h+='<p class="fb ok" style="margin-top:24px">這次全部答對，沒有需要解析的錯題。直接做 3 題補強，看看還能加強哪裡。</p>';
-  // 1) 錯題:完整解析(免費那幾題或已付費),其餘只列題目與正解
-  const fullWrong=wrong.filter(x=>paid||freeSet.has(x.i)),restWrong=wrong.filter(x=>!(paid||freeSet.has(x.i)));
+  // 1) 錯題:全部附完整解析(免費)
+  const fullWrong=wrong,restWrong=[];
   if(fullWrong.length)h+='<h2 class="ex-group" style="font-size:1.2rem">答錯的題目（'+wrong.length+' 題）</h2>'+fullWrong.map(full).join('');
   if(restWrong.length)h+='<h2 class="ex-group" style="font-size:1.05rem">其他答錯的題目</h2><ul class="cmp">'+restWrong.map(x=>compact(x,true)).join('')+'</ul>'+
     '<p class="fine" style="margin-top:10px">'+(restWrong.length)+' 題的完整解析在 <a class="line-link" href="#pricing" data-go="home">30 天方案</a>。</p>';
   // 2) 答對但不確定:可能是猜的
   if(unsureRight.length)h+='<h2 class="ex-group" style="font-size:1.2rem">答對，但你標示「不太確定」（'+unsureRight.length+' 題）</h2><p class="fine">這幾題可能是猜對的，建議當成還沒學會。</p>'+
-    (paid?unsureRight.map(full).join(''):'<ul class="cmp">'+unsureRight.map(x=>compact(x,true)).join('')+'</ul>');
+    unsureRight.map(full).join('');
   // 3) 確定會的:收起來
   if(sureRight.length)h+='<details class="ex-group"><summary>答對且有把握的題目（'+sureRight.length+' 題）</summary><ul class="cmp">'+sureRight.map(x=>compact(x,false)).join('')+'</ul></details>';
   h+='<div class="next-box"><button class="btn fire lg" type="button" data-act="drill">用 3 題新題確認弱點</button><span class="fine">題目會集中在你的最大弱點。</span></div>';
