@@ -739,13 +739,13 @@ const blankify=(s,fill)=>esc(s).replace('___',fill?'<mark>'+esc(fill)+'</mark>':
 /* ---------- 八大錯因 ---------- */
 const TAGS={
  pos:{name:'詞性判斷',why:'你容易被長得相似的字尾干擾，還沒有先看空格在句中的功能。',tip:'先找空格修飾誰，再看選項字尾。動詞旁的空格，優先檢查副詞。',rule:'形容詞修飾名詞；副詞修飾動詞、形容詞或其他副詞。',ex:'The manager warmly greeted the guests.',exZh:'經理熱情地迎接來賓。',day:'副詞修飾動詞'},
- tense:{name:'時態語態',why:'你較少先確認時間線索，也容易忽略句子是主動還是被動。',tip:'先圈出時間線索（yesterday、since、by next week），再判斷主動還是被動。',rule:'時間線索決定時態；主詞是「被做」的一方，就用 be + 過去分詞。',ex:'The report was sent to all managers yesterday.',exZh:'報告昨天已寄給所有經理。',day:'時間線索與被動語態'},
- agree:{name:'主詞動詞一致',why:'你的動詞容易被離得最近的名詞帶走，沒有先找出真正的主詞。',tip:'先劃掉修飾語（of…、along with…），找出真正的主詞，再對單複數。',rule:'動詞跟著真正的主詞變化，不是跟著離它最近的名詞。',ex:'The list of products is on the website.',exZh:'產品清單放在網站上。',day:'找出真正的主詞'},
- prep:{name:'介系詞',why:'你對介系詞的用法偏靠感覺，還沒建立時間、地點、期限的判斷線索。',tip:'先判斷空格後面是時間、地點還是期限，再配上對應的介系詞。',rule:'時間點用 at，日期用 on，期間用 during；期限用 by，持續到某時用 until。',ex:'The meeting starts at 9:00 a.m. and ends by noon.',exZh:'會議九點開始，中午前結束。',day:'時間與期限的介系詞'},
- conj:{name:'連接詞與句型',why:'你還沒有先判斷「後面接的是子句還是名詞」，容易把連接詞和介系詞搞混。',tip:'先看空格後面是完整子句還是名詞：子句用連接詞，名詞用介系詞。',rule:'連接詞後接完整子句，介系詞後接名詞。although、because 接子句；despite、because of 接名詞。',ex:'Although it rained, the event went ahead.',exZh:'雖然下雨，活動還是照常舉行。',day:'連接詞與介系詞'},
+ tense:{name:'時態語態',why:'你較少先確認時間線索，也容易忽略句子是主動還是被動。',tip:'先圈出時間線索（yesterday 昨天、since 自從、by next week 下週之前），再判斷主動還是被動。',rule:'時間線索決定時態；主詞是「被做」的一方，就用 be + 過去分詞。',ex:'The report was sent to all managers yesterday.',exZh:'報告昨天已寄給所有經理。',day:'時間線索與被動語態'},
+ agree:{name:'主詞動詞一致',why:'你的動詞容易被離得最近的名詞帶走，沒有先找出真正的主詞。',tip:'先劃掉修飾語（of…「…的」、along with…「連同…」），找出真正的主詞，再對單複數。',rule:'動詞跟著真正的主詞變化，不是跟著離它最近的名詞。',ex:'The list of products is on the website.',exZh:'產品清單放在網站上。',day:'找出真正的主詞'},
+ prep:{name:'介系詞',why:'你對介系詞的用法偏靠感覺，還沒建立時間、地點、期限的判斷線索。',tip:'先判斷空格後面是時間、地點還是期限，再配上對應的介系詞。',rule:'時間點用 at（在…時刻），日期用 on（在…日），期間用 during（在…期間）；期限用 by（在…之前），持續到某時用 until（直到…）。',ex:'The meeting starts at 9:00 a.m. and ends by noon.',exZh:'會議九點開始，中午前結束。',day:'時間與期限的介系詞'},
+ conj:{name:'連接詞與句型',why:'你還沒有先判斷「後面接的是子句還是名詞」，容易把連接詞和介系詞搞混。',tip:'先看空格後面是完整子句還是名詞：子句用連接詞，名詞用介系詞。',rule:'連接詞後接完整子句，介系詞後接名詞。although（雖然）、because（因為）接子句；despite（儘管）、because of（因為）接名詞。',ex:'Although it rained, the event went ahead.',exZh:'雖然下雨，活動還是照常舉行。',day:'連接詞與介系詞'},
  vocab:{name:'單字辨析',why:'你容易被字形相似的單字混淆，沒有逐一把選項代入句子比較語意。',tip:'把四個選項逐個代進句子，先排除詞性不合的，再比較語意。',rule:'長得像的單字意思不同，要看它常搭配什麼名詞、放在什麼語境。',ex:'Our software is compatible with most devices.',exZh:'我們的軟體與多數裝置相容。',day:'易混淆單字'},
- colloc:{name:'固定搭配',why:'你還沒有把常見搭配當成整組記，容易憑字面意思選。',tip:'看到動詞或名詞，先想它最常一起出現的字：make a decision、pay attention。',rule:'有些字就是固定一起用，不能靠字面意思替換。',ex:'Please pay close attention to the safety rules.',exZh:'請特別留意安全規定。',day:'動詞與名詞搭配'},
- pron:{name:'代名詞與關係詞',why:'你較少先確認代名詞或關係詞在句中的功能，容易搞混主格、受格、所有格，或分不清 who、which、that。',tip:'先找它指誰，再看空格在句中是主詞、受詞還是所有格；關係詞則看先行詞是人還是物、前面有沒有逗號。',rule:'主格放在動詞前，受格放在動詞或介系詞後，所有格放在名詞前。',ex:'The employees must submit their time sheets.',exZh:'員工必須繳交他們的工時表。',day:'代名詞與關係詞'}
+ colloc:{name:'固定搭配',why:'你還沒有把常見搭配當成整組記，容易憑字面意思選。',tip:'看到動詞或名詞，先想它最常一起出現的字：make a decision（做決定）、pay attention（注意）。',rule:'有些字就是固定一起用，不能靠字面意思替換。',ex:'Please pay close attention to the safety rules.',exZh:'請特別留意安全規定。',day:'動詞與名詞搭配'},
+ pron:{name:'代名詞與關係詞',why:'你較少先確認代名詞或關係詞在句中的功能，容易搞混主格、受格、所有格，或分不清 who（指人）、which（指物）、that（人或物都可）。',tip:'先找它指誰，再看空格在句中是主詞、受詞還是所有格；關係詞則看先行詞是人還是物、前面有沒有逗號。',rule:'主格放在動詞前，受格放在動詞或介系詞後，所有格放在名詞前。',ex:'The employees must submit their time sheets.',exZh:'員工必須繳交他們的工時表。',day:'代名詞與關係詞'}
 };
 const ORDER=Object.keys(TAGS);
 
