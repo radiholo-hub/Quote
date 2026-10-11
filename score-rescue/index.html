@@ -1289,6 +1289,7 @@ function renderResult(){
    '<section class="abil"><h2>八大能力</h2><ul class="bars">'+barsHTML(r.ranked.map(x=>({name:TAGS[x.t].name,c:x.c,n:x.n,p:x.pct})))+'</ul>'+(r.unsureRight?'<p class="fine" style="margin-top:10px">其中 '+r.unsureRight+' 題你答對但標示「不太確定」，掌握度只算半題，因為可能是猜的。</p>':'')+
    '<p class="speed"><b>作答速度</b>　平均每題 '+r.avg+' 秒，'+speed+'。</p></section>'+
    adjustHTML(r)+
+   (cloudReady()&&!sbUser?'<p class="fine" style="margin-top:18px">想在其他裝置繼續練習，請按右上角「登入」，用 Email 登入後進度會自動同步。</p>':'')+
    '<div class="res-foot"><button class="link" type="button" data-go="plan">看我的 30 天路線</button><button class="link" type="button" data-start>重新做一次診斷</button></div>';
 }
 
