@@ -492,23 +492,12 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       </a>
       <nav class="nav" aria-label="主選單"><a href="#how">怎麼運作</a><a href="#sample">報告範例</a><a href="#pricing">方案</a></nav>
       <div class="bar-actions">
-        <button class="link sm" id="btnRestoreToggle" type="button">還原備份碼</button>
         <button class="btn line sm" id="btnAccount" type="button" hidden>登入</button>
         <button class="btn line sm" id="btnContinue" data-go="plan" hidden>繼續學習</button>
         <button class="btn fire sm" data-start>免費診斷</button>
       </div>
     </div>
   </header>
-
-  <section class="wrap restore-sec" id="restoreSec" hidden>
-    <div class="sheet restore-box">
-      <h3>還原備份碼</h3>
-      <p class="lead">換了瀏覽器或裝置、或不小心清掉瀏覽器資料，可以貼上你之前複製的備份碼，還原解鎖狀態與學習進度。</p>
-      <textarea id="restoreInput" rows="3" placeholder="貼上備份碼"></textarea>
-      <div class="cta-row"><button class="btn fire" type="button" id="restoreBtn">還原進度</button><button class="btn line" type="button" id="restoreCancel">取消</button></div>
-      <p class="restore-msg" id="restoreMsg" hidden></p>
-    </div>
-  </section>
 
   <main id="main">
     <section class="wrap hero">
@@ -585,7 +574,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <div class="exam-cards" id="examCards"></div>
     </section>
   </main>
-  <footer><div class="wrap">© Score Rescue 英文助攻隊　·　TOEIC® 是 ETS 的註冊商標，本網站與 ETS 無關。　·　<a href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener" class="line-link">加官方 LINE 聯絡我們</a>　·　<button class="link fine" type="button" data-privacy>隱私權說明</button>　·　<button class="link fine" id="btnRestoreFoot" type="button" hidden>還原備份碼</button></div></footer>
+  <footer><div class="wrap">© Score Rescue 英文助攻隊　·　TOEIC® 是 ETS 的註冊商標，本網站與 ETS 無關。　·　<a href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener" class="line-link">加官方 LINE 聯絡我們</a>　·　<button class="link fine" type="button" data-privacy>隱私權說明</button></div></footer>
 </div>
 
 <!-- ============ 選擇程度 ============ -->
@@ -882,7 +871,7 @@ function loadScript(src){return new Promise((ok,bad)=>{const t=document.createEl
 async function initCloud(){
   const btn=$('#btnAccount');
   if(!cloudReady()){return}
-  btn.hidden=false;$('#btnRestoreToggle').hidden=true;$('#btnRestoreFoot').hidden=false;
+  btn.hidden=false;
   try{
     await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
     sb=window.supabase.createClient(SB_URL,SB_KEY);
@@ -974,7 +963,6 @@ $('#authForm').addEventListener('submit',async e=>{
   if(r.error){msg.style.color='';msg.textContent='寄送失敗：'+(r.error.message||'請稍後再試');return}
   logEvent('login_sent');msg.style.color='var(--ok)';msg.textContent='已寄出！請到信箱點開登入連結（沒收到請看垃圾郵件）。';
 });
-$('#btnRestoreFoot').addEventListener('click',()=>$('#btnRestoreToggle').click());
 
 /* ---------- 頁面切換 ---------- */
 function show(name){$$('.view').forEach(v=>{v.hidden=v.id!=='view-'+name});window.scrollTo(0,0)}
@@ -1466,19 +1454,7 @@ function renderPlan(){
    '<div class="cta-row"><button class="btn fire lg" type="button" data-act="day" data-day="1">'+(dd[1]?'再練一次 Day 1 · 5 題':'開始 Day 1 · 5 題')+'</button></div>'+
    '<section class="road-sec"><h2>你的個人化學習路線</h2><p class="lead">'+(paid?'點任一天開始；已完成的天數會打勾。':'Day 1–3 免費體驗；🔒 表示解鎖後才能開始。')+'</p>'+roadHTML+'<p class="road-note">大多數天數都是沒做過的新題目；錯題回顧、複習與再診斷會刻意重出你之前答錯的題，幫助加深記憶。</p></section>'+
    unlockSection+
-   (cloudReady()?'<details class="sheet backup-box"><summary class="link">手動備份碼（進階，一般用登入同步就好）</summary>':'')+
-   '<section class="'+(cloudReady()?'':'sheet ')+'backup-box">'+
-     '<h2>備份你的進度</h2><p class="lead">你的進度只存在這個瀏覽器裡（登入後會自動同步）。換裝置、換瀏覽器或清除瀏覽器資料前，可以先把這組備份碼存起來，之後回到首頁「還原備份碼」貼回去就能救回進度。付費資格綁定登入的 Email，不在備份碼裡。</p>'+
-     '<textarea id="backupOut" rows="3" readonly></textarea>'+
-     '<div class="cta-row"><a class="btn fire" id="backupLineBtn" target="_blank" rel="noopener">傳送到 LINE 存起來</a><button class="btn line" type="button" id="backupCopyBtn">複製備份碼</button></div>'+
-   '</section>'+(cloudReady()?'</details>':'');
-  const bo=$('#backupOut');
-  if(bo){
-    const code=exportBackupCode();
-    bo.value=code;
-    $('#backupCopyBtn').addEventListener('click',function(){copyText(code,this)});
-    $('#backupLineBtn').href=lineShareUrl('Score Rescue 備份碼（請勿刪除這則訊息）：\n'+code);
-  }
+   '';
 }
 async function recheckPaid(){
   const m=$('#unlockMsg');
@@ -2016,24 +1992,6 @@ $('#modal').addEventListener('keydown',e=>{
   else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus()}
 });
 $('#copyAcct').addEventListener('click',function(){copyText(PAY_INFO.acct,this)});
-
-/* ---------- 備份碼還原（首頁） ---------- */
-$('#btnRestoreToggle').addEventListener('click',()=>{
-  const sec=$('#restoreSec');
-  sec.hidden=!sec.hidden;
-  if(!sec.hidden){sec.scrollIntoView({behavior:'smooth',block:'start'});$('#restoreInput').focus()}
-});
-$('#restoreCancel').addEventListener('click',()=>{$('#restoreSec').hidden=true;$('#restoreInput').value='';$('#restoreMsg').hidden=true});
-$('#restoreBtn').addEventListener('click',()=>{
-  const msg=$('#restoreMsg');
-  if(importBackupCode($('#restoreInput').value)){
-    msg.hidden=false;msg.className='restore-msg ok';msg.textContent='還原成功！正在為你跳轉到學習計畫…';
-    refreshHome();
-    setTimeout(()=>go('plan'),700);
-  }else{
-    msg.hidden=false;msg.className='restore-msg bad';msg.textContent='這組備份碼無法辨識，請確認是否複製完整。';
-  }
-});
 
 /* ---------- 全域點擊 ---------- */
 document.addEventListener('click',e=>{
