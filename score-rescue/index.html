@@ -1350,12 +1350,34 @@ function adjustHTML(r){
   if(canDown)btns+='<button class="btn '+(downFire?'fire':'line')+' sm" type="button" data-act="lvdown">題目太難，換簡單的</button>';
   return '<section class="adjust"><h2>題目難度合適嗎？</h2><p>'+msg+'</p>'+(btns?'<div class="adjust-b">'+btns+'</div>':'')+'</section>';
 }
+function roadPreviewHTML(r){
+  const specs=daySpecs(r.ranked),pr=priceNow();
+  const names=r.ranked.filter(x=>x.n-x.c>0).slice(0,4).map(x=>TAGS[x.t].name);
+  const rows=specs.slice(0,6).map(x=>{
+    const km=KIND_META[x.kind],free=x.day<=3;
+    return '<li class="'+(free?'open':'lock')+'"><span class="dchip" style="background:'+km.bg+';color:'+km.fg+'">'+km.icon+'</span>'+
+      '<span class="dinfo"><b>Day '+x.day+'</b><span class="dtitle">'+x.title+'</span><span class="dtag" style="color:'+km.fg+'">'+km.label+'</span></span>'+
+      '<span class="state">'+(free?'免費':LOCK)+'</span></li>';
+  }).join('');
+  return '<section class="road-sec rp"><h2>為你排好的 30 天路線</h2>'+
+    '<p class="lead">'+(names.length?'依你的結果，路線會從「'+names.join(' → ')+'」依序補起，':'依你的結果，')+'先做 Day 1–3 看看適不適合你。</p>'+
+    '<ol class="road">'+rows+'</ol>'+
+    '<div class="cta-row"><button class="btn fire lg" type="button" data-go="plan">開始 Day 1（免費）</button>'+
+    '<button class="btn line" type="button" data-modal="30">了解 30 天方案（NT$'+pr.now+(pr.promo?' 限時特價':'')+'）</button></div></section>';
+}
 function renderResult(){
   const r=S.res,T=TAGS[r.weak],perfect=r.ranked[0].pct===1,lv=Math.round(r.level||2),pct=Math.round(r.acc*100);
   const speed=r.avg<=30?'速度不錯':r.avg<=50?'速度適中':'偏慢，練習時可以試著縮短每題的判斷時間';
-  let title='你的失分，不是因為不夠努力。',lead='我們找到了目前最值得優先補強的地方。';
-  if(r.acc>=.85){title='基礎相當穩，剩下的是細節。';lead='我們找到了目前最值得再打磨的地方。'}
-  else if(r.acc<=.4){title='先把最卡的地方補起來。';lead='一次診斷不代表你的實力，也可能是題目偏難。'}
+  const wrongTotal=r.total-r.correct;
+  const weakTop=r.ranked.filter(x=>x.n-x.c>0).slice(0,2);
+  const weakNames=weakTop.map(x=>'「'+TAGS[x.t].name+'」').join('和');
+  const weakWrong=weakTop.reduce((a,x)=>a+(x.n-x.c),0);
+  let title,lead;
+  if(perfect||!weakTop.length){title='這 '+r.total+' 題全部答對，基礎很穩。';lead='接下來的重點是作答速度和細節。我們還是幫你排了一條路線。'}
+  else{
+    title='答對 '+r.correct+' / '+r.total+' 題，失分集中在'+weakNames;
+    lead='你錯的 '+wrongTotal+' 題裡，這'+(weakTop.length>1?'兩':'一')+'類就佔了 '+weakWrong+' 題，建議先從這裡補起。'+(r.acc<=.4?'一次診斷不代表你的實力，也可能是題目偏難。':'');
+  }
   $('#resBody').innerHTML=
    '<h1>'+title+'</h1><p class="lead">'+lead+'</p>'+
    '<div class="res-grid">'+
@@ -1370,6 +1392,7 @@ function renderResult(){
    '<section class="abil"><h2>八大能力</h2><ul class="bars">'+barsHTML(r.ranked.map(x=>({name:TAGS[x.t].name,c:x.c,n:x.n,p:x.pct})))+'</ul>'+(r.unsureRight?'<p class="fine" style="margin-top:10px">其中 '+r.unsureRight+' 題你答對但標示「不太確定」，掌握度只算半題，因為可能是猜的。</p>':'')+
    '<p class="speed"><b>作答速度</b>　平均每題 '+r.avg+' 秒，'+speed+'。</p></section>'+
    adjustHTML(r)+
+   roadPreviewHTML(r)+
    (cloudReady()&&!sbUser?'<p class="fine" style="margin-top:18px">想在其他裝置繼續練習，請按右上角「登入」，用 Email 登入後進度會自動同步。</p>':'')+
    '<div class="res-foot"><button class="link" type="button" data-go="plan">看我的 30 天路線</button><button class="link" type="button" data-start>重新做一次診斷</button></div>';
 }
