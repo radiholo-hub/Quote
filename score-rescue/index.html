@@ -170,6 +170,9 @@ footer{padding:36px 20px 56px;border-top:1px solid var(--line);color:var(--muted
 .abil{margin-top:44px}
 .abil h2{font-size:1.5rem;margin-bottom:18px}
 .speed{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:.98rem}
+.share-box{margin-top:44px}
+.share-box h2{font-size:1.2rem;margin-bottom:6px}
+.share-box .lead{color:var(--muted);font-size:.95rem;margin-bottom:12px}
 .res-foot{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:36px}
 .ex{margin-top:22px}
 .ex-h{font-weight:700;color:var(--muted);font-size:.92rem;margin-bottom:8px}
@@ -1350,6 +1353,15 @@ function adjustHTML(r){
   if(canDown)btns+='<button class="btn '+(downFire?'fire':'line')+' sm" type="button" data-act="lvdown">題目太難，換簡單的</button>';
   return '<section class="adjust"><h2>題目難度合適嗎？</h2><p>'+msg+'</p>'+(btns?'<div class="adjust-b">'+btns+'</div>':'')+'</section>';
 }
+function shareText(r){
+  const w=TAGS[r.weak].name,url=location.href.split('#')[0].split('?')[0];
+  return '我在「Score Rescue 英文助攻隊」做了 TOEIC 閱讀弱點診斷：30 題答對 '+r.correct+' 題，'+(r.ranked[0].pct===1?'全部答對！':'最需要補強的是「'+w+'」。')+'免費、約 20 分鐘，你也來測測看：'+url;
+}
+function shareHTML(r){
+  return '<section class="share-box"><h2>分享給朋友</h2><p class="lead">只會分享答對題數和最大弱點，不含你的 Email 或其他資料。</p>'+
+    '<div class="cta-row"><a class="btn line" id="shareLine" target="_blank" rel="noopener" href="'+lineShareUrl(shareText(r))+'">分享到 LINE</a>'+
+    '<button class="btn line" type="button" id="shareCopy">複製結果文字</button></div></section>';
+}
 function roadPreviewHTML(r){
   const specs=daySpecs(r.ranked),pr=priceNow();
   const names=r.ranked.filter(x=>x.n-x.c>0).slice(0,4).map(x=>TAGS[x.t].name);
@@ -1392,9 +1404,12 @@ function renderResult(){
    '<section class="abil"><h2>八大能力</h2><ul class="bars">'+barsHTML(r.ranked.map(x=>({name:TAGS[x.t].name,c:x.c,n:x.n,p:x.pct})))+'</ul>'+(r.unsureRight?'<p class="fine" style="margin-top:10px">其中 '+r.unsureRight+' 題你答對但標示「不太確定」，掌握度只算半題，因為可能是猜的。</p>':'')+
    '<p class="speed"><b>作答速度</b>　平均每題 '+r.avg+' 秒，'+speed+'。</p></section>'+
    adjustHTML(r)+
-   roadPreviewHTML(r)+
+   roadPreviewHTML(r)+shareHTML(r)+
    (cloudReady()&&!sbUser?'<p class="fine" style="margin-top:18px">想在其他裝置繼續練習，請按右上角「登入」，用 Email 登入後進度會自動同步。</p>':'')+
    '<div class="res-foot"><button class="link" type="button" data-go="plan">看我的 30 天路線</button><button class="link" type="button" data-start>重新做一次診斷</button></div>';
+  const sc=$('#shareCopy'),sl=$('#shareLine');
+  if(sc)sc.addEventListener('click',function(){logEvent('share_click');copyText(shareText(r),this)});
+  if(sl)sl.addEventListener('click',()=>logEvent('share_click'));
 }
 
 /* ---------- 免費解析 ---------- */
