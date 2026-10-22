@@ -2280,14 +2280,16 @@ function markSpans(text,parts){
   m.forEach(([a,b])=>{out+=esc(text.slice(at,a))+'<mark class="kw">'+esc(text.slice(a,b))+'</mark>';at=b});
   return out+esc(text.slice(at));
 }
-// Part 7 本題的依據：交卷時存下的題組有 ev 就用；舊紀錄沒有時，找目前題庫中文章完全相同的題組
+// Part 7 本題的依據：交卷時存下的題組有 ev 就用；舊紀錄沒有時，只在文章完全相同、且能確認是同一道題時才借用目前題庫的依據
 function p7Ev(it){
   const own=it.set&&it.set.questions&&it.set.questions[it.qIndex];
   if(own&&own.q===it.q&&own.ev)return own.ev;
   const body=s=>(s&&s.passages||[]).map(p=>p.body).join('\n');
   const cur=[].concat(EXAM1_P7,EXAM2_P7,EXAM3_P7).find(x=>body(x)===body(it.set));
-  const q=cur&&cur.questions.find(x=>x.q===it.q);
-  return q&&q.ev||[];
+  // 同一道題：題目文字、四個選項與正確答案都要相同（作答時選項會洗牌，所以比對內容不比順序）
+  const same=x=>x.q===it.q&&x.o.slice().sort().join('\u0001')===it.o.slice().sort().join('\u0001')&&x.o[x.a]===it.o[it.a];
+  const hits=cur?cur.questions.filter(same):[];
+  return hits.length===1&&hits[0].ev||[];
 }
 function examRenderReview(examId){
   const sc=S.examScores[examId];
