@@ -13,6 +13,7 @@ permissions:
   contents: write
   pull-requests: write
   actions: write
+  checks: read
 concurrency:
   group: generate-audio
   cancel-in-progress: false
@@ -24,6 +25,12 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       BASE: claude/daily-quotes-website-lbh2wi
     steps:
+      # 手動執行也只能從上線分支啟動
+      - name: 確認從上線分支執行
+        run: |
+          if [ "$GITHUB_REF" != "refs/heads/$BASE" ]; then
+            echo "::error::Generate audio 只能從 $BASE 執行（目前是 $GITHUB_REF）"; exit 1
+          fi
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
@@ -41,37 +48,17 @@ jobs:
           print('smoke test: regenerate', path)
           os.remove(path)
           EOF
+      # 以下任何一步失敗都會停止：產生失敗或音檔不齊全時，不開 PR、不合併
       - run: pip install edge-tts && python tools/make_audio.py
-      - if: always()
-        env:
+      - env:
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
         run: python tools/make_score_rescue_audio.py
-      # 上線分支設有必要檢查，所以音檔不直接推上去，改開 PR：
-      # 由 GITHUB_TOKEN 建立的 PR 不會自動觸發 pull_request 測試，因此在 PR 分支上手動啟動測試，
-      # 等測試通過才合併；測試失敗時這一步失敗，PR 留著等人處理。
+      - name: 確認音檔齊全
+        run: python tools/check_audio_complete.py
+      # 上線分支設有必要檢查，音檔不直接推上去，改開 PR、在 PR 分支跑測試，通過才合併（細節見腳本開頭）
       - name: 開音檔 PR，測試通過後合併
-        if: always()
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add audio score-rescue/audio
-          if git diff --cached --quiet; then echo "沒有新的音檔"; exit 0; fi
-          BR="audio/run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
-          git checkout -b "$BR"
-          git commit -m "Generate audio"
-          git push origin "$BR"
-          PR=$(gh pr create --base "$BASE" --head "$BR" --title "Generate audio" \
-            --body "自動產生的音檔（Generate audio 第 ${GITHUB_RUN_NUMBER} 次執行）。Score Rescue tests 通過後會自動合併。")
-          echo "PR: $PR"
-          gh workflow run score-rescue-tests.yml --ref "$BR"
-          RUN=""
-          for i in $(seq 1 36); do
-            RUN=$(gh run list --workflow score-rescue-tests.yml --branch "$BR" --event workflow_dispatch --json databaseId --jq '.[0].databaseId // empty')
-            [ -n "$RUN" ] && break
-            sleep 5
-          done
-          if [ -z "$RUN" ]; then echo "找不到 PR 分支上的測試執行"; exit 1; fi
-          echo "tests run: $RUN"
-          gh run watch "$RUN" --exit-status --interval 15
-          gh pr merge "$PR" --merge --delete-branch
+          bash tools/publish_audio_pr.sh

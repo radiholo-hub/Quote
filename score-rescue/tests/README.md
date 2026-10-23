@@ -13,11 +13,16 @@ GitHub Actions 的「Score Rescue tests」會在以下情況自動執行：
 
 ## 音檔更新也走 PR
 上線分支設有必要檢查，所以「Generate audio」不再直接推送音檔，而是：
-1. 把新音檔提交到 `audio/run-…` 分支並開 PR；
-2. 由 GitHub 機器人（`GITHUB_TOKEN`）開的 PR 不會自動觸發 `pull_request` 測試，所以流程會在 PR 分支上手動啟動「Score Rescue tests」；
-3. 測試通過後自動合併；測試失敗時流程標為失敗，PR 留著等人處理。
+1. 只能從上線分支執行（手動執行選其他分支會直接停止）。
+2. 音檔產生有任何失敗，或 `tools/check_audio_complete.py` 發現缺少音檔，就停止，不開 PR。
+3. 只允許新增或修改 `audio/`、`score-rescue/audio/` 底下的 mp3；有刪檔或其他檔案就停止。
+4. 提交到 `audio/run-…` 分支並開 PR。由 GitHub 機器人（`GITHUB_TOKEN`）開的 PR 不會自動觸發 `pull_request` 測試，所以在 PR 分支上手動啟動「Score Rescue tests」。
+5. 測試必須在同一筆音檔提交（`head_sha`）上通過；同一筆提交上名為 `score-rescue-tests` 的檢查必須全部完成且成功（例如有等待人工核准的同名檢查就停止）。
+6. 合併前再確認 PR 分支沒被修改、PR 只含允許的音檔變更，合併時加上 `--match-head-commit`。
 
-手動執行「Generate audio」時勾選 `smoke_test`，會只重產一段既有音檔，用來確認這整套流程可用。
+任何一項沒通過，流程標為失敗，PR（若已開）留著等人處理。細節見 `tools/publish_audio_pr.sh`。
+
+手動執行「Generate audio」時勾選 `smoke_test`，會只重產一段既有音檔，用來確認這整套流程可用；若重產出的檔案和原本完全相同，就不會開 PR，要再跑一次。
 
 ## 自己在電腦上跑
 ```bash
