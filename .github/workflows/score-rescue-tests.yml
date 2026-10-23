@@ -1,0 +1,40 @@
+name: Score Rescue tests
+on:
+  # 送往上線分支的 PR 一律執行（不設檔案條件），才能當作合併必要檢查，不會因為沒觸發而一直等待
+  pull_request:
+    branches: [claude/daily-quotes-website-lbh2wi]
+  push:
+    branches: [claude/daily-quotes-website-lbh2wi]
+    paths:
+      - 'score-rescue/index.html'
+      - 'score-rescue/tests/**'
+      - 'tools/make_score_rescue_audio.py'
+      - '.github/workflows/score-rescue-tests.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    # 分支保護的「必要檢查」以這個名稱選取
+    name: score-rescue-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # 測試不需要音檔，只取網頁、測試與產生音檔的程式
+          sparse-checkout: |
+            score-rescue/index.html
+            score-rescue/tests
+            tools/make_score_rescue_audio.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test tools
+        run: |
+          pip install -r score-rescue/tests/requirements.txt
+          python -m playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Run tests
+        run: python -m pytest score-rescue/tests -q
