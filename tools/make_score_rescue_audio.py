@@ -54,10 +54,15 @@ def collect():
     for r in arr("RAW"):
         texts.add(r[1].replace("___", r[2][r[3]], 1))
         texts.update(o for o in r[2] if o.strip())  # 每個選項單獨的發音(🔊 在 A/B/C/D 旁)
-    # 閱讀補強題(RBANK)的選項
+    # 閱讀補強題(RBANK):選項、每篇文章(作答後的「朗讀文章」),以及「題目 + Answer: 正解」
     for r in arr("RBANK"):
+        for p in r.get("passages", []):
+            if p.get("body", "").strip():
+                texts.add(p["body"])
         for q in ([r] if "o" in r else r.get("questions", [])):
             texts.update(o for o in q.get("o", []) if o.strip())
+            if q.get("o"):
+                texts.add(q["q"] + " Answer: " + q["o"][q["a"]])
     # 第 1 天的範例句
     texts.update(re.findall(r"\bex:'(.*?)',", src))
     for n in (1, 2, 3):
