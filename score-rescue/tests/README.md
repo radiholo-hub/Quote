@@ -11,6 +11,14 @@ GitHub Actions 的「Score Rescue tests」會在以下情況自動執行：
 ## 合併必要檢查
 分支保護把工作 `score-rescue-tests` 設為必要檢查後，測試沒通過的 PR 就無法合併。
 
+## 音檔更新也走 PR
+上線分支設有必要檢查，所以「Generate audio」不再直接推送音檔，而是：
+1. 把新音檔提交到 `audio/run-…` 分支並開 PR；
+2. 由 GitHub 機器人（`GITHUB_TOKEN`）開的 PR 不會自動觸發 `pull_request` 測試，所以流程會在 PR 分支上手動啟動「Score Rescue tests」；
+3. 測試通過後自動合併；測試失敗時流程標為失敗，PR 留著等人處理。
+
+手動執行「Generate audio」時勾選 `smoke_test`，會只重產一段既有音檔，用來確認這整套流程可用。
+
 ## 自己在電腦上跑
 ```bash
 pip install -r score-rescue/tests/requirements.txt
