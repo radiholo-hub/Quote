@@ -1,0 +1,3 @@
+# 自動測試產生的暫存檔
+.test-index.html
+tests/__pycache__/
