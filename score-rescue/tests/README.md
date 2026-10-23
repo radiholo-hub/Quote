@@ -4,9 +4,12 @@
 
 ## 什麼時候會跑
 GitHub Actions 的「Score Rescue tests」會在以下情況自動執行：
-- 有 PR 改到 `score-rescue/index.html`、`score-rescue/tests/`、`tools/make_score_rescue_audio.py`
-- 上述檔案合併到上線分支
+- 每個送往上線分支的 PR（不論改了哪些檔案）
+- 合併到上線分支、且改到 `score-rescue/index.html`、`score-rescue/tests/`、`tools/make_score_rescue_audio.py`
 - 在 Actions 頁面手動執行（Run workflow）
+
+## 合併必要檢查
+分支保護把工作 `score-rescue-tests` 設為必要檢查後，測試沒通過的 PR 就無法合併。
 
 ## 自己在電腦上跑
 ```bash
@@ -30,6 +33,6 @@ python -m pytest score-rescue/tests -q
 | `test_challenge.py` | 挑戰練習的開放條件、剩餘題數門檻、進度與結果、不降級、不重複計分、中途離開 |
 | `test_extra_practice.py` | 付費「再練 5 題」、新題不足時的提示、不推進天數 |
 | `test_review.py` | 錯題回顧：有錯題直接開始、沒有錯題先說明 |
-| `test_reserved.py` | 保留題與模擬試題題目不進日常練習；重測才優先用保留題 |
+| `test_reserved.py` | 保留題與模擬試題題目不進日常練習；重測才優先用保留題；Day 30 不重用 Day 14 已出現的保留題；保留題要先在重測答錯才進錯題回顧 |
 | `test_ui.py` | 難度標示、完成頁錯題與「查看解析」、閱讀朗讀、手機標題、首頁文案 |
 | `test_audio_texts.py` | 網頁會念的文字都在音檔收集清單裡，前端與 Python 的雜湊一致 |

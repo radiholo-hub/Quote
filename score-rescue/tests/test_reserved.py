@@ -32,3 +32,38 @@ def test_retest_prefers_reserved_first_diag_does_not(app):
       const avail=S.first.mix.filter(([t,lv])=>__t.TBANK.some(q=>q.tag===t&&q.lv===lv)).length;
       return {rs:d.filter(q=>__t.BANK[q.id].rs).length,avail:avail}}""")
     assert r['rs'] > 0 and r['rs'] <= r['avail']
+
+
+def _retest(app, day, n_right=None):
+    """實際作答一次再診斷（Day 14／30），回傳本次出現的保留題，以及答對、答錯的保留題。"""
+    app.js("d=>__t.startPlanDay(d,true)", day)
+    q = app.quiz()
+    rs = app.js("ids=>ids.filter(id=>__t.BANK[id].rs)", q['ids'])
+    k = len(q['ids']) if n_right is None else n_right
+    right = [i for i in q['ids'][:k] if i in rs]
+    wrong = [i for i in q['ids'][k:] if i in rs]
+    app.play(n_right)
+    return rs, right, wrong
+
+
+def test_day30_does_not_reuse_reserved_from_day14(app):
+    app.setup(paid=True, days_done={d: True for d in range(1, 14)})
+    app.js("()=>{const S=__t.S;S.first={mix:S.diag.qs.map(q=>[q.tag,q.lv])}}")
+    d14, _, _ = _retest(app, 14)
+    app.js("()=>{for(let d=14;d<30;d++)__t.S.daysDone[d]=true}")
+    d30, _, _ = _retest(app, 30)
+    assert d14 and d30
+    assert not set(d14) & set(d30), 'Day 30 不重用 Day 14 已出現的保留題'
+
+
+def test_reserved_enters_review_only_after_wrong(app):
+    app.setup(paid=True, wrongs=False, days_done={d: True for d in range(1, 14)})
+    app.js("()=>{const S=__t.S;S.first={mix:S.diag.qs.map(q=>[q.tag,q.lv])}}")
+    rs_all = set(app.js("()=>__t.TBANK.map(q=>q.id)"))
+    before = app.js("()=>__t.wrongReviewList(200).filter(q=>!q.passages).map(q=>q.id)")
+    assert not set(before) & rs_all, '還沒作答過的保留題不會進錯題回顧'
+    _, right, wrong = _retest(app, 14, n_right=15)
+    assert right and wrong
+    review = set(app.js("()=>__t.wrongReviewList(200).filter(q=>!q.passages).map(q=>q.id)"))
+    assert set(wrong) <= review, '重測答錯的保留題會進錯題回顧'
+    assert not set(right) & review, '重測答對的保留題不會進錯題回顧'

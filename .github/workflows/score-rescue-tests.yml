@@ -1,11 +1,8 @@
 name: Score Rescue tests
 on:
+  # 送往上線分支的 PR 一律執行（不設檔案條件），才能當作合併必要檢查，不會因為沒觸發而一直等待
   pull_request:
-    paths:
-      - 'score-rescue/index.html'
-      - 'score-rescue/tests/**'
-      - 'tools/make_score_rescue_audio.py'
-      - '.github/workflows/score-rescue-tests.yml'
+    branches: [claude/daily-quotes-website-lbh2wi]
   push:
     branches: [claude/daily-quotes-website-lbh2wi]
     paths:
@@ -18,6 +15,8 @@ permissions:
   contents: read
 jobs:
   test:
+    # 分支保護的「必要檢查」以這個名稱選取
+    name: score-rescue-tests
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
