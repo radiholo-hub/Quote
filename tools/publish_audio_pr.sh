@@ -6,7 +6,8 @@
 # 需要環境變數：BASE（上線分支）、GITHUB_REPOSITORY、GITHUB_RUN_ID、GITHUB_RUN_ATTEMPT、GITHUB_RUN_NUMBER、GH_TOKEN。
 set -euo pipefail
 
-ALLOWED='^(audio|score-rescue/audio)/.+\.mp3$'
+# 用 ENVIRON 傳給 awk：-v 會把反斜線當跳脫字元，讓 \. 變成任意字元
+export ALLOWED='^(audio|score-rescue/audio)/.+\.mp3$'
 CHECK=score-rescue-tests
 TESTS=score-rescue-tests.yml
 WAIT_RUN=${WAIT_RUN:-36}          # 找測試執行的次數（每次 5 秒）
@@ -18,7 +19,7 @@ fail() { echo "::error::$*"; exit 1; }
 git add -A audio score-rescue/audio
 if git diff --cached --quiet; then echo "沒有新的音檔"; exit 0; fi
 
-bad=$(git diff --cached --name-status | awk -v re="$ALLOWED" '!(($1=="A"||$1=="M") && $2 ~ re)')
+bad=$(git diff --cached --name-status | awk '!(($1=="A"||$1=="M") && $2 ~ ENVIRON["ALLOWED"])')
 [ -z "$bad" ] || fail "音檔變更包含不允許的項目（只允許新增或修改 mp3）：$bad"
 
 BR="audio/run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
@@ -64,7 +65,7 @@ read -r HEAD BASEREF < <(gh pr view "$PR" --json headRefOid,baseRefName --jq '"\
 [ "$HEAD" = "$SHA" ] || fail "PR 分支已被修改（$HEAD ≠ $SHA）"
 [ "$BASEREF" = "$BASE" ] || fail "PR 目標分支不是 $BASE"
 files=$(gh api --paginate "repos/$GITHUB_REPOSITORY/pulls/$NUM/files?per_page=100" --jq '.[] | "\(.status) \(.filename)"')
-badf=$(echo "$files" | awk -v re="$ALLOWED" '!(($1=="added"||$1=="modified") && $2 ~ re)')
+badf=$(echo "$files" | awk '!(($1=="added"||$1=="modified") && $2 ~ ENVIRON["ALLOWED"])')
 [ -z "$badf" ] || fail "PR 含有不允許的變更：$badf"
 
 gh pr merge "$PR" --merge --delete-branch --match-head-commit "$SHA"
