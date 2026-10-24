@@ -5,22 +5,27 @@
 ## 什麼時候會跑
 GitHub Actions 的「Score Rescue tests」會在以下情況自動執行：
 - 每個送往上線分支的 PR（不論改了哪些檔案）
-- 合併到上線分支、且改到 `score-rescue/index.html`、`score-rescue/tests/`、`tools/make_score_rescue_audio.py`
+- 合併到上線分支、且改到 `score-rescue/index.html`、`score-rescue/tests/`、`tools/make_score_rescue_audio.py`、`tools/audio_changes.sh`
 - 在 Actions 頁面手動執行（Run workflow）
 
 ## 合併必要檢查
 分支保護把工作 `score-rescue-tests` 設為必要檢查後，測試沒通過的 PR 就無法合併。
 
 ## 音檔更新也走 PR
-上線分支設有必要檢查，所以「Generate audio」不再直接推送音檔，而是：
-1. 只能從上線分支執行（手動執行選其他分支會直接停止）。
-2. 音檔產生有任何失敗，或 `tools/check_audio_complete.py` 發現缺少音檔，就停止，不開 PR。
-3. 只允許新增或修改 `audio/`、`score-rescue/audio/` 底下的 mp3；有刪檔或其他檔案就停止。
-4. 提交到 `audio/run-…` 分支並開 PR。由 GitHub 機器人（`GITHUB_TOKEN`）開的 PR 不會自動觸發 `pull_request` 測試，所以在 PR 分支上手動啟動「Score Rescue tests」。
-5. 測試必須在同一筆音檔提交（`head_sha`）上通過；同一筆提交上名為 `score-rescue-tests` 的檢查必須全部完成且成功（例如有等待人工核准的同名檢查就停止）。
-6. 合併前再確認 PR 分支沒被修改、PR 只含允許的音檔變更，合併時加上 `--match-head-commit`。
+上線分支設有必要檢查（Ruleset），所以「Generate audio」不直接推送音檔，而是分兩段：
 
-任何一項沒通過，流程標為失敗，PR（若已開）留著等人處理。細節見 `tools/publish_audio_pr.sh`。
+**第一段：產生音檔**（只有唯讀權限）
+1. 只能從上線分支執行（手動執行選其他分支會直接停止）。
+2. 音檔產生有任何失敗，或 `tools/check_audio_complete.py` 發現缺少音檔，就停止。
+3. `tools/audio_changes.sh pack` 只接受新增或修改 `audio/`、`score-rescue/audio/` 底下的 mp3，而且必須是一般檔案（符號連結即使名稱符合也拒絕）；有刪檔或其他檔案就停止。沒有新音檔就到此結束。
+
+**第二段：開 PR、測試、合併**（`audio-publish` environment，App 私鑰只放在這裡）
+4. 重新 checkout，`tools/audio_changes.sh unpack` 只放入符合路徑規則的一般檔案，不執行第一段留下的任何程式。
+5. 用 GitHub App 權杖推送 `audio/run-…` 分支並開 PR。App 開的 PR 會直接觸發 `pull_request` 的「Score Rescue tests」；只有這種測試能滿足必要檢查，手動觸發（`workflow_dispatch`）的測試即使通過也不算。
+6. 測試必須是 `pull_request` 事件、在同一筆音檔提交（`head_sha`）上通過；同一筆提交上名為 `score-rescue-tests` 的檢查必須全部完成且成功。
+7. 合併前再確認 PR 分支沒被修改、目標分支正確、PR 只含允許的音檔變更，再用 App 權杖加上 `--match-head-commit` 合併，最後刪除分支。
+
+讀取測試結果與 PR 內容用 `GITHUB_TOKEN` 的唯讀權限；App 權杖只用來推分支、開 PR、合併與刪除分支。任何一項沒通過，流程標為失敗，PR（若已開）留著等人處理。細節見 `tools/publish_audio_pr.sh`。
 
 手動執行「Generate audio」時勾選 `smoke_test`，會只重產一段既有音檔，用來確認這整套流程可用；若重產出的檔案和原本完全相同，就不會開 PR，要再跑一次。
 
@@ -48,4 +53,5 @@ python -m pytest score-rescue/tests -q
 | `test_review.py` | 錯題回顧：有錯題直接開始、沒有錯題先說明 |
 | `test_reserved.py` | 保留題與模擬試題題目不進日常練習；重測才優先用保留題；Day 30 不重用 Day 14 已出現的保留題；保留題要先在重測答錯才進錯題回顧 |
 | `test_ui.py` | 難度標示、完成頁錯題與「查看解析」、閱讀朗讀、手機標題、首頁文案 |
+| `test_audio_changes.py` | 音檔流程兩段之間的搬運：pack 只收新增或修改的一般 mp3（名稱符合的符號連結也拒絕），unpack 只放入路徑符合規則的一般檔案 |
 | `test_audio_texts.py` | 網頁會念的文字都在音檔收集清單裡，前端與 Python 的雜湊一致 |
