@@ -1,4 +1,6 @@
-"""畫面：難度標示、完成頁錯題（A–D、發音、查看解析）、閱讀朗讀、手機標題與首頁文案。"""
+"""畫面：難度標示、完成頁錯題（A–D、發音、查看解析）、閱讀朗讀、手機標題、首頁文案與隱私說明。"""
+import re
+
 import pytest
 
 RULE = '各類別會依目前難度的新題作答表現，分別調整難度。每 5 題一組，連續兩組各答對至少 4 題就升一級；一組只答對 0–1 題就降一級。重做舊題與低一級的補強題不計入。'
@@ -87,3 +89,38 @@ def test_homepage_copy(app):
     assert '依診斷結果安排弱項練習，各類難度再依作答表現調整。' + PACE in home
     assert 'Day 1 可免費加練一次（需有足夠新題）' in home
     assert '新題足夠時可繼續同類加練；符合條件時，可挑戰高一級題目' in home
+
+
+def test_privacy_modal_links_full_page_and_closes(app):
+    p = app.page
+    for close in ('#pvDone', '#pvClose', 'Escape'):
+        p.click('footer [data-privacy]')
+        assert p.is_visible('#privacyModal')
+        assert app.text('#pvTitle') == '隱私與資料'
+        assert app.count('#privacyModal .pv-body li') == 4
+        full = p.locator('#pvFull')
+        assert (full.get_attribute('href'), full.get_attribute('target')) == ('privacy.html', '_blank')
+        if close == 'Escape':
+            p.keyboard.press('Escape')
+        else:
+            p.click(close)
+        assert not p.is_visible('#privacyModal'), close
+
+
+@pytest.mark.parametrize('width', [320, 390])
+def test_privacy_page_fits_phone(browser, width):
+    from conftest import ROOT
+    ctx = browser.new_context(viewport={'width': width, 'height': 800})
+    p = ctx.new_page()
+    errors = []
+    p.on('pageerror', lambda e: errors.append(str(e)))
+    p.goto((ROOT / 'privacy.html').as_uri())
+    try:
+        assert p.locator('h1').inner_text() == '完整隱私說明'
+        assert p.evaluate('document.documentElement.scrollWidth') <= width
+        assert p.locator('.brand').get_attribute('href') == './'
+        # 最後更新日期要填實際上線日期
+        assert re.fullmatch(r'\d{4}-\d{2}-\d{2}', p.locator('#pvDate').inner_text())
+        assert not errors
+    finally:
+        ctx.close()
