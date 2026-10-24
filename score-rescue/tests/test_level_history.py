@@ -37,6 +37,16 @@ def test_new_record_of_143_counts_as_basic(app):
     assert app.js(PLOG, [1, 0, 0, 1])[0] == 1
 
 
+def test_old_format_record_beyond_frozen_table_is_ignored(app):
+    # 題號超出 LV_V0 的舊格式紀錄（目前的版本不會產生）：不計入；有第 6 欄就照記錄的難度
+    got = app.js("""()=>{const t=__t,S=t.S,n=t.LV_V0.length;
+      const q=t.PBANK.filter(q=>q.tag==='pron'&&q.lv===2).slice(0,10).map(q=>q.id);
+      t.BANK[n]=Object.assign({},t.BANK[q[0]],{id:n});S.level=2;
+      const run=fmt=>{S.plog=q.map(id=>[id,1,1,0,0,2]);S.plog[2]=fmt?[n,1,1,0,0,2]:[n,1,1,0,0];return t.tagState('pron').lv};
+      const r=[run(0),run(1)];delete t.BANK[n];return r}""")
+    assert got == [2, 3]
+
+
 def test_challenge_uses_recorded_level(app):
     # 基礎學員的挑戰題（中階）：舊紀錄的 #143 算中階挑戰題，兩組達標升級
     assert app.js(PLOG, [2, 0, 1, 1]) == [2, 0]
