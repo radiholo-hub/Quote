@@ -5,7 +5,7 @@
 ## 什麼時候會跑
 GitHub Actions 的「Score Rescue tests」會在以下情況自動執行：
 - 每個送往上線分支的 PR（不論改了哪些檔案）
-- 合併到上線分支、且改到 `score-rescue/index.html`、`score-rescue/tests/`、`tools/make_score_rescue_audio.py`
+- 合併到上線分支、且改到 `score-rescue/index.html`、`score-rescue/tests/`、`tools/make_score_rescue_audio.py`、`tools/audio_changes.sh`
 - 在 Actions 頁面手動執行（Run workflow）
 
 ## 合併必要檢查
@@ -17,7 +17,7 @@ GitHub Actions 的「Score Rescue tests」會在以下情況自動執行：
 **第一段：產生音檔**（只有唯讀權限）
 1. 只能從上線分支執行（手動執行選其他分支會直接停止）。
 2. 音檔產生有任何失敗，或 `tools/check_audio_complete.py` 發現缺少音檔，就停止。
-3. `tools/audio_changes.sh pack` 只接受新增或修改 `audio/`、`score-rescue/audio/` 底下的 mp3；有刪檔或其他檔案就停止。沒有新音檔就到此結束。
+3. `tools/audio_changes.sh pack` 只接受新增或修改 `audio/`、`score-rescue/audio/` 底下的 mp3，而且必須是一般檔案（符號連結即使名稱符合也拒絕）；有刪檔或其他檔案就停止。沒有新音檔就到此結束。
 
 **第二段：開 PR、測試、合併**（`audio-publish` environment，App 私鑰只放在這裡）
 4. 重新 checkout，`tools/audio_changes.sh unpack` 只放入符合路徑規則的一般檔案，不執行第一段留下的任何程式。
@@ -53,4 +53,5 @@ python -m pytest score-rescue/tests -q
 | `test_review.py` | 錯題回顧：有錯題直接開始、沒有錯題先說明 |
 | `test_reserved.py` | 保留題與模擬試題題目不進日常練習；重測才優先用保留題；Day 30 不重用 Day 14 已出現的保留題；保留題要先在重測答錯才進錯題回顧 |
 | `test_ui.py` | 難度標示、完成頁錯題與「查看解析」、閱讀朗讀、手機標題、首頁文案 |
+| `test_audio_changes.py` | 音檔流程兩段之間的搬運：pack 只收新增或修改的一般 mp3（名稱符合的符號連結也拒絕），unpack 只放入路徑符合規則的一般檔案 |
 | `test_audio_texts.py` | 網頁會念的文字都在音檔收集清單裡，前端與 Python 的雜湊一致 |
