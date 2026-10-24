@@ -21,7 +21,7 @@ EXPOSE = [
     'drawDiag', 'retestMix', 'finishDiag', 'tagState', 'tagLevel', 'freshLeft', 'chFreshList',
     'canChallenge', 'startPlanDay', 'startMore', 'startMoreReview', 'startBonusReview',
     'startChallenge', 'startFreeMore', 'showScore', 'renderPlan', 'planRanked', 'doneCount',
-    'runQuiz', 'applyBlob', 'save', 'show', 'go', 'examAllowed', 'coveredDays',
+    'runQuiz', 'applyBlob', 'backupBlob', 'save', 'show', 'go', 'examAllowed', 'coveredDays', 'LV_V0',
 ]
 
 # 假 Supabase：登入中的使用者 a@b.c；window.__SB_PAID 決定付費名單裡有沒有他
