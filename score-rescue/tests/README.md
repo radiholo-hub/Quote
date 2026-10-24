@@ -5,7 +5,7 @@
 ## 什麼時候會跑
 GitHub Actions 的「Score Rescue tests」會在以下情況自動執行：
 - 每個送往上線分支的 PR（不論改了哪些檔案）
-- 合併到上線分支、且改到 `score-rescue/index.html`、`score-rescue/tests/`、`tools/make_score_rescue_audio.py`、`tools/audio_changes.sh`
+- 合併到上線分支、且改到 `score-rescue/index.html`、`score-rescue/privacy.html`、`score-rescue/tests/`、`tools/make_score_rescue_audio.py`、`tools/audio_changes.sh`
 - 在 Actions 頁面手動執行（Run workflow）
 
 ## 合併必要檢查
