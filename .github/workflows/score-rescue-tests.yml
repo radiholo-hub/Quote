@@ -19,6 +19,9 @@ jobs:
     name: score-rescue-tests
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    # 用 Playwright 官方映像（已含瀏覽器、相依套件與字型），不再從 Ubuntu 套件來源安裝：
+    # 那裡曾兩次在下載字型時卡住，讓測試逾時。映像版本要和 requirements.txt 的 playwright 相同。
+    container: mcr.microsoft.com/playwright/python:v1.63.0-noble
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,16 +31,10 @@ jobs:
             score-rescue/tests
             tools/make_score_rescue_audio.py
           sparse-checkout-cone-mode: false
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      # 套件來源偶爾會卡住不動：設定 apt 逾時與重試，並限制這一步最多 10 分鐘，卡住時盡快失敗
       - name: Install test tools
-        timeout-minutes: 10
+        timeout-minutes: 5
         run: |
-          printf 'Acquire::Retries "3";\nAcquire::http::Timeout "30";\nAcquire::https::Timeout "30";\n' | sudo tee /etc/apt/apt.conf.d/80-retries
-          pip install -r score-rescue/tests/requirements.txt
-          python -m playwright install --with-deps chromium
-          sudo apt-get install -y fonts-noto-cjk
+          python3 -m pip install --break-system-packages -r score-rescue/tests/requirements.txt
+          python3 -c "import importlib.metadata as m; print('playwright', m.version('playwright'), 'pytest', m.version('pytest'))"
       - name: Run tests
-        run: python -m pytest score-rescue/tests -q
+        run: python3 -m pytest score-rescue/tests -q
