@@ -9,21 +9,22 @@ on:
   push:
     branches: [claude/daily-quotes-website-lbh2wi]
     paths: ["quotes.js", "tools/make_audio.py", "score-rescue/index.html", "tools/make_score_rescue_audio.py"]
-permissions:
-  contents: write
-  pull-requests: write
-  actions: write
-  checks: read
+# 各工作自行宣告需要的權限
+permissions: {}
 concurrency:
   group: generate-audio
   cancel-in-progress: false
+env:
+  BASE: claude/daily-quotes-website-lbh2wi
 jobs:
-  audio:
+  # 第一段：產生音檔。只有唯讀權限，拿不到 App 金鑰；新音檔以 artifact 交給下一段
+  generate:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    env:
-      GH_TOKEN: ${{ github.token }}
-      BASE: claude/daily-quotes-website-lbh2wi
+    permissions:
+      contents: read
+    outputs:
+      changed: ${{ steps.pack.outputs.changed }}
     steps:
       # 手動執行也只能從上線分支啟動
       - name: 確認從上線分支執行
@@ -32,6 +33,8 @@ jobs:
             echo "::error::Generate audio 只能從 $BASE 執行（目前是 $GITHUB_REF）"; exit 1
           fi
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Smoke test：刪除一段既有音檔，讓它重新產生
@@ -56,8 +59,58 @@ jobs:
         run: python tools/make_score_rescue_audio.py
       - name: 確認音檔齊全
         run: python tools/check_audio_complete.py
-      # 上線分支設有必要檢查，音檔不直接推上去，改開 PR、在 PR 分支跑測試，通過才合併（細節見腳本開頭）
+      - name: 收集新產生的音檔
+        id: pack
+        run: bash tools/audio_changes.sh pack "$RUNNER_TEMP/new-audio"
+      - if: steps.pack.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-audio
+          path: ${{ runner.temp }}/new-audio
+          retention-days: 1
+          if-no-files-found: error
+
+  # 第二段：開音檔 PR，等正式的 pull_request 測試通過後合併。
+  # App 私鑰只放在 audio-publish environment（限定上線分支）；這一段重新 checkout，只放入新音檔，不執行第一段留下的任何程式
+  publish:
+    needs: generate
+    if: needs.generate.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: audio-publish
+    permissions:
+      contents: read
+      pull-requests: read
+      actions: read
+      checks: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: new-audio
+          path: ${{ runner.temp }}/new-audio
+      - name: 放入新音檔（只接受 audio/、score-rescue/audio/ 底下的 mp3）
+        run: bash tools/audio_changes.sh unpack "$RUNNER_TEMP/new-audio"
+      - name: 確認音檔齊全
+        run: python3 tools/check_audio_complete.py
+      # App 權杖只用來推分支、開 PR、合併與刪除分支；讀取測試結果用 GITHUB_TOKEN 的唯讀權限
+      - name: 取得 App 權杖
+        id: app
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.AUDIO_APP_CLIENT_ID }}
+          private-key: ${{ secrets.AUDIO_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+          permission-pull-requests: write
       - name: 開音檔 PR，測試通過後合併
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+          APP_TOKEN: ${{ steps.app.outputs.token }}
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"

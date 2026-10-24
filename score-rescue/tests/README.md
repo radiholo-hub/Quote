@@ -12,15 +12,20 @@ GitHub Actions 的「Score Rescue tests」會在以下情況自動執行：
 分支保護把工作 `score-rescue-tests` 設為必要檢查後，測試沒通過的 PR 就無法合併。
 
 ## 音檔更新也走 PR
-上線分支設有必要檢查，所以「Generate audio」不再直接推送音檔，而是：
-1. 只能從上線分支執行（手動執行選其他分支會直接停止）。
-2. 音檔產生有任何失敗，或 `tools/check_audio_complete.py` 發現缺少音檔，就停止，不開 PR。
-3. 只允許新增或修改 `audio/`、`score-rescue/audio/` 底下的 mp3；有刪檔或其他檔案就停止。
-4. 提交到 `audio/run-…` 分支並開 PR。由 GitHub 機器人（`GITHUB_TOKEN`）開的 PR 不會自動觸發 `pull_request` 測試，所以在 PR 分支上手動啟動「Score Rescue tests」。
-5. 測試必須在同一筆音檔提交（`head_sha`）上通過；同一筆提交上名為 `score-rescue-tests` 的檢查必須全部完成且成功（例如有等待人工核准的同名檢查就停止）。
-6. 合併前再確認 PR 分支沒被修改、PR 只含允許的音檔變更，合併時加上 `--match-head-commit`。
+上線分支設有必要檢查（Ruleset），所以「Generate audio」不直接推送音檔，而是分兩段：
 
-任何一項沒通過，流程標為失敗，PR（若已開）留著等人處理。細節見 `tools/publish_audio_pr.sh`。
+**第一段：產生音檔**（只有唯讀權限）
+1. 只能從上線分支執行（手動執行選其他分支會直接停止）。
+2. 音檔產生有任何失敗，或 `tools/check_audio_complete.py` 發現缺少音檔，就停止。
+3. `tools/audio_changes.sh pack` 只接受新增或修改 `audio/`、`score-rescue/audio/` 底下的 mp3；有刪檔或其他檔案就停止。沒有新音檔就到此結束。
+
+**第二段：開 PR、測試、合併**（`audio-publish` environment，App 私鑰只放在這裡）
+4. 重新 checkout，`tools/audio_changes.sh unpack` 只放入符合路徑規則的一般檔案，不執行第一段留下的任何程式。
+5. 用 GitHub App 權杖推送 `audio/run-…` 分支並開 PR。App 開的 PR 會直接觸發 `pull_request` 的「Score Rescue tests」；只有這種測試能滿足必要檢查，手動觸發（`workflow_dispatch`）的測試即使通過也不算。
+6. 測試必須是 `pull_request` 事件、在同一筆音檔提交（`head_sha`）上通過；同一筆提交上名為 `score-rescue-tests` 的檢查必須全部完成且成功。
+7. 合併前再確認 PR 分支沒被修改、目標分支正確、PR 只含允許的音檔變更，再用 App 權杖加上 `--match-head-commit` 合併，最後刪除分支。
+
+讀取測試結果與 PR 內容用 `GITHUB_TOKEN` 的唯讀權限；App 權杖只用來推分支、開 PR、合併與刪除分支。任何一項沒通過，流程標為失敗，PR（若已開）留著等人處理。細節見 `tools/publish_audio_pr.sh`。
 
 手動執行「Generate audio」時勾選 `smoke_test`，會只重產一段既有音檔，用來確認這整套流程可用；若重產出的檔案和原本完全相同，就不會開 PR，要再跑一次。
 
