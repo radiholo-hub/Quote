@@ -11,6 +11,7 @@ on:
       - 'score-rescue/tests/**'
       - 'tools/make_score_rescue_audio.py'
       - 'tools/audio_changes.sh'
+      - 'tools/stage_site.sh'
       - '.github/workflows/score-rescue-tests.yml'
   workflow_dispatch:
 permissions:
@@ -27,13 +28,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # 測試不需要音檔，只取網頁（含完整隱私說明頁）、測試、產生音檔的程式與搬運新音檔的腳本
+          # 測試不需要音檔，只取網頁（含完整隱私說明頁）、測試、產生音檔的程式、搬運新音檔與整理部署檔案的腳本
           sparse-checkout: |
             score-rescue/index.html
             score-rescue/privacy.html
             score-rescue/tests
             tools/make_score_rescue_audio.py
             tools/audio_changes.sh
+            tools/stage_site.sh
           sparse-checkout-cone-mode: false
       - name: Install test tools
         timeout-minutes: 5

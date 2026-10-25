@@ -5,7 +5,7 @@
 ## 什麼時候會跑
 GitHub Actions 的「Score Rescue tests」會在以下情況自動執行：
 - 每個送往上線分支的 PR（不論改了哪些檔案）
-- 合併到上線分支、且改到 `score-rescue/index.html`、`score-rescue/privacy.html`、`score-rescue/tests/`、`tools/make_score_rescue_audio.py`、`tools/audio_changes.sh`
+- 合併到上線分支、且改到 `score-rescue/index.html`、`score-rescue/privacy.html`、`score-rescue/tests/`、`tools/make_score_rescue_audio.py`、`tools/audio_changes.sh`、`tools/stage_site.sh`
 - 在 Actions 頁面手動執行（Run workflow）
 
 ## 合併必要檢查
@@ -56,4 +56,5 @@ python -m pytest score-rescue/tests -q
 | `test_reserved.py` | 保留題與模擬試題題目不進日常練習；重測才優先用保留題；Day 30 不重用 Day 14 已出現的保留題；保留題要先在重測答錯才進錯題回顧 |
 | `test_ui.py` | 難度標示、完成頁錯題與「查看解析」、閱讀朗讀、手機標題、首頁文案 |
 | `test_audio_changes.py` | 音檔流程兩段之間的搬運：pack 只收新增或修改的一般 mp3（名稱符合的符號連結也拒絕），unpack 只放入路徑符合規則的一般檔案 |
+| `test_stage_site.py` | 部署檔案整理（`tools/stage_site.sh`）：和原本的部署步驟完全相同；只有 Cloudflare Pages 建置時多一個 noindex 的 `_headers` |
 | `test_audio_texts.py` | 網頁會念的文字都在音檔收集清單裡，前端與 Python 的雜湊一致 |
