@@ -21,26 +21,30 @@ EXPOSE = [
     'drawDiag', 'retestMix', 'finishDiag', 'tagState', 'tagLevel', 'freshLeft', 'chFreshList',
     'canChallenge', 'startPlanDay', 'startMore', 'startMoreReview', 'startBonusReview',
     'startChallenge', 'startFreeMore', 'showScore', 'renderPlan', 'planRanked', 'doneCount',
-    'runQuiz', 'applyBlob', 'backupBlob', 'save', 'show', 'go', 'examAllowed', 'coveredDays', 'LV_V0',
+    'runQuiz', 'applyBlob', 'backupBlob', 'fetchPaid', 'save', 'show', 'go', 'examAllowed', 'coveredDays', 'LV_V0',
 ]
 
 # 假 Supabase：登入中的使用者 a@b.c；window.__SB_PAID 決定付費名單裡有沒有他。
 # 另可在 STUB 前面加上 window.__SBK={...} 指定（test_paid_fallback.py 每次載入時由 Python 寫入）：
-#   paid（覆蓋 __SB_PAID）、fail（查詢失敗的資料表，例如 ["paid_users"]）、user（null 表示沒有登入；或 {id,email}）。
+#   paid（覆蓋 __SB_PAID）、paidUsers（付費帳號 id 清單，依查詢送出當下的登入帳號判斷）、
+#   delays（付費查詢依序延遲的毫秒數，用完為止）、fail（查詢失敗的資料表，例如 ["paid_users"]）、user（null 表示沒有登入；或 {id,email}）。
+#   回應內容在查詢送出當下決定，延遲只影響抵達時間。
 # 和真實的登入程式一樣，登入資料存在 localStorage 的 sb-…-auth-token；登出時刪除並通知 SIGNED_OUT。
 SB_TOKEN_KEY = 'sb-uzesrnvtbplloqqgmhcl-auth-token'
 STUB = """window.supabase={createClient:()=>{
   const K=()=>window.__SBK||{};
   const fail=t=>(K().fail||[]).indexOf(t)>=0;
   const user=()=>{const k=K();return 'user' in k?k.user:{email:'a@b.c',id:'1'}};
-  const paid=()=>{const k=K();return 'paid' in k?k.paid:!!window.__SB_PAID};
-  const q=t=>{const res=()=>fail(t)?{data:null,error:{message:'fail'}}:({data:t==='paid_users'?(paid()?[{email:'a@b.c'}]:[]):[],error:null});
-    const p=Promise.resolve().then(res);p.eq=function(){return this};
+  let cur=null;
+  const paid=()=>{const k=K();return 'paidUsers' in k?k.paidUsers.indexOf(cur&&cur.id)>=0:'paid' in k?k.paid:!!window.__SB_PAID};
+  const q=t=>{const v=fail(t)?{data:null,error:{message:'fail'}}:({data:t==='paid_users'?(paid()?[{email:'a@b.c'}]:[]):[],error:null});
+    const d=t==='paid_users'?((K().delays||[]).shift()||0):0;
+    const p=d?new Promise(ok=>setTimeout(()=>ok(v),d)):Promise.resolve(v);p.eq=function(){return this};
     p.maybeSingle=async()=>fail(t)?{data:null,error:{message:'fail'}}:{data:null,error:null};return p};
   let cb=null;
-  return{auth:{getSession:async()=>{const u=user();if(u)localStorage.setItem('%s',JSON.stringify({user:u}));return {data:{session:u?{user:u}:null}}},
-    onAuthStateChange:f=>{cb=f;window.__sbEmit=(ev,s)=>cb&&cb(ev,s);return {data:{subscription:{unsubscribe(){}}}}},
-    signInWithOtp:async()=>({}),signOut:async()=>{localStorage.removeItem('%s');cb&&cb('SIGNED_OUT',null);return {}}},
+  return{auth:{getSession:async()=>{const u=user();cur=u;if(u)localStorage.setItem('%s',JSON.stringify({user:u}));return {data:{session:u?{user:u}:null}}},
+    onAuthStateChange:f=>{cb=f;window.__sbEmit=(ev,s)=>{cur=(s&&s.user)||null;cb&&cb(ev,s)};return {data:{subscription:{unsubscribe(){}}}}},
+    signInWithOtp:async()=>({}),signOut:async()=>{localStorage.removeItem('%s');cur=null;cb&&cb('SIGNED_OUT',null);return {}}},
     from:t=>({select:()=>q(t),insert:async()=>({error:null}),upsert:async()=>fail(t)?{error:{message:'fail'}}:{error:null}})}}};""" % (SB_TOKEN_KEY, SB_TOKEN_KEY)
 
 

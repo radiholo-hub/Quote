@@ -222,3 +222,43 @@ def test_reconfirms_when_back_online(paid_app):
     app.page.wait_for_timeout(300)
     st = state(app)
     assert st['paid'] and st['note'] == '' and abs(st['now'] - st['rec']['at']) < 60000
+
+
+# 查詢與帳號的對應：較舊、或屬於前一個帳號的回應，晚到也不能恢復資格或寫入備援紀錄
+def test_logout_while_query_pending(paid_app):
+    app = paid_app
+    knobs(app, paid=True, delays=[1500])
+    app.js("()=>{__t.fetchPaid()}")            # 這個查詢會回覆「已付費」，但 1.5 秒後才到
+    app.page.on('dialog', lambda d: d.accept())
+    app.page.click('#btnAccount')               # 查詢還沒回來就登出
+    app.page.wait_for_timeout(100)
+    assert not state(app)['paid']
+    app.page.wait_for_timeout(2000)             # 舊回應抵達
+    st = state(app)
+    assert not st['paid'] and st['rec'] is None and st['days'] == 3
+
+
+def test_switch_account_while_query_pending(paid_app):
+    app = paid_app
+    # 帳號 1 已付費、帳號 2 未付費；帳號 1 的查詢 2 秒後才到，帳號 2 的查詢 0.3 秒後到
+    knobs(app, paidUsers=['1'], delays=[2000, 300])
+    app.js("()=>{__t.fetchPaid()}")
+    app.js("()=>window.__sbEmit('SIGNED_IN',{user:{id:'2',email:'x@y.z'}})")
+    app.page.wait_for_timeout(100)
+    assert not state(app)['paid']               # 換帳號當下立即停用，不等新帳號的查詢
+    app.page.wait_for_timeout(2500)             # 新帳號回覆未付費，之後帳號 1 的舊回應才到
+    st = state(app)
+    assert not st['paid'] and st['rec'] is None and st['days'] == 3
+
+
+def test_older_success_after_newer_unpaid(paid_app):
+    app = paid_app
+    knobs(app, paid=True, delays=[2000, 0])
+    app.js("()=>{__t.fetchPaid()}")            # 較舊的查詢：已付費，2 秒後才到
+    app.js("()=>{window.__SBK.paid=false}")     # 之後伺服器改為未付費
+    app.js("__t.fetchPaid()")                   # 較新的查詢：立即回覆未付費
+    st = state(app)
+    assert not st['paid'] and st['rec'] is None
+    app.page.wait_for_timeout(2500)             # 較舊的成功回應才抵達
+    st = state(app)
+    assert not st['paid'] and st['rec'] is None and st['note'] == ''

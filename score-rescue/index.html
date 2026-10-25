@@ -1090,15 +1090,24 @@ function refreshPrices(){
 }
 function coveredDays(){return S.paid?30:3}
 function examAllowed(){return !!S.paid}
+/* 每次查詢記下開始時的帳號與序號；回應抵達時，若已有較新的查詢，或期間登出、換帳號，就丟棄這個回應
+   （成功不恢復資格、不寫備援紀錄；失敗也不改用備援），回傳 false。 */
+let paidSeq=0;
 async function fetchPaid(){
-  if(!sb||!sbUser){S.paid=false;paidVia='';renderPayNote();return}
-  const r=await Promise.race([sb.from('paid_users').select('email'),
-    new Promise((ok,bad)=>setTimeout(()=>bad(new Error('timeout')),PAID_TIMEOUT))]);
+  const seq=++paidSeq,uid=sbUser?sbUser.id:null;
+  if(!sb||!uid){S.paid=false;paidVia='';renderPayNote();return true}
+  const stale=()=>seq!==paidSeq||!sbUser||sbUser.id!==uid;
+  let r;
+  try{r=await Promise.race([sb.from('paid_users').select('email'),
+    new Promise((ok,bad)=>setTimeout(()=>bad(new Error('timeout')),PAID_TIMEOUT))])}
+  catch(e){if(stale())return false;throw e}
+  if(stale())return false;
   if(r.error)throw r.error;
   S.paid=(r.data||[]).length>0;paidVia=S.paid?'server':'';
-  if(S.paid){try{localStorage.setItem(PAY_KEY,JSON.stringify({uid:sbUser.id,at:Date.now()}))}catch(e){}}
+  if(S.paid){try{localStorage.setItem(PAY_KEY,JSON.stringify({uid:uid,at:Date.now()}))}catch(e){}}
   else clearPayRecord();
   renderPayNote();
+  return true;
 }
 /* 付費確認的備援：伺服器確認付費時，在這台裝置記下帳號與確認時間（不放進進度或備份碼）。
    之後若連不上伺服器（網路中斷、Supabase 暫停、登入程式載入失敗），且這台裝置仍保存同一個登入帳號，
@@ -1139,7 +1148,7 @@ const PAY_NOTE_EXPIRED='上次付費驗證已超過 7 天，暫時無法使用�
 function recheckFallback(){if(paidVia!=='fallback')return;const was=S.paid;usePaidFallback();if(was!==S.paid)afterPlansChanged()}
 async function retryPaid(){
   if(paidVia!=='fallback')return;
-  if(sb&&sbUser){try{await fetchPaid();afterPlansChanged();return}catch(e){}}
+  if(sb&&sbUser){try{if(await fetchPaid())afterPlansChanged();return}catch(e){}}
   recheckFallback();
 }
 window.addEventListener('online',retryPaid);
@@ -1180,7 +1189,9 @@ async function onSession(sess){
   if((sbUser&&sbUser.id)===uid){renderAccount();return}
   const rec=payRecord();
   if(!uid||(rec&&rec.uid!==uid))clearPayRecord();   // 登出或換帳號
-  sbUser=sess?sess.user:null;renderAccount();
+  // 帳號改變：先停用原本的資格、讓進行中的查詢失效，再確認新帳號
+  paidSeq++;S.paid=false;paidVia='';renderPayNote();
+  sbUser=sess?sess.user:null;renderAccount();afterPlansChanged();
   try{await fetchPaid()}catch(e){usePaidFallback()}
   afterPlansChanged();
   if(sbUser)await pullMerge();
@@ -1952,7 +1963,7 @@ function renderPlan(){
 }
 async function recheckPaid(){
   const m=$('#unlockMsg');
-  try{await fetchPaid()}catch(e){usePaidFallback();afterPlansChanged();if(m){m.hidden=false;m.className='unlock-msg bad';m.textContent='目前連不上伺服器，請稍後再試。'}return}
+  try{if(!await fetchPaid())return}catch(e){usePaidFallback();afterPlansChanged();if(m){m.hidden=false;m.className='unlock-msg bad';m.textContent='目前連不上伺服器，請稍後再試。'}return}
   afterPlansChanged();
   if(!S.paid){const m2=$('#unlockMsg');if(m2){m2.hidden=false;m2.className='unlock-msg bad';m2.textContent='還沒有找到這個 Email 的付費紀錄。請確認 Email 是否一致，或聯絡客服。'}}
   else toast('已解鎖，歡迎開始 30 天路線');
