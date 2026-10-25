@@ -2,48 +2,60 @@
 從最後一次伺服器確認起 7 天內沿用付費資格。重新整理、斷線、快取都不延長；明確未付費、登出、換帳號立即停用。
 付費資格的提示（#payNote）和進度同步失敗的提示（toast）分開。"""
 import json
+import re
 
 import pytest
 
-from conftest import App, SB_TOKEN_KEY, STUB, TEST_PAGE
+from conftest import ROOT, App, SB_TOKEN_KEY, STUB, TEST_PAGE
+
+BLANK = ROOT / 'privacy.html'      # 同一來源、沒有程式的頁面，用來讀寫 localStorage
 
 DAY = 864e5
 REC = 'sr_paid_ok'
 
 
 def open_page(browser, sb=None, cdn=True, before=None, clock=False):
-    """開一個新分頁。sb：假伺服器設定（存在 sessionStorage，重新整理後仍保留）；cdn=False 模擬登入程式載入失敗；
-    before：載入前在頁面執行的 JS（例如寫入 localStorage）。"""
+    """開一個新分頁。sb：假伺服器設定（存在 Python，每次載入登入程式時寫入頁面）；cdn=False 模擬登入程式載入失敗；
+    before：載入網站前，先在同一來源的空白頁執行的 JS（例如寫入 localStorage）。"""
     ctx = browser.new_context(viewport={'width': 390, 'height': 900})
     page = ctx.new_page()
     if clock:
         page.clock.install()
-    init = "if(!sessionStorage.getItem('__sb'))sessionStorage.setItem('__sb',%s);" % json.dumps(json.dumps(sb or {}))
-    if before:
-        init += "if(!sessionStorage.getItem('__before')){sessionStorage.setItem('__before','1');%s}" % before
-    ctx.add_init_script(init)
-    set_cdn(ctx, cdn)
     app = App(page)
-    app.ctx = ctx
+    app.ctx, app.sb, app.cdn = ctx, dict(sb or {}), cdn
+    ctx.route('**/supabase-js@2*', lambda r: r.abort() if not app.cdn else
+              r.fulfill(status=200, content_type='application/javascript', body='window.__SBK=%s;' % json.dumps(app.sb) + STUB))
+    if before:
+        page.goto(BLANK.as_uri())
+        page.evaluate(before)
+        committed(app)
     page.goto(TEST_PAGE.as_uri())
     page.wait_for_function('window.__t&&window.__t.S')
     page.wait_for_timeout(300)
     return app
 
 
-def set_cdn(ctx, ok):
-    ctx.unroute('**/supabase-js@2*')
-    if ok:
-        ctx.route('**/supabase-js@2*', lambda r: r.fulfill(status=200, content_type='application/javascript', body=STUB))
-    else:
-        ctx.route('**/supabase-js@2*', lambda r: r.abort())
+def set_cdn(app, ok):
+    app.cdn = ok
 
 
 def knobs(app, **kw):
-    app.js("k=>sessionStorage.setItem('__sb',JSON.stringify(k))", kw)
+    """改假伺服器設定：之後重新整理會用新設定，目前開著的頁面也立即生效。"""
+    app.sb = kw
+    app.js("k=>{window.__SBK=k}", kw)
+
+
+def committed(app):
+    """等 localStorage 的寫入確實交給瀏覽器（從另一個分頁讀得到）再繼續，避免緊接著重新整理時讀到舊資料。"""
+    want = app.page.evaluate('JSON.stringify(Object.assign({},localStorage))')
+    other = app.ctx.new_page()
+    other.goto(BLANK.as_uri())
+    other.wait_for_function('w=>JSON.stringify(Object.assign({},localStorage))===w', arg=want)
+    other.close()
 
 
 def reload(app):
+    committed(app)
     app.page.reload()
     app.page.wait_for_function('window.__t&&window.__t.S')
     app.page.wait_for_timeout(300)
@@ -91,8 +103,11 @@ def test_offline_reload_keeps_access_until_7_days_and_never_extends(paid_app):
         assert st['paid'] and st['days'] == 30
         assert st['rec']['at'] == at
         assert '暫時沿用' in st['note']
+    # 到期時間顯示完整日期與時間，等於最後一次確認 + 7 天
+    want = app.js("t=>{const d=new Date(t),p=n=>String(n).padStart(2,'0');return d.getFullYear()+'/'+p(d.getMonth()+1)+'/'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())}", at + 7 * DAY)
+    assert re.fullmatch(r'\d{4}/\d{2}/\d{2} \d{2}:\d{2}', want) and ('可使用至 ' + want + '。') in st['note']
     # 登入程式（CDN）也載入失敗：用這台裝置保存的同一個登入帳號，仍在期限內
-    set_cdn(app.ctx, False)
+    set_cdn(app, False)
     reload(app)
     st = state(app)
     assert st['paid'] and st['rec']['at'] == at
@@ -101,7 +116,7 @@ def test_offline_reload_keeps_access_until_7_days_and_never_extends(paid_app):
     reload(app)
     st = state(app)
     assert not st['paid'] and st['days'] == 3
-    assert '已超過 7 天' in st['note']
+    assert '已超過 7 天' in st['note'] and '暫時無法使用付費功能' in st['note']
 
 
 def test_device_clock_set_back_does_not_extend(paid_app):
@@ -121,7 +136,7 @@ def test_expires_while_page_stays_open(browser, pages):
     app.page.clock.fast_forward('03:00')
     app.page.wait_for_timeout(200)
     st = state(app)
-    assert not st['paid'] and '已超過 7 天' in st['note']
+    assert not st['paid'] and '已超過 7 天' in st['note'] and '暫時無法使用付費功能' in st['note']
 
 
 def test_server_says_unpaid_stops_immediately(paid_app):
@@ -145,7 +160,7 @@ def test_logout_stops_immediately(paid_app):
     assert not st['paid'] and st['rec'] is None
     assert app.js("localStorage.getItem('%s')" % SB_TOKEN_KEY) is None
     knobs(app, user=None, fail=['paid_users'])
-    set_cdn(app.ctx, False)
+    set_cdn(app, False)
     reload(app)
     st = state(app)
     assert not st['paid'] and st['note'] == ''

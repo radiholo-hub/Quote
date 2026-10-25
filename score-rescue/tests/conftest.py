@@ -25,12 +25,12 @@ EXPOSE = [
 ]
 
 # 假 Supabase：登入中的使用者 a@b.c；window.__SB_PAID 決定付費名單裡有沒有他。
-# 另可用 sessionStorage 的 __sb（重新整理後仍保留）指定：
+# 另可在 STUB 前面加上 window.__SBK={...} 指定（test_paid_fallback.py 每次載入時由 Python 寫入）：
 #   paid（覆蓋 __SB_PAID）、fail（查詢失敗的資料表，例如 ["paid_users"]）、user（null 表示沒有登入；或 {id,email}）。
 # 和真實的登入程式一樣，登入資料存在 localStorage 的 sb-…-auth-token；登出時刪除並通知 SIGNED_OUT。
 SB_TOKEN_KEY = 'sb-uzesrnvtbplloqqgmhcl-auth-token'
 STUB = """window.supabase={createClient:()=>{
-  const K=()=>{try{return JSON.parse(sessionStorage.getItem('__sb')||'{}')}catch(e){return {}}};
+  const K=()=>window.__SBK||{};
   const fail=t=>(K().fail||[]).indexOf(t)>=0;
   const user=()=>{const k=K();return 'user' in k?k.user:{email:'a@b.c',id:'1'}};
   const paid=()=>{const k=K();return 'paid' in k?k.paid:!!window.__SB_PAID};
