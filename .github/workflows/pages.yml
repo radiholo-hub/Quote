@@ -23,12 +23,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # 和 Cloudflare Pages 共用同一支整理腳本，兩邊部署的內容相同
       - name: Stage site files
-        run: |
-          mkdir _site
-          cp index.html style.css app.js quotes.js _site/
-          cp -r audio _site/audio
-          cp -r score-rescue _site/score-rescue
+        run: bash tools/stage_site.sh _site
       - uses: actions/upload-pages-artifact@v3
         with: { path: _site }
       - id: deployment
