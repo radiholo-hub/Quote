@@ -19,7 +19,7 @@ EXPOSE = [
     'S', 'BANK', 'PBANK', 'TBANK', 'RBANK', 'TAGS', 'LET', 'EXAM_STEMS',
     'readingItem', 'srHash', 'analyze', 'prep', 'pickFor', 'seenReviewList', 'wrongReviewList',
     'drawDiag', 'retestMix', 'finishDiag', 'tagState', 'tagLevel', 'freshLeft', 'chFreshList',
-    'canChallenge', 'startPlanDay', 'startMore', 'startMoreReview', 'startBonusReview',
+    'canChallenge', 'startPlanDay', 'startMore', 'startMoreReview',
     'startChallenge', 'startFreeMore', 'showScore', 'renderPlan', 'planRanked', 'doneCount',
     'runQuiz', 'applyBlob', 'backupBlob', 'fetchPaid', 'save', 'show', 'go', 'examAllowed', 'coveredDays', 'LV_V0',
 ]
