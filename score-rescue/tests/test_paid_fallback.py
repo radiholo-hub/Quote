@@ -115,7 +115,7 @@ def test_offline_reload_keeps_access_until_7_days_and_never_extends(paid_app):
     set_at(app, -7 * DAY - 60000)
     reload(app)
     st = state(app)
-    assert not st['paid'] and st['days'] == 3
+    assert not st['paid'] and st['days'] == 7
     assert '已超過 7 天' in st['note'] and '暫時無法使用付費功能' in st['note']
 
 
@@ -235,7 +235,7 @@ def test_logout_while_query_pending(paid_app):
     assert not state(app)['paid']
     app.page.wait_for_timeout(2000)             # 舊回應抵達
     st = state(app)
-    assert not st['paid'] and st['rec'] is None and st['days'] == 3
+    assert not st['paid'] and st['rec'] is None and st['days'] == 7
 
 
 def test_switch_account_while_query_pending(paid_app):
@@ -248,7 +248,7 @@ def test_switch_account_while_query_pending(paid_app):
     assert not state(app)['paid']               # 換帳號當下立即停用，不等新帳號的查詢
     app.page.wait_for_timeout(2500)             # 新帳號回覆未付費，之後帳號 1 的舊回應才到
     st = state(app)
-    assert not st['paid'] and st['rec'] is None and st['days'] == 3
+    assert not st['paid'] and st['rec'] is None and st['days'] == 7
 
 
 def test_older_success_after_newer_unpaid(paid_app):

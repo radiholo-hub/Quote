@@ -2,8 +2,8 @@
 
 ## 方案
 只有一個付費方案:**30 天衝分**(買斷、永久、不自動續訂)。
-- 免費:診斷、所有錯題的完整解析、3 題補強、Day 1–3、Day 1 免費加練一次(需有足夠新題)、1 次錯題回顧體驗。
-- 付費(登入的 Email 在付費名單裡):Day 4–30 全部 + 3 份模擬試題 + 同類加練(新題足夠時)與挑戰練習(符合條件時)。
+- 免費:診斷、所有錯題的完整解析、3 題補強、Day 1–7(Day 7 為錯題回顧)、Day 1 免費加練一次(需有足夠新題)。
+- 付費(登入的 Email 在付費名單裡):Day 8–30 全部 + 3 份模擬試題 + 同類加練(新題足夠時)與挑戰練習(符合條件時)。
 - 價格在 `index.html` 最上面的 `PRICE`:
   ```js
   const PRICE={launch:399,regular:499,promoEnd:'2026-11-30'};
@@ -40,12 +40,12 @@ where created_at > now() - interval '7 days'
   and name in ('diag_start','diag_done','day_1','day_3','buy_modal_open','login_sent')
 group by 1, 2 order by 1 desc, 2;
 ```
-事件名稱:`diag_start` 開始診斷、`diag_done` 完成診斷、`explain_view` 看解析、`drill_start` 開始補強、`day_1`…`day_30` 完成第幾天、`bonus_review_done` 完成錯題回顧體驗、`buy_modal_open` 開啟付款說明、`login_open` / `login_sent` 開啟登入 / 寄出登入信、`exam_start` 開始模擬試題。
+事件名稱:`diag_start` 開始診斷、`diag_done` 完成診斷、`explain_view` 看解析、`drill_start` 開始補強、`day_1`…`day_30` 完成第幾天、`bonus_review_done` 完成錯題回顧體驗(已停用,只剩舊紀錄)、`buy_modal_open` 開啟付款說明、`login_open` / `login_sent` 開啟登入 / 寄出登入信、`exam_start` 開始模擬試題。
 同一個分頁(同一次瀏覽)每種事件只記一次;不記錄 Email 或任何個人資料。
 
 ## 要知道的限制
 - 付費資格由伺服器判斷,使用者無法自己改成已付費。
-- 但 **Day 4 之後的題目與模擬試題內容仍寫在網頁檔裡**,懂程式的人可以直接從原始碼取得;要真正保護內容,需要把題目移到伺服器、驗證付費後才傳送。
+- 但 **Day 8 之後的題目與模擬試題內容仍寫在網頁檔裡**,懂程式的人可以直接從原始碼取得;要真正保護內容,需要把題目移到伺服器、驗證付費後才傳送。
 - `events` 表允許任何人新增(否則匿名使用者無法被統計),所以有人可能灌入垃圾資料;統計數字請當作粗略參考。
 
 ## 音檔改用官方 Azure AI Speech(收費前請做)
