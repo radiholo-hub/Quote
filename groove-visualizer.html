@@ -14,6 +14,7 @@
   label { display:flex; flex-direction:column; gap:4px; color:var(--mute); font-size:12px; }
   input[type=text], input[type=file] { background:#111; color:var(--fg); border:1px solid var(--line); padding:6px 8px; border-radius:4px; font:inherit; }
   input[type=range] { width:100%; }
+  select { background:#111; color:var(--fg); border:1px solid var(--line); padding:6px 8px; border-radius:4px; font:inherit; }
   .btns { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
   button { background:#111; color:var(--fg); border:1px solid #555; padding:8px 16px; border-radius:4px; cursor:pointer; font:inherit; }
   button:hover { background:#222; }
@@ -37,7 +38,8 @@
     <label>歌名<input id="title" type="text" value="Your Song Title"></label>
     <label>頻道名稱<input id="channel" type="text" value="Neural Chill Radio"></label>
     <label>靈敏度<input id="gain" type="range" min="0.3" max="3" step="0.05" value="1.2"></label>
-    <label>扭動程度<input id="twist" type="range" min="0" max="2" step="0.05" value="1"></label>
+    <label>扭動程度<input id="twist" type="range" min="0" max="3" step="0.05" value="1.5"></label>
+    <label>線條形狀<select id="shape"><option value="auto">自動變形（隨音樂）</option><option value="terrain">層疊地形</option><option value="ring">螺旋環形</option></select></label>
     <label>線條數量<input id="rows" type="range" min="20" max="120" step="1" value="64"></label>
   </div>
 </div>
@@ -50,7 +52,7 @@ const M = 160;                       // 每條線的取樣點數
 let rows = +$('rows').value;
 let hist = [];                       // 歷史頻譜，每一列是一條線
 let ctx, analyser, srcNode, dest, audioEl, freq, smooth = new Float32Array(M);
-let bass = 0, bassEnv = 0, coverImg = null, recorder, chunks = [];
+let morph = 0, bass = 0, bassEnv = 0, coverImg = null, recorder, chunks = [];
 
 function ensureAudio() {
   if (ctx) return;
@@ -149,31 +151,50 @@ function draw(now) {
   g.fillStyle = '#000'; g.fillRect(0, 0, W, H);
   g.lineWidth = 1.2; g.strokeStyle = '#fff'; g.lineJoin = 'round';
 
-  const top = H * 0.2, bottom = H * 0.88;
+  const top = H * 0.2, bottom = H * 0.88, cx = W / 2, cy = H * 0.52;
+  const mode = $('shape').value;
+  const target = mode === 'terrain' ? 0 : mode === 'ring' ? 1 : 0.5 + 0.5 * Math.sin(t * 0.3);
+  morph += (target - morph) * 0.04;
+  const m = Math.min(1, morph + (mode === 'auto' ? bassEnv * 0.3 : 0));
+  const lerp = (a, b, k) => a + (b - a) * k;
+
   // 由後（舊）往前（新）畫，前面的線遮住後面的
   for (let r = hist.length - 1; r >= 0; r--) {
     const p = r / Math.max(rows - 1, 1);            // 0 = 最新（最前面）
-    const y0 = bottom - (1 - p) * 0 - p * (bottom - top);
-    const scale = 1 - p * 0.45;                      // 越遠越窄
+    const y0 = bottom - p * (bottom - top);
+    const scale = 1 - p * 0.45;
     const width = W * 0.8 * scale, x0 = (W - width) / 2;
     const amp = H * 0.22 * (1 - p * 0.5);
     const h = hist[r];
+    const R0 = H * (0.08 + 0.36 * (1 - p));          // 環形模式的半徑
+    const shear = Math.sin(t * 0.7 + p * 7) * 70 * tw * bassEnv;
 
     g.beginPath();
     for (let i = 0; i < M; i++) {
       const u = i / (M - 1);
-      const edge = Math.sin(Math.PI * u);            // 兩端壓低
-      const twistX = n1(u * 5 + p * 4, t * 0.8) * 28 * tw * (0.3 + bassEnv * 2) * (1 - p * 0.5);
-      const twistY = n1(u * 9 - p * 3, t * 1.1) * 10 * tw * (0.3 + bassEnv * 1.5);
-      const x = x0 + u * width + twistX;
-      const y = y0 - h[i] * amp * edge + twistY * edge;
+      const edge = Math.sin(Math.PI * u);
+      // 地形模式：大幅左右扭動、上下波動、整列剪切
+      const twistX = n1(u * 5 + p * 5, t * 0.9) * 90 * tw * (0.3 + bassEnv * 2.5) * (1 - p * 0.4);
+      const twistY = n1(u * 9 - p * 4, t * 1.2) * 45 * tw * (0.3 + bassEnv * 2);
+      const tx = x0 + u * width + twistX + shear;
+      const ty = y0 - h[i] * amp * edge + twistY * edge;
+      // 環形模式：頻譜鏡射後首尾相接，並隨層數螺旋扭轉
+      const uu = u < 0.5 ? u * 2 : (1 - u) * 2;
+      const hv = h[Math.min(M - 1, Math.floor(uu * (M - 1)))];
+      const ang = u * Math.PI * 2 + t * 0.25 * tw + p * 2.2 * tw * (0.5 + bassEnv * 2);
+      const rad = R0 + hv * H * 0.16 + n1(u * 6 + p * 3, t) * 26 * tw * (0.3 + bassEnv * 2);
+      const rx = cx + Math.cos(ang) * rad, ry = cy + Math.sin(ang) * rad * 0.82;
+      const x = lerp(tx, rx, m), y = lerp(ty, ry, m);
       i ? g.lineTo(x, y) : g.moveTo(x, y);
     }
-    // 填黑遮住後方線條，再描邊
-    g.save();
-    g.lineTo(x0 + width, H); g.lineTo(x0, H); g.closePath();
-    g.fillStyle = '#000'; g.fill();
-    g.restore();
+    // 地形模式填黑遮住後方線條；變形成環時逐漸取消
+    const fa = Math.max(0, 1 - m * 3);
+    if (fa > 0) {
+      g.save();
+      g.lineTo(x0 + width, H); g.lineTo(x0, H); g.closePath();
+      g.fillStyle = 'rgba(0,0,0,' + fa + ')'; g.fill();
+      g.restore();
+    }
     g.globalAlpha = 0.35 + 0.65 * (1 - p);
     g.stroke();
     g.globalAlpha = 1;
