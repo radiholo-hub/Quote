@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>音樂律動視覺化</title>
+<style>
+  :root { --bg:#000; --fg:#fff; --mute:#888; --line:#333; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,"Noto Sans TC",sans-serif; }
+  .wrap { max-width:1100px; margin:0 auto; padding:16px; }
+  canvas { width:100%; height:auto; aspect-ratio:16/9; background:#000; border:1px solid var(--line); display:block; }
+  .panel { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-top:12px; }
+  label { display:flex; flex-direction:column; gap:4px; color:var(--mute); font-size:12px; }
+  input[type=text], input[type=file] { background:#111; color:var(--fg); border:1px solid var(--line); padding:6px 8px; border-radius:4px; font:inherit; }
+  input[type=range] { width:100%; }
+  .btns { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  button { background:#111; color:var(--fg); border:1px solid #555; padding:8px 16px; border-radius:4px; cursor:pointer; font:inherit; }
+  button:hover { background:#222; }
+  button.rec { border-color:#c33; color:#f66; }
+  #status { color:var(--mute); margin-top:8px; font-size:12px; min-height:1.5em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <canvas id="c" width="1280" height="720"></canvas>
+
+  <div class="btns">
+    <button id="play">播放 / 暫停</button>
+    <button id="rec" class="rec">開始錄影</button>
+  </div>
+  <div id="status">請先選擇一首歌曲。</div>
+
+  <div class="panel">
+    <label>歌曲檔案（mp3 / wav / m4a）<input id="song" type="file" accept="audio/*"></label>
+    <label>封面圖片（選填）<input id="cover" type="file" accept="image/*"></label>
+    <label>歌名<input id="title" type="text" value="Your Song Title"></label>
+    <label>頻道名稱<input id="channel" type="text" value="Neural Chill Radio"></label>
+    <label>靈敏度<input id="gain" type="range" min="0.3" max="3" step="0.05" value="1.2"></label>
+    <label>扭動程度<input id="twist" type="range" min="0" max="2" step="0.05" value="1"></label>
+    <label>線條數量<input id="rows" type="range" min="20" max="120" step="1" value="64"></label>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const cv = $('c'), g = cv.getContext('2d');
+const W = cv.width, H = cv.height;
+const M = 160;                       // 每條線的取樣點數
+let rows = +$('rows').value;
+let hist = [];                       // 歷史頻譜，每一列是一條線
+let ctx, analyser, srcNode, dest, audioEl, freq, smooth = new Float32Array(M);
+let bass = 0, bassEnv = 0, coverImg = null, recorder, chunks = [];
+
+function ensureAudio() {
+  if (ctx) return;
+  ctx = new (window.AudioContext || window.webkitAudioContext)();
+  analyser = ctx.createAnalyser();
+  analyser.fftSize = 2048;
+  analyser.smoothingTimeConstant = 0.6;
+  freq = new Uint8Array(analyser.frequencyBinCount);
+  dest = ctx.createMediaStreamDestination();
+  audioEl = new Audio();
+  audioEl.crossOrigin = 'anonymous';
+  srcNode = ctx.createMediaElementSource(audioEl);
+  srcNode.connect(analyser);
+  analyser.connect(ctx.destination);
+  analyser.connect(dest);            // 錄影用的音訊
+  audioEl.addEventListener('ended', () => { if (recorder && recorder.state === 'recording') stopRec(); });
+}
+
+$('song').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  ensureAudio();
+  audioEl.src = URL.createObjectURL(f);
+  $('status').textContent = '已載入：' + f.name + '（按「播放」開始）';
+};
+$('cover').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const im = new Image();
+  im.onload = () => coverImg = im;
+  im.src = URL.createObjectURL(f);
+};
+$('rows').oninput = () => { rows = +$('rows').value; hist = []; };
+
+$('play').onclick = async () => {
+  if (!audioEl || !audioEl.src) { $('status').textContent = '請先選擇歌曲檔案。'; return; }
+  await ctx.resume();
+  audioEl.paused ? audioEl.play() : audioEl.pause();
+};
+
+function startRec() {
+  if (!audioEl || !audioEl.src) { $('status').textContent = '請先選擇歌曲檔案。'; return; }
+  const stream = cv.captureStream(30);
+  dest.stream.getAudioTracks().forEach(t => stream.addTrack(t));
+  const mime = ['video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm']
+    .find(m => MediaRecorder.isTypeSupported(m));
+  recorder = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 8e6 });
+  chunks = [];
+  recorder.ondataavailable = e => e.data.size && chunks.push(e.data);
+  recorder.onstop = () => {
+    const url = URL.createObjectURL(new Blob(chunks, { type: 'video/webm' }));
+    const a = document.createElement('a');
+    a.href = url; a.download = ($('title').value || 'visualizer') + '.webm'; a.click();
+    $('status').textContent = '錄影完成，已下載 .webm 檔。';
+    $('rec').textContent = '開始錄影';
+  };
+  audioEl.currentTime = 0;
+  ctx.resume().then(() => audioEl.play());
+  recorder.start(1000);
+  $('rec').textContent = '停止錄影';
+  $('status').textContent = '錄影中…歌曲播完會自動停止。';
+}
+function stopRec() { recorder.stop(); audioEl.pause(); }
+$('rec').onclick = () => (recorder && recorder.state === 'recording') ? stopRec() : startRec();
+
+// 簡易偽雜訊
+const n1 = (x, t) => Math.sin(x * 1.7 + t) * 0.5 + Math.sin(x * 3.1 - t * 1.3) * 0.3 + Math.sin(x * 7.3 + t * 0.7) * 0.2;
+
+function readSpectrum() {
+  const gain = +$('gain').value;
+  const row = new Float32Array(M);
+  if (analyser && audioEl && !audioEl.paused) {
+    analyser.getByteFrequencyData(freq);
+    const maxBin = freq.length * 0.5;           // 取較低的一半頻率
+    for (let i = 0; i < M; i++) {
+      // 對數映射：低頻解析度較高
+      const a = Math.pow(i / M, 2.0) * maxBin, b = Math.pow((i + 1) / M, 2.0) * maxBin;
+      let s = 0, c = 0;
+      for (let k = Math.floor(a); k <= Math.max(Math.floor(b), Math.floor(a)); k++) { s += freq[k]; c++; }
+      row[i] = (s / c) / 255 * gain;
+    }
+    let bsum = 0; for (let k = 1; k < 8; k++) bsum += freq[k];
+    bass = bsum / 7 / 255;
+  } else {
+    bass *= 0.95;
+  }
+  // 平滑 + 低頻包絡（快起慢落）
+  for (let i = 0; i < M; i++) smooth[i] = Math.max(row[i], smooth[i] * 0.85);
+  bassEnv = Math.max(bass, bassEnv * 0.92);
+  return Float32Array.from(smooth);
+}
+
+function draw(now) {
+  const t = now / 1000, tw = +$('twist').value;
+  hist.unshift(readSpectrum());
+  if (hist.length > rows) hist.length = rows;
+
+  g.fillStyle = '#000'; g.fillRect(0, 0, W, H);
+  g.lineWidth = 1.2; g.strokeStyle = '#fff'; g.lineJoin = 'round';
+
+  const top = H * 0.2, bottom = H * 0.88;
+  // 由後（舊）往前（新）畫，前面的線遮住後面的
+  for (let r = hist.length - 1; r >= 0; r--) {
+    const p = r / Math.max(rows - 1, 1);            // 0 = 最新（最前面）
+    const y0 = bottom - (1 - p) * 0 - p * (bottom - top);
+    const scale = 1 - p * 0.45;                      // 越遠越窄
+    const width = W * 0.8 * scale, x0 = (W - width) / 2;
+    const amp = H * 0.22 * (1 - p * 0.5);
+    const h = hist[r];
+
+    g.beginPath();
+    for (let i = 0; i < M; i++) {
+      const u = i / (M - 1);
+      const edge = Math.sin(Math.PI * u);            // 兩端壓低
+      const twistX = n1(u * 5 + p * 4, t * 0.8) * 28 * tw * (0.3 + bassEnv * 2) * (1 - p * 0.5);
+      const twistY = n1(u * 9 - p * 3, t * 1.1) * 10 * tw * (0.3 + bassEnv * 1.5);
+      const x = x0 + u * width + twistX;
+      const y = y0 - h[i] * amp * edge + twistY * edge;
+      i ? g.lineTo(x, y) : g.moveTo(x, y);
+    }
+    // 填黑遮住後方線條，再描邊
+    g.save();
+    g.lineTo(x0 + width, H); g.lineTo(x0, H); g.closePath();
+    g.fillStyle = '#000'; g.fill();
+    g.restore();
+    g.globalAlpha = 0.35 + 0.65 * (1 - p);
+    g.stroke();
+    g.globalAlpha = 1;
+  }
+
+  // 文字與封面
+  g.fillStyle = '#fff'; g.textBaseline = 'alphabetic';
+  g.font = '500 20px system-ui,"Noto Sans TC",sans-serif';
+  g.fillText($('channel').value, 48, 56);
+  g.font = '600 34px system-ui,"Noto Sans TC",sans-serif';
+  g.fillText($('title').value, 48, H - 48);
+  if (coverImg) {
+    const s = 120, x = W - s - 48, y = H - s - 40;
+    g.drawImage(coverImg, x, y, s, s);
+    g.strokeStyle = '#fff'; g.lineWidth = 1; g.strokeRect(x, y, s, s);
+  }
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>
