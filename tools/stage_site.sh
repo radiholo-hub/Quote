@@ -11,6 +11,7 @@ mkdir "$OUT"
 cp index.html style.css app.js quotes.js "$OUT"/
 cp -r audio "$OUT"/audio
 cp -r score-rescue "$OUT"/score-rescue
+cp -r gsat "$OUT"/gsat
 if [ "${CF_PAGES:-}" = 1 ]; then
   cat > "$OUT/_headers" <<'HEADERS'
 https://:project.pages.dev/*

@@ -19,7 +19,7 @@ def repo(tmp_path):
     """一個縮小版的 repo：部署會用到的檔案，加上不該部署的檔案。"""
     r = tmp_path / 'repo'
     files = ['index.html', 'style.css', 'app.js', 'quotes.js', 'audio/001.mp3', 'audio/m/en/001.mp3',
-             'score-rescue/index.html', 'score-rescue/privacy.html', 'score-rescue/audio/ab.mp3', 'score-rescue/.gitignore',
+             'gsat/index.html', 'score-rescue/index.html', 'score-rescue/privacy.html', 'score-rescue/audio/ab.mp3', 'score-rescue/.gitignore',
              'README.md', 'tools/make_audio.py', '.github/workflows/pages.yml', 'notes.md']
     for f in files:
         (r / f).parent.mkdir(parents=True, exist_ok=True)
@@ -38,8 +38,8 @@ def stage(repo, out, cf=False):
 
 def old_inline(repo, out):
     """原本 pages.yml 裡直接執行的整理步驟。"""
-    subprocess.run('mkdir %s && cp index.html style.css app.js quotes.js %s/ && cp -r audio %s/audio && cp -r score-rescue %s/score-rescue'
-                   % ((out,) * 4), cwd=repo, shell=True, check=True)
+    subprocess.run('mkdir %s && cp index.html style.css app.js quotes.js %s/ && cp -r audio %s/audio && cp -r score-rescue %s/score-rescue && cp -r gsat %s/gsat'
+                   % ((out,) * 5), cwd=repo, shell=True, check=True)
 
 
 def same_tree(a, b):

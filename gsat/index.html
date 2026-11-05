@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>學測英文練習</title>
+<meta name="description" content="學測英文題型練習:詞彙、綜合測驗、閱讀測驗、篇章結構,附詳解與錯題本。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>學測英文練習</h1>
+    <p class="sub">詞彙・綜合測驗・閱讀測驗・篇章結構</p>
+  </header>
+
+  <section id="home">
+    <div class="grid" id="types"></div>
+    <div class="row">
+      <button class="btn" id="mixed">隨機混合 10 題</button>
+      <button class="btn line" id="wrongBtn">錯題本 <span id="wrongN">0</span></button>
+    </div>
+    <p class="fine" id="stats"></p>
+    <p class="fine">題目為原創仿作,非歷屆試題。成績與錯題只存在這台裝置的瀏覽器。</p>
+  </section>
+
+  <section id="quiz" hidden>
+    <div class="bar"><button class="link" id="quit">← 返回</button><span id="prog"></span></div>
+    <div id="passage" class="passage" hidden></div>
+    <div id="question"></div>
+    <div id="opts" role="radiogroup"></div>
+    <div id="explain" class="explain" hidden></div>
+    <button class="btn" id="next" hidden>下一題</button>
+  </section>
+
+  <section id="result" hidden>
+    <h2 id="score"></h2>
+    <p id="msg"></p>
+    <div class="row">
+      <button class="btn" id="again">再練一次</button>
+      <button class="btn line" id="home2">回首頁</button>
+    </div>
+  </section>
+</main>
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
