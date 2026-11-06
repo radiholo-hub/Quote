@@ -6,7 +6,7 @@
   python3 tools/lesson_video/make_video.py demo4.json out.mp4 --silent   # 不產生旁白，只依字數估長度（檢查畫面用）
 
 旁白：中文用 zh-TW-HsiaoChenNeural，英文單字與句子改用 en-US-AriaNeural（和網站英文發音同一個聲音），
-分段產生後接起來，讓英文唸得自然。畫面：scene.html 依場景截圖，每個場景顯示到它那段旁白結束。
+分段產生後接起來，讓英文唸得自然；每段裁掉頭尾靜音並統一響度。cue 可加 "hold"（秒），念完後多停留。畫面：scene.html 依場景截圖，每個場景顯示到它那段旁白結束。
 """
 import asyncio, json, pathlib, subprocess, sys, tempfile
 
@@ -39,7 +39,9 @@ async def tts(text, lang, p):
             mp3 = p.with_suffix('.mp3')
             await edge_tts.Communicate(text, voice, rate=rate).save(str(mp3))
             # 裁掉每段語音頭尾自帶的靜音，中英文接起來才不會一頓一頓
-            trim = 'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse'
+            # 再把每段統一到同樣的響度，中文、英文兩個聲音聽起來一樣大聲
+            trim = ('silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,'
+                    'loudnorm=I=-18:TP=-2:LRA=11')
             sh('ffmpeg', '-y', '-i', str(mp3), '-af', trim, '-ar', '24000', '-ac', '1', '-c:a', 'pcm_s16le', str(p))
             return
         except Exception as e:  # 網路偶爾中斷就重試
@@ -67,7 +69,7 @@ def build_audio(cues, tmp, silent):
                 asyncio.run(tts(text, lang, p))
             parts.append(p)
             g = tmp / ('c%02d_%02dg.wav' % (i, j)); silence(g, GAP_PIECE); parts.append(g)
-        g = tmp / ('c%02d_end.wav' % i); silence(g, GAP_CUE); parts.append(g)
+        g = tmp / ('c%02d_end.wav' % i); silence(g, GAP_CUE + cue.get('hold', 0)); parts.append(g)
         lst = tmp / ('c%02d.txt' % i)
         lst.write_text(''.join("file '%s'\n" % x.name for x in parts))
         out = tmp / ('cue%02d.wav' % i)

@@ -1,19 +1,113 @@
 {
   "title": "示範4　連綴動詞後描述主詞",
   "id": "L1-DEMO-04",
-  "stem": ["The customers", "seemed", "______", "with the new service."],
-  "options": ["satisfy", "satisfied", "satisfaction", "satisfactorily"],
+  "stem": [
+    "The customers",
+    "seemed",
+    "______",
+    "with the new service."
+  ],
+  "options": [
+    "satisfy",
+    "satisfied",
+    "satisfaction",
+    "satisfactorily"
+  ],
   "answer": 1,
   "full": "The customers seemed satisfied with the new service.",
   "zh_full": "顧客對新服務似乎很滿意。",
   "cues": [
-    {"scene": "q", "say": [["zh", "最後一題。這題跟剛剛示範2很像，空格都在動詞後面。想想看，答案一樣是副詞嗎？"]]},
-    {"scene": "countdown", "pause": 6},
-    {"scene": "seemed", "say": [["zh", "先圈出"], ["en", "seemed"], ["zh", "，看起來、似乎。這是連綴動詞。"]]},
-    {"scene": "customers", "say": [["zh", "空格在描述誰？不是在說明「看」這個動作怎麼做，而是在描述主詞"], ["en", "customers"], ["zh", "，顧客看起來怎麼樣。"]]},
-    {"scene": "rule", "say": [["zh", "連綴動詞後面描述主詞的狀態，要用形容詞。"]]},
-    {"scene": "answer", "say": [["zh", "答案是 B，"], ["en", "satisfied"], ["zh", "，顧客對新服務似乎很滿意。"]]},
-    {"scene": "trap", "say": [["zh", "D 是副詞，這就是最常見的陷阱。「動詞後面接副詞」只適用在空格說明動作方式的時候。遇到連綴動詞，空格若在描述主詞的狀態，就要用形容詞。"]]},
-    {"scene": "full", "say": [["en", "The customers seemed satisfied with the new service."]]}
+    {
+      "scene": "q",
+      "say": [
+        [
+          "zh",
+          "最後一題。這題跟剛剛示範2很像，空格都在動詞後面。想想看，答案一樣是副詞嗎？"
+        ]
+      ]
+    },
+    {
+      "scene": "countdown",
+      "pause": 6
+    },
+    {
+      "scene": "seemed",
+      "say": [
+        [
+          "zh",
+          "先圈出"
+        ],
+        [
+          "en",
+          "seemed"
+        ],
+        [
+          "zh",
+          "，看起來、似乎。這是連綴動詞。"
+        ]
+      ]
+    },
+    {
+      "scene": "customers",
+      "say": [
+        [
+          "zh",
+          "空格在描述誰？不是在說明「看」這個動作怎麼做，而是在描述主詞"
+        ],
+        [
+          "en",
+          "customers"
+        ],
+        [
+          "zh",
+          "，顧客看起來怎麼樣。"
+        ]
+      ]
+    },
+    {
+      "scene": "rule",
+      "say": [
+        [
+          "zh",
+          "連綴動詞後面描述主詞的狀態，要用形容詞。"
+        ]
+      ]
+    },
+    {
+      "scene": "answer",
+      "say": [
+        [
+          "zh",
+          "答案是 B，"
+        ],
+        [
+          "en",
+          "satisfied"
+        ],
+        [
+          "zh",
+          "，顧客對新服務似乎很滿意。"
+        ]
+      ]
+    },
+    {
+      "scene": "trap",
+      "say": [
+        [
+          "zh",
+          "D 是副詞，這就是最常見的陷阱。「動詞後面接副詞」只適用在空格說明動作方式的時候。遇到連綴動詞，空格若在描述主詞的狀態，就要用形容詞。"
+        ]
+      ]
+    },
+    {
+      "scene": "full",
+      "say": [
+        [
+          "en",
+          "The customers seemed satisfied with the new service."
+        ]
+      ],
+      "hold": 2.5
+    }
   ]
 }
