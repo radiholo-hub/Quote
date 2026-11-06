@@ -126,8 +126,11 @@ def parse(year, text):
             else:  # bank / structure：文章後面接選項
                 fi = next(i for i, l in enumerate(raw) if re.match(r'^\s*\(\s*A\s*\)', l))
                 passage, oraw = raw[:fi], raw[fi:]
-                letters = 'ABCDEFGHIJ'[:10 if sec['type'] == 'bank' else 4]
-                _, opts = options_of(' '.join(x.strip() for x in oraw if x.strip()), letters)
+                joined = ' '.join(x.strip() for x in oraw if x.strip())
+                # 文意選填 10 個選項；篇章結構 4 個，115 年起多一個干擾選項共 5 個
+                for letters in (['ABCDEFGHIJ'] if sec['type'] == 'bank' else ['ABCDE', 'ABCD']):
+                    _, opts = options_of(joined, letters)
+                    if opts: break
                 p, miss = mark_blanks(paragraphs(passage), nums)
                 grp = {'passage': p, 'bank': opts, 'questions': [{'n': n} for n in nums]}
                 if miss: grp['missing_blanks'] = miss
