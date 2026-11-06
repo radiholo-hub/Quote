@@ -1,0 +1,42 @@
+[
+ {
+  "scene": "q",
+  "start": 0.0,
+  "sec": 11.13
+ },
+ {
+  "scene": "countdown",
+  "start": 11.13,
+  "sec": 6.45
+ },
+ {
+  "scene": "seemed",
+  "start": 17.58,
+  "sec": 9.4
+ },
+ {
+  "scene": "customers",
+  "start": 26.98,
+  "sec": 13.39
+ },
+ {
+  "scene": "rule",
+  "start": 40.37,
+  "sec": 5.73
+ },
+ {
+  "scene": "answer",
+  "start": 46.1,
+  "sec": 8.15
+ },
+ {
+  "scene": "trap",
+  "start": 54.25,
+  "sec": 16.82
+ },
+ {
+  "scene": "full",
+  "start": 71.07,
+  "sec": 4.58
+ }
+]
