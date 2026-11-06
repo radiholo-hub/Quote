@@ -1,0 +1,34 @@
+name: Lesson video
+# 課程示範影片（題目動畫＋AI 旁白）。只在改到 tools/lesson_video/ 的 PR 執行，產出的 mp4 放在這次執行的 Artifacts，
+# 不寫回 repo、不部署、不用任何密鑰。
+on:
+  pull_request:
+    paths:
+      - 'tools/lesson_video/**'
+      - '.github/workflows/lesson-video.yml'
+permissions:
+  contents: read
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: tools/lesson_video
+      - name: Install tools
+        timeout-minutes: 8
+        run: |
+          python3 -m pip install edge-tts playwright==1.63.0
+          python3 -m playwright install --with-deps chromium
+          command -v ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+      - name: Make videos
+        run: |
+          for f in tools/lesson_video/*.json; do
+            python3 tools/lesson_video/make_video.py "$f" "out/$(basename "$f" .json).mp4"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lesson-videos
+          path: out/
+          retention-days: 14
