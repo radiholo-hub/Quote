@@ -12,6 +12,17 @@ cp index.html style.css app.js quotes.js "$OUT"/
 cp -r audio "$OUT"/audio
 cp -r score-rescue "$OUT"/score-rescue
 cp -r gsat "$OUT"/gsat
+rm -rf "$OUT"/gsat/tests
+# 歷屆試題、答案、非選擇題圖片與詳解（gsat/exam/）的著作權授權尚未確認，預設不隨網站發布：
+# 只留空殼，網站會降級成「導向大考中心官網 + 原創題」。取得授權後，部署時設定 GSAT_PUBLISH_EXAMS=1 才會包含。
+if [ "${GSAT_PUBLISH_EXAMS:-}" != 1 ]; then
+  rm -rf "$OUT"/gsat/exam
+  mkdir "$OUT"/gsat/exam
+  echo 'window.EXAMS=[];' > "$OUT"/gsat/exam/exams.js
+  echo 'window.ANSWERS={};' > "$OUT"/gsat/exam/answers.js
+  echo 'window.NONMC={};' > "$OUT"/gsat/exam/nonmc.js
+  echo 'window.EXPLAIN={};' > "$OUT"/gsat/exam/explain.js
+fi
 if [ "${CF_PAGES:-}" = 1 ]; then
   cat > "$OUT/_headers" <<'HEADERS'
 https://:project.pages.dev/*

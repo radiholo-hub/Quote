@@ -160,13 +160,16 @@ def split_questions(raw, first, last):
 
 
 # 題目要用到圖片的選擇題（圖片用 pdfimages 從試卷 PDF 抽出，放在 gsat/img/）
-IMAGES = {('109', 41): {'img': 'img/109-41.png'},
-          ('111', 35): {'optImgs': ['img/111-35-%s.jpg' % L for L in 'ABCD']},
+IMAGES = {('109', 41): {'img': 'exam/img/109-41.png'},
+          ('111', 35): {'optImgs': ['exam/img/111-35-%s.jpg' % L for L in 'ABCD']},
           # 2×2 的圖片格選項：整格裁成一張圖，選項只標 A 到 D
-          ('110', 49): {'img': 'img/110-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']},
-          ('113', 35): {'img': 'img/113-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']},
-          ('114', 36): {'img': 'img/114-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']},
-          ('115', 38): {'img': 'img/115-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']}}
+          ('110', 49): {'img': 'exam/img/110-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']},
+          # 112 年第 44 題的地圖是向量圖，文字抽取會把圖上標籤混進題幹，所以題幹改寫、整張地圖用圖片
+          ('112', 44): {'stem': 'According to the passage, where is Zanzibar most likely located on the following map?',
+                        'img': 'exam/img/112-44.jpg', 'opts': ['地圖上的 A', '地圖上的 B', '地圖上的 C', '地圖上的 D']},
+          ('113', 35): {'img': 'exam/img/113-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']},
+          ('114', 36): {'img': 'exam/img/114-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']},
+          ('115', 38): {'img': 'exam/img/115-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']}}
 
 
 def add_images(exams):

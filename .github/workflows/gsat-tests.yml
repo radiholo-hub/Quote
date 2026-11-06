@@ -1,0 +1,35 @@
+name: GSAT English tests
+on:
+  # 送往上線分支的 PR 一律執行（不設檔案條件），才能當作合併必要檢查，不會因為沒觸發而一直等待
+  pull_request:
+    branches: [claude/daily-quotes-website-lbh2wi]
+  push:
+    branches: [claude/daily-quotes-website-lbh2wi]
+    paths:
+      - 'gsat/**'
+      - 'tools/stage_site.sh'
+      - 'tools/parse_gsat.py'
+      - 'tools/build_nonmc.py'
+      - '.github/workflows/gsat-tests.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    name: gsat-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # 和 score-rescue-tests 同一個 Playwright 官方映像；版本要和 gsat/tests/requirements.txt 的 playwright 相同。
+    container: mcr.microsoft.com/playwright/python:v1.63.0-noble
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            gsat
+            tools/stage_site.sh
+          sparse-checkout-cone-mode: false
+      - name: Install test tools
+        timeout-minutes: 5
+        run: python3 -m pip install --break-system-packages -r gsat/tests/requirements.txt
+      - name: Run tests
+        run: python3 -m pytest gsat/tests -q

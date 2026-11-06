@@ -50,12 +50,12 @@ def main():
         for p in range(sp, n + 1):
             name = '%s-q%d' % (y, p - sp + 1)
             render(exam, p, os.path.join(out, name), (sy - 6) if p == sp else None, 842 if p == sp else None)
-            d['q'].append('img/ns/%s.jpg' % name)
+            d['q'].append('exam/img/ns/%s.jpg' % name)
         if ref:
             for p in range(1, pages(ref) + 1):
                 name = '%s-ref%d' % (y, p)
                 render(ref, p, os.path.join(out, name))
-                d['ref'].append('img/ns/%s.jpg' % name)
+                d['ref'].append('exam/img/ns/%s.jpg' % name)
         data[y] = d
     with open(os.path.join(os.path.dirname(out.rstrip('/')), '..', 'nonmc.js'), 'w', encoding='utf8') as f:
         f.write('// 非選擇題（混合題、中譯英、作文）頁面圖片與官方評分原則，由 tools/build_nonmc.py 產生。\nwindow.NONMC = ' + json.dumps(data, ensure_ascii=False) + ';\n')
