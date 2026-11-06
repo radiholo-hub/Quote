@@ -2,41 +2,41 @@
  {
   "scene": "q",
   "start": 0.0,
-  "sec": 11.13
+  "sec": 10.09
  },
  {
   "scene": "countdown",
-  "start": 11.13,
+  "start": 10.09,
   "sec": 6.45
  },
  {
   "scene": "seemed",
-  "start": 17.58,
-  "sec": 9.4
+  "start": 16.54,
+  "sec": 6.08
  },
  {
   "scene": "customers",
-  "start": 26.98,
-  "sec": 13.39
+  "start": 22.62,
+  "sec": 10.26
  },
  {
   "scene": "rule",
-  "start": 40.37,
-  "sec": 5.73
+  "start": 32.88,
+  "sec": 4.68
  },
  {
   "scene": "answer",
-  "start": 46.1,
-  "sec": 8.15
+  "start": 37.57,
+  "sec": 4.84
  },
  {
   "scene": "trap",
-  "start": 54.25,
-  "sec": 16.82
+  "start": 42.41,
+  "sec": 15.76
  },
  {
   "scene": "full",
-  "start": 71.07,
-  "sec": 4.58
+  "start": 58.16,
+  "sec": 3.47
  }
 ]
