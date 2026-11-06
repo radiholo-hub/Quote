@@ -40,7 +40,7 @@ def cards(browser):
 
 def test_card_ids_unique_and_complete():
     ids = [d['id'] for c in data() for d in c['cards']]
-    assert len(ids) == 40 and len(set(ids)) == 40
+    assert len(ids) == 48 and len(set(ids)) == 48
     for c in data():
         for d in c['cards']:
             assert d['say'] and d['ex'] and all(len(e) == 2 for e in d['ex'])
@@ -101,13 +101,13 @@ def test_same_button_again_stops(cards):
 
 
 def test_every_card_has_speakers(cards):
-    """40 張卡都有正面 1 顆、背面每句例句 1 顆喇叭；look-01（hard / hardly）背面兩句各自一段音檔。"""
+    """48 張卡都有正面 1 顆、背面每句例句 1 顆喇叭；look-01（hard / hardly）背面兩句各自一段音檔。"""
     for c in data():
         assert all(d.get('audio') for d in c['cards'])
     n = cards.evaluate("""()=>{let out=[];__cards.CATS.forEach((c,k)=>{document.getElementById('tab'+k).click();
       c.cards.forEach(()=>{out.push([document.getElementById('card').dataset.id,document.querySelectorAll('#front .say').length,document.querySelectorAll('#back .say').length]);document.getElementById('next').click()})});return out}""")
     want = {d['id']: len(d['ex']) for c in data() for d in c['cards']}
-    assert len(n) == 40
+    assert len(n) == 48
     for cid, f, b in n:
         assert f == 1 and b == want[cid], cid
     cards.click('#tab4')
