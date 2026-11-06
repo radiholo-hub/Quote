@@ -2,18 +2,100 @@
  "title": "Score Rescue｜詞性小課 第1課（課程內嵌版）",
  "cues": [
   {
-   "id": "open1",
+   "id": "hook1",
    "view": {
-    "kind": "title",
-    "h": "形容詞還是副詞？",
-    "s": "先找它修飾誰"
+    "kind": "sent",
+    "t": "先考你一題",
+    "s": "The customers [seemed] ______|with the new service.",
+    "o": [
+     "satisfied",
+     "satisfactorily"
+    ],
+    "olab": [
+     "B",
+     "D"
+    ],
+    "hook": "你會選哪一個？"
    },
    "say": [
     [
      "zh",
-     "各位同學好，歡迎來到詞性小課第一課。"
+     "先考你一題。空格要填"
+    ],
+    [
+     "en",
+     "satisfied"
+    ],
+    [
+     "zh",
+     "，還是"
+    ],
+    [
+     "en",
+     "satisfactorily"
+    ],
+    [
+     "zh",
+     "？"
     ]
    ]
+  },
+  {
+   "id": "hook2",
+   "view": {
+    "kind": "sent",
+    "t": "先考你一題",
+    "s": "The customers [seemed] ______|with the new service.",
+    "o": [
+     "satisfied",
+     "satisfactorily"
+    ],
+    "olab": [
+     "B",
+     "D"
+    ],
+    "hook": "你會選哪一個？",
+    "ring": [
+     {
+      "w": "seemed",
+      "label": "動詞"
+     }
+    ],
+    "ban": {
+     "t": "空格在動詞後面，就該選副詞嗎？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格在動詞後面，很多同學直覺選副詞。真的是這樣嗎？"
+    ]
+   ]
+  },
+  {
+   "id": "hook3",
+   "view": {
+    "kind": "sent",
+    "t": "先考你一題",
+    "s": "The customers [seemed] ______|with the new service.",
+    "o": [
+     "satisfied",
+     "satisfactorily"
+    ],
+    "olab": [
+     "B",
+     "D"
+    ],
+    "hook": "你會選哪一個？",
+    "ring": [
+     {
+      "w": "seemed",
+      "label": "動詞"
+     }
+    ]
+   },
+   "pause": 3
   },
   {
    "id": "open2",
@@ -25,7 +107,7 @@
    "say": [
     [
      "zh",
-     "很多同學跟我說：「老師，四個選項的單字我都認識，可是還是選錯。」其實問題常常不在單字，而在於我們還沒搞清楚：這個空格在句子裡，到底負責什麼工作。"
+     "四個選項的單字都認識，卻還是選錯，問題常常不在單字，而在於這個空格在句子裡負責什麼工作。這一課教你一個方法：先找它修飾誰。剛剛那一題，我們在示範4揭曉。"
     ]
    ]
   },
@@ -106,17 +188,17 @@
      [
       "名詞",
       "形容詞",
-      "a <b>reliable</b> service"
+      "a <b>reliable</b> service<small>可靠的服務</small>"
      ],
      [
       "動詞",
       "副詞",
-      "explained it <b>clearly</b>"
+      "explained it <b>clearly</b><small>把它解釋得很清楚</small>"
      ],
      [
       "形容詞",
       "副詞",
-      "<b>surprisingly</b> useful"
+      "<b>surprisingly</b> useful<small>出乎意料地實用</small>"
      ]
     ],
     "show": 0
@@ -138,17 +220,17 @@
      [
       "名詞",
       "形容詞",
-      "a <b>reliable</b> service"
+      "a <b>reliable</b> service<small>可靠的服務</small>"
      ],
      [
       "動詞",
       "副詞",
-      "explained it <b>clearly</b>"
+      "explained it <b>clearly</b><small>把它解釋得很清楚</small>"
      ],
      [
       "形容詞",
       "副詞",
-      "<b>surprisingly</b> useful"
+      "<b>surprisingly</b> useful<small>出乎意料地實用</small>"
      ]
     ],
     "show": 1
@@ -182,17 +264,17 @@
      [
       "名詞",
       "形容詞",
-      "a <b>reliable</b> service"
+      "a <b>reliable</b> service<small>可靠的服務</small>"
      ],
      [
       "動詞",
       "副詞",
-      "explained it <b>clearly</b>"
+      "explained it <b>clearly</b><small>把它解釋得很清楚</small>"
      ],
      [
       "形容詞",
       "副詞",
-      "<b>surprisingly</b> useful"
+      "<b>surprisingly</b> useful<small>出乎意料地實用</small>"
      ]
     ],
     "show": 2
@@ -226,17 +308,17 @@
      [
       "名詞",
       "形容詞",
-      "a <b>reliable</b> service"
+      "a <b>reliable</b> service<small>可靠的服務</small>"
      ],
      [
       "動詞",
       "副詞",
-      "explained it <b>clearly</b>"
+      "explained it <b>clearly</b><small>把它解釋得很清楚</small>"
      ],
      [
       "形容詞",
       "副詞",
-      "<b>surprisingly</b> useful"
+      "<b>surprisingly</b> useful<small>出乎意料地實用</small>"
      ]
     ],
     "show": 3
@@ -274,6 +356,7 @@
     "kind": "sent",
     "t": "要注意①　連綴動詞",
     "s": "The [plan] [seems] [reasonable].",
+    "zh": "這個計畫似乎很合理。",
     "ring": [
      {
       "w": "seems",
@@ -309,6 +392,7 @@
     "kind": "sent",
     "t": "要注意①　連綴動詞",
     "s": "The [plan] [seems] [reasonable].",
+    "zh": "這個計畫似乎很合理。",
     "ring": [
      {
       "w": "seems",
@@ -344,6 +428,7 @@
     "kind": "sent",
     "t": "要注意②　名詞也能修飾名詞",
     "s": "our [return] policy",
+    "zh": "我們的退貨政策",
     "ring": [
      {
       "w": "return",
@@ -588,10 +673,12 @@
      "affordability"
     ],
     "ans": 1,
+    "zh": "這家店販售價格實惠的小型辦公室家具。",
     "otag": {
-     "0": "動詞",
-     "2": "副詞",
-     "3": "名詞"
+     "0": "動詞｜負擔得起",
+     "1": "形容詞｜價格實惠的",
+     "2": "副詞｜實惠地",
+     "3": "名詞｜可負擔性"
     }
    },
    "say": [
@@ -623,10 +710,12 @@
     ],
     "ans": 1,
     "trap": 3,
+    "zh": "這家店販售價格實惠的小型辦公室家具。",
     "otag": {
-     "0": "動詞",
-     "2": "副詞",
-     "3": "名詞"
+     "0": "動詞｜負擔得起",
+     "1": "形容詞｜價格實惠的",
+     "2": "副詞｜實惠地",
+     "3": "名詞｜可負擔性"
     },
     "ban": {
      "t": "affordability furniture 表達不出「價格實惠的家具」",
@@ -799,8 +888,12 @@
      "confide"
     ],
     "ans": 1,
+    "zh": "新經理在會議中說話很有自信。",
     "otag": {
-     "0": "形容詞"
+     "0": "形容詞｜有自信的",
+     "1": "副詞｜有自信地",
+     "2": "名詞｜信心",
+     "3": "動詞｜吐露"
     }
    },
    "say": [
@@ -832,8 +925,12 @@
     ],
     "ans": 1,
     "trap": 0,
+    "zh": "新經理在會議中說話很有自信。",
     "otag": {
-     "0": "形容詞"
+     "0": "形容詞｜有自信的",
+     "1": "副詞｜有自信地",
+     "2": "名詞｜信心",
+     "3": "動詞｜吐露"
     },
     "ban": {
      "t": "speak 不是連綴動詞：空格說明說話的方式",
@@ -1081,6 +1178,13 @@
     ],
     "ans": 1,
     "trap": 0,
+    "zh": "運費高得出乎意料。",
+    "otag": {
+     "0": "形容詞｜意外的",
+     "1": "副詞｜出乎意料地",
+     "2": "名詞｜期待",
+     "3": "動詞｜預期"
+    },
     "ban": {
      "t": "A 是形容詞：形容詞不能修飾另一個形容詞",
      "c": "red"
@@ -1133,7 +1237,7 @@
    "say": [
     [
      "zh",
-     "最後一題。這題跟剛剛示範2很像，空格都在動詞後面。想想看，答案一樣是副詞嗎？"
+     "最後一題，就是開場考你的那一題。這題跟剛剛示範2很像，空格都在動詞後面。想想看，答案一樣是副詞嗎？"
     ]
    ]
   },
@@ -1298,6 +1402,13 @@
      }
     ],
     "ans": 1,
+    "zh": "顧客對新服務似乎很滿意。",
+    "otag": {
+     "0": "動詞｜使滿意",
+     "1": "形容詞｜感到滿意的",
+     "2": "名詞｜滿意",
+     "3": "副詞｜令人滿意地"
+    },
     "ban": {
      "t": "連綴動詞後，描述主詞的狀態 → 形容詞"
     }
@@ -1337,6 +1448,13 @@
     ],
     "ans": 1,
     "trap": 3,
+    "zh": "顧客對新服務似乎很滿意。",
+    "otag": {
+     "0": "動詞｜使滿意",
+     "1": "形容詞｜感到滿意的",
+     "2": "名詞｜滿意",
+     "3": "副詞｜令人滿意地"
+    },
     "ban": {
      "t": "這格描述顧客的狀態，所以用形容詞 satisfied。",
      "c": "red"

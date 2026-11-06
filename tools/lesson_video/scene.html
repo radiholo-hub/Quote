@@ -16,6 +16,16 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper);col
 .sent{margin-top:118px;font-size:92px;line-height:1.3;font-weight:500}
 .sent .l2{margin-top:46px}
 .sent.solo{margin-top:200px}
+.sent.tight{margin-top:96px}
+.szh{margin-top:18px;font:700 46px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted)}
+.hookq{position:absolute;right:110px;top:66px;font:900 64px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:#fff;background:var(--bad);padding:10px 34px;border-radius:999px}
+.opts.gl{font-size:46px;gap:16px 50px;margin-top:40px}
+.opts.gl .opt{padding:8px 22px;gap:22px}
+.opts.gl .bub{width:64px;height:64px;font-size:38px}
+.otag{white-space:nowrap}
+.opts.gl .otag{font-size:30px;padding:4px 14px}
+.szh.low{margin-top:96px}
+.row .ex small{display:block;font:700 40px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted);margin-top:2px}
 .w{position:relative;display:inline-block;padding:0 .08em;border-radius:14px}
 .blank{display:inline-block;min-width:3.4em;border-bottom:7px solid var(--ink);transform:translateY(-6px)}
 .blank.fill{border-color:var(--ok);color:var(--ok);font-weight:600;min-width:0;padding:0 .1em}
@@ -147,14 +157,16 @@ function render(v,n){
     st.innerHTML=head(v.t)+'<div class="sent serif" style="margin-top:150px">'+v.html+'</div><div class="zh">'+esc(v.zh)+'</div>';return;
   }
   /* sent：句子，選項可有可無 */
-  h=head(v.t)+sentHTML(v.s,v.fill,!v.o);
+  h=head(v.t)+sentHTML(v.s,v.fill,!v.o).replace('class="sent serif"','class="sent serif'+(v.zh?' tight':'')+'"');
+  if(v.zh)h+='<div class="szh'+(v.arrows&&v.arrows.length?' low':'')+'">'+esc(v.zh)+'</div>';
+  if(v.hook)h+='<div class="hookq">'+esc(v.hook)+'</div>';
   if(v.o){
-    h+='<div class="opts serif">'+v.o.map(function(t,k){
+    h+='<div class="opts serif'+(v.otag&&Object.keys(v.otag).length>=4?' gl':'')+'">'+v.o.map(function(t,k){
       var c='opt';
       if(v.ans!=null)c+=k===v.ans?' ok':' dim';
       if(v.trap===k)c+=' trap';
       var tg=v.otag&&v.otag[k]?'<span class="otag">'+esc(v.otag[k])+'</span>':'';
-      return '<div class="'+c+'"><span class="bub">'+'ABCD'[k]+'</span><span>'+esc(t)+'</span>'+tg+'</div>'}).join('')+'</div>';
+      return '<div class="'+c+'"><span class="bub">'+(v.olab?v.olab[k]:'ABCD'[k])+'</span><span>'+esc(t)+'</span>'+tg+'</div>'}).join('')+'</div>';
   }
   st.innerHTML=h+'<svg id="arr"></svg>';
   marks(v);
