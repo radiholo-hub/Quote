@@ -21,7 +21,7 @@
  },
  {
   "scene": "rule",
-  "start": 32.89,
+  "start": 32.88,
   "sec": 4.68
  },
  {
@@ -31,12 +31,12 @@
  },
  {
   "scene": "trap",
-  "start": 42.41,
-  "sec": 15.76
+  "start": 42.4,
+  "sec": 6.94
  },
  {
   "scene": "full",
-  "start": 58.16,
+  "start": 49.34,
   "sec": 5.97
  }
 ]
