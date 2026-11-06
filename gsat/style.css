@@ -32,6 +32,6 @@ h2{margin:22px 0 6px;font-size:1.15rem}
 .passage .blank.cur{background:#ffe27a;color:#222;border-color:#222}
 .passage .ttl{font-family:inherit;font-weight:700;margin-bottom:.5em}
 .opt img{display:block;max-width:100%;max-height:220px;margin-top:6px}
-.qimg{display:block;max-width:220px;margin:0 0 10px}
+.qimg{display:block;width:100%;max-width:520px;margin:8px 0 10px}
 .badq{background:var(--card);border-left:4px solid var(--bad);padding:6px 12px;margin:6px 0;font-size:.95rem}
 .bank{margin-top:10px;font-family:Georgia,serif;font-size:.95rem;color:var(--muted)}

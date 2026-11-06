@@ -158,7 +158,11 @@ def split_questions(raw, first, last):
 
 # 題目要用到圖片的選擇題（圖片用 pdfimages 從試卷 PDF 抽出，放在 gsat/img/）
 IMAGES = {('109', 41): {'img': 'img/109-41.png'},
-          ('111', 35): {'optImgs': ['img/111-35-%s.jpg' % L for L in 'ABCD']}}
+          ('111', 35): {'optImgs': ['img/111-35-%s.jpg' % L for L in 'ABCD']},
+          # 2×2 的圖片格選項：整格裁成一張圖，選項只標 A 到 D
+          ('113', 35): {'img': 'img/113-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']},
+          ('114', 36): {'img': 'img/114-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']},
+          ('115', 38): {'img': 'img/115-fig.jpg', 'opts': ['圖 A', '圖 B', '圖 C', '圖 D']}}
 
 
 def add_images(exams):
