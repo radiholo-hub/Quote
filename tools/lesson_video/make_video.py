@@ -1,12 +1,13 @@
-"""把示範題的腳本（例如 demo4.json）做成「題目動畫＋AI 旁白」影片。
+"""把課程腳本（例如 lesson1.json）做成「題目動畫＋AI 旁白」影片。每個 cue 有 view（畫面）與 say（旁白）。
 
 用法：
   pip install edge-tts playwright && python -m playwright install chromium
-  python3 tools/lesson_video/make_video.py tools/lesson_video/demo4.json out/demo4.mp4
-  python3 tools/lesson_video/make_video.py demo4.json out.mp4 --silent   # 不產生旁白，只依字數估長度（檢查畫面用）
+  python3 tools/lesson_video/make_video.py tools/lesson_video/lesson1.json out/lesson1.mp4
+  python3 tools/lesson_video/make_video.py lesson1.json out.mp4 --silent   # 不產生旁白，只依字數估長度（檢查畫面用）
 
 旁白：中文用 zh-TW-HsiaoChenNeural，英文單字與句子改用 en-US-AriaNeural（和網站英文發音同一個聲音），
-分段產生後接起來，讓英文唸得自然；每段裁掉頭尾靜音並統一響度。cue 可加 "hold"（秒），念完後多停留。畫面：scene.html 依場景截圖，每個場景顯示到它那段旁白結束。
+分段產生後接起來，讓英文唸得自然；每段裁掉頭尾靜音並統一響度。cue 可加 "hold"（秒）念完後多停留，
+"pause"（秒）為思考倒數。畫面：scene.html 依 view 截圖，每個畫面顯示到它那段旁白結束。
 """
 import asyncio, json, pathlib, subprocess, sys, tempfile
 
@@ -95,15 +96,15 @@ def build_frames(data, cues, lens, tmp):
             pass
         pg.evaluate('document.fonts.ready')
         for i, (cue, L) in enumerate(zip(cues, lens)):
-            if cue['scene'] == 'countdown':
+            if 'pause' in cue:
                 n = int(cue['pause'])
                 for k in range(n):
                     p = tmp / ('f%02d_%d.png' % (i, k))
-                    pg.evaluate('([d,s,n])=>render(d,s,n)', [data, 'countdown', n - k]); pg.screenshot(path=str(p))
+                    pg.evaluate('([v,n])=>render(v,n)', [cue['view'], n - k]); pg.screenshot(path=str(p))
                     shots.append((p, 1.0 if k < n - 1 else L - (n - 1)))
             else:
                 p = tmp / ('f%02d.png' % i)
-                pg.evaluate('([d,s])=>render(d,s,0)', [data, cue['scene']]); pg.screenshot(path=str(p))
+                pg.evaluate('v=>render(v,0)', cue['view']); pg.screenshot(path=str(p))
                 shots.append((p, L))
         b.close()
     return shots
@@ -128,7 +129,7 @@ def main():
            '-c:a', 'aac', '-b:a', '128k', '-shortest', '-movflags', '+faststart', str(out))
         t0, timeline = 0.0, []
         for cue, L in zip(cues, lens):
-            timeline.append({'scene': cue['scene'], 'start': round(t0, 2), 'sec': round(L, 2)})
+            timeline.append({'scene': cue.get('id', ''), 'start': round(t0, 2), 'sec': round(L, 2)})
             t0 += L
         out.with_suffix('.timeline.json').write_text(json.dumps(timeline, ensure_ascii=False, indent=1), encoding='utf-8')
         print('完成：%s（%.1f 秒%s）' % (out, t0, '，無旁白' if silent else ''))

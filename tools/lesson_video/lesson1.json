@@ -1,0 +1,1495 @@
+{
+ "title": "Score Rescue｜詞性小課 第1課（宣傳版）",
+ "cues": [
+  {
+   "id": "open1",
+   "view": {
+    "kind": "title",
+    "h": "形容詞還是副詞？",
+    "s": "先找它修飾誰"
+   },
+   "say": [
+    [
+     "zh",
+     "各位同學好，歡迎來到詞性小課第一課。"
+    ]
+   ]
+  },
+  {
+   "id": "open2",
+   "view": {
+    "kind": "title",
+    "h": "形容詞還是副詞？",
+    "s": "先找它修飾誰"
+   },
+   "say": [
+    [
+     "zh",
+     "很多同學跟我說：「老師，四個選項的單字我都認識，可是還是選錯。」其實問題常常不在單字，而在於我們還沒搞清楚：這個空格在句子裡，到底負責什麼工作。"
+    ]
+   ]
+  },
+  {
+   "id": "open3",
+   "view": {
+    "kind": "grid4",
+    "t": "空格的工作",
+    "cells": [
+     [
+      "名詞",
+      "當名詞片語的中心"
+     ],
+     [
+      "主要動詞",
+      "當句子的主要動詞"
+     ],
+     [
+      "描述主詞",
+      "連綴動詞後"
+     ],
+     [
+      "修飾其他字",
+      "形容詞或副詞"
+     ]
+    ],
+    "on": []
+   },
+   "say": [
+    [
+     "zh",
+     "空格可能要當名詞、當動詞，也可能是修飾別的字。"
+    ]
+   ]
+  },
+  {
+   "id": "open4",
+   "view": {
+    "kind": "grid4",
+    "t": "空格的工作",
+    "cells": [
+     [
+      "名詞",
+      "當名詞片語的中心"
+     ],
+     [
+      "主要動詞",
+      "當句子的主要動詞"
+     ],
+     [
+      "描述主詞",
+      "連綴動詞後"
+     ],
+     [
+      "修飾其他字",
+      "形容詞或副詞"
+     ]
+    ],
+    "on": [
+     2,
+     3
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "今天這一課，我們專門處理最容易混淆的一種：該選形容詞，還是副詞？"
+    ]
+   ]
+  },
+  {
+   "id": "c1",
+   "view": {
+    "kind": "rows",
+    "t": "判斷觀念",
+    "h": "修飾誰？ → 用什麼",
+    "rows": [
+     [
+      "名詞",
+      "形容詞",
+      "a <b>reliable</b> service"
+     ],
+     [
+      "動詞",
+      "副詞",
+      "explained it <b>clearly</b>"
+     ],
+     [
+      "形容詞",
+      "副詞",
+      "<b>surprisingly</b> useful"
+     ]
+    ],
+    "show": 0
+   },
+   "say": [
+    [
+     "zh",
+     "形容詞和副詞，其實都在做同一件事：修飾。差別只在於，它修飾的是誰。"
+    ]
+   ]
+  },
+  {
+   "id": "c2",
+   "view": {
+    "kind": "rows",
+    "t": "判斷觀念",
+    "h": "修飾誰？ → 用什麼",
+    "rows": [
+     [
+      "名詞",
+      "形容詞",
+      "a <b>reliable</b> service"
+     ],
+     [
+      "動詞",
+      "副詞",
+      "explained it <b>clearly</b>"
+     ],
+     [
+      "形容詞",
+      "副詞",
+      "<b>surprisingly</b> useful"
+     ]
+    ],
+    "show": 1
+   },
+   "say": [
+    [
+     "zh",
+     "如果修飾的是名詞，就用形容詞。像前測做過的"
+    ],
+    [
+     "en",
+     "a reliable service."
+    ],
+    [
+     "en",
+     "Reliable"
+    ],
+    [
+     "zh",
+     "說明這是什麼樣的服務。"
+    ]
+   ]
+  },
+  {
+   "id": "c3",
+   "view": {
+    "kind": "rows",
+    "t": "判斷觀念",
+    "h": "修飾誰？ → 用什麼",
+    "rows": [
+     [
+      "名詞",
+      "形容詞",
+      "a <b>reliable</b> service"
+     ],
+     [
+      "動詞",
+      "副詞",
+      "explained it <b>clearly</b>"
+     ],
+     [
+      "形容詞",
+      "副詞",
+      "<b>surprisingly</b> useful"
+     ]
+    ],
+    "show": 2
+   },
+   "say": [
+    [
+     "zh",
+     "如果修飾的是動作，就用副詞。"
+    ],
+    [
+     "en",
+     "Explained it clearly."
+    ],
+    [
+     "en",
+     "Clearly"
+    ],
+    [
+     "zh",
+     "說明他是怎麼解釋的。"
+    ]
+   ]
+  },
+  {
+   "id": "c4",
+   "view": {
+    "kind": "rows",
+    "t": "判斷觀念",
+    "h": "修飾誰？ → 用什麼",
+    "rows": [
+     [
+      "名詞",
+      "形容詞",
+      "a <b>reliable</b> service"
+     ],
+     [
+      "動詞",
+      "副詞",
+      "explained it <b>clearly</b>"
+     ],
+     [
+      "形容詞",
+      "副詞",
+      "<b>surprisingly</b> useful"
+     ]
+    ],
+    "show": 3
+   },
+   "say": [
+    [
+     "zh",
+     "副詞也可以修飾形容詞。"
+    ],
+    [
+     "en",
+     "Surprisingly useful."
+    ],
+    [
+     "en",
+     "Surprisingly"
+    ],
+    [
+     "zh",
+     "補充"
+    ],
+    [
+     "en",
+     "useful"
+    ],
+    [
+     "zh",
+     "，說它實用得出乎意料。"
+    ]
+   ]
+  },
+  {
+   "id": "c5",
+   "view": {
+    "kind": "sent",
+    "t": "要注意①　連綴動詞",
+    "s": "The [plan] [seems] [reasonable].",
+    "ring": [
+     {
+      "w": "seems",
+      "label": "連綴動詞"
+     }
+    ],
+    "arrows": [
+     {
+      "from": "reasonable",
+      "to": "plan",
+      "c": "ok"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第一個要注意的，是連綴動詞。像"
+    ],
+    [
+     "en",
+     "be, seem, look, become, remain."
+    ],
+    [
+     "zh",
+     "這些動詞後面的字，如果是在描述主詞的狀態，要用形容詞。"
+    ]
+   ]
+  },
+  {
+   "id": "c6",
+   "view": {
+    "kind": "sent",
+    "t": "要注意①　連綴動詞",
+    "s": "The [plan] [seems] [reasonable].",
+    "ring": [
+     {
+      "w": "seems",
+      "label": "連綴動詞"
+     }
+    ],
+    "arrows": [
+     {
+      "from": "reasonable",
+      "to": "plan",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "reasonable 描述 plan → 形容詞",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "The plan seems reasonable."
+    ],
+    [
+     "zh",
+     "這裡描述的是計畫本身：這個計畫是合理的，所以用形容詞。"
+    ]
+   ]
+  },
+  {
+   "id": "c7",
+   "view": {
+    "kind": "sent",
+    "t": "要注意②　名詞也能修飾名詞",
+    "s": "our [return] policy",
+    "ring": [
+     {
+      "w": "return",
+      "c": "blue",
+      "label": "名詞：說明哪一種 policy"
+     }
+    ],
+    "ban": {
+     "t": "選項有名詞：一起看空格的工作和整個詞組的意思",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "第二個要注意的：名詞也可以放在另一個名詞前面，說明用途或類別。例如"
+    ],
+    [
+     "en",
+     "return policy"
+    ],
+    [
+     "zh",
+     "，退貨政策。所以遇到選項裡有名詞，不要直接刪掉，要一起看空格的工作和整個詞組的意思。"
+    ]
+   ]
+  },
+  {
+   "id": "c8",
+   "view": {
+    "kind": "steps",
+    "t": "判斷觀念",
+    "h": "判斷三步驟",
+    "steps": [
+     "遮住空格，看左右兩邊",
+     "找它修飾誰：「什麼樣的？」還是「怎麼做？」",
+     "先用句構找出空格的工作，再用句意確認"
+    ],
+    "show": 1
+   },
+   "say": [
+    [
+     "zh",
+     "所以，我們每一題都用同樣三個步驟。第一步，遮住空格，看左右兩邊是什麼字。"
+    ]
+   ]
+  },
+  {
+   "id": "c9",
+   "view": {
+    "kind": "steps",
+    "t": "判斷觀念",
+    "h": "判斷三步驟",
+    "steps": [
+     "遮住空格，看左右兩邊",
+     "找它修飾誰：「什麼樣的？」還是「怎麼做？」",
+     "先用句構找出空格的工作，再用句意確認"
+    ],
+    "show": 2
+   },
+   "say": [
+    [
+     "zh",
+     "第二步，找它修飾誰。問自己：「什麼樣的？」還是「怎麼做？」"
+    ]
+   ]
+  },
+  {
+   "id": "c10",
+   "view": {
+    "kind": "steps",
+    "t": "判斷觀念",
+    "h": "判斷三步驟",
+    "steps": [
+     "遮住空格，看左右兩邊",
+     "找它修飾誰：「什麼樣的？」還是「怎麼做？」",
+     "先用句構找出空格的工作，再用句意確認"
+    ],
+    "show": 3
+   },
+   "say": [
+    [
+     "zh",
+     "第三步，先用句構找出空格的工作，再用句意確認。"
+    ]
+   ]
+  },
+  {
+   "id": "c11",
+   "view": {
+    "kind": "steps",
+    "t": "判斷觀念",
+    "h": "判斷三步驟",
+    "steps": [
+     "遮住空格，看左右兩邊",
+     "找它修飾誰：「什麼樣的？」還是「怎麼做？」",
+     "先用句構找出空格的工作，再用句意確認"
+    ],
+    "show": 3,
+    "note": "提醒：不要先用中文意思選。「仔細」「清楚」的形容詞和副詞，中文看起來一樣。"
+   },
+   "say": [
+    [
+     "zh",
+     "特別提醒：不要先用中文意思選。中文的「仔細」「清楚」，形容詞和副詞長得一樣，只靠意思很容易選錯。好，我們來實際做做看。"
+    ]
+   ]
+  },
+  {
+   "id": "d1q",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　修飾名詞",
+    "s": "The store [sells] ______ [furniture]|for small offices.",
+    "o": [
+     "afford",
+     "affordable",
+     "affordably",
+     "affordability"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第一題。先自己想一下，空格要填什麼。"
+    ]
+   ]
+  },
+  {
+   "id": "d1t",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　修飾名詞",
+    "s": "The store [sells] ______ [furniture]|for small offices.",
+    "o": [
+     "afford",
+     "affordable",
+     "affordably",
+     "affordability"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d1a",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　修飾名詞",
+    "s": "The store [sells] ______ [furniture]|for small offices.",
+    "o": [
+     "afford",
+     "affordable",
+     "affordably",
+     "affordability"
+    ],
+    "ring": [
+     {
+      "w": "furniture",
+      "label": "名詞",
+      "c": "blue"
+     },
+     {
+      "w": "sells",
+      "label": "動詞"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "好，我們先看空格左右。右邊是"
+    ],
+    [
+     "en",
+     "furniture"
+    ],
+    [
+     "zh",
+     "，家具，是名詞。左邊是動詞"
+    ],
+    [
+     "en",
+     "sells."
+    ]
+   ]
+  },
+  {
+   "id": "d1b",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　修飾名詞",
+    "s": "The store [sells] ______ [furniture]|for small offices.",
+    "o": [
+     "afford",
+     "affordable",
+     "affordably",
+     "affordability"
+    ],
+    "ring": [
+     {
+      "w": "furniture",
+      "label": "名詞",
+      "c": "blue"
+     }
+    ],
+    "arrows": [
+     {
+      "from": "blank",
+      "to": "furniture"
+     }
+    ],
+    "ban": {
+     "t": "什麼樣的家具？ → 修飾名詞 → 形容詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格在描述什麼？什麼樣的家具。所以它修飾的是名詞"
+    ],
+    [
+     "en",
+     "furniture."
+    ],
+    [
+     "zh",
+     "修飾名詞，我們考慮形容詞。"
+    ]
+   ]
+  },
+  {
+   "id": "d1c",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　修飾名詞",
+    "s": "The store [sells] ______ [furniture]|for small offices.",
+    "o": [
+     "afford",
+     "affordable",
+     "affordably",
+     "affordability"
+    ],
+    "ans": 1,
+    "otag": {
+     "0": "動詞",
+     "2": "副詞",
+     "3": "名詞"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 B，"
+    ],
+    [
+     "en",
+     "affordable"
+    ],
+    [
+     "zh",
+     "，價格實惠的家具。句意也通順。"
+    ]
+   ]
+  },
+  {
+   "id": "d1d",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　修飾名詞",
+    "s": "The store [sells] ______ [furniture]|for small offices.",
+    "o": [
+     "afford",
+     "affordable",
+     "affordably",
+     "affordability"
+    ],
+    "ans": 1,
+    "trap": 3,
+    "otag": {
+     "0": "動詞",
+     "2": "副詞",
+     "3": "名詞"
+    },
+    "ban": {
+     "t": "affordability furniture 表達不出「價格實惠的家具」",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "C 是副詞，不修飾名詞。D 是名詞，雖然名詞可以放在名詞前面，但"
+    ],
+    [
+     "en",
+     "affordability furniture"
+    ],
+    [
+     "zh",
+     "沒辦法表達「價格實惠的家具」。"
+    ]
+   ]
+  },
+  {
+   "id": "d1e",
+   "view": {
+    "kind": "full",
+    "t": "示範1　修飾名詞",
+    "html": "The store sells <span class=\"blank fill\">affordable</span> <span class=\"mark\">furniture</span> for small offices.",
+    "zh": "這家店販售價格實惠的小型辦公室家具。"
+   },
+   "say": [
+    [
+     "en",
+     "The store sells affordable furniture for small offices."
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "d2q",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　修飾動詞",
+    "s": "The new manager [speaks] ______|[during meetings].",
+    "o": [
+     "confident",
+     "confidently",
+     "confidence",
+     "confide"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第二題，一樣先想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d2t",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　修飾動詞",
+    "s": "The new manager [speaks] ______|[during meetings].",
+    "o": [
+     "confident",
+     "confidently",
+     "confidence",
+     "confide"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d2a",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　修飾動詞",
+    "s": "The new manager [speaks] ______|[during meetings].",
+    "o": [
+     "confident",
+     "confidently",
+     "confidence",
+     "confide"
+    ],
+    "ring": [
+     {
+      "w": "speaks",
+      "label": "動詞"
+     }
+    ],
+    "under": [
+     {
+      "w": "during meetings",
+      "label": "介系詞片語",
+      "side": true
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "空格左邊是動詞"
+    ],
+    [
+     "en",
+     "speaks"
+    ],
+    [
+     "zh",
+     "，右邊是"
+    ],
+    [
+     "en",
+     "during meetings"
+    ],
+    [
+     "zh",
+     "，在會議中，這是介系詞片語。"
+    ]
+   ]
+  },
+  {
+   "id": "d2b",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　修飾動詞",
+    "s": "[The new manager speaks] ______|during meetings.",
+    "o": [
+     "confident",
+     "confidently",
+     "confidence",
+     "confide"
+    ],
+    "bracket": [
+     {
+      "w": "The new manager speaks",
+      "label": "句子已成立"
+     }
+    ],
+    "ban": {
+     "t": "怎麼說話？ → 補充說話的方式 → 副詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "注意，"
+    ],
+    [
+     "en",
+     "The new manager speaks."
+    ],
+    [
+     "zh",
+     "新經理說話，這句已經可以成立了。所以空格是在補充：他「怎麼」說話。補充說話的方式，要用副詞。"
+    ]
+   ]
+  },
+  {
+   "id": "d2c",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　修飾動詞",
+    "s": "The new manager [speaks] ______|[during meetings].",
+    "o": [
+     "confident",
+     "confidently",
+     "confidence",
+     "confide"
+    ],
+    "ans": 1,
+    "otag": {
+     "0": "形容詞"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 B，"
+    ],
+    [
+     "en",
+     "confidently"
+    ],
+    [
+     "zh",
+     "，說話很有自信。"
+    ]
+   ]
+  },
+  {
+   "id": "d2d",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　修飾動詞",
+    "s": "The new manager [speaks] ______|[during meetings].",
+    "o": [
+     "confident",
+     "confidently",
+     "confidence",
+     "confide"
+    ],
+    "ans": 1,
+    "trap": 0,
+    "otag": {
+     "0": "形容詞"
+    },
+    "ban": {
+     "t": "speak 不是連綴動詞：空格說明說話的方式",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "很多同學會選 A，"
+    ],
+    [
+     "en",
+     "confident"
+    ],
+    [
+     "zh",
+     "，因為中文都是「有自信」。但"
+    ],
+    [
+     "en",
+     "speak"
+    ],
+    [
+     "zh",
+     "不是連綴動詞，空格不是在描述經理這個人的狀態，而是在說明他說話的方式。"
+    ]
+   ]
+  },
+  {
+   "id": "d2e",
+   "view": {
+    "kind": "full",
+    "t": "示範2　修飾動詞",
+    "html": "The new manager <span class=\"mark\">speaks</span> <span class=\"blank fill\">confidently</span> during meetings.",
+    "zh": "新經理在會議中說話很有自信。"
+   },
+   "say": [
+    [
+     "en",
+     "The new manager speaks confidently during meetings."
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "d3q",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　修飾形容詞",
+    "s": "The delivery [fee] [was] ______ [high].",
+    "o": [
+     "unexpected",
+     "unexpectedly",
+     "expectation",
+     "expect"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第三題。這題有個小陷阱，想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d3t",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　修飾形容詞",
+    "s": "The delivery [fee] [was] ______ [high].",
+    "o": [
+     "unexpected",
+     "unexpectedly",
+     "expectation",
+     "expect"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d3a",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　修飾形容詞",
+    "s": "The delivery [fee] [was] ______ [high].",
+    "o": [
+     "unexpected",
+     "unexpectedly",
+     "expectation",
+     "expect"
+    ],
+    "ring": [
+     {
+      "w": "high",
+      "label": "形容詞",
+      "c": "blue"
+     },
+     {
+      "w": "was",
+      "label": "be 動詞"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "很多同學一看到"
+    ],
+    [
+     "en",
+     "was"
+    ],
+    [
+     "zh",
+     "，就想選形容詞。先等一下，看看空格右邊。右邊是"
+    ],
+    [
+     "en",
+     "high"
+    ],
+    [
+     "zh",
+     "，高的，這已經是形容詞了。"
+    ]
+   ]
+  },
+  {
+   "id": "d3b",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　修飾形容詞",
+    "s": "The delivery [fee] [was] ______ [high].",
+    "o": [
+     "unexpected",
+     "unexpectedly",
+     "expectation",
+     "expect"
+    ],
+    "ring": [
+     {
+      "w": "high",
+      "label": "形容詞",
+      "c": "blue"
+     }
+    ],
+    "tag": [
+     {
+      "w": "fee",
+      "label": "主詞",
+      "c": "ok"
+     }
+    ],
+    "arrows": [
+     {
+      "from": "high",
+      "to": "fee",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "high 已經在描述運費",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "描述運費的工作，"
+    ],
+    [
+     "en",
+     "high"
+    ],
+    [
+     "zh",
+     "已經做了。所以空格不是描述運費，而是在補充"
+    ],
+    [
+     "en",
+     "high."
+    ]
+   ]
+  },
+  {
+   "id": "d3c",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　修飾形容詞",
+    "s": "The delivery [fee] [was] ______ [high].",
+    "o": [
+     "unexpected",
+     "unexpectedly",
+     "expectation",
+     "expect"
+    ],
+    "ring": [
+     {
+      "w": "high",
+      "label": "形容詞",
+      "c": "blue"
+     }
+    ],
+    "arrows": [
+     {
+      "from": "blank",
+      "to": "high"
+     }
+    ],
+    "ban": {
+     "t": "補充 high：高得出乎意料 → 副詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Unexpectedly"
+    ],
+    [
+     "zh",
+     "修飾"
+    ],
+    [
+     "en",
+     "high"
+    ],
+    [
+     "zh",
+     "，表示運費高得出乎意料。修飾形容詞，要用副詞。"
+    ]
+   ]
+  },
+  {
+   "id": "d3d",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　修飾形容詞",
+    "s": "The delivery [fee] [was] ______ [high].",
+    "o": [
+     "unexpected",
+     "unexpectedly",
+     "expectation",
+     "expect"
+    ],
+    "ans": 1,
+    "trap": 0,
+    "ban": {
+     "t": "A 是形容詞：形容詞不能修飾另一個形容詞",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 B，"
+    ],
+    [
+     "en",
+     "unexpectedly."
+    ],
+    [
+     "zh",
+     "A 是形容詞，形容詞不能拿來修飾另一個形容詞。"
+    ]
+   ]
+  },
+  {
+   "id": "d3e",
+   "view": {
+    "kind": "full",
+    "t": "示範3　修飾形容詞",
+    "html": "The delivery fee was <span class=\"blank fill\">unexpectedly</span> <span class=\"mark\">high</span>.",
+    "zh": "運費高得出乎意料。"
+   },
+   "say": [
+    [
+     "en",
+     "The delivery fee was unexpectedly high."
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "d4q",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　連綴動詞後描述主詞",
+    "s": "The [customers] [seemed] ______|with the new service.",
+    "o": [
+     "satisfy",
+     "satisfied",
+     "satisfaction",
+     "satisfactorily"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後一題。這題跟剛剛示範2很像，空格都在動詞後面。想想看，答案一樣是副詞嗎？"
+    ]
+   ]
+  },
+  {
+   "id": "d4t",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　連綴動詞後描述主詞",
+    "s": "The [customers] [seemed] ______|with the new service.",
+    "o": [
+     "satisfy",
+     "satisfied",
+     "satisfaction",
+     "satisfactorily"
+    ]
+   },
+   "pause": 6
+  },
+  {
+   "id": "d4a",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　連綴動詞後描述主詞",
+    "s": "The [customers] [seemed] ______|with the new service.",
+    "o": [
+     "satisfy",
+     "satisfied",
+     "satisfaction",
+     "satisfactorily"
+    ],
+    "ring": [
+     {
+      "w": "seemed",
+      "label": "連綴動詞"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "先圈出"
+    ],
+    [
+     "en",
+     "seemed"
+    ],
+    [
+     "zh",
+     "，看起來、似乎。這是連綴動詞。"
+    ]
+   ]
+  },
+  {
+   "id": "d4b",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　連綴動詞後描述主詞",
+    "s": "The [customers] [seemed] ______|with the new service.",
+    "o": [
+     "satisfy",
+     "satisfied",
+     "satisfaction",
+     "satisfactorily"
+    ],
+    "ring": [
+     {
+      "w": "seemed",
+      "label": "連綴動詞"
+     }
+    ],
+    "tag": [
+     {
+      "w": "customers",
+      "label": "主詞",
+      "c": "blue"
+     }
+    ],
+    "arrows": [
+     {
+      "from": "blank",
+      "to": "customers"
+     }
+    ],
+    "ban": {
+     "t": "空格描述主詞 customers：顧客看起來怎麼樣？",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格在描述誰？不是在說明「看」這個動作怎麼做，而是在描述主詞"
+    ],
+    [
+     "en",
+     "customers"
+    ],
+    [
+     "zh",
+     "，顧客看起來怎麼樣。"
+    ]
+   ]
+  },
+  {
+   "id": "d4c",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　連綴動詞後描述主詞",
+    "s": "The [customers] [seemed] ______|with the new service.",
+    "o": [
+     "satisfy",
+     "satisfied",
+     "satisfaction",
+     "satisfactorily"
+    ],
+    "ring": [
+     {
+      "w": "seemed",
+      "label": "連綴動詞"
+     }
+    ],
+    "tag": [
+     {
+      "w": "customers",
+      "label": "主詞",
+      "c": "blue"
+     }
+    ],
+    "arrows": [
+     {
+      "from": "blank",
+      "to": "customers"
+     }
+    ],
+    "ban": {
+     "t": "連綴動詞後，描述主詞的狀態 → 形容詞"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "連綴動詞後面描述主詞的狀態，要用形容詞。"
+    ]
+   ]
+  },
+  {
+   "id": "d4d",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　連綴動詞後描述主詞",
+    "s": "The [customers] [seemed] ______|with the new service.",
+    "o": [
+     "satisfy",
+     "satisfied",
+     "satisfaction",
+     "satisfactorily"
+    ],
+    "ring": [
+     {
+      "w": "seemed",
+      "label": "連綴動詞"
+     }
+    ],
+    "ans": 1,
+    "ban": {
+     "t": "連綴動詞後，描述主詞的狀態 → 形容詞"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 B，"
+    ],
+    [
+     "en",
+     "satisfied"
+    ],
+    [
+     "zh",
+     "，顧客對新服務似乎很滿意。"
+    ]
+   ]
+  },
+  {
+   "id": "d4e",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　連綴動詞後描述主詞",
+    "s": "The [customers] [seemed] ______|with the new service.",
+    "o": [
+     "satisfy",
+     "satisfied",
+     "satisfaction",
+     "satisfactorily"
+    ],
+    "ring": [
+     {
+      "w": "seemed",
+      "label": "連綴動詞"
+     }
+    ],
+    "ans": 1,
+    "trap": 3,
+    "ban": {
+     "t": "這格描述顧客的狀態，所以用形容詞 satisfied。",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "D 是副詞。這格描述顧客的狀態，所以用形容詞"
+    ],
+    [
+     "en",
+     "satisfied"
+    ]
+   ]
+  },
+  {
+   "id": "d4f",
+   "view": {
+    "kind": "full",
+    "t": "示範4　連綴動詞後描述主詞",
+    "html": "The <span class=\"mark\">customers</span> seemed <span class=\"blank fill\">satisfied</span> with the new service.",
+    "zh": "顧客對新服務似乎很滿意。"
+   },
+   "say": [
+    [
+     "en",
+     "The customers seemed satisfied with the new service."
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "d4g",
+   "view": {
+    "kind": "ed",
+    "t": "示範4　連綴動詞後描述主詞",
+    "h": "補充：-ed 感到、-ing 令人",
+    "on": 0,
+    "cards": [
+     {
+      "w": "satisfied",
+      "tag": "-ed",
+      "zh": "感到滿意",
+      "who": "描述人自己的感受",
+      "ex": "The customers seemed satisfied.",
+      "exzh": "顧客似乎感到滿意。"
+     },
+     {
+      "w": "satisfying",
+      "tag": "-ing",
+      "zh": "令人滿意",
+      "who": "描述帶來感受的事物",
+      "ex": "The results were satisfying.",
+      "exzh": "結果令人滿意。"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "補充一個常考的重點。"
+    ],
+    [
+     "en",
+     "satisfied"
+    ],
+    [
+     "zh",
+     "是 E D 結尾，意思是「感到滿意」，描述人自己的感受。"
+    ],
+    [
+     "en",
+     "satisfying"
+    ],
+    [
+     "zh",
+     "是 I N G 結尾，意思是「令人滿意」，描述帶來這種感受的事物，例如"
+    ],
+    [
+     "en",
+     "The results were satisfying."
+    ],
+    [
+     "zh",
+     "這題講的是顧客自己的感受，所以用"
+    ],
+    [
+     "en",
+     "satisfied"
+    ]
+   ],
+   "hold": 1.5
+  },
+  {
+   "id": "e1",
+   "view": {
+    "kind": "sum",
+    "t": "本課整理",
+    "h": "先問：空格的工作是什麼？",
+    "rows": [
+     [
+      "描述名詞的性質",
+      "形容詞"
+     ],
+     [
+      "說明動作的方式或頻率",
+      "副詞"
+     ],
+     [
+      "補充形容詞或副詞的程度或語意",
+      "副詞"
+     ],
+     [
+      "連綴動詞後，描述主詞的狀態",
+      "形容詞"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後幫大家整理一下。每一題都先問：空格的工作是什麼？先用句構找出它修飾誰，再用句意確認。"
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "e2",
+   "view": {
+    "kind": "cta",
+    "q": [
+     "想知道自己最常卡在哪一種詞性題？"
+    ],
+    "btn": "免費做 15 題詞性前測",
+    "url": "radiholo-hub.github.io/Quote/score-rescue/pos/",
+    "sub": "做完就能試學這一課：10 題練習＋4 題確認"
+   },
+   "say": [
+    [
+     "zh",
+     "想知道自己最常卡在哪一種詞性題？到"
+    ],
+    [
+     "en",
+     "Score Rescue"
+    ],
+    [
+     "zh",
+     "免費做 15 題詞性前測，做完就能試學這一課，再用 10 題練習和 4 題確認題，檢查自己是不是真的學會了。我們下一課見！"
+    ]
+   ],
+   "hold": 3.0
+  }
+ ]
+}
