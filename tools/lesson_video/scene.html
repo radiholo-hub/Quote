@@ -41,18 +41,34 @@ svg#arr{position:absolute;inset:0;width:1920px;height:1080px;pointer-events:none
 .think{position:absolute;right:290px;bottom:85px;font:700 56px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--wine)}
 .zh{margin-top:40px;font:700 60px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted)}
 .big{margin-top:150px}
+.edt{margin-top:22px;font:900 54px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--wine)}
+.edrow{margin-top:24px;background:#fff;border:4px solid #DDD8C8;border-radius:26px;padding:16px 36px;line-height:1.35}
+.edrow.on{border-color:var(--ok);background:var(--ok-soft)}
+.edw{font-size:64px;font-weight:600;display:flex;align-items:center;gap:24px}
+.edtag{font:900 40px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:#fff;background:var(--wine);padding:4px 20px;border-radius:999px}
+.edm{font:700 44px "Noto Sans TC","Noto Sans CJK TC",sans-serif;margin-top:6px}
+.edm b{color:var(--wine)}
+.edex{font-size:50px;margin-top:6px}
+.edexzh{font:500 36px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted)}
 </style>
 </head>
 <body>
 <div id="stage"></div>
 <script>
 /* render(data, scene, n)：依場景畫出畫面。場景是累加的：seemed → customers → rule → answer → trap */
-var ORDER=['q','countdown','seemed','customers','rule','answer','trap','full'];
+var ORDER=['q','countdown','seemed','customers','rule','answer','trap','full','ed'];
 function esc(s){return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
 function render(d,scene,n){
   var at=ORDER.indexOf(scene),has=function(s){return at>=ORDER.indexOf(s)};
   var st=document.getElementById('stage');
   var head='<div class="head"><div class="title">'+esc(d.title)+'</div><div class="brand">Score Rescue｜詞性小課 第1課</div></div>';
+  if(scene==='ed'){
+    st.innerHTML=head+'<div class="edt">補充：-ed 感到、-ing 令人</div>'+d.ed.map(function(x,k){
+      return '<div class="edrow'+(k===0?' on':'')+'"><div class="edw serif">'+esc(x.w)+'<span class="edtag">'+esc(x.tag)+'</span></div>'+
+        '<div class="edm"><b>'+esc(x.zh)+'</b>　'+esc(x.who)+'</div><div class="edex serif">'+esc(x.ex)+'</div><div class="edexzh">'+esc(x.exzh)+'</div></div>';
+    }).join('');
+    return;
+  }
   if(scene==='full'){
     st.innerHTML=head+'<div class="sent serif big">The <span class="mark">customers</span> seemed <span class="blank fill">satisfied</span> with the new service.</div><div class="zh">'+esc(d.zh_full)+'</div>';
     return;

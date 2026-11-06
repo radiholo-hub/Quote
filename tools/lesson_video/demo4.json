@@ -111,7 +111,63 @@
           "The customers seemed satisfied with the new service."
         ]
       ],
-      "hold": 2.5
+      "hold": 1.0
+    },
+    {
+      "scene": "ed",
+      "hold": 2.5,
+      "say": [
+        [
+          "zh",
+          "補充一個常考的重點。"
+        ],
+        [
+          "en",
+          "satisfied"
+        ],
+        [
+          "zh",
+          "是 E D 結尾，意思是「感到滿意」，描述人自己的感受。"
+        ],
+        [
+          "en",
+          "satisfying"
+        ],
+        [
+          "zh",
+          "是 I N G 結尾，意思是「令人滿意」，描述帶來這種感受的事物，例如"
+        ],
+        [
+          "en",
+          "The results were satisfying."
+        ],
+        [
+          "zh",
+          "這題講的是顧客自己的感受，所以用"
+        ],
+        [
+          "en",
+          "satisfied"
+        ]
+      ]
+    }
+  ],
+  "ed": [
+    {
+      "w": "satisfied",
+      "tag": "-ed",
+      "zh": "感到滿意",
+      "who": "描述人自己的感受",
+      "ex": "The customers seemed satisfied.",
+      "exzh": "顧客似乎感到滿意。"
+    },
+    {
+      "w": "satisfying",
+      "tag": "-ing",
+      "zh": "令人滿意",
+      "who": "描述帶來感受的事物",
+      "ex": "The results were satisfying.",
+      "exzh": "結果令人滿意。"
     }
   ]
 }
