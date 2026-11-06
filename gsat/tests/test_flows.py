@@ -245,3 +245,34 @@ def test_exam_mode_hides_answers_until_submitted(make_page):
     page.get_by_role('button', name='開始作答').click()
     page.locator('.opt').first.click()
     assert page.locator('.opt.ok, .opt.bad').count() == 0 and page.locator('.explain').count() == 0
+
+
+def test_explanation_is_shown_in_review_with_draft_label(make_page):
+    page = make_page()
+    run_exam(page, '115', correct=lambda q: q['n'] > 3)                      # 前 3 題（有詳解）答錯
+    page.locator('.nav a.bad').first.click()
+    page.wait_for_selector('.explain')
+    t = page.inner_text('.explain')
+    for part in ('正確答案:(B)', '草稿・待人工審核', '解題關鍵', '各選項分析', '重要單字與片語', '文法補充', '(A) hasty', '(D) routine'):
+        assert part in t, part
+    page.get_by_role('link', name='下一題').click()
+    page.wait_for_function("document.querySelector('.explain').innerText.includes('amateur')")
+
+
+def test_question_without_explanation_says_so_instead_of_inventing_one(make_page):
+    page = make_page()
+    run_exam(page, '111', correct=lambda q: q['n'] > 3)
+    page.locator('.nav a.bad').first.click()
+    page.wait_for_selector('.explain')
+    t = page.inner_text('.explain')
+    assert '正確答案' in t and '詳解還在製作中' in t and '解題關鍵' not in t
+
+
+def test_explanation_contradicting_the_official_key_is_dropped(make_page):
+    """詳解的答案若和官方答案不同，整則不顯示（避免詳解與官方答案互相矛盾）。"""
+    page = make_page(url='about:blank')
+    page.route('**/exam/explain.js', lambda r: r.fulfill(content_type='text/javascript',
+              body="window.EXPLAIN={'115-1':{answer:'C',status:'draft',key:'錯的詳解',why:{},words:[]},'115-2':{answer:'C',status:'draft',key:'對的詳解',why:{},words:[]}};"))
+    page.goto(URL + '#/')
+    assert page.evaluate('Object.keys(__gsat.EXPL())') == ['115-2']
+    assert any('115-1' in e for e in page.errors)

@@ -133,3 +133,14 @@ def test_explanations_agree_with_the_official_key(data):
         y, n = k.split('-')
         assert e['answer'] == data['answers'][y][int(n) - 1], f'{k} 詳解答案與官方答案不同'
         assert e['status'] in ('draft', 'reviewed')
+
+
+def test_explanations_are_complete_and_never_claim_to_be_reviewed(data):
+    assert len(data['expl']) >= 10
+    for k, e in data['expl'].items():
+        y, n = k.split('-')
+        q = next(q for s, g, q in questions(data, y) if q['n'] == int(n))
+        assert e['status'] == 'draft', f'{k}：未經人工審核不得標為 reviewed'
+        assert e['key'].strip() and e['words'], k
+        if len(q.get('opts', [])) == 4:
+            assert sorted(e['why']) == list('ABCD') and all(v.strip() for v in e['why'].values()), f'{k} 沒有逐一說明四個選項'

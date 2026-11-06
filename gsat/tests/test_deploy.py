@@ -46,7 +46,7 @@ def open_site(browser, site):
 
 def test_public_build_has_no_exam_files_at_all(public_site):
     exam_dir = sorted(p.name for p in (public_site / 'exam').rglob('*'))
-    assert exam_dir == ['answers.js', 'exams.js', 'explain.js', 'nonmc.js']
+    assert exam_dir == ['answers.js', 'exams.js', 'explain.js', 'mixed.js', 'nonmc.js']
     big = [p for p in public_site.rglob('*') if p.is_file() and p.suffix in ('.jpg', '.png', '.pdf')]
     assert big == []
     assert 'Hay-on-Wye' not in ''.join(p.read_text(encoding='utf8') for p in public_site.rglob('*.js'))   # 試題文字不在
@@ -84,5 +84,19 @@ def test_explicit_publish_flag_includes_everything(browser, tmp_path):
     assert page.evaluate('EXAMS.length') == 10
     assert page.evaluate("document.querySelector('a.entry').innerText").count('授權') == 0
     assert (site / 'exam' / 'img' / 'ns' / '111-q1.jpg').is_file() and not (site / 'tests').exists()
+    assert page.errors == []
+    ctx.close()
+
+
+def test_public_build_still_offers_original_writing_practice(browser, public_site):
+    ctx, page = open_site(browser, public_site)
+    page.goto((public_site / 'index.html').as_uri() + '#/ns/orig/E1')
+    page.get_by_label('你的作文').fill('My school library needs help.')
+    assert '字數 5 / 至少 120' in page.inner_text('#app')
+    page.goto((public_site / 'index.html').as_uri() + '#/ns/')
+    assert '不隨網站公開' in page.inner_text('#app') and page.get_by_role('link', name='前往大考中心官網').count() == 1
+    page.goto((public_site / 'index.html').as_uri() + '#/ns/111')
+    assert '找不到這個年度' in page.inner_text('#app')              # 不會洩漏任何試題頁面
+    assert [u for u in page.requests if u.lower().endswith(('.jpg', '.png', '.pdf'))] == []
     assert page.errors == []
     ctx.close()
