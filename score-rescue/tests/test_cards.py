@@ -100,8 +100,18 @@ def test_same_button_again_stops(cards):
     assert cards.get_attribute('#front .say', 'aria-pressed') == 'false'
 
 
-def test_cards_without_audio_have_no_speaker(cards):
-    cards.click('#tab0')
-    cards.click('#next')                                  # pp-02 尚未產生音檔
-    assert cards.get_attribute('#card', 'data-id') == 'pp-02'
-    assert cards.locator('.say').count() == 0
+def test_every_card_has_speakers(cards):
+    """40 張卡都有正面 1 顆、背面每句例句 1 顆喇叭；look-01（hard / hardly）背面兩句各自一段音檔。"""
+    for c in data():
+        assert all(d.get('audio') for d in c['cards'])
+    n = cards.evaluate("""()=>{let out=[];__cards.CATS.forEach((c,k)=>{document.getElementById('tab'+k).click();
+      c.cards.forEach(()=>{out.push([document.getElementById('card').dataset.id,document.querySelectorAll('#front .say').length,document.querySelectorAll('#back .say').length]);document.getElementById('next').click()})});return out}""")
+    want = {d['id']: len(d['ex']) for c in data() for d in c['cards']}
+    assert len(n) == 40
+    for cid, f, b in n:
+        assert f == 1 and b == want[cid], cid
+    cards.click('#tab4')
+    keys = cards.evaluate("[...document.querySelectorAll('#back .say')].map(b=>[b.dataset.key,b.dataset.say])")
+    assert keys == [['look-01:ex1', 'She works hard every day.'], ['look-01:ex2', 'He hardly had time to eat lunch.']]
+    srcs = cards.evaluate("[...document.querySelectorAll('#back .say')].map(b=>__cards.srHash(b.dataset.say))")
+    assert len(set(srcs)) == 2, '兩句例句各有自己的音檔'
