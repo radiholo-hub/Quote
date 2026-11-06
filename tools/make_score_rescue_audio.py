@@ -1,4 +1,4 @@
-"""為 score-rescue/index.html 裡所有會被 🔊 朗讀的英文內容,用美式女聲 Aria 產生 mp3。
+"""為 score-rescue/index.html(以及互動搭配詞卡 score-rescue/cards/)裡所有會被 🔊 朗讀的英文內容,用美式女聲 Aria 產生 mp3。
 用法:  設定環境變數 AZURE_SPEECH_KEY 與 AZURE_SPEECH_REGION(官方 Azure AI Speech,收費產品請用這個)
        python3 tools/make_score_rescue_audio.py
        沒設定時會退回非官方的 edge-tts(僅限試用:pip install edge-tts)
@@ -84,6 +84,15 @@ def collect():
             for q in st["questions"]:
                 texts.add(q["q"] + " Answer: " + q["o"][q["a"]])
                 texts.update(o for o in q["o"] if o.strip())
+    # 互動搭配詞卡（score-rescue/cards/）：標了 audio 的卡片，念「搭配詞」與每一句英文例句
+    cards = ROOT / "score-rescue" / "cards" / "index.html"
+    if cards.exists():
+        m = re.search(r'<script type="application/json" id="cards-data">(.*?)</script>', cards.read_text(encoding="utf-8"), re.S)
+        for c in json.loads(m.group(1)):
+            for d in c["cards"]:
+                if d.get("audio"):
+                    texts.add(d["say"])
+                    texts.update(e[0].replace("**", "") for e in d["ex"])
     return sorted(texts)
 
 AZ_KEY = os.environ.get("AZURE_SPEECH_KEY", "")
