@@ -16,7 +16,7 @@
 
   <section id="home">
     <h2>歷屆學測英文</h2>
-    <p class="fine">大考中心公布的選擇題(詞彙、綜合測驗、文意選填、篇章結構、閱讀測驗)。混合題與非選擇題需要人工批改,未收錄。</p>
+    <p class="fine">大考中心公布的選擇題(詞彙、綜合測驗、文意選填、篇章結構、閱讀測驗)。混合題、中譯英與作文需自己動手寫,見每年的「非選擇題」。</p>
     <div id="exams"></div>
     <h2>原創模擬題</h2>
     <div class="grid" id="types"></div>
@@ -25,7 +25,7 @@
       <button class="btn line" id="wrongBtn">錯題本 <span id="wrongN">0</span></button>
     </div>
     <p class="fine" id="stats"></p>
-    <p class="fine">歷屆試題來源:大學入學考試中心(106 至 115 學年度),版權屬該單位;模擬題為原創仿作。成績與錯題只存在這台裝置的瀏覽器。</p>
+    <p class="fine">歷屆試題與評分原則來源:大學入學考試中心(106 至 115 學年度),版權屬該單位;模擬題為原創仿作。成績與錯題只存在這台裝置的瀏覽器。</p>
   </section>
 
   <section id="quiz" hidden>
@@ -36,6 +36,15 @@
     <div id="opts" role="radiogroup"></div>
     <div id="explain" class="explain" hidden></div>
     <button class="btn" id="next" hidden>下一題</button>
+  </section>
+
+  <section id="ns" hidden>
+    <div class="bar"><button class="link" id="nsBack">← 返回</button><span id="nsTitle"></span></div>
+    <p class="fine">混合題、中譯英與作文需要自己動手寫(建議寫在紙上或另開文件),寫完再展開官方參考答案與評分原則對照。</p>
+    <div id="nsQ"></div>
+    <button class="btn" id="nsRefBtn">看官方參考答案與評分原則</button>
+    <p class="fine" id="nsNoRef" hidden>這一年的評分原則還沒有收錄。</p>
+    <div id="nsRef" hidden></div>
   </section>
 
   <section id="result" hidden>
@@ -51,6 +60,7 @@
 <script src="questions.js"></script>
 <script src="exams.js"></script>
 <script src="answers.js"></script>
+<script src="nonmc.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

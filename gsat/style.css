@@ -35,3 +35,6 @@ h2{margin:22px 0 6px;font-size:1.15rem}
 .qimg{display:block;width:100%;max-width:520px;margin:8px 0 10px}
 .badq{background:var(--card);border-left:4px solid var(--bad);padding:6px 12px;margin:6px 0;font-size:.95rem}
 .bank{margin-top:10px;font-family:Georgia,serif;font-size:.95rem;color:var(--muted)}
+
+.nsimg{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;margin:0 0 12px;background:#fff}
+#nsRef{margin-top:14px}

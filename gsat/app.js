@@ -34,7 +34,7 @@ const examQs=(y,t)=>ALL.filter(x=>x.src==='exam'&&x.year===y&&(!t||x.type===t));
 const hasAns=y=>examQs(y).every(x=>x.a!=null&&x.a>=0);
 
 let set=[],idx=0,right=0,mode=null,answered=false,log=[];
-function show(id){['home','quiz','result'].forEach(s=>$(s).hidden=s!==id);window.scrollTo(0,0)}
+function show(id){['home','quiz','result','ns'].forEach(s=>$(s).hidden=s!==id);window.scrollTo(0,0)}
 function el(t,c,txt){const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
 
 function home(){
@@ -48,6 +48,7 @@ function home(){
     const seen=[];
     e.sections.forEach(s=>{if(seen.includes(s.type))return;seen.push(s.type);
       const b=el('button','chip',s.name+' '+examQs(e.year,s.type).length);b.disabled=!ok;b.onclick=()=>start('exam:'+e.year+':'+s.type);ch.appendChild(b)});
+    const nsb=el('button','chip','非選擇題');nsb.onclick=()=>openNs(e.year);ch.appendChild(nsb);
     box.appendChild(ch);ex.appendChild(box);
   });
   const t=$('types');t.innerHTML='';
@@ -120,6 +121,17 @@ function finish(){
   log.filter(l=>!l.good).forEach(l=>rv.appendChild(el('div','badq',(l.x.label||l.x.q)+'・正確答案 '+LET[l.x.a])));
   show('result');
 }
+function openNs(y){
+  const d=(window.NONMC||{})[y]||{q:[],ref:[]};
+  $('nsTitle').textContent=y+' 學測・非選擇題';
+  const fill=(box,arr)=>{box.innerHTML='';arr.forEach((src,i)=>{const im=el('img','nsimg');im.src=src;im.alt=y+' 年非選擇題第 '+(i+1)+' 頁';im.loading='lazy';box.appendChild(im)})};
+  fill($('nsQ'),d.q);fill($('nsRef'),d.ref);
+  $('nsRef').hidden=true;$('nsRefBtn').hidden=!d.ref.length;$('nsNoRef').hidden=!!d.ref.length;
+  $('nsRefBtn').textContent='看官方參考答案與評分原則';
+  show('ns');
+}
+$('nsRefBtn').onclick=()=>{const r=$('nsRef');r.hidden=!r.hidden;$('nsRefBtn').textContent=r.hidden?'看官方參考答案與評分原則':'收起參考答案';if(!r.hidden)r.scrollIntoView()};
+$('nsBack').onclick=home;
 $('mixed').onclick=()=>start('mixed');
 $('wrongBtn').onclick=()=>start('wrong');
 $('next').onclick=()=>{idx++;idx<set.length?render():finish()};
