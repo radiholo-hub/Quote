@@ -1,13 +1,14 @@
 name: Lesson video
 # 課程示範影片（題目動畫＋AI 旁白）。只在改到 tools/lesson_video/ 的 PR 執行，產出的 mp4 放在這次執行的 Artifacts，
-# 不寫回 repo、不部署、不用任何密鑰。
+# 同時 commit 回該 PR 分支的 tools/lesson_video/out/（試片 PR 用來審閱，不合併）。不部署、不用任何密鑰。
 on:
   pull_request:
     paths:
       - 'tools/lesson_video/**'
+      - '!tools/lesson_video/out/**'
       - '.github/workflows/lesson-video.yml'
 permissions:
-  contents: read
+  contents: write
 jobs:
   video:
     runs-on: ubuntu-latest
@@ -15,6 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref }}
           sparse-checkout: tools/lesson_video
       - name: Install tools
         timeout-minutes: 8
@@ -32,3 +34,11 @@ jobs:
           name: lesson-videos
           path: out/
           retention-days: 14
+      - name: Commit preview back to the PR branch
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          mkdir -p tools/lesson_video/out && cp out/* tools/lesson_video/out/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/lesson_video/out
+          git diff --cached --quiet || (git commit -m "試片：重新產生 lesson video" && git push origin HEAD:${{ github.head_ref }})
