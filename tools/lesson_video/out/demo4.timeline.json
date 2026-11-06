@@ -17,11 +17,11 @@
  {
   "scene": "customers",
   "start": 22.62,
-  "sec": 10.26
+  "sec": 10.27
  },
  {
   "scene": "rule",
-  "start": 32.88,
+  "start": 32.89,
   "sec": 4.68
  },
  {
@@ -37,6 +37,6 @@
  {
   "scene": "full",
   "start": 58.16,
-  "sec": 3.47
+  "sec": 5.97
  }
 ]
