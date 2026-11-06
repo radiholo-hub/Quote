@@ -22,3 +22,16 @@ header{margin-bottom:20px}
 .explain{background:var(--card);border-left:4px solid var(--acc);padding:10px 14px;margin:12px 0;border-radius:6px}
 :focus-visible{outline:3px solid var(--acc);outline-offset:2px}
 [hidden]{display:none!important}
+
+h2{margin:22px 0 6px;font-size:1.15rem}
+.exam{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:10px 0}
+.exam b{font-size:1.05rem}.exam .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.chip{min-height:38px;padding:0 14px;border-radius:999px;border:1.5px solid var(--acc);background:transparent;color:var(--acc);font:inherit;font-size:.9rem;cursor:pointer}
+.chip.solid{background:var(--acc);color:#fff}.chip:disabled{opacity:.4;cursor:not-allowed}
+.passage p{margin:0 0 .7em}.passage .blank{font-weight:700;border-bottom:2px solid var(--muted);padding:0 .25em}
+.passage .blank.cur{background:#ffe27a;color:#222;border-color:#222}
+.passage .ttl{font-family:inherit;font-weight:700;margin-bottom:.5em}
+.opt img{display:block;max-width:100%;max-height:220px;margin-top:6px}
+.qimg{display:block;max-width:220px;margin:0 0 10px}
+.badq{background:var(--card);border-left:4px solid var(--bad);padding:6px 12px;margin:6px 0;font-size:.95rem}
+.bank{margin-top:10px;font-family:Georgia,serif;font-size:.95rem;color:var(--muted)}

@@ -15,18 +15,23 @@
   </header>
 
   <section id="home">
+    <h2>歷屆學測英文</h2>
+    <p class="fine">大考中心公布的選擇題(詞彙、綜合測驗、文意選填、篇章結構、閱讀測驗)。混合題與非選擇題需要人工批改,未收錄。</p>
+    <div id="exams"></div>
+    <h2>原創模擬題</h2>
     <div class="grid" id="types"></div>
     <div class="row">
-      <button class="btn" id="mixed">隨機混合 10 題</button>
+      <button class="btn" id="mixed">詞彙隨機 10 題</button>
       <button class="btn line" id="wrongBtn">錯題本 <span id="wrongN">0</span></button>
     </div>
     <p class="fine" id="stats"></p>
-    <p class="fine">題目為原創仿作,非歷屆試題。成績與錯題只存在這台裝置的瀏覽器。</p>
+    <p class="fine">歷屆試題版權屬大學入學考試中心;模擬題為原創仿作。成績與錯題只存在這台裝置的瀏覽器。</p>
   </section>
 
   <section id="quiz" hidden>
     <div class="bar"><button class="link" id="quit">← 返回</button><span id="prog"></span></div>
     <div id="passage" class="passage" hidden></div>
+    <div id="source" class="fine"></div>
     <div id="question"></div>
     <div id="opts" role="radiogroup"></div>
     <div id="explain" class="explain" hidden></div>
@@ -35,6 +40,7 @@
 
   <section id="result" hidden>
     <h2 id="score"></h2>
+    <div id="review"></div>
     <p id="msg"></p>
     <div class="row">
       <button class="btn" id="again">再練一次</button>
@@ -43,6 +49,8 @@
   </section>
 </main>
 <script src="questions.js"></script>
+<script src="exams.js"></script>
+<script src="answers.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
