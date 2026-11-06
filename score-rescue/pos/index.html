@@ -89,8 +89,8 @@ details.more ul{margin-top:6px}
 table.tbl{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:10px}
 table.tbl th,table.tbl td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
 table.tbl th{color:var(--muted);font-weight:700;font-size:.85rem}
-.video{aspect-ratio:16/9;border-radius:12px;background:#2E2A26;color:#F7F3E8;display:grid;place-items:center;text-align:center;padding:16px}
-.video b{display:block;font-size:1.15rem}
+.vid{display:block;width:100%;aspect-ratio:16/9;border-radius:12px;background:#2E2A26}
+#afterVideo{border-left:4px solid var(--wine)}
 .steps{display:grid;gap:8px;counter-reset:s;padding:0;list-style:none}
 .steps li{counter-increment:s;display:flex;gap:10px}
 .steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:var(--wine);color:#fff;font-weight:700;font-size:.85rem;display:grid;place-items:center;margin-top:2px}
@@ -391,7 +391,11 @@ function viewLesson(){
   render('<div class="stack">'+
     '<div class="qid">詞性小課 第 1 課（免費）</div>'+
     '<h1>形容詞還是副詞？先找它修飾誰</h1>'+
-    '<div class="video" role="img" aria-label="影片佔位"><div><b>教學影片錄製中</b><span class="fine" style="color:#D9D2C0">約 5～8 分鐘：開場、判斷觀念、四個示範。<br>錄好後會放在這裡。</span></div></div>'+
+    '<video id="l1video" class="vid" controls playsinline preload="metadata" poster="lesson1-poster.jpg" src="lesson1.mp4">你的瀏覽器無法播放影片，可以直接往下看文字版重點。</video>'+
+    '<p class="fine">約 7 分鐘：判斷觀念＋四個示範。</p>'+
+    '<div class="sheet" id="afterVideo"><h3>看完了？</h3><p style="margin-top:4px">往下做 10 題練習，再用 4 題確認你會不會判斷。</p>'+
+      '<div style="margin-top:14px"><button class="btn pri" id="toPr">開始 10 題練習</button></div></div>'+
+    '<details class="sheet more" id="textVersion"><summary>影片重點文字版（判斷觀念與四個示範）</summary><div class="stack" style="margin-top:12px">'+
     '<div class="sheet stack"><h2>先懂一件事</h2>'+
       '<p>形容詞和副詞都在「修飾」，差別在於修飾的對象。</p>'+
       '<table class="tbl"><thead><tr><th>空格的工作</th><th>考慮</th></tr></thead><tbody>'+
@@ -403,10 +407,14 @@ function viewLesson(){
       '<h3>判斷三步驟</h3><ol class="steps"><li>遮住空格，看左右兩邊。</li><li>找它修飾誰：「什麼樣的＿＿？」還是「怎麼＿＿？」</li><li>先用句構找出空格的工作，再用句意確認。</li></ol></div>'+
     '<h2>看老師怎麼判斷</h2>'+
     DEMOS.map(function(d){return demoHTML(d,false)}).join('')+
-    '<div class="actions"><button class="btn pri" id="toPr">開始 10 題練習</button></div>'+
+    '<button class="btn line" id="toPr2">開始 10 題練習</button></div></details>'+
   '</div>');
   bindReveal();
-  h('toPr').addEventListener('click',function(){st.pr.i=0;viewItem('pr')});
+  function start(){st.pr.i=0;viewItem('pr')}
+  h('toPr').addEventListener('click',start);
+  h('toPr2').addEventListener('click',start);
+  /* 影片看完：捲到「往下做 10 題練習」 */
+  h('l1video').addEventListener('ended',function(){var a=h('afterVideo');if(a)a.scrollIntoView({behavior:'smooth',block:'center'})});
 }
 
 /* ---------- 5. 練習與確認（共用作答畫面） ---------- */
