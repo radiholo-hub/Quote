@@ -12,7 +12,7 @@ import asyncio, json, pathlib, subprocess, sys, tempfile
 
 HERE = pathlib.Path(__file__).resolve().parent
 VOICE = {'zh': ('zh-TW-HsiaoChenNeural', '-4%'), 'en': ('en-US-AriaNeural', '-8%')}
-GAP_PIECE = 0.12   # 同一句裡中英文片段之間
+GAP_PIECE = 0.18   # 同一句裡中英文片段之間（頭尾靜音已裁掉）
 GAP_CUE = 0.45     # 換場景之前
 W, H, FPS = 1920, 1080, 30
 
@@ -38,7 +38,9 @@ async def tts(text, lang, p):
         try:
             mp3 = p.with_suffix('.mp3')
             await edge_tts.Communicate(text, voice, rate=rate).save(str(mp3))
-            sh('ffmpeg', '-y', '-i', str(mp3), '-ar', '24000', '-ac', '1', '-c:a', 'pcm_s16le', str(p))
+            # 裁掉每段語音頭尾自帶的靜音，中英文接起來才不會一頓一頓
+            trim = 'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse'
+            sh('ffmpeg', '-y', '-i', str(mp3), '-af', trim, '-ar', '24000', '-ac', '1', '-c:a', 'pcm_s16le', str(p))
             return
         except Exception as e:  # 網路偶爾中斷就重試
             print('  重試', attempt + 1, lang, type(e).__name__)
