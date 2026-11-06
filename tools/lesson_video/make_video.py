@@ -9,7 +9,7 @@
 分段產生後接起來，讓英文唸得自然；每段裁掉頭尾靜音並統一響度。cue 可加 "hold"（秒）念完後多停留，
 "pause"（秒）為思考倒數。畫面：scene.html 依 view 截圖，每個畫面顯示到它那段旁白結束。
 """
-import asyncio, json, pathlib, subprocess, sys, tempfile
+import asyncio, json, os, pathlib, shutil, subprocess, sys, tempfile, wave
 
 HERE = pathlib.Path(__file__).resolve().parent
 VOICE = {'zh': ('zh-TW-HsiaoChenNeural', '-4%'), 'en': ('en-US-AriaNeural', '-8%')}
@@ -18,14 +18,26 @@ GAP_CUE = 0.45     # 換場景之前
 W, H, FPS = 1920, 1080, 30
 
 
+def _ffmpeg():
+    """系統有 ffmpeg 就用；沒有就用 pip 套件 imageio-ffmpeg 附的執行檔（GitHub 執行環境不一定有 ffmpeg）。"""
+    if shutil.which('ffmpeg'):
+        return 'ffmpeg'
+    import imageio_ffmpeg
+    return imageio_ffmpeg.get_ffmpeg_exe()
+
+
+FFMPEG = os.environ.get('FFMPEG') or _ffmpeg()
+
+
 def sh(*a):
+    if a and a[0] == 'ffmpeg':
+        a = (FFMPEG,) + a[1:]
     subprocess.run(a, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
 
 
 def dur(p):
-    out = subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(p)],
-                         check=True, capture_output=True, text=True).stdout
-    return float(out.strip())
+    with wave.open(str(p)) as w:
+        return w.getnframes() / w.getframerate()
 
 
 def silence(p, sec):
