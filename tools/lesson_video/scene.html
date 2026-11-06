@@ -80,6 +80,7 @@ svg#arr{position:absolute;inset:0;width:1920px;height:1080px;pointer-events:none
 .cta .q{font:900 76px/1.35 "Noto Sans TC","Noto Sans CJK TC",sans-serif}
 .cta .btn{margin-top:60px;font:900 70px "Noto Sans TC","Noto Sans CJK TC",sans-serif;background:var(--wine);color:#fff;padding:30px 80px;border-radius:999px}
 .cta .url{margin-top:44px;font:700 52px ui-monospace,"Noto Sans Mono","DejaVu Sans Mono",monospace;color:var(--ink)}
+.cta .down{margin-top:50px;font:900 120px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--wine)}
 .cta .sub{margin-top:30px;font:700 44px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted)}
 </style>
 </head>
@@ -140,7 +141,7 @@ function render(v,n){
     st.innerHTML=head(v.t)+'<div class="h2">'+esc(v.h)+'</div><div class="sum">'+v.rows.map(function(r){return '<div><span>'+esc(r[0])+'</span><b>'+esc(r[1])+'</b></div>'}).join('')+'</div>';return;
   }
   if(v.kind==='cta'){
-    st.innerHTML='<div class="cta"><div class="q">'+v.q.map(esc).join('<br>')+'</div><div class="btn">'+esc(v.btn)+'</div><div class="url">'+esc(v.url)+'</div><div class="sub">'+esc(v.sub||'')+'</div></div>';return;
+    st.innerHTML='<div class="cta"><div class="q">'+v.q.map(esc).join('<br>')+'</div>'+(v.btn?'<div class="btn">'+esc(v.btn)+'</div>':'')+(v.url?'<div class="url">'+esc(v.url)+'</div>':'')+(v.sub?'<div class="sub">'+esc(v.sub)+'</div>':'')+(v.down?'<div class="down">↓</div>':'')+'</div>';return;
   }
   if(v.kind==='full'){
     st.innerHTML=head(v.t)+'<div class="sent serif" style="margin-top:150px">'+v.html+'</div><div class="zh">'+esc(v.zh)+'</div>';return;
