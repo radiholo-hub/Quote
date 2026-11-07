@@ -3,6 +3,37 @@
 > 本文件**不含任何試題內容**,只有檔名、提交編號與操作步驟。
 > **我不會自行 force push、刪除分支、關閉 PR 或更改 repo 可見性。** 以下任何一步都要你明確同意才會做。
 
+## 0. 第一階段驗收後的更新版建議(最安全、對 Score Rescue 多益影響最小;**尚未執行任何一步**)
+
+**先決條件**:什麼都不做之前,PR #61 維持「不合併、不公開部署」。現在的暴露面只有「PR 分支本身公開可讀」;上線分支 `claude/daily-quotes-website-lbh2wi` 與網站部署都沒有這些內容(`git ls-tree -r origin/claude/daily-quotes-website-lbh2wi --name-only | grep -c '^gsat/'` 為 0)。
+
+**需要被分離的檔案(比 §1 當時更多)**:`gsat/exam/` 下的 `exams.js`、`answers.js`、`nonmc.js`、`mixed.js`、`img/`(含 `img/ns/`)是大考中心內容;`explain.js`(針對真題的詳解、中文翻譯)、`vocab_index.js`(逐字比對出的出現紀錄)、`vocab_reviews.js`(人工審核結果)是**由真題衍生**的內容,權利比照真題未確認,也一併分離。原創內容(`gsat/data/*`、`gsat/audio/*.mp3`、程式、測試、文件)不受影響。公開版 `tools/stage_site.sh` 已經會對上述檔案放空殼(含 `VOCAB_INDEX=null`)。
+
+### 建議做法:「乾淨新分支 + 真題另存私有 repo」,不改寫任何既有歷史
+1. **(你)** 確認授權。授權前不做不可逆的事。
+2. **(你)** 在 GitHub 新建一個私有 repo(例如 `Quote-gsat-exam`),把你電腦上的 `gsat/exam/` 整個放進去。這一步我可以協助整理檔案,但建立 repo、設定存取要由你做。
+3. **(我,新資料夾,不動現有遠端)** 在全新 clone 用 `git filter-repo --refs refs/heads/claude/gsat-clean` 只在**新分支**上移除上述路徑,補回空殼(§4 的步驟,空殼清單要加上 `vocab_index.js`=`window.VOCAB_INDEX=null;`、`vocab_reviews.js`=`window.VOCAB_REVIEWS={};`),推送**新名稱**的分支(不是 force push),開新 PR。依賴真題的測試會自動略過(`needs_exam`),我已用「換成空殼」模擬驗證過。
+4. **(你同意後我才做)** 新 PR 的 CI 全過、你看過之後:關閉 PR #61、刪除舊分支。**這一步前,舊分支仍然公開。**
+5. **(你)** 向 GitHub Support 申請清除 `refs/pull/61/head` 與舊 SHA 的快取檢視(§5);這是 GitHub 官方文件建議的流程,我無法代辦。
+6. 之後要在本機審核或跑完整測試時,把私有 repo 的內容放回 `gsat/exam/`(該目錄已不會被公開版本庫追蹤:新分支加上 `.gitignore` 條目)。
+
+### 對各部分的影響(說明在前,執行在後)
+| 項目 | 影響 |
+|---|---|
+| **Score Rescue 多益網站** | **無影響。** 上線分支與其檔案、既有 `Generate audio` 流程、既有部署都不動。PR 對多益相關檔案的唯一改動是 `tools/stage_site.sh`(多複製 `gsat/` 並加上真題閘門)與 `score-rescue/tests/test_stage_site.py`(對應測試),新分支同樣帶著,不會因為清理而變多或變少。 |
+| 每日佳句 | 無影響(沒有檔案變動)。 |
+| PR #61 | 保留作為歷史討論;之後由新 PR 取代。舊 PR 的 commit 不會被改寫,所以 PR 上的審查紀錄與 CI 紀錄都還在。 |
+| 分支與 SHA | 新分支是新的 SHA(`filter-repo` 改寫的是**新分支自己的**提交),舊 SHA 不再對應;我們文件裡引用的 SHA 要改成新的。 |
+| 測試與 CI | `gsat-tests` 在沒有真題內容時會略過依賴真題的測試(數量以模擬當時為準,執行時會顯示);CI 不再驗證詳解與審核表,**真題相關功能的驗證會改成在有私有資料的本機執行**。 |
+| 教學審核流程 | 審核表需要真題文字,所以產生審核表要在你的電腦(有私有資料的 `gsat/exam/`)上跑 `tools/gsat_review_sheet.py`;我這邊也一樣,資料不在公開分支上。 |
+| 網站部署 | 公開網站只有原創題、單字資料庫(含發音)與導向大考中心官網的連結,真題功能降級,和現在的閘門行為一致。 |
+| 已 clone 的副本 | 無法收回;forks 目前為 0,clone 數只有 repo 管理員看得到。 |
+
+### 為什麼不選其他方案(重點)
+- **只把 repo 改成私有**:最快,但免費方案的私有 repo 不能用 GitHub Pages,**每日佳句與 Score Rescue 可能因此下線**,對多益影響最大。除非你確認方案可以,否則不建議。
+- **在原分支 filter-repo 後 force push**:改寫已公開歷史、PR #61 的 commit 對應會亂、`refs/pull/61/head` 仍殘留;風險最高,且你明確要求不得改寫歷史。
+- **只 `git rm`**:歷史裡仍然拿得到檔案,沒有達到目的。
+
 ## 1. 現況(皆可用指令重現)
 
 | 項目 | 狀況 | 重現方式 |
