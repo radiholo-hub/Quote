@@ -45,12 +45,12 @@ def main():
         head = p.read_bytes()[:3]
         if not (head == b'ID3' or head[:2] in (b'\xff\xfb', b'\xff\xf3', b'\xff\xf2')): bad.append(f'不是 mp3 檔頭:{it["file"]}')
         dur, fmt, codec, sr, ch = probe(p); mean, mx = volume(p)
-        cps = len(it['text']) / dur
+        cps = len(it.get('speak', it['text'])) / dur
         if codec != 'mp3' or ch != 1 and ch != 2: bad.append(f'編碼異常:{it["file"]} {codec} {ch}ch')
         if dur < 0.3: bad.append(f'時長太短:{it["file"]} {dur:.2f}s')
         if mean < -38: bad.append(f'音量過小(疑似靜音):{it["file"]} mean {mean} dB')
         if mx >= -0.05: bad.append(f'疑似爆音(削波):{it["file"]} max {mx} dB')
-        rows.append({**{k: it[k] for k in ('hash', 'kind', 'rate', 'file', 'refs')}, 'chars': len(it['text']), 'dur': round(dur, 2), 'mean': mean, 'max': mx, 'cps': round(cps, 1), 'sr': sr, 'ch': ch, 'text': it['text'][:60]})
+        rows.append({**{k: it[k] for k in ('hash', 'kind', 'rate', 'file', 'refs')}, 'chars': len(it.get('speak', it['text'])), 'dur': round(dur, 2), 'mean': mean, 'max': mx, 'cps': round(cps, 1), 'sr': sr, 'ch': ch, 'text': it['text'][:60]})
         byhash[(it['text'], it['rate'])] = dur
     # 每篇文章:慢速要比正常速度長,約 1.3–1.9 倍
     ratios = []

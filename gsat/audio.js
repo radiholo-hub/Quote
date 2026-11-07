@@ -31,13 +31,15 @@ window.GSATAudio = (function () {
     try { speechSynthesis.cancel(); } catch (e) {}
     emit();
   }
+  // 縮寫要照字唸:sb. → somebody、sth. → something(和 tools/build_gsat_audio_manifest.py 的 spoken() 相同規則)
+  const spoken = t => t.replace(/\bsb\.?(?=\W|$)/gi, 'somebody').replace(/\bsth\.?(?=\W|$)/gi, 'something');
   function fallback(me) {
     if (cur !== me || me.via === 'device') return;            // error 事件與 play() 失敗可能同時觸發，只能退回一次，否則會念兩遍
     try { if (me.a) me.a.pause(); } catch (e) {}              // 載入失敗的音訊元件先停掉，再改用裝置語音
     me.via = 'device'; me.a = null;
     try {
       speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(me.text); u.lang = 'en-US'; u.rate = me.slow ? 0.55 : 0.85;
+      const u = new SpeechSynthesisUtterance(spoken(me.text)); u.lang = 'en-US'; u.rate = me.slow ? 0.55 : 0.85;
       u.onend = u.onerror = () => { if (cur === me) { cur = null; emit(); } };
       speechSynthesis.speak(u);
     } catch (e) { cur = null; toast('這個瀏覽器無法播放發音'); }

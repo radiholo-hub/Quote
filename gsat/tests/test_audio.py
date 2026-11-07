@@ -1,4 +1,5 @@
 """語音：音檔清單與雜湊、檔案真的存在且是有效 mp3、播放器行為（不重疊、再按停止、暫停／繼續／重播、慢速、正式考禁用、找不到檔案時的退路）。"""
+import json
 import re
 import shutil
 import subprocess
@@ -254,3 +255,24 @@ def test_pause_before_loading_finishes_does_not_switch_to_device_voice(make_page
     page.wait_for_function('window.__audios.length===1')
     page.wait_for_timeout(500)
     assert page.evaluate('window.__spoken') == []
+
+
+def test_abbreviations_sb_and_sth_are_spoken_as_words():
+    """sb. 要唸 somebody、sth. 要唸 something:畫面文字不變,合成語音與裝置語音用的文字會展開。"""
+    t = (ROOT / 'data' / 'audio_manifest.js').read_text(encoding='utf8')
+    items = json.loads(t[t.index('window.AUDIO_MANIFEST = ') + 24:].rstrip().rstrip(';'))['items']
+    abbr = [i for i in items if re.search(r'\b(sb|sth)\b', i['text'], re.I)]
+    assert len(abbr) >= 4
+    for i in abbr:
+        assert re.search(r'\b(sb|sth)\b', i['speak'], re.I) is None, i
+    assert {i['text']: i['speak'] for i in abbr}['assault sb. with sth.'] == 'assault somebody with something'
+    assert all('speak' not in i for i in items if i not in abbr)
+
+
+def test_device_voice_also_expands_abbreviations(make_page):
+    page = make_page(url='about:blank', init=[TRACK_AUDIO, FAKE_SPEECH])
+    page.route('**/audio/*.mp3', lambda r: r.fulfill(status=404))
+    page.goto(URL + '#/word/dread-v')
+    page.locator('.coll .spk, [data-audio="dread doing sth."]').first.click()
+    page.wait_for_function('window.__spoken.length===1')
+    assert page.evaluate('window.__spoken') == ['dread doing something']

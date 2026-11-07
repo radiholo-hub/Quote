@@ -590,7 +590,8 @@ window.AUDIO_MANIFEST = {
 "file": "1bb9df41134874.mp3",
 "refs": [
 "dread-v"
-]
+],
+"speak": "dread doing something"
 },
 {
 "hash": "990e24c866ce",
@@ -730,7 +731,8 @@ window.AUDIO_MANIFEST = {
 "file": "ccc71e9e06c3b.mp3",
 "refs": [
 "assault-v"
-]
+],
+"speak": "assault somebody with something"
 },
 {
 "hash": "169485e9f6dda7",
@@ -780,7 +782,8 @@ window.AUDIO_MANIFEST = {
 "file": "168fc3749f6438.mp3",
 "refs": [
 "elbow-v"
-]
+],
+"speak": "elbow somebody aside"
 },
 {
 "hash": "110f8c001dc355",
@@ -1600,7 +1603,8 @@ window.AUDIO_MANIFEST = {
 "file": "1c780e2d8a4cdb.mp3",
 "refs": [
 "struggle-v"
-]
+],
+"speak": "struggle to do something"
 },
 {
 "hash": "fa30ca744b335",

@@ -29,7 +29,7 @@ async def main():
         path = OUT / it['file']
         if path.exists(): continue
         g['RATE'] = SLOW_RATE if it['rate'] == 'slow' else normal
-        if not await g['synth'](it['text'], path):
+        if not await g['synth'](it.get('speak', it['text']), path):
             failed.append(it['text'][:40])
         if i % 20 == 0: print(f'{i + 1}/{len(items)}', flush=True)
     if failed:

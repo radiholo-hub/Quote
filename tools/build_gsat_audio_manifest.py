@@ -17,6 +17,13 @@ def sr_hash_fn():
     return g['sr_hash']
 
 
+def spoken(text):
+    """朗讀用的文字:縮寫要照字唸。sb. → somebody、sth. → something。畫面上仍顯示原本的 sb./sth.,檔名雜湊也用畫面文字,
+    所以前端不需要改;只有合成語音時使用這個文字。"""
+    t = re.sub(r'\bsb\.?(?=\W|$)', 'somebody', text, flags=re.I)
+    return re.sub(r'\bsth\.?(?=\W|$)', 'something', t, flags=re.I)
+
+
 def fill_blanks(text, answers):
     """原創綜合測驗／篇章結構文章裡的 (n) ______ 填入正確答案，讓朗讀是完整的文章。"""
     def rep(m):
@@ -37,6 +44,7 @@ def build():
         if fid in seen:
             seen[fid]['refs'].append(ref); return
         it = {'hash': fid, 'kind': kind, 'text': text, 'rate': 'slow' if slow else 'normal', 'file': fid + '.mp3', 'refs': [ref]}
+        if spoken(text) != text: it['speak'] = spoken(text)
         seen[fid] = it; items.append(it)
 
     V = d['vocab']
