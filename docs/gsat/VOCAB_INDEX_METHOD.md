@@ -76,7 +76,7 @@
 1. **45 筆詞性有疑義的比對**:用 `python3 tools/gsat_vocab_review_sheet.py --out <版本庫以外的資料夾>` 產生待審核表(含題目上下文),審核後填入 `gsat/exam/vocab_reviews.js`,再執行 `python3 tools/build_vocab_index.py`。待審核最多的詞條:impact-n(10), escape-v(6), official-adj(5), stress-v(4), tight-adj(3), struggle-v(3), gravity-n(2), crash-v(2)。
 2. **所有詞條(status: draft)**:中文解釋、搭配詞、原創例句、同義/反義與相似字辨析,都是 AI 撰寫的草稿。
 3. **10 題詳解與 20 題延伸練習**:全部待審核。審核表:`python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾>`(含引用的詞條一併審核)。
-4. **語音**:我只驗證了檔案有效、時長合理、音量正常,**沒有逐檔聽過**。請抽聽發音是否正確自然(尤其是 `elbow`、`assault`、`dread` 與慢速文章)。
+4. **語音**:機器檢查只驗證了檔案有效、時長合理、音量正常。負責人已初步試聽部分音檔,沒有明顯問題,但**尚未全面驗收**,187 個檔不會因此全部標為已通過;沒有逐段標記的仍是「待審核」(見 AUDIO_PRODUCTION.md)。
 5. **語音服務授權**:現行產生方式在沒有設定 `AZURE_SPEECH_KEY` 時會退回**非官方的 edge-tts(僅限試用)**,這批音檔就是用它產生的。要當作付費產品,請設定 Azure AI Speech 的金鑰重新產生(同一份清單、同一個命名規則,刪掉 `gsat/audio` 重跑即可)。
 6. **歷屆試題與出現索引的使用權利**仍待確認。公開部署預設不含 `gsat/exam/`(包含 `vocab_index.js`);單字頁、發音、延伸練習等原創內容不受影響。
 

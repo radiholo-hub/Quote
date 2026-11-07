@@ -31,7 +31,7 @@ def test_page_has_all_sections_and_marks_everything_unreviewed(make_page, page_f
     for k in ('單字發音', '衍生字發音', '片語與搭配詞', '完整例句', '文章・正常速度', '文章・慢速'):
         assert any(k in h for h in heads), k
     assert pg.locator('.row').count() == 187 and pg.locator('.fam').count() >= 9
-    assert '還沒有人工聆聽過' in pg.locator('.banner').inner_text()
+    assert '部分已由人工試聽' in pg.locator('.banner').inner_text() and '尚未全面驗收' in pg.locator('.banner').inner_text()
     assert pg.locator('input[type=radio][value=待審核]:checked').count() == 187     # 預設全是待審核
     assert not pg.evaluate('document.documentElement.scrollWidth > innerWidth')
 

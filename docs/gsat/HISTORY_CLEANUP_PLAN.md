@@ -3,6 +3,8 @@
 > 本文件**不含任何試題內容**,只有檔名、提交編號與操作步驟。
 > **我不會自行 force push、刪除分支、關閉 PR 或更改 repo 可見性。** 以下任何一步都要你明確同意才會做。
 
+> **最新版請看 [PRIVATE_STORAGE_AND_RESTORE.md](PRIVATE_STORAGE_AND_RESTORE.md)**(已原則上同意「原始題庫私有保存 + 乾淨公開分支」;含已演練的備份/還原、執行前檢查表,並把乾淨分支的做法改為「在上線分支上新增一次乾淨提交」,取代下方 §0 步驟 3 與 §4 的 `git filter-repo`)。付費題庫的伺服器端權限規劃見 [PAID_CONTENT_ARCHITECTURE.md](PAID_CONTENT_ARCHITECTURE.md)。
+
 ## 0. 第一階段驗收後的更新版建議(最安全、對 Score Rescue 多益影響最小;**尚未執行任何一步**)
 
 **先決條件**:什麼都不做之前,PR #61 維持「不合併、不公開部署」。現在的暴露面只有「PR 分支本身公開可讀」;上線分支 `claude/daily-quotes-website-lbh2wi` 與網站部署都沒有這些內容(`git ls-tree -r origin/claude/daily-quotes-website-lbh2wi --name-only | grep -c '^gsat/'` 為 0)。
