@@ -4,90 +4,59 @@
   {
    "id": "hook1",
    "view": {
-    "kind": "sent",
-    "t": "先考你一題",
-    "s": "The customers [seemed] ______|with the new service.",
+    "kind": "pair",
+    "t": "只換一個動詞，兩格怎麼填？",
     "o": [
-     "satisfied",
-     "satisfactorily"
+     "calm",
+     "calmly"
     ],
-    "olab": [
-     "B",
-     "D"
-    ],
-    "hook": "你會選哪一個？"
+    "lines": [
+     {
+      "n": "①",
+      "s": "The manager [replied] ______."
+     },
+     {
+      "n": "②",
+      "s": "The manager [seemed] ______."
+     }
+    ]
    },
    "say": [
     [
      "zh",
-     "先考你一題。空格要填"
+     "兩句只差一個動詞。哪一格填"
     ],
     [
      "en",
-     "satisfied"
+     "calm?"
     ],
     [
      "zh",
-     "，還是"
+     "哪一格填"
     ],
     [
      "en",
-     "satisfactorily?"
+     "calmly?"
     ]
    ]
   },
   {
    "id": "hook2",
    "view": {
-    "kind": "sent",
-    "t": "先考你一題",
-    "s": "The customers [seemed] ______|with the new service.",
+    "kind": "pair",
+    "t": "只換一個動詞，兩格怎麼填？",
     "o": [
-     "satisfied",
-     "satisfactorily"
+     "calm",
+     "calmly"
     ],
-    "olab": [
-     "B",
-     "D"
-    ],
-    "hook": "你會選哪一個？",
-    "ring": [
+    "lines": [
      {
-      "w": "seemed",
-      "label": "動詞"
-     }
-    ],
-    "ban": {
-     "t": "空格在動詞後面，就該選副詞嗎？",
-     "c": "red"
-    }
-   },
-   "say": [
-    [
-     "zh",
-     "空格在動詞後面，很多同學直覺選副詞。真的是這樣嗎？"
-    ]
-   ]
-  },
-  {
-   "id": "hook3",
-   "view": {
-    "kind": "sent",
-    "t": "先考你一題",
-    "s": "The customers [seemed] ______|with the new service.",
-    "o": [
-     "satisfied",
-     "satisfactorily"
-    ],
-    "olab": [
-     "B",
-     "D"
-    ],
-    "hook": "你會選哪一個？",
-    "ring": [
+      "n": "①",
+      "s": "The manager [replied] ______."
+     },
      {
-      "w": "seemed",
-      "label": "動詞"
+      "n": "②",
+      "s": "The manager [seemed] ______."
      }
     ]
    },
@@ -103,7 +72,7 @@
    "say": [
     [
      "zh",
-     "四個選項的單字都認識，卻還是選錯，問題常常不在單字，而在於這個空格在句子裡負責什麼工作。這一課教你一個方法：先找它修飾誰。剛剛那一題，我們在示範4揭曉。"
+     "四個選項的單字都認識，卻還是選錯，問題常常不在單字，而在於這個空格在句子裡負責什麼工作。這一課教你一個方法：先找它修飾誰。剛剛那兩句，講完觀念就回來揭曉。"
     ]
    ]
   },
@@ -417,6 +386,95 @@
      "這裡描述的是計畫本身：這個計畫是合理的，所以用形容詞。"
     ]
    ]
+  },
+  {
+   "id": "r1",
+   "view": {
+    "kind": "pair",
+    "t": "回到開場的兩句",
+    "lines": [
+     {
+      "n": "①",
+      "s": "The manager [replied] ______.",
+      "fill": "calmly",
+      "zh": "經理冷靜地回答。"
+     },
+     {
+      "n": "②",
+      "s": "The manager [seemed] ______."
+     }
+    ],
+    "ring": [
+     {
+      "w": "replied",
+      "label": "動詞"
+     }
+    ],
+    "ban": {
+     "t": "經理怎麼回答？ → 說明回答的方式 → 副詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "回到開場的兩句。經理怎麼回答？"
+    ],
+    [
+     "en",
+     "Calmly"
+    ],
+    [
+     "zh",
+     "說明回答的方式，所以用副詞。"
+    ]
+   ]
+  },
+  {
+   "id": "r2",
+   "view": {
+    "kind": "pair",
+    "t": "回到開場的兩句",
+    "lines": [
+     {
+      "n": "①",
+      "s": "The manager [replied] ______.",
+      "fill": "calmly",
+      "zh": "經理冷靜地回答。"
+     },
+     {
+      "n": "②",
+      "s": "The manager [seemed] ______.",
+      "fill": "calm",
+      "zh": "經理看起來很冷靜。"
+     }
+    ],
+    "ring": [
+     {
+      "w": "seemed",
+      "label": "連綴動詞"
+     }
+    ],
+    "ban": {
+     "t": "經理看起來怎麼樣？ → 描述經理的狀態 → 形容詞",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "經理看起來怎麼樣？"
+    ],
+    [
+     "en",
+     "Calm"
+    ],
+    [
+     "zh",
+     "描述經理的狀態，所以用形容詞。"
+    ]
+   ],
+   "hold": 1.0
   },
   {
    "id": "c7",
@@ -1233,7 +1291,7 @@
    "say": [
     [
      "zh",
-     "最後一題，就是開場考你的那一題。這題跟剛剛示範2很像，空格都在動詞後面。想想看，答案一樣是副詞嗎？"
+     "最後一題。這題跟剛剛示範2很像，空格都在動詞後面。想想看，答案一樣是副詞嗎？"
     ]
    ]
   },
