@@ -16,6 +16,13 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper);col
 .sent{margin-top:118px;font-size:92px;line-height:1.3;font-weight:500}
 .sent .l2{margin-top:46px}
 .sent.solo{margin-top:200px}
+.lv{position:absolute;left:110px;right:110px;top:580px;display:grid;grid-template-columns:1fr;gap:4px;background:#fff;border:4px solid var(--line);border-radius:26px;padding:14px 34px}
+.lv .g{display:flex;align-items:baseline;gap:18px;font:500 40px/1.3 "Source Serif 4","Noto Serif CJK TC",Georgia,serif}
+.lv .g b{flex:none;font:900 34px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:#fff;background:var(--wine);padding:2px 16px;border-radius:999px}
+.lv .g i{font-style:normal;font:700 30px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted);margin-left:4px}
+.lv .r{display:flex;gap:56px}
+.lv .nt{margin-top:4px;font:700 30px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--bad)}
+.sent.lvup{margin-top:140px}
 .pair{margin-top:150px;display:grid;gap:0}
 .pl{font-size:88px;line-height:1.3;font-weight:500;margin-top:44px}
 .pl:first-child{margin-top:0}
@@ -31,6 +38,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper);col
 .otag{white-space:nowrap}
 .opts.gl .otag{font-size:30px;padding:4px 14px}
 .szh.low{margin-top:96px}
+.szh.low.lvz{margin-top:62px}
 .row .ex small{display:block;font:700 40px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted);margin-top:2px}
 .w{position:relative;display:inline-block;padding:0 .08em;border-radius:14px}
 .blank{display:inline-block;min-width:3.4em;border-bottom:7px solid var(--ink);transform:translateY(-6px)}
@@ -177,8 +185,8 @@ function render(v,n){
     st.innerHTML=head(v.t)+'<div class="sent serif" style="margin-top:150px">'+v.html+'</div><div class="zh">'+esc(v.zh)+'</div>';return;
   }
   /* sent：句子，選項可有可無 */
-  h=head(v.t)+sentHTML(v.s,v.fill,!v.o).replace('class="sent serif"','class="sent serif'+(v.zh?' tight':'')+'"');
-  if(v.zh)h+='<div class="szh'+(v.arrows&&v.arrows.length?' low':'')+'">'+esc(v.zh)+'</div>';
+  h=head(v.t)+sentHTML(v.s,v.fill,!v.o&&!v.lv).replace('class="sent serif"','class="sent serif'+(v.lv?' lvup':'')+(v.zh&&!v.lv?' tight':'')+'"');
+  if(v.zh)h+='<div class="szh'+(v.arrows&&v.arrows.length?' low':'')+(v.lv?' lvz':'')+'">'+esc(v.zh)+'</div>';
   if(v.hook)h+='<div class="hookq">'+esc(v.hook)+'</div>';
   if(v.o){
     h+='<div class="opts serif'+(v.otag&&Object.keys(v.otag).length>=4?' gl':'')+'">'+v.o.map(function(t,k){
@@ -190,6 +198,12 @@ function render(v,n){
   }
   st.innerHTML=h+'<svg id="arr"></svg>';
   marks(v);
+  if(v.lv){
+    /* 連綴動詞表：v.lv = [[類別, [[字, 中文], ...]], ...]，v.lvnote = 底部提醒 */
+    /* v.lv = 每一行 [[類別, [[字, 中文], ...]], ...]（一行可放多個類別） */
+    st.insertAdjacentHTML('beforeend','<div class="lv">'+v.lv.map(function(row){return '<div class="r">'+row.map(function(g){return '<div class="g"><b>'+esc(g[0])+'</b><span>'+g[1].map(function(w){return esc(w[0])+'<i>'+esc(w[1])+'</i>'}).join('　')+'</span></div>'}).join('')+'</div>'}).join('')+
+      (v.lvnote?'<div class="nt">'+esc(v.lvnote)+'</div>':'')+'</div>');
+  }
   if(v.ban)st.insertAdjacentHTML('beforeend','<div class="ban '+(v.ban.c||'')+'">'+esc(v.ban.t)+'</div>');
   if(n)st.insertAdjacentHTML('beforeend','<div class="think">先想一想</div><div class="count">'+n+'</div>');
 }
