@@ -7,8 +7,10 @@ window.GSATWriting = (function () {
   // ---------- 儲存 ----------
   const get = k => env.DB.ns[k] || (env.DB.ns[k] = {});
   let saveTimer = null;
-  function save() { clearTimeout(saveTimer); saveTimer = setTimeout(flush, 400); window.dispatchEvent(new Event('gsat-ns-change')); }
-  function flush() { clearTimeout(saveTimer); env.saveDB(); }
+  let dirty = false;
+  function save() { dirty = true; clearTimeout(saveTimer); saveTimer = setTimeout(flush, 400); window.dispatchEvent(new Event('gsat-ns-change')); }
+  // 頁面隱藏、關閉時也會呼叫；使用者可能還沒進過寫作頁（env 還是空的），或沒有待存的內容，這時什麼都不做
+  function flush() { clearTimeout(saveTimer); if (dirty && env) { dirty = false; env.saveDB(); } }
   window.addEventListener('visibilitychange', flush);
   window.addEventListener('pagehide', flush);
 

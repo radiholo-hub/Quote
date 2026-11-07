@@ -106,3 +106,21 @@ def test_writing_pages_fit_every_screen(make_page, device):
         for ta in page.locator('textarea').all():
             assert ta.bounding_box()['width'] <= DEVICES[device]['viewport']['width']
     assert page.errors == []
+
+
+def test_page_hide_and_visibility_events_never_error_before_the_writing_page_is_opened(make_page):
+    """Safari 在頁面隱藏、重新整理時會觸發這些事件；沒進過寫作頁時（寫作模組還沒初始化）不能出錯。"""
+    page = make_page()
+    page.evaluate("window.dispatchEvent(new Event('pagehide')); document.dispatchEvent(new Event('visibilitychange', {bubbles: true}))")
+    page.goto(URL + '#/practice')
+    page.evaluate("window.dispatchEvent(new Event('pagehide')); document.dispatchEvent(new Event('visibilitychange', {bubbles: true}))")
+    assert page.errors == []
+
+
+def test_pending_writing_is_saved_when_the_page_is_hidden(make_page):
+    page = make_page()
+    page.goto(URL + '#/ns/orig/E1')
+    page.get_by_label('你的作文').fill('saved on hide')
+    page.evaluate("document.dispatchEvent(new Event('visibilitychange', {bubbles: true}))")       # 還沒等到 0.4 秒的自動儲存
+    assert 'saved on hide' in page.evaluate("localStorage.getItem('gsat-db-v2')")
+    assert page.errors == []
