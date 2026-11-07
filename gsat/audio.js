@@ -59,7 +59,7 @@ window.GSATAudio = (function () {
     a.addEventListener('error', () => fallback(me));
     a.addEventListener('ended', () => { if (cur === me) { cur = null; emit(); } });
     const pr = a.play();
-    if (pr && pr.catch) pr.catch(() => fallback(me));
+    if (pr && pr.catch) pr.catch(e => { if (!(e && e.name === 'AbortError')) fallback(me); });   // AbortError＝使用者在載入完成前就按了暫停/停止,不是播放失敗,不能改走裝置語音
     emit();
     return true;
   }
@@ -67,7 +67,7 @@ window.GSATAudio = (function () {
   function resume() {
     if (!cur || !cur.paused) return;
     if (hooks.blocked()) { stop(); return; }
-    try { if (cur.via === 'file') { const me = cur, p = cur.a.play(); if (p && p.catch) p.catch(() => fallback(me)); } else speechSynthesis.resume(); } catch (e) {}
+    try { if (cur.via === 'file') { const me = cur, p = cur.a.play(); if (p && p.catch) p.catch(e => { if (!(e && e.name === 'AbortError')) fallback(me); }); } else speechSynthesis.resume(); } catch (e) {}
     cur.paused = false; emit();
   }
   function replay() { if (last) play(last.text, Object.assign({}, last.opts, { restart: true })); }

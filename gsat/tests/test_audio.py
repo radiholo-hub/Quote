@@ -241,3 +241,16 @@ def test_exam_passages_get_no_read_aloud_until_rights_are_confirmed(make_page):
     page.locator('.nav a.bad').first.click()
     page.wait_for_selector('.explain')
     assert page.locator('[data-role=passage-player]').count() == 0
+
+
+def test_pause_before_loading_finishes_does_not_switch_to_device_voice(make_page, stub_mp3):
+    """在音檔載入完成前就按暫停,瀏覽器會讓 play() 以 AbortError 失敗;這不是播放失敗,不能改用裝置語音
+    (CI 上曾因此讓「暫停後繼續」偶發失敗,實際使用者快速點擊也會遇到)。"""
+    abort = "(()=>{const o=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){o.call(this).catch(()=>{});return Promise.reject(new DOMException('interrupted','AbortError'))}})()"
+    page = make_page(url='about:blank', init=[TRACK_AUDIO, FAKE_SPEECH, abort])
+    route_stub_audio(page, stub_mp3)
+    page.goto(URL + '#/word/tight-adj')
+    page.locator('.whead .spk').click()
+    page.wait_for_function('window.__audios.length===1')
+    page.wait_for_timeout(500)
+    assert page.evaluate('window.__spoken') == []
