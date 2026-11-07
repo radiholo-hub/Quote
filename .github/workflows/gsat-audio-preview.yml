@@ -1,0 +1,96 @@
+name: GSAT audio (PR branches)
+# 學測英文的單字、搭配詞、例句與原創文章音檔。沿用既有做法（tools/make_score_rescue_audio.py 的 sr_hash 與聲音設定、Azure 優先、edge-tts 僅供試用）。
+# 這個流程只在「上線分支以外」的 claude/** 分支執行，讓 PR 在合併前就有可播放的音檔；上線分支維持原本的 Generate audio 流程
+# （合併後，把 tools/make_gsat_audio.py 與 gsat/audio 納入該流程即可，見 docs/gsat/VOCAB_INDEX_METHOD.md）。
+# 權限分兩段：產生音檔的工作只有唯讀權限；提交音檔的工作只接受 gsat/audio/<雜湊>.mp3，檔名、大小與數量都有限制。
+on:
+  push:
+    branches: ['claude/**', '!claude/daily-quotes-website-lbh2wi']
+    paths: ['gsat/data/audio_manifest.js', 'tools/make_gsat_audio.py', 'tools/make_score_rescue_audio.py', '.github/workflows/gsat-audio-preview.yml']
+permissions: {}
+concurrency:
+  group: gsat-audio-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: read
+    outputs:
+      changed: ${{ steps.pack.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install edge-tts
+      - env:
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+        run: python tools/make_gsat_audio.py
+      - name: 收集新產生的音檔
+        id: pack
+        run: |
+          mkdir -p "$RUNNER_TEMP/new-audio"
+          n=0
+          for f in $(git ls-files --others --exclude-standard gsat/audio); do
+            case "$f" in gsat/audio/*.mp3) cp "$f" "$RUNNER_TEMP/new-audio/"; n=$((n+1));; esac
+          done
+          echo "新音檔:$n 個"
+          if [ "$n" -gt 0 ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; else echo "changed=false" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.pack.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: gsat-new-audio
+          path: ${{ runner.temp }}/new-audio
+          retention-days: 1
+          if-no-files-found: error
+
+  commit:
+    needs: generate
+    if: needs.generate.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: gsat-new-audio
+          path: ${{ runner.temp }}/new-audio
+      - name: 只放入合格的 mp3（檔名、大小、數量、檔頭都檢查）
+        run: |
+          cd "$RUNNER_TEMP/new-audio"
+          count=$(ls | wc -l)
+          [ "$count" -le 400 ] || { echo "::error::音檔數量異常($count)"; exit 1; }
+          for f in *; do
+            echo "$f" | grep -Eq '^[0-9a-f]{6,16}\.mp3$' || { echo "::error::不合格的檔名:$f"; exit 1; }
+            size=$(stat -c %s "$f"); [ "$size" -gt 1000 ] && [ "$size" -lt 3000000 ] || { echo "::error::大小異常:$f $size"; exit 1; }
+          done
+          python3 - <<'PY'
+          import os, sys
+          d = os.environ['RUNNER_TEMP'] + '/new-audio'
+          for f in os.listdir(d):
+              b = open(os.path.join(d, f), 'rb').read(3)
+              if not (b == b'ID3' or (b[0] == 0xFF and (b[1] & 0xE0) == 0xE0)):
+                  sys.exit('::error::不是 mp3:' + f)
+          PY
+          mkdir -p "$GITHUB_WORKSPACE/gsat/audio"
+          cp -n ./*.mp3 "$GITHUB_WORKSPACE/gsat/audio/"
+      - name: 提交到同一個分支
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add gsat/audio
+          git diff --cached --quiet && { echo "沒有新的音檔"; exit 0; }
+          bad=$(git diff --cached --name-status | awk '!($1=="A" && $2 ~ /^gsat\/audio\/[0-9a-f]+\.mp3$/)')
+          [ -z "$bad" ] || { echo "::error::包含不允許的變更:$bad"; exit 1; }
+          git commit -q -m "GSAT audio: generate vocabulary and passage audio (Aria)"
+          for i in 1 2 3 4; do
+            git pull --rebase -q origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i*5))
+          done
+          echo "::error::推送失敗"; exit 1

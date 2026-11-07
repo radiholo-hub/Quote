@@ -1,0 +1,1240 @@
+{
+ "note": "只含檔名與雜湊，不含試題內容；原創檔案只記檔名",
+ "files": [
+  {
+   "path": "gsat/access.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/app.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/audio/10c2bcb0919e6c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/10c5fc8cadbe7f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/110f8c001dc355.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/116fc321582b98.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/117d54d22a57c9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/11a1fd5f8437eb.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/11a8548de85974.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/11ac26509bd75a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/11d129fa640116.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/11ee989533395a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/12014d486af75d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/12077e5c73ee34.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1207af8ef2a27d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1239a0a225a0c9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/125a48ccf867fc.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/12ee210626967b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/12f1558bf6ff63.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/13082de95a7e88.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/133944e5b9cd48.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/137843db43bd8.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/137900341d44d7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/13a4319ba22521.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/13ade230b30271.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/13caf47f681eea.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/13fc16667cc728.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/140373c20e2200.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/141baed4eec1ef.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/14365c1b3a5878.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/14700b36cb953d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/148f1e2efb9df3.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/14c56458427166.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/14d610937fb962.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/164d6f5e807c0f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/168ceb65c568db.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/168fc3749f6438.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/169485e9f6dda7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/169b9780e0c04e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/16dd2811af7a86.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/16e2286cedc86a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/16f3ef750be250.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/16fd1a3b7cceb.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/17016198a6c522.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/17203357c8aaa1.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/17460fb62ffd23.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/177fb9cab7f436.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/17c057bfd67217.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/17f11b56551aaa.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/184aafb7245f67.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/186c0dffb06082.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/18b1aba860ba63.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/18d5011643daae.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/18e9619a35f47a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1903fd2f5c81e6.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1937144c02c37c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/193b6b56e2dbc1.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/19574460bf7257.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/197a18024630ef.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1992e7ac83f712.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/19a6c6e5f86b25.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/19ccdeb92c65be.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/19e43ae9ea8585.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/19ee1b4caf0cf2.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1a1546c9e2813f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1a9395c10e0885.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1acbff8611bbcf.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1b02152634e618.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1b3d76fa96569c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1bb9df41134874.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1bea36792ea8f5.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c0acca305073d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c0c8769e250b9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c0c9d281947f5.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c297b1e4bce0d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c50d8df6d6b4b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c6e377553e08e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c780e2d8a4cdb.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1ca4b037c36e00.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1cc5a839453209.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1cfb0ff1d8f4e5.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d2d3f8944b7a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d33be9dba73b7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d5421682b058f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d736cc9c7d505.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d7a7a44e9c556.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d97abe8e26865.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1da9fa45955f3d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1dec0b99b0d922.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1e75e7eddc52a3.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1e8029744b5568.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1e8c6d1763eeb5.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1e8d9bfabf75e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1ebe0016cf8e5b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1f7c4ba16c6b2f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1f99fb96e18810.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1fa2ee75b397cb.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1fb32211353764.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1fb4047884722e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1fd748cc52ee2c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1fea416d32e9e1.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/2052c302ed20a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/20dec51b1ba1b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/221c35b29a7ba.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/25afd7f28ba15.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/266d700dbfc39.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/2f2fa91ebaa47.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/333f836dc7181.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/3414c38e12134.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/341cb64341e8.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/361b7d6c75152.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/3827c11efc903.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/393ac07f3aca3.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/3a0858955dbe3.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/409a048869236.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/42e9fb22ee31.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/4b945415b370c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/4ed9a11e846e6.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/4fb3d55c571ba.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/51168493bdb23.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/52be38f351289.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/5459a55ad82f0.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/56e31501a86f1.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/57c19f72c9cac.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/58275bbc36fe4.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/5b8c675d00184.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/5f01711ccc7cf.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/5fdb17062be48.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/618b6323e450a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/61b4ed1d6f9b9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/61ca33bbc6ea.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/6736c5b5a74ff.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/6761f73f0e1d5.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/784b93099133e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/78b35198819e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/7a8d739607ea9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/7c40d4fe0bc44.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/81a7392aa9fcf.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/85394f87212a7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/874dc3865a33d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/8a9cf3d21fce4.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/8b2cab28a81d9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/8bb742e21b788.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/8f260db7bcb7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/91841e41215b2.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/91affae26a94e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/93e6835c7c50e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/990e24c866ce.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/9a4cca40e027b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/9b41967b82110.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/9c4dc068671bb.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/9f0ae2fc1eb02.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/a53db0aa0a245.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/a58f4de58d4ad.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/a89a633b0f303.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/abca7d4f09cda.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/ac6167ba6467c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/af10ed4658136.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/af94fbe014232.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/affd0d001f72f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/b0050202551dc.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/b29c1ef8f967.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/b6f626a874006.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/ba93a6a82efe7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/baefe2196b28f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/bcf53d15dbddd.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/bd738eaa620fc.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/c922ef31ec068.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/ccc71e9e06c3b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/d219a8d4fdc27.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/d4d10c453f851.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/d5d5235c4e009.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/d668437baa28b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/daf28c69151cd.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/dde8971c0b17b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/e474e74249b7a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/e905895d7864a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/e99172c8c5f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/eaa51fb0cf021.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/ebb212e7b7ccd.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/ec13b3388395b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/f0a931b3cdd89.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/f1b9b2c366fc.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/f58de8df899bc.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/fa022fc19b6ad.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/fa30ca744b335.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/fd57357257d42.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/fd787e9533b9c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/fe4eb5e877e64.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/core.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/audio_manifest.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/config.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/ext_practice.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/mock.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/scoring.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/vocab.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/writing.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/exam/answers.js",
+   "category": "exam-answers",
+   "year": null,
+   "bytes": 1013,
+   "sha256": "1a26401bfe7e6996b83cfa48925d295774a57175e4fece292412a1e670ee2aed"
+  },
+  {
+   "path": "gsat/exam/exams.js",
+   "category": "exam-text",
+   "year": null,
+   "bytes": 200467,
+   "sha256": "a2e5993c25f2f14cc37260e8dcd8cee35132af46515cb0d2b0f19e08a1c19edb"
+  },
+  {
+   "path": "gsat/exam/explain.js",
+   "category": "derived-original",
+   "year": null,
+   "bytes": 17479,
+   "sha256": "bb109cf739ce455a14f96340f99374cd434bef48f17f9644cee22e3514ddef16"
+  },
+  {
+   "path": "gsat/exam/img/109-41.png",
+   "category": "exam-figure",
+   "year": "109",
+   "bytes": 10113,
+   "sha256": "c167bad21e158060863f205390034e0f256f442ee6f112eb6df27991c9487a9e"
+  },
+  {
+   "path": "gsat/exam/img/110-fig.jpg",
+   "category": "exam-figure",
+   "year": "110",
+   "bytes": 30491,
+   "sha256": "a73ac4541529d6adae788ab2008e6a0d2cf22e3571f50130e654e6fe22487d78"
+  },
+  {
+   "path": "gsat/exam/img/111-35-A.jpg",
+   "category": "exam-figure",
+   "year": "111",
+   "bytes": 19308,
+   "sha256": "8871eae58c558a6b7924829e1940aa62ac1464e063f09d33a42fe4cc946631ef"
+  },
+  {
+   "path": "gsat/exam/img/111-35-B.jpg",
+   "category": "exam-figure",
+   "year": "111",
+   "bytes": 24047,
+   "sha256": "8e5246fbfc4c652ebbeb2e7fb873d03bc65aa9bf2eb3c0e9ee26294d0ffb2dc4"
+  },
+  {
+   "path": "gsat/exam/img/111-35-C.jpg",
+   "category": "exam-figure",
+   "year": "111",
+   "bytes": 62226,
+   "sha256": "16058164c6178794d8ccc40e395dca37e431a4a7570cd227c1f73f53f0e4c2c0"
+  },
+  {
+   "path": "gsat/exam/img/111-35-D.jpg",
+   "category": "exam-figure",
+   "year": "111",
+   "bytes": 21133,
+   "sha256": "6d21dc54148763826eecb323c58b7e0c4d791f43250f49fe1005bb7286eb7291"
+  },
+  {
+   "path": "gsat/exam/img/112-44.jpg",
+   "category": "exam-figure",
+   "year": "112",
+   "bytes": 47279,
+   "sha256": "0a6e2dea532de02a25df79cd7e2615cb3795ff07ce1b16875b1ede1a06d5241d"
+  },
+  {
+   "path": "gsat/exam/img/113-fig.jpg",
+   "category": "exam-figure",
+   "year": "113",
+   "bytes": 92350,
+   "sha256": "b116980b11a712daf3e330d78af8f60376da27cb4fa86fbc000916a5ed7ce940"
+  },
+  {
+   "path": "gsat/exam/img/114-fig.jpg",
+   "category": "exam-figure",
+   "year": "114",
+   "bytes": 35763,
+   "sha256": "639532cd385c55338f4e368e56ce1bbb56a33dc1ed136e6fc5424810c6550812"
+  },
+  {
+   "path": "gsat/exam/img/115-fig.jpg",
+   "category": "exam-figure",
+   "year": "115",
+   "bytes": 94349,
+   "sha256": "5a0544f7e2f7c6ec1694456b18d5c2f9eb4fc29214b8cfafc1db97b6b282df02"
+  },
+  {
+   "path": "gsat/exam/img/ns/106-q1.jpg",
+   "category": "exam-paper-page",
+   "year": "106",
+   "bytes": 95477,
+   "sha256": "db0ba552b512a619b9a6268000f9e27ae48a0b85dda0377d92e9eb5cb9eebe85"
+  },
+  {
+   "path": "gsat/exam/img/ns/106-ref1.jpg",
+   "category": "official-scoring-guide",
+   "year": "106",
+   "bytes": 221739,
+   "sha256": "467689d9dc48fab5cd3fe761892e2b3fc96aee76264e0a63cadbe623e2d48cd9"
+  },
+  {
+   "path": "gsat/exam/img/ns/106-ref2.jpg",
+   "category": "official-scoring-guide",
+   "year": "106",
+   "bytes": 40794,
+   "sha256": "8449bc68319783a9e6256468d8b96684db43b41906fa90375af3aea7323cf308"
+  },
+  {
+   "path": "gsat/exam/img/ns/107-q1.jpg",
+   "category": "exam-paper-page",
+   "year": "107",
+   "bytes": 76589,
+   "sha256": "61e64af33d78f62dd855cc51ffe7c91494585f2de39e176bf1f2807ef57c7830"
+  },
+  {
+   "path": "gsat/exam/img/ns/107-ref1.jpg",
+   "category": "official-scoring-guide",
+   "year": "107",
+   "bytes": 196923,
+   "sha256": "62c01742995f19939da5edf9b4a24ee8901756d06433099d11f6e8b4b33f9f44"
+  },
+  {
+   "path": "gsat/exam/img/ns/107-ref2.jpg",
+   "category": "official-scoring-guide",
+   "year": "107",
+   "bytes": 39857,
+   "sha256": "78cf11a0dc7acbf44e84bb7be8683a3207c647030884f39f7406f6e79318cd0a"
+  },
+  {
+   "path": "gsat/exam/img/ns/108-q1.jpg",
+   "category": "exam-paper-page",
+   "year": "108",
+   "bytes": 91082,
+   "sha256": "ef22f20a8d11265b3c69cd04bda28ec096dad05516ebf5128869f9fb1fb26b55"
+  },
+  {
+   "path": "gsat/exam/img/ns/108-ref1.jpg",
+   "category": "official-scoring-guide",
+   "year": "108",
+   "bytes": 237426,
+   "sha256": "932d5935599362a9dea4adb70f99872867c077fbcaffc68a53f922aedb0fe97e"
+  },
+  {
+   "path": "gsat/exam/img/ns/109-q1.jpg",
+   "category": "exam-paper-page",
+   "year": "109",
+   "bytes": 129584,
+   "sha256": "f981b3aebeac19152a42e8bdc9869146bd1415599132a2b7b2344ae73f44052d"
+  },
+  {
+   "path": "gsat/exam/img/ns/109-ref1.jpg",
+   "category": "official-scoring-guide",
+   "year": "109",
+   "bytes": 184357,
+   "sha256": "6bbc017f53b7e581d7cd01789ad29deb8c63c66f3392bbeec97762d7e88cc553"
+  },
+  {
+   "path": "gsat/exam/img/ns/110-q1.jpg",
+   "category": "exam-paper-page",
+   "year": "110",
+   "bytes": 109336,
+   "sha256": "57da05b79aacd9e7a24d63c3b07872723aa1c4b5306183fc6c7a8fffa3c34437"
+  },
+  {
+   "path": "gsat/exam/img/ns/110-ref1.jpg",
+   "category": "official-scoring-guide",
+   "year": "110",
+   "bytes": 195488,
+   "sha256": "1c6a2bc159905e27cfdafc98586b525f122952f8157fa61e44e362330a955165"
+  },
+  {
+   "path": "gsat/exam/img/ns/110-ref2.jpg",
+   "category": "official-scoring-guide",
+   "year": "110",
+   "bytes": 51235,
+   "sha256": "94b9ffc14d981cfeab8786652ebceb8579f943584ab6246f5e65cccdd6b644a6"
+  },
+  {
+   "path": "gsat/exam/img/ns/111-q1.jpg",
+   "category": "exam-paper-page",
+   "year": "111",
+   "bytes": 161991,
+   "sha256": "91c440668bc782d82dc223493a4da480b309558c2af2bdde3eb2bd629b429b14"
+  },
+  {
+   "path": "gsat/exam/img/ns/111-q2.jpg",
+   "category": "exam-paper-page",
+   "year": "111",
+   "bytes": 80268,
+   "sha256": "ca83c5d9ea31d8aa7bbce9ddc349b670fdb14135cf54658e047fc6d5ee88eca9"
+  },
+  {
+   "path": "gsat/exam/img/ns/111-q3.jpg",
+   "category": "exam-paper-page",
+   "year": "111",
+   "bytes": 116374,
+   "sha256": "3c172dc5e554477cae9732e0a8aaa9e6cea18f63079f4c1ad780b4566f748454"
+  },
+  {
+   "path": "gsat/exam/img/ns/111-ref1.jpg",
+   "category": "official-scoring-guide",
+   "year": "111",
+   "bytes": 139563,
+   "sha256": "308ee317a6cb59e41982e8c2c77c736fc349ded78983d1a6c4ce7c221b320b7f"
+  },
+  {
+   "path": "gsat/exam/img/ns/111-ref2.jpg",
+   "category": "official-scoring-guide",
+   "year": "111",
+   "bytes": 77789,
+   "sha256": "a985cb155c9eb399b2f97a05d45f4e875e3966794c9dca377f44eb9c924afca9"
+  },
+  {
+   "path": "gsat/exam/img/ns/111-ref3.jpg",
+   "category": "official-scoring-guide",
+   "year": "111",
+   "bytes": 71371,
+   "sha256": "213d3e008c20481e97a1c9c6c2d308e369d1975deff05659b98e1f1b0f81118c"
+  },
+  {
+   "path": "gsat/exam/img/ns/111-ref4.jpg",
+   "category": "official-scoring-guide",
+   "year": "111",
+   "bytes": 106250,
+   "sha256": "4eccd7df82d67ae98f45f8ead04e32791630674d31212c7500792ef8f0081ec1"
+  },
+  {
+   "path": "gsat/exam/img/ns/112-q1.jpg",
+   "category": "exam-paper-page",
+   "year": "112",
+   "bytes": 167729,
+   "sha256": "b540aaddf8124776644c6096a1ed1534e88de42e795ba3bc5b77ea8fb6eaafb8"
+  },
+  {
+   "path": "gsat/exam/img/ns/112-q2.jpg",
+   "category": "exam-paper-page",
+   "year": "112",
+   "bytes": 60690,
+   "sha256": "63975c2eec13d7767d3bc833c1d78837f84ffd7ad311df8689dc995fd31d861b"
+  },
+  {
+   "path": "gsat/exam/img/ns/112-q3.jpg",
+   "category": "exam-paper-page",
+   "year": "112",
+   "bytes": 96008,
+   "sha256": "456565362d646489a7a0d4bb624ff9b800ecc0ab63ec19ee0243c3c83fd82d5f"
+  },
+  {
+   "path": "gsat/exam/img/ns/112-ref1.jpg",
+   "category": "official-scoring-guide",
+   "year": "112",
+   "bytes": 147665,
+   "sha256": "b4737accf6fe8807fea90690355902d3e91ecfd9b00fd3b046f9042c747ca565"
+  },
+  {
+   "path": "gsat/exam/img/ns/112-ref2.jpg",
+   "category": "official-scoring-guide",
+   "year": "112",
+   "bytes": 98048,
+   "sha256": "0941e8846325e88e2cfd14d08a821d7ad2c152410ff2845099f2bfea2efc7dd9"
+  },
+  {
+   "path": "gsat/exam/img/ns/112-ref3.jpg",
+   "category": "official-scoring-guide",
+   "year": "112",
+   "bytes": 117820,
+   "sha256": "71999b2d062fb90fcc7e2f008aa748aab91ca2e22bf0458a7c1e2b3c0e800d26"
+  },
+  {
+   "path": "gsat/exam/img/ns/113-q1.jpg",
+   "category": "exam-paper-page",
+   "year": "113",
+   "bytes": 158802,
+   "sha256": "a4661674b7a2754d328945d9b17bf321a53021c9ce636a4fb50eaa58d26b5b4e"
+  },
+  {
+   "path": "gsat/exam/img/ns/113-q2.jpg",
+   "category": "exam-paper-page",
+   "year": "113",
+   "bytes": 79993,
+   "sha256": "55ff3795959c06d3a1061c04ae60baa3a5a65604dfaaa7eeaa406dfdd4b29d96"
+  },
+  {
+   "path": "gsat/exam/img/ns/113-q3.jpg",
+   "category": "exam-paper-page",
+   "year": "113",
+   "bytes": 114102,
+   "sha256": "637da12bf38aa44599095bd5f29df4e4754b58381ab843568a5dfe04cfdb59a0"
+  },
+  {
+   "path": "gsat/exam/img/ns/113-ref1.jpg",
+   "category": "official-scoring-guide",
+   "year": "113",
+   "bytes": 159273,
+   "sha256": "d00a48b82cbfbe14cfec821d25e1404e6574985d572c9b276631dabba0bca88d"
+  },
+  {
+   "path": "gsat/exam/img/ns/113-ref2.jpg",
+   "category": "official-scoring-guide",
+   "year": "113",
+   "bytes": 68748,
+   "sha256": "3439c42ec78f8bc1ee51698b122b112d35e322e2d4d4f41b6bd8920cbe314a2c"
+  },
+  {
+   "path": "gsat/exam/img/ns/113-ref3.jpg",
+   "category": "official-scoring-guide",
+   "year": "113",
+   "bytes": 149515,
+   "sha256": "5fef086cc4ca1068a0417a2d0ec7a2d2a18d1862b8dae30765d6f10f3e0421e9"
+  },
+  {
+   "path": "gsat/exam/img/ns/114-q1.jpg",
+   "category": "exam-paper-page",
+   "year": "114",
+   "bytes": 158231,
+   "sha256": "025ea9769d11b67d4b21e08c9ac25d3941ffebb834d6f08a52366629b75c56f5"
+  },
+  {
+   "path": "gsat/exam/img/ns/114-q2.jpg",
+   "category": "exam-paper-page",
+   "year": "114",
+   "bytes": 68182,
+   "sha256": "d8867c25bd41142d4529706b776dac42cc7437d856a0b58e05a847857c932116"
+  },
+  {
+   "path": "gsat/exam/img/ns/114-q3.jpg",
+   "category": "exam-paper-page",
+   "year": "114",
+   "bytes": 111221,
+   "sha256": "7ca778d4d5381c7b430d9ddbe873ab7460194c806145096c648ebac2e639b5ed"
+  },
+  {
+   "path": "gsat/exam/img/ns/114-ref1.jpg",
+   "category": "official-scoring-guide",
+   "year": "114",
+   "bytes": 130481,
+   "sha256": "bfb8de78952fa56f16ed0af0c92b96e72d662b256f4326e39e6bed6dd17bf8af"
+  },
+  {
+   "path": "gsat/exam/img/ns/114-ref2.jpg",
+   "category": "official-scoring-guide",
+   "year": "114",
+   "bytes": 102946,
+   "sha256": "7f773660a4dad34d58b6948ee6957063118d48e32c577a582d9d5798bc6cdf02"
+  },
+  {
+   "path": "gsat/exam/img/ns/114-ref3.jpg",
+   "category": "official-scoring-guide",
+   "year": "114",
+   "bytes": 105605,
+   "sha256": "b6ce817b0edd07c48eaef57f04bdd30622a4d01ab1c6d334afe6310fe2c9c3a3"
+  },
+  {
+   "path": "gsat/exam/img/ns/115-q1.jpg",
+   "category": "exam-paper-page",
+   "year": "115",
+   "bytes": 147832,
+   "sha256": "cd2468336eb0e282527b173aba437cb35fd5932dc239c0c3e451b383ed7e2b44"
+  },
+  {
+   "path": "gsat/exam/img/ns/115-q2.jpg",
+   "category": "exam-paper-page",
+   "year": "115",
+   "bytes": 135910,
+   "sha256": "f1b14d89b9f80cf813c50bd27d4cae3191fb69f24ed0a5944de490a87ca6fcfe"
+  },
+  {
+   "path": "gsat/exam/img/ns/115-q3.jpg",
+   "category": "exam-paper-page",
+   "year": "115",
+   "bytes": 116629,
+   "sha256": "16ead11b58eac535a4c081569e7ac64d79329fef7515a08417ecf702098ba53a"
+  },
+  {
+   "path": "gsat/exam/img/ns/115-ref1.jpg",
+   "category": "official-scoring-guide",
+   "year": "115",
+   "bytes": 137341,
+   "sha256": "e8cce5a5ed1760a792ef8093a614aa84bcb22e2527819dc54f4fe15a2c1eb78e"
+  },
+  {
+   "path": "gsat/exam/img/ns/115-ref2.jpg",
+   "category": "official-scoring-guide",
+   "year": "115",
+   "bytes": 93987,
+   "sha256": "9336ca42a376053378c7a2e592dac615596f9b6d3376ad651af291089216be46"
+  },
+  {
+   "path": "gsat/exam/img/ns/115-ref3.jpg",
+   "category": "official-scoring-guide",
+   "year": "115",
+   "bytes": 96798,
+   "sha256": "2f0c596a0ef280ee509a9309233b8d7d42f3d802c5376c5ad60eb1278503175f"
+  },
+  {
+   "path": "gsat/exam/mixed.js",
+   "category": "exam-answers",
+   "year": null,
+   "bytes": 652,
+   "sha256": "8469b79b6bb44ebe44e632f51ad21e7c695ccf68487a77a6de111c82579752d1"
+  },
+  {
+   "path": "gsat/exam/nonmc.js",
+   "category": "exam-index",
+   "year": null,
+   "bytes": 1581,
+   "sha256": "51ba413c9a94090632d8d3d1fe81d50ec87af4e402a4da7c6a213f09c6e12650"
+  },
+  {
+   "path": "gsat/exam/vocab_index.js",
+   "category": "exam-derived-index",
+   "year": null,
+   "bytes": 39235,
+   "sha256": "fa77ea6dbbddfafd4460a22c5c8628bd9b511f268012780b30289cc01a51d73d"
+  },
+  {
+   "path": "gsat/exam/vocab_reviews.js",
+   "category": "review-data",
+   "year": null,
+   "bytes": 431,
+   "sha256": "99a4bbfd751df920e58e53ed1803029d3ecbe7ca0da26bc80e1512b7904a9d1f"
+  },
+  {
+   "path": "gsat/index.html",
+   "category": "original"
+  },
+  {
+   "path": "gsat/learn.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/style.css",
+   "category": "original"
+  },
+  {
+   "path": "gsat/writing.js",
+   "category": "original"
+  }
+ ]
+}
