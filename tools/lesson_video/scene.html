@@ -133,7 +133,7 @@ function sentHTML(s,fill,solo){
 }
 function el(w){return document.querySelector('[data-w="'+w+'"]')}
 function marks(v){
-  (v.ring||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="ring '+(r.c||'')+'"></span>'+(r.label?'<span class="lab '+(r.c||'red')+(r.below?' below':'')+'">'+esc(r.label)+'</span>':''))});
+  (v.ring||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="ring '+(r.c||'')+'"></span>'+(r.label?'<span class="lab '+(r.c||'red')+(r.below?' below':'')+(r.side?' side':'')+'">'+esc(r.label)+'</span>':''))});
   (v.under||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="uline"></span>'+(r.label?'<span class="lab blue'+(r.below?' below':'')+(r.side?' side':'')+'">'+esc(r.label)+'</span>':''))});
   (v.bracket||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="brk"></span>'+(r.label?'<span class="lab ok'+(r.below?' below':'')+'">'+esc(r.label)+'</span>':''))});
   (v.tag||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="lab '+(r.c||'gray')+(r.below?' below':'')+'">'+esc(r.label)+'</span>')});

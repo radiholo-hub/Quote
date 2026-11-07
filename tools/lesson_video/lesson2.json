@@ -134,7 +134,8 @@
      {
       "w": "date",
       "label": "中心名詞",
-      "c": "blue"
+      "c": "blue",
+      "side": true
      }
     ],
     "tag": [
@@ -206,7 +207,7 @@
     "rows": [
      [
       "冠詞／所有格",
-      "the／your／the client’s"
+      "the／your／the client's"
      ],
      [
       "修飾語（可有可無）",
