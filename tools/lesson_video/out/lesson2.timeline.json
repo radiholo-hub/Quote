@@ -2,16 +2,16 @@
  {
   "scene": "hook1",
   "start": 0.0,
-  "sec": 6.11
+  "sec": 6.1
  },
  {
   "scene": "hook2",
-  "start": 6.11,
+  "start": 6.1,
   "sec": 3.45
  },
  {
   "scene": "r1",
-  "start": 9.56,
+  "start": 9.55,
   "sec": 12.98
  },
  {
@@ -36,7 +36,7 @@
  },
  {
   "scene": "c3",
-  "start": 68.08,
+  "start": 68.07,
   "sec": 11.82
  },
  {
@@ -56,7 +56,7 @@
  },
  {
   "scene": "c7",
-  "start": 116.33,
+  "start": 116.34,
   "sec": 4.89
  },
  {
@@ -86,7 +86,7 @@
  },
  {
   "scene": "d1x",
-  "start": 163.4,
+  "start": 163.41,
   "sec": 9.83
  },
  {
@@ -101,12 +101,12 @@
  },
  {
   "scene": "d2t",
-  "start": 180.26,
+  "start": 180.27,
   "sec": 5.45
  },
  {
   "scene": "d2a",
-  "start": 185.71,
+  "start": 185.72,
   "sec": 11.14
  },
  {
@@ -141,33 +141,33 @@
  },
  {
   "scene": "d3r",
-  "start": 231.33,
+  "start": 231.34,
   "sec": 8.07
  },
  {
   "scene": "d3x",
   "start": 239.4,
-  "sec": 7.25
+  "sec": 7.26
  },
  {
   "scene": "d3f",
-  "start": 246.65,
+  "start": 246.66,
   "sec": 4.0
  },
  {
   "scene": "d4q",
-  "start": 250.65,
+  "start": 250.66,
   "sec": 5.31
  },
  {
   "scene": "d4t",
-  "start": 255.96,
+  "start": 255.97,
   "sec": 5.45
  },
  {
   "scene": "d4a",
-  "start": 261.41,
-  "sec": 10.34
+  "start": 261.42,
+  "sec": 10.33
  },
  {
   "scene": "d4b",
@@ -181,7 +181,7 @@
  },
  {
   "scene": "d4x",
-  "start": 280.31,
+  "start": 280.32,
   "sec": 5.87
  },
  {
