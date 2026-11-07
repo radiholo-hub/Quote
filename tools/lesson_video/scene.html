@@ -28,6 +28,9 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper);col
 .pl:first-child{margin-top:0}
 .pn{font:900 70px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--wine);margin-right:26px}
 .pair.sm .pl{font-size:70px}
+.pair.xs .pl{font-size:54px}
+.pair.xs .pn{font-size:52px}
+.pair.xs .pl+.pzh+.pl,.pair.xs .pl+.pl{margin-top:70px}
 .pair.sm .pl+.pzh+.pl{margin-top:110px}
 .pair.sm .pn{font-size:58px}
 .pzh{font:700 44px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted);margin:6px 0 0 96px}
@@ -64,6 +67,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper);col
 .lab.below{bottom:auto;top:calc(100% + 30px)}
 .lab.side{left:calc(100% + 30px);transform:translateY(-50%);bottom:auto;top:50%}
 .lab.red{background:var(--bad)}.lab.blue{background:var(--blue)}.lab.ok{background:var(--ok)}.lab.gray{background:var(--muted)}
+.np{color:var(--blue);font-weight:600;margin:0 .06em}
 .mark{background:linear-gradient(transparent 58%,var(--hi) 58%)}
 svg#arr{position:absolute;inset:0;width:1920px;height:1080px;pointer-events:none}
 .ban{position:absolute;left:110px;right:110px;bottom:40px;font:900 56px/1.3 "Noto Sans TC","Noto Sans CJK TC",sans-serif;text-align:center;background:var(--wine);color:#fff;padding:22px;border-radius:26px}
@@ -122,7 +126,7 @@ function head(t){return '<div class="head"><div class="title">'+esc(t||'')+'</di
 /* 句子：用 [片語] 標出可以圈選的詞，______ 是空格，| 是換行 */
 function sentHTML(s,fill,solo){
   var lines=s.split('|').map(function(line){
-    return esc(line).replace(/\[([^\]]+)\]/g,function(_,w){return '<span class="w" data-w="'+w+'">'+w+'</span>'})
+    return esc(line).replace(/\[([^\]]+)\]/g,function(_,w){return '<span class="w" data-w="'+w+'">'+w+'</span>'}).replace(/\{/g,'<span class="np">[</span>').replace(/\}/g,'<span class="np">]</span>')
       .replace('______',fill?'<span class="w" data-w="blank"><span class="blank fill">'+esc(fill)+'</span></span>':'<span class="w" data-w="blank"><span class="blank"></span></span>');
   });
   return '<div class="sent serif'+(solo?' solo':'')+'">'+lines.map(function(l,i){return '<div'+(i?' class="l2"':'')+'>'+l+'</div>'}).join('')+'</div>';
@@ -172,8 +176,8 @@ function render(v,n){
   }
   if(v.kind==='pair'){
     /* 兩句對比：lines=[{n,s,fill,zh}]，s 用 [詞] 標可圈選的字，______ 是空格 */
-    h=head(v.t)+'<div class="pair'+(v.sm?' sm':'')+'">'+v.lines.map(function(L,k){
-      var t=esc(L.s).replace(/\[([^\]]+)\]/g,function(_,w){return '<span class="w" data-w="'+w+'">'+w+'</span>'})
+    h=head(v.t)+'<div class="pair'+(v.sm?' sm':'')+(v.xs?' xs':'')+'">'+v.lines.map(function(L,k){
+      var t=esc(L.s).replace(/\[([^\]]+)\]/g,function(_,w){return '<span class="w" data-w="'+w+'">'+w+'</span>'}).replace(/\{/g,'<span class="np">[</span>').replace(/\}/g,'<span class="np">]</span>')
         .replace('______',L.fill?'<span class="w" data-w="blank'+(k+1)+'"><span class="blank fill">'+esc(L.fill)+'</span></span>':'<span class="w" data-w="blank'+(k+1)+'"><span class="blank"></span></span>');
       return '<div class="pl serif"><span class="pn">'+esc(L.n)+'</span>'+t+'</div>'+(L.zh?'<div class="pzh">'+esc(L.zh)+'</div>':'');
     }).join('')+'</div>';

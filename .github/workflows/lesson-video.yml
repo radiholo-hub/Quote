@@ -26,18 +26,25 @@ jobs:
           python3 -m playwright install --with-deps chromium
       - name: Make videos
         run: |
+          # 只重做內容有改動的影片：json 的 sha256 和上次產生時記錄的不同才重做
+          mkdir -p out
           for f in tools/lesson_video/*.json; do
-            python3 tools/lesson_video/make_video.py "$f" "out/$(basename "$f" .json).mp4"
+            n=$(basename "$f" .json); h=$(sha256sum "$f" | cut -d' ' -f1)
+            if [ -f "tools/lesson_video/out/$n.mp4" ] && [ "$(cat "tools/lesson_video/out/$n.sha256" 2>/dev/null)" = "$h" ]; then
+              echo "skip $n（沒有改動）"; continue
+            fi
+            python3 tools/lesson_video/make_video.py "$f" "out/$n.mp4" && echo "$h" > "out/$n.sha256"
           done
       - uses: actions/upload-artifact@v4
         with:
           name: lesson-videos
           path: out/
+          if-no-files-found: ignore
           retention-days: 14
       - name: Commit preview back to the PR branch
         if: github.event.pull_request.head.repo.full_name == github.repository
         run: |
-          mkdir -p tools/lesson_video/out && cp out/* tools/lesson_video/out/
+          mkdir -p tools/lesson_video/out && cp out/* tools/lesson_video/out/ 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add tools/lesson_video/out

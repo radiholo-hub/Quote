@@ -94,7 +94,7 @@ def build_audio(cues, tmp, silent):
     return lens
 
 
-def build_frames(data, cues, lens, tmp):
+def build_frames(data, cues, lens, tmp):  # noqa: C901
     """每個場景截一張圖；倒數場景每秒一張。回傳 [(圖檔, 秒數)]。"""
     from playwright.sync_api import sync_playwright
     shots = []
@@ -107,6 +107,8 @@ def build_frames(data, cues, lens, tmp):
         except Exception:
             pass
         pg.evaluate('document.fonts.ready')
+        if data.get('brand'):
+            pg.evaluate('b=>{BRAND=b}', data['brand'])   # 畫面右上角的課名（例如「詞性小課 第2課」）
         for i, (cue, L) in enumerate(zip(cues, lens)):
             if 'pause' in cue:
                 n = int(cue['pause'])

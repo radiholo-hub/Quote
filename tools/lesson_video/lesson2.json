@@ -1,0 +1,1321 @@
+{
+ "title": "Score Rescue｜詞性小課 第2課（課程內嵌版）",
+ "brand": "Score Rescue｜詞性小課 第2課",
+ "cues": [
+  {
+   "id": "hook1",
+   "view": {
+    "kind": "pair",
+    "t": "同一組選項，兩格怎麼填？",
+    "xs": true,
+    "o": [
+     "deliver",
+     "delivery",
+     "delivered",
+     "delivering"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The supplier confirmed the ______ of the equipment."
+     },
+     {
+      "n": "②",
+      "s": "The supplier confirmed the ______ date."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "兩句用同一組選項。先想一想，兩格分別要填什麼？"
+    ]
+   ]
+  },
+  {
+   "id": "hook2",
+   "view": {
+    "kind": "pair",
+    "t": "同一組選項，兩格怎麼填？",
+    "xs": true,
+    "o": [
+     "deliver",
+     "delivery",
+     "delivered",
+     "delivering"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The supplier confirmed the ______ of the equipment."
+     },
+     {
+      "n": "②",
+      "s": "The supplier confirmed the ______ date."
+     }
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "r1",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：先圈出中心名詞",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The supplier confirmed the ______ of the equipment.",
+      "fill": "delivery",
+      "zh": "供應商確認了設備的交付。"
+     },
+     {
+      "n": "②",
+      "s": "The supplier confirmed the ______ [date]."
+     }
+    ],
+    "ring": [
+     {
+      "w": "blank1",
+      "label": "中心名詞",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "① 空格就是中心名詞 → delivery",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "兩題都選 B，"
+    ],
+    [
+     "en",
+     "delivery."
+    ],
+    [
+     "zh",
+     "但理由不一樣。第一句，the 後面一直到 of，中間只有空格，所以空格就是中心名詞："
+    ],
+    [
+     "en",
+     "delivery"
+    ],
+    [
+     "zh",
+     "，設備的交付。"
+    ]
+   ]
+  },
+  {
+   "id": "r2",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：先圈出中心名詞",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The supplier confirmed the ______ of the equipment.",
+      "fill": "delivery",
+      "zh": "供應商確認了設備的交付。"
+     },
+     {
+      "n": "②",
+      "s": "The supplier confirmed the ______ [date].",
+      "fill": "delivery",
+      "zh": "供應商確認了交貨日期。"
+     }
+    ],
+    "ring": [
+     {
+      "w": "date",
+      "label": "中心名詞",
+      "c": "blue"
+     }
+    ],
+    "tag": [
+     {
+      "w": "blank2",
+      "label": "修飾 date",
+      "c": "ok"
+     }
+    ],
+    "arrows": [
+     {
+      "from": "blank2",
+      "to": "date",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "② 中心名詞是 date，delivery 說明是哪一種日期",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "第二句，最後的名詞是"
+    ],
+    [
+     "en",
+     "date"
+    ],
+    [
+     "zh",
+     "，中心名詞是"
+    ],
+    [
+     "en",
+     "date."
+    ],
+    [
+     "en",
+     "Delivery"
+    ],
+    [
+     "zh",
+     "放在前面，說明是哪一種日期，這是名詞修飾名詞。"
+    ]
+   ]
+  },
+  {
+   "id": "open",
+   "view": {
+    "kind": "title",
+    "h": "空格需要名詞嗎？",
+    "s": "先找中心名詞"
+   },
+   "say": [
+    [
+     "zh",
+     "所以這一課要先學會：找出中心名詞，再看空格是中心名詞本身，還是在修飾它。"
+    ]
+   ]
+  },
+  {
+   "id": "c1",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "名詞片語的結構",
+    "rows": [
+     [
+      "冠詞／所有格",
+      "the／your／the client’s"
+     ],
+     [
+      "修飾語（可有可無）",
+      "recent／final／delivery"
+     ],
+     [
+      "中心名詞",
+      "request／inspection／date"
+     ],
+     [
+      "補充（可有可無）",
+      "of the lobby"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "一個名詞片語，通常是冠詞或所有格，加上修飾語，再加上中心名詞，後面可能還有補充。中心名詞是這個片語最後指的東西；修飾語放在它前面，說明它的性質或類別。"
+    ]
+   ]
+  },
+  {
+   "id": "c2",
+   "view": {
+    "kind": "sent",
+    "t": "結構①　所有格後的名詞片語",
+    "s": "{the client's [recent] [request]}",
+    "zh": "客戶最近的要求",
+    "ring": [
+     {
+      "w": "request",
+      "label": "中心名詞",
+      "c": "blue"
+     }
+    ],
+    "tag": [
+     {
+      "w": "recent",
+      "label": "修飾",
+      "c": "ok"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第一種，所有格後面的名詞片語。"
+    ],
+    [
+     "en",
+     "the client's recent request."
+    ],
+    [
+     "zh",
+     "中心名詞是"
+    ],
+    [
+     "en",
+     "request."
+    ],
+    [
+     "en",
+     "Recent"
+    ],
+    [
+     "zh",
+     "修飾它。"
+    ]
+   ]
+  },
+  {
+   "id": "c3",
+   "view": {
+    "kind": "sent",
+    "t": "結構②　the ___ of",
+    "s": "{the [renovation] [of the lobby]}",
+    "zh": "大廳的整修",
+    "ring": [
+     {
+      "w": "renovation",
+      "label": "中心名詞",
+      "c": "blue"
+     }
+    ],
+    "under": [
+     {
+      "w": "of the lobby",
+      "label": "補充：哪裡的整修"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第二種，"
+    ],
+    [
+     "en",
+     "the, blank, of."
+    ],
+    [
+     "en",
+     "The renovation of the lobby."
+    ],
+    [
+     "zh",
+     "中心名詞是"
+    ],
+    [
+     "en",
+     "renovation."
+    ],
+    [
+     "en",
+     "Of the lobby"
+    ],
+    [
+     "zh",
+     "補充是哪裡的整修，也包含在整個名詞片語裡。"
+    ]
+   ]
+  },
+  {
+   "id": "c4",
+   "view": {
+    "kind": "sent",
+    "t": "結構③　介系詞後的名詞片語",
+    "s": "after {the [final] [inspection]}",
+    "zh": "在最後檢查之後",
+    "ring": [
+     {
+      "w": "inspection",
+      "label": "中心名詞",
+      "c": "blue"
+     }
+    ],
+    "tag": [
+     {
+      "w": "final",
+      "label": "修飾",
+      "c": "ok"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第三種，介系詞後面的名詞片語。"
+    ],
+    [
+     "en",
+     "After the final inspection."
+    ],
+    [
+     "zh",
+     "中心名詞是"
+    ],
+    [
+     "en",
+     "inspection."
+    ],
+    [
+     "en",
+     "Final"
+    ],
+    [
+     "zh",
+     "修飾它。"
+    ]
+   ]
+  },
+  {
+   "id": "c5",
+   "view": {
+    "kind": "ed",
+    "t": "補充",
+    "h": "補充：人還是事？",
+    "on": 1,
+    "cards": [
+     {
+      "w": "applications",
+      "tag": "事",
+      "zh": "申請書",
+      "who": "審閱的是文件",
+      "ex": "review the applications",
+      "exzh": "審閱申請書"
+     },
+     {
+      "w": "applicants",
+      "tag": "人",
+      "zh": "申請人",
+      "who": "面試的是人",
+      "ex": "interview the applicants",
+      "exzh": "面試申請人"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "還有一種常見陷阱：同一個字族，有「人」也有「事」。"
+    ],
+    [
+     "en",
+     "Review the applications"
+    ],
+    [
+     "zh",
+     "，審閱的是文件；"
+    ],
+    [
+     "en",
+     "interview the applicants"
+    ],
+    [
+     "zh",
+     "，面試的是人。選之前先問：句子要的是人，還是那件事？"
+    ]
+   ]
+  },
+  {
+   "id": "c6",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "找出名詞片語的範圍：先圈出它指的人、事或物",
+     "找中心名詞：這個片語最後指的是什麼？",
+     "空格是中心名詞，還是在修飾它？再用句意確認"
+    ],
+    "show": 1,
+    "note": "例：[the renovation of the lobby]，of the lobby 也包含在名詞片語裡"
+   },
+   "say": [
+    [
+     "zh",
+     "判斷三步驟。第一步，找出名詞片語的範圍：先圈出它指的人、事或物，再看後面的片語是不是在補充它。"
+    ]
+   ]
+  },
+  {
+   "id": "c7",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "找出名詞片語的範圍：先圈出它指的人、事或物",
+     "找中心名詞：這個片語最後指的是什麼？",
+     "空格是中心名詞，還是在修飾它？再用句意確認"
+    ],
+    "show": 2
+   },
+   "say": [
+    [
+     "zh",
+     "第二步，找中心名詞：這個片語最後指的是什麼？"
+    ]
+   ]
+  },
+  {
+   "id": "c8",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "找出名詞片語的範圍：先圈出它指的人、事或物",
+     "找中心名詞：這個片語最後指的是什麼？",
+     "空格是中心名詞，還是在修飾它？再用句意確認"
+    ],
+    "show": 3
+   },
+   "say": [
+    [
+     "zh",
+     "第三步，決定空格的工作：空格就是中心名詞，就填名詞；空格在中心名詞前面，就是修飾語。最後用句意確認。好，我們來實際做做看。"
+    ]
+   ]
+  },
+  {
+   "id": "d1q",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　所有格後的中心名詞",
+    "s": "We received {the vendor's ______}|this morning.",
+    "o": [
+     "propose",
+     "proposal",
+     "proposed",
+     "proposing"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第一題。先自己想一下，空格要填什麼。"
+    ]
+   ]
+  },
+  {
+   "id": "d1t",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　所有格後的中心名詞",
+    "s": "We received {the vendor's ______}|this morning.",
+    "o": [
+     "propose",
+     "proposal",
+     "proposed",
+     "proposing"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d1a",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　所有格後的中心名詞",
+    "s": "We received {the vendor's ______}|this morning.",
+    "o": [
+     "propose",
+     "proposal",
+     "proposed",
+     "proposing"
+    ],
+    "ring": [
+     {
+      "w": "blank",
+      "label": "中心名詞",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "片語裡沒有別的名詞 → 空格就是中心名詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "名詞片語從所有格"
+    ],
+    [
+     "en",
+     "the vendor's"
+    ],
+    [
+     "zh",
+     "開始，到"
+    ],
+    [
+     "en",
+     "this morning"
+    ],
+    [
+     "zh",
+     "之前。片語裡除了空格，沒有別的名詞，所以空格就是中心名詞，要填名詞。"
+    ]
+   ]
+  },
+  {
+   "id": "d1r",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　所有格後的中心名詞",
+    "s": "We received {the vendor's ______}|this morning.",
+    "o": [
+     "propose",
+     "proposal",
+     "proposed",
+     "proposing"
+    ],
+    "ans": 1,
+    "zh": "我們今天早上收到廠商的提案。",
+    "otag": {
+     "0": "動詞｜提議",
+     "1": "名詞｜提案",
+     "2": "形容詞｜被提議的",
+     "3": "V-ing｜提議的動作"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 B，"
+    ],
+    [
+     "en",
+     "proposal"
+    ],
+    [
+     "zh",
+     "，提案。"
+    ]
+   ]
+  },
+  {
+   "id": "d1x",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　所有格後的中心名詞",
+    "s": "We received {the vendor's ______}|this morning.",
+    "o": [
+     "propose",
+     "proposal",
+     "proposed",
+     "proposing"
+    ],
+    "ans": 1,
+    "trap": 3,
+    "zh": "我們今天早上收到廠商的提案。",
+    "otag": {
+     "0": "動詞｜提議",
+     "1": "名詞｜提案",
+     "2": "形容詞｜被提議的",
+     "3": "V-ing｜提議的動作"
+    },
+    "ban": {
+     "t": "proposing 指提出建議的動作；received 要的是「提案」",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Proposing"
+    ],
+    [
+     "zh",
+     "指提出建議這個動作。這句用"
+    ],
+    [
+     "en",
+     "received"
+    ],
+    [
+     "zh",
+     "，要表達收到廠商的提案，所以選"
+    ],
+    [
+     "en",
+     "proposal."
+    ]
+   ]
+  },
+  {
+   "id": "d1f",
+   "view": {
+    "kind": "full",
+    "t": "示範1　所有格後的中心名詞",
+    "html": "We received the vendor’s <span class=\"blank fill\">proposal</span> this morning.",
+    "zh": "我們今天早上收到廠商的提案。"
+   },
+   "say": [
+    [
+     "en",
+     "We received the vendor's proposal this morning."
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "d2q",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　the ___ of",
+    "s": "{The ______ of the new software}|took two days.",
+    "o": [
+     "install",
+     "installs",
+     "installation",
+     "installed"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第二題，一樣先想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d2t",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　the ___ of",
+    "s": "{The ______ of the new software}|took two days.",
+    "o": [
+     "install",
+     "installs",
+     "installation",
+     "installed"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d2a",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　the ___ of",
+    "s": "{The ______ of the new software}|took two days.",
+    "o": [
+     "install",
+     "installs",
+     "installation",
+     "installed"
+    ],
+    "ring": [
+     {
+      "w": "blank",
+      "label": "中心名詞",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "the 和 of 之間只有空格 → 中心名詞；主要動詞是 took",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "名詞片語是"
+    ],
+    [
+     "en",
+     "the, blank, of the new software"
+    ],
+    [
+     "zh",
+     "，它是整句的主詞，動詞是"
+    ],
+    [
+     "en",
+     "took."
+    ],
+    [
+     "zh",
+     "the 和 of 中間只有空格，空格就是中心名詞。"
+    ]
+   ]
+  },
+  {
+   "id": "d2r",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　the ___ of",
+    "s": "{The ______ of the new software}|took two days.",
+    "o": [
+     "install",
+     "installs",
+     "installation",
+     "installed"
+    ],
+    "ans": 2,
+    "zh": "新軟體的安裝花了兩天。",
+    "otag": {
+     "0": "動詞｜安裝",
+     "1": "動詞｜安裝",
+     "2": "名詞｜安裝",
+     "3": "過去分詞｜已安裝的"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 C，"
+    ],
+    [
+     "en",
+     "installation"
+    ],
+    [
+     "zh",
+     "，安裝。"
+    ]
+   ]
+  },
+  {
+   "id": "d2x",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　the ___ of",
+    "s": "{The ______ of the new software}|took two days.",
+    "o": [
+     "install",
+     "installs",
+     "installation",
+     "installed"
+    ],
+    "ans": 2,
+    "trap": 1,
+    "zh": "新軟體的安裝花了兩天。",
+    "otag": {
+     "0": "動詞｜安裝",
+     "1": "動詞｜安裝",
+     "2": "名詞｜安裝",
+     "3": "過去分詞｜已安裝的"
+    },
+    "ban": {
+     "t": "installs 是動詞；句子已有主要動詞 took",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "B 是動詞，可是句子已經有主要動詞"
+    ],
+    [
+     "en",
+     "took"
+    ],
+    [
+     "zh",
+     "了。"
+    ]
+   ]
+  },
+  {
+   "id": "d2f",
+   "view": {
+    "kind": "full",
+    "t": "示範2　the ___ of",
+    "html": "The <span class=\"blank fill\">installation</span> of the new software took two days.",
+    "zh": "新軟體的安裝花了兩天。"
+   },
+   "say": [
+    [
+     "en",
+     "The installation of the new software took two days."
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "d3q",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　介系詞後的名詞片語",
+    "s": "Thank you [for] {your ______}|during the renovation.",
+    "o": [
+     "patient",
+     "patiently",
+     "patience",
+     "impatient"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第三題。想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d3t",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　介系詞後的名詞片語",
+    "s": "Thank you [for] {your ______}|during the renovation.",
+    "o": [
+     "patient",
+     "patiently",
+     "patience",
+     "impatient"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d3a",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　介系詞後的名詞片語",
+    "s": "Thank you [for] {your ______}|during the renovation.",
+    "o": [
+     "patient",
+     "patiently",
+     "patience",
+     "impatient"
+    ],
+    "ring": [
+     {
+      "w": "blank",
+      "label": "中心名詞",
+      "c": "blue"
+     }
+    ],
+    "tag": [
+     {
+      "w": "for",
+      "label": "介系詞"
+     }
+    ],
+    "ban": {
+     "t": "for 後接名詞片語 your ___ → 空格就是中心名詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "介系詞"
+    ],
+    [
+     "en",
+     "for"
+    ],
+    [
+     "zh",
+     "後面接名詞片語"
+    ],
+    [
+     "en",
+     "your, blank."
+    ],
+    [
+     "zh",
+     "during the renovation 是另一個介系詞片語。your 後面除了空格沒有別的名詞，空格就是中心名詞。"
+    ]
+   ]
+  },
+  {
+   "id": "d3r",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　介系詞後的名詞片語",
+    "s": "Thank you [for] {your ______}|during the renovation.",
+    "o": [
+     "patient",
+     "patiently",
+     "patience",
+     "impatient"
+    ],
+    "ans": 2,
+    "zh": "感謝您在整修期間耐心等候。",
+    "otag": {
+     "0": "形容詞｜有耐心的",
+     "1": "副詞｜耐心地",
+     "2": "名詞｜耐心",
+     "3": "形容詞｜沒耐心的"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 C，"
+    ],
+    [
+     "en",
+     "patience"
+    ],
+    [
+     "zh",
+     "，耐心。"
+    ],
+    [
+     "en",
+     "Thank you for your patience"
+    ],
+    [
+     "zh",
+     "是很常用的說法：感謝您的耐心等候。"
+    ]
+   ]
+  },
+  {
+   "id": "d3x",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　介系詞後的名詞片語",
+    "s": "Thank you [for] {your ______}|during the renovation.",
+    "o": [
+     "patient",
+     "patiently",
+     "patience",
+     "impatient"
+    ],
+    "ans": 2,
+    "trap": 0,
+    "zh": "感謝您在整修期間耐心等候。",
+    "otag": {
+     "0": "形容詞｜有耐心的",
+     "1": "副詞｜耐心地",
+     "2": "名詞｜耐心",
+     "3": "形容詞｜沒耐心的"
+    },
+    "ban": {
+     "t": "your patient＝您的病人，句意不通",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "A"
+    ],
+    [
+     "en",
+     "patient"
+    ],
+    [
+     "zh",
+     "也可以當名詞「病人」，"
+    ],
+    [
+     "en",
+     "your patient"
+    ],
+    [
+     "zh",
+     "變成「您的病人」，句意不通。"
+    ]
+   ]
+  },
+  {
+   "id": "d3f",
+   "view": {
+    "kind": "full",
+    "t": "示範3　介系詞後的名詞片語",
+    "html": "Thank you for your <span class=\"blank fill\">patience</span> during the renovation.",
+    "zh": "感謝您在整修期間耐心等候。"
+   },
+   "say": [
+    [
+     "en",
+     "Thank you for your patience during the renovation."
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "d4q",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　空格是修飾語：名詞修飾名詞",
+    "s": "Please fill out {the ______ [form]}|at the front desk.",
+    "o": [
+     "register",
+     "registration",
+     "registers",
+     "registering"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後一題。這題的空格，是不是中心名詞？"
+    ]
+   ]
+  },
+  {
+   "id": "d4t",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　空格是修飾語：名詞修飾名詞",
+    "s": "Please fill out {the ______ [form]}|at the front desk.",
+    "o": [
+     "register",
+     "registration",
+     "registers",
+     "registering"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d4a",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　空格是修飾語：名詞修飾名詞",
+    "s": "Please fill out {the ______ [form]}|at the front desk.",
+    "o": [
+     "register",
+     "registration",
+     "registers",
+     "registering"
+    ],
+    "ring": [
+     {
+      "w": "form",
+      "label": "中心名詞",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "片語最後的名詞是 form → 中心名詞是 form",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "名詞片語是"
+    ],
+    [
+     "en",
+     "the, blank, form."
+    ],
+    [
+     "zh",
+     "片語最後的名詞是"
+    ],
+    [
+     "en",
+     "form"
+    ],
+    [
+     "zh",
+     "，中心名詞是"
+    ],
+    [
+     "en",
+     "form"
+    ],
+    [
+     "zh",
+     "；空格在它前面，是修飾語。"
+    ]
+   ]
+  },
+  {
+   "id": "d4b",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　空格是修飾語：名詞修飾名詞",
+    "s": "Please fill out {the ______ [form]}|at the front desk.",
+    "o": [
+     "register",
+     "registration",
+     "registers",
+     "registering"
+    ],
+    "ring": [
+     {
+      "w": "form",
+      "label": "中心名詞",
+      "c": "blue"
+     }
+    ],
+    "arrows": [
+     {
+      "from": "blank",
+      "to": "form",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "哪一種表格？ → 說明類別的名詞",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格說明是哪一種表格，說明類別可以用名詞。"
+    ]
+   ]
+  },
+  {
+   "id": "d4r",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　空格是修飾語：名詞修飾名詞",
+    "s": "Please fill out {the ______ [form]}|at the front desk.",
+    "o": [
+     "register",
+     "registration",
+     "registers",
+     "registering"
+    ],
+    "ans": 1,
+    "zh": "請在櫃台填寫報名表。",
+    "otag": {
+     "0": "動詞｜登記",
+     "1": "名詞｜報名、登記",
+     "2": "動詞｜登記",
+     "3": "V-ing｜正在登記的"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 B，"
+    ],
+    [
+     "en",
+     "registration form"
+    ],
+    [
+     "zh",
+     "，報名表。"
+    ]
+   ]
+  },
+  {
+   "id": "d4x",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　空格是修飾語：名詞修飾名詞",
+    "s": "Please fill out {the ______ [form]}|at the front desk.",
+    "o": [
+     "register",
+     "registration",
+     "registers",
+     "registering"
+    ],
+    "ans": 1,
+    "trap": 3,
+    "zh": "請在櫃台填寫報名表。",
+    "otag": {
+     "0": "動詞｜登記",
+     "1": "名詞｜報名、登記",
+     "2": "動詞｜登記",
+     "3": "V-ing｜正在登記的"
+    },
+    "ban": {
+     "t": "registering「正在登記的」，不能說明表格的類別",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "D"
+    ],
+    [
+     "en",
+     "registering"
+    ],
+    [
+     "zh",
+     "是「正在登記的」，不能說明表格是哪一種。"
+    ]
+   ]
+  },
+  {
+   "id": "d4f",
+   "view": {
+    "kind": "full",
+    "t": "示範4　空格是修飾語：名詞修飾名詞",
+    "html": "Please fill out the <span class=\"blank fill\">registration</span> <span class=\"mark\">form</span> at the front desk.",
+    "zh": "請在櫃台填寫報名表。"
+   },
+   "say": [
+    [
+     "en",
+     "Please fill out the registration form at the front desk."
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "e1",
+   "view": {
+    "kind": "sum",
+    "t": "本課整理",
+    "h": "先找中心名詞，再看空格的工作",
+    "rows": [
+     [
+      "空格就是中心名詞",
+      "名詞"
+     ],
+     [
+      "中心名詞前，描述性質（什麼樣的？）",
+      "形容詞"
+     ],
+     [
+      "中心名詞前，說明類別（哪一種？）",
+      "名詞"
+     ],
+     [
+      "要人還是事？",
+      "applicant／application"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後幫大家整理一下。先找中心名詞：空格就是中心名詞，填名詞；空格在中心名詞前面，描述性質用形容詞，說明類別可以用名詞。還有，記得分清楚要的是人還是事。"
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "e2",
+   "view": {
+    "kind": "cta",
+    "q": [
+     "看完了？",
+     "往下做 10 題練習，",
+     "再用 4 題確認你會不會判斷。"
+    ],
+    "down": true
+   },
+   "say": [
+    [
+     "zh",
+     "看完了？往下做 10 題練習，再用 4 題確認你會不會判斷。"
+    ]
+   ],
+   "hold": 3.0
+  }
+ ]
+}
