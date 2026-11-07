@@ -2,246 +2,251 @@
  {
   "scene": "hook1",
   "start": 0.0,
-  "sec": 6.63
- },
- {
-  "scene": "hook2",
-  "start": 6.63,
   "sec": 6.38
  },
  {
-  "scene": "hook3",
-  "start": 13.01,
+  "scene": "hook2",
+  "start": 6.38,
   "sec": 3.45
  },
  {
   "scene": "open2",
-  "start": 16.46,
-  "sec": 17.67
+  "start": 9.83,
+  "sec": 18.02
  },
  {
   "scene": "open3",
-  "start": 34.13,
+  "start": 27.85,
   "sec": 5.16
  },
  {
   "scene": "open4",
-  "start": 39.29,
+  "start": 33.01,
   "sec": 7.18
  },
  {
   "scene": "c1",
-  "start": 46.48,
+  "start": 40.2,
   "sec": 8.73
  },
  {
   "scene": "c2",
-  "start": 55.2,
+  "start": 48.92,
   "sec": 10.4
  },
  {
   "scene": "c3",
-  "start": 65.6,
+  "start": 59.32,
   "sec": 7.56
  },
  {
   "scene": "c4",
-  "start": 73.16,
+  "start": 66.87,
   "sec": 8.72
  },
  {
   "scene": "c5",
-  "start": 81.87,
+  "start": 75.59,
   "sec": 13.1
  },
  {
   "scene": "c6",
-  "start": 94.97,
+  "start": 88.69,
   "sec": 7.97
  },
  {
+  "scene": "r1",
+  "start": 96.66,
+  "sec": 8.06
+ },
+ {
+  "scene": "r2",
+  "start": 104.72,
+  "sec": 7.15
+ },
+ {
   "scene": "c7",
-  "start": 102.94,
+  "start": 111.87,
   "sec": 18.57
  },
  {
   "scene": "c8",
-  "start": 121.51,
+  "start": 130.44,
   "sec": 8.83
  },
  {
   "scene": "c9",
-  "start": 130.34,
+  "start": 139.27,
   "sec": 6.89
  },
  {
   "scene": "c10",
-  "start": 137.23,
+  "start": 146.16,
   "sec": 5.32
  },
  {
   "scene": "c11",
-  "start": 142.54,
+  "start": 151.47,
   "sec": 13.91
  },
  {
   "scene": "d1q",
-  "start": 156.45,
+  "start": 165.38,
   "sec": 5.06
  },
  {
   "scene": "d1t",
-  "start": 161.51,
+  "start": 170.44,
   "sec": 5.45
  },
  {
   "scene": "d1a",
-  "start": 166.96,
+  "start": 175.89,
   "sec": 9.87
  },
  {
   "scene": "d1b",
-  "start": 176.83,
+  "start": 185.76,
   "sec": 10.74
  },
  {
   "scene": "d1c",
-  "start": 187.57,
+  "start": 196.5,
   "sec": 5.88
  },
  {
   "scene": "d1d",
-  "start": 193.45,
+  "start": 202.38,
   "sec": 12.6
  },
  {
   "scene": "d1e",
-  "start": 206.05,
+  "start": 214.98,
   "sec": 4.9
  },
  {
   "scene": "d2q",
-  "start": 210.95,
+  "start": 219.88,
   "sec": 2.92
  },
  {
   "scene": "d2t",
-  "start": 213.86,
+  "start": 222.8,
   "sec": 5.45
  },
  {
   "scene": "d2a",
-  "start": 219.31,
+  "start": 228.25,
   "sec": 7.72
  },
  {
   "scene": "d2b",
-  "start": 227.03,
+  "start": 235.96,
   "sec": 13.78
  },
  {
   "scene": "d2c",
-  "start": 240.82,
+  "start": 249.74,
   "sec": 3.9
  },
  {
   "scene": "d2d",
-  "start": 244.72,
-  "sec": 14.18
+  "start": 253.65,
+  "sec": 14.19
  },
  {
   "scene": "d2e",
-  "start": 258.9,
+  "start": 267.83,
   "sec": 4.55
  },
  {
   "scene": "d3q",
-  "start": 263.45,
+  "start": 272.38,
   "sec": 4.8
  },
  {
   "scene": "d3t",
-  "start": 268.25,
+  "start": 277.18,
   "sec": 5.45
  },
  {
   "scene": "d3a",
-  "start": 273.7,
+  "start": 282.63,
   "sec": 12.64
  },
  {
   "scene": "d3b",
-  "start": 286.33,
+  "start": 295.26,
   "sec": 8.57
  },
  {
   "scene": "d3c",
-  "start": 294.9,
+  "start": 303.83,
   "sec": 8.58
  },
  {
   "scene": "d3d",
-  "start": 303.48,
-  "sec": 7.11
+  "start": 312.41,
+  "sec": 7.1
  },
  {
   "scene": "d3e",
-  "start": 310.59,
+  "start": 319.52,
   "sec": 4.12
  },
  {
   "scene": "d4q",
-  "start": 314.71,
-  "sec": 12.3
+  "start": 323.63,
+  "sec": 10.09
  },
  {
   "scene": "d4t",
-  "start": 327.0,
+  "start": 333.72,
   "sec": 6.45
  },
  {
   "scene": "d4a",
-  "start": 333.45,
+  "start": 340.17,
   "sec": 6.08
  },
  {
   "scene": "d4b",
-  "start": 339.54,
+  "start": 346.25,
   "sec": 10.27
  },
  {
   "scene": "d4c",
-  "start": 349.8,
+  "start": 356.52,
   "sec": 4.68
  },
  {
   "scene": "d4d",
-  "start": 354.48,
+  "start": 361.2,
   "sec": 4.84
  },
  {
   "scene": "d4e",
-  "start": 359.32,
+  "start": 366.04,
   "sec": 6.94
  },
  {
   "scene": "d4f",
-  "start": 366.26,
+  "start": 372.97,
   "sec": 4.47
  },
  {
   "scene": "d4g",
-  "start": 370.73,
+  "start": 377.44,
   "sec": 24.06
  },
  {
   "scene": "e1",
-  "start": 394.79,
+  "start": 401.5,
   "sec": 12.19
  },
  {
   "scene": "e2",
-  "start": 406.98,
+  "start": 413.7,
   "sec": 9.45
  }
 ]
