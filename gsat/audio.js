@@ -32,7 +32,8 @@ window.GSATAudio = (function () {
     emit();
   }
   function fallback(me) {
-    if (cur !== me) return;
+    if (cur !== me || me.via === 'device') return;            // error 事件與 play() 失敗可能同時觸發，只能退回一次，否則會念兩遍
+    try { if (me.a) me.a.pause(); } catch (e) {}              // 載入失敗的音訊元件先停掉，再改用裝置語音
     me.via = 'device'; me.a = null;
     try {
       speechSynthesis.cancel();

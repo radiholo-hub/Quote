@@ -23,6 +23,7 @@ if [ "${GSAT_PUBLISH_EXAMS:-}" != 1 ]; then
   echo 'window.NONMC={};' > "$OUT"/gsat/exam/nonmc.js
   echo 'window.EXPLAIN={};' > "$OUT"/gsat/exam/explain.js
   echo 'window.MIXED={};' > "$OUT"/gsat/exam/mixed.js
+  echo 'window.VOCAB_INDEX=null;' > "$OUT"/gsat/exam/vocab_index.js
 fi
 if [ "${CF_PAGES:-}" = 1 ]; then
   cat > "$OUT/_headers" <<'HEADERS'

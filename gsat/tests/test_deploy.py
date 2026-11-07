@@ -46,9 +46,14 @@ def open_site(browser, site):
 
 def test_public_build_has_no_exam_files_at_all(public_site):
     exam_dir = sorted(p.name for p in (public_site / 'exam').rglob('*'))
-    assert exam_dir == ['answers.js', 'exams.js', 'explain.js', 'mixed.js', 'nonmc.js']
+    assert exam_dir == ['answers.js', 'exams.js', 'explain.js', 'mixed.js', 'nonmc.js', 'vocab_index.js']        # 只有空殼；出現索引也不外流
+    assert (public_site / 'exam' / 'vocab_index.js').read_text() == 'window.VOCAB_INDEX=null;\n'
+    assert (public_site / 'exam' / 'explain.js').read_text() == 'window.EXPLAIN={};\n'
     big = [p for p in public_site.rglob('*') if p.is_file() and p.suffix in ('.jpg', '.png', '.pdf')]
     assert big == []
+    # 原創內容（單字庫、延伸練習、語音）照常部署
+    assert (public_site / 'data' / 'vocab.js').is_file() and (public_site / 'data' / 'audio_manifest.js').is_file() and (public_site / 'learn.js').is_file()
+    assert len(list((public_site / 'audio').glob('*.mp3'))) == len(list((ROOT / 'audio').glob('*.mp3'))) >= 180
     assert 'Hay-on-Wye' not in ''.join(p.read_text(encoding='utf8') for p in public_site.rglob('*.js'))   # 試題文字不在
 
 
@@ -101,5 +106,26 @@ def test_public_build_still_offers_original_writing_practice(browser, public_sit
     page.goto((public_site / 'index.html').as_uri() + '#/ns/111')
     assert '找不到這個年度' in page.inner_text('#app')              # 不會洩漏任何試題頁面
     assert [u for u in page.requests if u.lower().endswith(('.jpg', '.png', '.pdf'))] == []
+    assert page.errors == []
+    ctx.close()
+
+
+def test_public_build_word_pages_and_audio_work_without_any_exam_data(browser, public_site, stub_mp3):
+    ctx, page = open_site(browser, public_site)
+    page.add_init_script("window.__au=[];(()=>{const A=window.Audio;window.Audio=function(s){const a=new A(s);window.__au.push(a.src.split('/').pop());return a};window.Audio.prototype=A.prototype})()")
+    page.reload()                                                                                                 # 初始化腳本要在載入前注入，所以重新載入一次
+    page.goto((public_site / 'index.html').as_uri() + '#/word/communicate-v')
+    page.wait_for_selector('[data-view=word]')
+    assert page.locator('.wcard .hw').inner_text() == 'communicate' and page.locator('[data-role=family] li').count() == 3
+    assert page.locator('[data-role=no-index]').count() >= 1 and '授權確認後才會開放' in page.inner_text('#app')          # 沒有歷屆出現紀錄，也不洩漏任何次數或題號
+    assert page.locator('[data-role=rec-table]').count() == 0 and '115' not in page.locator('[data-role=no-index]').first.inner_text()
+    page.locator('.whead .spk').click()                                                                          # 真的音檔隨網站部署，可以載入
+    page.wait_for_function('window.__au.length===1')
+    name = page.evaluate('window.__au[0]')
+    assert (public_site / 'audio' / name).is_file()
+    page.goto((public_site / 'index.html').as_uri() + '#/words')
+    assert page.locator('[data-entry]').count() >= 59 and page.locator('.cnt').count() == 0                      # 沒有任何歷屆次數
+    page.goto((public_site / 'index.html').as_uri() + '#/q/e115_12')
+    assert '找不到這一題' in page.inner_text('#app')
     assert page.errors == []
     ctx.close()

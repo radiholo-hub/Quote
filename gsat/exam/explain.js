@@ -1,77 +1,431 @@
-// 原創詳解（自行撰寫，非第三方解析）。鍵為「年度-題號」。
-// status：draft＝草稿，待英文老師審核；reviewed＝已審核（審核前不得標為 reviewed）。reviewer／reviewedAt／reviewNotes 由審核者填寫。
-// 審核方式：python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾> 產生含題目與檢核欄位的審核表（內含試題，請勿公開）。
-// 欄位：answer（須與官方答案一致，載入時與測試都會檢查）、key（解題關鍵）、why（每個選項為何對／錯）、words（重要單字片語）、grammar（文法補充，可省略）。
-// 試做範圍：115 學年度詞彙題第 1–10 題。撰寫方式：先獨立判斷答案，再和大考中心公布答案核對，10 題皆一致。
+// 原創詳解(自行撰寫,非第三方解析)。鍵為「年度-題號」。schema 2:引用單字詞條(gsat/data/vocab.js),字義與詞性只在詞條裡定義一次。
+// status:draft＝AI 草稿,待英文老師審核;reviewed＝已審核(審核前不得標為 reviewed)。reviewer／reviewedAt／reviewNotes 由審核者填寫。
+// 審核方式:python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾> 產生含題目與檢核欄位的審核表(內含試題,請勿公開)。
 window.EXPLAIN = {
-  '115-1': {
-    answer: 'B', status: 'draft', reviewer: null, reviewedAt: null, reviewNotes: '',
-    key: '句型 such a ___ schedule that…：行程要排到「幾週才約得到訪談」，表示行程非常滿，所以用 tight（緊湊的）。',
-    why: { A: 'hasty 是「倉促的、草率的」，多形容決定或行動，不是行程排得滿。', B: 'tight schedule＝行程緊湊，符合「要等好幾週才排得到」。', C: 'diligent 是「勤勉的」，形容人，不能形容 schedule。', D: 'routine 是「例行的」，沒有「行程排不出空檔」的意思。' },
-    words: ['tight schedule 行程緊湊', 'arrange an interview 安排訪談', 'mayor 市長'],
-    grammar: 'such a + 形容詞 + 名詞 + that 子句：such a tight schedule that it takes weeks…（如此緊湊的行程，以致於…）。',
+ "115-1": {
+  "schema": 2,
+  "answer": "B",
+  "status": "draft",
+  "reviewer": null,
+  "reviewedAt": null,
+  "reviewNotes": "",
+  "key": [
+   "看句型:such a ___ schedule that…(如此…以致於…),that 後面接的是「結果」。",
+   "結果是「要花好幾週才安排得到訪談」,表示市長的行程排得非常滿、幾乎沒有空檔。",
+   "所以空格要形容 schedule「排得很滿」。tight schedule(行程緊湊)是固定搭配,其餘三個選項都表達不出「約不到時間」這個因果。"
+  ],
+  "options": {
+   "A": {
+    "entry": "hasty-adj",
+    "why": "hasty 是「倉促的、草率的」,形容決定或行動做得太快;「行程很滿」不等於「行程倉促」,hasty schedule 也不是慣用搭配。"
+   },
+   "B": {
+    "entry": "tight-adj",
+    "why": "tight schedule＝行程緊湊,正好對應「要等好幾週才排得到訪談」。"
+   },
+   "C": {
+    "entry": "diligent-adj",
+    "why": "diligent 是「勤勉的」,形容人的工作態度,不能形容 schedule。"
+   },
+   "D": {
+    "entry": "routine-adj",
+    "why": "routine schedule 是「例行的行程」,說明行程固定,並沒有表達「排不出空檔」。"
+   }
   },
-  '115-2': {
-    answer: 'C', status: 'draft', reviewer: null, reviewedAt: null, reviewNotes: '',
-    key: '轉折詞 but 前後要形成對比：現在擁有「專業」(professional) 工作室，之前就應該是「業餘」的 amateur。',
-    why: { A: 'official 是「官方的、正式的」，和 professional 不構成對比。', B: 'instant 是「立即的、即溶的」，與職業身分無關。', C: 'amateur＝業餘的，與後面 professional 形成對比。', D: 'elementary 是「初級的、基本的」，用在程度或教育階段，不用來描述職業身分。' },
-    words: ['amateur 業餘的／業餘者 ↔ professional 專業的', 'start as … 起初是…', 'of her own 她自己的'],
-    grammar: 'a professional studio of her own：「a + 名詞 + of + 所有格 + own」＝她自己的專業工作室（等於 her own professional studio）。這個形式前面要用 a／an，不能寫成 a her own studio。',
+  "words": [
+   "tight-adj"
+  ],
+  "phrases": [
+   "arrange-an-interview",
+   "such-a-that"
+  ],
+  "patterns": [
+   "such a + 形容詞 + 名詞 + that 子句(如此…以致於…)",
+   "It takes + 時間 + to V(要花…時間才…)"
+  ],
+  "grammar": "It takes weeks to arrange…:it 是虛主詞,真正的主詞是 to arrange an interview with her。such 修飾「a + 形容詞 + 名詞」,所以要寫 such a tight schedule,不是 so a tight schedule。",
+  "focus": "tight-adj"
+ },
+ "115-2": {
+  "schema": 2,
+  "answer": "C",
+  "status": "draft",
+  "reviewer": null,
+  "reviewedAt": null,
+  "reviewNotes": "",
+  "key": [
+   "but 表示轉折:現在擁有「專業」(professional)的工作室,代表先前的身分與「專業」相反。",
+   "started as… 說明剛起步時的身分;從業餘到專業,是常見的成長過程。",
+   "所以空格填「業餘的」amateur。另外 an 後面要接母音開頭的字,amateur 符合。"
+  ],
+  "options": {
+   "A": {
+    "entry": "official-adj",
+    "why": "official 是「官方的、正式的」,和 professional 不構成「業餘 vs. 專業」的對比。"
+   },
+   "B": {
+    "entry": "instant-adj",
+    "why": "instant 是「立即的、即溶的」,與職業身分無關。"
+   },
+   "C": {
+    "entry": "amateur-adj",
+    "why": "amateur 是「業餘的」,與後面的 professional 形成對比。"
+   },
+   "D": {
+    "entry": "elementary-adj",
+    "why": "elementary 是「初級的、基本的」,用在程度或教育階段(elementary school),不用來描述「業餘 vs. 專業」的身分。"
+   }
   },
-  '115-3': {
-    answer: 'B', status: 'draft', reviewer: null, reviewedAt: null, reviewNotes: '',
-    key: '主詞 teaching ___ at the famous high school 能「吸引十幾位合格應徵者」，只有「教職缺額」說得通，所以用 vacancy（職缺）。',
-    why: { A: 'career 是「職業生涯」，不是學校提供的一個「缺」。', B: 'teaching vacancy＝教職缺額，學校釋出缺額才會有人應徵。', C: 'expectation 是「期望」，不會吸引應徵者。', D: 'inspiration 是「靈感、啟發」，與應徵無關。' },
-    words: ['vacancy 職缺、空缺', 'applicant 應徵者', 'well-qualified 資格優良的', 'a dozen 十二個（more than a dozen＝十幾個以上）'],
-    grammar: 'more than a dozen applicants：dozen 前面有 a 或數字時不加 s（two dozen eggs）；沒有數字、表示「很多」時才用 dozens of。soon 是頻率／時間副詞，放在主詞與動詞之間（soon attracted）。',
+  "words": [
+   "amateur-adj"
+  ],
+  "phrases": [
+   "of-her-own"
+  ],
+  "patterns": [
+   "start as + 身分(起初是…)",
+   "but 前後對比:professional ↔ amateur"
+  ],
+  "grammar": "a studio of her own:「a + 名詞 + of + 所有格 + own」＝她自己的工作室(等於 her own studio)。這個形式前面要用 a / an,不能寫成 a her own studio。",
+  "focus": "amateur-adj"
+ },
+ "115-3": {
+  "schema": 2,
+  "answer": "B",
+  "status": "draft",
+  "reviewer": null,
+  "reviewedAt": null,
+  "reviewNotes": "",
+  "key": [
+   "看後半句:這件事「吸引了十幾位資格優良的 applicants(應徵者)」。",
+   "學校釋出「教職缺額」才會有人來應徵,所以主詞要是「職缺」:teaching vacancy。",
+   "其他三個名詞無法跟「吸引應徵者」形成因果,可以用這個因果關係檢查答案。"
+  ],
+  "options": {
+   "A": {
+    "entry": "career-n",
+    "why": "career 是「職業生涯」,teaching career 是個人的教學生涯,不是「學校提供的缺額」,也不會吸引應徵者。"
+   },
+   "B": {
+    "entry": "vacancy-n",
+    "why": "teaching vacancy＝教職缺額,學校有缺額才會吸引應徵者。"
+   },
+   "C": {
+    "entry": "expectation-n",
+    "why": "expectation 是「期望」,不會「吸引」應徵者。"
+   },
+   "D": {
+    "entry": "inspiration-n",
+    "why": "inspiration 是「靈感、啟發」,與應徵無關。"
+   }
   },
-  '115-4': {
-    answer: 'A', status: 'draft', reviewer: null, reviewedAt: null, reviewNotes: '',
-    key: '句意是「獲利遠超過『原先』的預期」。than 之後省略了主詞與 be 動詞，等於 than (it was) initially expected，用表示時間先後的 initially（起初）。',
-    why: { A: 'initially＝起初、原先，than initially expected＝比起原先的預期。', B: 'genuinely 是「真誠地、確實地」，不表示時間先後。', C: 'alternatively 是「或者、另一個選擇是」，用於提出替代方案。', D: 'fundamentally 是「根本上」，不符合「預期」的語意。' },
-    words: ['initially 起初', 'far more … than … 遠多於…', 'profit 利潤'],
-    grammar: 'than 引導的比較子句常省略「主詞 + be」：…than (it was) initially expected。',
+  "words": [
+   "vacancy-n"
+  ],
+  "phrases": [
+   "a-dozen",
+   "well-qualified"
+  ],
+  "patterns": [
+   "more than a dozen + 複數名詞(十幾個以上)"
+  ],
+  "grammar": "more than a dozen applicants:dozen 前面有 a 或數字時不加 s(two dozen eggs);沒有數字、表示「很多」時才用 dozens of。soon 是副詞,放在主詞與動詞之間(soon attracted)。",
+  "focus": "vacancy-n"
+ },
+ "115-4": {
+  "schema": 2,
+  "answer": "A",
+  "status": "draft",
+  "reviewer": null,
+  "reviewedAt": null,
+  "reviewNotes": "",
+  "key": [
+   "看 than ___ expected:than 後面省略了「主詞 + be」,完整是 than (it was) initially expected。",
+   "句意是「獲利遠超過『原先』的預期」,空格要放表示時間先後的副詞(一開始、當初)。",
+   "initially 是「起初」,符合;其餘三個副詞都不表示時間先後。"
+  ],
+  "options": {
+   "A": {
+    "entry": "initially-adv",
+    "why": "initially＝起初,than initially expected＝比起原先的預期。"
+   },
+   "B": {
+    "entry": "genuinely-adv",
+    "why": "genuinely 是「真誠地、確實地」,不表示時間先後,放在這裡無法說明「比當初預期更多」。"
+   },
+   "C": {
+    "entry": "alternatively-adv",
+    "why": "alternatively 是「或者、另一個選擇是」,用來提出另一個方案。"
+   },
+   "D": {
+    "entry": "fundamentally-adv",
+    "why": "fundamentally 是「根本上」,和「預期」的先後無關。"
+   }
   },
-  '115-5': {
-    answer: 'D', status: 'draft', reviewer: null, reviewedAt: null, reviewNotes: '',
-    key: 'a balanced ___ of fruit and vegetables 與健康有關的是人「實際吃進去」的量，所以用 consumption（攝取、消費）。',
-    why: { A: 'dimension 是「層面、維度」，與「蔬果的量」無關。', B: 'integration 是「整合」，語意不通。', C: 'provision 是「供應、提供」，指給予的一方；影響健康的是吃下去的量，不是供應。', D: 'consumption＝攝取（量），a balanced consumption of fruit and vegetables＝均衡攝取蔬果。' },
-    words: ['consumption 攝取量、消費', 'balanced diet 均衡飲食', 'key element 關鍵要素'],
-    grammar: 'It has been confirmed that…：虛主詞 It + 現在完成式被動，真主詞是 that 子句（已被證實…）。',
+  "words": [
+   "initially-adv"
+  ],
+  "phrases": [],
+  "patterns": [
+   "far + 比較級 + than(遠比…)",
+   "than (it was) + 副詞 + 過去分詞(省略主詞與 be)"
+  ],
+  "grammar": "far more profit than…:far 用來加強比較級(more)。than 引導的比較子句常省略「主詞 + be」。",
+  "focus": "initially-adv"
+ },
+ "115-5": {
+  "schema": 2,
+  "answer": "D",
+  "status": "draft",
+  "reviewer": null,
+  "reviewedAt": null,
+  "reviewNotes": "",
+  "key": [
+   "看 a balanced ___ of fruit and vegetables:與「健康」有關的,是人實際「吃進去」的量。",
+   "「攝取」要用 consumption(攝取、消耗);a balanced consumption of… ＝均衡攝取…。",
+   "注意 provision 是「供應、提供」,指給的一方;影響健康的是吃進去的量,不是供應的量。"
+  ],
+  "options": {
+   "A": {
+    "entry": "dimension-n",
+    "why": "dimension 是「層面、尺寸」,a balanced dimension of fruit 語意不通。"
+   },
+   "B": {
+    "entry": "integration-n",
+    "why": "integration 是「整合」,語意不通。"
+   },
+   "C": {
+    "entry": "provision-n",
+    "why": "provision 是「供應、提供」,指提供的一方;這題談的是對健康的影響,應該是人吃進去的量。"
+   },
+   "D": {
+    "entry": "consumption-n",
+    "why": "consumption＝攝取(量),a balanced consumption of fruit and vegetables＝均衡攝取蔬果。"
+   }
   },
-  '115-6': {
-    answer: 'A', status: 'draft', reviewer: null, reviewedAt: null, reviewNotes: '',
-    key: '主詞是「害羞、怕公開露面」的男孩，空格要表達對「在大批觀眾前演講這個想法」感到畏懼。dread the thought of… 是常見搭配。',
-    why: { A: 'dread＝害怕、畏懼，dread the thought of speaking…（一想到要演講就害怕）。', B: 'stress 當動詞是「強調」，stresses the thought 變成「強調這個想法」，與害怕不同。', C: 'wander 是不及物動詞「閒逛、漫遊」，後面不能直接接 the thought。', D: 'escape 是「逃脫」，escape the thought 不是慣用搭配，也不是題目要的「感到恐懼」。' },
-    words: ['dread (v.) 害怕、畏懼', 'dread doing sth. / dread the thought of… 一想到…就害怕', 'make a public appearance 公開露面', 'audience 觀眾、聽眾'],
-    grammar: 'the thought of + V-ing：介系詞 of 後面接動名詞，所以是 the thought of speaking，不能寫 the thought of to speak。句首 As a shy boy afraid of making public appearances 的 as 是「作為」，afraid of… 是放在 boy 後面的形容詞片語。',
+  "words": [
+   "consumption-n"
+  ],
+  "phrases": [],
+  "patterns": [
+   "It has been confirmed that…(已證實…)",
+   "a balanced diet / consumption(均衡的飲食/攝取)"
+  ],
+  "grammar": "It has been confirmed that…:It 是虛主詞,現在完成式被動,真主詞是 that 子句;the key element to… 的 to 是介系詞。",
+  "focus": "consumption-n"
+ },
+ "115-6": {
+  "schema": 2,
+  "answer": "A",
+  "status": "draft",
+  "reviewer": null,
+  "reviewedAt": null,
+  "reviewNotes": "",
+  "key": [
+   "句首說主詞是「害羞、怕公開露面」的男孩,所以空格要表達他對「在大批觀眾前演講」感到畏懼。",
+   "空格後面是 the thought of speaking…,能接 the thought of 並表示「害怕」的動詞是 dread。",
+   "Timmy 是第三人稱單數、時態是現在式,所以用 dreads。"
+  ],
+  "options": {
+   "A": {
+    "entry": "dread-v",
+    "why": "dread＝害怕、畏懼,dread the thought of speaking＝一想到要演講就害怕。"
+   },
+   "B": {
+    "entry": "stress-v",
+    "why": "stress 當動詞主要是「強調」,stresses the thought 會變成「強調這個想法」,和前面 afraid 的語氣不合。"
+   },
+   "C": {
+    "entry": "wander-v",
+    "why": "wander 是不及物動詞「閒逛、漫遊」,後面不能直接接 the thought。"
+   },
+   "D": {
+    "entry": "escape-v",
+    "why": "escape 是「逃脫、逃離」(地點或危險),escape the thought 不是慣用搭配,也不是題意要的「感到恐懼」。"
+   }
   },
-  '115-7': {
-    answer: 'C', status: 'draft', reviewer: null, reviewedAt: null, reviewNotes: '',
-    key: '空格前面是 his life’s ___，後面 which 子句說他「全心全意投入」，表示這是他畢生熱愛的事物，所以用 passion。',
-    why: { A: 'resource 是「資源」，不能說音樂是他一生的資源後又「全心投入」。', B: 'impact 是「影響」，語意不符。', C: 'passion＝熱情、熱愛的事物，life’s passion＝畢生的熱愛。', D: 'emphasis 是「重點、強調」，無法表達全心投入的對象。' },
-    words: ['passion 熱情、熱愛的事物', 'devote oneself to… 全心投入…', 'whole-heartedly 全心全意地', 'newly-crowned 剛獲得冠軍的'],
-    grammar: '非限定關係子句 which he has devoted himself to：先行詞是 his life’s passion，介系詞 to 留在子句最後。',
+  "words": [
+   "dread-v"
+  ],
+  "phrases": [
+   "public-appearance"
+  ],
+  "patterns": [
+   "dread the thought of + V-ing(一想到…就害怕)",
+   "dread + V-ing(害怕做某事)"
+  ],
+  "grammar": "the thought of + V-ing:介系詞 of 後面接動名詞,所以是 the thought of speaking,不能寫 the thought of to speak。句首 As a shy boy… 的 as 是「作為」,afraid of… 是放在 boy 後面的形容詞片語。",
+  "focus": "dread-v"
+ },
+ "115-7": {
+  "schema": 2,
+  "answer": "C",
+  "status": "draft",
+  "reviewer": null,
+  "reviewedAt": null,
+  "reviewNotes": "",
+  "key": [
+   "看 which 子句:which he has devoted himself to whole-heartedly(他全心投入的…)。",
+   "空格是 his life’s ___(他一生的…),又是「全心投入的對象」,所以是他熱愛的事物。",
+   "答案是 passion(熱情、熱愛的事物);life’s passion＝畢生的熱愛。"
+  ],
+  "options": {
+   "A": {
+    "entry": "resource-n",
+    "why": "resource 是「資源」,「音樂是他一生的資源」不能解釋「全心投入」。"
+   },
+   "B": {
+    "entry": "impact-n",
+    "why": "impact 是「衝擊、影響」,不是可以被「全心投入」的對象。"
+   },
+   "C": {
+    "entry": "passion-n",
+    "why": "passion＝熱愛的事物,his life’s passion＝他畢生的熱愛。"
+   },
+   "D": {
+    "entry": "emphasis-n",
+    "why": "emphasis 是「強調、重點」,無法表達「全心投入的對象」。"
+   }
   },
-  '115-8': {
-    answer: 'B', status: 'draft', reviewer: null, reviewedAt: null, reviewNotes: '',
-    key: '酒駕者「對路人大吼」又「用玻璃瓶 ___ 他們」，並因此被警察逮捕，空格要是「攻擊」，用 assault sb. with sth.（用…攻擊某人）。',
-    why: { A: 'shatter 是「打碎」，受詞是物品（如玻璃），不能 shatter 路人。', B: 'assault＝攻擊、襲擊，assaulted them with glass bottles＝用玻璃瓶攻擊他們。', C: 'overturn 是「翻轉、推翻」，受詞是物品或判決，不能接人。', D: 'condemn 是「譴責」，不是動手，也不搭配 with glass bottles。' },
-    words: ['assault sb. with sth. 用…攻擊某人', 'passer-by 路人（複數 passers-by）', 'drunk driver 酒駕者', 'arrest 逮捕'],
-    grammar: 'who shouted at passers-by and ___ them…：who 子句裡兩個過去式動詞用 and 並列，共用同一個主詞 who；主要子句 was quickly arrested 是被動語態。shout at sb. 是「對著某人大吼」（帶怒意），shout to sb. 才是「向某人喊話」。',
+  "words": [
+   "passion-n"
+  ],
+  "phrases": [
+   "devote-oneself"
+  ],
+  "patterns": [
+   "devote oneself to + 名詞/V-ing(全心投入…)"
+  ],
+  "grammar": "非限定關係子句 which he has devoted himself to…:先行詞是前面的 his life’s ___,devote oneself to 的 to 留在子句最後;whole-heartedly 是副詞,修飾 devoted。",
+  "focus": "passion-n"
+ },
+ "115-8": {
+  "schema": 2,
+  "answer": "B",
+  "status": "draft",
+  "reviewer": null,
+  "reviewedAt": null,
+  "reviewNotes": "",
+  "key": [
+   "空格和 shouted at passers-by 用 and 並列,都是 who(酒駕者)對路人做的事,後面還有 with glass bottles。",
+   "他因此「被警察逮捕」,所以這個動作是「攻擊」:assault sb. with sth.(用…攻擊某人)。",
+   "用受詞檢查:them 是「人」,能接人又搭配 with 工具的只有 assault。"
+  ],
+  "options": {
+   "A": {
+    "entry": "shatter-v",
+    "why": "shatter 是「打碎」,受詞通常是物品(shatter a window);不能 shatter 路人。"
+   },
+   "B": {
+    "entry": "assault-v",
+    "why": "assault＝攻擊,assaulted them with glass bottles＝用玻璃瓶攻擊他們。"
+   },
+   "C": {
+    "entry": "overturn-v",
+    "why": "overturn 是「翻轉、推翻」,受詞是物品或判決,不能接人。"
+   },
+   "D": {
+    "entry": "condemn-v",
+    "why": "condemn 是「譴責」,是言語上的行為,不搭配 with glass bottles。"
+   }
   },
-  '115-9': {
-    answer: 'C', status: 'draft', reviewer: null, reviewedAt: null, reviewNotes: '',
-    key: '句型「動詞 + one’s way + 介系詞」表示「以某種方式前進」。人多擁擠時，最貼切的是 elbow one’s way through the crowd（用手肘擠開人群前進）。',
-    why: { A: 'crash 是猛烈撞擊或撞毀，強調破壞力，不是「擠過人群」。', B: 'tumble 是「跌倒、翻滾」，不與 one’s way 組成這種句型。', C: 'elbow one’s way through the crowd 是描述穿過擁擠人群最慣用、動作最具體的說法。', D: 'struggle 後面雖也可接 one’s way，但語意是「費力地完成」，沒有指出「用身體擠過去」的動作，在這題不如 elbow 貼切；官方答案為 C。' },
-    words: ['elbow (v.) 用手肘推擠', 'elbow one’s way through the crowd 擠過人群', 'board 登上（車、船、飛機）', 'in time 及時（on time 是準時）'],
-    grammar: 'so many people at the bus station that…：so + 形容詞（many）+ 名詞 + that 子句，表示結果。',
+  "words": [
+   "assault-v"
+  ],
+  "phrases": [
+   "drunk-driver"
+  ],
+  "patterns": [
+   "assault + 人 + with + 工具(用…攻擊某人)",
+   "shout at sb.(對著某人大吼)"
+  ],
+  "grammar": "who shouted at passers-by and ___ them…:who 子句裡兩個過去式動詞用 and 並列,共用同一個主詞 who;主要子句 was quickly arrested 是被動語態。shout at sb. 是「對著某人大吼」(帶怒意),shout to sb. 才是「向某人喊話」。passer-by 的複數是 passers-by。",
+  "focus": "assault-v"
+ },
+ "115-9": {
+  "schema": 2,
+  "answer": "C",
+  "status": "draft",
+  "reviewer": null,
+  "reviewedAt": null,
+  "reviewNotes": "",
+  "key": [
+   "先看句型:___ my way through the crowd ＝「動詞 + one’s way + 介系詞」,表示以某種方式前進。",
+   "情境是公車站人太多(so many people),要「擠」過人群才趕得上車。",
+   "用手肘擠開人群前進,是 elbow one’s way through the crowd。"
+  ],
+  "options": {
+   "A": {
+    "entry": "crash-v",
+    "why": "crash 是猛烈撞擊或撞毀,強調破壞力,不是「擠過人群」。"
+   },
+   "B": {
+    "entry": "tumble-v",
+    "why": "tumble 是「跌倒、滾落」,不與 one’s way 組成這種句型。"
+   },
+   "C": {
+    "entry": "elbow-v",
+    "why": "elbow one’s way through the crowd 是描述穿過擁擠人群最慣用、動作最具體的說法。"
+   },
+   "D": {
+    "entry": "struggle-v",
+    "why": "struggle 後面雖然也有人接 one’s way,但語意是「費力地完成」,沒有指出「用身體擠過去」的動作,在這題不如 elbow 貼切;官方答案為 C。"
+   }
   },
-  '115-10': {
-    answer: 'D', status: 'draft', reviewer: null, reviewedAt: null, reviewNotes: '',
-    key: 'raise ___ concerns 的常見搭配是 grave concerns（嚴重的、深切的憂慮），前面的 deadly shootings、後面的 tragic incidents 也都是嚴肅沉重的語氣。',
-    why: { A: 'swift 是「迅速的」，常見搭配是 swift response，不修飾 concerns。', B: 'brutal 是「殘暴的」，形容暴行本身，不用來形容「憂慮」。', C: 'harsh 是「嚴厲的、嚴酷的」，常搭配 criticism、weather，不搭配 concerns。', D: 'grave concerns＝嚴重的憂慮，是 concerns 最常見的形容詞之一。' },
-    words: ['grave 嚴重的、嚴肅的', 'raise concerns about… 引發對…的憂慮', 'deadly 致命的', 'campus 校園', 'tragic 悲慘的'],
-    grammar: 'prevent + 受詞 + from + V-ing：prevent such tragic incidents from happening again（防止這類悲劇再度發生）。',
+  "words": [
+   "elbow-v"
+  ],
+  "phrases": [
+   "board-the-bus"
+  ],
+  "patterns": [
+   "elbow / push / force + one’s way + through…(擠過、闖過…)",
+   "so + 形容詞 + that 子句(如此…以致於…)"
+  ],
+  "grammar": "so many people at the bus station that…:so + many + 名詞 + that 子句表示結果;in time 是「及時」,on time 才是「準時」。",
+  "focus": "elbow-v"
+ },
+ "115-10": {
+  "schema": 2,
+  "answer": "D",
+  "status": "draft",
+  "reviewer": null,
+  "reviewedAt": null,
+  "reviewNotes": "",
+  "key": [
+   "看 raised ___ concerns:要找最常修飾 concerns(憂慮)的形容詞。",
+   "前面 deadly shootings、後面 tragic incidents 語氣都很嚴肅沉重,所以是「嚴重的、深切的憂慮」。",
+   "grave concerns 是固定搭配;其餘三個形容詞各有自己常搭配的名詞(swift response、brutal attack、harsh criticism)。"
+  ],
+  "options": {
+   "A": {
+    "entry": "swift-adj",
+    "why": "swift 是「迅速的」,常見搭配是 swift response,不修飾 concerns。"
+   },
+   "B": {
+    "entry": "brutal-adj",
+    "why": "brutal 是「殘暴的」,形容暴行本身,不用來形容「憂慮」。"
+   },
+   "C": {
+    "entry": "harsh-adj",
+    "why": "harsh 是「嚴厲的、嚴酷的」,常搭配 criticism、weather,不搭配 concerns。"
+   },
+   "D": {
+    "entry": "grave-adj",
+    "why": "grave concerns＝嚴重的憂慮,是 concerns 最常見的形容詞搭配之一。"
+   }
   },
+  "words": [
+   "grave-adj"
+  ],
+  "phrases": [
+   "raise-concerns"
+  ],
+  "patterns": [
+   "raise concerns about…(引發對…的憂慮)",
+   "prevent + 受詞 + from + V-ing(防止…發生)"
+  ],
+  "grammar": "prevent such tragic incidents from happening again:prevent + 受詞 + from + V-ing。how to prevent… 是「疑問詞 + to V」,作 about 的受詞。",
+  "focus": "grave-adj"
+ }
 };

@@ -2,7 +2,763 @@
  "note": "只含檔名與雜湊，不含試題內容；原創檔案只記檔名",
  "files": [
   {
+   "path": "gsat/access.js",
+   "category": "original"
+  },
+  {
    "path": "gsat/app.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/audio/10c2bcb0919e6c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/10c5fc8cadbe7f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/110f8c001dc355.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/116fc321582b98.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/117d54d22a57c9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/11a1fd5f8437eb.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/11a8548de85974.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/11ac26509bd75a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/11d129fa640116.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/11ee989533395a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/12014d486af75d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/12077e5c73ee34.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1207af8ef2a27d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1239a0a225a0c9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/125a48ccf867fc.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/12ee210626967b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/12f1558bf6ff63.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/13082de95a7e88.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/133944e5b9cd48.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/137843db43bd8.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/137900341d44d7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/13a4319ba22521.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/13ade230b30271.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/13caf47f681eea.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/13fc16667cc728.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/140373c20e2200.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/141baed4eec1ef.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/14365c1b3a5878.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/14700b36cb953d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/148f1e2efb9df3.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/14c56458427166.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/14d610937fb962.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/164d6f5e807c0f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/168ceb65c568db.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/168fc3749f6438.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/169485e9f6dda7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/169b9780e0c04e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/16dd2811af7a86.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/16e2286cedc86a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/16f3ef750be250.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/16fd1a3b7cceb.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/17016198a6c522.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/17203357c8aaa1.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/17460fb62ffd23.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/177fb9cab7f436.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/17c057bfd67217.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/17f11b56551aaa.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/184aafb7245f67.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/186c0dffb06082.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/18b1aba860ba63.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/18d5011643daae.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/18e9619a35f47a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1903fd2f5c81e6.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1937144c02c37c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/193b6b56e2dbc1.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/19574460bf7257.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/197a18024630ef.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1992e7ac83f712.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/19a6c6e5f86b25.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/19ccdeb92c65be.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/19e43ae9ea8585.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/19ee1b4caf0cf2.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1a1546c9e2813f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1a9395c10e0885.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1acbff8611bbcf.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1b02152634e618.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1b3d76fa96569c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1bb9df41134874.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1bea36792ea8f5.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c0acca305073d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c0c8769e250b9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c0c9d281947f5.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c297b1e4bce0d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c50d8df6d6b4b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c6e377553e08e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1c780e2d8a4cdb.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1ca4b037c36e00.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1cc5a839453209.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1cfb0ff1d8f4e5.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d2d3f8944b7a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d33be9dba73b7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d5421682b058f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d736cc9c7d505.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d7a7a44e9c556.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1d97abe8e26865.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1da9fa45955f3d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1dec0b99b0d922.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1e75e7eddc52a3.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1e8029744b5568.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1e8c6d1763eeb5.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1e8d9bfabf75e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1ebe0016cf8e5b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1f7c4ba16c6b2f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1f99fb96e18810.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1fa2ee75b397cb.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1fb32211353764.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1fb4047884722e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1fd748cc52ee2c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/1fea416d32e9e1.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/2052c302ed20a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/20dec51b1ba1b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/221c35b29a7ba.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/25afd7f28ba15.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/266d700dbfc39.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/2f2fa91ebaa47.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/333f836dc7181.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/3414c38e12134.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/341cb64341e8.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/361b7d6c75152.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/3827c11efc903.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/393ac07f3aca3.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/3a0858955dbe3.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/409a048869236.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/42e9fb22ee31.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/4b945415b370c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/4ed9a11e846e6.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/4fb3d55c571ba.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/51168493bdb23.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/52be38f351289.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/5459a55ad82f0.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/56e31501a86f1.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/57c19f72c9cac.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/58275bbc36fe4.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/5b8c675d00184.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/5f01711ccc7cf.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/5fdb17062be48.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/618b6323e450a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/61b4ed1d6f9b9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/61ca33bbc6ea.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/6736c5b5a74ff.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/6761f73f0e1d5.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/784b93099133e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/78b35198819e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/7a8d739607ea9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/7c40d4fe0bc44.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/81a7392aa9fcf.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/85394f87212a7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/874dc3865a33d.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/8a9cf3d21fce4.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/8b2cab28a81d9.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/8bb742e21b788.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/8f260db7bcb7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/91841e41215b2.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/91affae26a94e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/93e6835c7c50e.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/990e24c866ce.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/9a4cca40e027b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/9b41967b82110.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/9c4dc068671bb.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/9f0ae2fc1eb02.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/a53db0aa0a245.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/a58f4de58d4ad.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/a89a633b0f303.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/abca7d4f09cda.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/ac6167ba6467c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/af10ed4658136.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/af94fbe014232.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/affd0d001f72f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/b0050202551dc.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/b29c1ef8f967.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/b6f626a874006.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/ba93a6a82efe7.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/baefe2196b28f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/bcf53d15dbddd.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/bd738eaa620fc.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/c922ef31ec068.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/ccc71e9e06c3b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/d219a8d4fdc27.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/d4d10c453f851.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/d5d5235c4e009.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/d668437baa28b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/daf28c69151cd.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/dde8971c0b17b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/e474e74249b7a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/e905895d7864a.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/e99172c8c5f.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/eaa51fb0cf021.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/ebb212e7b7ccd.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/ec13b3388395b.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/f0a931b3cdd89.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/f1b9b2c366fc.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/f58de8df899bc.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/fa022fc19b6ad.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/fa30ca744b335.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/fd57357257d42.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/fd787e9533b9c.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio/fe4eb5e877e64.mp3",
+   "category": "original-audio"
+  },
+  {
+   "path": "gsat/audio.js",
    "category": "original"
   },
   {
@@ -10,7 +766,15 @@
    "category": "original"
   },
   {
+   "path": "gsat/data/audio_manifest.js",
+   "category": "original"
+  },
+  {
    "path": "gsat/data/config.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/ext_practice.js",
    "category": "original"
   },
   {
@@ -19,6 +783,10 @@
   },
   {
    "path": "gsat/data/scoring.js",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/vocab.js",
    "category": "original"
   },
   {
@@ -43,8 +811,8 @@
    "path": "gsat/exam/explain.js",
    "category": "derived-original",
    "year": null,
-   "bytes": 10475,
-   "sha256": "24a44d3dc14b64212eb5f7bd2dbb60210000c4e9b730022589ef7a95e85956d6"
+   "bytes": 15449,
+   "sha256": "131872d650eb86cc1cbec88d35e4a749edb82493ce829a1624052c8e3a076150"
   },
   {
    "path": "gsat/exam/img/109-41.png",
@@ -439,7 +1207,25 @@
    "sha256": "51ba413c9a94090632d8d3d1fe81d50ec87af4e402a4da7c6a213f09c6e12650"
   },
   {
+   "path": "gsat/exam/vocab_index.js",
+   "category": "exam-derived-index",
+   "year": null,
+   "bytes": 39235,
+   "sha256": "fa77ea6dbbddfafd4460a22c5c8628bd9b511f268012780b30289cc01a51d73d"
+  },
+  {
+   "path": "gsat/exam/vocab_reviews.js",
+   "category": "review-data",
+   "year": null,
+   "bytes": 431,
+   "sha256": "99a4bbfd751df920e58e53ed1803029d3ecbe7ca0da26bc80e1512b7904a9d1f"
+  },
+  {
    "path": "gsat/index.html",
+   "category": "original"
+  },
+  {
+   "path": "gsat/learn.js",
    "category": "original"
   },
   {

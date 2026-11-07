@@ -128,8 +128,9 @@ function passageNode(q, st, key) {
   }, 0);
   return box;
 }
-function explainNode(q) {
+function explainNode(q, st) {
   const k = q.year + '-' + q.n, e = q.src === 'exam' ? EXPL[k] : null;
+  if (e && e.schema === 2 && window.GSATLearn) return window.GSATLearn.explainNode(q, e, st || {});
   const box = h('div', { class: 'explain', role: 'note', 'data-explain': e ? e.status : q.mockE ? 'original' : 'none' });
   box.append(h('b', {}, '正確答案:(' + LET[q.a] + ')'));
   if (e) {
@@ -138,8 +139,11 @@ function explainNode(q) {
     if (e.why) box.append(h('h4', {}, '各選項分析'), h('ul', {}, Object.keys(e.why).map(L => h('li', {}, '(' + L + ') ' + e.why[L]))));
     if (e.words && e.words.length) box.append(h('h4', {}, '重要單字與片語'), h('ul', {}, e.words.map(w => h('li', {}, w))));
     if (e.grammar) box.append(h('h4', {}, '文法補充'), h('p', {}, e.grammar));
-  } else if (q.mockE) box.append(h('p', {}, q.mockE));
-  else box.append(h('p', { class: 'fine' }, '這題的原創詳解還在製作中,目前只提供官方答案。'));
+  } else if (q.mockE) {
+    box.append(h('p', {}, q.mockE));
+    const pl = q.paras && window.GSATLearn ? window.GSATLearn.passagePlayer(q) : null;     // 原創文章才有朗讀（歷屆試題文章的朗讀等授權確認後再開放）
+    if (pl) box.append(pl);
+  } else box.append(h('p', { class: 'fine' }, '這題的原創詳解還在製作中,目前只提供官方答案。'));
   return box;
 }
 // 手機：全螢幕看文章，按「回題目」回到原本的位置（頁面與文章的捲動位置都保留）
@@ -169,14 +173,14 @@ function questionNode(q, st) {
     let cls = 'opt';
     if (st.reveal) { if (i === q.a) cls += ' ok'; else if (i === st.chosen) cls += ' bad'; }
     else if (i === st.chosen) cls += ' sel';
-    const b = h('button', { class: cls, role: 'radio', 'aria-checked': i === st.chosen ? 'true' : 'false', disabled: !!st.reveal, onclick: () => st.onPick && st.onPick(i) },
+    const b = h('button', { class: cls, role: 'radio', 'aria-checked': i === st.chosen ? 'true' : 'false', disabled: !!st.reveal || !!st.readonly, onclick: () => st.onPick && st.onPick(i) },
       h('span', { class: 'k' }, '(' + LET[i] + ')'), h('span', {}, q.optImgs ? '' : t));
     if (q.optImgs) b.append(h('img', { src: q.optImgs[i], alt: '選項 ' + LET[i] + ' 圖片', loading: 'lazy' }));
     opts.append(b);
   });
   right.append(opts);
   if (st.nextBlank && st.chosen != null) right.append(h('div', { class: 'row mt' }, h('button', { class: 'btn line sm', onclick: st.nextBlank }, '下一空格 →')));
-  if (st.reveal) right.append(explainNode(q));
+  if (st.reveal) right.append(explainNode(q, st));
   wrap.append(right);
   return wrap;
 }
@@ -191,20 +195,30 @@ function reserveBar() {
   document.documentElement.style.setProperty('--bar-h', hgt + 'px');
 }
 // ---------- 路由 ----------
-let cleanup = null, rendered = false;
+let cleanup = null, rendered = false, prevHash = '', curHash = '', restoreNext = false;
+const scrollMem = {};                                  // 離開頁面時記住捲動位置；按「返回」或瀏覽器上一頁時還原
+window.addEventListener('popstate', () => { restoreNext = true; });
+document.addEventListener('click', e => { if (e.target.closest && e.target.closest('[data-restore]')) restoreNext = true; }, true);
 function render() {
   if (cleanup) { cleanup(); cleanup = null; }
+  if (curHash) scrollMem[curHash] = window.scrollY;
+  prevHash = curHash; curHash = location.hash || '#/';
   document.body.style.overflow = ''; document.querySelectorAll('.reader,.modal,.fab').forEach(n => n.remove());
   const parts = (location.hash || '#/').slice(2).split('/');
   const wide = ['run', 'rev'].includes(parts[0]);
   $app.className = wide ? 'wide' : '';
   $app.style.paddingBottom = '';
   $app.innerHTML = '';
+  if (parts[0] === 'run' && window.GSATAudio) window.GSATAudio.stop();       // 作答畫面不提供朗讀
+  const learn = window.GSATLearn ? window.GSATLearn.route(parts) : null;
   const v = ({ '': viewHome, exam: viewExam, practice: viewPractice, review: viewReview, run: viewRun, result: viewResult, rev: viewRev, ns: viewNs })[parts[0]] || viewHome;
-  const node = v(parts.slice(1));
+  const node = learn || (['word', 'words', 'q', 'ext'].includes(parts[0]) ? null : v(parts.slice(1)));
   if (node) $app.append(node);
   reserveBar();
-  window.scrollTo(0, 0);
+  const want = restoreNext && scrollMem[curHash] != null ? scrollMem[curHash] : 0;
+  restoreNext = false;
+  window.scrollTo(0, want);
+  if (want) setTimeout(() => window.scrollTo(0, want), 60);                       // 版面（圖片、收合區塊）穩定後再校正一次
   const t = $app.querySelector('h1,h2'); if (t) { t.setAttribute('tabindex', '-1'); if (rendered) t.focus({ preventScroll: true }); }
   rendered = true;
   document.title = (t ? t.textContent + '｜' : '') + 'Score Rescue｜學測英文';
@@ -234,7 +248,7 @@ function viewHome() {
     entry('#/review', '錯題補強', wrong ? wrong + ' 題待補強・連續答對 2 次才算掌握' : '答錯的題目會集中在這裡', '')));
   const done = Object.values(DB.q).reduce((s, v) => s + v.a, 0), right = Object.values(DB.q).reduce((s, v) => s + v.c, 0);
   if (done) root.append(h('div', { class: 'stat mt2' }, h('div', {}, h('b', {}, done), '累計作答題數'), h('div', {}, h('b', {}, Math.round(right / done * 100) + '%'), '累計正確率'), h('div', {}, h('b', {}, wrong), '待補強錯題')));
-  root.append(h('div', { class: 'row mt2' }, h('a', { class: 'btn line sm', href: '#/ns/' }, '非選擇題與寫作'),
+  root.append(h('div', { class: 'row mt2' }, h('a', { class: 'btn line sm', href: '#/ns/' }, '非選擇題與寫作'), h('a', { class: 'btn line sm', href: '#/words' }, '單字與字族'),
     h('span', { class: 'fine' }, '字級'), h('button', { class: 'chip', 'aria-label': '縮小字級', onclick: () => fs(-1) }, 'A−'), h('button', { class: 'chip', 'aria-label': '放大字級', onclick: () => fs(1) }, 'A+')));
   root.append(h('p', { class: 'fine mt2' }, '成績、錯題與作答進度只存在這台裝置的瀏覽器,清除瀏覽資料就會消失。'));
   return root;
@@ -526,6 +540,8 @@ function viewNs(p) {
   return h('div', {}, back('#/'), h('p', { class: 'notice mt' }, '寫作介面載入失敗。'));
 }
 
+if (window.GSATAudio) window.GSATAudio.init({ blocked: () => { const S = loadSession(); return !!(S && S.formal && Date.now() < S.deadline); } });   // 正式模擬考進行中不提供朗讀
+if (window.GSATLearn) window.GSATLearn.init({ h, back, QB, DB, saveDB, LET, loadSession, startSession, questionNode, prevHash: () => prevHash });
 render();
 window.__gsat = { QB, yearInfo, DB: () => DB, loadSession, EXPL: () => EXPL };
 })();

@@ -1127,10 +1127,6 @@ window.VOCAB = {
      {
       "w": "convey",
       "zh": "傳達(訊息、感受)"
-     },
-     {
-      "w": "interact",
-      "zh": "互動"
      }
     ],
     "ant": [],

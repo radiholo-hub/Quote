@@ -19,6 +19,9 @@ CATEGORIES = {
     'exam-paper-page': ('試卷非選擇題頁面圖片（混合題、中譯英、作文題目）', 'unconfirmed'),
     'official-scoring-guide': ('大考中心非選擇題評分原則頁面圖片', 'unconfirmed'),
     'derived-original': ('自行撰寫、針對真題的詳解（衍生內容，審核前一律標為草稿）', 'derived'),
+    'exam-derived-index': ('由歷屆試題逐字計算出的單字出現索引（含年度、題號、位置，不含試題文字；權利比照試題未確認）', 'unconfirmed'),
+    'review-data': ('單字出現紀錄的人工審核結果（只有紀錄編號與判定，不含試題文字）', 'index'),
+    'original-audio': ('原創內容（單字、搭配詞、原創例句、原創文章）的語音 mp3', 'original'),
     'original': ('原創內容（原創題、原創寫作練習、程式與設定）', 'original'),
 }
 
@@ -29,6 +32,9 @@ def classify(rel):
     if n in ('exam/answers.js', 'exam/mixed.js'): return 'exam-answers'
     if n == 'exam/nonmc.js': return 'exam-index'
     if n == 'exam/explain.js': return 'derived-original'
+    if n == 'exam/vocab_index.js': return 'exam-derived-index'
+    if n == 'exam/vocab_reviews.js': return 'review-data'
+    if re.fullmatch(r'audio/[0-9a-f]+\.mp3', n): return 'original-audio'
     if re.fullmatch(r'exam/img/ns/\d+-q\d+\.jpg', n): return 'exam-paper-page'
     if re.fullmatch(r'exam/img/ns/\d+-ref\d+\.jpg', n): return 'official-scoring-guide'
     if n.startswith('exam/img/'): return 'exam-figure'
@@ -80,7 +86,7 @@ def render_md(files):
 def main():
     files = scan()
     # 原創檔案只記檔名與分類（程式碼常常修改，不必每次重新產生）；來自大考中心的內容才記大小與 SHA-256，用來確認清理是否完整
-    trimmed = [f if f['category'] != 'original' else {'path': f['path'], 'category': f['category']} for f in files]
+    trimmed = [f if f['category'] not in ('original', 'original-audio') else {'path': f['path'], 'category': f['category']} for f in files]
     manifest = {'note': '只含檔名與雜湊，不含試題內容；原創檔案只記檔名', 'files': trimmed}
     OUT.mkdir(parents=True, exist_ok=True)
     mj, md = OUT / 'content-manifest.json', OUT / 'CONTENT_INVENTORY.md'

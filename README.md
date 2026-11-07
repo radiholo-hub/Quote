@@ -27,11 +27,16 @@
 - **全卷成績單**:選擇題與多選題自動評分;填空簡答、中譯英、作文由學生對照官方評分原則自評。**尚未評分的項目顯示「待自評」,不會被當成 0 分**,全部評完才顯示全卷總分
 - **非選擇題**:中譯英、英文作文可輸入並自動儲存;AI 批改尚未提供(預留位置,結果若加入須標示為「AI 建議分數」)
 - **來源標示**:每一題、每個寫作頁都標示「歷屆真題」或「原創練習題」,兩者資料與作答紀錄完全分開
-- **詳解**(`gsat/exam/explain.js`)為原創,審核前一律標示「草稿・待人工審核」;詳解答案與官方答案不符時不會顯示。審核表用 `tools/gsat_review_sheet.py` 產生
+- **逐題詳解**(`gsat/exam/explain.js`,schema 2)只在**交卷後**的檢討頁出現,分七層可收合:正確答案 → 解題關鍵 → 選項解析 → 單字與發音 → 衍生字與延伸 → 歷屆出題紀錄 → 延伸練習。內容為原創,審核前一律標示「草稿・待人工審核」;詳解答案與官方答案不符時不會顯示。審核表用 `tools/gsat_review_sheet.py` 產生(含引用的單字詞條與延伸練習)
+- **單字資料庫與字族**(`gsat/data/vocab.js`):原字詞形變化(A)、同字族衍生字(B)、語意相關字(C)三類分開管理;單字頁 `#/word/<詞條>`、單字一覽 `#/words`
+- **歷屆出現索引**(`gsat/exam/vocab_index.js`,由 `tools/build_vocab_index.py` 逐字計算):出現次數、學年度、題號、位置、是否為正確答案/干擾選項;詞性有疑義的比對標為待審核、不計入。統計規則與核對結果見 [`docs/gsat/VOCAB_INDEX_METHOD.md`](docs/gsat/VOCAB_INDEX_METHOD.md)
+- **英文語音**:單字、搭配詞、原創例句、原創文章朗讀(正常/慢速、暫停/繼續/重播)。沿用 Score Rescue 的雜湊命名與 Aria 聲音;同時只播一段;**作答畫面沒有朗讀,正式模擬考進行中被擋下**。音檔由 `tools/make_gsat_audio.py` 產生(PR 分支上由 CI 產生並提交)
+- **免費/付費權限掛鉤**(`gsat/access.js`、`GSAT_ACCESS`):只判斷「能不能看這一題」,預設全部開放;沒有價格、訂閱或金流
 
 ### 著作權與部署(重要)
 歷屆試題、答案、評分原則與圖片(`gsat/exam/`)的著作權屬大學入學考試中心,**授權尚未確認,預設不隨網站部署**:`tools/stage_site.sh` 只會放空殼,網站會降級成「導向大考中心官網 + 原創題」。確認可公開後,部署時設定環境變數 `GSAT_PUBLISH_EXAMS=1` 才會包含。原創內容放在 `gsat/data/`。
 
+- 單字索引與語音的統計方法、核對結果、待人工確認事項:[`docs/gsat/VOCAB_INDEX_METHOD.md`](docs/gsat/VOCAB_INDEX_METHOD.md)
 - 內容來源與權利清單:[`docs/gsat/CONTENT_INVENTORY.md`](docs/gsat/CONTENT_INVENTORY.md)(`python3 tools/gsat_inventory.py` 產生;測試會檢查清單與實際檔案一致)
 - 公開分支與歷史紀錄清理方案(僅提案):[`docs/gsat/HISTORY_CLEANUP_PLAN.md`](docs/gsat/HISTORY_CLEANUP_PLAN.md)
 

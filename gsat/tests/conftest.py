@@ -68,7 +68,7 @@ def make_page(browser):
     """make_page(device='phone', url=URL) → page。每個測試用全新的 context（localStorage 是空的）。頁面錯誤會收集在 page.errors。"""
     ctxs = []
 
-    def make(device='phone', url=URL + '#/', dialogs='accept'):
+    def make(device='phone', url=URL + '#/', dialogs='accept', init=()):
         ctx = browser.new_context(**DEVICES[device])
         ctxs.append(ctx)
         page = ctx.new_page()
@@ -77,6 +77,8 @@ def make_page(browser):
         page.on('console', lambda m: page.errors.append(m.text) if m.type == 'error' else None)
         if dialogs == 'accept':
             page.on('dialog', lambda d: d.accept())
+        for js in init:
+            page.add_init_script(js)
         page.goto(url)
         return page
 
@@ -142,3 +144,28 @@ def exam_present():
 
 
 needs_exam = pytest.mark.skipif(not exam_present(), reason='沒有歷屆試題內容（公開版本庫的乾淨分支）')
+
+
+# ---------------------------------------------------------------- 語音測試用
+TRACK_AUDIO = """(()=>{const A=window.Audio;window.__audios=[];
+  window.Audio=function(src){const a=new A(src);window.__audios.push(a);return a};window.Audio.prototype=A.prototype})()"""
+FAKE_SPEECH = """(()=>{window.__spoken=[];window.SpeechSynthesisUtterance=function(t){this.text=t};
+  Object.defineProperty(window,'speechSynthesis',{configurable:true,value:{speak(u){window.__spoken.push(u.text);setTimeout(()=>u.onend&&u.onend(),50)},cancel(){},pause(){},resume(){}}})})()"""
+
+
+@pytest.fixture(scope='session')
+def stub_mp3(tmp_path_factory):
+    """4 秒的測試用 mp3（正弦波），讓暫停、繼續、重播等行為可以預測；不代表真實發音。"""
+    import subprocess
+    f = tmp_path_factory.mktemp('audio') / 'stub.mp3'
+    subprocess.run(['ffmpeg', '-loglevel', 'error', '-f', 'lavfi', '-i', 'sine=frequency=440:duration=4', '-codec:a', 'libmp3lame', '-b:a', '32k', str(f)], check=True)
+    return f.read_bytes()
+
+
+def route_stub_audio(page, body):
+    page.route('**/audio/*.mp3', lambda r: r.fulfill(status=200, content_type='audio/mpeg', body=body))
+
+
+def audio_states(page):
+    """所有曾建立的 Audio：{src 檔名, paused, ended}"""
+    return page.evaluate("window.__audios.map(a=>({f:a.src.split('/').pop(),paused:a.paused,ended:a.ended,t:a.currentTime}))")

@@ -14,7 +14,7 @@ NEW = [str(y) for y in range(111, 116)]
 def data(browser):
     page = browser.new_page()
     page.goto((ROOT / 'index.html').as_uri())
-    d = page.evaluate('({exams:EXAMS, answers:ANSWERS, nonmc:NONMC, scoring:SCORING, mock:GSAT, expl:EXPLAIN})')
+    d = page.evaluate('({exams:EXAMS, answers:ANSWERS, nonmc:NONMC, scoring:SCORING, mock:GSAT, expl:EXPLAIN, vocab:VOCAB, ext:EXT_PRACTICE})')
     page.close()
     return d
 
@@ -139,11 +139,34 @@ def test_explanations_agree_with_the_official_key(data):
 
 def test_explanations_are_complete_and_never_claim_to_be_reviewed(data):
     assert len(data['expl']) >= 10
+    V = data['vocab']['entries']
+    for k, e in data['expl'].items():
+        assert e['schema'] == 2 and e['status'] == 'draft', f'{k}：未經人工審核不得標為 reviewed'
+        assert isinstance(e['key'], list) and len(e['key']) >= 3 and all(len(t) >= 15 for t in e['key']), f'{k}：解題關鍵要有判斷的步驟'
+        assert not any(t.strip() in ('依照上下文可知', '依上下文可知') for t in e['key']), k
+        assert sorted(e['options']) == list('ABCD') and all(o['why'].strip() and o['entry'] in V for o in e['options'].values()), f'{k}：四個選項都要有分析並引用詞條'
+        assert e['words'] and e['grammar'].strip() and e['patterns'], f'{k}：詳解必須包含重要單字、文法補充與常考句型'
+        assert all(w in V for w in e['words']) and e['focus'] in V and all(p in data['vocab']['phrases'] for p in e['phrases']), k
+        assert 'reviewer' in e and e['reviewer'] is None and e['reviewedAt'] is None, f'{k}：缺審核欄位或未經審核卻填了審核者'
+
+
+def test_explanation_options_match_the_real_option_text(data):
+    """詳解引用的詞條，詞形必須等於題庫裡該選項的實際文字（避免詳解與題目對不上、同一個字出現矛盾解釋）。"""
+    V = data['vocab']['entries']
     for k, e in data['expl'].items():
         y, n = k.split('-')
         q = next(q for s, g, q in questions(data, y) if q['n'] == int(n))
-        assert e['status'] == 'draft', f'{k}：未經人工審核不得標為 reviewed'
-        assert e['key'].strip() and e['words'] and e.get('grammar', '').strip(), f'{k}：詳解必須包含解題關鍵、重要單字片語與文法補充'
-        assert 'reviewer' in e and e['reviewer'] is None and e['reviewedAt'] is None, f'{k}：缺審核欄位或未經審核卻填了審核者'
-        if len(q.get('opts', [])) == 4:
-            assert sorted(e['why']) == list('ABCD') and all(v.strip() for v in e['why'].values()), f'{k} 沒有逐一說明四個選項'
+        for i, L in enumerate('ABCD'):
+            assert q['opts'][i].lower() in V[e['options'][L]['entry']]['forms'], f'{k} 選項 {L} {q["opts"][i]} 與詞條 {e["options"][L]["entry"]} 不符'
+        assert e['options'][e['answer']]['entry'] == e['focus'] or e['focus'] in e['words']
+
+
+def test_extension_practice_items_are_original_drafts_with_one_correct_answer(data):
+    ext = data['ext']
+    assert len(ext) >= 20 and len({x['id'] for x in ext}) == len(ext)
+    V = data['vocab']['entries']
+    for x in ext:
+        assert x['status'] == 'draft', f'{x["id"]}：AI 生成內容必須先是待審核草稿'
+        assert len(x['options']) == 4 and len(set(x['options'])) == 4 and 0 <= x['answer'] < 4 and x['explain'].strip(), x['id']
+        assert all(t in V for t in x['targets']) and x['forQuestion'] in data['expl'], x['id']
+        assert x['type'] in ('pos', 'synonym', 'collocation', 'pattern', 'context')

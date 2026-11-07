@@ -2,7 +2,7 @@
 本機沒有 WebKit 時略過；CI 設定 GSAT_REQUIRE_WEBKIT=1，找不到 WebKit 會失敗。"""
 import pytest
 
-from conftest import URL, cur_q, goto_question, hscroll_overflow, needs_exam, start_exam, wait_images
+from conftest import FAKE_SPEECH, TRACK_AUDIO, URL, cur_q, goto_question, hscroll_overflow, needs_exam, route_stub_audio, start_exam, wait_images
 
 
 def test_safari_engine_and_iphone_profile_are_really_in_use(make_ios_page):
@@ -98,3 +98,73 @@ def test_safari_full_paper_flow_scores_and_shows_summary(make_ios_page):
     assert page.locator('.stat b').first.inner_text() == '62 / 62'
     assert page.locator('[data-role=summary] [data-role=total] b').inner_text() == '— / 100'
     assert page.errors == []
+
+
+
+def test_safari_word_page_plays_audio_without_overlap_and_without_moving_the_page(make_ios_page, stub_mp3):
+    page = make_ios_page(url='about:blank')
+    page.add_init_script(TRACK_AUDIO)
+    route_stub_audio(page, stub_mp3)
+    page.goto(URL + '#/word/communicate-v')
+    page.wait_for_selector('[data-view=word]')
+    assert hscroll_overflow(page) <= 1
+    page.evaluate('window.scrollTo(0, 300)')
+    y = page.evaluate('window.scrollY')
+    page.locator('.whead .spk').tap()
+    page.wait_for_function('window.__audios.length===1 && !window.__audios[0].paused')   # iOS 需要使用者手勢才能播放：tap 已提供
+    page.locator('.colls .spk').first.tap()
+    page.wait_for_function('window.__audios.length===2')
+    assert page.evaluate('window.__audios.filter(a=>!a.paused).length') == 1
+    assert abs(page.evaluate('window.scrollY') - y) <= 2 and page.errors == []
+
+
+def test_safari_original_passage_player_pause_resume_replay(make_ios_page, stub_mp3):
+    page = make_ios_page(url='about:blank')
+    page.add_init_script(TRACK_AUDIO)
+    route_stub_audio(page, stub_mp3)
+    page.goto(URL + '#/practice')
+    page.get_by_role('button', name='閱讀測驗').tap()
+    if page.get_by_role('button', name='原創練習題').count():
+        page.get_by_role('button', name='原創練習題').tap()
+    page.get_by_role('button', name='詞彙', exact=True).tap()
+    page.get_by_role('button', name='每題答完立刻看答案').tap()
+    page.get_by_role('button', name='開始練習').tap()
+    page.wait_for_selector('.opt')
+    page.locator('.opt').first.tap()
+    p = page.locator('[data-role=passage-player]')
+    p.locator('[data-act=main]').tap()
+    page.wait_for_function('window.__audios.length===1 && !window.__audios[0].paused')
+    p.locator('[data-act=main]').tap()
+    assert page.evaluate('window.__audios[0].paused') is True and p.locator('[data-act=main]').inner_text() == '▶ 繼續'
+    p.locator('[data-act=main]').tap()
+    page.wait_for_function('!window.__audios[0].paused')
+    p.locator('[data-act=replay]').tap()
+    page.wait_for_function('window.__audios.length===2')
+    assert page.errors == []
+
+
+@needs_exam
+def test_safari_explanation_layers_and_return_keeps_position(make_ios_page):
+    page = make_ios_page()
+    start_exam(page, '115', 'free')
+    while True:
+        q = cur_q(page)
+        page.locator('.opt').nth(q['a'] if q['n'] != 1 else (q['a'] + 1) % 4).tap()
+        if q['idx'] == q['total'] - 1:
+            break
+        page.get_by_role('button', name='下一題').tap()
+    page.get_by_role('button', name='交卷').tap()
+    page.locator('.modal .btn').first.tap()
+    page.wait_for_selector('h1:has-text("成績")')
+    page.locator('.nav a.bad').first.tap()
+    page.wait_for_selector('.explain.v2')
+    assert page.locator('details.lsec').evaluate_all('ds=>ds.map(d=>d.open)') == [True, True, True, False, False, False, False]
+    link = page.locator('.optcard[data-opt=B] a.wlink')
+    link.scroll_into_view_if_needed()
+    y = page.evaluate('window.scrollY')
+    link.tap()
+    page.wait_for_selector('[data-view=word]')
+    page.get_by_role('link', name='← 返回').tap()
+    page.wait_for_selector('.explain.v2')
+    page.wait_for_timeout(300)
+    assert abs(page.evaluate('window.scrollY') - y) <= 3 and hscroll_overflow(page) <= 1 and page.errors == []

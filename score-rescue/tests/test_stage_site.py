@@ -20,7 +20,7 @@ def repo(tmp_path):
     r = tmp_path / 'repo'
     files = ['index.html', 'style.css', 'app.js', 'quotes.js', 'audio/001.mp3', 'audio/m/en/001.mp3',
              'gsat/index.html', 'gsat/app.js', 'gsat/data/mock.js', 'gsat/exam/exams.js', 'gsat/exam/answers.js', 'gsat/exam/nonmc.js',
-             'gsat/exam/explain.js', 'gsat/exam/mixed.js', 'gsat/exam/img/a.jpg', 'gsat/exam/img/ns/b.jpg', 'gsat/tests/test_x.py', 'score-rescue/index.html', 'score-rescue/privacy.html', 'score-rescue/audio/ab.mp3', 'score-rescue/.gitignore',
+             'gsat/exam/explain.js', 'gsat/exam/mixed.js', 'gsat/exam/vocab_index.js', 'gsat/audio/abc.mp3', 'gsat/exam/img/a.jpg', 'gsat/exam/img/ns/b.jpg', 'gsat/tests/test_x.py', 'score-rescue/index.html', 'score-rescue/privacy.html', 'score-rescue/audio/ab.mp3', 'score-rescue/.gitignore',
              'README.md', 'tools/make_audio.py', '.github/workflows/pages.yml', 'notes.md']
     for f in files:
         (r / f).parent.mkdir(parents=True, exist_ok=True)
@@ -85,12 +85,13 @@ def stage_gsat(repo, publish):
 def test_gsat_default_does_not_publish_exam_content(repo):
     """歷屆試題的著作權授權未確認：預設部署只有空殼，不含試題、答案、圖片與詳解，也不含測試檔。"""
     g = stage_gsat(repo, publish=False)
-    assert files_under(g) == ['app.js', 'data/mock.js', 'exam/answers.js', 'exam/exams.js', 'exam/explain.js', 'exam/mixed.js', 'exam/nonmc.js', 'index.html']
+    assert files_under(g) == ['app.js', 'audio/abc.mp3', 'data/mock.js', 'exam/answers.js', 'exam/exams.js', 'exam/explain.js', 'exam/mixed.js', 'exam/nonmc.js', 'exam/vocab_index.js', 'index.html']
     assert (g / 'exam' / 'exams.js').read_text() == 'window.EXAMS=[];\n'
     assert (g / 'exam' / 'answers.js').read_text() == 'window.ANSWERS={};\n'
     assert (g / 'exam' / 'nonmc.js').read_text() == 'window.NONMC={};\n'
     assert (g / 'exam' / 'explain.js').read_text() == 'window.EXPLAIN={};\n'
     assert (g / 'exam' / 'mixed.js').read_text() == 'window.MIXED={};\n'
+    assert (g / 'exam' / 'vocab_index.js').read_text() == 'window.VOCAB_INDEX=null;\n'
 
 
 def test_gsat_publishes_exam_content_only_when_explicitly_enabled(repo):
