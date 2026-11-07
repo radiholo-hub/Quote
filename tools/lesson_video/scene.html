@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+/* 1920×1080。字級以「手機直向看 16:9 影片」為準：英文句子 92px（約等於手機上 19px） */
+:root{--paper:#F7F3E8;--ink:#262626;--wine:#6B2D3C;--ok:#1F653C;--ok-soft:#EDF6EF;--bad:#A32C31;--muted:#5B5B5B;--hi:#FFE27A;--blue:#1F5C99;--line:#DDD8C8}
+*{box-sizing:border-box;margin:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper);color:var(--ink);font-family:"Noto Sans TC","Noto Sans CJK TC",sans-serif}
+.serif{font-family:"Source Serif 4","Noto Serif CJK TC",Georgia,serif}
+#stage{position:relative;width:1920px;height:1080px;padding:70px 110px}
+.head{display:flex;align-items:center;justify-content:space-between}
+.title{font-size:54px;font-weight:900;color:var(--wine)}
+.brand{font-size:34px;font-weight:700;color:var(--muted)}
+.sent{margin-top:118px;font-size:92px;line-height:1.3;font-weight:500}
+.sent .l2{margin-top:46px}
+.sent.solo{margin-top:200px}
+.lv{position:absolute;left:110px;right:110px;top:580px;display:grid;grid-template-columns:1fr;gap:4px;background:#fff;border:4px solid var(--line);border-radius:26px;padding:14px 34px}
+.lv .g{display:flex;align-items:baseline;gap:18px;font:500 40px/1.3 "Source Serif 4","Noto Serif CJK TC",Georgia,serif}
+.lv .g b{flex:none;font:900 34px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:#fff;background:var(--wine);padding:2px 16px;border-radius:999px}
+.lv .g i{font-style:normal;font:700 30px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted);margin-left:4px}
+.lv .r{display:flex;gap:56px}
+.lv .nt{margin-top:4px;font:700 30px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--bad)}
+.sent.lvup{margin-top:140px}
+.pair{margin-top:150px;display:grid;gap:0}
+.pl{font-size:88px;line-height:1.3;font-weight:500;margin-top:44px}
+.pl:first-child{margin-top:0}
+.pn{font:900 70px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--wine);margin-right:26px}
+.pzh{font:700 44px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted);margin:6px 0 0 96px}
+.popts{grid-template-columns:1fr 1fr;max-width:1100px;margin-top:80px}
+.sent.tight{margin-top:96px}
+.szh{margin-top:18px;font:700 46px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted)}
+.hookq{position:absolute;right:110px;top:66px;font:900 64px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:#fff;background:var(--bad);padding:10px 34px;border-radius:999px}
+.opts.gl{font-size:46px;gap:16px 50px;margin-top:40px}
+.opts.gl .opt{padding:8px 22px;gap:22px}
+.opts.gl .bub{width:64px;height:64px;font-size:38px}
+.otag{white-space:nowrap}
+.opts.gl .otag{font-size:30px;padding:4px 14px}
+.szh.low{margin-top:96px}
+.szh.low.lvz{margin-top:62px}
+.row .ex small{display:block;font:700 40px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted);margin-top:2px}
+.w{position:relative;display:inline-block;padding:0 .08em;border-radius:14px}
+.blank{display:inline-block;min-width:3.4em;border-bottom:7px solid var(--ink);transform:translateY(-6px)}
+.blank.fill{border-color:var(--ok);color:var(--ok);font-weight:600;min-width:0;padding:0 .1em}
+.opts{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:22px 60px;font-size:58px}
+.opt{display:flex;align-items:center;gap:28px;padding:12px 28px;border-radius:22px;border:4px solid var(--line);background:#fff}
+.bub{flex:none;width:76px;height:76px;border-radius:50%;border:4px solid var(--ink);display:grid;place-items:center;font:700 46px "Noto Sans TC","Noto Sans CJK TC",sans-serif}
+.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.ok .bub{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.dim{border-color:#E7E3D8;background:#FBFAF6}
+.opt.dim>span:not(.otag){opacity:.38}
+.opt.trap{opacity:1;border-color:var(--bad)}
+.otag{margin-left:auto;font:700 36px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:#fff;background:var(--muted);padding:4px 18px;border-radius:999px}
+.ring{position:absolute;inset:-10px -16px;border:8px solid var(--bad);border-radius:999px;pointer-events:none}
+.ring.blue{border-color:var(--blue)}
+.ring.ok{border-color:var(--ok)}
+.uline{position:absolute;left:0;right:0;bottom:-14px;height:8px;border-radius:4px;background:var(--blue)}
+.brk{position:absolute;left:-6px;right:-6px;bottom:-22px;height:26px;border:8px solid var(--ok);border-top:0;border-radius:0 0 16px 16px}
+.lab{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;font:700 44px "Noto Sans TC","Noto Sans CJK TC",sans-serif;padding:6px 22px;border-radius:999px;color:#fff;bottom:calc(100% + 18px)}
+.lab.below{bottom:auto;top:calc(100% + 30px)}
+.lab.side{left:calc(100% + 30px);transform:translateY(-50%);bottom:auto;top:50%}
+.lab.red{background:var(--bad)}.lab.blue{background:var(--blue)}.lab.ok{background:var(--ok)}.lab.gray{background:var(--muted)}
+.mark{background:linear-gradient(transparent 58%,var(--hi) 58%)}
+svg#arr{position:absolute;inset:0;width:1920px;height:1080px;pointer-events:none}
+.ban{position:absolute;left:110px;right:110px;bottom:40px;font:900 56px/1.3 "Noto Sans TC","Noto Sans CJK TC",sans-serif;text-align:center;background:var(--wine);color:#fff;padding:22px;border-radius:26px}
+.ban.blue{background:var(--blue)}.ban.red{background:var(--bad)}.ban.ok{background:var(--ok)}
+.count{position:absolute;right:110px;bottom:40px;width:150px;height:150px;border-radius:50%;background:var(--wine);color:#fff;display:grid;place-items:center;font:900 100px "Noto Sans TC","Noto Sans CJK TC",sans-serif}
+.think{position:absolute;right:290px;bottom:85px;font:700 56px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--wine)}
+.zh{margin-top:40px;font:700 60px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted)}
+/* 標題卡、表格、步驟、補充卡、片尾 */
+.tcard{height:100%;display:flex;flex-direction:column;justify-content:center}
+.tcard .k{font:700 48px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted)}
+.tcard h1{margin-top:20px;font:900 110px/1.2 "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--wine)}
+.tcard .s{margin-top:30px;font:700 64px "Noto Sans TC","Noto Sans CJK TC",sans-serif}
+.grid4{margin-top:90px;display:grid;grid-template-columns:1fr 1fr;gap:34px}
+.cell{background:#fff;border:5px solid var(--line);border-radius:28px;padding:44px 40px;font:900 60px/1.3 "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:#9A958A}
+.cell.on{border-color:var(--wine);color:var(--wine);background:#FBF3F4}
+.cell small{display:block;font:700 40px "Noto Sans TC","Noto Sans CJK TC",sans-serif;margin-top:8px}
+.h2{margin-top:60px;font:900 70px "Noto Sans TC","Noto Sans CJK TC",sans-serif}
+.rows{margin-top:44px;display:grid;gap:26px}
+.row{display:grid;grid-template-columns:330px 70px 300px 1fr;align-items:center;background:#fff;border:4px solid var(--line);border-radius:24px;padding:24px 36px;font:900 58px "Noto Sans TC","Noto Sans CJK TC",sans-serif}
+.row .ar{color:var(--muted)}
+.row .ex{font:500 58px "Source Serif 4","Noto Serif CJK TC",serif}
+.row.hid{visibility:hidden}
+.steps{margin-top:60px;display:grid;gap:34px}
+.step{display:flex;gap:34px;align-items:center;font:900 64px/1.35 "Noto Sans TC","Noto Sans CJK TC",sans-serif}
+.step i{flex:none;font-style:normal;width:100px;height:100px;border-radius:50%;background:var(--wine);color:#fff;display:grid;place-items:center;font-size:56px}
+.step.hid{visibility:hidden}
+.note{margin-top:60px;font:700 50px/1.5 "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--bad)}
+.edt{margin-top:22px;font:900 54px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--wine)}
+.edrow{margin-top:24px;background:#fff;border:4px solid var(--line);border-radius:26px;padding:16px 36px;line-height:1.35}
+.edrow.on{border-color:var(--ok);background:var(--ok-soft)}
+.edw{font-size:64px;font-weight:600;display:flex;align-items:center;gap:24px}
+.edtag{font:900 40px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:#fff;background:var(--wine);padding:4px 20px;border-radius:999px}
+.edm{font:700 44px "Noto Sans TC","Noto Sans CJK TC",sans-serif;margin-top:6px}
+.edm b{color:var(--wine)}
+.edex{font-size:50px;margin-top:6px}
+.edexzh{font:500 36px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted)}
+.sum{margin-top:44px;display:grid;gap:22px}
+.sum div{display:flex;justify-content:space-between;align-items:center;background:#fff;border:4px solid var(--line);border-radius:22px;padding:22px 36px;font:700 52px "Noto Sans TC","Noto Sans CJK TC",sans-serif}
+.sum b{color:var(--wine);font-weight:900}
+.cta{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.cta .q{font:900 76px/1.35 "Noto Sans TC","Noto Sans CJK TC",sans-serif}
+.cta .btn{margin-top:60px;font:900 70px "Noto Sans TC","Noto Sans CJK TC",sans-serif;background:var(--wine);color:#fff;padding:30px 80px;border-radius:999px}
+.cta .url{margin-top:44px;font:700 52px ui-monospace,"Noto Sans Mono","DejaVu Sans Mono",monospace;color:var(--ink)}
+.cta .down{margin-top:50px;font:900 120px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--wine)}
+.cta .sub{margin-top:30px;font:700 44px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+/* render(v, n)：v 是一個畫面的完整描述（每個畫面各自寫清楚，不累加）；n 是倒數秒數。
+   v.kind：title / grid4 / rows / steps / sent（句子＋可選的選項）/ full / ed / sum / cta */
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+var BRAND='Score Rescue｜詞性小課 第1課';
+function head(t){return '<div class="head"><div class="title">'+esc(t||'')+'</div><div class="brand">'+BRAND+'</div></div>'}
+/* 句子：用 [片語] 標出可以圈選的詞，______ 是空格，| 是換行 */
+function sentHTML(s,fill,solo){
+  var lines=s.split('|').map(function(line){
+    return esc(line).replace(/\[([^\]]+)\]/g,function(_,w){return '<span class="w" data-w="'+w+'">'+w+'</span>'})
+      .replace('______',fill?'<span class="w" data-w="blank"><span class="blank fill">'+esc(fill)+'</span></span>':'<span class="w" data-w="blank"><span class="blank"></span></span>');
+  });
+  return '<div class="sent serif'+(solo?' solo':'')+'">'+lines.map(function(l,i){return '<div'+(i?' class="l2"':'')+'>'+l+'</div>'}).join('')+'</div>';
+}
+function el(w){return document.querySelector('[data-w="'+w+'"]')}
+function marks(v){
+  (v.ring||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="ring '+(r.c||'')+'"></span>'+(r.label?'<span class="lab '+(r.c||'red')+(r.below?' below':'')+'">'+esc(r.label)+'</span>':''))});
+  (v.under||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="uline"></span>'+(r.label?'<span class="lab blue'+(r.below?' below':'')+(r.side?' side':'')+'">'+esc(r.label)+'</span>':''))});
+  (v.bracket||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="brk"></span>'+(r.label?'<span class="lab ok'+(r.below?' below':'')+'">'+esc(r.label)+'</span>':''))});
+  (v.tag||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="lab '+(r.c||'gray')+(r.below?' below':'')+'">'+esc(r.label)+'</span>')});
+  var svg='',col={blue:'#1F5C99',ok:'#1F653C',red:'#A32C31'};
+  (v.arrows||[]).forEach(function(a,k){
+    var A=el(a.from),B=el(a.to);if(!A||!B)return;
+    var p=A.getBoundingClientRect(),q=B.getBoundingClientRect(),c=col[a.c||'blue'];
+    var x1=p.left+p.width/2,y1=p.bottom+14,x2=q.left+q.width/2,y2=q.bottom+14,dip=Math.max(y1,y2)+62+k*40;
+    svg+='<defs><marker id="h'+k+'" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="'+c+'"/></marker></defs>'+
+      '<path d="M'+x1+','+y1+' Q'+((x1+x2)/2)+','+dip+' '+x2+','+y2+'" fill="none" stroke="'+c+'" stroke-width="9" stroke-linecap="round" marker-end="url(#h'+k+')"/>';
+  });
+  document.getElementById('arr').innerHTML=svg;
+}
+function render(v,n){
+  var st=document.getElementById('stage'),h='';
+  if(v.kind==='title'){
+    st.innerHTML='<div class="tcard"><div class="k">'+BRAND+'</div><h1>'+esc(v.h)+'</h1><div class="s">'+esc(v.s||'')+'</div></div>';return;
+  }
+  if(v.kind==='grid4'){
+    st.innerHTML=head(v.t)+'<div class="grid4">'+v.cells.map(function(c,k){return '<div class="cell'+((v.on||[]).indexOf(k)>=0?' on':'')+'">'+esc(c[0])+'<small>'+esc(c[1])+'</small></div>'}).join('')+'</div>';return;
+  }
+  if(v.kind==='rows'){
+    st.innerHTML=head(v.t)+'<div class="h2">'+esc(v.h)+'</div><div class="rows">'+v.rows.map(function(r,k){
+      return '<div class="row'+(k<v.show?'':' hid')+'"><span>'+esc(r[0])+'</span><span class="ar">→</span><span>'+esc(r[1])+'</span><span class="ex">'+r[2]+'</span></div>'}).join('')+'</div>';return;
+  }
+  if(v.kind==='steps'){
+    st.innerHTML=head(v.t)+'<div class="h2">'+esc(v.h)+'</div><div class="steps">'+v.steps.map(function(s,k){return '<div class="step'+(k<v.show?'':' hid')+'"><i>'+(k+1)+'</i><span>'+esc(s)+'</span></div>'}).join('')+'</div>'+
+      (v.note?'<div class="note">'+esc(v.note)+'</div>':'');return;
+  }
+  if(v.kind==='ed'){
+    st.innerHTML=head(v.t)+'<div class="edt">'+esc(v.h)+'</div>'+v.cards.map(function(x,k){
+      return '<div class="edrow'+(k===v.on?' on':'')+'"><div class="edw serif">'+esc(x.w)+'<span class="edtag">'+esc(x.tag)+'</span></div>'+
+        '<div class="edm"><b>'+esc(x.zh)+'</b>　'+esc(x.who)+'</div><div class="edex serif">'+esc(x.ex)+'</div><div class="edexzh">'+esc(x.exzh)+'</div></div>'}).join('');return;
+  }
+  if(v.kind==='sum'){
+    st.innerHTML=head(v.t)+'<div class="h2">'+esc(v.h)+'</div><div class="sum">'+v.rows.map(function(r){return '<div><span>'+esc(r[0])+'</span><b>'+esc(r[1])+'</b></div>'}).join('')+'</div>';return;
+  }
+  if(v.kind==='cta'){
+    st.innerHTML='<div class="cta"><div class="q">'+v.q.map(esc).join('<br>')+'</div>'+(v.btn?'<div class="btn">'+esc(v.btn)+'</div>':'')+(v.url?'<div class="url">'+esc(v.url)+'</div>':'')+(v.sub?'<div class="sub">'+esc(v.sub)+'</div>':'')+(v.down?'<div class="down">↓</div>':'')+'</div>';return;
+  }
+  if(v.kind==='pair'){
+    /* 兩句對比：lines=[{n,s,fill,zh}]，s 用 [詞] 標可圈選的字，______ 是空格 */
+    h=head(v.t)+'<div class="pair">'+v.lines.map(function(L,k){
+      var t=esc(L.s).replace(/\[([^\]]+)\]/g,function(_,w){return '<span class="w" data-w="'+w+'">'+w+'</span>'})
+        .replace('______',L.fill?'<span class="w" data-w="blank'+(k+1)+'"><span class="blank fill">'+esc(L.fill)+'</span></span>':'<span class="w" data-w="blank'+(k+1)+'"><span class="blank"></span></span>');
+      return '<div class="pl serif"><span class="pn">'+esc(L.n)+'</span>'+t+'</div>'+(L.zh?'<div class="pzh">'+esc(L.zh)+'</div>':'');
+    }).join('')+'</div>';
+    if(v.o)h+='<div class="opts serif popts">'+v.o.map(function(t,k){return '<div class="opt"><span class="bub">'+'ABCD'[k]+'</span><span>'+esc(t)+'</span></div>'}).join('')+'</div>';
+    st.innerHTML=h+'<svg id="arr"></svg>';
+    marks(v);
+    if(v.ban)st.insertAdjacentHTML('beforeend','<div class="ban '+(v.ban.c||'')+'">'+esc(v.ban.t)+'</div>');
+    if(n)st.insertAdjacentHTML('beforeend','<div class="think">先想一想</div><div class="count">'+n+'</div>');
+    return;
+  }
+  if(v.kind==='full'){
+    st.innerHTML=head(v.t)+'<div class="sent serif" style="margin-top:150px">'+v.html+'</div><div class="zh">'+esc(v.zh)+'</div>';return;
+  }
+  /* sent：句子，選項可有可無 */
+  h=head(v.t)+sentHTML(v.s,v.fill,!v.o&&!v.lv).replace('class="sent serif"','class="sent serif'+(v.lv?' lvup':'')+(v.zh&&!v.lv?' tight':'')+'"');
+  if(v.zh)h+='<div class="szh'+(v.arrows&&v.arrows.length?' low':'')+(v.lv?' lvz':'')+'">'+esc(v.zh)+'</div>';
+  if(v.hook)h+='<div class="hookq">'+esc(v.hook)+'</div>';
+  if(v.o){
+    h+='<div class="opts serif'+(v.otag&&Object.keys(v.otag).length>=4?' gl':'')+'">'+v.o.map(function(t,k){
+      var c='opt';
+      if(v.ans!=null)c+=k===v.ans?' ok':' dim';
+      if(v.trap===k)c+=' trap';
+      var tg=v.otag&&v.otag[k]?'<span class="otag">'+esc(v.otag[k])+'</span>':'';
+      return '<div class="'+c+'"><span class="bub">'+(v.olab?v.olab[k]:'ABCD'[k])+'</span><span>'+esc(t)+'</span>'+tg+'</div>'}).join('')+'</div>';
+  }
+  st.innerHTML=h+'<svg id="arr"></svg>';
+  marks(v);
+  if(v.lv){
+    /* 連綴動詞表：v.lv = [[類別, [[字, 中文], ...]], ...]，v.lvnote = 底部提醒 */
+    /* v.lv = 每一行 [[類別, [[字, 中文], ...]], ...]（一行可放多個類別） */
+    st.insertAdjacentHTML('beforeend','<div class="lv">'+v.lv.map(function(row){return '<div class="r">'+row.map(function(g){return '<div class="g"><b>'+esc(g[0])+'</b><span>'+g[1].map(function(w){return esc(w[0])+'<i>'+esc(w[1])+'</i>'}).join('　')+'</span></div>'}).join('')+'</div>'}).join('')+
+      (v.lvnote?'<div class="nt">'+esc(v.lvnote)+'</div>':'')+'</div>');
+  }
+  if(v.ban)st.insertAdjacentHTML('beforeend','<div class="ban '+(v.ban.c||'')+'">'+esc(v.ban.t)+'</div>');
+  if(n)st.insertAdjacentHTML('beforeend','<div class="think">先想一想</div><div class="count">'+n+'</div>');
+}
+</script>
+</body>
+</html>
