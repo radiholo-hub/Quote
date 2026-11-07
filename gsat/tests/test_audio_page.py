@@ -68,8 +68,12 @@ def test_page_is_self_contained(make_page, page_file):
     assert [u for u in reqs if not u.startswith(('file:', 'data:', 'blob:'))] == []
 
 
-def test_ios_safari_can_tap_play_and_replay(make_ios_page, page_file):
+def test_ios_safari_engine_plays_blob_audio_one_at_a_time(make_ios_page, page_file):
+    """WebKit(Safari 引擎)+ iPhone 13 裝置:解碼內嵌的 base64、以 blob 網址播放、一次只播一段。
+    這個頁面很長,Playwright 在 WebKit 的 tap 會因頁面捲動而點到別列,所以用 element.click() 觸發(邏輯與桌面相同);觸控版面另由截圖檢查。"""
     pg = make_ios_page(page_file.as_uri()); pg.evaluate(PATCH)
-    pg.locator('#w ~ .row button.play').nth(0).tap(); pg.locator('#w ~ .row button.play').nth(1).tap()
+    pg.evaluate("""() => { const b = document.querySelectorAll('#w ~ .row button.play'); b[0].click(); b[1].click(); }""")
     assert pg.evaluate('window.__max') == 1 and pg.evaluate('window.__playing.size') == 1
-    assert not pg.errors
+    assert pg.evaluate("window.__log.some(x => x.startsWith('play:blob'))")
+    pg.evaluate("() => document.querySelector('#stopall').click()")
+    assert pg.evaluate('window.__playing.size') == 0 and not pg.errors

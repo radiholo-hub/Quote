@@ -162,7 +162,20 @@ def stub_mp3():
 
 
 def route_stub_audio(page, body):
-    page.route('**/audio/*.mp3', lambda r: r.fulfill(status=200, content_type='audio/mpeg', body=body))
+    """以固定的 mp3 回應所有 audio/*.mp3 請求。支援 Range 請求(Chromium 在暫停後繼續播放、跳轉時會用 Range 重新要資料;
+    只回 200 完整內容會讓 CI 上偶爾無法繼續播放)。"""
+    import re as _re
+
+    def handle(route):
+        rng = route.request.headers.get('range')
+        m = _re.match(r'bytes=(\d*)-(\d*)', rng or '')
+        if not m:
+            return route.fulfill(status=200, content_type='audio/mpeg', body=body, headers={'Accept-Ranges': 'bytes'})
+        start = int(m.group(1) or 0); end = int(m.group(2)) if m.group(2) else len(body) - 1
+        end = min(end, len(body) - 1)
+        route.fulfill(status=206, content_type='audio/mpeg', body=body[start:end + 1],
+                      headers={'Accept-Ranges': 'bytes', 'Content-Range': f'bytes {start}-{end}/{len(body)}'})
+    page.route('**/audio/*.mp3', handle)
 
 
 def audio_states(page):
