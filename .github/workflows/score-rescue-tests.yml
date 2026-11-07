@@ -8,6 +8,7 @@ on:
     paths:
       - 'score-rescue/index.html'
       - 'score-rescue/privacy.html'
+      - 'score-rescue/pos/**'
       - 'score-rescue/tests/**'
       - 'tools/make_score_rescue_audio.py'
       - 'tools/audio_changes.sh'
@@ -28,10 +29,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # 測試不需要音檔，只取網頁（含完整隱私說明頁）、測試、產生音檔的程式、搬運新音檔與整理部署檔案的腳本
+          # 測試不需要音檔，只取網頁（含完整隱私說明頁、詞性前測頁 pos/）、測試、產生音檔的程式、搬運新音檔與整理部署檔案的腳本
           sparse-checkout: |
             score-rescue/index.html
             score-rescue/privacy.html
+            score-rescue/pos
             score-rescue/tests
             tools/make_score_rescue_audio.py
             tools/audio_changes.sh
