@@ -1,0 +1,202 @@
+[
+ {
+  "scene": "hook1",
+  "start": 0.0,
+  "sec": 6.11
+ },
+ {
+  "scene": "hook2",
+  "start": 6.11,
+  "sec": 3.45
+ },
+ {
+  "scene": "r1",
+  "start": 9.56,
+  "sec": 12.98
+ },
+ {
+  "scene": "r2",
+  "start": 22.53,
+  "sec": 11.12
+ },
+ {
+  "scene": "open",
+  "start": 33.65,
+  "sec": 8.15
+ },
+ {
+  "scene": "c1",
+  "start": 41.8,
+  "sec": 17.04
+ },
+ {
+  "scene": "c2",
+  "start": 58.84,
+  "sec": 9.24
+ },
+ {
+  "scene": "c3",
+  "start": 68.08,
+  "sec": 11.82
+ },
+ {
+  "scene": "c4",
+  "start": 79.89,
+  "sec": 9.25
+ },
+ {
+  "scene": "c5",
+  "start": 89.14,
+  "sec": 16.21
+ },
+ {
+  "scene": "c6",
+  "start": 105.35,
+  "sec": 10.98
+ },
+ {
+  "scene": "c7",
+  "start": 116.33,
+  "sec": 4.89
+ },
+ {
+  "scene": "c8",
+  "start": 121.23,
+  "sec": 15.15
+ },
+ {
+  "scene": "d1q",
+  "start": 136.38,
+  "sec": 5.06
+ },
+ {
+  "scene": "d1t",
+  "start": 141.44,
+  "sec": 5.45
+ },
+ {
+  "scene": "d1a",
+  "start": 146.89,
+  "sec": 13.59
+ },
+ {
+  "scene": "d1r",
+  "start": 160.48,
+  "sec": 2.93
+ },
+ {
+  "scene": "d1x",
+  "start": 163.4,
+  "sec": 9.83
+ },
+ {
+  "scene": "d1f",
+  "start": 173.24,
+  "sec": 4.11
+ },
+ {
+  "scene": "d2q",
+  "start": 177.35,
+  "sec": 2.92
+ },
+ {
+  "scene": "d2t",
+  "start": 180.26,
+  "sec": 5.45
+ },
+ {
+  "scene": "d2a",
+  "start": 185.71,
+  "sec": 11.14
+ },
+ {
+  "scene": "d2r",
+  "start": 196.86,
+  "sec": 3.15
+ },
+ {
+  "scene": "d2x",
+  "start": 200.01,
+  "sec": 4.98
+ },
+ {
+  "scene": "d2f",
+  "start": 204.99,
+  "sec": 4.61
+ },
+ {
+  "scene": "d3q",
+  "start": 209.6,
+  "sec": 3.16
+ },
+ {
+  "scene": "d3t",
+  "start": 212.76,
+  "sec": 5.45
+ },
+ {
+  "scene": "d3a",
+  "start": 218.21,
+  "sec": 13.12
+ },
+ {
+  "scene": "d3r",
+  "start": 231.33,
+  "sec": 8.07
+ },
+ {
+  "scene": "d3x",
+  "start": 239.4,
+  "sec": 7.25
+ },
+ {
+  "scene": "d3f",
+  "start": 246.65,
+  "sec": 4.0
+ },
+ {
+  "scene": "d4q",
+  "start": 250.65,
+  "sec": 5.31
+ },
+ {
+  "scene": "d4t",
+  "start": 255.96,
+  "sec": 5.45
+ },
+ {
+  "scene": "d4a",
+  "start": 261.41,
+  "sec": 10.34
+ },
+ {
+  "scene": "d4b",
+  "start": 271.75,
+  "sec": 4.85
+ },
+ {
+  "scene": "d4r",
+  "start": 276.6,
+  "sec": 3.72
+ },
+ {
+  "scene": "d4x",
+  "start": 280.31,
+  "sec": 5.87
+ },
+ {
+  "scene": "d4f",
+  "start": 286.19,
+  "sec": 4.58
+ },
+ {
+  "scene": "e1",
+  "start": 290.77,
+  "sec": 19.52
+ },
+ {
+  "scene": "e2",
+  "start": 310.29,
+  "sec": 9.45
+ }
+]
