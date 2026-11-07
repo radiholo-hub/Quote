@@ -7,7 +7,7 @@ window.GSATWriting = (function () {
   // ---------- 儲存 ----------
   const get = k => env.DB.ns[k] || (env.DB.ns[k] = {});
   let saveTimer = null;
-  function save() { clearTimeout(saveTimer); saveTimer = setTimeout(flush, 400); }
+  function save() { clearTimeout(saveTimer); saveTimer = setTimeout(flush, 400); window.dispatchEvent(new Event('gsat-ns-change')); }
   function flush() { clearTimeout(saveTimer); env.saveDB(); }
   window.addEventListener('visibilitychange', flush);
   window.addEventListener('pagehide', flush);
@@ -38,10 +38,10 @@ window.GSATWriting = (function () {
       const out = h('p', { class: 'fine', 'aria-live': 'polite' });
       const inp = h('input', { type: 'number', min: '0', max: '8', step: '1', inputmode: 'numeric', 'aria-label': '第 ' + (i + 1) + ' 題對照後發現的錯誤數', style: 'width:5em;min-height:44px;font:inherit;padding:4px 8px' });
       if (st[fid] != null) inp.value = st[fid];
-      const calc = () => { const e = inp.value === '' ? null : Math.max(0, +inp.value); get(key)[fid] = e; save(); out.textContent = e == null ? '' : '自評:4 − 0.5 × ' + e + ' = ' + Math.max(0, 4 - 0.5 * e) + ' 分(估算,細則依各年度評分原則)'; };
-      inp.addEventListener('input', calc);
+      const calc = fromUser => { const e = inp.value === '' ? null : Math.max(0, +inp.value); if (fromUser) { get(key)[fid] = e; save(); } out.textContent = e == null ? '' : '自評:4 − 0.5 × ' + e + ' = ' + Math.max(0, 4 - 0.5 * e) + ' 分(估算,細則依各年度評分原則)'; };
+      inp.addEventListener('input', () => calc(true));
       card.append(h('div', { class: 'row mt' }, h('span', {}, '對照參考答案後,這題的錯誤數:'), inp), out);
-      calc(); scoreOut.push(out);
+      calc(false); scoreOut.push(out);
     });
     if (refNode) card.append(refNode);
     return card;
@@ -115,9 +115,10 @@ window.GSATWriting = (function () {
   function yearPage(y) {
     const cfg = SC.years[y], d = (env.NS || {})[y];
     if (!cfg || !d) return h('div', {}, env.back('#/ns/'), h('p', { class: 'notice mt' }, '找不到這個年度的非選擇題。'));
-    const root = h('div', {}, env.back('#/ns/'), h('h1', { class: 'brand' }, y + ' 學年度非選擇題'));
-    root.append(h('p', { class: 'sub' }, '先自己作答,再對照官方評分原則。所有分數都是自評,不是大考中心官方評分。'),
-      toggle('試卷頁面(題目)', imgs(d.q, y + ' 年試卷')));
+    const root = h('div', { 'data-source': 'exam' }, env.back('#/ns/'), h('h1', { class: 'brand' }, y + ' 學年度非選擇題'),
+      h('p', {}, h('span', { class: 'src exam' }, '歷屆正式試題'), ' 大學入學考試中心 ' + y + ' 學年度學測英文'));
+    root.append(h('p', { class: 'sub' }, '先自己作答,再對照官方評分原則。自評分數不是大考中心官方評分。'),
+      toggle('試卷頁面(題目)', imgs(d.q, y + ' 年試卷')), env.summaryNode(y));
     if (cfg.multiSelect) root.append(mixedCard(y));
     root.append(translationCard(y + ':trans', [h('b', {}, '第 1 題(中文句子見上方「試卷頁面」)'), h('b', {}, '第 2 題')], null),
       essayCard(y + ':essay', { min: 120 }));
@@ -130,12 +131,12 @@ window.GSATWriting = (function () {
     if (t) {
       const ref = toggle('參考譯文與重點', h('div', { class: 'explain' }, h('p', { class: 'fine' }, '這只是一種可能的寫法,不是唯一答案。'),
         t.ref.map((r, i) => h('p', {}, (i + 1) + '. ' + r)), h('h4', {}, '這題的重點'), h('ul', {}, t.focus.map(f => h('li', {}, f)))));
-      return h('div', {}, env.back('#/ns/'), h('h1', { class: 'brand' }, '中譯英:' + t.title), translationCard('orig:' + id, t.zh.map((z, i) => h('p', {}, h('b', {}, (i + 1) + '. '), z)), ref));
+      return h('div', { 'data-source': 'original' }, env.back('#/ns/'), h('h1', { class: 'brand' }, '中譯英:' + t.title), h('p', {}, h('span', { class: 'src orig' }, '原創練習題'), ' 自行撰寫,不是大考試題'), translationCard('orig:' + id, t.zh.map((z, i) => h('p', {}, h('b', {}, (i + 1) + '. '), z)), ref));
     }
     if (e) {
       const prompt = h('div', {}, h('p', {}, e.prompt));
       const plan = toggle('寫作提示', h('div', { class: 'explain' }, h('ul', {}, e.plan.map(p => h('li', {}, p)))));
-      return h('div', {}, env.back('#/ns/'), h('h1', { class: 'brand' }, '英文作文:' + e.title), essayCard('orig:' + id, { promptNode: prompt, min: e.min, paras: e.paras, extra: plan }));
+      return h('div', { 'data-source': 'original' }, env.back('#/ns/'), h('h1', { class: 'brand' }, '英文作文:' + e.title), h('p', {}, h('span', { class: 'src orig' }, '原創練習題'), ' 自行撰寫,不是大考試題'), essayCard('orig:' + id, { promptNode: prompt, min: e.min, paras: e.paras, extra: plan }));
     }
     return h('p', { class: 'notice' }, '找不到這個練習。');
   }
@@ -143,10 +144,10 @@ window.GSATWriting = (function () {
   function landing() {
     const root = h('div', {}, env.back('#/'), h('h1', { class: 'brand' }, '非選擇題與寫作'),
       h('p', { class: 'sub' }, '中譯英與英文作文需要自己動手寫。寫的內容會自動儲存在這台裝置。'));
-    root.append(h('h2', { class: 'mt2' }, '原創寫作練習'), h('h3', { class: 'mt' }, '中譯英'),
+    root.append(h('h2', { class: 'mt2' }, '原創寫作練習(自行撰寫,不是大考試題)'), h('h3', { class: 'mt' }, '中譯英'),
       h('div', { class: 'row mt' }, W.trans.map(t => h('a', { class: 'btn line sm', href: '#/ns/orig/' + t.id }, t.title))),
       h('h3', { class: 'mt2' }, '英文作文'), h('div', { class: 'row mt' }, W.essay.map(e => h('a', { class: 'btn line sm', href: '#/ns/orig/' + e.id }, e.title))));
-    root.append(h('h2', { class: 'mt2' }, '歷屆非選擇題'));
+    root.append(h('h2', { class: 'mt2' }, '歷屆正式試題(大考中心)'));
     if (!env.EXAMS.length) root.append(h('p', { class: 'notice mt' }, '歷屆非選擇題的著作權授權還在確認,目前不隨網站公開。可到大考中心官網下載原卷自行練習。'), h('p', { class: 'mt' }, h('a', { class: 'btn line sm', href: env.CFG.officialUrl, target: '_blank', rel: 'noopener noreferrer' }, '前往大考中心官網')));
     else root.append(h('div', { class: 'row mt' }, env.EXAMS.slice().reverse().map(x => h('a', { class: 'btn line sm', href: '#/ns/' + x.year }, x.year + ' 學年度'))));
     return root;

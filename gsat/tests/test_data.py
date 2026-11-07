@@ -1,7 +1,9 @@
 """題庫與計分設定的一致性：題數、配分、答案、圖片檔、不同年度制度不可混用。"""
 import pytest
 
-from conftest import ROOT
+from conftest import ROOT, needs_exam
+
+pytestmark = needs_exam
 
 YEARS = [str(y) for y in range(106, 116) if y != 105]
 OLD = [str(y) for y in range(106, 111)]
@@ -141,6 +143,7 @@ def test_explanations_are_complete_and_never_claim_to_be_reviewed(data):
         y, n = k.split('-')
         q = next(q for s, g, q in questions(data, y) if q['n'] == int(n))
         assert e['status'] == 'draft', f'{k}：未經人工審核不得標為 reviewed'
-        assert e['key'].strip() and e['words'], k
+        assert e['key'].strip() and e['words'] and e.get('grammar', '').strip(), f'{k}：詳解必須包含解題關鍵、重要單字片語與文法補充'
+        assert 'reviewer' in e and e['reviewer'] is None and e['reviewedAt'] is None, f'{k}：缺審核欄位或未經審核卻填了審核者'
         if len(q.get('opts', [])) == 4:
             assert sorted(e['why']) == list('ABCD') and all(v.strip() for v in e['why'].values()), f'{k} 沒有逐一說明四個選項'

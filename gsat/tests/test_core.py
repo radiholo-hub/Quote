@@ -63,3 +63,42 @@ def test_timer_counts_down_and_pauses(core):
       s.paused=false;C.tick(s,31000);const c=s.remainMs;C.tick(s,999999);return [a,b,c,s.remainMs]''')
     assert r == [55000, 55000, 50000, 0]
     assert core('return [C.fmtTime(3600000),C.fmtTime(61000),C.fmtTime(0),C.fmtTime(59001)]') == ['60:00', '01:01', '00:00', '01:00']
+
+
+def test_formal_exam_timer_cannot_be_paused_by_leaving(core):
+    # 正式模擬考用「截止時間」：不管離開多久，剩餘時間都是截止時間 − 現在
+    r = core('return [C.remainingFromDeadline(100000,40000),C.remainingFromDeadline(100000,100000),C.remainingFromDeadline(100000,999999)]')
+    assert r == [60000, 0, 0]
+
+
+NEW_CFG = "{mc:62,mixed:10,translation:8,essay:20,multiSelect:true}"
+OLD_CFG = "{mc:72,mixed:0,translation:8,essay:20,multiSelect:false}"
+
+
+def test_summary_does_not_count_unscored_parts_as_zero(core):
+    r = core(f'return C.paperSummary({NEW_CFG},{{got:50,max:62}},{{}})')
+    assert (r['scoredGot'], r['scoredMax'], r['pendingMax'], r['total'], r['complete']) == (50, 62, 38, 100, False)
+    pend = [i['id'] for i in r['items'] if i['got'] is None]
+    assert pend == ['multi', 'fill', 't0', 't1', 'essay']             # 全部「待」，沒有被填成 0
+
+
+def test_summary_old_system_has_no_mixed_part(core):
+    r = core(f'return C.paperSummary({OLD_CFG},{{got:60,max:72}},{{}})')
+    assert [i['id'] for i in r['items']] == ['mc', 't0', 't1', 'essay'] and r['total'] == 100 and r['pendingMax'] == 28
+
+
+def test_summary_counts_only_what_has_been_scored(core):
+    ns = "{mixed:{done:true,multiScore:2.67,other:5},trans:{e0:3,e1:0},essay:{self:14}}"
+    r = core(f'return C.paperSummary({NEW_CFG},{{got:50,max:62}},{ns})')
+    assert r['complete'] is True and r['pendingMax'] == 0
+    assert r['scoredGot'] == pytest.approx(50 + 2.67 + 5 + 2.5 + 4 + 14) and r['scoredMax'] == 100
+    # 只自評了一題翻譯：另一題仍是待自評
+    r = core(f'return C.paperSummary({NEW_CFG},{{got:50,max:62}},{{trans:{{e0:1}}}})')
+    assert [i['got'] for i in r['items'] if i['id'] in ('t0', 't1')] == [3.5, None]
+    assert r['scoredMax'] == 66                                         # 62 + 第 1 題 4 分
+
+
+def test_summary_translation_score_never_goes_negative(core):
+    r = core(f'return C.paperSummary({NEW_CFG},null,{{trans:{{e0:99}}}})')
+    assert next(i for i in r['items'] if i['id'] == 't0')['got'] == 0
+    assert next(i for i in r['items'] if i['id'] == 'mc')['got'] is None   # 選擇題沒作答 → 待作答，不是 0

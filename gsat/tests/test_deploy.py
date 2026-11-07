@@ -6,7 +6,7 @@ import subprocess
 
 import pytest
 
-from conftest import DEVICES, ROOT
+from conftest import DEVICES, ROOT, needs_exam
 
 REPO = ROOT.parent
 
@@ -65,9 +65,11 @@ def test_public_build_degrades_to_official_link_and_original_practice(browser, p
     # 原創題仍可練習
     page.goto((public_site / 'index.html').as_uri() + '#/practice')
     assert '題目來源' not in page.inner_text('#app')      # 沒有歷屆試題，就不顯示來源與年度範圍選項
+    page.get_by_role('button', name='每題答完立刻看答案').click()                 # 學習模式
     page.get_by_role('button', name='開始練習').click()
     page.wait_for_selector('.opt')
     assert page.evaluate('__gsat.QB[__gsat.loadSession().ids[0]].src') == 'mock'
+    assert page.locator('[data-source=original]').count() == 1 and page.locator('[data-source=exam]').count() == 0
     page.locator('.opt').first.click()
     assert page.locator('.explain').is_visible()
     # 非選擇題頁不放試題圖片
@@ -78,6 +80,7 @@ def test_public_build_degrades_to_official_link_and_original_practice(browser, p
     ctx.close()
 
 
+@needs_exam
 def test_explicit_publish_flag_includes_everything(browser, tmp_path):
     site = stage(tmp_path, publish=True)
     ctx, page = open_site(browser, site)

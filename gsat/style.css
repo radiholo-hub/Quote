@@ -77,3 +77,20 @@ label{font-weight:600}
 .chip{white-space:nowrap}.topbar .timer{font-size:.92rem;padding:2px 10px}.topbar .chip{padding:0 10px}
 @media(max-width:359px){.topbar .fsbtn{display:none}}
 .opt{flex-wrap:wrap}.opt img{flex:0 0 100%;max-width:100%;height:auto;object-fit:contain;object-position:left}
+/* 來源標示：歷屆真題 vs 原創練習題 */
+.src{display:inline-block;font-size:.78rem;font-weight:700;padding:1px 9px;border-radius:99px;margin-right:4px}
+.src.exam{background:color-mix(in srgb,var(--acc) 16%,var(--card));color:var(--acc)}.src.orig{background:var(--okbg);color:var(--ok)}
+/* 文章空格：可點、顯示已選字母 */
+.passage{position:relative}
+button.blank{font:inherit;font-family:var(--serif);background:transparent;color:inherit;border:0;border-bottom:2px solid var(--muted);border-radius:4px 4px 0 0;padding:6px .4em;margin:0 1px;min-height:36px;min-width:36px;cursor:pointer;touch-action:manipulation}
+.blank.filled{background:color-mix(in srgb,var(--acc) 14%,var(--card));border-color:var(--acc)}.blank.ok{background:var(--okbg);border-color:var(--ok)}.blank.bad{background:var(--badbg);border-color:var(--bad)}
+.blank.cur{background:var(--hi);border-color:var(--ink);color:var(--ink)}
+/* 手機：全螢幕看文章 */
+.reader{position:fixed;inset:0;z-index:60;background:var(--bg);display:flex;flex-direction:column;padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.reader-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.reader .passage{flex:1;max-height:none;margin:0;overflow:auto;-webkit-overflow-scrolling:touch}
+.fab{position:fixed;right:12px;bottom:calc(var(--bar-h,72px) + 12px);z-index:30;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+@media(min-width:960px){.fab{display:none}}
+.rules{list-style:disc;padding-left:1.3em;margin-top:6px}.rules li{margin:2px 0}
+.pend{color:var(--warn);font-weight:700}
+section.card h2{margin:0 0 6px;font-size:1.15rem}

@@ -62,10 +62,32 @@
     return session.remainMs;
   }
 
+  // 正式模擬考的倒數以「截止時間」計算：不能暫停，離開頁面或重新整理時間照常流逝。
+  const remainingFromDeadline = (deadline, now) => Math.max(0, deadline - now);
+
+  // 全卷成績總覽：自動評分的、待自評的、已評分合計。尚未評分的項目不計為 0 分，也不放進「已評分滿分」。
+  // cfg 是 SCORING.years[年度]；mc 是選擇題結果 {got,max} 或 null（還沒作答）；ns 是這一年的非選擇題存檔。
+  function paperSummary(cfg, mc, ns) {
+    ns = ns || {};
+    const mixed = ns.mixed || {}, trans = ns.trans || {}, essay = ns.essay || {};
+    const items = [{ id: 'mc', name: '選擇題', how: 'auto', max: cfg.mc, got: mc ? mc.got : null, pendingText: '尚未作答' }];
+    if (cfg.multiSelect) {
+      items.push({ id: 'multi', name: '混合題・多選題', how: 'auto', max: 4, got: mixed.done ? mixed.multiScore : null, pendingText: '尚未作答' });
+      items.push({ id: 'fill', name: '混合題・填空與簡答', how: 'self', max: cfg.mixed - 4, got: mixed.other != null ? mixed.other : null, pendingText: '待自評' });
+    }
+    [0, 1].forEach(i => items.push({ id: 't' + i, name: '中譯英第 ' + (i + 1) + ' 題', how: 'self', max: cfg.translation / 2,
+      got: trans['e' + i] != null ? Math.max(0, cfg.translation / 2 - 0.5 * trans['e' + i]) : null, pendingText: '待自評' }));
+    items.push({ id: 'essay', name: '英文作文', how: 'self', max: cfg.essay, got: essay.self != null ? essay.self : null, pendingText: '待自評' });
+    const done = items.filter(i => i.got != null), todo = items.filter(i => i.got == null);
+    const sum = (a, f) => a.reduce((s, i) => s + f(i), 0);
+    return { items, scoredGot: sum(done, i => i.got), scoredMax: sum(done, i => i.max), pendingMax: sum(todo, i => i.max),
+      total: cfg.mc + cfg.mixed + cfg.translation + cfg.essay, complete: todo.length === 0 };
+  }
+
   function fmtTime(ms) {
     const s = Math.ceil(ms / 1000), m = Math.floor(s / 60);
     return String(m).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
   }
 
-  return { LET, scoreMulti, scorePaper, pickByGroups, recordAnswer, isPendingWrong, isMastered, MASTER_STREAK, tick, fmtTime };
+  return { LET, scoreMulti, scorePaper, pickByGroups, recordAnswer, isPendingWrong, isMastered, MASTER_STREAK, tick, remainingFromDeadline, paperSummary, fmtTime };
 });

@@ -1,7 +1,7 @@
 """非選擇題：中譯英、英文作文、多選題自動計分、自動儲存；公開版也能用原創寫作練習。"""
 import pytest
 
-from conftest import DEVICES, URL, hscroll_overflow, wait_images
+from conftest import DEVICES, URL, hscroll_overflow, needs_exam, wait_images
 
 
 def test_translation_text_and_error_count_are_saved(make_page):
@@ -53,6 +53,7 @@ def test_ai_feedback_is_clearly_not_available_and_not_official(make_page):
     assert page.get_by_role('button', name='AI').count() == 0     # 沒有假的批改按鈕
 
 
+@needs_exam
 # 多選題官方計分：111 CD(n=6)、112 DF(n=8)、113 CF(n=6)、114 CDGI(n=10)、115 ADE(n=6)，滿分 4 分
 @pytest.mark.parametrize('year,picks,expect', [
     ('111', 'CD', '4'), ('111', 'C', '2.67'), ('111', 'CDE', '2.67'), ('111', 'AB', '0'), ('111', '', '0'),
@@ -72,6 +73,7 @@ def test_multi_select_is_scored_by_the_official_formula(make_page, year, picks, 
         assert '低於 0 以 0 分計' in t
 
 
+@needs_exam
 def test_multi_select_selection_survives_reload(make_page):
     page = make_page()
     page.goto(URL + '#/ns/114')
@@ -84,6 +86,7 @@ def test_multi_select_selection_survives_reload(make_page):
     assert '3.2' in page.inner_text('.explain')
 
 
+@needs_exam
 def test_official_year_pages_show_paper_and_scoring_guides_on_demand(make_page):
     page = make_page()
     page.goto(URL + '#/ns/112')

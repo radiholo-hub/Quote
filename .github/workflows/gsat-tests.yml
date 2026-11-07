@@ -10,6 +10,9 @@ on:
       - 'tools/stage_site.sh'
       - 'tools/parse_gsat.py'
       - 'tools/build_nonmc.py'
+      - 'tools/gsat_inventory.py'
+      - 'tools/gsat_review_sheet.py'
+      - 'docs/gsat/**'
       - '.github/workflows/gsat-tests.yml'
   workflow_dispatch:
 permissions:
@@ -26,10 +29,16 @@ jobs:
         with:
           sparse-checkout: |
             gsat
+            docs/gsat
             tools/stage_site.sh
+            tools/gsat_inventory.py
+            tools/gsat_review_sheet.py
           sparse-checkout-cone-mode: false
       - name: Install test tools
         timeout-minutes: 5
         run: python3 -m pip install --break-system-packages -r gsat/tests/requirements.txt
       - name: Run tests
-        run: python3 -m pytest gsat/tests -q
+        # 映像內建 Chromium、Firefox、WebKit。要求 WebKit 一定要存在：iPhone Safari 的測試在 CI 不能被悄悄略過。
+        env:
+          GSAT_REQUIRE_WEBKIT: '1'
+        run: python3 -m pytest gsat/tests -q -rs
