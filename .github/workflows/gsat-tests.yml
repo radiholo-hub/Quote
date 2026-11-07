@@ -12,6 +12,9 @@ on:
       - 'tools/build_nonmc.py'
       - 'tools/gsat_inventory.py'
       - 'tools/gsat_review_sheet.py'
+      - 'tools/gsat_vocab_review_sheet.py'
+      - 'tools/build_vocab_index.py'
+      - 'tools/verify_vocab_index.py'
       - 'docs/gsat/**'
       - '.github/workflows/gsat-tests.yml'
   workflow_dispatch:
@@ -33,6 +36,7 @@ jobs:
             tools/stage_site.sh
             tools/gsat_inventory.py
             tools/gsat_review_sheet.py
+            tools/build_vocab_index.py
           sparse-checkout-cone-mode: false
       - name: Install test tools
         timeout-minutes: 5
