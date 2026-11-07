@@ -154,12 +154,11 @@ FAKE_SPEECH = """(()=>{window.__spoken=[];window.SpeechSynthesisUtterance=functi
 
 
 @pytest.fixture(scope='session')
-def stub_mp3(tmp_path_factory):
-    """4 秒的測試用 mp3（正弦波），讓暫停、繼續、重播等行為可以預測；不代表真實發音。"""
-    import subprocess
-    f = tmp_path_factory.mktemp('audio') / 'stub.mp3'
-    subprocess.run(['ffmpeg', '-loglevel', 'error', '-f', 'lavfi', '-i', 'sine=frequency=440:duration=4', '-codec:a', 'libmp3lame', '-b:a', '32k', str(f)], check=True)
-    return f.read_bytes()
+def stub_mp3():
+    """測試用音源：直接用專案裡真正的原創文章 mp3（幾十秒長，足夠測暫停、繼續、重播）。不需要 ffmpeg。"""
+    audio = ROOT / 'audio'
+    biggest = max(audio.glob('*.mp3'), key=lambda f: f.stat().st_size)
+    return biggest.read_bytes()
 
 
 def route_stub_audio(page, body):
