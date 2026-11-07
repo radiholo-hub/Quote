@@ -121,6 +121,7 @@ window.GSATLearn = (function () {
     const verdict = chosen == null ? '你沒有作答這一題。' : chosen === q.a ? '✔ 你選的 (' + LET[chosen] + ') 是正確答案。' : '✘ 你選了 (' + LET[chosen] + ') ' + q.o[chosen] + ',答錯了。';
     const s1 = h('div', {},
       h('p', { class: 'ans', 'data-role': 'answer' }, '正確答案:(' + A + ') ', h('b', {}, q.o[ai]), ' ', spk(entA.hw, entA.hw), h('span', { class: 'fine' }, ' ' + posZh(entA))),
+      e.zh ? h('p', { class: 'fine', 'data-role': 'zh' }, h('b', {}, '題目中譯(代入正確答案):'), e.zh) : null,
       h('p', { class: 'verdict ' + (chosen === q.a ? 'ok' : chosen == null ? '' : 'bad'), 'data-role': 'verdict' }, verdict),
       chosen != null && chosen !== q.a ? h('p', { 'data-role': 'why-wrong' }, h('b', {}, '為什麼不選 (' + LET[chosen] + '):'), e.options[LET[chosen]].why) : null,
       h('p', { 'data-role': 'why-right' }, h('b', {}, '為什麼選 (' + A + '):'), e.options[A].why));

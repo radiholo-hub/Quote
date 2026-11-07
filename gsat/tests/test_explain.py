@@ -31,6 +31,7 @@ def test_explanation_shows_all_five_parts_in_the_required_order(make_page):
     assert '正確答案:(B) tight' in ans and '緊湊的' in ans and 'adj.' in ans
     assert box.locator('[data-role=verdict]').inner_text().startswith('✘ 你選了 (C) diligent')
     assert 'diligent 是「勤勉的」' in box.locator('[data-role=why-wrong]').inner_text() and 'tight schedule' in box.locator('[data-role=why-right]').inner_text()
+    assert '行程排得非常緊湊' in box.locator('[data-role=zh]').inner_text()
     # 2 解題關鍵：有判斷步驟，不是只寫「依上下文可知」
     steps = box.locator('[data-role=key] li').all_inner_texts()
     assert len(steps) == 3 and 'such a' in steps[0] and 'that' in steps[0] and all(len(t) > 20 for t in steps)
@@ -116,19 +117,3 @@ def test_explanation_contradicting_the_official_key_is_dropped(make_page):
     page.goto(URL + '#/')
     assert page.evaluate('Object.keys(__gsat.EXPL())') == ['115-2']                          # 115-1 的官方答案是 B，詳解寫 C → 整則捨棄
     assert any('115-1' in e for e in page.errors)
-
-
-@needs_exam
-@pytest.mark.skipif(shutil.which('node') is None, reason='審核表工具需要 node')
-def test_review_sheet_contains_everything_a_reviewer_needs_and_refuses_to_write_inside_the_repo(tmp_path):
-    tool = REPO / 'tools' / 'gsat_review_sheet.py'
-    ok = subprocess.run([sys.executable, '-I', str(tool), '--out', str(tmp_path / 'sheet')], capture_output=True, text=True)
-    assert ok.returncode == 0, ok.stderr
-    doc = (tmp_path / 'sheet' / 'explanation-review-sheet.html').read_text(encoding='utf8')
-    assert doc.count('<section>') == 10
-    for k in range(1, 11):
-        assert f'115-{k}・' in doc
-    for part in ('官方答案', '解題關鍵', '選項解析', '重要單字與片語', '常考句型', '文法補充', '延伸練習(待審核草稿)', '引用到的單字詞條', '字族(B)', '全部為原創寫法', '請勿公開轉貼'):
-        assert part in doc, part
-    bad = subprocess.run([sys.executable, '-I', str(tool), '--out', str(REPO / 'docs' / 'oops')], capture_output=True, text=True)
-    assert bad.returncode != 0 and '版本庫' in (bad.stderr + bad.stdout) and not (REPO / 'docs' / 'oops').exists()

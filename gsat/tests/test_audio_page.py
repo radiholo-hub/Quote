@@ -1,0 +1,75 @@
+"""語音試聽頁(tools/gsat_audio_test_page.py):六個區塊都在、一次只播一段、可停止與重播、不載入任何外部資源、WebKit(iPhone)也能操作。"""
+import json
+import pathlib
+import shutil
+import subprocess
+import sys
+
+import pytest
+
+from conftest import ROOT
+
+TOOL = ROOT.parent / 'tools' / 'gsat_audio_test_page.py'
+PATCH = """() => { window.__log = []; window.__playing = new Set(); window.__max = 0;
+  HTMLMediaElement.prototype.play = function () { window.__playing.add(this); window.__max = Math.max(window.__max, window.__playing.size); window.__log.push('play:' + this.src.slice(0, 5)); return Promise.resolve(); };
+  Object.defineProperty(HTMLMediaElement.prototype, 'paused', { get() { return !window.__playing.has(this); }, configurable: true });
+  HTMLMediaElement.prototype.pause = function () { window.__playing.delete(this); window.__log.push('pause'); }; }"""
+pytestmark = pytest.mark.skipif(shutil.which('node') is None, reason='需要 node 產生頁面')
+
+
+@pytest.fixture(scope='module')
+def page_file(tmp_path_factory):
+    p = tmp_path_factory.mktemp('ap') / 'audio-test.html'
+    subprocess.run([sys.executable, str(TOOL), '--out', str(p), '--embed'], check=True, capture_output=True)
+    return p
+
+
+def test_page_has_all_sections_and_marks_everything_unreviewed(make_page, page_file):
+    pg = make_page('phone', url=page_file.as_uri())
+    assert not pg.errors
+    heads = pg.locator('h2').all_inner_texts()
+    for k in ('單字發音', '衍生字發音', '片語與搭配詞', '完整例句', '文章・正常速度', '文章・慢速'):
+        assert any(k in h for h in heads), k
+    assert pg.locator('.row').count() == 187 and pg.locator('.fam').count() >= 9
+    assert '還沒有人工聆聽過' in pg.locator('.banner').inner_text()
+    assert pg.locator('input[type=radio][value=待審核]:checked').count() == 187     # 預設全是待審核
+    assert not pg.evaluate('document.documentElement.scrollWidth > innerWidth')
+
+
+def test_only_one_clip_plays_at_a_time_and_replay_and_stop_work(make_page, page_file):
+    pg = make_page('phone', url=page_file.as_uri()); pg.evaluate(PATCH)
+    plays = pg.locator('#w ~ .row button.play')
+    plays.nth(0).click(); plays.nth(1).click()
+    assert pg.evaluate('window.__playing.size') == 1 and pg.evaluate('window.__max') == 1
+    assert pg.locator('.row.on').count() == 1 and '播放中' in pg.locator('#now').inner_text()
+    pg.locator('#w ~ .row button[data-act=replay]').nth(1).click()
+    assert pg.evaluate('window.__playing.size') == 1                                  # 重播不會疊音
+    plays.nth(1).click()                                                              # 同一段再點一次 → 停止
+    assert pg.evaluate('window.__playing.size') == 0 and pg.locator('.row.on').count() == 0
+    plays.nth(2).click(); pg.click('#stopall')
+    assert pg.evaluate('window.__playing.size') == 0 and pg.locator('#now').inner_text() == '沒有在播放'
+
+
+def test_family_buttons_share_the_single_player_and_verdicts_export(make_page, page_file):
+    pg = make_page('phone', url=page_file.as_uri()); pg.evaluate(PATCH)
+    fam = pg.locator('.fam').first
+    assert 'tight' in fam.inner_text()
+    fam.locator('button.play').nth(0).click(); fam.locator('button.play').nth(1).click()
+    assert pg.evaluate('window.__max') == 1
+    pg.locator('input[type=radio][value=有問題]').first.check()
+    pg.click('#exportbtn')
+    out = pg.input_value('#exp')
+    assert '已標記 1 / ' in out and out.splitlines()[1].startswith('有問題|')
+
+
+def test_page_is_self_contained(make_page, page_file):
+    reqs = []
+    pg = make_page('phone', url='about:blank'); pg.on('request', lambda r: reqs.append(r.url)); pg.goto(page_file.as_uri())
+    assert [u for u in reqs if not u.startswith(('file:', 'data:', 'blob:'))] == []
+
+
+def test_ios_safari_can_tap_play_and_replay(make_ios_page, page_file):
+    pg = make_ios_page(page_file.as_uri()); pg.evaluate(PATCH)
+    pg.locator('#w ~ .row button.play').nth(0).tap(); pg.locator('#w ~ .row button.play').nth(1).tap()
+    assert pg.evaluate('window.__max') == 1 and pg.evaluate('window.__playing.size') == 1
+    assert not pg.errors

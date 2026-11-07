@@ -44,7 +44,12 @@ window.EXPLAIN = {
    "It takes + 時間 + to V(要花…時間才…)"
   ],
   "grammar": "It takes weeks to arrange…:it 是虛主詞,真正的主詞是 to arrange an interview with her。such 修飾「a + 形容詞 + 名詞」,所以要寫 such a tight schedule,不是 so a tight schedule。",
-  "focus": "tight-adj"
+  "focus": "tight-adj",
+  "zh": "這位市長的行程排得非常緊湊,要花好幾週才能安排到對她的訪談。",
+  "aiFlags": [
+   "選項 D「routine schedule 並沒有表達排不出空檔」:routine schedule 也算通順的搭配,理由是否夠清楚?",
+   "hasty、diligent、routine 的詞條目前沒有原創例句(只有 tight 是完整詞條)。"
+  ]
  },
  "115-2": {
   "schema": 2,
@@ -87,7 +92,11 @@ window.EXPLAIN = {
    "but 前後對比:professional ↔ amateur"
   ],
   "grammar": "a studio of her own:「a + 名詞 + of + 所有格 + own」＝她自己的工作室(等於 her own studio)。這個形式前面要用 a / an,不能寫成 a her own studio。",
-  "focus": "amateur-adj"
+  "focus": "amateur-adj",
+  "zh": "珍一開始是個業餘的藝術設計師,但現在她擁有自己的專業工作室。",
+  "aiFlags": [
+   "選項 D elementary:說明是否足夠(elementary 也可指「基本的」程度)?"
+  ]
  },
  "115-3": {
   "schema": 2,
@@ -130,7 +139,8 @@ window.EXPLAIN = {
    "more than a dozen + 複數名詞(十幾個以上)"
   ],
   "grammar": "more than a dozen applicants:dozen 前面有 a 或數字時不加 s(two dozen eggs);沒有數字、表示「很多」時才用 dozens of。soon 是副詞,放在主詞與動詞之間(soon attracted)。",
-  "focus": "vacancy-n"
+  "focus": "vacancy-n",
+  "zh": "這所知名高中的教職缺額很快就吸引了十多位資格優良的應徵者。"
  },
  "115-4": {
   "schema": 2,
@@ -171,7 +181,11 @@ window.EXPLAIN = {
    "than (it was) + 副詞 + 過去分詞(省略主詞與 be)"
   ],
   "grammar": "far more profit than…:far 用來加強比較級(more)。than 引導的比較子句常省略「主詞 + be」。",
-  "focus": "initially-adv"
+  "focus": "initially-adv",
+  "zh": "由一位年輕工程師設計的這項新產品,所創造的利潤遠比起初預期的多得多。",
+  "aiFlags": [
+   "解題關鍵 1 把 than 後面還原成 than (it was) initially expected,是否符合高中教學的說法?"
+  ]
  },
  "115-5": {
   "schema": 2,
@@ -212,7 +226,11 @@ window.EXPLAIN = {
    "a balanced diet / consumption(均衡的飲食/攝取)"
   ],
   "grammar": "It has been confirmed that…:It 是虛主詞,現在完成式被動,真主詞是 that 子句;the key element to… 的 to 是介系詞。",
-  "focus": "consumption-n"
+  "focus": "consumption-n",
+  "zh": "已經證實,均衡攝取水果與蔬菜是維持健康的關鍵要素。",
+  "aiFlags": [
+   "選項 C provision 的說明用「指提供的一方」區分,是否清楚?"
+  ]
  },
  "115-6": {
   "schema": 2,
@@ -255,7 +273,8 @@ window.EXPLAIN = {
    "dread + V-ing(害怕做某事)"
   ],
   "grammar": "the thought of + V-ing:介系詞 of 後面接動名詞,所以是 the thought of speaking,不能寫 the thought of to speak。句首 As a shy boy… 的 as 是「作為」,afraid of… 是放在 boy 後面的形容詞片語。",
-  "focus": "dread-v"
+  "focus": "dread-v",
+  "zh": "提米是個害羞的男孩,害怕公開露面,一想到要在一大群聽眾面前演講就感到畏懼。"
  },
  "115-7": {
   "schema": 2,
@@ -297,7 +316,8 @@ window.EXPLAIN = {
    "devote oneself to + 名詞/V-ing(全心投入…)"
   ],
   "grammar": "非限定關係子句 which he has devoted himself to…:先行詞是前面的 his life’s ___,devote oneself to 的 to 留在子句最後;whole-heartedly 是副詞,修飾 devoted。",
-  "focus": "passion-n"
+  "focus": "passion-n",
+  "zh": "對這位剛加冕的鋼琴比賽冠軍來說,音樂是他生命中的熱情所在,他一直全心全意投入其中。"
  },
  "115-8": {
   "schema": 2,
@@ -340,7 +360,11 @@ window.EXPLAIN = {
    "shout at sb.(對著某人大吼)"
   ],
   "grammar": "who shouted at passers-by and ___ them…:who 子句裡兩個過去式動詞用 and 並列,共用同一個主詞 who;主要子句 was quickly arrested 是被動語態。shout at sb. 是「對著某人大吼」(帶怒意),shout to sb. 才是「向某人喊話」。passer-by 的複數是 passers-by。",
-  "focus": "assault-v"
+  "focus": "assault-v",
+  "zh": "那名酒駕的駕駛對路人大吼,還拿玻璃瓶攻擊他們,很快就被警方逮捕了。",
+  "aiFlags": [
+   "解題關鍵 3「能接人又搭配 with 工具的只有 assault」語氣偏強,是否改成「四個選項中只有 assault 最合理」?"
+  ]
  },
  "115-9": {
   "schema": 2,
@@ -383,7 +407,11 @@ window.EXPLAIN = {
    "so + 形容詞 + that 子句(如此…以致於…)"
   ],
   "grammar": "so many people at the bus station that…:so + many + 名詞 + that 子句表示結果;in time 是「及時」,on time 才是「準時」。",
-  "focus": "elbow-v"
+  "focus": "elbow-v",
+  "zh": "公車站的人太多了,我得用手肘推擠著穿過人群,才趕得上公車。",
+  "aiFlags": [
+   "選項 D struggle:struggle one’s way through 實際上也有人用,詳解已寫「不如 elbow 貼切」,措辭請確認;句中「官方答案為 C」的寫法是否保留?"
+  ]
  },
  "115-10": {
   "schema": 2,
@@ -426,6 +454,7 @@ window.EXPLAIN = {
    "prevent + 受詞 + from + V-ing(防止…發生)"
   ],
   "grammar": "prevent such tragic incidents from happening again:prevent + 受詞 + from + V-ing。how to prevent… 是「疑問詞 + to V」,作 about 的受詞。",
-  "focus": "grave-adj"
+  "focus": "grave-adj",
+  "zh": "美國校園接連發生致命槍擊案,引發了人們對於如何防止這類悲劇再度發生的嚴重關切。"
  }
 };

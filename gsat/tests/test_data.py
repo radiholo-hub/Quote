@@ -1,4 +1,5 @@
 """題庫與計分設定的一致性：題數、配分、答案、圖片檔、不同年度制度不可混用。"""
+import re
 import pytest
 
 from conftest import ROOT, needs_exam
@@ -147,6 +148,7 @@ def test_explanations_are_complete_and_never_claim_to_be_reviewed(data):
         assert sorted(e['options']) == list('ABCD') and all(o['why'].strip() and o['entry'] in V for o in e['options'].values()), f'{k}：四個選項都要有分析並引用詞條'
         assert e['words'] and e['grammar'].strip() and e['patterns'], f'{k}：詳解必須包含重要單字、文法補充與常考句型'
         assert all(w in V for w in e['words']) and e['focus'] in V and all(p in data['vocab']['phrases'] for p in e['phrases']), k
+        assert re.search(r'[\u4e00-\u9fff]', e.get('zh', '')) and len(e['zh']) >= 15, f'{k}：缺題目中譯'
         assert 'reviewer' in e and e['reviewer'] is None and e['reviewedAt'] is None, f'{k}：缺審核欄位或未經審核卻填了審核者'
 
 
