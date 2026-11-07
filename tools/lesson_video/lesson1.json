@@ -430,7 +430,7 @@
       ]
      ]
     ],
-    "lvnote": "有些也能當一般動詞：look at the screen、get a ticket，要看空格是不是在描述主詞。"
+    "lvnote": "同一個動詞可以有不同用法。先問：這格在描述主詞，還是在說明動作？"
    },
    "say": [
     [
@@ -475,7 +475,76 @@
     ],
     [
      "zh",
-     "這些動詞後面的字，如果是在描述主詞的狀態，要用形容詞。不過有些字也能當一般動詞用，所以還是要看空格是不是在描述主詞。"
+     "這些動詞後面的字，如果是在描述主詞的狀態，要用形容詞。"
+    ]
+   ]
+  },
+  {
+   "id": "c5b",
+   "view": {
+    "kind": "pair",
+    "t": "同一個動詞，兩種用法",
+    "sm": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The technician looked [tired].",
+      "zh": "技術人員看起來很累。tired 描述技術人員的狀態，用形容詞。"
+     },
+     {
+      "n": "②",
+      "s": "The technician looked [carefully] at the screen.",
+      "zh": "技術人員仔細地看著螢幕。carefully 說明技術人員怎麼看螢幕，用副詞。"
+     }
+    ],
+    "ring": [
+     {
+      "w": "tired",
+      "label": "形容詞",
+      "c": "ok"
+     },
+     {
+      "w": "carefully",
+      "label": "副詞",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "先問：這格在描述主詞，還是在說明動作？"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "不過，同一個動詞可以有不同用法。"
+    ],
+    [
+     "en",
+     "The technician looked tired."
+    ],
+    [
+     "en",
+     "Tired"
+    ],
+    [
+     "zh",
+     "描述技術人員的狀態，用形容詞。"
+    ],
+    [
+     "en",
+     "The technician looked carefully at the screen."
+    ],
+    [
+     "en",
+     "Carefully"
+    ],
+    [
+     "zh",
+     "說明技術人員怎麼看螢幕，用副詞。"
+    ],
+    [
+     "zh",
+     "所以先問：這格在描述主詞，還是在說明動作？"
     ]
    ]
   },
@@ -594,7 +663,7 @@
       ]
      ]
     ],
-    "lvnote": "有些也能當一般動詞：look at the screen、get a ticket，要看空格是不是在描述主詞。",
+    "lvnote": "同一個動詞可以有不同用法。先問：這格在描述主詞，還是在說明動作？",
     "ban": {
      "t": "reasonable 描述 plan → 形容詞",
      "c": "ok"
