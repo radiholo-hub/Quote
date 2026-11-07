@@ -186,7 +186,11 @@ def test_original_passage_read_aloud_pause_resume_replay_and_speed(make_page, st
     main.click()                                                                    # 暫停
     assert audio_states(page)[0]['paused'] is True and main.inner_text() == '▶ 繼續'
     main.click()                                                                    # 繼續（同一段，不重頭開始）
-    page.wait_for_function('!window.__audios[0].paused')
+    try:
+        page.wait_for_function('!window.__audios[0].paused', timeout=10000)
+    except Exception as e:                                                          # 失敗時把音訊元素的實際狀態印出來,方便在 CI 上判斷原因
+        info = page.evaluate("window.__audios.map(a=>({paused:a.paused,ended:a.ended,err:a.error&&a.error.code,ready:a.readyState,net:a.networkState,t:a.currentTime,dur:a.duration,src:a.src.slice(-20)}))")
+        raise AssertionError(f'resume failed: {info} errors={page.errors} toast={page.locator("#audio-toast").all_inner_texts()}') from e
     assert len(audio_states(page)) == 1
     page.wait_for_timeout(1200)
     p.locator('[data-act=replay]').click()                                          # 重新播放：從頭開始
