@@ -108,14 +108,15 @@ def test_safari_word_page_plays_audio_without_overlap_and_without_moving_the_pag
     page.goto(URL + '#/word/communicate-v')
     page.wait_for_selector('[data-view=word]')
     assert hscroll_overflow(page) <= 1
-    page.evaluate('window.scrollTo(0, 300)')
+    first, second = page.locator('.colls .spk').nth(0), page.locator('.colls .spk').nth(1)
+    first.scroll_into_view_if_needed()                                                  # 只點畫面內的按鈕，避免測試自己把頁面捲動
     y = page.evaluate('window.scrollY')
-    page.locator('.whead .spk').tap()
+    first.tap()
     page.wait_for_function('window.__audios.length===1 && !window.__audios[0].paused')   # iOS 需要使用者手勢才能播放：tap 已提供
-    page.locator('.colls .spk').first.tap()
+    second.tap()
     page.wait_for_function('window.__audios.length===2')
-    assert page.evaluate('window.__audios.filter(a=>!a.paused).length') == 1
-    assert abs(page.evaluate('window.scrollY') - y) <= 2 and page.errors == []
+    assert page.evaluate('window.__audios.filter(a=>!a.paused).length') == 1             # 不重疊
+    assert abs(page.evaluate('window.scrollY') - y) <= 2 and page.errors == []           # 播放不會讓頁面跳動
 
 
 def test_safari_original_passage_player_pause_resume_replay(make_ios_page, stub_mp3):
