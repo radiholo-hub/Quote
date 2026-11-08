@@ -1,0 +1,32 @@
+[
+ {
+  "scene": "s1",
+  "start": 0.0,
+  "sec": 5.8
+ },
+ {
+  "scene": "s2",
+  "start": 5.8,
+  "sec": 5.07
+ },
+ {
+  "scene": "s3",
+  "start": 10.88,
+  "sec": 5.01
+ },
+ {
+  "scene": "s4",
+  "start": 15.89,
+  "sec": 4.8
+ },
+ {
+  "scene": "s5",
+  "start": 20.69,
+  "sec": 7.06
+ },
+ {
+  "scene": "end",
+  "start": 27.75,
+  "sec": 6.01
+ }
+]
