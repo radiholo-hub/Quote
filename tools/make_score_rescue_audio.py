@@ -93,6 +93,10 @@ def collect():
                 if d.get("audio"):
                     texts.add(d["say"])
                     texts.update(e[0].replace("**", "") for e in d["ex"])
+    # 詞性小課（score-rescue/pos/）：作答或揭曉後的「聽單字」「聽整句」；清單由頁面資料產生，測試確認兩邊一致
+    pos = ROOT / "score-rescue" / "pos" / "audio-texts.json"
+    if pos.exists():
+        texts.update(t for t in json.loads(pos.read_text(encoding="utf-8")) if t.strip())
     return sorted(texts)
 
 AZ_KEY = os.environ.get("AZURE_SPEECH_KEY", "")

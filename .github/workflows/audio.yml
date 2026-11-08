@@ -8,7 +8,7 @@ on:
         default: false
   push:
     branches: [claude/daily-quotes-website-lbh2wi]
-    paths: ["quotes.js", "tools/make_audio.py", "score-rescue/index.html", "score-rescue/cards/index.html", "tools/make_score_rescue_audio.py"]
+    paths: ["quotes.js", "tools/make_audio.py", "score-rescue/index.html", "score-rescue/cards/index.html", "score-rescue/pos/audio-texts.json", "tools/make_score_rescue_audio.py"]
 # 各工作自行宣告需要的權限
 permissions: {}
 concurrency:
