@@ -52,7 +52,7 @@ h3{font-weight:700;font-size:1.08rem;line-height:1.45}
 .blank{display:inline-block;min-width:4em;border-bottom:2px solid var(--ink);margin:0 .15em;transform:translateY(2px)}
 .opts{display:grid;gap:10px;margin-top:18px}
 .opt{display:flex;align-items:center;gap:14px;width:100%;min-height:58px;padding:10px 14px;background:#fff;border:1.5px solid #DDD8C8;border-radius:10px;text-align:left;cursor:pointer}
-.opt:disabled{cursor:default}
+.opt:disabled,div.opt{cursor:default}
 .opt .bub{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--ink);font-weight:700;font-size:.92rem}
 .opt .t{font-family:var(--serif);font-size:1.15rem;flex:1}
 .opt .mk{font-size:.8rem;font-weight:700}
@@ -105,9 +105,18 @@ table.tbl th{color:var(--muted);font-weight:700;font-size:.85rem}
 .review-item p{font-size:.95rem;margin-top:4px}
 #dbg{position:fixed;right:8px;top:64px;z-index:80;max-width:min(260px,70vw);background:#262626;color:#fff;font:11px/1.5 ui-monospace,monospace;padding:8px 10px;border-radius:10px;opacity:.88;pointer-events:none}
 #dbg b{color:var(--hi)}
-.sayrow{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0}
-.say{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--wine);background:#fff;color:var(--wine);font:700 .9rem var(--sans,inherit);cursor:pointer}
+.say{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--wine);background:#fff;color:var(--wine);font:700 .9rem var(--sans);cursor:pointer;flex:none}
+.say.ico{width:40px;min-height:40px;padding:0;font-size:1rem}
 .say[aria-pressed="true"]{background:var(--wine);color:#fff}
+.sent{margin-top:4px;padding:12px 14px;border-radius:10px;background:#fff;border:1px solid var(--line);display:grid;gap:6px}
+.sent .en{font-family:var(--serif);font-size:1.12rem;line-height:1.5}
+.sent .en b{color:var(--wine)}
+.sentfoot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sent .zh{color:var(--muted);font-size:.95rem}
+.ansline{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+div.opt .t{flex:none}
+div.opt .mk{margin-left:auto}
+div.opt .say.ico{width:36px;min-height:36px;margin-left:-4px}
 </style>
 </head>
 <body>
@@ -250,6 +259,9 @@ var CHK=[
   x:[null,'(B) unrealistically：副詞。seems 是連綴動詞，空格要描述主詞，不是說明動作的方式。','(C) realism：名詞「現實主義、寫實」，seems realism 不合句構，意思也不符。','(D) realize：動詞「了解、實現」，句子已有主要動詞 seems。']}
 ];
 
+var ZH={"P5-PRE-001": "公司上個月推出了一檔成功的廣告活動。", "P5-PRE-002": "所有費用報銷申請在付款前，都需要經理核准。", "P5-PRE-003": "使用機器前，請仔細閱讀安全說明。", "P5-PRE-004": "最終提案似乎兩個部門都能接受。", "P5-PRE-005": "這份報告提供了出乎意料地實用的顧客偏好資訊。", "P5-PRE-006": "新軟體讓會計團隊的例行工作自動化。", "P5-PRE-007": "行銷團隊討論了新產品受歡迎的程度。", "P5-PRE-008": "自從新經理到任後，銷售額穩定成長。", "P5-PRE-009": "這家飯店為房客提供可靠的接駁服務。", "P5-PRE-010": "修訂後的說明明顯更容易照著做。", "P5-PRE-011": "想了解空房狀況，請聯絡飯店。", "P5-PRE-012": "新的時間表似乎適合大多數員工。", "P5-PRE-013": "委員會審閱所有提案後，做出了最終決定。", "P5-PRE-014": "技術人員清楚地說明了新的作業程序。", "P5-PRE-015": "我們的客服團隊會在一個工作天內回覆詢問。", "L1-DEMO-01": "這家店販售適合小型辦公室、價格實惠的家具。", "L1-DEMO-02": "新經理在會議中說話很有自信。", "L1-DEMO-03": "運費出乎意料地高。", "L1-DEMO-04": "顧客似乎對新服務很滿意。", "L1-PR-01": "請及時回覆客戶的電子郵件。", "L1-PR-02": "員工很專業地處理了這起客訴。", "L1-PR-03": "新印表機比舊的快很多。", "L1-PR-04": "我們公司有彈性的退貨政策。", "L1-PR-05": "這場工作坊由人資團隊安排得很有效率。", "L1-PR-06": "金先生開會前固定會查看電子郵件。", "L1-PR-07": "飯店員工對我們的要求非常周到。", "L1-PR-08": "公司去年有顯著的成長。", "L1-PR-09": "包裹送達時有些微損壞。", "L1-PR-10": "新的辦公室設計看起來很吸引人。", "L1-CHK-01": "團隊有禮貌地回應了顧客的疑慮。", "L1-CHK-02": "她在研討會上做了一場令人難忘的簡報。", "L1-CHK-03": "說明相對簡單。", "L1-CHK-04": "專案團隊覺得提議的截止日期似乎不切實際。"};
+[].concat(PRE,DEMOS,PR,CHK).forEach(function(q){q.zh=ZH[q.id]||''});
+
 /* ---------- 狀態（只存在這個分頁的記憶體裡，重新整理會從頭開始） ---------- */
 var st={pre:{i:0,ans:{}},pr:{i:0,ans:{}},chk:{i:0,ans:{},first:{}}};
 
@@ -286,14 +298,21 @@ function speak(text,key){
   window.__lastSpoken={text:text,key:key,src:a.src};
 }
 function sayBtn(text,key,label){return '<button type="button" class="say" data-say="'+esc(text)+'" data-key="'+esc(key)+'" aria-pressed="false">🔊 '+label+'</button>'}
-function sayRow(q){return '<div class="sayrow">'+sayBtn(q.o[q.a],q.id+':w','聽單字 '+q.o[q.a])+sayBtn(fullSent(q),q.id+':s','聽整句')+'</div>'}
+function sayIcon(text,key){return '<button type="button" class="say ico" data-say="'+esc(text)+'" data-key="'+esc(key)+'" aria-label="聽 '+esc(text)+'" aria-pressed="false">🔊</button>'}
+/* 完整句子（正解填回、加粗）＋聽整句＋中文翻譯 */
+function sentHTML(q){
+  var p=q.s.split('______');
+  return '<div class="sent"><p class="en">'+esc(p[0])+'<b>'+esc(q.o[q.a])+'</b>'+esc(p[1]||'')+'</p>'+
+    '<div class="sentfoot">'+(q.zh?'<p class="zh">'+esc(q.zh)+'</p>':'<span></span>')+sayBtn(fullSent(q),q.id+':s','聽整句')+'</div></div>';
+}
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-say]');if(b){e.preventDefault();speak(b.getAttribute('data-say'),b.getAttribute('data-key'))}});
 function h(id){return document.getElementById(id)}
 function optsHTML(q,picked,reveal){
   return '<div class="opts" role="group" aria-label="選項">'+q.o.map(function(t,k){
     var cls='opt',mk='';
     if(reveal){if(k===q.a){cls+=' right';mk='<span class="mk">正解</span>'}else if(k===picked){cls+=' wrong';mk='<span class="mk">你的選擇</span>'}}
-    return '<button type="button" class="'+cls+'" data-k="'+k+'" aria-pressed="'+(picked===k&&!reveal)+'"'+(reveal?' disabled':'')+'><span class="bub">'+LET[k]+'</span><span class="t">'+esc(t)+'</span>'+mk+'</button>';
+    if(reveal)return '<div class="'+cls+'" data-k="'+k+'"><span class="bub">'+LET[k]+'</span><span class="t">'+esc(t)+'</span>'+sayIcon(t,q.id+':o'+k)+mk+'</div>';
+    return '<button type="button" class="'+cls+'" data-k="'+k+'" aria-pressed="'+(picked===k)+'"><span class="bub">'+LET[k]+'</span><span class="t">'+esc(t)+'</span>'+mk+'</button>';
   }).join('')+'</div>';
 }
 function confHTML(v){
@@ -390,7 +409,7 @@ function viewResult(){
     var a=st.pre.ans[q.id],ok=a.k===q.a;
     var pill=ok?(a.conf==='unsure'?'<span class="pill maybe">答對・不確定</span>':'<span class="pill ok">答對</span>'):(a.conf==='sure'?'<span class="pill bad">答錯・有把握</span>':'<span class="pill bad">答錯</span>');
     return '<div class="review-item"><div class="qid">第 '+(i+1)+' 題 · '+CAT[q.c]+' '+pill+'</div><p class="q">'+stem(q.s)+'</p>'+
-      '<p>正解：('+LET[q.a]+') '+esc(q.o[q.a])+(ok?'':'　你選：('+LET[a.k]+') '+esc(q.o[a.k]))+'</p>'+sayRow(q)+'<p class="fine">'+esc(q.w)+'</p></div>';
+      '<p class="ansline">正解：('+LET[q.a]+') '+esc(q.o[q.a])+sayIcon(q.o[q.a],q.id+':w')+(ok?'':'　你選：('+LET[a.k]+') '+esc(q.o[a.k]))+'</p>'+sentHTML(q)+'<p class="fine">'+esc(q.w)+'</p></div>';
   }).join('');
   render('<div class="stack">'+
     '<h1>你的前測結果</h1>'+
@@ -411,7 +430,7 @@ function demoHTML(d,open){
     '<p class="q">'+stem(d.s)+'</p><p class="serif" style="margin-top:6px">'+d.o.map(function(t,k){return '('+LET[k]+') '+esc(t)}).join('　')+'</p>'+
     '<div class="reveal"'+(open?' hidden':'')+'><button class="btn line" data-reveal="'+d.id+'">先想一下，再看老師怎麼判斷</button></div>'+
     '<div class="body"'+(open?'':' hidden')+'><ol class="how">'+d.how.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ol>'+
-    '<p class="ans">答案：('+LET[d.a]+') '+esc(d.o[d.a])+'</p>'+sayRow(d)+'<p class="ex">'+esc(d.ex)+'</p></div></div>';
+    '<p class="ans ansline">答案：('+LET[d.a]+') '+esc(d.o[d.a])+sayIcon(d.o[d.a],d.id+':w')+'</p>'+sentHTML(d)+'<p class="ex">'+esc(d.ex)+'</p></div></div>';
 }
 function bindReveal(){
   app.querySelectorAll('[data-reveal]').forEach(function(b){b.addEventListener('click',function(){
@@ -456,7 +475,7 @@ function feedbackHTML(q,k){
   return '<div class="fb '+(ok?'ok':'bad')+'">'+
     '<div class="work">空格的工作：'+esc(q.work)+'</div>'+
     '<div><b>'+(ok?'答對了！':'正解是 ('+LET[q.a]+') '+esc(q.o[q.a]))+'</b>'+esc(q.why)+'</div>'+
-    (ok?'':'<div>'+esc(q.x[k])+'</div>')+sayRow(q)+
+    (ok?'':'<div>'+esc(q.x[k])+'</div>')+sentHTML(q)+
     (others?'<details class="more"><summary>其他選項為什麼不合適</summary><ul>'+others+'</ul></details>':'')+
   '</div>';
 }
@@ -538,7 +557,7 @@ function viewDone(){
 initSb();
 if(DEBUG&&location.hash==='#done'){viewDone()}   // 預覽用：?debug=1#done 直接看完成畫面
 else viewIntro();
-window.__pos={st:st,PRE:PRE,PR:PR,CHK:CHK,DEMOS:DEMOS,sayTexts:function(){var o=[];[].concat(PRE,DEMOS,PR,CHK).forEach(function(q){o.push(q.o[q.a],fullSent(q))});return o}};
+window.__pos={st:st,PRE:PRE,PR:PR,CHK:CHK,DEMOS:DEMOS,sayTexts:function(){var o=[];[].concat(PRE,DEMOS,PR,CHK).forEach(function(q){o.push.apply(o,q.o);o.push(fullSent(q))});return o}};
 })();
 </script>
 </body>
