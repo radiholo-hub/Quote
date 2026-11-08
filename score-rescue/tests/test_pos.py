@@ -206,5 +206,6 @@ def test_home_has_pos_card_below_diagnosis(app):
     btn = card.locator('a.btn')
     assert btn.inner_text() == '開始免費詞性前測' and btn.get_attribute('href') == './pos/'
     assert 'line' in btn.get_attribute('class'), '次要按鈕，和橘色的診斷主按鈕區分'
+    assert pg.locator('.hero .note').inner_text() == '免費 · 不用註冊 · 30 題閱讀診斷'
     diag = pg.locator(".hero-cta [data-start]")
     assert diag.bounding_box()['y'] + diag.bounding_box()['height'] < card.bounding_box()['y']
