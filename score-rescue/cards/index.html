@@ -74,6 +74,21 @@ main{flex:1;display:flex;flex-direction:column;padding:12px 0 20px;gap:14px}
 .front .sayrow{display:flex;justify-content:center;margin-top:-6px;margin-bottom:10px}
 .back .ex .line{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
 .back .ex .line .say{flex:none;min-height:40px;padding:0 12px;font-size:.85rem;margin-top:2px}
+/* 電腦（寬螢幕）：例句與背面文字放大；手機維持原樣 */
+@media (min-width:768px){
+.wrap{max-width:760px}
+.face{min-height:400px;padding:32px 34px}
+.lab{font-size:.95rem}
+.back .en{font-size:2rem}
+.back .zh{font-size:1.65rem}
+.back .ex{gap:14px;margin-top:20px;padding-top:18px}
+.back .ex p>span:last-child{font-size:1.12rem}
+.back .ex .line{font:500 1.45rem/1.5 var(--en);color:var(--ink)}
+.back .ex .t{font:inherit;color:inherit;display:inline}
+.back .ex .line .say{font-size:.95rem;min-height:44px}
+.back .tip{font-size:1.05rem}
+.hint,.meta,.catnote{font-size:1rem}
+}
 footer{border-top:1px solid var(--line);padding:14px 0 20px;font-size:.88rem;color:var(--muted)}
 footer b{color:var(--ink)}
 </style>
