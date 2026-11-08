@@ -144,7 +144,7 @@ function dbg(name,state){
   if(!d){d=document.createElement('div');d.id='dbg';d.innerHTML='<b>事件紀錄（debug，不送出）</b>';document.body.appendChild(d)}
   var r=document.createElement('div');r.textContent=name+' · '+state;r.setAttribute('data-ev',name);d.appendChild(r);
 }
-var EVENTS={pretest_start:'pos_pretest_start',pretest_done:'pos_pretest_done',trial_click:'pos_trial_click',l1_done:'pos_l1_done',day17_click:'pos_day17_click'};
+var EVENTS={pretest_start:'pos_pretest_start',pretest_done:'pos_pretest_done',trial_click:'pos_trial_click',l1_done:'pos_l1_done',day17_click:'pos_day17_click',l2_click:'pos_l2_click'};
 function logEvent(name){
   var p=Promise.resolve();
   try{
@@ -481,8 +481,11 @@ function viewDone(){
     '<div class="sheet stack"><p>你已經練習了「先找它修飾誰」的判斷方式。</p>'+
       '<p class="score">這次答對 '+x+'／4 題</p>'+
       '<p class="fine">以每題第一次作答計算。</p></div>'+
-    '<p>想接著練其他閱讀題型？可以繼續網站的 Day 1–7 免費體驗。</p>'+
-    '<a class="btn pri" id="d17" href="../#day1-7">繼續 Day 1–7 免費體驗</a>'+
+    '<div class="sheet stack"><p class="fine">下一課（免費）</p><h3>空格需要名詞嗎？先找中心名詞</h3>'+
+      '<p>學會判斷空格是名詞片語的中心名詞，還是在修飾它。影片約 6 分鐘＋14 題練習。</p>'+
+      '<a class="btn pri" id="toL2" href="l2.html">繼續第 2 課｜先找中心名詞</a></div>'+
+    '<p class="fine" style="text-align:center">想先練其他閱讀題型？</p>'+
+    '<a class="btn line" id="d17" href="../#day1-7">繼續 Day 1–7 免費體驗</a>'+
     '<p style="text-align:center"><button class="link" id="again">重看第 1 課</button></p>'+
   '</div>');
   h('d17').addEventListener('click',function(e){
@@ -491,11 +494,18 @@ function viewDone(){
     if(DEBUG){logEvent(EVENTS.day17_click);dbg('（debug 模式不跳轉）','');return}
     logEvent(EVENTS.day17_click).then(goNow);setTimeout(goNow,900);
   });
+  h('toL2').addEventListener('click',function(e){
+    e.preventDefault();var href=this.getAttribute('href'),went=false;
+    function goNow(){if(!went){went=true;location.href=href}}
+    if(DEBUG){logEvent(EVENTS.l2_click);dbg('（debug 模式不跳轉）','');return}
+    logEvent(EVENTS.l2_click).then(goNow);setTimeout(goNow,900);
+  });
   h('again').addEventListener('click',viewLesson);
 }
 
 initSb();
-viewIntro();
+if(DEBUG&&location.hash==='#done'){viewDone()}   // 預覽用：?debug=1#done 直接看完成畫面
+else viewIntro();
 window.__pos={st:st,PRE:PRE,PR:PR,CHK:CHK,DEMOS:DEMOS};
 })();
 </script>
