@@ -105,6 +105,9 @@ table.tbl th{color:var(--muted);font-weight:700;font-size:.85rem}
 .review-item p{font-size:.95rem;margin-top:4px}
 #dbg{position:fixed;right:8px;top:64px;z-index:80;max-width:min(260px,70vw);background:#262626;color:#fff;font:11px/1.5 ui-monospace,monospace;padding:8px 10px;border-radius:10px;opacity:.88;pointer-events:none}
 #dbg b{color:var(--hi)}
+.sayrow{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0}
+.say{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--wine);background:#fff;color:var(--wine);font:700 .9rem var(--sans,inherit);cursor:pointer}
+.say[aria-pressed="true"]{background:var(--wine);color:#fff}
 </style>
 </head>
 <body>
@@ -198,7 +201,36 @@ var app=document.getElementById('app');
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function stem(s){return esc(s).replace('______','<span class="blank" aria-label="空格"></span>')}
 function prog(p){var b=document.getElementById('prog');if(p==null){b.hidden=true;return}b.hidden=false;b.firstChild.style.width=Math.round(p*100)+'%'}
-function render(html){app.innerHTML=html;window.scrollTo(0,0)}
+function render(html){stopSpeak();app.innerHTML=html;window.scrollTo(0,0)}
+/* ---------- 發音：作答／揭曉後可聽「正解單字」與「完整句子」 ----------
+   音檔是 ../audio/<srHash(文字)>.mp3，和主站、搭配詞卡共用（Generate audio 依 pos/audio-texts.json 產生） */
+function srHash(str){
+  var h1=0xdeadbeef,h2=0x41c6ce57;
+  for(var i=0;i<str.length;i++){var ch=str.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677)}
+  h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);
+  h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
+  return (4294967296*(2097151&h2)+(h1>>>0)).toString(16);
+}
+function fullSent(q){return q.s.replace('______',q.o[q.a])}
+var audioEl=null,playingKey=null;
+function setPressed(){document.querySelectorAll('.say').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.key===playingKey)})}
+function stopSpeak(){
+  try{if(audioEl){audioEl.pause();audioEl.removeAttribute('src');audioEl.load()}}catch(e){}
+  audioEl=null;playingKey=null;setPressed();
+}
+function speak(text,key){
+  if(playingKey===key){stopSpeak();return}
+  stopSpeak();
+  var a;try{a=new Audio('../audio/'+srHash(text)+'.mp3')}catch(e){return}
+  audioEl=a;playingKey=key;setPressed();
+  var done=function(){if(audioEl===a){audioEl=null;playingKey=null;setPressed()}};
+  a.addEventListener('ended',done);a.addEventListener('error',done);
+  var pr=a.play();if(pr&&pr.catch)pr.catch(done);
+  window.__lastSpoken={text:text,key:key,src:a.src};
+}
+function sayBtn(text,key,label){return '<button type="button" class="say" data-say="'+esc(text)+'" data-key="'+esc(key)+'" aria-pressed="false">🔊 '+label+'</button>'}
+function sayRow(q){return '<div class="sayrow">'+sayBtn(q.o[q.a],q.id+':w','聽單字 '+q.o[q.a])+sayBtn(fullSent(q),q.id+':s','聽整句')+'</div>'}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-say]');if(b){e.preventDefault();speak(b.getAttribute('data-say'),b.getAttribute('data-key'))}});
 function h(id){return document.getElementById(id)}
 function optsHTML(q,picked,reveal){
   return '<div class="opts" role="group" aria-label="選項">'+q.o.map(function(t,k){
@@ -301,7 +333,7 @@ function viewResult(){
     var a=st.pre.ans[q.id],ok=a.k===q.a;
     var pill=ok?(a.conf==='unsure'?'<span class="pill maybe">答對・不確定</span>':'<span class="pill ok">答對</span>'):(a.conf==='sure'?'<span class="pill bad">答錯・有把握</span>':'<span class="pill bad">答錯</span>');
     return '<div class="review-item"><div class="qid">第 '+(i+1)+' 題 · '+CAT[q.c]+' '+pill+'</div><p class="q">'+stem(q.s)+'</p>'+
-      '<p>正解：('+LET[q.a]+') '+esc(q.o[q.a])+(ok?'':'　你選：('+LET[a.k]+') '+esc(q.o[a.k]))+'</p><p class="fine">'+esc(q.w)+'</p></div>';
+      '<p>正解：('+LET[q.a]+') '+esc(q.o[q.a])+(ok?'':'　你選：('+LET[a.k]+') '+esc(q.o[a.k]))+'</p>'+sayRow(q)+'<p class="fine">'+esc(q.w)+'</p></div>';
   }).join('');
   render('<div class="stack">'+
     '<h1>你的前測結果</h1>'+
@@ -322,7 +354,7 @@ function demoHTML(d,open){
     '<p class="q">'+stem(d.s)+'</p><p class="serif" style="margin-top:6px">'+d.o.map(function(t,k){return '('+LET[k]+') '+esc(t)}).join('　')+'</p>'+
     '<div class="reveal"'+(open?' hidden':'')+'><button class="btn line" data-reveal="'+d.id+'">先想一下，再看老師怎麼判斷</button></div>'+
     '<div class="body"'+(open?'':' hidden')+'><ol class="how">'+d.how.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ol>'+
-    '<p class="ans">答案：('+LET[d.a]+') '+esc(d.o[d.a])+'</p><p class="ex">'+esc(d.ex)+'</p></div></div>';
+    '<p class="ans">答案：('+LET[d.a]+') '+esc(d.o[d.a])+'</p>'+sayRow(d)+'<p class="ex">'+esc(d.ex)+'</p></div></div>';
 }
 function bindReveal(){
   app.querySelectorAll('[data-reveal]').forEach(function(b){b.addEventListener('click',function(){
@@ -381,7 +413,7 @@ function feedbackHTML(q,k){
   return '<div class="fb '+(ok?'ok':'bad')+'">'+
     '<div class="work">空格的工作：'+esc(q.work)+'</div>'+
     '<div><b>'+(ok?'答對了！':'正解是 ('+LET[q.a]+') '+esc(q.o[q.a]))+'</b>'+esc(q.why)+'</div>'+
-    (ok?'':'<div>'+esc(q.x[k])+'</div>')+
+    (ok?'':'<div>'+esc(q.x[k])+'</div>')+sayRow(q)+
     (others?'<details class="more"><summary>其他選項為什麼不合適</summary><ul>'+others+'</ul></details>':'')+
   '</div>';
 }
@@ -444,7 +476,7 @@ function viewDone(){
 }
 
 viewLesson();
-window.__pos={st:st,PR:PR,CHK:CHK,DEMOS:DEMOS,view:viewItem};
+window.__pos={st:st,PR:PR,CHK:CHK,DEMOS:DEMOS,view:viewItem,sayTexts:function(){var o=[];[].concat(DEMOS,PR,CHK).forEach(function(q){o.push(q.o[q.a],fullSent(q))});return o}};
 })();
 </script>
 </body>
