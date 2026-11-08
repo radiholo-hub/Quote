@@ -1281,6 +1281,7 @@ function go(name){
 }
 function refreshHome(){
   $('#btnContinue').hidden=!S.res;refreshExamCards();refreshPrices();
+  const dn=$('#d17Notice');if(dn&&S.res)dn.remove();
   const rb=$('#resumeBar');
   if(rb){rb.hidden=!S.draft;if(S.draft)$('#resumeBtn').textContent=(S.draft.redoDay?'繼續 Day '+S.draft.redoDay+' 重測（已做 ':'繼續診斷（已做 ')+S.draft.i+' / '+S.draft.list.length+' 題）'}
 }
@@ -2766,6 +2767,17 @@ document.addEventListener('keydown',e=>{
   });
 })();
 load();refreshHome();show('home');initCloud();
+/* 從詞性前測頁（pos/）點「繼續 Day 1–7 免費體驗」進來：有診斷結果就開學習路線，沒有就留在首頁先做診斷 */
+if(location.hash==='#day1-7'){
+  try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+  if(S.res)go('plan');
+  else{
+    const n=document.createElement('div');n.id='d17Notice';n.setAttribute('role','status');
+    n.style.cssText='margin:16px auto 0;max-width:720px;padding:16px 18px;border-radius:12px;background:#FFF4E0;border:1px solid #E8CFA0;color:#262626';
+    n.innerHTML='<b>先完成 30 題診斷，就能開始 Day 1–7 免費體驗</b><p style="margin:6px 0 12px">Day 1–7 會依你的 30 題診斷結果排出練習路線，做完診斷後就能從 Day 1 開始。</p><button class="btn fire" data-start>開始 30 題診斷</button>';
+    const m=$('#main');m.insertBefore(n,m.firstChild);
+  }
+}
 })();
 </script>
 </body>
