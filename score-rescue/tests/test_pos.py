@@ -195,3 +195,16 @@ def test_confidence_only_in_pretest(open_pos):
     assert p.is_disabled('#submit')
     p.click('.opt[data-k="0"]')
     assert not p.is_disabled('#submit')
+
+
+def test_home_has_pos_card_below_diagnosis(app):
+    """首頁：「開始免費診斷」主按鈕下方有詞性小課卡片，外框按鈕連到 ./pos/。"""
+    pg = app.page
+    card = pg.locator("#posCard")
+    assert card.locator('h2').inner_text() == '免費 Part 5 詞性小課'
+    assert card.locator('p').inner_text() == '先做 15 題詞性前測，再看 2 堂短影片，練習判斷空格要填哪種詞性。'
+    btn = card.locator('a.btn')
+    assert btn.inner_text() == '開始免費詞性前測' and btn.get_attribute('href') == './pos/'
+    assert 'line' in btn.get_attribute('class'), '次要按鈕，和橘色的診斷主按鈕區分'
+    diag = pg.locator(".hero-cta [data-start]")
+    assert diag.bounding_box()['y'] + diag.bounding_box()['height'] < card.bounding_box()['y']
