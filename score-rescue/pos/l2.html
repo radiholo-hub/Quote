@@ -144,7 +144,7 @@ function dbg(name,state){
   if(!d){d=document.createElement('div');d.id='dbg';d.innerHTML='<b>事件紀錄（debug，不送出）</b>';document.body.appendChild(d)}
   var r=document.createElement('div');r.textContent=name+' · '+state;r.setAttribute('data-ev',name);d.appendChild(r);
 }
-var EVENTS={pretest_start:'pos_pretest_start',pretest_done:'pos_pretest_done',trial_click:'pos_trial_click',l1_done:'pos_l1_done',day17_click:'pos_day17_click'};
+var EVENTS={pretest_start:'pos_pretest_start',pretest_done:'pos_pretest_done',trial_click:'pos_trial_click',l1_done:'pos_l1_done',day17_click:'pos_day17_click',l2_click:'pos_l2_click'};
 function logEvent(name){
   var p=Promise.resolve();
   try{
@@ -390,11 +390,11 @@ function viewItem(kind){
   prog(kind==='pr'?(i/(PR.length+CHK.length)):((PR.length+i)/(PR.length+CHK.length)));
   var label=kind==='pr'?'練習 第 '+(i+1)+' / '+PR.length+' 題':'確認 第 '+(i+1)+' / '+CHK.length+' 題';
   var html='<div class="sheet"><div class="qid">'+label+' · '+q.id+'</div><p class="q">'+stem(q.s)+'</p>'+
-    optsHTML(q,a.k,!!done)+(done?'':confHTML(a.conf))+(done?feedbackHTML(q,a.k):'')+'</div>';
+    optsHTML(q,a.k,!!done)+(done?feedbackHTML(q,a.k):'')+'</div>';   // 練習與確認題不問把握度（只有前測用來判讀）
   var last=i===set.length-1;
   var actions='<div class="actions'+(done?' static':'')+'">';
   if(!done){
-    actions+='<button class="btn pri" id="submit"'+(a.k==null||!a.conf?' disabled':'')+'>確認答案</button>';
+    actions+='<button class="btn pri" id="submit"'+(a.k==null?' disabled':'')+'>確認答案</button>';
   }else{
     if(kind==='chk'&&a.k!==q.a)actions+='<button class="btn line" id="toDemo" style="margin-bottom:10px">回看示範'+(q.demo+1)+'（'+DEMOS[q.demo].id+'）</button>';
     actions+='<button class="btn pri" id="next">'+(last?(kind==='pr'?'開始 4 題確認':'看完成畫面'):'下一題')+'</button>';

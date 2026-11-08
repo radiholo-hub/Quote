@@ -33,9 +33,9 @@ def open_l2(browser):
         assert not errs, '頁面錯誤：%s' % errs
 
 
-def answer(p, k, conf='sure'):
+def answer(p, k):
     p.click('.opt[data-k="%d"]' % k)
-    p.click('[data-conf="%s"]' % conf)
+    assert not p.query_selector('.conf'), '第 2 課練習與確認題不問把握度'
     p.click('#submit')
 
 
