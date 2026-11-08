@@ -163,3 +163,17 @@ def test_day17_without_diag_shows_notice(open_app):
 
 def test_home_without_hash_has_no_notice(app):
     assert app.count('#d17Notice') == 0
+
+
+def test_done_offers_lesson2_first_then_day17(open_pos):
+    """完成畫面：主要按鈕是「繼續第 2 課」，Day 1–7 是次要；點第 2 課記 pos_l2_click 後前往 l2.html。"""
+    p = open_pos()
+    walk(p)
+    l2, d17 = p.query_selector('#toL2'), p.query_selector('#d17')
+    assert l2.inner_text() == '繼續第 2 課｜先找中心名詞' and l2.get_attribute('href') == 'l2.html'
+    assert 'pri' in l2.get_attribute('class') and 'line' in d17.get_attribute('class')
+    assert l2.bounding_box()['y'] < d17.bounding_box()['y'], '第 2 課在 Day 1–7 上方'
+    p.click('#toL2')
+    p.wait_for_url('**/pos/l2.html')
+    p.wait_for_function('!!(window.__pos && window.__pos.view)')
+    assert '空格需要名詞嗎' in p.inner_text('#app')
