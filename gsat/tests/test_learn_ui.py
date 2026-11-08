@@ -47,13 +47,33 @@ def test_family_members_are_listed_separately_with_their_own_records(make_page):
 
 @needs_exam
 def test_pending_review_matches_are_listed_but_not_counted(make_page):
+    """待審核紀錄會列出但不計入次數。不寫死某個詞條:挑一個「已確認 0 次、仍有待審核紀錄」的詞條(人工審核完成的詞條會自然換掉)。"""
+    page = make_page('desktop')
+    page.goto(URL + '#/word/tight-adj')
+    pick = page.evaluate("Object.entries(window.VOCAB_INDEX.entries).filter(([k, e]) => e.total === 0 && e.review.length > 0).map(([k, e]) => [k, e.review.length])[0]")
+    assert pick, '索引裡必須至少有一個已確認 0 次、仍有待審核紀錄的詞條'
+    eid, n = pick
+    page.goto(URL + '#/word/' + eid)
+    box = page.locator('[data-role=records]')
+    assert box.locator('[data-k=total] b').inner_text() == '0'
+    assert f'另有 {n} 筆待審核' in box.locator('[data-role=review] summary').inner_text()
+    box.locator('[data-role=review] summary').click()
+    assert '詞性有疑義' in box.locator('[data-role=review]').inner_text() or '複合詞' in box.locator('[data-role=review]').inner_text()
+
+
+@needs_exam
+def test_human_reviewed_records_are_counted_and_no_longer_pending(make_page):
+    """tight-adj 的三筆待審核已由教師(負責人)審核:計入 2 次(正確答案 1、文章用字 1)、待審核 0 筆;skin-tight 不計入獨立 tight-adj。"""
     page = make_page('desktop')
     page.goto(URL + '#/word/tight-adj')
     box = page.locator('[data-role=records]')
-    assert box.locator('[data-k=total] b').inner_text() == '0'
-    assert '另有 3 筆待審核' in box.locator('[data-role=review] summary').inner_text()
-    box.locator('[data-role=review] summary').click()
-    assert '詞性有疑義' in box.locator('[data-role=review]').inner_text() and '也可作副詞' in box.locator('[data-role=review]').inner_text()
+    assert box.locator('[data-k=total] b').inner_text() == '2' and box.locator('[data-k=years] b').inner_text() == '1'
+    brk = box.locator('[data-role=breakdown]').inner_text()
+    assert '題幹:0 次' in brk and '選項・正確答案:1 次' in brk and '選項・干擾選項:0 次' in brk and '文章原文:1 次' in brk
+    assert box.locator('[data-role=review]').count() == 0                                    # 沒有待審核提示
+    roles = box.locator('[data-role=rec-table] tr[data-role-type]').evaluate_all('rs => rs.map(r => r.dataset.roleType)')
+    assert sorted(roles) == ['answer', 'passage']
+    assert page.evaluate("window.VOCAB_INDEX.entries['tight-adj'].rejected.map(r => r.y + ':' + r.n)") == ['109:13']      # skin-tight:人工排除,不計入
 
 
 @needs_exam

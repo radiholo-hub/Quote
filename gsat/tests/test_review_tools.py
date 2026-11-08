@@ -29,8 +29,9 @@ def test_teacher_review_sheet_splits_every_part_into_separately_reviewable_items
     assert len(ids) == len(set(ids)) >= 40
     for part in ('115-1:q', '115-1:zh', '115-1:key1', '115-1:key3', '115-1:optA', '115-1:optD', '115-1:w:tight-adj:def', '115-1:w:tight-adj:forms', '115-1:w:tight-adj:coll1',
                  '115-1:w:tight-adj:ex1', '115-1:w:tight-adj:fam:tightly-adv', '115-1:w:tight-adj:syn', '115-1:w:tight-adj:ant', '115-1:w:tight-adj:conf1', '115-1:pat1', '115-1:gram',
-                 '115-1:rec:tight-adj:sum', '115-1:rec:tight-adj:待審核1', '115-1:ext:x115-1-a', '115-1:ext:x115-1-b', '115-1:final'):
+                 '115-1:rec:tight-adj:sum', '115-1:rec:tight-adj:確認1', '115-1:rec:tight-adj:確認2', '115-1:ext:x115-1-a', '115-1:ext:x115-1-b', '115-1:final'):
         assert f'data-id="{part}"' in t, part
+    assert 'data-id="115-1:rec:tight-adj:待審核' not in t and '已確認 2 次:正確答案 1、干擾選項 0、題幹 0、文章用字 1' in t and '待審核 0 筆' in t      # 教師審核後:2 次已確認、沒有待審核
     assert 'The mayor has such a ______ schedule' in t and '行程安排非常緊湊' in t and '官方答案:(B)' in t
     n = len(ids)
     assert t.count('value="待確認" checked') == n and 'value="通過" checked' not in t and 'value="需修改" checked' not in t     # 全部預設待確認,不會自動通過
@@ -100,7 +101,8 @@ def test_pending_pos_sheet_keeps_every_original_record_unchosen_and_never_writes
 def test_decisions_are_shown_as_pending_proposals_not_preselected_and_never_fill_the_reviewer(make_page, tmp_path):
     """--decisions:負責人已決定、待審核者確認的紀錄只做醒目標示與「一鍵套用」;預設仍是待確認、審核者與日期不會被預先填寫。"""
     idx = json.loads(subprocess.run(['node', '-e', "global.window={};require(process.argv[1]);console.log(JSON.stringify(window.VOCAB_INDEX))", str(ROOT / 'exam' / 'vocab_index.js')], capture_output=True, text=True, check=True).stdout)
-    keys = [r['k'] for r in idx['entries']['tight-adj']['review']][:2]
+    keys = [r['k'] for e in idx['entries'].values() for r in e['review']][:2]                       # 不寫死詞條:取索引裡任意兩筆仍待審核的紀錄
+    assert len(keys) == 2
     d = {keys[0]: {'verdict': 'rejected', 'pos_sense': '測試字義甲', 'reason': '測試理由甲'}, keys[1]: {'verdict': 'confirmed', 'pos_sense': '測試字義乙', 'reason': '測試理由乙'}}
     f = tmp_path / 'dec.json'; f.write_text(json.dumps(d, ensure_ascii=False), encoding='utf8')
     run(TOOLS / 'gsat_vocab_review_sheet.py', '--out', tmp_path, '--decisions', f)
