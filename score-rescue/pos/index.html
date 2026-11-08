@@ -433,11 +433,11 @@ function viewItem(kind){
   prog(kind==='pr'?(i/(PR.length+CHK.length)):((PR.length+i)/(PR.length+CHK.length)));
   var label=kind==='pr'?'練習 第 '+(i+1)+' / '+PR.length+' 題':'確認 第 '+(i+1)+' / '+CHK.length+' 題';
   var html='<div class="sheet"><div class="qid">'+label+' · '+q.id+'</div><p class="q">'+stem(q.s)+'</p>'+
-    optsHTML(q,a.k,!!done)+(done?'':confHTML(a.conf))+(done?feedbackHTML(q,a.k):'')+'</div>';
+    optsHTML(q,a.k,!!done)+(done?feedbackHTML(q,a.k):'')+'</div>';   // 練習與確認題不問把握度（只有前測用來判讀）
   var last=i===set.length-1;
   var actions='<div class="actions'+(done?' static':'')+'">';
   if(!done){
-    actions+='<button class="btn pri" id="submit"'+(a.k==null||!a.conf?' disabled':'')+'>確認答案</button>';
+    actions+='<button class="btn pri" id="submit"'+(a.k==null?' disabled':'')+'>確認答案</button>';
   }else{
     if(kind==='chk'&&a.k!==q.a)actions+='<button class="btn line" id="toDemo" style="margin-bottom:10px">回看示範'+(q.demo+1)+'（'+DEMOS[q.demo].id+'）</button>';
     actions+='<button class="btn pri" id="next">'+(last?(kind==='pr'?'開始 4 題確認':'看完成畫面'):'下一題')+'</button>';

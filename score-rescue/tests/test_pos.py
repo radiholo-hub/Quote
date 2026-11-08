@@ -59,7 +59,8 @@ def test_answer_keys_match_answer_card(open_pos):
 
 def answer(p, k, conf='sure', btn='#next'):
     p.click('.opt[data-k="%d"]' % k)
-    p.click('[data-conf="%s"]' % conf)
+    if btn == '#next':   # 只有前測問「有把握／不確定」
+        p.click('[data-conf="%s"]' % conf)
     p.click(btn)
 
 
@@ -177,3 +178,20 @@ def test_done_offers_lesson2_first_then_day17(open_pos):
     p.wait_for_url('**/pos/l2.html')
     p.wait_for_function('!!(window.__pos && window.__pos.view)')
     assert '空格需要名詞嗎' in p.inner_text('#app')
+
+
+def test_confidence_only_in_pretest(open_pos):
+    """前測要選把握度才能下一題；練習與確認題沒有把握度，選了答案就能送出。"""
+    p = open_pos()
+    p.click('#go')
+    assert p.query_selector('.conf')
+    p.click('.opt[data-k="0"]')
+    assert p.is_disabled('#next'), '前測沒選把握度不能下一題'
+    for a in p.evaluate('__pos.PRE.map(q=>q.a)'):
+        answer(p, a)
+    p.click('#trial')
+    p.click('#toPr')
+    assert not p.query_selector('.conf'), '練習題不問把握度'
+    assert p.is_disabled('#submit')
+    p.click('.opt[data-k="0"]')
+    assert not p.is_disabled('#submit')
