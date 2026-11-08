@@ -47,32 +47,45 @@ def test_manifest_matches_pages(page_of):
 
 
 def test_practice_feedback_has_word_and_sentence(page_of):
+    """作答後：每個選項的單字旁有 🔊；解析裡有完整句子（正解加粗）＋中文翻譯＋聽整句。"""
     p = page_of('l2.html')
     p.click('#toPr')
     assert not p.query_selector('.say'), '作答前不顯示發音'
     q = p.evaluate('__pos.PR[0]')
     p.click('.opt[data-k="0"]')
     p.click('#submit')
-    btns = p.query_selector_all('.fb .say')
-    assert [b.inner_text() for b in btns] == ['🔊 聽單字 choice', '🔊 聽整句']
+    icons = p.query_selector_all('.opt .say.ico')
+    assert len(icons) == 4, '四個選項的單字旁都有發音'
+    for k, b in enumerate(icons):
+        b.click()
+        assert p.evaluate('window.__lastSpoken.text') == q['o'][k]
     full = q['s'].replace('______', q['o'][q['a']])
-    btns[1].click()
+    sent = p.query_selector('.fb .sent')
+    assert sent.query_selector('.en').inner_text() == full and sent.query_selector('.en b').inner_text() == 'choice'
+    assert sent.query_selector('.zh').inner_text() == '請在本週結束前告訴我們你的選擇。'
+    sent.query_selector('.say').click()
     last = p.evaluate('window.__lastSpoken')
-    assert last['text'] == full == 'Please send us your choice by the end of the week.'
+    assert last['text'] == full
     assert last['src'].endswith('/score-rescue/audio/%s.mp3' % G['sr_hash'](full))
-    btns[0].click()
-    assert p.evaluate('window.__lastSpoken.text') == 'choice'
+
+
+def test_every_item_has_translation(page_of):
+    for name in PAGES:
+        miss = page_of(name).evaluate("()=>[].concat(__pos.PRE||[],__pos.DEMOS,__pos.PR,__pos.CHK).filter(q=>!q.zh).map(q=>q.id)")
+        assert miss == [], (name, miss)
 
 
 def test_demo_reveal_and_pretest_review_have_audio(page_of):
     p = page_of('l2.html')
     p.click('#textVersion summary')
     p.click('[data-reveal="L2-DEMO-01"]')
-    assert len(p.query_selector_all('#L2-DEMO-01 .say')) == 2
+    assert len(p.query_selector_all('#L2-DEMO-01 .say')) == 2, '答案單字旁 🔊＋聽整句'
+    assert p.inner_text('#L2-DEMO-01 .sent .zh') == '我們今天早上收到廠商的提案。'
     p = page_of('index.html')
     p.click('#go')
     for a in p.evaluate('__pos.PRE.map(q=>q.a)'):
         p.click('.opt[data-k="%d"]' % a)
         p.click('[data-conf="sure"]')
         p.click('#next')
-    assert len(p.query_selector_all('.review-item .say')) == 30, '前測 15 題的解答各有單字與整句'
+    assert len(p.query_selector_all('.review-item .say')) == 30, '前測 15 題：正解單字＋整句'
+    assert len(p.query_selector_all('.review-item .sent .zh')) == 15
