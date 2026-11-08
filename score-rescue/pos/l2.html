@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>詞性小課 第2課：先找中心名詞（預覽）｜Score Rescue</title>
+<meta name="theme-color" content="#F7F3E8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F3E8;--sheet:#fff;--ink:#262626;--muted:#5B5B5B;--line:#E4DCC6;--wine:#6B2D3C;
+  --ok:#1F653C;--ok-soft:#EDF6EF;--ok-line:#A9D3B8;--bad:#A32C31;--bad-soft:#FBEDED;--bad-line:#E3B3B6;
+  --warn:#9A5B00;--warn-soft:#FFF4E0;--warn-line:#E8CFA0;--hi:#FFE27A;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Source Serif 4","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.7 var(--sans)}
+h1,h2,h3,p,ul,ol{margin:0}
+ul,ol{padding-left:1.3em}
+button{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+.topbar{position:sticky;top:0;z-index:15;background:var(--paper);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:54px}
+.brand b{font-weight:900}
+.tag-preview{font-size:.78rem;font-weight:700;color:var(--warn);background:var(--warn-soft);border:1px solid var(--warn-line);padding:2px 10px;border-radius:999px}
+.progress{height:6px;background:#E7E3D8}
+.progress i{display:block;height:100%;width:0;background:var(--wine);transition:width .3s}
+main{padding:22px 0 120px}
+h1{font-weight:900;font-size:clamp(1.7rem,6vw,2.3rem);line-height:1.25;color:var(--wine);letter-spacing:-.01em}
+h2{font-weight:900;font-size:1.35rem;line-height:1.35;color:var(--wine)}
+h3{font-weight:700;font-size:1.08rem;line-height:1.45}
+.lead{color:var(--muted);margin-top:10px}
+.fine{font-size:.88rem;color:var(--muted)}
+.stack>*+*{margin-top:16px}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(60,45,20,.06)}
+.serif{font-family:var(--serif)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:999px;border:2px solid transparent;font-weight:700;font-size:1rem;cursor:pointer;text-decoration:none;width:100%}
+.btn.pri{background:var(--wine);color:#fff}
+.btn.pri:disabled{background:#B9A8AC;cursor:not-allowed}
+.btn.line{background:#fff;border-color:var(--ink);color:var(--ink)}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.link{background:none;border:0;padding:0;color:var(--wine);font-weight:700;text-decoration:underline;text-underline-offset:4px;cursor:pointer;min-height:44px}
+.qid{font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.q{font-family:var(--serif);font-size:1.3rem;line-height:1.6;margin-top:6px}
+.blank{display:inline-block;min-width:4em;border-bottom:2px solid var(--ink);margin:0 .15em;transform:translateY(2px)}
+.opts{display:grid;gap:10px;margin-top:18px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;min-height:58px;padding:10px 14px;background:#fff;border:1.5px solid #DDD8C8;border-radius:10px;text-align:left;cursor:pointer}
+.opt:disabled{cursor:default}
+.opt .bub{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--ink);font-weight:700;font-size:.92rem}
+.opt .t{font-family:var(--serif);font-size:1.15rem;flex:1}
+.opt .mk{font-size:.8rem;font-weight:700}
+.opt[aria-pressed=true]{border-color:var(--wine);background:#FBF7EC}
+.opt[aria-pressed=true] .bub{background:var(--wine);border-color:var(--wine);color:#fff}
+.opt.right{border-color:var(--ok-line);background:var(--ok-soft)}
+.opt.right .bub{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.right .mk{color:var(--ok)}
+.opt.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+.opt.wrong .bub{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.wrong .mk{color:var(--bad)}
+.conf{margin-top:16px}
+.conf p{font-size:.95rem;color:var(--muted)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.seg button{min-height:48px;border-radius:10px;border:1.5px solid #DDD8C8;background:#fff;font-weight:700;cursor:pointer}
+.seg button[aria-pressed=true]{border-color:var(--wine);background:var(--wine);color:#fff}
+.actions{position:sticky;bottom:0;padding:14px 0 calc(14px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--paper) 70%,rgba(247,243,232,0));margin-top:8px}
+.fb{margin-top:18px;padding:16px;border-radius:10px;background:#FBF7EC;border-left:4px solid var(--ink);display:grid;gap:8px;font-size:.98rem}
+.fb.ok{border-color:var(--ok);background:var(--ok-soft)}
+.fb.bad{border-color:var(--bad);background:var(--bad-soft)}
+.fb .work{font-weight:700}
+.fb b{margin-right:.5em}
+.actions.static{position:static;background:none}
+details.more{margin-top:4px}
+details.more summary{cursor:pointer;color:var(--wine);font-weight:700;min-height:40px;display:flex;align-items:center}
+details.more ul{margin-top:6px}
+.pill{display:inline-block;font-size:.8rem;font-weight:700;padding:2px 10px;border-radius:999px}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.maybe{background:var(--warn-soft);color:var(--warn)}
+.dir{border-left:4px solid var(--wine);padding:14px 16px;background:#fff;border-radius:10px}
+.dir h3{color:var(--wine)}
+.dir p{margin-top:6px}
+table.tbl{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:10px}
+table.tbl th,table.tbl td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+table.tbl th{color:var(--muted);font-weight:700;font-size:.85rem}
+.vid{display:block;width:100%;aspect-ratio:16/9;border-radius:12px;background:#2E2A26}
+#afterVideo{border-left:4px solid var(--wine)}
+.steps{display:grid;gap:8px;counter-reset:s;padding:0;list-style:none}
+.steps li{counter-increment:s;display:flex;gap:10px}
+.steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:var(--wine);color:#fff;font-weight:700;font-size:.85rem;display:grid;place-items:center;margin-top:2px}
+.demo .reveal{margin-top:14px}
+.demo ol.how{margin-top:12px;display:grid;gap:6px}
+.demo .ans{margin-top:10px;font-weight:700;color:var(--ok)}
+.demo .ex{margin-top:6px;color:var(--muted);font-size:.95rem}
+.score{font-size:2.6rem;font-weight:900;color:var(--wine);line-height:1.2}
+.review-item{padding:12px 0;border-bottom:1px solid var(--line)}
+.review-item:last-child{border-bottom:0}
+.review-item .q{font-size:1.05rem}
+.review-item p{font-size:.95rem;margin-top:4px}
+#dbg{position:fixed;right:8px;top:64px;z-index:80;max-width:min(260px,70vw);background:#262626;color:#fff;font:11px/1.5 ui-monospace,monospace;padding:8px 10px;border-radius:10px;opacity:.88;pointer-events:none}
+#dbg b{color:var(--hi)}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap bar">
+    <a class="link" href="../">← Score Rescue</a>
+    <span><b class="brand">詞性小課 第2課</b> <span class="tag-preview">預覽版</span></span>
+  </div>
+  <div class="progress" id="prog" hidden><i></i></div>
+</div>
+<main class="wrap" id="app" aria-live="polite"></main>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- 事件紀錄：沿用主站 logEvent 做法（Supabase events 表、同一分頁同一種事件只記一次、不含個人資料） ----------
+   ?debug=1：右上角顯示事件清單，且「不」送出到資料庫，方便試走時確認而不影響正式數字。 */
+var SB_URL='https://uzesrnvtbplloqqgmhcl.supabase.co';
+var SB_KEY='sb_publishable_jrTIfxDHkliZJ8ySXIZyYg_jjKuA5I5';
+var DEBUG=/[?&]debug=1\b/.test(location.search);
+var sb=null,sbReady=null;
+function initSb(){
+  if(DEBUG)return Promise.resolve();
+  sbReady=new Promise(function(ok){
+    var t=document.createElement('script');
+    t.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    t.onload=function(){try{sb=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:false}})}catch(e){}ok()};
+    t.onerror=function(){ok()};
+    document.head.appendChild(t);
+  });
+  return sbReady;
+}
+function dbg(name,state){
+  if(!DEBUG)return;
+  var d=document.getElementById('dbg');
+  if(!d){d=document.createElement('div');d.id='dbg';d.innerHTML='<b>事件紀錄（debug，不送出）</b>';document.body.appendChild(d)}
+  var r=document.createElement('div');r.textContent=name+' · '+state;r.setAttribute('data-ev',name);d.appendChild(r);
+}
+var EVENTS={pretest_start:'pos_pretest_start',pretest_done:'pos_pretest_done',trial_click:'pos_trial_click',l1_done:'pos_l1_done',day17_click:'pos_day17_click'};
+function logEvent(name){
+  var p=Promise.resolve();
+  try{
+    var k='ev_'+name;
+    if(sessionStorage.getItem(k)){dbg(name,'本分頁已記過');return p}
+    sessionStorage.setItem(k,'1');
+  }catch(e){}
+  if(DEBUG){dbg(name,'記錄');return p}
+  return (sbReady||Promise.resolve()).then(function(){
+    if(!sb)return;
+    return sb.from('events').insert({name:name}).then(function(){},function(){});
+  }).catch(function(){});
+}
+
+/* ---------- 題目資料（前測 v2、第1課 v3 試測稿；ID 與正解以這兩份文件為準） ---------- */
+var LET=['A','B','C','D'];
+var CAT={
+  NOUN:'名詞位置',ADJ_N:'名詞前的形容詞',ADV_V:'修飾動詞的副詞',
+  ADV_MOD:'修飾形容詞或副詞的副詞',LINK_ADJ:'連綴動詞後的形容詞補語',MAIN_V:'主要動詞位置'
+};
+var CAT_ORDER=['ADJ_N','ADV_V','ADV_MOD','LINK_ADJ','NOUN','MAIN_V'];
+var PRE=[
+ {id:'P5-PRE-001',s:'The company launched a ______ advertising campaign last month.',o:['success','successful','successfully','succeed'],a:1,c:'ADJ_N',w:'先找中心名詞 campaign；空格描述活動是否成功，所以用形容詞 successful。'},
+ {id:'P5-PRE-002',s:'All expense claims require the manager’s ______ before payment.',o:['approved','approve','approvingly','approval'],a:3,c:'NOUN',w:'require 後需要受詞，the manager’s 後要接名詞片語的中心詞，approval 是「核准」。'},
+ {id:'P5-PRE-003',s:'Please read the safety instructions ______ before using the machine.',o:['care','careful','carefully','caring'],a:2,c:'ADV_V',w:'read 已有受詞 the safety instructions，空格補充「如何閱讀」，所以用副詞 carefully。'},
+ {id:'P5-PRE-004',s:'The final proposal seems ______ to both departments.',o:['acceptable','accept','acceptably','acceptance'],a:0,c:'LINK_ADJ',w:'seems 是連綴動詞，空格描述主詞 proposal 的性質，所以用形容詞 acceptable。'},
+ {id:'P5-PRE-005',s:'The report provides ______ useful information about customer preferences.',o:['surprising','surprise','surprises','surprisingly'],a:3,c:'ADV_MOD',w:'useful 已在修飾 information，空格修飾 useful，構成 surprisingly useful。'},
+ {id:'P5-PRE-006',s:'The new software ______ routine tasks for the accounting team.',o:['automation','automates','automatic','automatically'],a:1,c:'MAIN_V',w:'句子有主詞和受詞，但缺少主要動詞；automates 能連接兩者，也符合單數主詞。'},
+ {id:'P5-PRE-007',s:'The marketing team discussed the ______ of the new product.',o:['popularity','popular','popularly','popularize'],a:0,c:'NOUN',w:'the ______ of the new product 構成名詞片語，空格需要中心名詞 popularity。'},
+ {id:'P5-PRE-008',s:'Sales have ______ improved since the new manager arrived.',o:['steady','steadiness','steadily','steadied'],a:2,c:'ADV_V',w:'空格在助動詞 have 和主要動詞 improved 之間，說明改善的方式，所以用副詞 steadily。'},
+ {id:'P5-PRE-009',s:'The hotel offers a ______ shuttle service for guests.',o:['reliable','reliably','reliability','rely'],a:0,c:'ADJ_N',w:'shuttle service 是名詞片語，空格描述服務的性質，所以用形容詞 reliable。'},
+ {id:'P5-PRE-010',s:'The revised instructions are ______ easier to follow.',o:['considerable','considerably','consideration','consider'],a:1,c:'ADV_MOD',w:'easier 是比較級形容詞，空格表達容易的程度差異，所以用副詞 considerably。'},
+ {id:'P5-PRE-011',s:'Please contact the hotel for ______ about room availability.',o:['inform','informative','informatively','information'],a:3,c:'NOUN',w:'for 後需要名詞片語當受詞，information 是中心名詞，about room availability 補充內容。'},
+ {id:'P5-PRE-012',s:'The new schedule seems ______ for most employees.',o:['suitability','suitably','suitable','suit'],a:2,c:'LINK_ADJ',w:'seems 後需要描述主詞 schedule 的補語，suitable for 表示「適合」。'},
+ {id:'P5-PRE-013',s:'The committee made a ______ decision after reviewing all the proposals.',o:['finally','final','finality','finalize'],a:1,c:'ADJ_N',w:'decision 是中心名詞，空格描述是哪一種決定，所以用形容詞 final。'},
+ {id:'P5-PRE-014',s:'The technician explained the new procedure ______.',o:['clearly','clear','clarity','clarify'],a:0,c:'ADV_V',w:'主詞、動詞、受詞已齊全，空格說明「如何解釋」，所以用副詞 clearly。'},
+ {id:'P5-PRE-015',s:'Our customer service team ______ to inquiries within one business day.',o:['response','responsive','responds','responsively'],a:2,c:'MAIN_V',w:'空格需要主要動詞；responds to inquiries 表示「回覆詢問」。'}
+];
+
+var DEMOS=[{"id": "L2-DEMO-01", "t": "示範1　所有格後的中心名詞", "s": "We received the vendor’s ______ this morning.", "o": ["propose", "proposal", "proposed", "proposing"], "a": 1, "how": ["名詞片語從所有格 the vendor’s 開始，到 this morning 之前。", "片語裡除了空格沒有別的名詞，所以空格就是中心名詞。", "中心名詞 → 名詞 → proposal。句意「我們今天早上收到廠商的提案」通順。"], "ex": "排除：(A) propose：動詞，所有格後面不接原形動詞。(C) proposed：當形容詞是「被提議的」（the proposed changes），後面要有名詞才能修飾；這裡後面沒有名詞。(D) proposing：proposing 指提出建議這個動作。這句用 received，要表達收到廠商的提案，所以選 proposal。"}, {"id": "L2-DEMO-02", "t": "示範2　the ___ of", "s": "The ______ of the new software took two days.", "o": ["install", "installs", "installation", "installed"], "a": 2, "how": ["名詞片語是 the ______ of the new software，它是整句的主詞，動詞是 took。", "the 和 of 中間只有空格，空格就是中心名詞；of the new software 補充是什麼的安裝。", "中心名詞 → 名詞 → installation。句意「新軟體的安裝花了兩天」通順。"], "ex": "排除：(A) install：動詞原形，the 後面不接。(B) installs：動詞第三人稱單數；句子已有主要動詞 took。(D) installed：過去式或過去分詞，the 後面需要名詞。"}, {"id": "L2-DEMO-03", "t": "示範3　介系詞後的名詞片語", "s": "Thank you for your ______ during the renovation.", "o": ["patient", "patiently", "patience", "impatient"], "a": 2, "how": ["介系詞 for 後面接名詞片語 your ______；during the renovation 是另一個介系詞片語。", "your 後面除了空格沒有別的名詞，空格就是中心名詞。", "中心名詞 → 名詞 → patience。Thank you for your patience. 是常用的固定說法：感謝您的耐心等候。"], "ex": "排除：(A) patient：形容詞「有耐心的」（也可當名詞「病人」），your patient 意思是「您的病人」，句意不通。(B) patiently：副詞，不能當中心名詞。(D) impatient：形容詞「沒耐心的」，後面沒有名詞可修飾，意思也相反。"}, {"id": "L2-DEMO-04", "t": "示範4　空格是修飾語：名詞修飾名詞", "s": "Please fill out the ______ form at the front desk.", "o": ["register", "registration", "registers", "registering"], "a": 1, "how": ["名詞片語是 the ______ form。", "這個片語指的是一張表格，所以 form 是中心名詞。registration 說明是哪一種表格。", "空格說明是哪一種表格 → 說明類別的名詞 → registration。句意「請在櫃台填寫報名表」通順。"], "ex": "排除：(A) register：動詞「登記」（當名詞是「登記簿」），register form 不是常用說法。(C) registers：動詞第三人稱單數或名詞複數，不能放在 the 和 form 之間。(D) registering：V-ing 當形容詞是「正在登記的」，不能說明表格的類別。"}];
+
+var PR=[{"id": "L2-PR-01", "s": "Please send us your ______ by the end of the week.", "o": ["choose", "chosen", "chose", "choice"], "a": 3, "c": "NOUN", "work": "所有格 your 後的中心名詞", "why": "your 和 by 之間只有空格，空格就是中心名詞 → 名詞。", "x": ["(A) choose：動詞原形，所有格後面不接。", "(B) chosen：過去分詞，當形容詞要接名詞（your chosen date）；這裡後面沒有名詞。", "(C) chose：過去式動詞，不能放在所有格後面。", null]}, {"id": "L2-PR-02", "s": "The ______ of the parking lot will begin next month.", "o": ["expand", "expansive", "expansion", "expanded"], "a": 2, "c": "NOUN", "work": "the ___ of 的中心名詞，當主詞", "why": "整個片語是主詞，動詞是 will begin；the 和 of 之間只有空格 → 名詞。", "x": ["(A) expand：動詞原形，the 後面不接。", "(B) expansive：形容詞「廣闊的」，後面沒有名詞可以修飾。", null, "(D) expanded：過去式或過去分詞，the 後面需要名詞。"]}, {"id": "L2-PR-03", "s": "We apologize for the ______.", "o": ["inconvenient", "inconvenience", "inconveniently", "inconvenienced"], "a": 1, "c": "NOUN", "work": "for the 後的中心名詞", "why": "We apologize for the inconvenience.（造成不便，敬請見諒）是常見的固定說法，可以整句記。", "x": ["(A) inconvenient：形容詞「不方便的」，the inconvenient 後面缺名詞。", null, "(C) inconveniently：副詞，不能當中心名詞。", "(D) inconvenienced：過去分詞「感到不便的」，後面沒有名詞可以修飾。"]}, {"id": "L2-PR-04", "s": "The company offers a ______ program for new managers.", "o": ["training", "trained", "train", "trains"], "a": 0, "c": "NOUN", "work": "說明是哪一種 program", "why": "中心名詞是 program，空格說明是哪一種 program → 名詞修飾名詞。training program 表示「訓練計畫」，是常用搭配。", "x": [null, "(B) trained：形容詞「受過訓練的」，a trained program 意思不通；受過訓練的是人，不是計畫。", "(C) train：動詞原形（當名詞是「火車」），a train program 不是「訓練計畫」的意思。", "(D) trains：動詞第三人稱單數或名詞複數「火車」，不能放在 a 和 program 之間說明計畫的類別。"]}, {"id": "L2-PR-05", "s": "The report gives a ______ explanation of the new rules.", "o": ["details", "detail", "detailing", "detailed"], "a": 3, "c": "ADJ_N", "work": "描述中心名詞 explanation 的性質", "why": "中心名詞是 explanation，空格描述它的性質 → 形容詞。提醒：空格在名詞片語裡，不一定就是名詞。", "x": ["(A) details：名詞複數或動詞，a details explanation 不合文法。", "(B) detail：名詞，a detail explanation 不是自然說法；要描述「詳細的」用形容詞。", "(C) detailing：V-ing「詳列」，不能描述說明的性質。", null]}, {"id": "L2-PR-06", "s": "The hiring committee interviewed five ______ for the position.", "o": ["apply", "applications", "applicants", "applied"], "a": 2, "c": "NOUN", "work": "interviewed 的受詞，要「人」、複數", "why": "面試的對象是「人」，前面有 five，要複數 → applicants。", "x": ["(A) apply：動詞，不能當受詞。", "(B) applications：申請書（事）。面試的對象是人，不是申請書。", null, "(D) applied：過去式或過去分詞，不能當受詞。"]}, {"id": "L2-PR-07", "s": "______ in the survey is voluntary.", "o": ["Participation", "Participants", "Participate", "Participated"], "a": 0, "c": "NOUN", "work": "主詞，要「參加這件事」、單數", "why": "動詞是單數 is，意思是「參加這件事是自願的」。", "x": [null, "(B) Participants：參加者（人，複數），動詞要用 are，意思也變成「參加者是自願的」。", "(C) Participate：動詞原形，不能當主詞。", "(D) Participated：過去式或過去分詞，不能當主詞。"]}, {"id": "L2-PR-08", "s": "Our team will conduct a thorough ______ of the budget.", "o": ["evaluate", "evaluation", "evaluative", "evaluated"], "a": 1, "c": "NOUN", "work": "a thorough ___ of 的中心名詞", "why": "a thorough ___ of the budget 的中心名詞；thorough 是修飾語。", "x": ["(A) evaluate：動詞，a thorough 後面要名詞。", null, "(C) evaluative：形容詞「評估性的」。thorough 已經是形容詞，後面還缺中心名詞。", "(D) evaluated：過去式或過去分詞，不能當中心名詞。"]}, {"id": "L2-PR-09", "s": "Employees received bonuses for their outstanding ______.", "o": ["perform", "performed", "performance", "performer"], "a": 2, "c": "NOUN", "work": "for their outstanding 後的中心名詞", "why": "outstanding 是修飾語，後面還缺中心名詞 → performance「表現」。", "x": ["(A) perform：動詞，不能放在形容詞後當中心名詞。", "(B) performed：過去式或過去分詞，不能當中心名詞。", null, "(D) performer：表演者（人）。員工是因為「表現」拿獎金，不是因為「表演者」。"]}, {"id": "L2-PR-10", "s": "Please keep your ______ receipt for any returns.", "o": ["purchase", "purchased", "purchasable", "purchases"], "a": 0, "c": "NOUN", "work": "說明是哪一種 receipt", "why": "中心名詞是 receipt，空格說明是哪一種收據 → 名詞修飾名詞。退貨時要保留的是購買憑證，常用搭配是 purchase receipt（購買收據）；purchase 在這裡是名詞「購買」。", "x": [null, "(B) purchased：「已購買的」，可以用在 purchased items（已購買的商品），但收據不是被買的東西。", "(C) purchasable：形容詞「可購買的」，收據不是可以買的東西，句意不通。", "(D) purchases：purchases 可以是複數名詞，也可以是動詞。這裡指的是購買憑證，常用搭配是 purchase receipt。"]}];
+
+var CHK=[{"id": "L2-CHK-01", "s": "Thank you for your ______ to the charity event.", "o": ["contribute", "contributor", "contributed", "contribution"], "a": 3, "c": "NOUN", "work": "所有格 your 後的中心名詞", "why": "to the charity event 補充是對什麼的捐款；空格是中心名詞，要「那件事」→ contribution。", "x": ["(A) contribute：動詞原形，所有格後面不接。", "(B) contributor：捐助者（人）。謝謝的是「您的捐款」，不是「您的捐助者」。", "(C) contributed：過去式或過去分詞，不能當中心名詞。", null], "demo": 0}, {"id": "L2-CHK-02", "s": "The ______ of the two companies was announced yesterday.", "o": ["merger", "mergeable", "merged", "merges"], "a": 0, "c": "NOUN", "work": "the ___ of 的中心名詞，當主詞", "why": "整個片語是主詞，動詞是 was announced；the 和 of 之間只有空格 → 名詞 merger。", "x": [null, "(B) mergeable：形容詞「可合併的」，the 和 of 之間需要名詞。", "(C) merged：merged 是過去式或過去分詞。這句的空格要當主詞片語的中心名詞，表示「合併這件事」，所以用 merger。", "(D) merges：可以是動詞第三人稱單數，也可以當複數名詞；但複數主詞要配 were announced，本句是 was announced，所以用單數的 merger。"], "demo": 1}, {"id": "L2-CHK-03", "s": "Visitors need a badge for ______ to the building.", "o": ["accessible", "access", "accessibly", "accessed"], "a": 1, "c": "NOUN", "work": "介系詞 for 後的中心名詞", "why": "to the building 補充是進入哪裡。access 在這裡是名詞「進入（的權限）」，常見搭配是 have access to。本題不考可數性，access 當名詞不加 a。", "x": ["(A) accessible：形容詞「可進入的」，後面沒有名詞可以修飾。", null, "(C) accessibly：副詞，不能當中心名詞。", "(D) accessed：過去式或過去分詞，不能當中心名詞。"], "demo": 2}, {"id": "L2-CHK-04", "s": "The ______ team will repair the elevator tomorrow.", "o": ["maintain", "maintained", "maintenance", "maintains"], "a": 2, "c": "NOUN", "work": "說明是哪一種 team", "why": "中心名詞是 team，空格說明是哪一種團隊 → 名詞修飾名詞：maintenance team「維修團隊」。", "x": ["(A) maintain：動詞原形，不能放在 the 和 team 之間。", "(B) maintained：「被維護的」，不能說明團隊的類別。", null, "(D) maintains：動詞第三人稱單數；句子已有主要動詞 will repair。"], "demo": 3}];
+
+/* ---------- 狀態（只存在這個分頁的記憶體裡，重新整理會從頭開始） ---------- */
+var st={pre:{i:0,ans:{}},pr:{i:0,ans:{}},chk:{i:0,ans:{},first:{}}};
+
+/* ---------- 小工具 ---------- */
+var app=document.getElementById('app');
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function stem(s){return esc(s).replace('______','<span class="blank" aria-label="空格"></span>')}
+function prog(p){var b=document.getElementById('prog');if(p==null){b.hidden=true;return}b.hidden=false;b.firstChild.style.width=Math.round(p*100)+'%'}
+function render(html){app.innerHTML=html;window.scrollTo(0,0)}
+function h(id){return document.getElementById(id)}
+function optsHTML(q,picked,reveal){
+  return '<div class="opts" role="group" aria-label="選項">'+q.o.map(function(t,k){
+    var cls='opt',mk='';
+    if(reveal){if(k===q.a){cls+=' right';mk='<span class="mk">正解</span>'}else if(k===picked){cls+=' wrong';mk='<span class="mk">你的選擇</span>'}}
+    return '<button type="button" class="'+cls+'" data-k="'+k+'" aria-pressed="'+(picked===k&&!reveal)+'"'+(reveal?' disabled':'')+'><span class="bub">'+LET[k]+'</span><span class="t">'+esc(t)+'</span>'+mk+'</button>';
+  }).join('')+'</div>';
+}
+function confHTML(v){
+  return '<div class="conf"><p>這題你：</p><div class="seg" role="group" aria-label="信心">'+
+    '<button type="button" data-conf="sure" aria-pressed="'+(v==='sure')+'">有把握</button>'+
+    '<button type="button" data-conf="unsure" aria-pressed="'+(v==='unsure')+'">不確定</button></div></div>';
+}
+function bindPick(onChange){
+  app.querySelectorAll('.opt[data-k]').forEach(function(b){b.addEventListener('click',function(){onChange('k',+b.dataset.k)})});
+  app.querySelectorAll('[data-conf]').forEach(function(b){b.addEventListener('click',function(){onChange('conf',b.dataset.conf)})});
+}
+
+/* ---------- 1. 起始頁 ---------- */
+function viewIntro(){
+  prog(null);
+  render('<div class="stack">'+
+    '<h1>15 題詞性判斷前測</h1>'+
+    '<p class="lead">找出你在 Part 5 詞性題最需要先練的方向。約 5～8 分鐘，做完會看到建議，並可以免費試學第 1 課。</p>'+
+    '<div class="sheet stack"><h3>作答方式</h3><ul><li>每題選出最適合空格的答案。</li><li>再選「有把握」或「不確定」。沒把握也可以選答案，照實際感覺選就好。</li><li>作答時不顯示對錯，做完再一起看。</li></ul>'+
+    '<p class="fine">這份前測用來安排練習方向，不換算多益分數。</p></div>'+
+    '<button class="btn pri" id="go">開始前測</button></div>');
+  h('go').addEventListener('click',function(){logEvent(EVENTS.pretest_start);viewPre()});
+}
+
+/* ---------- 2. 前測作答 ---------- */
+function viewPre(){
+  var i=st.pre.i,q=PRE[i],a=st.pre.ans[q.id]||{};
+  prog(i/PRE.length);
+  render('<div class="sheet"><div class="qid">第 '+(i+1)+' / '+PRE.length+' 題</div>'+
+    '<p class="q">'+stem(q.s)+'</p>'+optsHTML(q,a.k,false)+confHTML(a.conf)+'</div>'+
+    '<div class="actions"><button class="btn pri" id="next"'+(a.k==null||!a.conf?' disabled':'')+'>'+(i===PRE.length-1?'看結果':'下一題')+'</button>'+
+    (i>0?'<p style="text-align:center"><button class="link" id="prev">上一題</button></p>':'')+'</div>');
+  bindPick(function(f,v){var r=st.pre.ans[q.id]=st.pre.ans[q.id]||{};r[f]=v;viewPre()});
+  h('next').addEventListener('click',function(){
+    if(i<PRE.length-1){st.pre.i++;viewPre()}else{logEvent(EVENTS.pretest_done);viewResult()}
+  });
+  if(h('prev'))h('prev').addEventListener('click',function(){st.pre.i--;viewPre()});
+}
+
+/* ---------- 3. 結果與建議（依前測 v2 結果頁規格） ---------- */
+function analyze(){
+  var cats={};
+  CAT_ORDER.forEach(function(c){cats[c]={c:c,n:0,right:0,wrong:0,wrongSure:0,rightUnsure:0}});
+  PRE.forEach(function(q){
+    var a=st.pre.ans[q.id],x=cats[q.c];x.n++;
+    var ok=a.k===q.a;
+    if(ok){x.right++;if(a.conf==='unsure')x.rightUnsure++}else{x.wrong++;if(a.conf==='sure')x.wrongSure++}
+  });
+  var list=CAT_ORDER.map(function(c){return cats[c]});
+  var weak=list.filter(function(x){return x.wrong>0}).sort(function(p,q){
+    return (q.wrong/q.n-p.wrong/p.n)||(q.wrongSure-p.wrongSure)||(CAT_ORDER.indexOf(p.c)-CAT_ORDER.indexOf(q.c));
+  }).slice(0,2);
+  var unsure=list.filter(function(x){return x.wrong===0&&x.rightUnsure>0});
+  return {list:list,weak:weak,unsure:unsure};
+}
+function evidence(x){
+  return '這次相關 '+x.n+' 題中，你答對 '+x.right+' 題'+(x.wrongSure?'，其中 '+x.wrongSure+' 題答錯時有把握':'')+'。';
+}
+var TIP={
+  ADJ_N:'建議先確認空格修飾的是名詞還是動作，再做一組新題。',
+  ADV_V:'建議先確認句子是否已經成立，空格是不是在說明動作的方式。',
+  ADV_MOD:'建議先看空格後面是不是已經有形容詞或副詞，空格是否在補充它。',
+  LINK_ADJ:'建議先找出連綴動詞，確認空格是在描述主詞，還是在說明動作。',
+  NOUN:'建議先找出冠詞、所有格或介系詞，確認後面是否還缺名詞片語的中心。',
+  MAIN_V:'建議先確認句子有沒有主要動詞，再看選項中哪一個能當主要動詞。'
+};
+function lessonLink(R){
+  var codes=R.weak.map(function(x){return x.c});
+  var has=function(c){return codes.indexOf(c)>=0};
+  if(has('ADJ_N')||has('ADV_V')||has('ADV_MOD'))return '你的情況可以直接從免費第 1 課開始：第 1 課示範形容詞與副詞怎麼選。';
+  if(has('LINK_ADJ'))return '免費第 1 課的示範 4，會比較「描述主詞」和「描述動作」，正好可以先練。';
+  if(has('NOUN'))return '第 1 課開頭會先說明「判斷空格的工作」，可以先建立判斷步驟；名詞位置的專門課程（詞性小課第 2 課）製作中。';
+  if(has('MAIN_V'))return '第 1 課開頭會先說明「判斷空格的工作」，可以先建立判斷步驟；主要動詞的專門課程製作中。';
+  if(R.unsure.length)return '這次沒有答錯，但有不確定的題目。可以用第 1 課的判斷步驟再確認一次。';
+  return '這次表現穩定。可以用第 1 課確認判斷步驟，或直接繼續 Day 1–7 免費體驗。';
+}
+function viewResult(){
+  prog(null);
+  var R=analyze(),total=0;
+  PRE.forEach(function(q){if(st.pre.ans[q.id].k===q.a)total++});
+  var dirs='';
+  if(R.weak.length){
+    dirs=R.weak.map(function(x){
+      var head=x.wrong===1?'這一題值得複習：'+CAT[x.c]:'建議優先練習：'+CAT[x.c];
+      return '<div class="dir"><h3>'+head+'</h3><p>'+evidence(x)+TIP[x.c]+'</p></div>';
+    }).join('');
+  }else if(R.unsure.length){
+    dirs='<div class="dir"><h3>建議確認練習</h3><p>這次全部答對，但在「'+R.unsure.map(function(x){return CAT[x.c]}).join('、')+'」有不確定的題目。建議再練一組，確認判斷方式。</p></div>';
+  }else{
+    dirs='<div class="dir"><h3>本次表現穩定</h3><p>15 題都答對且有把握。可以試學第 1 課確認判斷步驟，或接著練其他閱讀題型。</p></div>';
+  }
+  var rows=R.list.map(function(x){return '<tr><td>'+CAT[x.c]+'</td><td>'+x.right+' / '+x.n+'</td></tr>'}).join('');
+  var review=PRE.map(function(q,i){
+    var a=st.pre.ans[q.id],ok=a.k===q.a;
+    var pill=ok?(a.conf==='unsure'?'<span class="pill maybe">答對・不確定</span>':'<span class="pill ok">答對</span>'):(a.conf==='sure'?'<span class="pill bad">答錯・有把握</span>':'<span class="pill bad">答錯</span>');
+    return '<div class="review-item"><div class="qid">第 '+(i+1)+' 題 · '+CAT[q.c]+' '+pill+'</div><p class="q">'+stem(q.s)+'</p>'+
+      '<p>正解：('+LET[q.a]+') '+esc(q.o[q.a])+(ok?'':'　你選：('+LET[a.k]+') '+esc(q.o[a.k]))+'</p><p class="fine">'+esc(q.w)+'</p></div>';
+  }).join('');
+  render('<div class="stack">'+
+    '<h1>你的前測結果</h1>'+
+    '<p class="lead">這次 15 題答對 '+total+' 題。下面是建議先練的方向（最多兩項）。這份結果用來安排練習，不換算多益分數。</p>'+
+    dirs+
+    '<div class="sheet"><h3>下一步</h3><p style="margin-top:6px">'+lessonLink(R)+'</p>'+
+      '<div style="margin-top:14px"><button class="btn pri" id="trial">免費試學第 1 課：形容詞與副詞怎麼選</button></div></div>'+
+    '<div class="sheet"><h3>各類作答情況</h3><table class="tbl"><thead><tr><th>類別</th><th>答對</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+      '<p class="fine" style="margin-top:8px">每類只有 2～3 題，只能當作初步線索。</p></div>'+
+    '<details class="sheet more"><summary>看每一題的答案與判斷</summary>'+review+'</details>'+
+  '</div>');
+  h('trial').addEventListener('click',function(){logEvent(EVENTS.trial_click);viewLesson()});
+}
+
+/* ---------- 4. 免費第1課 ---------- */
+function demoHTML(d,open){
+  return '<div class="sheet demo" id="'+d.id+'"><div class="qid">'+d.id+'</div><h3>'+d.t+'</h3>'+
+    '<p class="q">'+stem(d.s)+'</p><p class="serif" style="margin-top:6px">'+d.o.map(function(t,k){return '('+LET[k]+') '+esc(t)}).join('　')+'</p>'+
+    '<div class="reveal"'+(open?' hidden':'')+'><button class="btn line" data-reveal="'+d.id+'">先想一下，再看老師怎麼判斷</button></div>'+
+    '<div class="body"'+(open?'':' hidden')+'><ol class="how">'+d.how.map(function(s){return '<li>'+esc(s)+'</li>'}).join('')+'</ol>'+
+    '<p class="ans">答案：('+LET[d.a]+') '+esc(d.o[d.a])+'</p><p class="ex">'+esc(d.ex)+'</p></div></div>';
+}
+function bindReveal(){
+  app.querySelectorAll('[data-reveal]').forEach(function(b){b.addEventListener('click',function(){
+    var box=h(b.dataset.reveal);box.querySelector('.reveal').hidden=true;box.querySelector('.body').hidden=false;
+  })});
+}
+function viewLesson(){
+  prog(null);
+  render('<div class="stack">'+
+    '<div class="qid">詞性小課 第 2 課</div>'+
+    '<h1>空格需要名詞嗎？先找中心名詞</h1>'+
+    '<video id="l1video" class="vid" controls playsinline preload="metadata" poster="lesson2-poster.jpg" src="lesson2.mp4">你的瀏覽器無法播放影片，可以直接往下看文字版重點。</video>'+
+    '<p class="fine">約 6 分鐘：先考你兩句，再教判斷觀念＋四個示範。</p>'+
+    '<div class="sheet" id="afterVideo"><h3>看完了？</h3><p style="margin-top:4px">往下做 10 題練習，再用 4 題確認你會不會判斷。</p>'+
+      '<div style="margin-top:14px"><button class="btn pri" id="toPr">開始 10 題練習</button></div></div>'+
+    '<details class="sheet more" id="textVersion"><summary>影片重點文字版（判斷觀念與四個示範）</summary><div class="stack" style="margin-top:12px">'+
+    '<div class="sheet stack"><h2>先懂一件事：名詞片語有一個「中心名詞」</h2>'+
+      '<p><b>（冠詞／所有格）＋（修飾語）＋中心名詞＋（of／介系詞片語補充）</b></p>'+
+      '<p>中心名詞是這個片語最後指的「東西」；空格如果是中心名詞，要填名詞。修飾語放在中心名詞前面，可能是形容詞（final inspection），也可能是名詞（delivery date）。</p>'+
+      '<table class="tbl"><thead><tr><th>結構</th><th>例子</th><th>中心名詞</th></tr></thead><tbody>'+
+      '<tr><td>所有格後</td><td>the client’s recent request<br><span class="fine">客戶最近的要求</span></td><td>request</td></tr>'+
+      '<tr><td>the ___ of</td><td>the renovation of the lobby<br><span class="fine">大廳的整修</span></td><td>renovation</td></tr>'+
+      '<tr><td>介系詞後</td><td>after the final inspection<br><span class="fine">在最後檢查之後</span></td><td>inspection</td></tr></tbody></table>'+
+      '<p class="fine">名詞也可以當修飾語：the delivery date 的中心名詞是 date，delivery 說明是哪一種日期。</p>'+
+      '<h3>人還是事？</h3>'+
+      '<table class="tbl"><thead><tr><th>事（行為、制度）</th><th>人</th></tr></thead><tbody>'+
+      '<tr><td>application 申請</td><td>applicant 申請人</td></tr>'+
+      '<tr><td>participation 參加</td><td>participant 參加者</td></tr>'+
+      '<tr><td>performance 表現</td><td>performer 表演者</td></tr>'+
+      '<tr><td>contribution 貢獻、捐款</td><td>contributor 貢獻者</td></tr></tbody></table>'+
+      '<p class="fine">review the applications（審閱申請書）／interview the applicants（面試申請人）。也可以看動詞單複數和前面的數字。</p>'+
+      '<h3>判斷三步驟</h3><ol class="steps">'+
+      '<li>找出名詞片語的範圍：先圈出它指的人、事或物，再看後面的片語是不是在補充它。例：[the renovation of the lobby]</li>'+
+      '<li>找中心名詞：這個片語最後指的是什麼東西？</li>'+
+      '<li>決定空格的工作，再用句意確認：空格就是中心名詞 → 名詞（再確認人或事、單複數）；空格在中心名詞前 → 描述性質用形容詞，說明用途或類別可用名詞。</li></ol></div>'+
+    '<h2>看老師怎麼判斷</h2>'+
+    DEMOS.map(function(d){return demoHTML(d,false)}).join('')+
+    '<div class="sheet stack"><h3>本課整理</h3><table class="tbl"><thead><tr><th>空格位置</th><th>選</th></tr></thead><tbody>'+
+      '<tr><td>冠詞、所有格、介系詞後，片語裡沒有別的名詞</td><td>名詞</td></tr>'+
+      '<tr><td>中心名詞前面，描述性質（什麼樣的＿＿？）</td><td>形容詞</td></tr>'+
+      '<tr><td>中心名詞前面，說明用途或類別（哪一種＿＿？）</td><td>名詞</td></tr>'+
+      '<tr><td>要「人」還是「事」</td><td>applicant／application 等</td></tr></tbody></table></div>'+
+    '<button class="btn line" id="toPr2">開始 10 題練習</button></div></details>'+
+  '</div>');
+  bindReveal();
+  function start(){st.pr.i=0;viewItem('pr')}
+  h('toPr').addEventListener('click',start);
+  h('toPr2').addEventListener('click',start);
+  h('l1video').addEventListener('ended',function(){var a=h('afterVideo');if(a)a.scrollIntoView({behavior:'smooth',block:'center'})});
+}
+
+/* ---------- 5. 練習與確認（共用作答畫面） ---------- */
+function feedbackHTML(q,k){
+  var ok=k===q.a;
+  var others=q.x.map(function(t,j){return (t&&j!==k)?'<li>'+esc(t)+'</li>':''}).join('');
+  return '<div class="fb '+(ok?'ok':'bad')+'">'+
+    '<div class="work">空格的工作：'+esc(q.work)+'</div>'+
+    '<div><b>'+(ok?'答對了！':'正解是 ('+LET[q.a]+') '+esc(q.o[q.a]))+'</b>'+esc(q.why)+'</div>'+
+    (ok?'':'<div>'+esc(q.x[k])+'</div>')+
+    (others?'<details class="more"><summary>其他選項為什麼不合適</summary><ul>'+others+'</ul></details>':'')+
+  '</div>';
+}
+function viewItem(kind){
+  var set=kind==='pr'?PR:CHK,s=st[kind],i=s.i,q=set[i],a=s.ans[q.id]||{},done=a.done;
+  prog(kind==='pr'?(i/(PR.length+CHK.length)):((PR.length+i)/(PR.length+CHK.length)));
+  var label=kind==='pr'?'練習 第 '+(i+1)+' / '+PR.length+' 題':'確認 第 '+(i+1)+' / '+CHK.length+' 題';
+  var html='<div class="sheet"><div class="qid">'+label+' · '+q.id+'</div><p class="q">'+stem(q.s)+'</p>'+
+    optsHTML(q,a.k,!!done)+(done?'':confHTML(a.conf))+(done?feedbackHTML(q,a.k):'')+'</div>';
+  var last=i===set.length-1;
+  var actions='<div class="actions'+(done?' static':'')+'">';
+  if(!done){
+    actions+='<button class="btn pri" id="submit"'+(a.k==null||!a.conf?' disabled':'')+'>確認答案</button>';
+  }else{
+    if(kind==='chk'&&a.k!==q.a)actions+='<button class="btn line" id="toDemo" style="margin-bottom:10px">回看示範'+(q.demo+1)+'（'+DEMOS[q.demo].id+'）</button>';
+    actions+='<button class="btn pri" id="next">'+(last?(kind==='pr'?'開始 4 題確認':'看完成畫面'):'下一題')+'</button>';
+  }
+  actions+='</div>';
+  if(kind==='chk'&&i===0&&!done)html='<div class="sheet" style="margin-bottom:14px"><h3>確認是否學會</h3><p class="fine" style="margin-top:4px">4 題新題。答錯時可以回看對應的示範，再回到原題。</p></div>'+html;
+  render(html+actions);
+  if(!done){
+    bindPick(function(f,v){var r=s.ans[q.id]=s.ans[q.id]||{};r[f]=v;viewItem(kind)});
+    h('submit').addEventListener('click',function(){
+      a.done=true;
+      if(kind==='chk'&&!(q.id in s.first))s.first[q.id]=a.k===q.a;
+      viewItem(kind);
+    });
+  }else{
+    if(h('toDemo'))h('toDemo').addEventListener('click',function(){viewDemoJump(q)});
+    h('next').addEventListener('click',function(){
+      if(!last){s.i++;viewItem(kind)}
+      else if(kind==='pr'){st.chk.i=0;viewItem('chk')}
+      else viewDone();
+    });
+  }
+}
+
+/* ---------- 6. 確認題答錯 → 回看示範 → 回到原題 ---------- */
+function viewDemoJump(q){
+  prog(null);
+  var d=DEMOS[q.demo];
+  render('<div class="stack"><p class="fine">你在 '+q.id+' 答錯了，先回看對應的示範：</p>'+demoHTML(d,true)+
+    '<div class="actions"><button class="btn pri" id="back">回到原題 '+q.id+'</button></div></div>');
+  h('back').addEventListener('click',function(){viewItem('chk')});
+}
+
+/* ---------- 7. 完成畫面 ---------- */
+function viewDone(){
+  prog(1);
+  var x=0;CHK.forEach(function(q){if(st.chk.first[q.id])x++});
+  render('<div class="stack">'+
+    '<h1>第 2 課完成！</h1>'+
+    '<div class="sheet stack"><p>你已經練習了「先找中心名詞」的判斷方式。</p>'+
+      '<p class="score">這次答對 '+x+'／4 題</p>'+
+      '<p class="fine">以每題第一次作答計算。</p></div>'+
+    '<a class="btn pri" href="../">回到 Score Rescue</a>'+
+    '<p style="text-align:center"><button class="link" id="again">重看第 2 課</button></p>'+
+  '</div>');
+  h('again').addEventListener('click',viewLesson);
+}
+
+viewLesson();
+window.__pos={st:st,PR:PR,CHK:CHK,DEMOS:DEMOS,view:viewItem};
+})();
+</script>
+</body>
+</html>
