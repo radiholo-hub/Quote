@@ -31,7 +31,7 @@ def test_teacher_review_sheet_splits_every_part_into_separately_reviewable_items
                  '115-1:w:tight-adj:ex1', '115-1:w:tight-adj:fam:tightly-adv', '115-1:w:tight-adj:syn', '115-1:w:tight-adj:ant', '115-1:w:tight-adj:conf1', '115-1:pat1', '115-1:gram',
                  '115-1:rec:tight-adj:sum', '115-1:rec:tight-adj:待審核1', '115-1:ext:x115-1-a', '115-1:ext:x115-1-b', '115-1:final'):
         assert f'data-id="{part}"' in t, part
-    assert 'The mayor has such a ______ schedule' in t and '行程排得非常緊湊' in t and '官方答案:(B)' in t
+    assert 'The mayor has such a ______ schedule' in t and '行程安排非常緊湊' in t and '官方答案:(B)' in t
     n = len(ids)
     assert t.count('value="待確認" checked') == n and 'value="通過" checked' not in t and 'value="需修改" checked' not in t     # 全部預設待確認,不會自動通過
     assert t.count('<textarea') >= 30 and 'data-orig=' in t                                                                  # 可直接修改文字

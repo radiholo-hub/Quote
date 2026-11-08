@@ -172,3 +172,21 @@ def test_extension_practice_items_are_original_drafts_with_one_correct_answer(da
         assert len(x['options']) == 4 and len(set(x['options'])) == 4 and 0 <= x['answer'] < 4 and x['explain'].strip(), x['id']
         assert all(t in V for t in x['targets']) and x['forQuestion'] in data['expl'], x['id']
         assert x['type'] in ('pos', 'synonym', 'collocation', 'pattern', 'context')
+
+
+@needs_exam
+def test_q1_tight_teacher_revisions_are_in_place_and_still_draft(data):
+    """第 1 題 tight 的教師修訂(逐項確認過):保留 such…that 提示、三個步驟、選項 A/C 改寫、三類相關字重新分類、延伸題中譯放最前面;全部仍是草稿。"""
+    e = data['expl']['115-1']; V = data['vocab']['entries']; x = {i['id']: i for i in data['ext'] if i['forQuestion'] == '115-1'}
+    assert e['status'] == 'draft' and e['reviewer'] is None and e['reviewedAt'] is None
+    assert len(e['key']) == 3 and 'such a + 形容詞 + 單數可數名詞 + that + 子句' in e['key'][0] and '因此選 (B)' in e['key'][2]
+    assert 'a hasty decision' in e['options']['A']['why'] and 'a diligent student' in e['options']['C']['why'] and '不能形容' not in e['options']['C']['why']
+    assert 'so tight a schedule that' in e['grammar'] and 'She has such a busy schedule' in e['patterns'][0] and 'It takes me two hours' in e['patterns'][1]
+    t = V['tight-adj']
+    assert t['zh'] == '緊的;(行程)緊湊的;(時間、預算)吃緊的' and 'tight deadline' in t['note'] and 'tight budget' in t['note']
+    assert [a['w'] for a in t['rel']['ant']] == ['loose', 'a light schedule'] and [c['w'] for c in t['rel']['confusable']] == ['busy', 'flexible']   # flexible 不再是反義字
+    assert t['rel']['syn'][0]['w'] == 'packed' and 'a packed schedule' in t['rel']['syn'][0]['zh']
+    assert V['tightness-n']['zh'] == '緊度;緊繃感;緊密程度'
+    a, b = x['x115-1-a'], x['x115-1-b']
+    assert a['q'].startswith('The team had to work overtime') and a['answer'] == 0 and a['explain'].index('中文翻譯') < a['explain'].index('正確答案') < a['explain'].index('解題原因') < a['explain'].index('其他選項')
+    assert b['answer'] == 2 and b['options'][2] == 'tighten' and '祈使句' in b['explain'] and a['status'] == b['status'] == 'draft'

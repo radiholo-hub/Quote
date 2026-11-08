@@ -10,14 +10,14 @@ window.EXPLAIN = {
   "reviewedAt": null,
   "reviewNotes": "",
   "key": [
-   "看句型:such a ___ schedule that…(如此…以致於…),that 後面接的是「結果」。",
-   "結果是「要花好幾週才安排得到訪談」,表示市長的行程排得非常滿、幾乎沒有空檔。",
-   "所以空格要形容 schedule「排得很滿」。tight schedule(行程緊湊)是固定搭配,其餘三個選項都表達不出「約不到時間」這個因果。"
+   "先觀察句型：such a + 形容詞 + 單數可數名詞 + that + 子句，表示「如此……以致於……」。空格需要一個形容詞修飾 schedule，而 that 後面的子句提供判斷答案的重要線索。",
+   "後半句指出，安排市長的採訪需要花費數週時間，表示她的行程非常忙碌，可供安排訪談的時間有限。",
+   "tight schedule 是常見搭配，表示「行程緊湊、時間安排缺乏餘裕」，符合前後句的因果關係，因此選 (B)。其餘選項無法合理解釋為何安排訪談需要數週。"
   ],
   "options": {
    "A": {
     "entry": "hasty-adj",
-    "why": "hasty 是「倉促的、草率的」,形容決定或行動做得太快;「行程很滿」不等於「行程倉促」,hasty schedule 也不是慣用搭配。"
+    "why": "hasty 表示「倉促的、草率的」，強調做事過於匆忙，可能缺乏充分考慮，例如 a hasty decision。它不表示行程安排很滿或缺乏空檔，因此無法合理解釋為何市長的採訪需要數週才能安排。"
    },
    "B": {
     "entry": "tight-adj",
@@ -25,7 +25,7 @@ window.EXPLAIN = {
    },
    "C": {
     "entry": "diligent-adj",
-    "why": "diligent 是「勤勉的」,形容人的工作態度,不能形容 schedule。"
+    "why": "diligent 表示「勤勉的、用功的」，通常形容人或其工作、學習態度，例如 a diligent student。此處需要描述市長的行程是否緊湊，因此 diligent 不符合語意。"
    },
    "D": {
     "entry": "routine-adj",
@@ -40,12 +40,12 @@ window.EXPLAIN = {
    "such-a-that"
   ],
   "patterns": [
-   "such a + 形容詞 + 名詞 + that 子句(如此…以致於…)",
-   "It takes + 時間 + to V(要花…時間才…)"
+   "such + a/an + 形容詞 + 單數可數名詞 + that + 子句\n意思：如此……以致於……\n例如：She has such a busy schedule that she rarely has time to relax.\n她的行程如此忙碌，以致於很少有時間放鬆。\n注意：名詞為複數或不可數時，句型結構需要相應調整。",
+   "It takes + (人) + 時間 + to + 原形動詞\n意思：某人花費多少時間做某事。\n例如：It takes me two hours to finish my homework.\n我需要花兩個小時完成作業。\n注意：人稱受詞可以省略。"
   ],
-  "grammar": "It takes weeks to arrange…:it 是虛主詞,真正的主詞是 to arrange an interview with her。such 修飾「a + 形容詞 + 名詞」,所以要寫 such a tight schedule,不是 so a tight schedule。",
+  "grammar": "1. It takes weeks to arrange an interview with her.\n此句中的 it 是虛主詞，後面的 to arrange an interview with her 為真正的主詞，表示「安排與她的訪談需要花費好幾週」。\n2. such…that 表示「如此……以致於……」。\n本題使用 such a tight schedule that…，因為 tight 修飾單數可數名詞 schedule。\n3. 比較：\n・such a tight schedule that…（正確，常見）\n・so tight a schedule that…（文法上正確，但較正式、不常見）\n・so a tight schedule that…（錯誤）",
   "focus": "tight-adj",
-  "zh": "這位市長的行程排得非常緊湊,要花好幾週才能安排到對她的訪談。",
+  "zh": "這位市長的行程安排非常緊湊，以致於要花好幾個星期才能安排一次對她的採訪。",
   "aiFlags": [
    "選項 D「routine schedule 並沒有表達排不出空檔」:routine schedule 也算通順的搭配,理由是否夠清楚?",
    "hasty、diligent、routine 的詞條目前沒有原創例句(只有 tight 是完整詞條)。"

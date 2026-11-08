@@ -30,8 +30,8 @@ def test_explanation_shows_all_five_parts_in_the_required_order(make_page):
     ans = box.locator('[data-role=answer]').inner_text()
     assert '正確答案:(B) tight' in ans and '緊湊的' in ans and 'adj.' in ans
     assert box.locator('[data-role=verdict]').inner_text().startswith('✘ 你選了 (C) diligent')
-    assert 'diligent 是「勤勉的」' in box.locator('[data-role=why-wrong]').inner_text() and 'tight schedule' in box.locator('[data-role=why-right]').inner_text()
-    assert '行程排得非常緊湊' in box.locator('[data-role=zh]').inner_text()
+    assert 'diligent 表示「勤勉的、用功的」' in box.locator('[data-role=why-wrong]').inner_text() and 'tight schedule' in box.locator('[data-role=why-right]').inner_text()
+    assert '行程安排非常緊湊' in box.locator('[data-role=zh]').inner_text()
     # 2 解題關鍵：有判斷步驟，不是只寫「依上下文可知」
     steps = box.locator('[data-role=key] li').all_inner_texts()
     assert len(steps) == 3 and 'such a' in steps[0] and 'that' in steps[0] and all(len(t) > 20 for t in steps)
@@ -45,7 +45,7 @@ def test_explanation_shows_all_five_parts_in_the_required_order(make_page):
     assert w.locator('.whead .spk').count() == 1 and w.locator('.colls .spk').count() == 3 and w.locator('.exs .spk').count() == 2
     assert 'tight schedule' in w.inner_text() and 'such a' in box.locator('[data-role=grammar]').inner_text()
     # 5 衍生字與延伸：字族(B)、語意相關(C)分開，常考句型
-    assert box.locator('[data-role=family] li').count() == 3 and box.locator('[data-role=syn]').count() == 1 and box.locator('[data-role=conf]').count() == 1
+    assert box.locator('[data-role=family] li').count() == 3 and box.locator('[data-role=syn]').count() == 1 and box.locator('[data-role=conf]').count() == 2
     assert box.locator('[data-role=patterns] li').count() == 2
 
 
