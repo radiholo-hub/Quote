@@ -95,6 +95,35 @@ def test_pending_pos_sheet_keeps_every_original_record_unchosen_and_never_writes
     assert (ROOT / 'exam' / 'vocab_reviews.js').read_text(encoding='utf8') == before                  # 工具不會改動審核資料檔
 
 
+@need_node
+@needs_exam
+def test_decisions_are_shown_as_pending_proposals_not_preselected_and_never_fill_the_reviewer(make_page, tmp_path):
+    """--decisions:負責人已決定、待審核者確認的紀錄只做醒目標示與「一鍵套用」;預設仍是待確認、審核者與日期不會被預先填寫。"""
+    idx = json.loads(subprocess.run(['node', '-e', "global.window={};require(process.argv[1]);console.log(JSON.stringify(window.VOCAB_INDEX))", str(ROOT / 'exam' / 'vocab_index.js')], capture_output=True, text=True, check=True).stdout)
+    keys = [r['k'] for r in idx['entries']['tight-adj']['review']][:2]
+    d = {keys[0]: {'verdict': 'rejected', 'pos_sense': '測試字義甲', 'reason': '測試理由甲'}, keys[1]: {'verdict': 'confirmed', 'pos_sense': '測試字義乙', 'reason': '測試理由乙'}}
+    f = tmp_path / 'dec.json'; f.write_text(json.dumps(d, ensure_ascii=False), encoding='utf8')
+    run(TOOLS / 'gsat_vocab_review_sheet.py', '--out', tmp_path, '--decisions', f)
+    pg = make_page('desktop', url=(tmp_path / 'vocab-review-sheet.html').as_uri())
+    assert pg.locator('.decision').count() == 2 and pg.locator('.jump a').count() == 2
+    assert pg.locator('input[value=confirmed]:checked, input[value=rejected]:checked').count() == 0 and pg.input_value('#by') == ''      # 沒有預先選取、沒有審核者
+    pg.click('#btn'); assert '(要產生 vocab_reviews.js 內容' in pg.input_value('#exp') and '"verdict"' not in pg.input_value('#exp')   # 沒填姓名就不會產生可貼上的內容
+    pg.locator('.decision .apply').first.click()
+    assert '排除 1' in pg.inner_text('#cnt') and pg.locator('.has-dec').first.locator('input.act').input_value() == '測試字義甲'
+    pg.fill('#by', '某審核者'); pg.click('#btn')
+    out = pg.input_value('#exp')
+    assert out_has(out, keys[0], 'rejected', '某審核者') and f'[{keys[0]}] 排除' in out and '[#' not in out            # 以穩定的紀錄 ID 辨識,不用會隨分組變動的流水號
+    assert keys[1] not in out and out.startswith('計入 0・排除 1・待確認 ')                                              # 沒套用的決定不會被匯出,其餘紀錄維持待確認
+    pg.locator('.decision .undo').first.click()                                                                        # 撤回:回到待確認並清空兩欄
+    assert pg.inner_text('#cnt').startswith('計入 0・排除 0・待確認 ') and pg.locator('.has-dec').first.locator('input.act').input_value() == ''
+    pg.locator('.has-dec').first.locator('input[value=confirmed]').check()                                             # 使用者也可以自己改選
+    assert pg.inner_text('#cnt').startswith('計入 1・排除 0')
+
+
+def out_has(text, key, verdict, by):
+    return f'"{key}": {{"verdict": "{verdict}", "by": "{by}"' in text
+
+
 @pytest.mark.skipif(shutil.which('ffprobe') is None or shutil.which('ffmpeg') is None, reason='需要 ffprobe 與 ffmpeg')
 def test_audio_verifier_passes_on_the_committed_audio():
     r = run(TOOLS / 'verify_gsat_audio.py')
