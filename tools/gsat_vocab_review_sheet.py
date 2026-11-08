@@ -67,7 +67,7 @@ def main():
         for f in r['f']: ctx = re.sub(r'(?i)\b(%s)\b' % re.escape(f), r'<mark>\1</mark>', ctx)
         s_ = sg.get(r['k'], {})
         where = (f'第 {r["n"]} 題 {html.escape(r["loc"])}' if r.get('n') else f'題組 {r["qs"][0]}–{r["qs"][-1]} 題(共用文章){html.escape(r["loc"])}')
-        src = f'大考中心 {r["y"]} 學年度學科能力測驗英文考科試卷' + (f',第 {s_["page"]} 頁' if s_.get('page') else '')
+        src = f'大考中心 {r["y"]} 學年度學科能力測驗英文考科試卷' + (f',試卷第 {s_["page"]} 頁(試卷上印的頁碼,不是 PDF 檔的第幾頁)' if s_.get('page') else '')
         ai = ''
         if s_:
             ai = (f'<details class="ai"><summary>AI 參考意見(未採用,僅供對照)</summary>AI 傾向:{"計入" if s_["suggest"] == "confirmed" else "排除"}(信心:{html.escape(s_["conf"])})<br>此處詞性/字義:{html.escape(s_["pos"])}'

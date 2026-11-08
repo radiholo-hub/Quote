@@ -51,7 +51,7 @@ def build(data):
         for low, raw, comp in tokens(text):
             for eid in form_map.get(low, []):
                 amb = low in vocab['entries'][eid]['amb']
-                reason = 'pos' if amb else ('compound' if comp else None)
+                reason = 'compound' if comp else ('pos' if amb else None)     # 連字號複合詞優先於詞性疑義:複合詞的原因(整體是另一個詞)比「也可能是別的詞性」更根本
                 found.append((eid, low, raw, reason))
         return found
 

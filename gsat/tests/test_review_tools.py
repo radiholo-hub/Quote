@@ -84,7 +84,7 @@ def test_pending_pos_sheet_keeps_every_original_record_unchosen_and_never_writes
     t = (tmp_path / 'vocab-review-sheet.html').read_text(encoding='utf8')
     assert t.count('class="rec"') == pending and t.count('value="" checked') == pending                  # 每一筆都保留,而且全部預設「待確認」
     assert 'value="confirmed" checked' not in t and 'value="rejected" checked' not in t                  # AI 建議不會變成預設選項
-    assert t.count('AI 參考意見(未採用') == pending and '第 2 頁' in t
+    assert t.count('AI 參考意見(未採用') == pending and '試卷第 2 頁' in t
     for g in ('連字號複合詞內的比對', '此字形也可能是別的詞性', '同詞性但字義可能不同'):                    # 複合詞、詞性不同、字義不同分開
         assert g in t
     assert t.index('impact-n') < t.index('crash-v')
