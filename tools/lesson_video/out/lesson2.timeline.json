@@ -37,16 +37,16 @@
  {
   "scene": "c3",
   "start": 68.07,
-  "sec": 11.82
+  "sec": 11.83
  },
  {
   "scene": "c4",
-  "start": 79.89,
+  "start": 79.9,
   "sec": 9.25
  },
  {
   "scene": "c5",
-  "start": 89.14,
+  "start": 89.15,
   "sec": 16.21
  },
  {
@@ -66,7 +66,7 @@
  },
  {
   "scene": "d1q",
-  "start": 136.38,
+  "start": 136.39,
   "sec": 5.06
  },
  {
@@ -146,8 +146,8 @@
  },
  {
   "scene": "d3x",
-  "start": 239.4,
-  "sec": 7.26
+  "start": 239.41,
+  "sec": 7.25
  },
  {
   "scene": "d3f",
@@ -167,36 +167,36 @@
  {
   "scene": "d4a",
   "start": 261.42,
-  "sec": 10.33
+  "sec": 11.12
  },
  {
   "scene": "d4b",
-  "start": 271.75,
+  "start": 272.54,
   "sec": 4.85
  },
  {
   "scene": "d4r",
-  "start": 276.6,
-  "sec": 3.72
+  "start": 277.39,
+  "sec": 6.88
  },
  {
   "scene": "d4x",
-  "start": 280.32,
+  "start": 284.27,
   "sec": 5.87
  },
  {
   "scene": "d4f",
-  "start": 286.19,
+  "start": 290.14,
   "sec": 4.58
  },
  {
   "scene": "e1",
-  "start": 290.77,
+  "start": 294.72,
   "sec": 19.52
  },
  {
   "scene": "e2",
-  "start": 310.29,
+  "start": 314.24,
   "sec": 9.45
  }
 ]
