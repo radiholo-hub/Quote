@@ -1,0 +1,174 @@
+{
+ "title": "短片｜We received the vendor’s ___ this morning.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "lines": [
+     {
+      "s": "We received the|[vendor's] ______|this morning.",
+      "zh": "我們今天早上收到廠商的提案。"
+     }
+    ],
+    "o": [
+     "propose",
+     "proposal",
+     "proposed",
+     "proposing"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "We received the vendor's blank this morning."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "lines": [
+     {
+      "s": "We received the|[vendor's] ______|this morning.",
+      "zh": "我們今天早上收到廠商的提案。"
+     }
+    ],
+    "o": [
+     "propose",
+     "proposal",
+     "proposed",
+     "proposing"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "lines": [
+     {
+      "s": "We received the|[vendor's] ______|this morning.",
+      "zh": "我們今天早上收到廠商的提案。"
+     }
+    ],
+    "o": [
+     "propose",
+     "proposal",
+     "proposed",
+     "proposing"
+    ],
+    "ans": 1,
+    "fill": "proposal",
+    "ring": [
+     {
+      "w": "vendor's",
+      "c": "blue",
+      "label": "所有格"
+     },
+     {
+      "w": "blank",
+      "c": "ok",
+      "label": "中心名詞"
+     }
+    ],
+    "ban": {
+     "t": "所有格後面沒有別的名詞<br>→ 空格就是中心名詞，填名詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 B，"
+    ],
+    [
+     "en",
+     "proposal."
+    ],
+    [
+     "zh",
+     "所有格"
+    ],
+    [
+     "en",
+     "vendor's"
+    ],
+    [
+     "zh",
+     "後面沒有別的名詞，空格就是中心名詞，要填名詞。"
+    ]
+   ],
+   "hold": 0.8
+  },
+  {
+   "id": "f",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "lines": [
+     {
+      "s": "We received the|[vendor's] ______|this morning.",
+      "zh": "我們今天早上收到廠商的提案。"
+     }
+    ],
+    "o": [
+     "propose",
+     "proposal",
+     "proposed",
+     "proposing"
+    ],
+    "ans": 1,
+    "fill": "proposal",
+    "ring": [
+     {
+      "w": "vendor's",
+      "c": "blue",
+      "label": "所有格"
+     },
+     {
+      "w": "blank",
+      "c": "ok",
+      "label": "中心名詞"
+     }
+    ],
+    "showzh": true
+   },
+   "say": [
+    [
+     "en",
+     "We received the vendor's proposal this morning."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "免費第 2 課",
+    "h": "空格需要名詞嗎？<br>先找中心名詞",
+    "sub": "6 分半影片＋14 題練習",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}

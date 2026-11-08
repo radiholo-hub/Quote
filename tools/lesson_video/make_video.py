@@ -100,8 +100,9 @@ def build_frames(data, cues, lens, tmp):  # noqa: C901
     shots = []
     with sync_playwright() as pw:
         b = pw.chromium.launch()
-        pg = b.new_page(viewport={'width': W, 'height': H})
-        pg.goto((HERE / 'scene.html').as_uri())
+        w, h = data.get('size', [W, H])                # 直式短片：json 設 "size": [1080, 1920]、"scene": "short.html"
+        pg = b.new_page(viewport={'width': w, 'height': h})
+        pg.goto((HERE / data.get('scene', 'scene.html')).as_uri())
         try:
             pg.wait_for_load_state('networkidle', timeout=15000)
         except Exception:

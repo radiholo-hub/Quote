@@ -1,0 +1,226 @@
+{
+ "title": "短片｜looked tired / looked carefully",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "s1",
+   "view": {
+    "kind": "card",
+    "kick": "多益 Part 5",
+    "h": "同樣是 looked，<br>為什麼一個用形容詞、<br>一個用副詞？",
+    "md": true
+   },
+   "say": [
+    [
+     "zh",
+     "同樣是"
+    ],
+    [
+     "en",
+     "looked"
+    ],
+    [
+     "zh",
+     "，為什麼一個用形容詞、一個用副詞？"
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "s2",
+   "view": {
+    "kind": "sent",
+    "t": "同樣是 looked",
+    "lines": [
+     {
+      "n": "①",
+      "s": "The technician looked [tired].",
+      "zh": "技術人員看起來很累。"
+     },
+     {
+      "n": "②",
+      "s": "The technician looked [carefully] at the screen.",
+      "zh": "技術人員仔細地看著螢幕。"
+     }
+    ],
+    "showzh": true
+   },
+   "say": [
+    [
+     "en",
+     "The technician looked tired."
+    ],
+    [
+     "en",
+     "The technician looked carefully at the screen."
+    ]
+   ],
+   "hold": 0.4
+  },
+  {
+   "id": "s3",
+   "view": {
+    "kind": "sent",
+    "t": "同樣是 looked",
+    "lines": [
+     {
+      "n": "①",
+      "s": "The technician looked [tired].",
+      "zh": "技術人員看起來很累。"
+     },
+     {
+      "n": "②",
+      "s": "The technician looked [carefully] at the screen.",
+      "zh": "技術人員仔細地看著螢幕。"
+     }
+    ],
+    "showzh": true,
+    "ring": [
+     {
+      "w": "tired",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "tired → 形容詞",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Tired"
+    ],
+    [
+     "zh",
+     "描述技術人員的狀態，所以用形容詞。"
+    ]
+   ],
+   "hold": 0.3
+  },
+  {
+   "id": "s4",
+   "view": {
+    "kind": "sent",
+    "t": "同樣是 looked",
+    "lines": [
+     {
+      "n": "①",
+      "s": "The technician looked [tired].",
+      "zh": "技術人員看起來很累。"
+     },
+     {
+      "n": "②",
+      "s": "The technician looked [carefully] at the screen.",
+      "zh": "技術人員仔細地看著螢幕。"
+     }
+    ],
+    "showzh": true,
+    "ring": [
+     {
+      "w": "tired",
+      "c": "ok"
+     },
+     {
+      "w": "carefully",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "carefully → 副詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Carefully"
+    ],
+    [
+     "zh",
+     "說明他怎麼看螢幕，所以用副詞。"
+    ]
+   ],
+   "hold": 0.3
+  },
+  {
+   "id": "s5",
+   "view": {
+    "kind": "sent",
+    "t": "同樣是 looked",
+    "lines": [
+     {
+      "n": "①",
+      "s": "The technician looked [tired].",
+      "zh": "技術人員看起來很累。"
+     },
+     {
+      "n": "②",
+      "s": "The technician looked [carefully] at the screen.",
+      "zh": "技術人員仔細地看著螢幕。"
+     }
+    ],
+    "showzh": true,
+    "ring": [
+     {
+      "w": "tired",
+      "c": "ok"
+     },
+     {
+      "w": "carefully",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "tired 描述人的狀態<br>carefully 說明看的方式",
+     "c": "wine"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "一句話記住："
+    ],
+    [
+     "en",
+     "tired"
+    ],
+    [
+     "zh",
+     "描述人的狀態；"
+    ],
+    [
+     "en",
+     "carefully"
+    ],
+    [
+     "zh",
+     "說明看的方式。"
+    ]
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "免費第 1 課",
+    "h": "形容詞還是副詞？<br>先找它修飾誰",
+    "sub": "7 分半影片＋14 題練習",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}
