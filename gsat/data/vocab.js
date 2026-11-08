@@ -50,17 +50,17 @@ window.VOCAB = {
     "syn": [
      {
       "w": "packed",
-      "zh": "(adj.)排滿的、擁擠的;常見搭配:a packed schedule(排得滿滿的行程)"
+      "zh": "adj. 排滿的、擁擠的；常見搭配：a packed schedule＝行程排得滿滿的"
      }
     ],
     "ant": [
      {
       "w": "loose",
-      "zh": "鬆的(tight ↔ loose:緊的/鬆的)"
+      "zh": "鬆的；與 tight 相反"
      },
      {
       "w": "a light schedule",
-      "zh": "行程較空閒(a tight schedule ↔ a light schedule:行程緊湊/行程較空閒)"
+      "zh": "行程較空閒；與 a tight schedule 相對"
      }
     ],
     "confusable": [
