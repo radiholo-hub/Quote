@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>多益搭配詞卡</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+/* 版面：沿用 Score Rescue 的米白紙＋酒紅；上方分類籤，中間一張可翻面的卡，下方上一張／下一張與「記住了」 */
+:root{
+  --bg:#F7F3E8; --card:#FFFFFF; --ink:#262626; --muted:#5E5A52; --line:#E2DACA; --accent:#6B2D3C; --accent-soft:#F4E9EC;
+  --ok:#1F653C; --ok-soft:#E6F2EA;
+  --display:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --en:"Source Serif 4",Georgia,"Times New Roman",serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1D1A1B; --card:#2A2627; --ink:#F1ECE4; --muted:#B8B0A6; --line:#3E3839; --accent:#E3A3B2; --accent-soft:#3A2A2F;
+  --ok:#8FD1A8; --ok-soft:#22352A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1D1A1B; --card:#2A2627; --ink:#F1ECE4; --muted:#B8B0A6; --line:#3E3839; --accent:#E3A3B2; --accent-soft:#3A2A2F;
+  --ok:#8FD1A8; --ok-soft:#22352A; color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--body);display:flex;flex-direction:column}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+.wrap{width:100%;max-width:640px;margin:0 auto;padding:0 16px}
+header{padding:20px 0 8px}
+h1{font:900 1.5rem/1.3 var(--display);color:var(--accent);text-wrap:balance}
+.sub{color:var(--muted);font-size:.95rem;margin-top:4px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;min-height:40px;padding:6px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:700;font-size:.92rem;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.tab small{font-weight:500;opacity:.8;margin-left:4px;font-variant-numeric:tabular-nums}
+.catnote{margin-top:10px;font-size:.93rem;color:var(--muted)}
+.catnote b{color:var(--ink)}
+main{flex:1;display:flex;flex-direction:column;padding:12px 0 20px;gap:14px}
+.meta{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.card{display:grid;perspective:1400px}
+.face{position:relative;grid-area:1/1;min-height:330px;border-radius:20px;background:var(--card);border:1.5px solid var(--line);box-shadow:0 2px 6px rgba(40,25,20,.07);padding:24px 22px;display:flex;flex-direction:column;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .45s ease}
+.back{transform:rotateY(180deg)}
+.card.flip .front{transform:rotateY(-180deg)}
+.card.flip .back{transform:rotateY(0)}
+@media (prefers-reduced-motion:reduce){.face{transition:none}}
+.lab{font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.front .en{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;font:600 clamp(1.9rem,8vw,2.6rem)/1.25 var(--en);text-wrap:balance}
+.front .en .pair{display:block;font-size:.6em;font-weight:500;color:var(--muted);margin-top:10px}
+.hint{text-align:center;font-size:.88rem;color:var(--muted)}
+.back .en{font:600 1.5rem/1.3 var(--en);margin-top:6px}
+.back .zh{font:900 1.35rem/1.4 var(--display);color:var(--accent);margin-top:4px}
+.back .ex{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:10px}
+.back .ex p{font:500 1.08rem/1.5 var(--en)}
+.back .ex p b{color:var(--accent)}
+.back .ex span{display:block;font:400 .93rem/1.5 var(--body);color:var(--muted)}
+.back .tip{margin-top:auto;padding-top:12px;font-size:.9rem;color:var(--muted)}
+.known .face{border-color:var(--ok)}
+.badge{position:absolute;top:16px;right:16px;font-size:.78rem;font-weight:700;color:var(--ok);background:var(--ok-soft);padding:2px 10px;border-radius:999px}
+.ctrl{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:10px}
+.btn{min-height:50px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:700}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn.pri[aria-pressed="true"]{background:var(--ok);border-color:var(--ok)}
+.tools{display:flex;justify-content:center;gap:18px}
+.link{background:none;border:0;color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:4px;min-height:40px}
+.say{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--accent);background:var(--accent-soft);color:var(--accent);font:700 .95rem var(--body);cursor:pointer}
+.say[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+.front .sayrow{display:flex;justify-content:center;margin-top:-6px;margin-bottom:10px}
+.back .ex .line{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.back .ex .line .say{flex:none;min-height:40px;padding:0 12px;font-size:.85rem;margin-top:2px}
+footer{border-top:1px solid var(--line);padding:14px 0 20px;font-size:.88rem;color:var(--muted)}
+footer b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>多益搭配詞卡</h1>
+    <p class="sub">Part 5 常考的搭配詞，分 6 類共 48 張。點卡片翻面看意思和例句；按 🔊 聽英文發音。</p>
+    <div class="tabs" role="tablist" id="tabs" aria-label="分類"></div>
+    <p class="catnote" id="catnote"></p>
+  </header>
+</div>
+<main class="wrap">
+  <div>
+    <div class="meta"><span id="pos"></span><span id="knownCount"></span></div>
+    <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
+  </div>
+  <div class="card" id="card" tabindex="0" aria-label="單字卡，按 Enter 翻面">
+    <div class="face front" id="front"></div>
+    <div class="face back" id="back"></div>
+  </div>
+  <div class="ctrl">
+    <button class="btn" id="prev" type="button">上一張</button>
+    <button class="btn pri" id="known" type="button" aria-pressed="false">記住了</button>
+    <button class="btn" id="next" type="button">下一張</button>
+  </div>
+  <div class="tools">
+    <button class="link" id="shuffle" type="button">打亂順序</button>
+    <button class="link" id="onlyNew" type="button" aria-pressed="false">只看還沒記住的</button>
+  </div>
+</main>
+<div class="wrap">
+  <footer><b>Score Rescue｜詞性小課</b>　搭配第 1 課與《副詞四大類速查表》使用。例句皆為多益職場情境的原創句。</footer>
+</div>
+
+<script type="application/json" id="cards-data">
+[
+ {
+  "id": "pp",
+  "name": "副詞＋過去分詞",
+  "note": "<b>描述地點、物品、規定的狀態。</b>常出現在 be 動詞後或名詞前：The hotel is <i>conveniently located</i>.",
+  "cards": [
+   {
+    "id": "pp-01",
+    "w": "highly recommended",
+    "p": "副詞＋p.p.",
+    "zh": "強力推薦的",
+    "say": "highly recommended",
+    "ex": [
+     [
+      "The restaurant is **highly recommended** by local guides.",
+      "這家餐廳獲得在地導遊強力推薦。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "pp-02",
+    "w": "conveniently located",
+    "p": "副詞＋p.p.",
+    "zh": "位置便利的",
+    "say": "conveniently located",
+    "ex": [
+     [
+      "The hotel is **conveniently located** near the station.",
+      "這家飯店位於車站附近，交通便利。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "pp-03",
+    "w": "newly renovated",
+    "p": "副詞＋p.p.",
+    "zh": "新整修的",
+    "say": "newly renovated",
+    "ex": [
+     [
+      "The **newly renovated** lobby will open next week.",
+      "新整修的大廳下週開放。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "pp-04",
+    "w": "fully booked",
+    "p": "副詞＋p.p.",
+    "zh": "全部訂滿的",
+    "say": "fully booked",
+    "ex": [
+     [
+      "The conference room is **fully booked** on Monday.",
+      "會議室星期一已全部訂滿。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "pp-05",
+    "w": "strictly prohibited",
+    "p": "副詞＋p.p.",
+    "zh": "嚴格禁止的",
+    "say": "strictly prohibited",
+    "ex": [
+     [
+      "Smoking is **strictly prohibited** in the building.",
+      "大樓內嚴格禁止吸菸。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "pp-06",
+    "w": "temporarily closed",
+    "p": "副詞＋p.p.",
+    "zh": "暫時關閉的",
+    "say": "temporarily closed",
+    "ex": [
+     [
+      "The parking lot is **temporarily closed** for repairs.",
+      "停車場因整修暫時關閉。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "pp-07",
+    "w": "specifically designed",
+    "p": "副詞＋p.p.",
+    "zh": "專門設計的",
+    "say": "specifically designed",
+    "ex": [
+     [
+      "The software is **specifically designed** for small businesses.",
+      "這套軟體是專為小型企業設計的。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "pp-08",
+    "w": "widely used",
+    "p": "副詞＋p.p.",
+    "zh": "廣泛使用的",
+    "say": "widely used",
+    "ex": [
+     [
+      "This app is **widely used** by sales teams.",
+      "這款應用程式廣受業務團隊使用。"
+     ]
+    ],
+    "audio": true
+   }
+  ]
+ },
+ {
+  "id": "adj",
+  "name": "副詞＋形容詞",
+  "note": "<b>副詞補充形容詞的程度或語意。</b>對照影片示範 3：unexpectedly high。",
+  "cards": [
+   {
+    "id": "adj-01",
+    "w": "highly qualified",
+    "p": "副詞＋形容詞",
+    "zh": "資格條件非常好的",
+    "say": "highly qualified",
+    "ex": [
+     [
+      "We are looking for a **highly qualified** accountant.",
+      "我們在找資格條件非常好的會計人員。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "adj-02",
+    "w": "fully refundable",
+    "p": "副詞＋形容詞",
+    "zh": "可全額退款的",
+    "say": "fully refundable",
+    "ex": [
+     [
+      "The ticket is **fully refundable** until March 1.",
+      "這張票在 3 月 1 日前可全額退款。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "adj-03",
+    "w": "readily available",
+    "p": "副詞＋形容詞",
+    "zh": "隨時可取得的",
+    "say": "readily available",
+    "ex": [
+     [
+      "Product samples are **readily available** upon request.",
+      "產品樣品可隨時索取。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "adj-04",
+    "w": "reasonably priced",
+    "p": "副詞＋形容詞",
+    "zh": "價格合理的",
+    "say": "reasonably priced",
+    "ex": [
+     [
+      "The new model is **reasonably priced**.",
+      "新機型價格合理。"
+     ]
+    ],
+    "tip": "priced 在這裡當形容詞用，表示「定價的」。",
+    "audio": true
+   },
+   {
+    "id": "adj-05",
+    "w": "relatively inexpensive",
+    "p": "副詞＋形容詞",
+    "zh": "相對便宜的",
+    "say": "relatively inexpensive",
+    "ex": [
+     [
+      "Shipping by sea is **relatively inexpensive**.",
+      "海運相對便宜。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "adj-06",
+    "w": "increasingly popular",
+    "p": "副詞＋形容詞",
+    "zh": "越來越受歡迎的",
+    "say": "increasingly popular",
+    "ex": [
+     [
+      "Online training is becoming **increasingly popular**.",
+      "線上培訓越來越受歡迎。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "adj-07",
+    "w": "mutually beneficial",
+    "p": "副詞＋形容詞",
+    "zh": "互惠的",
+    "say": "mutually beneficial",
+    "ex": [
+     [
+      "We hope to build a **mutually beneficial** partnership.",
+      "我們希望建立互惠的合作關係。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "adj-08",
+    "w": "environmentally friendly",
+    "p": "副詞＋形容詞",
+    "zh": "環保的",
+    "say": "environmentally friendly",
+    "ex": [
+     [
+      "The new packaging is **environmentally friendly**.",
+      "新包裝很環保。"
+     ]
+    ],
+    "tip": "friendly 雖然是 -ly 結尾，其實是形容詞。",
+    "audio": true
+   }
+  ]
+ },
+ {
+  "id": "vafter",
+  "name": "動詞＋副詞",
+  "note": "<b>副詞放在動詞（＋受詞）後，說明動作的方式。</b>對照影片示範 2：speaks confidently。",
+  "cards": [
+   {
+    "id": "vafter-01",
+    "w": "respond promptly",
+    "p": "動詞＋副詞",
+    "zh": "迅速回覆",
+    "say": "respond promptly",
+    "ex": [
+     [
+      "Please **respond promptly** to customer inquiries.",
+      "請迅速回覆顧客詢問。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vafter-02",
+    "w": "work closely with",
+    "p": "動詞＋副詞＋with",
+    "zh": "與……密切合作",
+    "say": "work closely with",
+    "ex": [
+     [
+      "Our designers **work closely with** the sales team.",
+      "我們的設計師和業務團隊密切合作。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vafter-03",
+    "w": "increase significantly",
+    "p": "動詞＋副詞",
+    "zh": "大幅增加",
+    "say": "increase significantly",
+    "ex": [
+     [
+      "Online orders **increased significantly** last quarter.",
+      "上一季線上訂單大幅增加。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vafter-04",
+    "w": "decline sharply",
+    "p": "動詞＋副詞",
+    "zh": "急遽下降",
+    "say": "decline sharply",
+    "ex": [
+     [
+      "Sales **declined sharply** in January.",
+      "一月的銷售額急遽下降。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vafter-05",
+    "w": "run smoothly",
+    "p": "動詞＋副詞",
+    "zh": "順利運作",
+    "say": "run smoothly",
+    "ex": [
+     [
+      "The new system is **running smoothly**.",
+      "新系統運作順利。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vafter-06",
+    "w": "communicate effectively",
+    "p": "動詞＋副詞",
+    "zh": "有效溝通",
+    "say": "communicate effectively",
+    "ex": [
+     [
+      "Managers must **communicate effectively** with their staff.",
+      "主管必須和員工有效溝通。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vafter-07",
+    "w": "review … thoroughly",
+    "p": "動詞＋受詞＋副詞",
+    "zh": "徹底檢查……",
+    "say": "review thoroughly",
+    "ex": [
+     [
+      "Please **review** the contract **thoroughly** before signing.",
+      "簽約前請徹底檢查合約。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vafter-08",
+    "w": "arrive early",
+    "p": "動詞＋副詞",
+    "zh": "提早到",
+    "say": "arrive early",
+    "ex": [
+     [
+      "Please **arrive early** to complete registration.",
+      "請提早到場完成報到。"
+     ]
+    ],
+    "tip": "early 可當形容詞也可當副詞，這裡修飾 arrive，是副詞。",
+    "audio": true
+   }
+  ]
+ },
+ {
+  "id": "vbefore",
+  "name": "副詞＋動詞",
+  "note": "<b>副詞放在動詞前，常見於正式書信與公告。</b>位置在主詞和動詞之間，或助動詞之後。",
+  "cards": [
+   {
+    "id": "vbefore-01",
+    "w": "strongly recommend",
+    "p": "副詞＋動詞",
+    "zh": "強烈建議",
+    "say": "strongly recommend",
+    "ex": [
+     [
+      "We **strongly recommend** booking in advance.",
+      "我們強烈建議提前預訂。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vbefore-02",
+    "w": "greatly appreciate",
+    "p": "副詞＋動詞",
+    "zh": "非常感謝",
+    "say": "greatly appreciate",
+    "ex": [
+     [
+      "We **greatly appreciate** your patience.",
+      "非常感謝您的耐心。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vbefore-03",
+    "w": "sincerely apologize",
+    "p": "副詞＋動詞",
+    "zh": "誠心道歉",
+    "say": "sincerely apologize",
+    "ex": [
+     [
+      "We **sincerely apologize** for the delay.",
+      "我們為延誤誠心致歉。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vbefore-04",
+    "w": "deeply regret",
+    "p": "副詞＋動詞",
+    "zh": "深感遺憾",
+    "say": "deeply regret",
+    "ex": [
+     [
+      "We **deeply regret** any inconvenience this may cause.",
+      "若造成不便，我們深感遺憾。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vbefore-05",
+    "w": "fully understand",
+    "p": "副詞＋動詞",
+    "zh": "完全理解",
+    "say": "fully understand",
+    "ex": [
+     [
+      "We **fully understand** your concerns.",
+      "我們完全理解您的顧慮。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vbefore-06",
+    "w": "strongly encourage",
+    "p": "副詞＋動詞",
+    "zh": "強力鼓勵",
+    "say": "strongly encourage",
+    "ex": [
+     [
+      "All employees are **strongly encouraged** to attend.",
+      "強力鼓勵全體員工參加。"
+     ]
+    ],
+    "tip": "被動語態時放在 be 動詞和過去分詞之間。",
+    "audio": true
+   },
+   {
+    "id": "vbefore-07",
+    "w": "regularly update",
+    "p": "副詞＋動詞",
+    "zh": "定期更新",
+    "say": "regularly update",
+    "ex": [
+     [
+      "We **regularly update** our price list.",
+      "我們定期更新價目表。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "vbefore-08",
+    "w": "carefully consider",
+    "p": "副詞＋動詞",
+    "zh": "仔細考慮",
+    "say": "carefully consider",
+    "ex": [
+     [
+      "We will **carefully consider** your proposal.",
+      "我們會仔細考慮您的提案。"
+     ]
+    ],
+    "audio": true
+   }
+  ]
+ },
+ {
+  "id": "look",
+  "name": "長得像、意思不同",
+  "note": "<b>多益常見陷阱：加不加 -ly，意思完全不同。</b>兩個用法都要記。",
+  "cards": [
+   {
+    "id": "look-01",
+    "w": "hard / hardly",
+    "p": "努力地／幾乎不",
+    "zh": "hard 努力地；hardly 幾乎不",
+    "say": "hard, hardly",
+    "ex": [
+     [
+      "She works **hard** every day.",
+      "她每天都很努力工作。"
+     ],
+     [
+      "He **hardly** had time to eat lunch.",
+      "他幾乎沒時間吃午餐。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "look-02",
+    "w": "late / lately",
+    "p": "晚／最近",
+    "zh": "late 晚；lately 最近",
+    "say": "late, lately",
+    "ex": [
+     [
+      "The train arrived **late**.",
+      "火車晚到了。"
+     ],
+     [
+      "Have you been busy **lately**?",
+      "你最近忙嗎？"
+     ]
+    ],
+    "tip": "lately 常搭配現在完成式。",
+    "audio": true
+   },
+   {
+    "id": "look-03",
+    "w": "near / nearly",
+    "p": "在附近／幾乎",
+    "zh": "near 在附近；nearly 幾乎",
+    "say": "near, nearly",
+    "ex": [
+     [
+      "The hotel is **near** the airport.",
+      "飯店在機場附近。"
+     ],
+     [
+      "The project is **nearly** finished.",
+      "專案快完成了。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "look-04",
+    "w": "high / highly",
+    "p": "高／非常",
+    "zh": "high 高；highly 非常（程度）",
+    "say": "high, highly",
+    "ex": [
+     [
+      "Prices remain **high**.",
+      "價格仍然很高。"
+     ],
+     [
+      "The new method is **highly** effective.",
+      "新方法非常有效。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "look-05",
+    "w": "close / closely",
+    "p": "近的／密切地",
+    "zh": "close 近的；closely 密切地、仔細地",
+    "say": "close, closely",
+    "ex": [
+     [
+      "The office is **close** to the station.",
+      "辦公室離車站很近。"
+     ],
+     [
+      "Please follow the instructions **closely**.",
+      "請仔細遵照說明。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "look-06",
+    "w": "short / shortly",
+    "p": "短的／不久",
+    "zh": "short 短的；shortly 不久、很快",
+    "say": "short, shortly",
+    "ex": [
+     [
+      "The meeting was **short**.",
+      "會議很短。"
+     ],
+     [
+      "The manager will arrive **shortly**.",
+      "經理很快就到。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "look-07",
+    "w": "free / freely",
+    "p": "免費／自由地",
+    "zh": "free 免費；freely 自由地",
+    "say": "free, freely",
+    "ex": [
+     [
+      "Children under six travel **free**.",
+      "六歲以下兒童免費搭乘。"
+     ],
+     [
+      "Staff can share ideas **freely** at the meeting.",
+      "員工可以在會議上自由分享想法。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "look-08",
+    "w": "most / mostly",
+    "p": "最／大多",
+    "zh": "most 最；mostly 大多、主要",
+    "say": "most, mostly",
+    "ex": [
+     [
+      "Which plan costs the **most**?",
+      "哪個方案最貴？"
+     ],
+     [
+      "The new hires are **mostly** recent graduates.",
+      "新進員工大多是應屆畢業生。"
+     ]
+    ],
+    "audio": true
+   }
+  ]
+ },
+ {
+  "id": "nn",
+  "name": "名詞＋名詞",
+  "note": "<b>第一個名詞說明用途或類別。</b>對照影片判斷觀念段的 return policy。常見陷阱是把第一個字換成形容詞：convenience store，不是 convenient store。",
+  "cards": [
+   {
+    "id": "nn-01",
+    "w": "convenience store",
+    "p": "名詞＋名詞",
+    "zh": "便利商店",
+    "say": "convenience store",
+    "ex": [
+     [
+      "There is a **convenience store** next to the office.",
+      "辦公室旁邊有一家便利商店。"
+     ]
+    ],
+    "tip": "不是 convenient store：第一個字是名詞，說明是哪一種店。",
+    "audio": true
+   },
+   {
+    "id": "nn-02",
+    "w": "customer satisfaction",
+    "p": "名詞＋名詞",
+    "zh": "顧客滿意度",
+    "say": "customer satisfaction",
+    "ex": [
+     [
+      "We conduct a **customer satisfaction** survey every year.",
+      "我們每年進行一次顧客滿意度調查。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "nn-03",
+    "w": "safety regulations",
+    "p": "名詞＋名詞",
+    "zh": "安全規定",
+    "say": "safety regulations",
+    "ex": [
+     [
+      "All visitors must follow the **safety regulations**.",
+      "所有訪客都必須遵守安全規定。"
+     ]
+    ],
+    "tip": "safety 是名詞；safe（安全的）是形容詞，不會說 safe regulations。",
+    "audio": true
+   },
+   {
+    "id": "nn-04",
+    "w": "application form",
+    "p": "名詞＋名詞",
+    "zh": "申請表",
+    "say": "application form",
+    "ex": [
+     [
+      "Please submit the **application form** by Friday.",
+      "請在星期五前繳交申請表。"
+     ]
+    ],
+    "tip": "不是 applying form 或 applicable form。",
+    "audio": true
+   },
+   {
+    "id": "nn-05",
+    "w": "expiration date",
+    "p": "名詞＋名詞",
+    "zh": "到期日",
+    "say": "expiration date",
+    "ex": [
+     [
+      "Please check the **expiration date** before using the coupon.",
+      "使用優惠券前請確認到期日。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "nn-06",
+    "w": "sales representative",
+    "p": "名詞＋名詞",
+    "zh": "業務代表",
+    "say": "sales representative",
+    "ex": [
+     [
+      "A **sales representative** will contact you shortly.",
+      "業務代表很快會與您聯絡。"
+     ]
+    ],
+    "tip": "固定用 sales（加 s）。",
+    "audio": true
+   },
+   {
+    "id": "nn-07",
+    "w": "registration fee",
+    "p": "名詞＋名詞",
+    "zh": "報名費",
+    "say": "registration fee",
+    "ex": [
+     [
+      "The **registration fee** includes lunch.",
+      "報名費包含午餐。"
+     ]
+    ],
+    "audio": true
+   },
+   {
+    "id": "nn-08",
+    "w": "job opening",
+    "p": "名詞＋名詞",
+    "zh": "職缺",
+    "say": "job opening",
+    "ex": [
+     [
+      "We have a **job opening** in the marketing department.",
+      "我們行銷部門有一個職缺。"
+     ]
+    ],
+    "audio": true
+   }
+  ]
+ }
+]
+</script>
+<script>
+(function(){
+'use strict';
+/* 卡片資料在上方 cards-data（id 是卡片 ID；say＝正面「聽搭配詞」念的文字；ex＝[英文例句（**粗體**）, 中文]；audio＝已有 Aria 音檔）。
+   發音檔沿用 Score Rescue 主站：../audio/<srHash(英文)>.mp3（tools/make_score_rescue_audio.py 產生，Aria、-8%）。 */
+var CATS=JSON.parse(document.getElementById('cards-data').textContent);
+function srHash(str){
+  var h1=0xdeadbeef,h2=0x41c6ce57;
+  for(var i=0;i<str.length;i++){var ch=str.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677)}
+  h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);
+  h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
+  return (4294967296*(2097151&h2)+(h1>>>0)).toString(16);
+}
+function plain(s){return s.replace(/\*\*/g,'')}
+
+/* 播放：同一時間只有一段聲音；再按一次同一顆＝停止；換卡、換分類時停止 */
+var audioEl=null,playingKey=null;
+function setPressed(){document.querySelectorAll('.say').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.key===playingKey)})}
+function stopSpeak(){
+  try{if(audioEl){audioEl.pause();audioEl.removeAttribute('src');audioEl.load()}}catch(e){}
+  audioEl=null;playingKey=null;setPressed();
+}
+function speak(text,key){
+  if(playingKey===key){stopSpeak();return}
+  stopSpeak();
+  var a;try{a=new Audio('../audio/'+srHash(text)+'.mp3')}catch(e){return}
+  audioEl=a;playingKey=key;setPressed();
+  var done=function(){if(audioEl===a){audioEl=null;playingKey=null;setPressed()}};
+  a.addEventListener('ended',done);a.addEventListener('error',done);
+  var pr=a.play();if(pr&&pr.catch)pr.catch(done);
+  window.__lastSpoken={text:text,key:key,src:a.src};
+}
+
+var KEY='sr_colloc_known_v1';
+var known={};
+try{known=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){known={}}
+function saveKnown(){try{localStorage.setItem(KEY,JSON.stringify(known))}catch(e){}}
+
+var cat=0,order=[],i=0,onlyNew=false;
+var $=function(id){return document.getElementById(id)};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function bold(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}
+function card(c,k){return CATS[c].cards[k]}
+
+function buildOrder(shuffle){
+  var n=CATS[cat].cards.length,a=[];
+  for(var k=0;k<n;k++){if(!onlyNew||!known[card(cat,k).id])a.push(k)}
+  if(shuffle){for(var j=a.length-1;j>0;j--){var r=Math.floor(Math.random()*(j+1)),t=a[j];a[j]=a[r];a[r]=t}}
+  order=a;i=0;
+}
+function tabs(){
+  $('tabs').innerHTML=CATS.map(function(c,k){
+    var kn=c.cards.filter(function(d){return known[d.id]}).length;
+    return '<button class="tab" role="tab" type="button" id="tab'+k+'" aria-selected="'+(k===cat)+'" data-k="'+k+'">'+esc(c.name)+'<small>'+kn+'/'+c.cards.length+'</small></button>';
+  }).join('');
+  $('catnote').innerHTML=CATS[cat].note;
+}
+function sayBtn(text,key,label){return '<button type="button" class="say" data-say="'+esc(text)+'" data-key="'+key+'" aria-pressed="false">🔊 '+label+'</button>'}
+function show(){
+  stopSpeak();
+  var c=CATS[cat],el=$('card');
+  el.classList.remove('flip');
+  if(!order.length){
+    $('front').innerHTML='<div class="lab">'+esc(c.name)+'</div><div class="en" style="font-size:1.3rem;font-family:var(--body)">這一類都記住了！</div><p class="hint">按「看全部」可以切回全部卡片。</p>';
+    $('back').innerHTML='';el.classList.remove('known');
+    $('pos').textContent='0 / 0';$('barFill').style.width='100%';
+    $('known').disabled=true;$('prev').disabled=true;$('next').disabled=true;
+    counts();return;
+  }
+  $('known').disabled=false;$('prev').disabled=false;$('next').disabled=false;
+  var d=card(cat,order[i]),isK=!!known[d.id];
+  el.dataset.id=d.id;
+  $('front').innerHTML='<div class="lab">'+esc(c.name)+'</div><div class="en"><span>'+esc(d.w)+'<span class="pair">'+esc(d.p)+'</span></span></div>'+
+    (d.audio?'<div class="sayrow">'+sayBtn(d.say,d.id+':w','聽搭配詞')+'</div>':'')+
+    '<p class="hint">點一下卡片翻面</p>'+(isK?'<span class="badge">記住了</span>':'');
+  $('back').innerHTML='<div class="lab">意思與例句</div><div class="en">'+esc(d.w)+'</div><div class="zh">'+esc(d.zh)+'</div>'+
+    '<div class="ex">'+d.ex.map(function(e,j){return '<p><span class="line"><span class="t">'+bold(e[0])+'</span>'+(d.audio?sayBtn(plain(e[0]),d.id+':ex'+(j+1),'聽例句'):'')+'</span><span>'+esc(e[1])+'</span></p>'}).join('')+'</div>'+
+    (d.tip?'<p class="tip">'+esc(d.tip)+'</p>':'')+(isK?'<span class="badge">記住了</span>':'');
+  el.classList.toggle('known',isK);
+  $('known').setAttribute('aria-pressed',isK);$('known').textContent=isK?'已記住 ✓':'記住了';
+  $('pos').textContent=(i+1)+' / '+order.length;
+  $('barFill').style.width=Math.round((i+1)/order.length*100)+'%';
+  counts();
+}
+function counts(){
+  var tot=0,kn=0;CATS.forEach(function(c){c.cards.forEach(function(d){tot++;if(known[d.id])kn++})});
+  $('knownCount').textContent='全部記住 '+kn+' / '+tot;
+}
+function flip(){if(order.length)$('card').classList.toggle('flip')}
+function go(d){if(!order.length)return;i=(i+d+order.length)%order.length;show()}
+
+$('tabs').addEventListener('click',function(e){var b=e.target.closest('.tab');if(!b)return;cat=+b.dataset.k;buildOrder(false);tabs();show()});
+$('card').addEventListener('click',function(e){
+  var b=e.target.closest('.say');
+  if(b){e.stopPropagation();speak(b.dataset.say,b.dataset.key);return}   // 按喇叭：只播放，卡片停在原面
+  flip();
+});
+$('card').addEventListener('keydown',function(e){if(e.target!==this)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}});
+$('prev').addEventListener('click',function(){go(-1)});
+$('next').addEventListener('click',function(){go(1)});
+$('known').addEventListener('click',function(){
+  if(!order.length)return;var id=card(cat,order[i]).id;
+  if(known[id])delete known[id];else known[id]=1;saveKnown();tabs();
+  if(onlyNew&&known[id]){var keep=i;buildOrder(false);i=Math.min(keep,Math.max(0,order.length-1));show()}else{var f=$('card').classList.contains('flip');show();if(f)$('card').classList.add('flip')}
+});
+$('shuffle').addEventListener('click',function(){buildOrder(true);show()});
+$('onlyNew').addEventListener('click',function(){onlyNew=!onlyNew;this.setAttribute('aria-pressed',onlyNew);this.textContent=onlyNew?'看全部':'只看還沒記住的';buildOrder(false);show()});
+document.addEventListener('keydown',function(e){if(e.target.closest&&e.target.closest('.tab,.say'))return;if(e.key==='ArrowRight')go(1);else if(e.key==='ArrowLeft')go(-1)});
+
+buildOrder(false);tabs();show();
+window.__cards={CATS:CATS,srHash:srHash,stop:stopSpeak};
+})();
+</script>
+</body>
+</html>

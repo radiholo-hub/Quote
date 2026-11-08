@@ -8,6 +8,7 @@ on:
     paths:
       - 'score-rescue/index.html'
       - 'score-rescue/privacy.html'
+      - 'score-rescue/cards/**'
       - 'score-rescue/pos/**'
       - 'score-rescue/tests/**'
       - 'tools/make_score_rescue_audio.py'
@@ -33,6 +34,7 @@ jobs:
           sparse-checkout: |
             score-rescue/index.html
             score-rescue/privacy.html
+            score-rescue/cards
             score-rescue/pos
             score-rescue/tests
             tools/make_score_rescue_audio.py
