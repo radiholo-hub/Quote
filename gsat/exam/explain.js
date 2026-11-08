@@ -29,7 +29,7 @@ window.EXPLAIN = {
    },
    "D": {
     "entry": "routine-adj",
-    "why": "routine schedule 是「例行的行程」,說明行程固定,並沒有表達「排不出空檔」。"
+    "why": "routine 表示「例行的、日常的」，強調行程屬於常態安排，並不表示時間已排滿。因此，無法解釋為何安排市長的採訪需要數週。"
    }
   },
   "words": [
@@ -47,7 +47,6 @@ window.EXPLAIN = {
   "focus": "tight-adj",
   "zh": "這位市長的行程安排非常緊湊，以致於要花好幾個星期才能安排一次對她的採訪。",
   "aiFlags": [
-   "選項 D「routine schedule 並沒有表達排不出空檔」:routine schedule 也算通順的搭配,理由是否夠清楚?",
    "hasty、diligent、routine 的詞條目前沒有原創例句(只有 tight 是完整詞條)。"
   ]
  },

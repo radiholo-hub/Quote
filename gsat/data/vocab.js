@@ -2432,7 +2432,7 @@ window.VOCAB = {
  "phrases": {
   "arrange-an-interview": {
    "t": "arrange an interview",
-   "zh": "安排訪談(面談)"
+   "zh": "安排採訪／訪談"
   },
   "such-a-that": {
    "t": "such a tight schedule that",
