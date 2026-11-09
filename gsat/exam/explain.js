@@ -1,14 +1,16 @@
 // 原創詳解(自行撰寫,非第三方解析)。鍵為「年度-題號」。schema 2:引用單字詞條(gsat/data/vocab.js),字義與詞性只在詞條裡定義一次。
 // status:draft＝AI 草稿,待英文老師審核;reviewed＝已審核(審核前不得標為 reviewed)。reviewer／reviewedAt／reviewNotes 由審核者填寫。
+// 【資料來源】本檔是版本控制下的唯一來源,直接編輯;沒有任何 repo 外的產生流程,也不得再用腳本整檔重新產生(會把教師簽核欄位覆蓋回 draft;gsat/tests/test_signoff.py 會擋)。
+// 已簽核的題目(目前只有 115-1)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
 // 審核方式:python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾> 產生含題目與檢核欄位的審核表(內含試題,請勿公開)。
 window.EXPLAIN = {
  "115-1": {
   "schema": 2,
   "answer": "B",
-  "status": "draft",
-  "reviewer": null,
-  "reviewedAt": null,
-  "reviewNotes": "",
+  "status": "reviewed",
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-09",
+  "reviewNotes": "2026-11-09 教師（負責人）確認:Q1 教學內容與 48 個審核項目通過,對應 17 個 mp3(21 個播放按鈕)已人工試聽通過;其餘 170 個音檔不在本次範圍。簽核紀錄見 docs/gsat/signoffs/115-1.json。",
   "key": [
    "先觀察句型：such a + 形容詞 + 單數可數名詞 + that + 子句，表示「如此……以致於……」。空格需要一個形容詞修飾 schedule，而 that 後面的子句提供判斷答案的重要線索。",
    "後半句指出，安排市長的採訪需要花費數週時間，表示她的行程非常忙碌，可供安排訪談的時間有限。",
