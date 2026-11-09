@@ -330,7 +330,7 @@ function viewIntro(){
   prog(null);
   render('<div class="stack">'+
     '<h1>15 題詞性判斷前測</h1>'+
-    '<p class="lead">找出你在 Part 5 詞性題最需要先練的方向。約 5～8 分鐘，做完會看到建議，並可以免費試學第 1 課。</p>'+
+    '<p class="lead">找出你在 Part 5 詞性題最需要先練的方向。約 5～8 分鐘，做完會看到建議。第 1～3 課免費試學。</p>'+
     '<div class="sheet stack"><h3>作答方式</h3><ul><li>每題選出最適合空格的答案。</li><li>再選「有把握」或「不確定」。沒把握也可以選答案，照實際感覺選就好。</li><li>作答時不顯示對錯，做完再一起看。</li></ul>'+
     '<p class="fine">這份前測用來安排練習方向，不換算多益分數。</p></div>'+
     '<button class="btn pri" id="go">開始前測</button></div>');
@@ -379,19 +379,31 @@ var TIP={
   NOUN:'建議先找出冠詞、所有格或介系詞，確認後面是否還缺名詞片語的中心。',
   MAIN_V:'建議先確認句子有沒有主要動詞，再看選項中哪一個能當主要動詞。'
 };
+/* 依最需要練的方向推薦課程：形容詞／副詞 → 第 1 課；名詞 → 第 2 課；主要動詞 → 第 3 課（第 1～3 課免費試學） */
+var LESSON_OF={ADJ_N:1,ADV_V:1,ADV_MOD:1,LINK_ADJ:1,NOUN:2,MAIN_V:3};
+var LESSONS={
+  1:{href:null,btn:'免費試學第 1 課：形容詞與副詞怎麼選'},
+  2:{href:'l2.html',btn:'免費試學第 2 課：先找中心名詞'},
+  3:{href:'l3.html',btn:'免費試學第 3 課：先看句子缺不缺主要動詞'}
+};
+function recLesson(R){return R.weak.length?LESSON_OF[R.weak[0].c]:1}
 function lessonLink(R){
   var codes=R.weak.map(function(x){return x.c});
   var has=function(c){return codes.indexOf(c)>=0};
-  if(has('ADJ_N')||has('ADV_V')||has('ADV_MOD'))return '你的情況可以直接從免費第 1 課開始：第 1 課示範形容詞與副詞怎麼選。';
-  if(has('LINK_ADJ'))return '免費第 1 課的示範 4，會比較「描述主詞」和「描述動作」，正好可以先練。';
-  if(has('NOUN'))return '第 1 課開頭會先說明「判斷空格的工作」，可以先建立判斷步驟；名詞位置的專門課程（詞性小課第 2 課）製作中。';
-  if(has('MAIN_V'))return '第 1 課開頭會先說明「判斷空格的工作」，可以先建立判斷步驟；主要動詞的專門課程製作中。';
-  if(R.unsure.length)return '這次沒有答錯，但有不確定的題目。可以用第 1 課的判斷步驟再確認一次。';
-  return '這次表現穩定。可以用第 1 課確認判斷步驟，或直接繼續 Day 1–7 免費體驗。';
+  var rec=recLesson(R),t;
+  if(rec===2)t='名詞位置可以直接看免費第 2 課：先找中心名詞，判斷空格是不是名詞。';
+  else if(rec===3)t='主要動詞可以直接看免費第 3 課：先看句子缺不缺主要動詞，再決定動詞的形式。';
+  else if(has('ADJ_N')||has('ADV_V')||has('ADV_MOD'))t='你的情況可以直接從免費第 1 課開始：第 1 課示範形容詞與副詞怎麼選。';
+  else if(has('LINK_ADJ'))t='免費第 1 課的示範 4，會比較「描述主詞」和「描述動作」，正好可以先練。';
+  else if(R.unsure.length)return '這次沒有答錯，但有不確定的題目。可以用第 1 課的判斷步驟再確認一次。';
+  else return '這次表現穩定。可以用第 1 課確認判斷步驟，或直接繼續 Day 1–7 免費體驗。';
+  var other=R.weak.slice(1).map(function(x){return LESSON_OF[x.c]}).filter(function(n){return n!==rec})[0];
+  if(other)t+='另一個方向可以接著看第 '+other+' 課。';
+  return t;
 }
 function viewResult(){
   prog(null);
-  var R=analyze(),total=0;
+  var R=analyze(),total=0,rec=recLesson(R);
   PRE.forEach(function(q){if(st.pre.ans[q.id].k===q.a)total++});
   var dirs='';
   if(R.weak.length){
@@ -416,7 +428,10 @@ function viewResult(){
     '<p class="lead">這次 15 題答對 '+total+' 題。下面是建議先練的方向（最多兩項）。這份結果用來安排練習，不換算多益分數。</p>'+
     dirs+
     '<div class="sheet"><h3>下一步</h3><p style="margin-top:6px">'+lessonLink(R)+'</p>'+
-      '<div style="margin-top:14px"><button class="btn pri" id="trial">免費試學第 1 課：形容詞與副詞怎麼選</button></div></div>'+
+      '<p class="fine" style="margin-top:4px">第 1～3 課免費試學</p>'+
+      (rec===1?'<div style="margin-top:14px"><button class="btn pri" id="trial">'+LESSONS[1].btn+'</button></div>':
+        '<div class="stack" style="margin-top:14px"><a class="btn pri" id="recLesson" href="'+LESSONS[rec].href+'">'+LESSONS[rec].btn+'</a>'+
+        '<button class="btn line" id="trial">或從第 1 課開始</button></div>')+'</div>'+
     '<div class="sheet"><h3>各類作答情況</h3><table class="tbl"><thead><tr><th>類別</th><th>答對</th></tr></thead><tbody>'+rows+'</tbody></table>'+
       '<p class="fine" style="margin-top:8px">每類只有 2～3 題，只能當作初步線索。</p></div>'+
     '<details class="sheet more"><summary>看每一題的答案與判斷</summary>'+review+'</details>'+
@@ -440,7 +455,7 @@ function bindReveal(){
 function viewLesson(){
   prog(null);
   render('<div class="stack">'+
-    '<div class="qid">詞性小課 第 1 課（免費）</div>'+
+    '<div class="qid">詞性小課 第 1 課（第 1～3 課免費試學）</div>'+
     '<h1>形容詞還是副詞？先找它修飾誰</h1>'+
     '<video id="l1video" class="vid" controls playsinline preload="metadata" poster="lesson1-poster.jpg" src="lesson1.mp4">你的瀏覽器無法播放影片，可以直接往下看文字版重點。</video>'+
     '<p class="fine">約 7 分半：先考你兩句，再教判斷觀念＋四個示範。</p>'+
@@ -532,7 +547,7 @@ function viewDone(){
     '<div class="sheet stack"><p>你已經練習了「先找它修飾誰」的判斷方式。</p>'+
       '<p class="score">這次答對 '+x+'／4 題</p>'+
       '<p class="fine">以每題第一次作答計算。</p></div>'+
-    '<div class="sheet stack"><p class="fine">下一課（免費）</p><h3>空格需要名詞嗎？先找中心名詞</h3>'+
+    '<div class="sheet stack"><p class="fine">下一課（第 1～3 課免費試學）</p><h3>空格需要名詞嗎？先找中心名詞</h3>'+
       '<p>學會判斷空格是名詞片語的中心名詞，還是在修飾它。影片 6 分 30 秒＋10 題練習＋4 題確認。</p>'+
       '<a class="btn pri" id="toL2" href="l2.html">繼續第 2 課｜先找中心名詞</a></div>'+
     '<p class="fine" style="text-align:center">想先練其他閱讀題型？</p>'+
