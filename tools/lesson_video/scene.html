@@ -113,6 +113,7 @@ svg#arr{position:absolute;inset:0;width:1920px;height:1080px;pointer-events:none
 .cta .url{margin-top:44px;font:700 52px ui-monospace,"Noto Sans Mono","DejaVu Sans Mono",monospace;color:var(--ink)}
 .cta .down{margin-top:50px;font:900 120px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--wine)}
 .cta .sub{margin-top:30px;font:700 44px "Noto Sans TC","Noto Sans CJK TC",sans-serif;color:var(--muted)}
+.w.dimw{opacity:.28}
 </style>
 </head>
 <body>
@@ -133,6 +134,7 @@ function sentHTML(s,fill,solo){
 }
 function el(w){return document.querySelector('[data-w="'+w+'"]')}
 function marks(v){
+  (v.dim||[]).forEach(function(w){var e=el(w);if(e)e.classList.add('dimw')});   // 淡化：例如主詞後面的介系詞片語
   (v.ring||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="ring '+(r.c||'')+'"></span>'+(r.label?'<span class="lab '+(r.c||'red')+(r.below?' below':'')+(r.side?' side':'')+'">'+esc(r.label)+'</span>':''))});
   (v.under||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="uline"></span>'+(r.label?'<span class="lab blue'+(r.below?' below':'')+(r.side?' side':'')+'">'+esc(r.label)+'</span>':''))});
   (v.bracket||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="brk"></span>'+(r.label?'<span class="lab ok'+(r.below?' below':'')+'">'+esc(r.label)+'</span>':''))});
