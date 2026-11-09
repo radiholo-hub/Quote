@@ -60,7 +60,7 @@ function render(v,n){
     if(v.cta)h+='<div class="cta"><div class="btn">免費做 15 題詞性前測</div><div class="fine">連結在個人檔案</div></div>';
   }else{
     h='<div class="kick">'+esc(v.t||'')+'</div><div class="sents">'+v.lines.map(function(L){
-      return '<div><div class="s serif"'+(v.lh?' style="line-height:'+v.lh+'"':'')+'>'+(L.n?'<span class="n">'+L.n+'</span>':'')+sent(L.s,v)+'</div>'+(L.zh&&v.showzh?'<div class="zh">'+esc(L.zh)+'</div>':'')+'</div>';
+      return '<div><div class="s serif"'+((v.lh||v.fs)?' style="'+(v.lh?'line-height:'+v.lh+';':'')+(v.fs?'font-size:'+v.fs+'px':'')+'"':'')+'>'+(L.n?'<span class="n">'+L.n+'</span>':'')+sent(L.s,v)+'</div>'+(L.zh&&v.showzh?'<div class="zh">'+esc(L.zh)+'</div>':'')+'</div>';
     }).join('')+'</div>';
     if(v.o)h+='<div class="opts">'+v.o.map(function(t,k){var cl='o serif'+(v.ans==null?'':(k===v.ans?' right':' dim'));return '<div class="'+cl+'"><b>'+'ABCD'[k]+'</b>'+esc(t)+'</div>'}).join('')+'</div>';
     if(n)h+='<div class="cd">先想一想 <i>'+n+'</i></div>';
@@ -68,5 +68,12 @@ function render(v,n){
   }
   h+='<div class="brand">'+esc(BRAND)+'</div>';
   document.getElementById('app').innerHTML=h;
+  /* fit：每段（| 分隔）都排在一行，字太長就縮小字級直到放得下 */
+  if(v.fit)document.querySelectorAll('.s').forEach(function(e){
+    e.style.whiteSpace='nowrap';var fs=parseFloat(getComputedStyle(e).fontSize);
+    e.style.width='max-content';var W=1080-160;
+    while(e.getBoundingClientRect().width>W&&fs>36){fs-=1;e.style.fontSize=fs+'px'}
+    e.style.width='';
+  });
 }
 </script></body></html>

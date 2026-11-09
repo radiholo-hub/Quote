@@ -11,9 +11,11 @@
    "view": {
     "kind": "sent",
     "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
     "lines": [
      {
-      "s": "The [manager]|[of the regional offices]|______ all|expense reports.",
+      "s": "The [manager] [of the regional offices]|______ all expense reports.",
       "zh": "區域辦公室的經理負責處理所有費用報告。"
      }
     ],
@@ -36,9 +38,11 @@
    "view": {
     "kind": "sent",
     "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
     "lines": [
      {
-      "s": "The [manager]|[of the regional offices]|______ all|expense reports.",
+      "s": "The [manager] [of the regional offices]|______ all expense reports.",
       "zh": "區域辦公室的經理負責處理所有費用報告。"
      }
     ],
@@ -56,9 +60,11 @@
    "view": {
     "kind": "sent",
     "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
     "lines": [
      {
-      "s": "The [manager]|[of the regional offices]|______ all|expense reports.",
+      "s": "The [manager] [of the regional offices]|______ all expense reports.",
       "zh": "區域辦公室的經理負責處理所有費用報告。"
      }
     ],
@@ -138,9 +144,11 @@
    "view": {
     "kind": "sent",
     "t": "如果多一個 will 呢？",
+    "fs": 62,
+    "fit": true,
     "lines": [
      {
-      "s": "The manager|of the regional offices|[will] ______ all|expense reports.",
+      "s": "The manager of the regional offices|[will] ______ all expense reports.",
       "zh": "區域辦公室的經理會處理所有費用報告。"
      }
     ],
