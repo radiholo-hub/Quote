@@ -7,15 +7,30 @@
  "scene": "short.html",
  "cues": [
   {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "離空格最近的字，<br>可能在騙你。",
+    "top": 640
+   },
+   "say": [
+    [
+     "zh",
+     "離空格最近的字，可能在騙你。"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
    "id": "q",
    "view": {
     "kind": "sent",
-    "t": "多益 Part 5｜空格填什麼？",
+    "t": "多益 Part 5｜動詞怎麼選？",
     "fs": 62,
     "fit": true,
     "lines": [
      {
-      "s": "The [manager] [of the regional offices]|______ all expense reports.",
+      "s": "The [manager] [of the regional] [offices]|______ all expense reports.",
       "zh": "區域辦公室的經理負責處理所有費用報告。"
      }
     ],
@@ -37,12 +52,12 @@
    "id": "t",
    "view": {
     "kind": "sent",
-    "t": "多益 Part 5｜空格填什麼？",
+    "t": "多益 Part 5｜動詞怎麼選？",
     "fs": 62,
     "fit": true,
     "lines": [
      {
-      "s": "The [manager] [of the regional offices]|______ all expense reports.",
+      "s": "The [manager] [of the regional] [offices]|______ all expense reports.",
       "zh": "區域辦公室的經理負責處理所有費用報告。"
      }
     ],
@@ -56,15 +71,70 @@
    "pause": 3
   },
   {
-   "id": "r",
+   "id": "n",
    "view": {
     "kind": "sent",
-    "t": "多益 Part 5｜空格填什麼？",
+    "t": "多益 Part 5｜動詞怎麼選？",
     "fs": 62,
     "fit": true,
     "lines": [
      {
-      "s": "The [manager] [of the regional offices]|______ all expense reports.",
+      "s": "The [manager] [of the regional] [offices]|______ all expense reports.",
+      "zh": "區域辦公室的經理負責處理所有費用報告。"
+     }
+    ],
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ],
+    "ring": [
+     {
+      "w": "offices",
+      "c": "red",
+      "label": "離空格最近"
+     }
+    ],
+    "ban": {
+     "t": "offices 是複數…<br>所以選原形 process？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "離空格最近的是"
+    ],
+    [
+     "en",
+     "offices"
+    ],
+    [
+     "zh",
+     "，複數。所以選原形"
+    ],
+    [
+     "en",
+     "process"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.3
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜動詞怎麼選？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [manager] [of the regional] [offices]|______ all expense reports.",
       "zh": "區域辦公室的經理負責處理所有費用報告。"
      }
     ],
@@ -77,13 +147,14 @@
     "ans": 1,
     "fill": "processes",
     "dim": [
-     "of the regional offices"
+     "of the regional",
+     "offices"
     ],
     "ring": [
      {
       "w": "manager",
       "c": "blue",
-      "label": "主詞（單數）"
+      "label": "真正的主詞（單數）"
      },
      {
       "w": "blank",
@@ -98,11 +169,11 @@
    "say": [
     [
      "zh",
-     "離空格最近的是"
+     "不對。真正決定動詞形式的是"
     ],
     [
      "en",
-     "offices."
+     "manager."
     ],
     [
      "zh",
@@ -118,19 +189,11 @@
     ],
     [
      "en",
-     "The manager."
+     "The manager"
     ],
     [
      "zh",
-     "主詞的核心是單數"
-    ],
-    [
-     "en",
-     "manager"
-    ],
-    [
-     "zh",
-     "，所以選 B，"
+     "，單數，所以選 B，"
     ],
     [
      "en",
@@ -143,7 +206,7 @@
    "id": "w",
    "view": {
     "kind": "sent",
-    "t": "如果多一個 will 呢？",
+    "t": "對照：如果多一個 will",
     "fs": 62,
     "fit": true,
     "lines": [
@@ -173,7 +236,7 @@
    "say": [
     [
      "zh",
-     "如果空格前多一個"
+     "對照一下：如果空格前多一個"
     ],
     [
      "en",
