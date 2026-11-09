@@ -45,7 +45,7 @@ STUB = """window.supabase={createClient:()=>{
   return{auth:{getSession:async()=>{const u=user();cur=u;if(u)localStorage.setItem('%s',JSON.stringify({user:u}));return {data:{session:u?{user:u}:null}}},
     onAuthStateChange:f=>{cb=f;window.__sbEmit=(ev,s)=>{cur=(s&&s.user)||null;cb&&cb(ev,s)};return {data:{subscription:{unsubscribe(){}}}}},
     signInWithOtp:async()=>({}),signOut:async()=>{localStorage.removeItem('%s');cur=null;cb&&cb('SIGNED_OUT',null);return {}}},
-    from:t=>({select:()=>q(t),insert:async()=>({error:null}),upsert:async()=>fail(t)?{error:{message:'fail'}}:{error:null}})}}};""" % (SB_TOKEN_KEY, SB_TOKEN_KEY)
+    from:t=>({select:()=>q(t),insert:async row=>{console.log('__ins:'+(row&&row.name));return {error:null}},upsert:async()=>fail(t)?{error:{message:'fail'}}:{error:null}})}}};""" % (SB_TOKEN_KEY, SB_TOKEN_KEY)
 
 
 
