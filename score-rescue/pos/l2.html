@@ -156,7 +156,7 @@ function dbg(name,state){
   if(!d){d=document.createElement('div');d.id='dbg';d.innerHTML='<b>事件紀錄（debug，不送出）</b>';document.body.appendChild(d)}
   var r=document.createElement('div');r.textContent=name+' · '+state;r.setAttribute('data-ev',name);d.appendChild(r);
 }
-var EVENTS={pretest_start:'pos_pretest_start',pretest_done:'pos_pretest_done',trial_click:'pos_trial_click',l1_done:'pos_l1_done',day17_click:'pos_day17_click',l2_click:'pos_l2_click'};
+var EVENTS={pretest_start:'pos_pretest_start',pretest_done:'pos_pretest_done',trial_click:'pos_trial_click',l1_done:'pos_l1_done',day17_click:'pos_day17_click',l2_click:'pos_l2_click',l2_done:'pos_l2_done'};   // l2_done 只在 l2.html 使用
 function logEvent(name){
   var p=Promise.resolve();
   try{
@@ -479,6 +479,7 @@ function viewDemoJump(q){
 /* ---------- 7. 完成畫面 ---------- */
 function viewDone(){
   prog(1);
+  logEvent(EVENTS.l2_done);   // 完成 4 題確認、第一次進入完成畫面；同一分頁只記一次，debug 模式不送
   var x=0;CHK.forEach(function(q){if(st.chk.first[q.id])x++});
   render('<div class="stack">'+
     '<h1>第 2 課完成！</h1>'+
@@ -491,6 +492,7 @@ function viewDone(){
   h('again').addEventListener('click',viewLesson);
 }
 
+initSb();
 viewLesson();
 window.__pos={st:st,PR:PR,CHK:CHK,DEMOS:DEMOS,view:viewItem,sayTexts:function(){var o=[];[].concat(DEMOS,PR,CHK).forEach(function(q){o.push.apply(o,q.o);o.push(fullSent(q))});return o}};
 })();

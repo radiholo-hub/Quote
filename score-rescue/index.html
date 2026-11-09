@@ -697,7 +697,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
         <div class="sheet pos-card" id="posCard">
           <h2>免費 Part 5 詞性小課</h2>
           <p>先做 15 題詞性前測，再看 2 堂短影片，練習判斷空格要填哪種詞性。</p>
-          <a class="btn line" href="./pos/">開始免費詞性前測</a>
+          <a class="btn line" id="posCardBtn" href="./pos/">開始免費詞性前測</a>
         </div>
       </div>
       <div class="sheet demo">
@@ -1232,15 +1232,17 @@ async function pushNow(){
   if(r.error)throw r.error;
 }
 /* 匿名使用次數:只記「發生了什麼事」,不含 Email、不含任何個人資料;同一個分頁同一種事件只記一次 */
+const EV_DEBUG=/[?&]debug=1(&|$)/.test(location.search);   // 預覽用：?debug=1 不送任何事件
 function logEvent(name){
   try{
-    if(!sb)return;
+    if(!sb||EV_DEBUG)return Promise.resolve();
     const k='ev_'+name;
-    if(sessionStorage.getItem(k))return;
+    if(sessionStorage.getItem(k))return Promise.resolve();
     sessionStorage.setItem(k,'1');
     const r=sb.from('events').insert({name:name});
-    if(r&&r.then)r.then(function(){},function(){});
+    if(r&&r.then)return r.then(function(){},function(){});
   }catch(e){}
+  return Promise.resolve();
 }
 function schedulePush(){
   if(!sb||!sbUser||pulling)return;
@@ -2778,6 +2780,12 @@ document.addEventListener('keydown',e=>{
   });
 })();
 load();refreshHome();show('home');initCloud();
+$('#posCardBtn').addEventListener('click',function(e){
+  if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;   // 開新分頁時不攔
+  e.preventDefault();const href=this.getAttribute('href');let went=false;
+  const go=function(){if(!went){went=true;location.href=href}};
+  logEvent('pos_home_card_click').then(go);setTimeout(go,900);
+});
 /* 從詞性前測頁（pos/）點「繼續 Day 1–7 免費體驗」進來：有診斷結果就開學習路線，沒有就留在首頁先做診斷 */
 if(location.hash==='#day1-7'){
   try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}

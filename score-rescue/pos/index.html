@@ -156,7 +156,7 @@ function dbg(name,state){
   if(!d){d=document.createElement('div');d.id='dbg';d.innerHTML='<b>事件紀錄（debug，不送出）</b>';document.body.appendChild(d)}
   var r=document.createElement('div');r.textContent=name+' · '+state;r.setAttribute('data-ev',name);d.appendChild(r);
 }
-var EVENTS={pretest_start:'pos_pretest_start',pretest_done:'pos_pretest_done',trial_click:'pos_trial_click',l1_done:'pos_l1_done',day17_click:'pos_day17_click',l2_click:'pos_l2_click'};
+var EVENTS={pretest_start:'pos_pretest_start',pretest_done:'pos_pretest_done',trial_click:'pos_trial_click',l1_done:'pos_l1_done',day17_click:'pos_day17_click',l2_click:'pos_l2_click',l2_done:'pos_l2_done'};   // l2_done 只在 l2.html 使用
 function logEvent(name){
   var p=Promise.resolve();
   try{

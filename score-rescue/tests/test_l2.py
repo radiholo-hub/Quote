@@ -97,5 +97,42 @@ def test_first_attempt_score_and_no_events(open_l2):
         p.click('#next')
     t = p.inner_text('#app')
     assert '第 2 課完成！' in t and '這次答對 3／4 題' in t
-    p.wait_for_timeout(200)
-    assert not p.evaluate('(window.__ins||[]).length'), '第 2 課不送第 1 課的事件'
+    p.wait_for_timeout(300)
+    assert p.evaluate('window.__ins') == [['events', 'pos_l2_done']], '完成 4 題確認、進入完成畫面時記一次 pos_l2_done'
+    p.reload()                              # 重整後同一分頁再做一次、再進完成畫面：不重記
+    p.wait_for_function('window.__pos')
+    to_check(p)
+    for a in p.evaluate('__pos.CHK.map(q=>q.a)'):
+        answer(p, a)
+        p.click('#next')
+    assert '第 2 課完成！' in p.inner_text('#app')
+    p.wait_for_timeout(300)
+    assert p.evaluate('window.__ins') == [], '重整後同一分頁不再記（sessionStorage 去重）'
+    assert p.evaluate("sessionStorage.getItem('ev_pos_l2_done')") == '1'
+
+
+def test_l2_done_not_before_finishing_checks(open_l2):
+    p = open_l2()
+    to_check(p)
+    for a in p.evaluate('__pos.CHK.map(q=>q.a)')[:3]:
+        answer(p, a)
+        p.click('#next')
+    p.click('.opt[data-k="0"]')
+    p.click('#submit')
+    if p.query_selector('#toDemo'):          # 答錯 → 回看示範 → 回到原題：都不算完成
+        p.click('#toDemo')
+        p.click('#back')
+    p.wait_for_timeout(300)
+    assert p.evaluate('window.__ins') == []
+
+
+def test_l2_debug_sends_nothing(open_l2):
+    p = open_l2('?debug=1')
+    to_check(p)
+    for a in p.evaluate('__pos.CHK.map(q=>q.a)'):
+        answer(p, a)
+        p.click('#next')
+    assert '第 2 課完成！' in p.inner_text('#app')
+    p.wait_for_timeout(300)
+    assert p.evaluate('window.__ins||[]') == [], 'debug 模式不送事件（連 Supabase 都不載入）'
+    assert 'pos_l2_done' in p.inner_text('#dbg'), 'debug 面板顯示這個事件'
