@@ -244,3 +244,53 @@ def test_home_card_click_debug_sends_nothing(browser):
         assert ins == [], 'debug 模式不送任何事件'
     finally:
         ctx.close()
+
+
+@pytest.fixture
+def http_root():
+    """用本機 HTTP 伺服器提供 score-rescue/，讓 ./pos/ 這種資料夾網址能像正式網站一樣打開 index.html。"""
+    import functools
+    import http.server
+    import threading
+    from conftest import ROOT
+    handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(ROOT))
+    handler.log_message = lambda *a: None
+    srv = http.server.ThreadingHTTPServer(('127.0.0.1', 0), handler)
+    t = threading.Thread(target=srv.serve_forever, daemon=True)
+    t.start()
+    yield 'http://127.0.0.1:%d' % srv.server_address[1]
+    srv.shutdown()
+
+
+@pytest.mark.parametrize('debug', [True, False])
+def test_home_card_to_pretest_keeps_debug(browser, http_root, debug):
+    """首頁 ?debug=1 點卡片 → 前測頁也帶 ?debug=1；在前測頁開始答題、做完前測，都不送任何事件。
+    沒有 debug 時：首頁記 pos_home_card_click，前測頁照常記 pos_pretest_start。"""
+    from conftest import STUB
+    ctx = browser.new_context(viewport={'width': 390, 'height': 900})
+    ctx.route('**/supabase-js@2*', lambda r: r.fulfill(status=200, content_type='application/javascript', body=STUB))
+    page = ctx.new_page()
+    ins = []
+    page.on('console', lambda m: m.text.startswith('__ins:') and ins.append(m.text[6:]))
+    try:
+        page.goto(http_root + '/.test-index.html' + ('?debug=1' if debug else ''))
+        page.wait_for_function('window.__t&&window.__t.S')
+        page.wait_for_timeout(400)
+        with page.expect_navigation():
+            page.click('#posCardBtn')
+        page.wait_for_function('window.__pos')
+        assert page.url == http_root + '/pos/' + ('?debug=1' if debug else '')
+        page.click('#go')
+        for a in page.evaluate('__pos.PRE.map(q=>q.a)'):
+            page.click('.opt[data-k="%d"]' % a)
+            page.click('[data-conf="sure"]')
+            page.click('#next')
+        assert page.query_selector('#trial')
+        page.wait_for_timeout(500)
+        if debug:
+            assert ins == [], '首頁和前測頁在 debug 模式都不送事件'
+            assert 'pos_pretest_start' in page.inner_text('#dbg'), '前測頁的 debug 面板有顯示事件'
+        else:
+            assert ins == ['pos_home_card_click', 'pos_pretest_start', 'pos_pretest_done']
+    finally:
+        ctx.close()
