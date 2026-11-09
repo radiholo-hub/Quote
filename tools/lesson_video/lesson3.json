@@ -6,143 +6,197 @@
    "id": "hook1",
    "view": {
     "kind": "pair",
-    "t": "同一組選項，兩格怎麼填？",
+    "t": "開場挑戰：空格填什麼？",
     "xs": true,
     "o": [
-     "store",
-     "stores",
-     "storage",
-     "storing"
+     "process",
+     "processes",
+     "processing",
+     "to process"
     ],
     "lines": [
      {
       "n": "①",
-      "s": "The new system ______ customer data in the cloud."
-     },
-     {
-      "n": "②",
-      "s": "The new system will ______ customer data in the cloud."
+      "s": "The manager of the regional offices ______ all expense reports."
      }
     ]
    },
    "say": [
     [
      "zh",
-     "先看兩個句子。第一句："
+     "先看第一句："
     ],
     [
      "en",
-     "The new system blank customer data in the cloud."
+     "The manager of the regional offices blank all expense reports."
     ],
     [
      "zh",
-     "第二句："
-    ],
-    [
-     "en",
-     "The new system will blank customer data in the cloud."
-    ],
-    [
-     "zh",
-     "兩句用同一組選項，只差一個"
-    ],
-    [
-     "en",
-     "will."
-    ],
-    [
-     "zh",
-     "先想一想，兩格分別要填什麼？"
+     "空格要填什麼？"
     ]
    ]
+  },
+  {
+   "id": "hook1t",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The manager of the regional offices ______ all expense reports."
+     }
+    ]
+   },
+   "pause": 5
   },
   {
    "id": "hook2",
    "view": {
     "kind": "pair",
-    "t": "同一組選項，兩格怎麼填？",
+    "t": "開場挑戰：空格填什麼？",
     "xs": true,
     "o": [
-     "store",
-     "stores",
-     "storage",
-     "storing"
+     "process",
+     "processes",
+     "processing",
+     "to process"
     ],
     "lines": [
      {
       "n": "①",
-      "s": "The new system ______ customer data in the cloud."
+      "s": "The manager of the regional offices ______ all expense reports."
      },
      {
       "n": "②",
-      "s": "The new system will ______ customer data in the cloud."
+      "s": "The manager of the regional offices will ______ all expense reports."
      }
     ]
    },
-   "pause": 8
+   "say": [
+    [
+     "zh",
+     "再看第二句："
+    ],
+    [
+     "en",
+     "The manager of the regional offices will blank all expense reports."
+    ],
+    [
+     "zh",
+     "這一格呢？"
+    ]
+   ]
+  },
+  {
+   "id": "hook2t",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The manager of the regional offices ______ all expense reports."
+     },
+     {
+      "n": "②",
+      "s": "The manager of the regional offices will ______ all expense reports."
+     }
+    ]
+   },
+   "pause": 5
   },
   {
    "id": "r1",
    "view": {
     "kind": "pair",
-    "t": "揭曉：先看句子缺不缺主要動詞",
+    "t": "揭曉：先找主詞的核心",
     "xs": true,
     "lines": [
      {
       "n": "①",
-      "s": "The new system ______ customer data in the cloud.",
-      "fill": "stores",
-      "zh": "新系統把客戶資料存在雲端。"
+      "s": "The [manager] [of the regional offices] ______ all expense reports.",
+      "fill": "processes",
+      "zh": "區域辦公室的經理負責處理所有費用報告。"
      },
      {
       "n": "②",
-      "s": "The new system will ______ customer data in the cloud."
+      "s": "The manager of the regional offices will ______ all expense reports."
      }
+    ],
+    "dim": [
+     "of the regional offices"
     ],
     "ring": [
      {
+      "w": "manager",
+      "label": "主詞（單數）",
+      "c": "blue"
+     },
+     {
       "w": "blank1",
-      "label": "主要動詞",
       "c": "ok"
      }
     ],
     "ban": {
-     "t": "① 句子缺主要動詞，主詞單數 → stores",
-     "c": "ok"
+     "t": "① 淡化 of the regional offices → The manager processes",
+     "c": "blue"
     }
    },
    "say": [
     [
      "zh",
-     "第一句選 B，"
+     "第一句，離空格最近的是"
     ],
     [
      "en",
-     "stores."
+     "offices."
     ],
     [
      "zh",
-     "主詞"
+     "先把"
     ],
     [
      "en",
-     "the new system"
+     "of the regional offices"
     ],
     [
      "zh",
-     "後面直接是空格，再來是受詞"
+     "淡化，剩下"
     ],
     [
      "en",
-     "customer data."
+     "The manager."
     ],
     [
      "zh",
-     "句子還沒有主要動詞，所以空格要填動詞；主詞是單數，用"
+     "主詞的核心是單數"
     ],
     [
      "en",
-     "stores."
+     "manager"
+    ],
+    [
+     "zh",
+     "，所以選"
+    ],
+    [
+     "en",
+     "processes."
     ],
     [
      "zh",
@@ -150,7 +204,7 @@
     ],
     [
      "en",
-     "The new system stores customer data in the cloud."
+     "The manager of the regional offices processes all expense reports."
     ]
    ],
    "hold": 1.55
@@ -159,21 +213,24 @@
    "id": "r2",
    "view": {
     "kind": "pair",
-    "t": "揭曉：先看句子缺不缺主要動詞",
+    "t": "揭曉：先找主詞的核心",
     "xs": true,
     "lines": [
      {
       "n": "①",
-      "s": "The new system ______ customer data in the cloud.",
-      "fill": "stores",
-      "zh": "新系統把客戶資料存在雲端。"
+      "s": "The [manager] [of the regional offices] ______ all expense reports.",
+      "fill": "processes",
+      "zh": "區域辦公室的經理負責處理所有費用報告。"
      },
      {
       "n": "②",
-      "s": "The new system [will] ______ customer data in the cloud.",
-      "fill": "store",
-      "zh": "新系統會把客戶資料存在雲端。"
+      "s": "The manager of the regional offices [will] ______ all expense reports.",
+      "fill": "process",
+      "zh": "區域辦公室的經理會處理所有費用報告。"
      }
+    ],
+    "dim": [
+     "of the regional offices"
     ],
     "ring": [
      {
@@ -186,26 +243,34 @@
      }
     ],
     "ban": {
-     "t": "② will 已經在句子裡 → 原形 store，合起來是 will store",
+     "t": "② 空格前有 will → 原形 process，合起來是 will process",
      "c": "blue"
     }
    },
    "say": [
     [
      "zh",
-     "第二句選 A。"
+     "第二句，主詞還是同一個"
     ],
     [
      "en",
-     "Will"
+     "manager."
     ],
     [
      "zh",
-     "已經在句子裡，空格要填原形動詞"
+     "這次空格前有"
     ],
     [
      "en",
-     "store"
+     "will"
+    ],
+    [
+     "zh",
+     "，所以選原形"
+    ],
+    [
+     "en",
+     "process"
     ],
     [
      "zh",
@@ -213,7 +278,7 @@
     ],
     [
      "en",
-     "will store."
+     "will process."
     ],
     [
      "zh",
@@ -221,7 +286,7 @@
     ],
     [
      "en",
-     "The new system will store customer data in the cloud."
+     "The manager of the regional offices will process all expense reports."
     ]
    ],
    "hold": 1.55
@@ -250,7 +315,7 @@
     "rows": [
      [
       "名詞",
-      "storage／guidance"
+      "guidance／notification"
      ],
      [
       "形容詞",
@@ -262,11 +327,11 @@
      ],
      [
       "V-ing（單獨）",
-      "storing → is storing"
+      "processing → is processing"
      ],
      [
       "to＋原形",
-      "to store"
+      "to process"
      ]
     ]
    },
@@ -277,7 +342,7 @@
     ],
     [
      "en",
-     "is storing."
+     "is processing."
     ]
    ],
    "hold": 1.55
