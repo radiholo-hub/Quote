@@ -194,7 +194,7 @@ function render(v,n){
     st.innerHTML=head(v.t)+'<div class="sent serif" style="margin-top:150px">'+v.html+'</div><div class="zh">'+esc(v.zh)+'</div>';return;
   }
   /* sent：句子，選項可有可無 */
-  h=head(v.t)+sentHTML(v.s,v.fill,!v.o&&!v.lv).replace('class="sent serif"','class="sent serif'+(v.lv?' lvup':'')+(v.zh&&!v.lv?' tight':'')+'"');
+  h=head(v.t)+sentHTML(v.s,v.fill,!v.o&&!v.lv).replace('class="sent serif"','class="sent serif'+(v.lv?' lvup':'')+(v.zh&&!v.lv?' tight':'')+(v.fs?'" style="font-size:'+v.fs+'px':'')+'"');
   if(v.zh)h+='<div class="szh'+(v.arrows&&v.arrows.length?' low':'')+(v.lv?' lvz':'')+'">'+esc(v.zh)+'</div>';
   if(v.hook)h+='<div class="hookq">'+esc(v.hook)+'</div>';
   if(v.o){

@@ -1,0 +1,1184 @@
+{
+ "title": "Score Rescue｜詞性小課 第4課（課程內嵌版）",
+ "brand": "Score Rescue｜詞性小課 第4課",
+ "cues": [
+  {
+   "id": "hook1",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "display",
+     "displays",
+     "displaying",
+     "displayed"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The artists ______ their work will give a short talk."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "先看第一句："
+    ],
+    [
+     "en",
+     "The artists blank their work will give a short talk."
+    ],
+    [
+     "zh",
+     "空格要填什麼？"
+    ]
+   ]
+  },
+  {
+   "id": "hook1t",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "display",
+     "displays",
+     "displaying",
+     "displayed"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The artists ______ their work will give a short talk."
+     }
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "hook2",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "display",
+     "displays",
+     "displaying",
+     "displayed"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The artists ______ their work will give a short talk."
+     },
+     {
+      "n": "②",
+      "s": "The paintings ______ at the gallery were created by local artists."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "再看第二句："
+    ],
+    [
+     "en",
+     "The paintings blank at the gallery were created by local artists."
+    ],
+    [
+     "zh",
+     "這一格呢？"
+    ]
+   ]
+  },
+  {
+   "id": "hook2t",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "display",
+     "displays",
+     "displaying",
+     "displayed"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The artists ______ their work will give a short talk."
+     },
+     {
+      "n": "②",
+      "s": "The paintings ______ at the gallery were created by local artists."
+     }
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "r1",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：先找主要動詞",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The artists ______ their work [will give] a short talk."
+     },
+     {
+      "n": "②",
+      "s": "The paintings ______ at the gallery [were created] by local artists."
+     }
+    ],
+    "ring": [
+     {
+      "w": "will give",
+      "c": "blue"
+     },
+     {
+      "w": "were created",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "主要動詞已經有了 → 空格填分詞，修飾前面的名詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "先找主要動詞。第一句是"
+    ],
+    [
+     "en",
+     "will give"
+    ],
+    [
+     "zh",
+     "，第二句是"
+    ],
+    [
+     "en",
+     "were created."
+    ],
+    [
+     "zh",
+     "兩句的空格都要填分詞，修飾前面的名詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "r2",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：名詞做動作，還是承受動作？",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The [artists] ______ their work [will give] a short talk.",
+      "fill": "displaying",
+      "zh": "展示作品的藝術家會做一場簡短的演講。"
+     },
+     {
+      "n": "②",
+      "s": "The [paintings] ______ at the gallery [were created] by local artists.",
+      "fill": "displayed",
+      "zh": "在藝廊展出的畫作是由在地藝術家創作的。"
+     }
+    ],
+    "ring": [
+     {
+      "w": "blank1",
+      "c": "ok"
+     },
+     {
+      "w": "blank2",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "藝術家展示作品 → displaying｜畫作被展示 → displayed",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "第一句是藝術家展示作品，用"
+    ],
+    [
+     "en",
+     "displaying."
+    ],
+    [
+     "zh",
+     "第二句是畫作被展示，用"
+    ],
+    [
+     "en",
+     "displayed."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "open",
+   "view": {
+    "kind": "title",
+    "h": "V-ing 還是 p.p.？",
+    "s": "先問名詞是做動作，還是被做"
+   },
+   "say": [
+    [
+     "zh",
+     "這一課要學會：句子已經有主要動詞時，空格可能是分詞。先問這個名詞，是做動作的一方，還是承受動作的一方。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c1",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "分詞可以修飾名詞",
+    "rows": [
+     [
+      "名詞做動作 → V-ing",
+      "a growing number"
+     ],
+     [
+      "名詞承受動作 → p.p.",
+      "the attached file"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "動詞變成動詞加 ing，或過去分詞，就可以像形容詞一樣修飾名詞，這叫分詞。名詞是做動作的一方，用動詞加 ing，例如"
+    ],
+    [
+     "en",
+     "a growing number"
+    ],
+    [
+     "zh",
+     "；名詞是承受動作的一方，用過去分詞，例如"
+    ],
+    [
+     "en",
+     "the attached file."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c2",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "名詞前、名詞後都可能",
+    "rows": [
+     [
+      "名詞前",
+      "the adjusted schedule"
+     ],
+     [
+      "名詞後",
+      "visitors touring the factory"
+     ],
+     [
+      "名詞後",
+      "the documents attached to this email"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "單獨一個分詞，通常放在名詞前面，例如"
+    ],
+    [
+     "en",
+     "the adjusted schedule."
+    ],
+    [
+     "zh",
+     "分詞後面還有受詞或片語，就放在名詞後面，例如"
+    ],
+    [
+     "en",
+     "visitors touring the factory"
+    ],
+    [
+     "zh",
+     "，和"
+    ],
+    [
+     "en",
+     "the documents attached to this email."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c3",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "先找主要動詞：已經有了嗎？",
+     "找空格修飾的名詞",
+     "名詞做動作 → V-ing；承受動作 → p.p."
+    ],
+    "show": 1,
+    "note": "還沒有主要動詞 → 空格是主要動詞（第 3 課）"
+   },
+   "say": [
+    [
+     "zh",
+     "判斷三步驟。第一步，先找主要動詞。如果句子還沒有主要動詞，空格就是主要動詞，用第三課的方法判斷。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c4",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "先找主要動詞：已經有了嗎？",
+     "找空格修飾的名詞",
+     "名詞做動作 → V-ing；承受動作 → p.p."
+    ],
+    "show": 2
+   },
+   "say": [
+    [
+     "zh",
+     "第二步，找空格修飾的是哪一個名詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c5",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "先找主要動詞：已經有了嗎？",
+     "找空格修飾的名詞",
+     "名詞做動作 → V-ing；承受動作 → p.p."
+    ],
+    "show": 3,
+    "note": "輔助線索：後面有直接受詞、有 by＋做動作的人｜最後用句意確認"
+   },
+   "say": [
+    [
+     "zh",
+     "第三步，問這個名詞和動作的關係：做動作的一方用動詞加 ing，承受動作的一方用過去分詞。後面有直接受詞，或有"
+    ],
+    [
+     "en",
+     "by"
+    ],
+    [
+     "zh",
+     "加做動作的人，可以當輔助線索，但最後還是要用句意確認。好，我們來實際做做看。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1q",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　名詞前・承受動作",
+    "s": "Please [check] the ______ [schedule]|on the company website.",
+    "o": [
+     "adjust",
+     "adjusts",
+     "adjusting",
+     "adjusted"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第一題。先自己想一下，空格要填什麼。"
+    ]
+   ]
+  },
+  {
+   "id": "d1t",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　名詞前・承受動作",
+    "s": "Please [check] the ______ [schedule]|on the company website.",
+    "o": [
+     "adjust",
+     "adjusts",
+     "adjusting",
+     "adjusted"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d1a",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　名詞前・承受動作",
+    "s": "Please [check] the ______ [schedule]|on the company website.",
+    "o": [
+     "adjust",
+     "adjusts",
+     "adjusting",
+     "adjusted"
+    ],
+    "ring": [
+     {
+      "w": "check",
+      "c": "blue"
+     },
+     {
+      "w": "schedule",
+      "label": "修飾的名詞",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "主要動詞 check｜時程表是被調整的一方 → p.p.",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "主要動詞是"
+    ],
+    [
+     "en",
+     "check"
+    ],
+    [
+     "zh",
+     "，空格不是動詞。空格修飾"
+    ],
+    [
+     "en",
+     "schedule"
+    ],
+    [
+     "zh",
+     "，時程表是被調整的一方。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1r",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　名詞前・承受動作",
+    "s": "Please [check] the ______ [schedule]|on the company website.",
+    "o": [
+     "adjust",
+     "adjusts",
+     "adjusting",
+     "adjusted"
+    ],
+    "ans": 3,
+    "zh": "請到公司網站查看調整後的時程表。",
+    "otag": {
+     "0": "原形",
+     "1": "加 s",
+     "2": "V-ing",
+     "3": "p.p."
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 D，"
+    ],
+    [
+     "en",
+     "adjusted"
+    ],
+    [
+     "zh",
+     "，調整後的。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1x",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　名詞前・承受動作",
+    "s": "Please [check] the ______ [schedule]|on the company website.",
+    "o": [
+     "adjust",
+     "adjusts",
+     "adjusting",
+     "adjusted"
+    ],
+    "ans": 3,
+    "trap": 2,
+    "zh": "請到公司網站查看調整後的時程表。",
+    "otag": {
+     "0": "原形",
+     "1": "加 s",
+     "2": "V-ing",
+     "3": "p.p."
+    },
+    "ban": {
+     "t": "adjusting：時程表不會去調整別的東西",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Adjusting"
+    ],
+    [
+     "zh",
+     "是陷阱，時程表不會去調整別的東西。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1f",
+   "view": {
+    "kind": "full",
+    "t": "示範1　名詞前・承受動作",
+    "html": "Please check the <span class=\"blank fill\">adjusted</span> schedule on the company website.",
+    "zh": "請到公司網站查看調整後的時程表。"
+   },
+   "say": [
+    [
+     "en",
+     "Please check the adjusted schedule on the company website."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2q",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　名詞前・做動作",
+    "s": "The city [is building] more parking spaces|because of the ______ [number] of visitors.",
+    "o": [
+     "grow",
+     "growing",
+     "grown",
+     "grows"
+    ],
+    "fs": 72
+   },
+   "say": [
+    [
+     "zh",
+     "第二題，一樣先想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d2t",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　名詞前・做動作",
+    "s": "The city [is building] more parking spaces|because of the ______ [number] of visitors.",
+    "o": [
+     "grow",
+     "growing",
+     "grown",
+     "grows"
+    ],
+    "fs": 72
+   },
+   "pause": 5
+  },
+  {
+   "id": "d2a",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　名詞前・做動作",
+    "s": "The city [is building] more parking spaces|because of the ______ [number] of visitors.",
+    "o": [
+     "grow",
+     "growing",
+     "grown",
+     "grows"
+    ],
+    "fs": 72,
+    "ring": [
+     {
+      "w": "is building",
+      "c": "blue"
+     },
+     {
+      "w": "number",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "主要動詞 is building｜修飾 number：人數自己在增加 → V-ing",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "主要動詞是"
+    ],
+    [
+     "en",
+     "is building."
+    ],
+    [
+     "zh",
+     "空格修飾"
+    ],
+    [
+     "en",
+     "number"
+    ],
+    [
+     "zh",
+     "，遊客人數是自己在增加，是做動作的一方。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2r",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　名詞前・做動作",
+    "s": "The city [is building] more parking spaces|because of the ______ [number] of visitors.",
+    "o": [
+     "grow",
+     "growing",
+     "grown",
+     "grows"
+    ],
+    "fs": 72,
+    "ans": 1,
+    "zh": "因為遊客人數不斷增加，市政府正在增建停車位。",
+    "otag": {
+     "0": "原形",
+     "1": "V-ing",
+     "2": "p.p.｜成熟的",
+     "3": "加 s"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 B，"
+    ],
+    [
+     "en",
+     "growing"
+    ],
+    [
+     "zh",
+     "，不斷增加的。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2x",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　名詞前・做動作",
+    "s": "The city [is building] more parking spaces|because of the ______ [number] of visitors.",
+    "o": [
+     "grow",
+     "growing",
+     "grown",
+     "grows"
+    ],
+    "fs": 72,
+    "ans": 1,
+    "trap": 2,
+    "zh": "因為遊客人數不斷增加，市政府正在增建停車位。",
+    "otag": {
+     "0": "原形",
+     "1": "V-ing",
+     "2": "p.p.｜成熟的",
+     "3": "加 s"
+    },
+    "ban": {
+     "t": "grown 當形容詞是「長大的、成熟的」",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Grown"
+    ],
+    [
+     "zh",
+     "當形容詞是長大的、成熟的，意思不對。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2f",
+   "view": {
+    "kind": "full",
+    "t": "示範2　名詞前・做動作",
+    "html": "The city is building more parking spaces because of the <span class=\"blank fill\">growing</span> number of visitors.",
+    "zh": "因為遊客人數不斷增加，市政府正在增建停車位。"
+   },
+   "say": [
+    [
+     "en",
+     "The city is building more parking spaces because of the growing number of visitors."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3q",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　名詞後・做動作",
+    "s": "[Visitors] ______ the factory|[must wear] safety glasses.",
+    "o": [
+     "tour",
+     "tours",
+     "touring",
+     "toured"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第三題。想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d3t",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　名詞後・做動作",
+    "s": "[Visitors] ______ the factory|[must wear] safety glasses.",
+    "o": [
+     "tour",
+     "tours",
+     "touring",
+     "toured"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d3a",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　名詞後・做動作",
+    "s": "[Visitors] ______ the factory|[must wear] safety glasses.",
+    "o": [
+     "tour",
+     "tours",
+     "touring",
+     "toured"
+    ],
+    "ring": [
+     {
+      "w": "must wear",
+      "c": "blue"
+     },
+     {
+      "w": "Visitors",
+      "label": "修飾的名詞",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "主要動詞 must wear｜訪客是參觀的一方 → V-ing",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "主要動詞是"
+    ],
+    [
+     "en",
+     "must wear."
+    ],
+    [
+     "zh",
+     "空格這一段在修飾"
+    ],
+    [
+     "en",
+     "visitors"
+    ],
+    [
+     "zh",
+     "。訪客是參觀的一方，參觀的對象是"
+    ],
+    [
+     "en",
+     "the factory."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3r",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　名詞後・做動作",
+    "s": "[Visitors] ______ the factory|[must wear] safety glasses.",
+    "o": [
+     "tour",
+     "tours",
+     "touring",
+     "toured"
+    ],
+    "ans": 2,
+    "zh": "參觀工廠的訪客必須戴護目鏡。",
+    "otag": {
+     "0": "原形",
+     "1": "加 s",
+     "2": "V-ing",
+     "3": "過去式／p.p."
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 C，"
+    ],
+    [
+     "en",
+     "touring."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3x",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　名詞後・做動作",
+    "s": "[Visitors] ______ the factory|[must wear] safety glasses.",
+    "o": [
+     "tour",
+     "tours",
+     "touring",
+     "toured"
+    ],
+    "ans": 2,
+    "trap": 3,
+    "zh": "參觀工廠的訪客必須戴護目鏡。",
+    "otag": {
+     "0": "原形",
+     "1": "加 s",
+     "2": "V-ing",
+     "3": "過去式／p.p."
+    },
+    "ban": {
+     "t": "toured：當過去式會多一個主要動詞；當 p.p. 是「被參觀的訪客」",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Toured"
+    ],
+    [
+     "zh",
+     "是陷阱。當過去式，句子會有兩個主要動詞；當過去分詞，是被參觀的訪客，意思不通。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3f",
+   "view": {
+    "kind": "full",
+    "t": "示範3　名詞後・做動作",
+    "html": "Visitors <span class=\"blank fill\">touring</span> the factory must wear safety glasses.",
+    "zh": "參觀工廠的訪客必須戴護目鏡。"
+   },
+   "say": [
+    [
+     "en",
+     "Visitors touring the factory must wear safety glasses."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4q",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　名詞後・承受動作",
+    "s": "The [documents] ______ to this email|[contain] next year's budget.",
+    "o": [
+     "attached",
+     "attach",
+     "attaching",
+     "attaches"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後一題。這句的主要動詞在哪裡？"
+    ]
+   ]
+  },
+  {
+   "id": "d4t",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　名詞後・承受動作",
+    "s": "The [documents] ______ to this email|[contain] next year's budget.",
+    "o": [
+     "attached",
+     "attach",
+     "attaching",
+     "attaches"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d4a",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　名詞後・承受動作",
+    "s": "The [documents] ______ to this email|[contain] next year's budget.",
+    "o": [
+     "attached",
+     "attach",
+     "attaching",
+     "attaches"
+    ],
+    "ring": [
+     {
+      "w": "contain",
+      "c": "blue"
+     },
+     {
+      "w": "documents",
+      "label": "修飾的名詞",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "主要動詞 contain｜文件是被附上的一方 → p.p.",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "主要動詞是"
+    ],
+    [
+     "en",
+     "contain."
+    ],
+    [
+     "zh",
+     "空格這一段在修飾"
+    ],
+    [
+     "en",
+     "documents"
+    ],
+    [
+     "zh",
+     "，文件是被附上的一方。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4r",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　名詞後・承受動作",
+    "s": "The [documents] ______ to this email|[contain] next year's budget.",
+    "o": [
+     "attached",
+     "attach",
+     "attaching",
+     "attaches"
+    ],
+    "ans": 0,
+    "zh": "這封電子郵件附上的文件包含明年的預算。",
+    "otag": {
+     "0": "p.p.",
+     "1": "原形",
+     "2": "V-ing",
+     "3": "加 s"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 A，"
+    ],
+    [
+     "en",
+     "attached"
+    ],
+    [
+     "zh",
+     "，附上的。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4x",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　名詞後・承受動作",
+    "s": "The [documents] ______ to this email|[contain] next year's budget.",
+    "o": [
+     "attached",
+     "attach",
+     "attaching",
+     "attaches"
+    ],
+    "ans": 0,
+    "trap": 2,
+    "zh": "這封電子郵件附上的文件包含明年的預算。",
+    "otag": {
+     "0": "p.p.",
+     "1": "原形",
+     "2": "V-ing",
+     "3": "加 s"
+    },
+    "ban": {
+     "t": "attaching：文件不會去附加別的東西",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Attaching"
+    ],
+    [
+     "zh",
+     "是陷阱，文件不會去附加別的東西。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4f",
+   "view": {
+    "kind": "full",
+    "t": "示範4　名詞後・承受動作",
+    "html": "The documents <span class=\"blank fill\">attached</span> to this email contain next year's budget.",
+    "zh": "這封電子郵件附上的文件包含明年的預算。"
+   },
+   "say": [
+    [
+     "en",
+     "The documents attached to this email contain next year's budget."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "e1",
+   "view": {
+    "kind": "sum",
+    "t": "本課整理",
+    "h": "先問名詞是做動作，還是被做",
+    "rows": [
+     [
+      "還沒有主要動詞",
+      "填主要動詞（第 3 課）"
+     ],
+     [
+      "名詞做動作",
+      "V-ing"
+     ],
+     [
+      "名詞承受動作",
+      "p.p."
+     ],
+     [
+      "直接受詞、by＋人",
+      "只當輔助線索"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後整理一下。先找主要動詞，還沒有的話，空格就是主要動詞。已經有的話，空格是分詞：名詞做動作用動詞加 ing，承受動作用過去分詞。直接受詞和"
+    ],
+    [
+     "en",
+     "by"
+    ],
+    [
+     "zh",
+     "只是輔助線索，最後要用句意確認。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "e2",
+   "view": {
+    "kind": "cta",
+    "q": [
+     "看完了？",
+     "往下做 10 題練習，",
+     "再用 4 題確認你會不會判斷。"
+    ],
+    "down": true
+   },
+   "say": [
+    [
+     "zh",
+     "看完了？往下做 10 題練習，再用 4 題確認你會不會判斷。"
+    ]
+   ],
+   "hold": 3.0
+  }
+ ]
+}
