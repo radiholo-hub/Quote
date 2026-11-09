@@ -17,21 +17,21 @@
  {
   "scene": "n",
   "start": 11.3,
-  "sec": 7.31
+  "sec": 5.33
  },
  {
   "scene": "r",
-  "start": 18.61,
-  "sec": 13.57
+  "start": 16.64,
+  "sec": 10.06
  },
  {
   "scene": "w",
-  "start": 32.19,
-  "sec": 8.38
+  "start": 26.69,
+  "sec": 4.73
  },
  {
   "scene": "end",
-  "start": 40.57,
+  "start": 31.42,
   "sec": 6.01
  }
 ]
