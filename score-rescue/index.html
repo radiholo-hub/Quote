@@ -2782,7 +2782,7 @@ document.addEventListener('keydown',e=>{
 load();refreshHome();show('home');initCloud();
 $('#posCardBtn').addEventListener('click',function(e){
   if(e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;   // 開新分頁時不攔
-  e.preventDefault();const href=this.getAttribute('href');let went=false;
+  e.preventDefault();const href=this.getAttribute('href')+(EV_DEBUG?'?debug=1':'');let went=false;   // 預覽：debug 帶到前測頁，那邊也不送事件
   const go=function(){if(!went){went=true;location.href=href}};
   logEvent('pos_home_card_click').then(go);setTimeout(go,900);
 });
