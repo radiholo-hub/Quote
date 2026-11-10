@@ -77,16 +77,16 @@
 2. **所有詞條(status: draft)**:中文解釋、搭配詞、原創例句、同義/反義與相似字辨析,都是 AI 撰寫的草稿。
 3. **10 題詳解與 20 題延伸練習**:全部待審核。審核表:`python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾>`(含引用的詞條一併審核)。
 4. **語音**:機器檢查只驗證了檔案有效、時長合理、音量正常。負責人已初步試聽部分音檔,沒有明顯問題,但**尚未全面驗收**,187 個檔不會因此全部標為已通過;沒有逐段標記的仍是「待審核」(見 AUDIO_PRODUCTION.md)。
-5. **語音服務授權**:現行產生方式在沒有設定 `AZURE_SPEECH_KEY` 時會退回**非官方的 edge-tts(僅限試用)**,這批音檔就是用它產生的。要當作付費產品,請設定 Azure AI Speech 的金鑰重新產生(同一份清單、同一個命名規則,刪掉 `gsat/audio` 重跑即可)。
+5. **語音服務授權**:目前 187 個音檔是用**非官方的 edge-tts(僅限試用)**產生的,來源紀錄標為非官方,**部署時不會被包含**。`tools/make_gsat_audio.py` 已改成只使用官方 Azure AI Speech(沒有金鑰就停止,不退回 edge-tts),並須用 `--tier free-test`(F0,開發試聽,不可正式部署)或 `--tier paid`(S0,正式版)指定層級;詳見 `AUDIO_PRODUCTION.md`。
 6. **歷屆試題與出現索引的使用權利**仍待確認。公開部署預設不含 `gsat/exam/`(包含 `vocab_index.js`);單字頁、發音、延伸練習等原創內容不受影響。
 
 ## 5. 語音架構
 
-- **沿用既有做法**:檔名 = `sr_hash(文字).mp3`(與 `tools/make_score_rescue_audio.py` 同一個函式,測試比對網頁端與清單的雜湊完全相同);聲音 en-US-AriaNeural;Azure 優先、edge-tts 僅供試用;播放用 `new Audio('audio/<雜湊>.mp3')`,找不到檔案才退回裝置語音(並在畫面上說明)。
+- **沿用既有做法**:檔名 = `sr_hash(文字).mp3`(與 `tools/make_score_rescue_audio.py` 同一個函式,測試比對網頁端與清單的雜湊完全相同);聲音 en-US-AriaNeural;只用官方 Azure AI Speech(舊的 edge-tts 檔不部署);播放用 `new Audio('audio/<雜湊>.mp3')`,找不到檔案才退回裝置語音(並在畫面上說明)。
 - **慢速版**:雜湊文字為 `"slow\n" + 文字`,語速 −35%(正常 −8%)。
 - **播放規則**:同時只播一段;再按同一個喇叭就停止;文章朗讀有播放/暫停/繼續/重新播放與正常/慢速;**作答畫面沒有朗讀,正式模擬考進行中(截止時間前)任何朗讀都被擋下**。
 - **文章朗讀只提供原創文章**:歷屆試題的文章朗讀,等使用權利確認後才開放(音檔清單不含任何試題文字,測試會檢查)。
-- **音檔怎麼產生**:`tools/build_gsat_audio_manifest.py` → `gsat/data/audio_manifest.js`;`tools/make_gsat_audio.py` → `gsat/audio/`。PR 分支上由 `.github/workflows/gsat-audio-preview.yml` 在 CI 產生並提交(產生階段只有唯讀權限;提交階段只接受 `gsat/audio/<雜湊>.mp3`,檔名、大小、數量、檔頭都檢查)。
+- **音檔怎麼產生**:`tools/build_gsat_audio_manifest.py` → `gsat/data/audio_manifest.js`;`tools/make_gsat_audio.py` → `gsat/audio/`。`.github/workflows/gsat-audio-preview.yml` 現在只能手動啟動(可選 force),需要 Azure secrets,沒有就直接失敗;產生階段只有唯讀權限;提交階段只接受 `gsat/audio/<雜湊>.mp3`、`docs/gsat/audio-provenance.json` 與 `docs/gsat/signoffs/*.json`。
 - **合併後**:請把 `gsat/audio` 併入既有的 `Generate audio` 流程(需修改 `audio.yml` 的 paths 與步驟、`tools/audio_changes.sh` / `publish_audio_pr.sh` 的允許路徑、`tools/check_audio_complete.py`)。**這次沒有動 Score Rescue 既有的音檔流程。**
 
 ## 6. 免費/付費權限

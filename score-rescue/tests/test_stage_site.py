@@ -27,6 +27,9 @@ def repo(tmp_path):
         (r / f).write_text('x ' + f)
     (r / 'tools').mkdir(exist_ok=True)
     shutil.copy(SCRIPT, r / 'tools' / 'stage_site.sh')
+    shutil.copy(SCRIPT.parent / 'gsat_audio_provenance.py', r / 'tools' / 'gsat_audio_provenance.py')
+    (r / 'docs' / 'gsat').mkdir(parents=True)
+    (r / 'docs' / 'gsat' / 'audio-provenance.json').write_text('{"schema":1,"productionEngines":["azure-paid"],"files":{}}')
     return r
 
 
@@ -85,7 +88,7 @@ def stage_gsat(repo, publish):
 def test_gsat_default_does_not_publish_exam_content(repo):
     """歷屆試題的著作權授權未確認：預設部署只有空殼，不含試題、答案、圖片與詳解，也不含測試檔。"""
     g = stage_gsat(repo, publish=False)
-    assert files_under(g) == ['app.js', 'audio/abc.mp3', 'data/mock.js', 'exam/answers.js', 'exam/exams.js', 'exam/explain.js', 'exam/mixed.js', 'exam/nonmc.js', 'exam/vocab_index.js', 'index.html']
+    assert files_under(g) == ['app.js', 'data/mock.js', 'exam/answers.js', 'exam/exams.js', 'exam/explain.js', 'exam/mixed.js', 'exam/nonmc.js', 'exam/vocab_index.js', 'index.html']
     assert (g / 'exam' / 'exams.js').read_text() == 'window.EXAMS=[];\n'
     assert (g / 'exam' / 'answers.js').read_text() == 'window.ANSWERS={};\n'
     assert (g / 'exam' / 'nonmc.js').read_text() == 'window.NONMC={};\n'
@@ -94,11 +97,18 @@ def test_gsat_default_does_not_publish_exam_content(repo):
     assert (g / 'exam' / 'vocab_index.js').read_text() == 'window.VOCAB_INDEX=null;\n'
 
 
-def test_gsat_publishes_exam_content_only_when_explicitly_enabled(repo):
-    g = stage_gsat(repo, publish=True)
-    assert (g / 'exam' / 'exams.js').read_text() == 'x gsat/exam/exams.js'
-    assert (g / 'exam' / 'img' / 'a.jpg').exists() and (g / 'exam' / 'img' / 'ns' / 'b.jpg').exists()
-    assert not (g / 'tests').exists()        # 測試檔不論如何都不部署
+def test_gsat_publish_flag_is_refused(repo):
+    """權利不明素材不公開：GSAT_PUBLISH_EXAMS=1 不再能把 gsat/exam/ 放進公開網站，整理直接失敗且不留輸出。"""
+    env = {k: v for k, v in os.environ.items() if not k.startswith(('CF_PAGES', 'GSAT_'))}
+    env['GSAT_PUBLISH_EXAMS'] = '1'
+    p = subprocess.run(['bash', 'tools/stage_site.sh', '_site'], cwd=repo, env=env, capture_output=True, text=True)
+    assert p.returncode != 0 and not (repo / '_site').exists()
+
+
+def test_gsat_audio_without_official_provenance_is_not_deployed(repo):
+    g = stage_gsat(repo, publish=False)
+    assert not (g / 'audio' / 'abc.mp3').exists()                         # 沒有來源紀錄的 mp3 不部署
+    assert (repo / '_site' / 'audio' / '001.mp3').exists() and (repo / '_site' / 'score-rescue' / 'audio' / 'ab.mp3').exists()        # 多益與每日佳句的音檔不受影響
 
 
 def test_refuses_existing_output(repo):

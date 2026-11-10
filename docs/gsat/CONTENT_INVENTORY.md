@@ -18,7 +18,7 @@
 | `original-audio` | 原創內容（單字、搭配詞、原創例句、原創文章）的語音 mp3 | 原創 | 187 | 5738 KB |
 | `original` | 原創內容（原創題、原創寫作練習、程式與設定） | 原創 | 15 | 214 KB |
 
-**權利未確認的檔案共 58 個、5.7 MB，全部位於 `gsat/exam/`。** 部署時預設不發布（`tools/stage_site.sh`，需 `GSAT_PUBLISH_EXAMS=1` 才會包含）。
+**權利未確認的檔案共 58 個、5.7 MB，全部位於 `gsat/exam/`。** 部署時一律不發布（`tools/stage_site.sh` 只放空殼；`GSAT_PUBLISH_EXAMS` 已停用，設定會讓整理失敗）。
 
 ## 依學年度（來自大考中心的圖片檔）
 

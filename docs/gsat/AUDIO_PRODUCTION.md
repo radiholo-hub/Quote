@@ -2,7 +2,22 @@
 
 最後更新：第一階段教學品質驗收後。
 
-> **狀態:部分已人工試聽(負責人初步聽過部分音檔,沒有明顯問題),尚未全面驗收。** 187 個音檔**不會**因此標為「已通過」:沒有逐段的人工標記就仍是「待審核」;目前沒有問題的音檔**不重新製作**。暫不購買 Azure 付費服務;edge-tts 產生的檔案只供試聽與內部審核,不可作為正式商用語音。
+> **2026-11 保守發布方案(最新,優先於下方舊敘述):** 音檔來源分三類,記在 `docs/gsat/audio-provenance.json`:
+> | 來源 | tier | 用途 | 正式部署 |
+> |---|---|---|---|
+> | `azure-paid` | S0 付費 | 正式版 | ✅ 唯一會被 `tools/stage_site.sh` 保留的來源 |
+> | `azure-free-test` | F0 免費 | 開發、本機試聽、音質檢查(`usage: development-test-only`、`productionApproved: false`) | ❌ 一律移除,不是 production-approved |
+> | `edge-tts` | 非官方 | 舊檔(repository 目前的 187 個都是這個,只作歷史保留) | ❌ |
+>
+> `tools/make_gsat_audio.py` 只用官方 Azure AI Speech,**必須用 `--tier free-test` 或 `--tier paid` 說明金鑰層級(不預設)**;沒有金鑰就停止,不退回 edge-tts,重試不改語速。F0 有速率限制:預設每次請求間隔 3.5 秒,遇 429／503 依 Retry-After 等待後以相同設定重試。F0 每月 50 萬字元,全部 187 段約 9,658 字元(約 1.9%)。
+> 流程:`AZURE_SPEECH_KEY`／`AZURE_SPEECH_REGION` → `python3 tools/make_gsat_audio.py --tier free-test --force`(開發試聽) → 日後正式發布前 `--tier paid --force` → `python3 tools/gsat_audio_provenance.py check --require-production` → `python3 tools/verify_gsat_audio.py`。本機預覽整個網站(含 F0 音檔)可設 `GSAT_ALLOW_NONPRODUCTION_AUDIO=1`;在 CI／Cloudflare 設它會直接失敗。
+> **目前 repository 的實際狀態(公開版):**
+> - `gsat/audio/` 裡的 187 個 mp3 仍是**舊的 edge-tts 檔**(`e5b1840` 起就在公開歷史裡)。來源紀錄 `docs/gsat/audio-provenance.json` 如實登記為 `edge-tts`／`unofficial-not-deployable`／`productionApproved: false`(baseline-edge-tts)。它們只作既有歷史與開發用檔案,**正式部署一律排除**;即使檔案雜湊與舊簽核紀錄相同,也不會讓正式試聽簽核成立。
+> - **Azure F0 驗證音檔沒有放入公開 repository。** 187 個 Azure Speech F0 開發測試音檔(en-US-AriaNeural,`azure-free-test`,`productionApproved: false`)只保存在不推送的本機快照分支與 repo 外備份;教師已於 2026-11-10 完成 Q1 的 17 個 F0 音檔人工音質檢查(發音、語速、停頓、音質皆無問題),結果只留在 `docs/gsat/signoffs/115-1.json` 的 `audio.devTestChecks`(`filesInRepository: false`,記錄當時 17 個檔案的 SHA-256)。這是審核歷史,**不是 production 簽核**。
+> - **production 最終必須使用 `azure-paid`(付費層 S0)**:用 `--tier paid --force` 重產 → 提交 `gsat/audio/*.mp3` 與來源紀錄 → 教師重新聆聽並以 `approve-audio --confirm-listened` 正式簽核。文字簽核不需重做。
+> - **來源防護(程式與測試把關):** (1) 部署只保留 `azure-paid` 且雜湊相符的 mp3;(2) `audio.status: passed` 的每個音檔都必須存在、來源為 `azure-paid`、`productionApproved: true`、且 SHA-256 與簽核紀錄相符,edge-tts／azure-free-test／development-test-only 一律不成立;(3) 公開版檢查(`python3 tools/gsat_audio_provenance.py check-public`,測試 `gsat/tests/test_public_tree.py`):Git 追蹤的檔案不得是 F0 開發測試音檔,來源紀錄不得把現行檔案登記為 `azure-free-test`(簽核裡的 `devTestChecks` 歷史不算);(4) CI `GSAT audio` 流程:`free-test` 只上傳 artifact,**不 commit、不 push**,只有 `paid` 才會提交。
+>
+> (以下為舊狀態)**狀態:部分已人工試聽(負責人初步聽過部分音檔,沒有明顯問題),尚未全面驗收。** 187 個音檔**不會**因此標為「已通過」:沒有逐段的人工標記就仍是「待審核」;目前沒有問題的音檔**不重新製作**。暫不購買 Azure 付費服務;edge-tts 產生的檔案只供試聽與內部審核,不可作為正式商用語音。
 > 縮寫朗讀:`sb.` 唸 somebody、`sth.` 唸 something(清單的 `speak` 欄位;畫面文字不變)。
 
 ## 1. 現有音檔是怎麼產生的

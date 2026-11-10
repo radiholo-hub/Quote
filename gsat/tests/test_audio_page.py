@@ -31,7 +31,7 @@ def test_page_has_all_sections_and_marks_everything_unreviewed(make_page, page_f
     for k in ('單字發音', '衍生字發音', '片語與搭配詞', '完整例句', '文章・正常速度', '文章・慢速'):
         assert any(k in h for h in heads), k
     assert pg.locator('.row').count() == 187 and pg.locator('.fam').count() >= 9
-    assert '部分已由人工試聽' in pg.locator('.banner').inner_text() and '尚未全面驗收' in pg.locator('.banner').inner_text()
+    assert '尚未全面驗收' in pg.locator('.banner').inner_text()
     assert pg.locator('input[type=radio][value=待審核]:checked').count() == 187     # 預設全是待審核
     assert not pg.evaluate('document.documentElement.scrollWidth > innerWidth')
 
@@ -77,3 +77,23 @@ def test_ios_safari_engine_plays_blob_audio_one_at_a_time(make_ios_page, page_fi
     assert pg.evaluate("window.__log.some(x => x.startsWith('play:blob'))")
     pg.evaluate("() => document.querySelector('#stopall').click()")
     assert pg.evaluate('window.__playing.size') == 0 and not pg.errors
+
+
+def test_q1_page_lists_only_the_17_distinct_f0_files_and_never_writes_a_signoff(tmp_path):
+    """Q1 試聽頁：只有該題的 17 個不同 mp3、標示 Azure F0 development-test；只在來源全為 dev-test 時才產生；不改任何簽核或來源紀錄。"""
+    from conftest import exam_present
+    if not exam_present():
+        pytest.skip('沒有歷屆試題內容（公開版本庫的乾淨分支）')
+    signoff = ROOT.parent / 'docs' / 'gsat' / 'signoffs' / '115-1.json'
+    prov = ROOT.parent / 'docs' / 'gsat' / 'audio-provenance.json'
+    before = (signoff.read_bytes(), prov.read_bytes())
+    out = tmp_path / 'q1.html'
+    r = subprocess.run([sys.executable, str(TOOL), '--out', str(out), '--embed', '--q', '115-1'], capture_output=True, text=True)
+    if r.returncode != 0:                                              # 來源不是全為 F0 測試音檔時，工具必須拒絕產生
+        assert 'F0' in r.stdout + r.stderr and not out.exists()
+        return
+    t = out.read_text(encoding='utf8')
+    assert t.count('class="row"') == 17 and 'Azure Speech F0 · development-test audio' in t
+    assert 'production-approved' in t and '不會寫入教師簽核紀錄' in t
+    assert 'http://' not in t.replace('http://www.w3.org', '') and 'https://' not in t
+    assert (signoff.read_bytes(), prov.read_bytes()) == before        # 產生頁面不會改動簽核或來源紀錄
