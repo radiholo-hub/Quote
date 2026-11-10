@@ -20,6 +20,7 @@ on:
       - 'tools/gsat_signoff.py'
       - 'tools/gsat_audio_provenance.py'
       - 'tools/make_gsat_audio.py'
+      - '.github/workflows/gsat-audio-preview.yml'
       - 'tools/gsat_backup.py'
       - 'tools/gsat_audio_test_page.py'
       - 'tools/build_gsat_audio_manifest.py'
@@ -52,6 +53,7 @@ jobs:
             tools/gsat_signoff.py
             tools/gsat_audio_provenance.py
             tools/make_gsat_audio.py
+            .github/workflows/gsat-audio-preview.yml
             tools/gsat_audio_test_page.py
             tools/build_gsat_audio_manifest.py
             tools/make_score_rescue_audio.py
