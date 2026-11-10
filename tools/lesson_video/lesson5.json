@@ -1,0 +1,1446 @@
+{
+ "title": "Score Rescue｜詞性小課 第5課（課程內嵌版）",
+ "brand": "Score Rescue｜詞性小課 第5課",
+ "cues": [
+  {
+   "id": "hook1",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "replace",
+     "to replace",
+     "replacing",
+     "replaced"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The company decided ______ its aging equipment."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "先看第一句："
+    ],
+    [
+     "en",
+     "The company decided blank its aging equipment."
+    ],
+    [
+     "zh",
+     "空格要填什麼？"
+    ]
+   ]
+  },
+  {
+   "id": "hook1t",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "replace",
+     "to replace",
+     "replacing",
+     "replaced"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The company decided ______ its aging equipment."
+     }
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "hook2",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "replace",
+     "to replace",
+     "replacing",
+     "replaced"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The company decided ______ its aging equipment."
+     },
+     {
+      "n": "②",
+      "s": "The company avoided ______ its aging equipment."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "再看第二句："
+    ],
+    [
+     "en",
+     "The company avoided blank its aging equipment."
+    ],
+    [
+     "zh",
+     "這一格呢？"
+    ]
+   ]
+  },
+  {
+   "id": "hook2t",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "replace",
+     "to replace",
+     "replacing",
+     "replaced"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The company decided ______ its aging equipment."
+     },
+     {
+      "n": "②",
+      "s": "The company avoided ______ its aging equipment."
+     }
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "r1",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：看空格前面的動詞",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The company [decided] ______ its aging equipment."
+     },
+     {
+      "n": "②",
+      "s": "The company [avoided] ______ its aging equipment."
+     }
+    ],
+    "ring": [
+     {
+      "w": "decided",
+      "c": "blue"
+     },
+     {
+      "w": "avoided",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "兩句的主要動詞不一樣 → 後面的形式也不一樣",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "兩句的主要動詞不一樣。第一句是"
+    ],
+    [
+     "en",
+     "decided"
+    ],
+    [
+     "zh",
+     "，第二句是"
+    ],
+    [
+     "en",
+     "avoided."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "r2",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：後面的形式，由前面的動詞決定",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The company [decided] ______ its aging equipment.",
+      "fill": "to replace"
+     },
+     {
+      "n": "②",
+      "s": "The company [avoided] ______ its aging equipment.",
+      "fill": "replacing"
+     }
+    ],
+    "ring": [
+     {
+      "w": "blank1",
+      "c": "ok"
+     },
+     {
+      "w": "blank2",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "decide → to V｜avoid → V-ing",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Decide"
+    ],
+    [
+     "zh",
+     "後面接 to 加原形動詞，所以是"
+    ],
+    [
+     "en",
+     "decided to replace."
+    ],
+    [
+     "en",
+     "Avoid"
+    ],
+    [
+     "zh",
+     "後面接動詞加 ing，所以是"
+    ],
+    [
+     "en",
+     "avoided replacing."
+    ],
+    [
+     "zh",
+     "後面的動作要用什麼形式，由前面的動詞決定。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "open",
+   "view": {
+    "kind": "title",
+    "h": "to V 還是 V-ing？",
+    "s": "先看空格前面的搭配"
+   },
+   "say": [
+    [
+     "zh",
+     "這一課要學會：空格前面是動詞、是 to，還是其他介系詞，決定了空格要用 to 加原形，還是動詞加 ing。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c1",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "前面是動詞：記搭配",
+    "rows": [
+     [
+      "to V",
+      "decide・plan・hope・expect・agree・offer・refuse"
+     ],
+     [
+      "V-ing",
+      "avoid・consider・finish・postpone・enjoy・suggest"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第一種，空格前面是動詞，就要記搭配。"
+    ],
+    [
+     "en",
+     "Decide, plan, hope, expect, agree, offer, refuse"
+    ],
+    [
+     "zh",
+     "，後面接 to 加原形。"
+    ],
+    [
+     "en",
+     "Avoid, consider, finish, postpone, enjoy, suggest"
+    ],
+    [
+     "zh",
+     "，後面接動詞加 ing。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c1b",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "幫忙記的方法",
+    "rows": [
+     [
+      "to V",
+      "還沒做、打算去做"
+     ],
+     [
+      "V-ing",
+      "針對這件事本身"
+     ],
+     [
+      "兩種都可以的動詞",
+      "不會出成單選題"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "幫忙記的方法：接 to 加原形的動詞，多半是還沒做、打算去做；接動詞加 ing 的動詞，多半是針對這件事本身。這只是幫忙記，考試時還是以搭配為準。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "hook3",
+   "view": {
+    "kind": "pair",
+    "t": "再一句：題目已經給了 to",
+    "o": [
+     "replace",
+     "to replace",
+     "replacing",
+     "replaced"
+    ],
+    "lines": [
+     {
+      "n": "③",
+      "s": "The company is committed to ______ its aging equipment."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "再看第三句："
+    ],
+    [
+     "en",
+     "The company is committed to blank its aging equipment."
+    ],
+    [
+     "zh",
+     "題目已經給了 to，空格要填什麼？"
+    ]
+   ]
+  },
+  {
+   "id": "hook3t",
+   "view": {
+    "kind": "pair",
+    "t": "再一句：題目已經給了 to",
+    "o": [
+     "replace",
+     "to replace",
+     "replacing",
+     "replaced"
+    ],
+    "lines": [
+     {
+      "n": "③",
+      "s": "The company is committed to ______ its aging equipment."
+     }
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "r3a",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：這個 to 是介系詞",
+    "lines": [
+     {
+      "n": "③",
+      "s": "The company [is committed to] ______ its aging equipment."
+     }
+    ],
+    "ring": [
+     {
+      "w": "is committed to",
+      "c": "red",
+      "label": "介系詞 to"
+     }
+    ],
+    "ban": {
+     "t": "很多人會填原形 replace → 陷阱",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "很多人會直接填原形"
+    ],
+    [
+     "en",
+     "replace."
+    ],
+    [
+     "zh",
+     "但這個 to 不是不定詞的 to，是介系詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "r3b",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：這個 to 是介系詞",
+    "lines": [
+     {
+      "n": "③",
+      "s": "The company [is committed to] ______ its aging equipment.",
+      "fill": "replacing"
+     }
+    ],
+    "ring": [
+     {
+      "w": "is committed to",
+      "c": "blue"
+     },
+     {
+      "w": "blank1",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "介系詞後面接名詞，或 V-ing",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "介系詞後面接名詞，或是動詞加 ing。所以答案是"
+    ],
+    [
+     "en",
+     "replacing."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c2",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "換成名詞測試",
+    "rows": [
+     [
+      "committed to safety ✓",
+      "to 是介系詞 → V-ing"
+     ],
+     [
+      "decided to safety ✗",
+      "to 是不定詞 → 原形"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "怎麼知道是哪一種 to？把空格換成名詞試試看。"
+    ],
+    [
+     "en",
+     "Committed to safety"
+    ],
+    [
+     "zh",
+     "，說得通，to 是介系詞，接動詞加 ing。"
+    ],
+    [
+     "en",
+     "Decided to safety"
+    ],
+    [
+     "zh",
+     "，說不通，to 是不定詞，接原形。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c3",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "常考的介系詞 to",
+    "rows": [
+     [
+      "be committed to",
+      "致力於"
+     ],
+     [
+      "be dedicated to",
+      "致力於"
+     ],
+     [
+      "look forward to",
+      "期待"
+     ],
+     [
+      "contribute to",
+      "有助於"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "常考的介系詞 to 有："
+    ],
+    [
+     "en",
+     "be committed to, be dedicated to, look forward to, contribute to."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "lkq",
+   "view": {
+    "kind": "sent",
+    "t": "再練一次",
+    "s": "We [look forward to] ______ from you.",
+    "o": [
+     "hear",
+     "to hear",
+     "hearing",
+     "heard"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "再練一次。"
+    ],
+    [
+     "en",
+     "We look forward to blank from you."
+    ]
+   ]
+  },
+  {
+   "id": "lkt",
+   "view": {
+    "kind": "sent",
+    "t": "再練一次",
+    "s": "We [look forward to] ______ from you.",
+    "o": [
+     "hear",
+     "to hear",
+     "hearing",
+     "heard"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "lkr",
+   "view": {
+    "kind": "sent",
+    "t": "再練一次",
+    "s": "We [look forward to] ______ from you.",
+    "o": [
+     "hear",
+     "to hear",
+     "hearing",
+     "heard"
+    ],
+    "ans": 2,
+    "zh": "我們期待您的回覆。",
+    "ring": [
+     {
+      "w": "look forward to",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "look forward to your reply ✓ → 介系詞 → hearing",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "換成名詞："
+    ],
+    [
+     "en",
+     "look forward to your reply"
+    ],
+    [
+     "zh",
+     "，說得通，所以是"
+    ],
+    [
+     "en",
+     "hearing."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c4",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "其他介系詞：一律接 V-ing",
+    "rows": [
+     [
+      "before",
+      "before leaving"
+     ],
+     [
+      "by",
+      "by booking online"
+     ],
+     [
+      "without",
+      "without asking"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "其他介系詞，像"
+    ],
+    [
+     "en",
+     "before, by, without"
+    ],
+    [
+     "zh",
+     "，後面要接動作時，一律用動詞加 ing。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "s1",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "看空格前面：動詞？to？其他介系詞？",
+     "前面是動詞 → 想搭配：to V 還是 V-ing",
+     "前面是 to → 換成名詞測試"
+    ],
+    "show": 1
+   },
+   "say": [
+    [
+     "zh",
+     "判斷三步驟。第一步，看空格前面是什麼：是動詞、是 to，還是其他介系詞？"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "s2",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "看空格前面：動詞？to？其他介系詞？",
+     "前面是動詞 → 想搭配：to V 還是 V-ing",
+     "前面是 to → 換成名詞測試"
+    ],
+    "show": 2
+   },
+   "say": [
+    [
+     "zh",
+     "第二步，前面是動詞，就想它的搭配：後面接 to 加原形，還是動詞加 ing？"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "s3",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "看空格前面：動詞？to？其他介系詞？",
+     "前面是動詞 → 想搭配：to V 還是 V-ing",
+     "前面是 to → 換成名詞測試"
+    ],
+    "show": 3,
+    "note": "能接名詞 → V-ing｜不能接名詞 → 原形｜其他介系詞 → V-ing"
+   },
+   "say": [
+    [
+     "zh",
+     "第三步，前面是 to，就換成名詞測試。能接名詞，用動詞加 ing；不能接名詞，用原形。好，我們來實際做做看。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1q",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　動詞＋to V",
+    "s": "The bakery [plans] ______|a second location next spring.",
+    "o": [
+     "open",
+     "to open",
+     "opening",
+     "opened"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第一題。先自己想一下，空格要填什麼。"
+    ]
+   ]
+  },
+  {
+   "id": "d1t",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　動詞＋to V",
+    "s": "The bakery [plans] ______|a second location next spring.",
+    "o": [
+     "open",
+     "to open",
+     "opening",
+     "opened"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d1a",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　動詞＋to V",
+    "s": "The bakery [plans] ______|a second location next spring.",
+    "o": [
+     "open",
+     "to open",
+     "opening",
+     "opened"
+    ],
+    "ring": [
+     {
+      "w": "plans",
+      "label": "空格前面的動詞",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "plan → to V",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格前面是動詞"
+    ],
+    [
+     "en",
+     "plans."
+    ],
+    [
+     "en",
+     "Plan"
+    ],
+    [
+     "zh",
+     "後面接 to 加原形。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1r",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　動詞＋to V",
+    "s": "The bakery [plans] ______|a second location next spring.",
+    "o": [
+     "open",
+     "to open",
+     "opening",
+     "opened"
+    ],
+    "ans": 1,
+    "zh": "這家麵包店計畫明年春天開第二家店。",
+    "otag": {
+     "0": "原形",
+     "1": "to V",
+     "2": "V-ing",
+     "3": "p.p."
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 B，"
+    ],
+    [
+     "en",
+     "to open."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1x",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　動詞＋to V",
+    "s": "The bakery [plans] ______|a second location next spring.",
+    "o": [
+     "open",
+     "to open",
+     "opening",
+     "opened"
+    ],
+    "ans": 1,
+    "trap": 2,
+    "zh": "這家麵包店計畫明年春天開第二家店。",
+    "otag": {
+     "0": "原形",
+     "1": "to V",
+     "2": "V-ing",
+     "3": "p.p."
+    },
+    "ban": {
+     "t": "opening：plan 後面不接 V-ing",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Opening"
+    ],
+    [
+     "zh",
+     "是陷阱，"
+    ],
+    [
+     "en",
+     "plan"
+    ],
+    [
+     "zh",
+     "後面不接動詞加 ing。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1f",
+   "view": {
+    "kind": "full",
+    "t": "示範1　動詞＋to V",
+    "html": "The bakery plans <span class=\"blank fill\">to open</span> a second location next spring.",
+    "zh": "這家麵包店計畫明年春天開第二家店。"
+   },
+   "say": [
+    [
+     "en",
+     "The bakery plans to open a second location next spring."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2q",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　動詞＋V-ing",
+    "s": "We are [considering] ______ our office|to a larger building.",
+    "o": [
+     "move",
+     "to move",
+     "moving",
+     "moved"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第二題，一樣先想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d2t",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　動詞＋V-ing",
+    "s": "We are [considering] ______ our office|to a larger building.",
+    "o": [
+     "move",
+     "to move",
+     "moving",
+     "moved"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d2a",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　動詞＋V-ing",
+    "s": "We are [considering] ______ our office|to a larger building.",
+    "o": [
+     "move",
+     "to move",
+     "moving",
+     "moved"
+    ],
+    "ring": [
+     {
+      "w": "considering",
+      "label": "空格前面的動詞",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "consider → V-ing",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格前面是動詞"
+    ],
+    [
+     "en",
+     "considering."
+    ],
+    [
+     "en",
+     "Consider"
+    ],
+    [
+     "zh",
+     "後面接動詞加 ing。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2r",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　動詞＋V-ing",
+    "s": "We are [considering] ______ our office|to a larger building.",
+    "o": [
+     "move",
+     "to move",
+     "moving",
+     "moved"
+    ],
+    "ans": 2,
+    "zh": "我們正在考慮把辦公室搬到更大的大樓。",
+    "otag": {
+     "0": "原形",
+     "1": "to V",
+     "2": "V-ing",
+     "3": "p.p."
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 C，"
+    ],
+    [
+     "en",
+     "moving."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2x",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　動詞＋V-ing",
+    "s": "We are [considering] ______ our office|to a larger building.",
+    "o": [
+     "move",
+     "to move",
+     "moving",
+     "moved"
+    ],
+    "ans": 2,
+    "trap": 1,
+    "zh": "我們正在考慮把辦公室搬到更大的大樓。",
+    "otag": {
+     "0": "原形",
+     "1": "to V",
+     "2": "V-ing",
+     "3": "p.p."
+    },
+    "ban": {
+     "t": "to move：consider 後面不接 to V",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "To move"
+    ],
+    [
+     "zh",
+     "是陷阱，"
+    ],
+    [
+     "en",
+     "consider"
+    ],
+    [
+     "zh",
+     "後面不接 to 加原形。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2f",
+   "view": {
+    "kind": "full",
+    "t": "示範2　動詞＋V-ing",
+    "html": "We are considering <span class=\"blank fill\">moving</span> our office to a larger building.",
+    "zh": "我們正在考慮把辦公室搬到更大的大樓。"
+   },
+   "say": [
+    [
+     "en",
+     "We are considering moving our office to a larger building."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3q",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　介系詞 to＋V-ing",
+    "s": "Our team is [dedicated to] ______|high-quality service.",
+    "o": [
+     "provide",
+     "provides",
+     "providing",
+     "provided"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第三題。想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d3t",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　介系詞 to＋V-ing",
+    "s": "Our team is [dedicated to] ______|high-quality service.",
+    "o": [
+     "provide",
+     "provides",
+     "providing",
+     "provided"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d3a",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　介系詞 to＋V-ing",
+    "s": "Our team is [dedicated to] ______|high-quality service.",
+    "o": [
+     "provide",
+     "provides",
+     "providing",
+     "provided"
+    ],
+    "ring": [
+     {
+      "w": "dedicated to",
+      "label": "換成名詞：dedicated to our customers ✓",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "能接名詞 → to 是介系詞 → V-ing",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格前面是 to。換成名詞："
+    ],
+    [
+     "en",
+     "dedicated to our customers"
+    ],
+    [
+     "zh",
+     "，說得通，所以 to 是介系詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3r",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　介系詞 to＋V-ing",
+    "s": "Our team is [dedicated to] ______|high-quality service.",
+    "o": [
+     "provide",
+     "provides",
+     "providing",
+     "provided"
+    ],
+    "ans": 2,
+    "zh": "我們的團隊致力於提供高品質的服務。",
+    "otag": {
+     "0": "原形",
+     "1": "加 s",
+     "2": "V-ing",
+     "3": "p.p."
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "介系詞後面接動詞加 ing，答案是 C，"
+    ],
+    [
+     "en",
+     "providing."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3x",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　介系詞 to＋V-ing",
+    "s": "Our team is [dedicated to] ______|high-quality service.",
+    "o": [
+     "provide",
+     "provides",
+     "providing",
+     "provided"
+    ],
+    "ans": 2,
+    "trap": 0,
+    "zh": "我們的團隊致力於提供高品質的服務。",
+    "otag": {
+     "0": "原形",
+     "1": "加 s",
+     "2": "V-ing",
+     "3": "p.p."
+    },
+    "ban": {
+     "t": "provide：最常見的陷阱，介系詞 to 後面不接原形",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Provide"
+    ],
+    [
+     "zh",
+     "是最常見的陷阱。這個 to 是介系詞，後面不接原形。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3f",
+   "view": {
+    "kind": "full",
+    "t": "示範3　介系詞 to＋V-ing",
+    "html": "Our team is dedicated to <span class=\"blank fill\">providing</span> high-quality service.",
+    "zh": "我們的團隊致力於提供高品質的服務。"
+   },
+   "say": [
+    [
+     "en",
+     "Our team is dedicated to providing high-quality service."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4q",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　其他介系詞＋V-ing",
+    "s": "Please read the instructions carefully|[before] ______ the machine.",
+    "o": [
+     "operate",
+     "to operate",
+     "operating",
+     "operated"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後一題。看看空格前面是什麼？"
+    ]
+   ]
+  },
+  {
+   "id": "d4t",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　其他介系詞＋V-ing",
+    "s": "Please read the instructions carefully|[before] ______ the machine.",
+    "o": [
+     "operate",
+     "to operate",
+     "operating",
+     "operated"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d4a",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　其他介系詞＋V-ing",
+    "s": "Please read the instructions carefully|[before] ______ the machine.",
+    "o": [
+     "operate",
+     "to operate",
+     "operating",
+     "operated"
+    ],
+    "ring": [
+     {
+      "w": "before",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "介系詞 before → V-ing",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格前面是介系詞"
+    ],
+    [
+     "en",
+     "before"
+    ],
+    [
+     "zh",
+     "，後面接動作，用動詞加 ing。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4r",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　其他介系詞＋V-ing",
+    "s": "Please read the instructions carefully|[before] ______ the machine.",
+    "o": [
+     "operate",
+     "to operate",
+     "operating",
+     "operated"
+    ],
+    "ans": 2,
+    "zh": "操作機器前，請仔細閱讀說明書。",
+    "otag": {
+     "0": "原形",
+     "1": "to V",
+     "2": "V-ing",
+     "3": "p.p."
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 C，"
+    ],
+    [
+     "en",
+     "operating."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4x",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　其他介系詞＋V-ing",
+    "s": "Please read the instructions carefully|[before] ______ the machine.",
+    "o": [
+     "operate",
+     "to operate",
+     "operating",
+     "operated"
+    ],
+    "ans": 2,
+    "trap": 1,
+    "zh": "操作機器前，請仔細閱讀說明書。",
+    "otag": {
+     "0": "原形",
+     "1": "to V",
+     "2": "V-ing",
+     "3": "p.p."
+    },
+    "ban": {
+     "t": "to operate：介系詞後面不能再接 to",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "To operate"
+    ],
+    [
+     "zh",
+     "是陷阱，介系詞後面不能再接 to。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4f",
+   "view": {
+    "kind": "full",
+    "t": "示範4　其他介系詞＋V-ing",
+    "html": "Please read the instructions carefully before <span class=\"blank fill\">operating</span> the machine.",
+    "zh": "操作機器前，請仔細閱讀說明書。"
+   },
+   "say": [
+    [
+     "en",
+     "Please read the instructions carefully before operating the machine."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "e1",
+   "view": {
+    "kind": "sum",
+    "t": "本課整理",
+    "h": "先看空格前面的搭配",
+    "rows": [
+     [
+      "decide、plan、hope…",
+      "to V"
+     ],
+     [
+      "avoid、consider、finish…",
+      "V-ing"
+     ],
+     [
+      "to：能接名詞",
+      "V-ing"
+     ],
+     [
+      "to：不能接名詞",
+      "原形"
+     ],
+     [
+      "before、by、without…",
+      "V-ing"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後整理一下。空格前面是動詞，就記搭配。前面是 to，換成名詞測試：能接名詞用動詞加 ing，不能接名詞用原形。其他介系詞，一律用動詞加 ing。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "e2",
+   "view": {
+    "kind": "cta",
+    "q": [
+     "看完了？",
+     "往下做 10 題練習，",
+     "再用 4 題確認你會不會判斷。"
+    ],
+    "down": true
+   },
+   "say": [
+    [
+     "zh",
+     "看完了？往下做 10 題練習，再用 4 題確認你會不會判斷。"
+    ]
+   ],
+   "hold": 3.0
+  }
+ ]
+}
