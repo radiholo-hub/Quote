@@ -1,7 +1,7 @@
 {
  "title": "Score Rescue｜詞性小課 第5課（課程內嵌版）",
  "brand": "Score Rescue｜詞性小課 第5課",
- "rev": "say-ving-zou",
+ "rev": "to-n",
  "cues": [
   {
    "id": "hook1",
@@ -461,14 +461,14 @@
      }
     ],
     "ban": {
-     "t": "介系詞後面接名詞，或 V-ing",
+     "t": "介系詞 to＋N（名詞）→ 動作要用 V-ing",
      "c": "ok"
     }
    },
    "say": [
     [
      "zh",
-     "介系詞後面接名詞，或是"
+     "介系詞後面接名詞，動作要變成"
     ],
     [
      "en",
@@ -488,17 +488,89 @@
   {
    "id": "c2",
    "view": {
+    "kind": "pair",
+    "t": "先懂一件事：介系詞 to＋N",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "be committed to [safety]",
+      "zh": "to＋N：致力於安全"
+     },
+     {
+      "n": "②",
+      "s": "be committed to [replacing] [its aging equipment]",
+      "zh": "to＋V-ing＋N：致力於汰換老舊設備"
+     }
+    ],
+    "ring": [
+     {
+      "w": "safety",
+      "c": "blue",
+      "label": "N"
+     },
+     {
+      "w": "replacing",
+      "c": "ok",
+      "label": "V-ing"
+     },
+     {
+      "w": "its aging equipment",
+      "c": "blue",
+      "label": "N"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "這個 to 是介系詞，後面接名詞，也就是 to 加名詞。例如"
+    ],
+    [
+     "en",
+     "be committed to safety"
+    ],
+    [
+     "zh",
+     "，致力於安全。"
+    ],
+    [
+     "zh",
+     "動作要放在 to 後面，就要變成"
+    ],
+    [
+     "en",
+     "V I N G"
+    ],
+    [
+     "zh",
+     "，再接名詞，例如"
+    ],
+    [
+     "en",
+     "be committed to replacing its aging equipment"
+    ],
+    [
+     "zh",
+     "，致力於汰換老舊設備。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c2b",
+   "view": {
     "kind": "sum",
     "t": "先懂一件事",
     "h": "換成名詞測試",
     "rows": [
      [
       "committed to safety ✓",
-      "to 是介系詞 → V-ing"
+      "to＋N → V-ing"
      ],
      [
       "decided to safety ✗",
-      "to 是不定詞 → 原形"
+      "to＋原形"
      ]
     ]
    },
@@ -619,7 +691,7 @@
      "heard"
     ],
     "ans": 2,
-    "zh": "我們期待您的回覆。",
+    "zh": "我們期待收到您的消息。",
     "ring": [
      {
       "w": "look forward to",
@@ -642,11 +714,15 @@
     ],
     [
      "zh",
-     "，說得通，所以是"
+     "，期待您的回覆，說得通。所以是"
     ],
     [
      "en",
-     "hearing."
+     "look forward to hearing from you"
+    ],
+    [
+     "zh",
+     "，期待收到您的消息。"
     ]
    ],
    "hold": 1.55
