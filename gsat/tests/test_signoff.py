@@ -17,6 +17,8 @@ spec.loader.exec_module(so)
 need_node = pytest.mark.skipif(shutil.which('node') is None, reason='需要 node')
 pytestmark = [needs_exam, need_node]
 Q1 = '115-1'
+Q2 = '115-2'
+Q1_FINGERPRINT = '9255de0891e06a3f85d06f15b46144850ad1ca4dbe2aaea9ee8f94643af9c3b5'
 
 
 @pytest.fixture(scope='module')
@@ -37,10 +39,10 @@ def test_every_reviewed_question_has_a_complete_valid_signoff(data, recs):
         assert so.validate(r, data) == [], k
 
 
-def test_only_q1_is_signed_off_and_the_other_nine_stay_draft(data, recs):
-    assert set(recs) == {Q1}
-    others = [i for i in data['items'] if i['key'] != Q1]
-    assert len(others) == 9
+def test_only_q1_and_q2_are_signed_off_and_the_other_eight_stay_draft(data, recs):
+    assert set(recs) == {Q1, Q2}
+    others = [i for i in data['items'] if i['key'] not in (Q1, Q2)]
+    assert len(others) == 8 and [i['key'] for i in others] == [f'115-{n}' for n in range(3, 11)]
     for i in others:
         e = i['e']
         assert e['status'] == 'draft' and e['reviewer'] is None and e['reviewedAt'] is None and not e['reviewNotes'], i['key']
@@ -50,8 +52,8 @@ def test_only_q1_is_signed_off_and_the_other_nine_stay_draft(data, recs):
 
 def test_a_question_marked_reviewed_without_a_signoff_is_caught(data, recs):
     d = copy.deepcopy(data)
-    next(i for i in d['items'] if i['key'] == '115-2')['e']['status'] = 'reviewed'                 # 模擬:AI 產生的內容自己標成 reviewed
-    assert so.unsigned_reviewed(d, set(recs)) == ['115-2']
+    next(i for i in d['items'] if i['key'] == '115-3')['e']['status'] = 'reviewed'                 # 模擬:AI 產生的內容自己標成 reviewed
+    assert so.unsigned_reviewed(d, set(recs)) == ['115-3']
 
 
 def test_the_48_item_ids_match_current_data_exactly_and_all_passed(data, recs):
@@ -113,7 +115,8 @@ def test_passed_audio_signoff_requires_azure_paid_production_provenance(data, pa
 def test_no_audio_file_is_marked_as_passed_anywhere(data, recs):
     a = recs[Q1]['audio']
     assert a['totalAudioFiles'] == len(data['man']['items']) == 187 and a['notIncludedCount'] == 187
-    assert all(r['audio']['approvedFiles'] == [] and r['audio']['status'] == 'invalidated' for r in recs.values())
+    assert all(r['audio']['approvedFiles'] == [] and r['audio']['status'] in ('invalidated', 'pending') for r in recs.values())      # Q1 作廢、Q2 尚未簽核；沒有任何通過的音檔
+    assert (recs[Q1]['audio']['status'], recs[Q2]['audio']['status']) == ('invalidated', 'pending')
     assert not any(k in i for i in data['man']['items'] for k in ('status', 'reviewed', 'passed', 'approved'))    # 清單本身沒有任何「已通過」標記
     assert '不得視為已通過' in a['notIncluded']
 
@@ -124,12 +127,13 @@ def test_a_resigned_audio_record_would_cover_exactly_the_17_q1_files(data, passe
     assert so.validate(passed_rec, data, prov_rec=prod_prov(REPO / 'gsat' / 'audio')) == []
 
 
-def test_the_other_42_pending_vocabulary_records_are_unchanged(data):
+def test_the_other_41_pending_vocabulary_records_are_unchanged(data):
     entries = data['index']['entries']
     pending = [r['k'] for e in entries.values() for r in e['review']]
-    assert len(pending) == 42 and entries['tight-adj']['review'] == [] and entries['tight-adj']['total'] == 2
+    assert len(pending) == 41 and entries['tight-adj']['review'] == [] and entries['tight-adj']['total'] == 2
+    assert entries['amateur-adj']['review'] == [] and entries['amateur-adj']['total'] == 1 and entries['amateur-adj']['role']['answer'] == 1      # Q2:教師 2026-11-11 裁定 amateur 為 115 第 2 題正確答案
     reviews = json.loads(subprocess.run(['node', '-e', "global.window={};require(process.argv[1]);console.log(JSON.stringify(window.VOCAB_REVIEWS))", str(ROOT / 'exam' / 'vocab_reviews.js')], capture_output=True, text=True, check=True).stdout)
-    assert len(reviews) == 3 and all(k.startswith('tight-adj|') for k in reviews) and not set(pending) & set(reviews)       # 其餘 42 筆沒有任何審核紀錄
+    assert len(reviews) == 4 and sorted(k.split('|')[0] for k in reviews) == ['amateur-adj', 'tight-adj', 'tight-adj', 'tight-adj'] and not set(pending) & set(reviews)       # 其餘 41 筆沒有任何審核紀錄
     assert {v['by'] for v in reviews.values()} == {'教師（負責人）'}
 
 
@@ -340,3 +344,63 @@ def test_dev_check_survives_a_later_paid_regeneration_as_history_only(data, recs
     assert inv['audio']['devTestChecks'] == recs[Q1]['audio']['devTestChecks'] and so.validate(inv, data) == []
     ok = so.approve_audio(inv, data, Q1, '教師（負責人）', '2027-01-02', official_only=False)      # 僅測試；真實流程只接受 azure-paid
     assert ok['audio']['status'] == 'passed' and ok['audio']['devTestChecks'] == recs[Q1]['audio']['devTestChecks']
+
+
+def test_q2_text_signoff_is_complete_and_audio_is_not_approved(data, recs):
+    """Q2（115-2）文字簽核：41 個審核項目完整、passed；正式試聽簽核尚未進行（pending），沒有任何通過的音檔。"""
+    r = recs[Q2]; rows = so.rows_of(data, Q2); ids = [x for x, _ in rows]
+    assert (r['question'], r['status'], r['reviewer'], r['signedAt']) == (Q2, 'passed', '教師（負責人）', '2026-11-11')
+    assert len(ids) == 41 and len(set(ids)) == 41 and sorted(x['id'] for x in r['items']) == sorted(ids) and all(x['result'] == 'passed' for x in r['items'])
+    assert all(i.startswith(Q2 + ':') for i in ids) and '115-2:key3' in ids and '115-2:optD' in ids and '115-2:ext:x115-2-a' in ids and '115-2:ext:x115-2-b' in ids
+    assert r['contentFingerprint']['value'] == so.fingerprint(data, Q2) and so.validate(r, data) == []
+    assert r['scope'].startswith('115 學年度學測英文第 2 題:教學文字內容') and '不含發音' in r['scope'] and '原創延伸練習' in r['scope']
+    a = r['audio']
+    assert a['status'] == 'pending' and a['approvedFiles'] == [] and a['distinctFileCount'] == 0 and a['notIncludedCount'] == a['totalAudioFiles'] == 187 and 'devTestChecks' not in a
+    assert {b['item']: b['file'] for b in a['buttons']} == {x: f for x, f in rows if f}
+    e = next(i for i in data['items'] if i['key'] == Q2)['e']
+    assert (e['status'], e['reviewer'], e['reviewedAt']) == ('reviewed', '教師（負責人）', '2026-11-11') and '115-2.json' in e['reviewNotes'] and not e.get('aiFlags')
+    prov = json.loads((REPO / 'docs' / 'gsat' / 'audio-provenance.json').read_text(encoding='utf8'))['files']
+    assert not any(e['productionApproved'] for e in prov.values())                                     # 沒有任何 production-approved 音檔
+
+
+def test_q1_fingerprint_is_unchanged_by_q2_signoff(data, recs):
+    assert so.fingerprint(data, Q1) == recs[Q1]['contentFingerprint']['value'] == Q1_FINGERPRINT
+    assert recs[Q1]['audio']['status'] == 'invalidated' and recs[Q1]['audio']['devTestChecks'][0]['result'] == 'passed'
+
+
+def test_q2_fingerprint_protects_the_signed_text(data, recs):
+    """被簽核的 Q2 文字內容只要有任何改動，內容指紋就改變（signoff check 會失敗）。"""
+    sig = recs[Q2]['contentFingerprint']['value']
+    def changed(edit):
+        d = copy.deepcopy(data); edit(d)
+        return so.fingerprint(d, Q2) != sig
+    item = lambda d: next(i for i in d['items'] if i['key'] == Q2)
+    assert changed(lambda d: item(d)['e']['key'].__setitem__(2, item(d)['e']['key'][2] + '。'))                      # 解題步驟 3
+    assert changed(lambda d: item(d)['e']['options']['D'].__setitem__('why', 'x'))                                  # 選項 D
+    assert changed(lambda d: item(d)['ext'][0].__setitem__('explain', 'x'))                                         # 延伸練習 a
+    assert changed(lambda d: item(d)['ext'][1].__setitem__('explain', 'x'))                                         # 延伸練習 b
+    assert changed(lambda d: d['vocab']['entries']['amateur-adj'].__setitem__('note', 'x'))                         # 單字詞條說明
+    assert changed(lambda d: d['index']['entries']['amateur-adj']['role'].__setitem__('answer', 0))                 # 歷屆出題紀錄（confirmed 裁定）
+    assert changed(lambda d: item(d)['e'].__setitem__('zh', 'x'))                                                   # 中文翻譯
+    # 審核中繼資料、別題、無關單字不影響
+    def meta(d):
+        e = item(d)['e']; e['status'] = 'draft'; e['reviewNotes'] = '改'; e['aiFlags'] = ['x']; d['vocab']['entries']['amateur-adj']['status'] = 'reviewed'
+        next(i for i in d['items'] if i['key'] == '115-3')['e']['zh'] = '別題'; d['vocab']['entries']['tight-adj']['zh'] = '別字'
+    assert not changed(meta)
+    d = copy.deepcopy(data); item(d)['e']['key'][2] += '。'
+    sigd = copy.deepcopy(recs[Q2])
+    assert so.fingerprint(d, Q2) != sigd['contentFingerprint']['value']
+
+
+def test_pending_audio_signoff_cannot_hide_approved_files(data, recs):
+    r = copy.deepcopy(recs[Q2]); r['audio']['approvedFiles'] = [{'file': 'x.mp3', 'sha256': 'a' * 64, 'result': 'passed'}]
+    assert any('不得列有' in b for b in so.validate(r, data))
+    r = copy.deepcopy(recs[Q2]); r['audio']['notIncludedCount'] = 100
+    assert any('pending' in b for b in so.validate(r, data))
+    r = copy.deepcopy(recs[Q2]); r['audio']['status'] = 'passed'                                                    # 手改成 passed：沒有已簽核的音檔與來源，不成立
+    assert so.validate(r, data) != []
+
+
+def test_amateur_confirmed_review_is_kept_in_q2_signoff(data):
+    e = data['index']['entries']['amateur-adj']
+    assert (e['total'], e['role']['answer'], e['role']['distractor'], e['role']['stem'], e['role']['passage'], e['review']) == (1, 1, 0, 0, 0, [])

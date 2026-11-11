@@ -53,7 +53,7 @@ window.EXT_PRACTICE = [
    "elementary"
   ],
   "answer": 0,
-  "explain": "Although 表示讓步,前後對比:雖然只是「業餘的」選手,卻常打敗專業選手。an 後面接母音開頭的 amateur。",
+  "explain": "Although 表示讓步，前後形成對比：雖然只是『業餘的』選手，卻常打敗專業選手，因此應選 amateur。注意：四個選項都能接在 an 後面，所以冠詞不能作為判斷答案的依據。",
   "status": "draft"
  },
  {
@@ -71,7 +71,7 @@ window.EXT_PRACTICE = [
    "champion"
   ],
   "answer": 0,
-  "explain": "novice 是「新手」,強調經驗不足。professional、expert、champion 都表示很厲害。amateur 指非專業的人,不一定是新手。",
+  "explain": "novice 指『新手』，強調剛開始學、經驗不足，因此符合 has just started 和 has little experience。professional 指以某項工作為職業的人，expert 指專家，champion 指冠軍，三者都不符合此處『經驗很少』的語境。amateur 則強調非職業身分，不一定缺乏經驗。",
   "status": "draft"
  },
  {

@@ -110,15 +110,16 @@ def test_decisions_are_shown_as_pending_proposals_not_preselected_and_never_fill
     assert pg.locator('.decision').count() == 2 and pg.locator('.jump a').count() == 2
     assert pg.locator('input[value=confirmed]:checked, input[value=rejected]:checked').count() == 0 and pg.input_value('#by') == ''      # 沒有預先選取、沒有審核者
     pg.click('#btn'); assert '(要產生 vocab_reviews.js 內容' in pg.input_value('#exp') and '"verdict"' not in pg.input_value('#exp')   # 沒填姓名就不會產生可貼上的內容
-    pg.locator('.decision .apply').first.click()
-    assert '排除 1' in pg.inner_text('#cnt') and pg.locator('.has-dec').first.locator('input.act').input_value() == '測試字義甲'
+    rej = pg.locator('.has-dec:has(.decision[data-v=rejected])').first                                        # 頁面順序不一定等於索引順序:用決定的種類找到那一列
+    rej.locator('.decision .apply').click()
+    assert '排除 1' in pg.inner_text('#cnt') and rej.locator('input.act').input_value() == '測試字義甲'
     pg.fill('#by', '某審核者'); pg.click('#btn')
     out = pg.input_value('#exp')
     assert out_has(out, keys[0], 'rejected', '某審核者') and f'[{keys[0]}] 排除' in out and '[#' not in out            # 以穩定的紀錄 ID 辨識,不用會隨分組變動的流水號
     assert keys[1] not in out and out.startswith('計入 0・排除 1・待確認 ')                                              # 沒套用的決定不會被匯出,其餘紀錄維持待確認
-    pg.locator('.decision .undo').first.click()                                                                        # 撤回:回到待確認並清空兩欄
-    assert pg.inner_text('#cnt').startswith('計入 0・排除 0・待確認 ') and pg.locator('.has-dec').first.locator('input.act').input_value() == ''
-    pg.locator('.has-dec').first.locator('input[value=confirmed]').check()                                             # 使用者也可以自己改選
+    rej.locator('.decision .undo').click()                                                                        # 撤回:回到待確認並清空兩欄
+    assert pg.inner_text('#cnt').startswith('計入 0・排除 0・待確認 ') and rej.locator('input.act').input_value() == ''
+    rej.locator('input[value=confirmed]').check()                                             # 使用者也可以自己改選
     assert pg.inner_text('#cnt').startswith('計入 1・排除 0')
 
 

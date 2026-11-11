@@ -1,0 +1,267 @@
+{
+ "question": "115-2",
+ "status": "passed",
+ "reviewer": "教師（負責人）",
+ "signedAt": "2026-11-11",
+ "scope": "115 學年度學測英文第 2 題:教學文字內容(中文翻譯、解題步驟、選項解析、單字與片語、文法補充)與原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。",
+ "evidence": {
+  "reviewHtmlSha256": "45774558fbd698335dc7f38878f136f560c3e24946185c79288487b8143b24ee",
+  "note": "簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。"
+ },
+ "contentFingerprint": {
+  "algorithm": "sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()",
+  "value": "ba6225f2a09f770cbeaa81bb32c915ad0e57ef8c9143b7d3e1ae135f16c50fad",
+  "covers": "題目與選項與官方答案、詳解內容、引用的單字詞條、畫面列出的衍生字、片語、延伸練習、重點字的歷屆出題紀錄、每個發音按鈕對應的 mp3 檔名、審核項目 ID 清單(mp3 檔案內容不在其中,見 audio 區塊)",
+  "excludes": "status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條"
+ },
+ "items": [
+  {
+   "id": "115-2:q",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:zh",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:key1",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:key2",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:key3",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:optA",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:optB",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:optC",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:optD",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:amateur-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:amateur-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:amateur-adj:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:amateur-adj:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:amateur-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:amateur-adj:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:amateur-adj:ex1",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:amateur-adj:fam:amateurish-adj",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:amateur-adj:ant",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:amateur-adj:conf1",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:official-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:official-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:official-adj:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:official-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:instant-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:instant-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:instant-adj:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:instant-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:instant-adj:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:elementary-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:elementary-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:elementary-adj:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:w:elementary-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:ph:of-her-own",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:pat1",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:pat2",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:gram",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:rec:amateur-adj:sum",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:rec:amateur-adj:確認1",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:ext:x115-2-a",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:ext:x115-2-b",
+   "result": "passed"
+  },
+  {
+   "id": "115-2:final",
+   "result": "passed"
+  }
+ ],
+ "audio": {
+  "status": "pending",
+  "scope": "正式（production）試聽簽核尚未進行:沒有任何音檔視為已通過。目前 repository 內的音檔是舊 edge-tts 檔(非官方來源,不部署);正式音檔需以 Azure 付費層(azure-paid)產生,並由教師聆聽後以 approve-audio 正式簽核。教學文字的簽核不受影響。",
+  "approvedFiles": [],
+  "buttons": [
+   {
+    "item": "115-2:optA",
+    "file": "daf28c69151cd.mp3"
+   },
+   {
+    "item": "115-2:optB",
+    "file": "1fea416d32e9e1.mp3"
+   },
+   {
+    "item": "115-2:optC",
+    "file": "117d54d22a57c9.mp3"
+   },
+   {
+    "item": "115-2:optD",
+    "file": "3a0858955dbe3.mp3"
+   },
+   {
+    "item": "115-2:w:amateur-adj:def",
+    "file": "117d54d22a57c9.mp3"
+   },
+   {
+    "item": "115-2:w:amateur-adj:coll1",
+    "file": "186c0dffb06082.mp3"
+   },
+   {
+    "item": "115-2:w:amateur-adj:coll2",
+    "file": "148f1e2efb9df3.mp3"
+   },
+   {
+    "item": "115-2:w:amateur-adj:ex1",
+    "file": "17460fb62ffd23.mp3"
+   },
+   {
+    "item": "115-2:w:amateur-adj:fam:amateurish-adj",
+    "file": "2052c302ed20a.mp3"
+   },
+   {
+    "item": "115-2:w:official-adj:def",
+    "file": "daf28c69151cd.mp3"
+   },
+   {
+    "item": "115-2:w:official-adj:coll1",
+    "file": "14c56458427166.mp3"
+   },
+   {
+    "item": "115-2:w:instant-adj:def",
+    "file": "1fea416d32e9e1.mp3"
+   },
+   {
+    "item": "115-2:w:instant-adj:coll1",
+    "file": "1c0c8769e250b9.mp3"
+   },
+   {
+    "item": "115-2:w:instant-adj:coll2",
+    "file": "78b35198819e.mp3"
+   },
+   {
+    "item": "115-2:w:elementary-adj:def",
+    "file": "3a0858955dbe3.mp3"
+   },
+   {
+    "item": "115-2:w:elementary-adj:coll1",
+    "file": "1e75e7eddc52a3.mp3"
+   },
+   {
+    "item": "115-2:ph:of-her-own",
+    "file": "9a4cca40e027b.mp3"
+   }
+  ],
+  "buttonCount": 17,
+  "distinctFileCount": 0,
+  "totalAudioFiles": 187,
+  "notIncludedCount": 187,
+  "notIncluded": "所有音檔都不得視為已通過正式簽核。"
+ },
+ "vocabularyOccurrenceRecords": {
+  "entry": "amateur-adj",
+  "note": "amateur 在 115 學年度 vocab 第 2 題選項 (C) 作形容詞(修飾 art designer),人工裁定為 confirmed、正確答案 1 次;已確認 1 次(正確答案 1、干擾選項 0、題幹 0、文章用字 0)、待審核 0。正式裁定資料在 gsat/exam/vocab_reviews.js;本簽核不涉及其他詞條與其他待審核紀錄。"
+ }
+}

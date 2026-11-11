@@ -12,7 +12,7 @@
 
 用法:python3 tools/gsat_signoff.py check                       檢查 docs/gsat/signoffs/ 內所有簽核紀錄與現行資料是否一致(結束碼 0＝有效)
       python3 tools/gsat_signoff.py fingerprint 115-1           印出目前的內容指紋與審核項目數
-      python3 tools/gsat_signoff.py draft 115-1 --reviewer 姓名 --date YYYY-MM-DD --html-sha 簽核當時HTML的SHA256 [--audio-scope 文字]
+      python3 tools/gsat_signoff.py draft 115-1 --reviewer 姓名 --date YYYY-MM-DD --html-sha 簽核當時HTML的SHA256 [--audio-scope 文字] [--audio-status pending|passed] [--occurrence-note 文字]
                                                                 印出新簽核紀錄(JSON)到標準輸出,由人決定是否存檔
       python3 tools/gsat_signoff.py sync-audio [--date YYYY-MM-DD] 音檔內容與試聽簽核不符時，把該簽核的音檔狀態改為 invalidated（只會作廢，絕不會自動標為通過）
       python3 tools/gsat_signoff.py record-dev-check 115-1 --reviewer 姓名 --date YYYY-MM-DD --confirm-listened
@@ -87,7 +87,22 @@ def fingerprint(data, key, audio_dir=AUDIO):
     return hashlib.sha256(json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf8')).hexdigest()
 
 
-def draft(data, key, reviewer, date, html_sha, audio_scope):
+def audio_block(data, buttons, files, audio_scope, audio_status):
+    """audio 區塊。pending＝這一題從未取得 production 試聽簽核（沒有任何通過的音檔，也沒有先前簽核的歷史）；passed＝人工聽完並簽核。"""
+    total = len(data['man']['items'])
+    if audio_status == 'pending':
+        return {'status': 'pending',
+                'scope': '正式（production）試聽簽核尚未進行:沒有任何音檔視為已通過。目前 repository 內的音檔是舊 edge-tts 檔(非官方來源,不部署);正式音檔需以 Azure 付費層(azure-paid)產生,並由教師聆聽後以 approve-audio 正式簽核。教學文字的簽核不受影響。',
+                'approvedFiles': [], 'buttons': buttons, 'buttonCount': len(buttons), 'distinctFileCount': 0,
+                'totalAudioFiles': total, 'notIncludedCount': total,
+                'notIncluded': '所有音檔都不得視為已通過正式簽核。'}
+    return {'status': 'passed', 'scope': audio_scope,
+            'approvedFiles': [{'file': f, 'sha256': hashlib.sha256((AUDIO / f).read_bytes()).hexdigest(), 'result': 'passed'} for f in files],
+            'buttons': buttons, 'buttonCount': len(buttons), 'distinctFileCount': len(files), 'totalAudioFiles': total,
+            'notIncludedCount': total - len(files), 'notIncluded': '清單中其餘音檔不在本次簽核範圍,不得視為已通過。'}
+
+
+def draft(data, key, reviewer, date, html_sha, audio_scope, audio_status='pending', occurrence_note=None):
     rows = rows_of(data, key)
     buttons = [{'item': rid, 'file': f} for rid, f in rows if f]
     files = sorted({b['file'] for b in buttons})
@@ -97,7 +112,7 @@ def draft(data, key, reviewer, date, html_sha, audio_scope):
         'status': 'passed',
         'reviewer': reviewer,
         'signedAt': date,
-        'scope': f'{key[:3]} 學年度學測英文第 {key.split("-")[1]} 題:教學內容(中文翻譯、解題步驟、選項解析、單字與片語、文法補充、延伸練習)與對應發音。只限這一題;不含其他題目,也不含其餘音檔與其餘歷屆詞彙待審核紀錄。',
+        'scope': (f'{key[:3]} 學年度學測英文第 {key.split("-")[1]} 題:教學文字內容(中文翻譯、解題步驟、選項解析、單字與片語、文法補充)與原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。' if audio_status == 'pending' else f'{key[:3]} 學年度學測英文第 {key.split("-")[1]} 題:教學內容(中文翻譯、解題步驟、選項解析、單字與片語、文法補充、延伸練習)與對應發音。只限這一題;不含其他題目,也不含其餘音檔與其餘歷屆詞彙待審核紀錄。'),
         'evidence': {'reviewHtmlSha256': html_sha, 'note': '簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。'},
         'contentFingerprint': {
             'algorithm': 'sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()',
@@ -106,20 +121,10 @@ def draft(data, key, reviewer, date, html_sha, audio_scope):
             'excludes': 'status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條',
         },
         'items': [{'id': rid, 'result': 'passed'} for rid, _ in rows],
-        'audio': {
-            'status': 'passed',
-            'scope': audio_scope,
-            'approvedFiles': [{'file': f, 'sha256': hashlib.sha256((AUDIO / f).read_bytes()).hexdigest(), 'result': 'passed'} for f in files],
-            'buttons': buttons,
-            'buttonCount': len(buttons),
-            'distinctFileCount': len(files),
-            'totalAudioFiles': len(data['man']['items']),
-            'notIncludedCount': len(data['man']['items']) - len(files),
-            'notIncluded': '清單中其餘音檔不在本次簽核範圍,不得視為已通過。',
-        },
+        'audio': audio_block(data, buttons, files, audio_scope, audio_status),
         'vocabularyOccurrenceRecords': {
             'entry': data['items'][[i['key'] for i in data['items']].index(key)]['e']['focus'],
-            'note': '三筆歷屆出題紀錄的人工裁定(skin-tight 排除、tight against 計入文章用字、tight schedule 計入正確答案)維持不變,正式裁定資料在 gsat/exam/vocab_reviews.js;本簽核不涉及其他詞條與其他待審核紀錄。',
+            'note': occurrence_note or '三筆歷屆出題紀錄的人工裁定(skin-tight 排除、tight against 計入文章用字、tight schedule 計入正確答案)維持不變,正式裁定資料在 gsat/exam/vocab_reviews.js;本簽核不涉及其他詞條與其他待審核紀錄。',
         },
     }
 
@@ -156,8 +161,12 @@ def audio_problems(rec, data, rows, audio_dir=AUDIO, prov_rec=None):
     invalidated：不得再有任何「已通過」的檔案（approvedFiles 必須為空），並保留作廢原因與先前簽核的歷史。"""
     bad = []; a = rec['audio']; st = a.get('status')
     btn = {b['item']: b['file'] for b in a['buttons']}
-    if st not in ('passed', 'invalidated'): return ['audio.status 必須是 passed 或 invalidated']
+    if st not in ('passed', 'invalidated', 'pending'): return ['audio.status 必須是 passed、invalidated 或 pending']
     total = len(data['man']['items'])
+    if st == 'pending':
+        if a['approvedFiles']: bad.append('尚未進行試聽簽核(pending)的紀錄不得列有「已通過」的音檔')
+        if a['totalAudioFiles'] != total or a['notIncludedCount'] != total or a['distinctFileCount'] != 0: bad.append('pending 時，所有音檔都應是「不在簽核範圍」')
+        return bad
     if st == 'invalidated':
         if a['approvedFiles']: bad.append('試聽簽核已作廢，不得仍列有「已通過」的音檔')
         if not (a.get('reason') and a.get('invalidatedAt') and a.get('previousApproval', {}).get('approvedFiles')): bad.append('作廢的試聽簽核缺少原因、日期或先前簽核的歷史')
@@ -265,7 +274,7 @@ def main():
     sp.add_parser('check')
     f = sp.add_parser('fingerprint'); f.add_argument('key')
     d = sp.add_parser('draft'); d.add_argument('key'); d.add_argument('--reviewer', required=True); d.add_argument('--date', required=True); d.add_argument('--html-sha', required=True)
-    d.add_argument('--audio-scope', default='只限本題教學內容對應的發音;清單中其餘音檔不在本次簽核範圍')
+    d.add_argument('--audio-scope', default='只限本題教學內容對應的發音;清單中其餘音檔不在本次簽核範圍'); d.add_argument('--audio-status', default='pending', choices=['pending', 'passed']); d.add_argument('--occurrence-note', default=None)
     sa = sp.add_parser('sync-audio'); sa.add_argument('--date', default=None)
     dc = sp.add_parser('record-dev-check'); dc.add_argument('key'); dc.add_argument('--reviewer', required=True); dc.add_argument('--date', required=True); dc.add_argument('--confirm-listened', action='store_true')
     ap2 = sp.add_parser('approve-audio'); ap2.add_argument('key'); ap2.add_argument('--reviewer', required=True); ap2.add_argument('--date', required=True); ap2.add_argument('--confirm-listened', action='store_true')
@@ -274,7 +283,7 @@ def main():
     if a.cmd == 'fingerprint':
         print(fingerprint(data, a.key), len(rows_of(data, a.key)), '個審核項目'); return
     if a.cmd == 'draft':
-        print(json.dumps(draft(data, a.key, a.reviewer, a.date, a.html_sha, a.audio_scope), ensure_ascii=False, indent=1)); return
+        print(json.dumps(draft(data, a.key, a.reviewer, a.date, a.html_sha, a.audio_scope, a.audio_status, a.occurrence_note), ensure_ascii=False, indent=1)); return
     if a.cmd == 'sync-audio':
         import datetime
         date = a.date or datetime.date.today().isoformat(); n = 0
