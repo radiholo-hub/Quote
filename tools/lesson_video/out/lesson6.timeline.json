@@ -47,7 +47,7 @@
  {
   "scene": "c1c",
   "start": 84.92,
-  "sec": 13.61
+  "sec": 13.6
  },
  {
   "scene": "hook3",
@@ -56,17 +56,17 @@
  },
  {
   "scene": "hook3t",
-  "start": 106.38,
+  "start": 106.37,
   "sec": 5.45
  },
  {
   "scene": "r3a",
-  "start": 111.83,
+  "start": 111.82,
   "sec": 12.72
  },
  {
   "scene": "r3b",
-  "start": 124.55,
+  "start": 124.54,
   "sec": 6.75
  },
  {
@@ -81,12 +81,12 @@
  },
  {
   "scene": "c2bp",
-  "start": 153.37,
+  "start": 153.36,
   "sec": 1.45
  },
  {
   "scene": "c2b",
-  "start": 154.82,
+  "start": 154.81,
   "sec": 14.49
  },
  {
@@ -96,177 +96,177 @@
  },
  {
   "scene": "s1",
-  "start": 181.89,
+  "start": 181.88,
   "sec": 10.23
  },
  {
   "scene": "s1x",
   "start": 192.12,
-  "sec": 15.35
+  "sec": 16.76
  },
  {
   "scene": "s2",
-  "start": 207.47,
+  "start": 208.88,
   "sec": 3.75
  },
  {
   "scene": "s2x",
-  "start": 211.22,
+  "start": 212.63,
   "sec": 14.91
  },
  {
   "scene": "s3",
-  "start": 226.12,
+  "start": 227.53,
   "sec": 4.73
  },
  {
   "scene": "s3x",
-  "start": 230.86,
+  "start": 232.27,
   "sec": 15.08
  },
  {
   "scene": "d1q",
-  "start": 245.93,
+  "start": 247.34,
   "sec": 5.06
  },
  {
   "scene": "d1t",
-  "start": 250.99,
+  "start": 252.4,
   "sec": 5.45
  },
  {
   "scene": "d1a",
-  "start": 256.44,
+  "start": 257.85,
   "sec": 6.07
  },
  {
   "scene": "d1b",
-  "start": 262.52,
+  "start": 263.92,
   "sec": 8.91
  },
  {
   "scene": "d1r",
-  "start": 271.43,
+  "start": 272.84,
   "sec": 3.66
  },
  {
   "scene": "d1x",
-  "start": 275.09,
+  "start": 276.5,
   "sec": 6.88
  },
  {
   "scene": "d1f",
-  "start": 281.97,
+  "start": 283.38,
   "sec": 7.24
  },
  {
   "scene": "d2q",
-  "start": 289.21,
+  "start": 290.62,
   "sec": 2.92
  },
  {
   "scene": "d2t",
-  "start": 292.12,
+  "start": 293.53,
   "sec": 5.45
  },
  {
   "scene": "d2a",
-  "start": 297.57,
+  "start": 298.98,
   "sec": 6.91
  },
  {
   "scene": "d2r",
-  "start": 304.48,
+  "start": 305.89,
   "sec": 3.84
  },
  {
   "scene": "d2x",
-  "start": 308.32,
+  "start": 309.73,
   "sec": 7.02
  },
  {
   "scene": "d2f",
-  "start": 315.34,
+  "start": 316.75,
   "sec": 5.77
  },
  {
   "scene": "d3q",
-  "start": 321.11,
+  "start": 322.52,
   "sec": 3.16
  },
  {
   "scene": "d3t",
-  "start": 324.28,
+  "start": 325.69,
   "sec": 5.45
  },
  {
   "scene": "d3a",
-  "start": 329.73,
+  "start": 331.14,
   "sec": 13.24
  },
  {
   "scene": "d3r",
-  "start": 342.97,
+  "start": 344.38,
   "sec": 4.15
  },
  {
   "scene": "d3x",
-  "start": 347.12,
+  "start": 348.53,
   "sec": 7.69
  },
  {
   "scene": "d3f",
-  "start": 354.81,
+  "start": 356.22,
   "sec": 8.33
  },
  {
   "scene": "d4q",
-  "start": 363.14,
+  "start": 364.55,
   "sec": 4.39
  },
  {
   "scene": "d4t",
-  "start": 367.53,
+  "start": 368.94,
   "sec": 5.45
  },
  {
   "scene": "d4a",
-  "start": 372.98,
+  "start": 374.39,
   "sec": 8.87
  },
  {
   "scene": "d4r",
-  "start": 381.85,
+  "start": 383.26,
   "sec": 3.71
  },
  {
   "scene": "d4x",
-  "start": 385.56,
+  "start": 386.97,
   "sec": 6.76
  },
  {
   "scene": "d4f",
-  "start": 392.32,
+  "start": 393.73,
   "sec": 5.5
  },
  {
   "scene": "e1",
-  "start": 397.81,
+  "start": 399.22,
   "sec": 16.51
  },
  {
   "scene": "e1b",
-  "start": 414.32,
+  "start": 415.73,
   "sec": 11.58
  },
  {
   "scene": "e1c",
-  "start": 425.91,
+  "start": 427.32,
   "sec": 13.23
  },
  {
   "scene": "e2",
-  "start": 439.13,
+  "start": 440.55,
   "sec": 9.45
  }
 ]
