@@ -7,6 +7,22 @@
  "scene": "short.html",
  "cues": [
   {
+   "id": "h",
+   "view": {
+    "kind": "card",
+    "kick": "多益 Part 5",
+    "h": "看到所有格，<br>後面的空格要填什麼？",
+    "md": true
+   },
+   "say": [
+    [
+     "zh",
+     "看到所有格，後面的空格要填什麼？"
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
    "id": "q",
    "view": {
     "kind": "sent",
