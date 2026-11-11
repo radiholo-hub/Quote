@@ -22,16 +22,16 @@
  {
   "scene": "r",
   "start": 14.3,
-  "sec": 12.76
+  "sec": 13.28
  },
  {
   "scene": "w",
-  "start": 27.06,
+  "start": 27.58,
   "sec": 6.0
  },
  {
   "scene": "end",
-  "start": 33.06,
+  "start": 33.58,
   "sec": 6.01
  }
 ]
