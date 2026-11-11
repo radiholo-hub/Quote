@@ -157,9 +157,7 @@
     "ring": [
      {
       "w": "will give",
-      "c": "blue",
-      "label": "主要動詞已經有了",
-      "below": true
+      "c": "blue"
      },
      {
       "w": "blank",
@@ -167,7 +165,7 @@
      }
     ],
     "ban": {
-     "t": "空格修飾 artists<br>藝術家「展示」作品 → displaying",
+     "t": "主要動詞 will give 已經有了<br>空格修飾 artists：展示作品 → displaying",
      "c": "blue"
     }
    },
