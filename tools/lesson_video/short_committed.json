@@ -1,0 +1,255 @@
+{
+ "title": "短片｜The company is committed to ___ its aging equipment.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "看到 to，<br>不一定接原形。",
+    "top": 640
+   },
+   "say": [
+    [
+     "zh",
+     "看到 to，不一定接原形。"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The company is [committed to]|______ its aging equipment.",
+      "zh": "公司致力於汰換老舊設備。"
+     }
+    ],
+    "o": [
+     "replace",
+     "to replace",
+     "replacing",
+     "replaced"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "The company is committed to blank its aging equipment."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The company is [committed to]|______ its aging equipment.",
+      "zh": "公司致力於汰換老舊設備。"
+     }
+    ],
+    "o": [
+     "replace",
+     "to replace",
+     "replacing",
+     "replaced"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The company is [committed to]|______ its aging equipment.",
+      "zh": "公司致力於汰換老舊設備。"
+     }
+    ],
+    "o": [
+     "replace",
+     "to replace",
+     "replacing",
+     "replaced"
+    ],
+    "ring": [
+     {
+      "w": "committed to",
+      "c": "red",
+      "label": "看到 to"
+     }
+    ],
+    "ban": {
+     "t": "to 後面 → 填原形 replace？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "前面有 to，所以填原形"
+    ],
+    [
+     "en",
+     "replace"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The company is [committed to]|______ its aging equipment.",
+      "zh": "公司致力於汰換老舊設備。"
+     }
+    ],
+    "o": [
+     "replace",
+     "to replace",
+     "replacing",
+     "replaced"
+    ],
+    "ans": 2,
+    "fill": "replacing",
+    "ring": [
+     {
+      "w": "committed to",
+      "c": "blue",
+      "label": "to＋N：committed to safety ✓"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "這個 to 是介系詞<br>→ 動作要用 V-ing：replacing",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "不對。把空格換成名詞："
+    ],
+    [
+     "en",
+     "committed to safety"
+    ],
+    [
+     "zh",
+     "，說得通，所以這個 to 是介系詞。動作要用"
+    ],
+    [
+     "en",
+     "vee-ing"
+    ],
+    [
+     "zh",
+     "，選 C，"
+    ],
+    [
+     "en",
+     "replacing."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：前面換成 decided",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The company [decided]|______ its aging equipment.",
+      "zh": "公司決定汰換老舊設備。"
+     }
+    ],
+    "fill": "to replace",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "decided",
+      "c": "blue",
+      "label": "decide → to V"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "decide 後面接 to＋原形<br>decided to replace",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "如果前面是"
+    ],
+    [
+     "en",
+     "decided"
+    ],
+    [
+     "zh",
+     "，就接 to 加原形："
+    ],
+    [
+     "en",
+     "decided to replace."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "完整方案 第 5 課",
+    "h": "to V 還是 V-ing？<br>先看前面的搭配",
+    "sub": "6 分半影片＋14 題練習",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}

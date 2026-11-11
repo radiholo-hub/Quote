@@ -1,0 +1,259 @@
+{
+ "title": "短片｜The manager of the regional offices ___ all expense reports.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "離空格最近的字，<br>可能在騙你。",
+    "top": 640
+   },
+   "say": [
+    [
+     "zh",
+     "離空格最近的字，可能在騙你。"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜動詞怎麼選？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [manager] [of the regional] [offices]|______ all expense reports.",
+      "zh": "區域辦公室的經理負責處理所有費用報告。"
+     }
+    ],
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "The manager of the regional offices blank all expense reports."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜動詞怎麼選？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [manager] [of the regional] [offices]|______ all expense reports.",
+      "zh": "區域辦公室的經理負責處理所有費用報告。"
+     }
+    ],
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜動詞怎麼選？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [manager] [of the regional] [offices]|______ all expense reports.",
+      "zh": "區域辦公室的經理負責處理所有費用報告。"
+     }
+    ],
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ],
+    "ring": [
+     {
+      "w": "offices",
+      "c": "red",
+      "label": "離空格最近"
+     }
+    ],
+    "ban": {
+     "t": "offices 是複數…<br>所以選原形 process？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "離空格最近的是"
+    ],
+    [
+     "en",
+     "offices"
+    ],
+    [
+     "zh",
+     "，複數，所以選原形嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜動詞怎麼選？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [manager] [of the regional] [offices]|______ all expense reports.",
+      "zh": "區域辦公室的經理負責處理所有費用報告。"
+     }
+    ],
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ],
+    "ans": 1,
+    "fill": "processes",
+    "dim": [
+     "of the regional",
+     "offices"
+    ],
+    "ring": [
+     {
+      "w": "manager",
+      "c": "blue",
+      "label": "真正的主詞（單數）"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "淡化 of the regional offices<br>→ The manager processes",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "不對。淡化"
+    ],
+    [
+     "en",
+     "of the regional offices"
+    ],
+    [
+     "zh",
+     "，真正決定動詞的是單數"
+    ],
+    [
+     "en",
+     "manager"
+    ],
+    [
+     "zh",
+     "，所以選 B，"
+    ],
+    [
+     "en",
+     "processes."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：如果多一個 will",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The manager of the regional offices|[will] ______ all expense reports.",
+      "zh": "區域辦公室的經理會處理所有費用報告。"
+     }
+    ],
+    "fill": "process",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "will",
+      "c": "blue",
+      "label": "助動詞"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "空格前有 will → 原形<br>will process",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "多一個"
+    ],
+    [
+     "en",
+     "will"
+    ],
+    [
+     "zh",
+     "，就用原形："
+    ],
+    [
+     "en",
+     "will process."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "免費第 3 課",
+    "h": "空格需要動詞嗎？<br>先看主要動詞",
+    "sub": "6 分鐘影片＋14 題練習",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}

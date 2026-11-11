@@ -1,0 +1,51 @@
+name: Lesson video
+# 課程示範影片（題目動畫＋AI 旁白）。只在改到 tools/lesson_video/ 的 PR 執行，產出的 mp4 放在這次執行的 Artifacts，
+# 同時 commit 回該 PR 分支的 tools/lesson_video/out/（試片 PR 用來審閱，不合併）。不部署、不用任何密鑰。
+on:
+  pull_request:
+    paths:
+      - 'tools/lesson_video/**'
+      - '!tools/lesson_video/out/**'
+      - '.github/workflows/lesson-video.yml'
+permissions:
+  contents: write
+jobs:
+  video:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          sparse-checkout: tools/lesson_video
+      - name: Install tools
+        timeout-minutes: 12
+        run: |
+          # ffmpeg 用 pip 套件 imageio-ffmpeg 附的執行檔，不從系統套件來源安裝（曾因下載太慢而逾時）
+          python3 -m pip install edge-tts imageio-ffmpeg playwright==1.63.0
+          python3 -m playwright install --with-deps chromium
+      - name: Make videos
+        run: |
+          # 只重做內容有改動的影片：json 的 sha256 和上次產生時記錄的不同才重做
+          mkdir -p out
+          for f in tools/lesson_video/*.json; do
+            n=$(basename "$f" .json); h=$(sha256sum "$f" | cut -d' ' -f1)
+            if [ -f "tools/lesson_video/out/$n.mp4" ] && [ "$(cat "tools/lesson_video/out/$n.sha256" 2>/dev/null)" = "$h" ]; then
+              echo "skip $n（沒有改動）"; continue
+            fi
+            python3 tools/lesson_video/make_video.py "$f" "out/$n.mp4" && echo "$h" > "out/$n.sha256"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lesson-videos
+          path: out/
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Commit preview back to the PR branch
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          mkdir -p tools/lesson_video/out && cp out/* tools/lesson_video/out/ 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/lesson_video/out
+          git diff --cached --quiet || (git commit -m "試片：重新產生 lesson video" && git push origin HEAD:${{ github.head_ref }})

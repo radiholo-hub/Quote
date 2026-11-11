@@ -1,0 +1,1304 @@
+{
+ "title": "Score Rescue｜詞性小課 第3課（課程內嵌版）",
+ "brand": "Score Rescue｜詞性小課 第3課",
+ "cues": [
+  {
+   "id": "hook1",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The manager of the regional offices ______ all expense reports."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "先看第一句："
+    ],
+    [
+     "en",
+     "The manager of the regional offices blank all expense reports."
+    ],
+    [
+     "zh",
+     "空格要填什麼？"
+    ]
+   ]
+  },
+  {
+   "id": "hook1t",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The manager of the regional offices ______ all expense reports."
+     }
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "hook2",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The manager of the regional offices ______ all expense reports."
+     },
+     {
+      "n": "②",
+      "s": "The manager of the regional offices will ______ all expense reports."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "再看第二句："
+    ],
+    [
+     "en",
+     "The manager of the regional offices will blank all expense reports."
+    ],
+    [
+     "zh",
+     "這一格呢？"
+    ]
+   ]
+  },
+  {
+   "id": "hook2t",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "process",
+     "processes",
+     "processing",
+     "to process"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The manager of the regional offices ______ all expense reports."
+     },
+     {
+      "n": "②",
+      "s": "The manager of the regional offices will ______ all expense reports."
+     }
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "r1",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：先找主詞的核心",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The [manager] [of the regional offices] ______ all expense reports.",
+      "fill": "processes",
+      "zh": "區域辦公室的經理負責處理所有費用報告。"
+     },
+     {
+      "n": "②",
+      "s": "The manager of the regional offices will ______ all expense reports."
+     }
+    ],
+    "dim": [
+     "of the regional offices"
+    ],
+    "ring": [
+     {
+      "w": "manager",
+      "label": "主詞（單數）",
+      "c": "blue"
+     },
+     {
+      "w": "blank1",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "① 淡化 of the regional offices → The manager processes",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "第一句，離空格最近的是"
+    ],
+    [
+     "en",
+     "offices."
+    ],
+    [
+     "zh",
+     "先把"
+    ],
+    [
+     "en",
+     "of the regional offices"
+    ],
+    [
+     "zh",
+     "淡化，剩下"
+    ],
+    [
+     "en",
+     "The manager."
+    ],
+    [
+     "zh",
+     "主詞的核心是單數"
+    ],
+    [
+     "en",
+     "manager"
+    ],
+    [
+     "zh",
+     "，所以選"
+    ],
+    [
+     "en",
+     "processes."
+    ],
+    [
+     "zh",
+     "整句是："
+    ],
+    [
+     "en",
+     "The manager of the regional offices processes all expense reports."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "r2",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：先找主詞的核心",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The [manager] [of the regional offices] ______ all expense reports.",
+      "fill": "processes",
+      "zh": "區域辦公室的經理負責處理所有費用報告。"
+     },
+     {
+      "n": "②",
+      "s": "The manager of the regional offices [will] ______ all expense reports.",
+      "fill": "process",
+      "zh": "區域辦公室的經理會處理所有費用報告。"
+     }
+    ],
+    "dim": [
+     "of the regional offices"
+    ],
+    "ring": [
+     {
+      "w": "will",
+      "c": "blue"
+     },
+     {
+      "w": "blank2",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "② 空格前有 will → 原形 process，合起來是 will process",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "第二句，主詞還是同一個"
+    ],
+    [
+     "en",
+     "manager."
+    ],
+    [
+     "zh",
+     "這次空格前有"
+    ],
+    [
+     "en",
+     "will"
+    ],
+    [
+     "zh",
+     "，所以選原形"
+    ],
+    [
+     "en",
+     "process"
+    ],
+    [
+     "zh",
+     "，合起來是"
+    ],
+    [
+     "en",
+     "will process."
+    ],
+    [
+     "zh",
+     "整句是："
+    ],
+    [
+     "en",
+     "The manager of the regional offices will process all expense reports."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "open",
+   "view": {
+    "kind": "title",
+    "h": "空格需要動詞嗎？",
+    "s": "先看句子缺不缺主要動詞"
+   },
+   "say": [
+    [
+     "zh",
+     "所以這一課要學會：先看句子缺不缺主要動詞，缺的話，再決定動詞的形式。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c1",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "這些不能單獨當主要動詞",
+    "rows": [
+     [
+      "名詞",
+      "guidance／notification"
+     ],
+     [
+      "形容詞",
+      "productive"
+     ],
+     [
+      "副詞",
+      "personally"
+     ],
+     [
+      "V-ing（單獨）",
+      "processing → is processing"
+     ],
+     [
+      "to＋原形",
+      "to process"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "一個完整的句子，至少要有主詞和主要動詞。這些不能單獨當主要動詞：名詞、形容詞、副詞，還有單獨的動詞加 ing，和 to 加原形。動詞加 ing 前面要有 be 動詞，例如"
+    ],
+    [
+     "en",
+     "is processing."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c2",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "決定動詞形式的三個線索",
+    "rows": [
+     [
+      "主詞單數、現在式",
+      "The team guides …"
+     ],
+     [
+      "will／can／must／should 後",
+      "will notify"
+     ],
+     [
+      "Please 開頭",
+      "Please review …"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "句子缺主要動詞時，再看三個線索決定形式。主詞是單數、現在式，動詞加 s；助動詞"
+    ],
+    [
+     "en",
+     "will, can, must, should"
+    ],
+    [
+     "zh",
+     "後面用原形；"
+    ],
+    [
+     "en",
+     "Please"
+    ],
+    [
+     "zh",
+     "開頭的請求句，也用原形。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c3",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "找主詞：主詞後面的介系詞片語先淡化",
+     "看有沒有主要動詞：除了空格，還有動詞嗎？",
+     "決定動詞形式：單複數、助動詞、Please"
+    ],
+    "show": 1
+   },
+   "say": [
+    [
+     "zh",
+     "判斷三步驟。第一步，找主詞：句子在講誰或什麼？主詞後面如果有介系詞片語，先把它淡化。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c4",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "找主詞：主詞後面的介系詞片語先淡化",
+     "看有沒有主要動詞：除了空格，還有動詞嗎？",
+     "決定動詞形式：單複數、助動詞、Please"
+    ],
+    "show": 2,
+    "note": "已經有動詞 → 空格不是動詞，回到第 1、2 課的判斷"
+   },
+   "say": [
+    [
+     "zh",
+     "第二步，看句子有沒有主要動詞。如果已經有了，空格就不是動詞，回到第一、二課的判斷。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c5",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "找主詞：主詞後面的介系詞片語先淡化",
+     "看有沒有主要動詞：除了空格，還有動詞嗎？",
+     "決定動詞形式：單複數、助動詞、Please"
+    ],
+    "show": 3
+   },
+   "say": [
+    [
+     "zh",
+     "第三步，決定動詞形式：看主詞單複數、有沒有助動詞、是不是"
+    ],
+    [
+     "en",
+     "Please"
+    ],
+    [
+     "zh",
+     "開頭。好，我們來實際做做看。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1q",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　缺主要動詞",
+    "s": "The HR [team] ______ new employees|during their first week.",
+    "o": [
+     "guidance",
+     "guides",
+     "guiding",
+     "to guide"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第一題。先自己想一下，空格要填什麼。"
+    ]
+   ]
+  },
+  {
+   "id": "d1t",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　缺主要動詞",
+    "s": "The HR [team] ______ new employees|during their first week.",
+    "o": [
+     "guidance",
+     "guides",
+     "guiding",
+     "to guide"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d1a",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　缺主要動詞",
+    "s": "The HR [team] ______ new employees|during their first week.",
+    "o": [
+     "guidance",
+     "guides",
+     "guiding",
+     "to guide"
+    ],
+    "tag": [
+     {
+      "w": "team",
+      "label": "主詞",
+      "c": "blue"
+     }
+    ],
+    "ring": [
+     {
+      "w": "blank",
+      "label": "缺動詞",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "主詞和受詞中間只有空格 → 空格要填動詞",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "主詞是"
+    ],
+    [
+     "en",
+     "the HR team."
+    ],
+    [
+     "en",
+     "New employees"
+    ],
+    [
+     "zh",
+     "是受詞。主詞和受詞中間只有空格，句子缺主要動詞，所以空格要填動詞。主詞"
+    ],
+    [
+     "en",
+     "team"
+    ],
+    [
+     "zh",
+     "是單數。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1r",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　缺主要動詞",
+    "s": "The HR [team] ______ new employees|during their first week.",
+    "o": [
+     "guidance",
+     "guides",
+     "guiding",
+     "to guide"
+    ],
+    "ans": 1,
+    "zh": "人資團隊會在新進員工到職第一週帶領他們。",
+    "otag": {
+     "0": "名詞｜指導",
+     "1": "動詞｜帶領",
+     "2": "V-ing",
+     "3": "不定詞"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 B，"
+    ],
+    [
+     "en",
+     "guides."
+    ],
+    [
+     "zh",
+     "主詞單數，現在式加 s。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1x",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　缺主要動詞",
+    "s": "The HR [team] ______ new employees|during their first week.",
+    "o": [
+     "guidance",
+     "guides",
+     "guiding",
+     "to guide"
+    ],
+    "ans": 1,
+    "trap": 2,
+    "zh": "人資團隊會在新進員工到職第一週帶領他們。",
+    "otag": {
+     "0": "名詞｜指導",
+     "1": "動詞｜帶領",
+     "2": "V-ing",
+     "3": "不定詞"
+    },
+    "ban": {
+     "t": "guiding 不能單獨當主要動詞，要寫成 is guiding",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Guiding"
+    ],
+    [
+     "zh",
+     "不能單獨當主要動詞，前面要有"
+    ],
+    [
+     "en",
+     "is."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1f",
+   "view": {
+    "kind": "full",
+    "t": "示範1　缺主要動詞",
+    "html": "The HR team <span class=\"blank fill\">guides</span> new employees during their first week.",
+    "zh": "人資團隊會在新進員工到職第一週帶領他們。"
+   },
+   "say": [
+    [
+     "en",
+     "The HR team guides new employees during their first week."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2q",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　找真正的主詞",
+    "s": "The [photos] [on the company website]|______ our products in action.",
+    "o": [
+     "show",
+     "shows",
+     "showing",
+     "to show"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第二題，一樣先想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d2t",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　找真正的主詞",
+    "s": "The [photos] [on the company website]|______ our products in action.",
+    "o": [
+     "show",
+     "shows",
+     "showing",
+     "to show"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d2a",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　找真正的主詞",
+    "s": "The [photos] [on the company website]|______ our products in action.",
+    "o": [
+     "show",
+     "shows",
+     "showing",
+     "to show"
+    ],
+    "dim": [
+     "on the company website"
+    ],
+    "ring": [
+     {
+      "w": "photos",
+      "label": "真正的主詞（複數）",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "介系詞片語先淡化 → 主詞是 photos",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "先把"
+    ],
+    [
+     "en",
+     "on the company website"
+    ],
+    [
+     "zh",
+     "淡化，它只是補充。真正的主詞是"
+    ],
+    [
+     "en",
+     "photos"
+    ],
+    [
+     "zh",
+     "，複數。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2r",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　找真正的主詞",
+    "s": "The [photos] [on the company website]|______ our products in action.",
+    "o": [
+     "show",
+     "shows",
+     "showing",
+     "to show"
+    ],
+    "ans": 0,
+    "zh": "公司網站上的照片展示了我們產品的實際使用情形。",
+    "otag": {
+     "0": "原形",
+     "1": "加 s",
+     "2": "V-ing",
+     "3": "不定詞"
+    },
+    "dim": [
+     "on the company website"
+    ],
+    "ring": [
+     {
+      "w": "photos",
+      "label": "真正的主詞（複數）",
+      "c": "blue"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 A，"
+    ],
+    [
+     "en",
+     "show."
+    ],
+    [
+     "zh",
+     "主詞是複數，現在式用原形："
+    ],
+    [
+     "en",
+     "The photos show."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2x",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　找真正的主詞",
+    "s": "The [photos] [on the company website]|______ our products in action.",
+    "o": [
+     "show",
+     "shows",
+     "showing",
+     "to show"
+    ],
+    "ans": 0,
+    "trap": 1,
+    "zh": "公司網站上的照片展示了我們產品的實際使用情形。",
+    "otag": {
+     "0": "原形",
+     "1": "加 s",
+     "2": "V-ing",
+     "3": "不定詞"
+    },
+    "ban": {
+     "t": "website 是單數，但它不是主詞",
+     "c": "red"
+    },
+    "dim": [
+     "on the company website"
+    ],
+    "ring": [
+     {
+      "w": "photos",
+      "label": "真正的主詞（複數）",
+      "c": "blue"
+     }
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "Shows"
+    ],
+    [
+     "zh",
+     "是陷阱。離空格最近的"
+    ],
+    [
+     "en",
+     "website"
+    ],
+    [
+     "zh",
+     "是單數，但它不是主詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2f",
+   "view": {
+    "kind": "full",
+    "t": "示範2　找真正的主詞",
+    "html": "The <span class=\"mark\">photos</span> on the company website <span class=\"blank fill\">show</span> our products in action.",
+    "zh": "公司網站上的照片展示了我們產品的實際使用情形。"
+   },
+   "say": [
+    [
+     "en",
+     "The photos on the company website show our products in action."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3q",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　助動詞後用原形",
+    "s": "The airline [will] ______ passengers|about any delays by text message.",
+    "o": [
+     "notification",
+     "notifies",
+     "notify",
+     "notified"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "第三題。想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d3t",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　助動詞後用原形",
+    "s": "The airline [will] ______ passengers|about any delays by text message.",
+    "o": [
+     "notification",
+     "notifies",
+     "notify",
+     "notified"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d3a",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　助動詞後用原形",
+    "s": "The airline [will] ______ passengers|about any delays by text message.",
+    "o": [
+     "notification",
+     "notifies",
+     "notify",
+     "notified"
+    ],
+    "tag": [
+     {
+      "w": "will",
+      "label": "助動詞",
+      "c": "blue"
+     }
+    ],
+    "ring": [
+     {
+      "w": "blank",
+      "label": "原形",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "will 後面一律接原形動詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格前面有助動詞"
+    ],
+    [
+     "en",
+     "will."
+    ],
+    [
+     "en",
+     "Will"
+    ],
+    [
+     "zh",
+     "後面一律接原形動詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3r",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　助動詞後用原形",
+    "s": "The airline [will] ______ passengers|about any delays by text message.",
+    "o": [
+     "notification",
+     "notifies",
+     "notify",
+     "notified"
+    ],
+    "ans": 2,
+    "zh": "航空公司會用簡訊通知乘客任何延誤。",
+    "otag": {
+     "0": "名詞｜通知",
+     "1": "加 s",
+     "2": "原形",
+     "3": "過去式"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 C，"
+    ],
+    [
+     "en",
+     "notify"
+    ],
+    [
+     "zh",
+     "，通知。合起來是"
+    ],
+    [
+     "en",
+     "will notify."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3x",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　助動詞後用原形",
+    "s": "The airline [will] ______ passengers|about any delays by text message.",
+    "o": [
+     "notification",
+     "notifies",
+     "notify",
+     "notified"
+    ],
+    "ans": 2,
+    "trap": 1,
+    "zh": "航空公司會用簡訊通知乘客任何延誤。",
+    "otag": {
+     "0": "名詞｜通知",
+     "1": "加 s",
+     "2": "原形",
+     "3": "過去式"
+    },
+    "ban": {
+     "t": "will 後面不加 s",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Notifies"
+    ],
+    [
+     "zh",
+     "是陷阱，"
+    ],
+    [
+     "en",
+     "will"
+    ],
+    [
+     "zh",
+     "後面不加 s。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3f",
+   "view": {
+    "kind": "full",
+    "t": "示範3　助動詞後用原形",
+    "html": "The airline will <span class=\"blank fill\">notify</span> passengers about any delays by text message.",
+    "zh": "航空公司會用簡訊通知乘客任何延誤。"
+   },
+   "say": [
+    [
+     "en",
+     "The airline will notify passengers about any delays by text message."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4q",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　Please 開頭用原形",
+    "s": "[Please] ______ the attached file|before the meeting.",
+    "o": [
+     "reviewer",
+     "reviews",
+     "reviewing",
+     "review"
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後一題。這句的主詞在哪裡？"
+    ]
+   ]
+  },
+  {
+   "id": "d4t",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　Please 開頭用原形",
+    "s": "[Please] ______ the attached file|before the meeting.",
+    "o": [
+     "reviewer",
+     "reviews",
+     "reviewing",
+     "review"
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "d4a",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　Please 開頭用原形",
+    "s": "[Please] ______ the attached file|before the meeting.",
+    "o": [
+     "reviewer",
+     "reviews",
+     "reviewing",
+     "review"
+    ],
+    "tag": [
+     {
+      "w": "Please",
+      "label": "請求句",
+      "c": "blue"
+     }
+    ],
+    "ring": [
+     {
+      "w": "blank",
+      "label": "原形",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "Please 開頭 → 原形動詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Please"
+    ],
+    [
+     "zh",
+     "開頭，是請對方做事的句子，主詞「你」省略了。句子缺主要動詞，"
+    ],
+    [
+     "en",
+     "Please"
+    ],
+    [
+     "zh",
+     "後面用原形。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4r",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　Please 開頭用原形",
+    "s": "[Please] ______ the attached file|before the meeting.",
+    "o": [
+     "reviewer",
+     "reviews",
+     "reviewing",
+     "review"
+    ],
+    "ans": 3,
+    "zh": "開會前請先看過附件。",
+    "otag": {
+     "0": "名詞｜審閱者",
+     "1": "加 s",
+     "2": "V-ing",
+     "3": "原形"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 D，"
+    ],
+    [
+     "en",
+     "review"
+    ],
+    [
+     "zh",
+     "，看過、審閱。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4x",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　Please 開頭用原形",
+    "s": "[Please] ______ the attached file|before the meeting.",
+    "o": [
+     "reviewer",
+     "reviews",
+     "reviewing",
+     "review"
+    ],
+    "ans": 3,
+    "trap": 1,
+    "zh": "開會前請先看過附件。",
+    "otag": {
+     "0": "名詞｜審閱者",
+     "1": "加 s",
+     "2": "V-ing",
+     "3": "原形"
+    },
+    "ban": {
+     "t": "Please 後面不加 s",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Reviews"
+    ],
+    [
+     "zh",
+     "是陷阱，"
+    ],
+    [
+     "en",
+     "Please"
+    ],
+    [
+     "zh",
+     "後面不加 s。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4f",
+   "view": {
+    "kind": "full",
+    "t": "示範4　Please 開頭用原形",
+    "html": "Please <span class=\"blank fill\">review</span> the attached file before the meeting.",
+    "zh": "開會前請先看過附件。"
+   },
+   "say": [
+    [
+     "en",
+     "Please review the attached file before the meeting."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "e1",
+   "view": {
+    "kind": "sum",
+    "t": "本課整理",
+    "h": "先看句子缺不缺主要動詞",
+    "rows": [
+     [
+      "主詞後直接是空格",
+      "單數＋s／複數用原形"
+     ],
+     [
+      "主詞後有介系詞片語",
+      "先淡化，找真正的主詞"
+     ],
+     [
+      "will／can／must 後",
+      "原形"
+     ],
+     [
+      "Please 開頭",
+      "原形"
+     ],
+     [
+      "句子已經有動詞",
+      "回到第 1、2 課"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後整理一下。先看句子缺不缺主要動詞：缺的話，主詞單數加 s，複數用原形；主詞後面有介系詞片語，先淡化，找真正的主詞；助動詞和"
+    ],
+    [
+     "en",
+     "Please"
+    ],
+    [
+     "zh",
+     "後面用原形。如果句子已經有動詞，空格就不是動詞，回到第一、二課的判斷。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "e2",
+   "view": {
+    "kind": "cta",
+    "q": [
+     "看完了？",
+     "往下做 10 題練習，",
+     "再用 4 題確認你會不會判斷。"
+    ],
+    "down": true
+   },
+   "say": [
+    [
+     "zh",
+     "看完了？往下做 10 題練習，再用 4 題確認你會不會判斷。"
+    ]
+   ],
+   "hold": 3.0
+  }
+ ]
+}

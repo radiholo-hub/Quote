@@ -1,0 +1,1824 @@
+{
+ "title": "Score Rescue｜詞性小課 第7課（課程內嵌版）",
+ "brand": "Score Rescue｜詞性小課 第7課",
+ "anim": true,
+ "rev": "v3-hi",
+ "cues": [
+  {
+   "id": "hook1",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The client ______ called this morning wants a refund."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "先看第一句："
+    ],
+    [
+     "en",
+     "The client blank called this morning wants a refund."
+    ],
+    [
+     "zh",
+     "空格要填什麼？"
+    ]
+   ]
+  },
+  {
+   "id": "hook1t",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The client ______ called this morning wants a refund."
+     }
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "hook2",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The client ______ called this morning wants a refund."
+     },
+     {
+      "n": "②",
+      "s": "The package ______ arrived this morning was damaged."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "再看第二句："
+    ],
+    [
+     "en",
+     "The package blank arrived this morning was damaged."
+    ],
+    [
+     "zh",
+     "這一格呢？"
+    ]
+   ]
+  },
+  {
+   "id": "hook2t",
+   "view": {
+    "kind": "pair",
+    "t": "開場挑戰：空格填什麼？",
+    "xs": true,
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "lines": [
+     {
+      "n": "①",
+      "s": "The client ______ called this morning wants a refund."
+     },
+     {
+      "n": "②",
+      "s": "The package ______ arrived this morning was damaged."
+     }
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "r1",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：空格後面直接接動詞",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The [client] ⟨______ [called] this morning⟩ wants a refund."
+     },
+     {
+      "n": "②",
+      "s": "The [package] ⟨______ [arrived] this morning⟩ was damaged."
+     }
+    ],
+    "ring": [
+     {
+      "w": "called",
+      "c": "blue"
+     },
+     {
+      "w": "arrived",
+      "c": "blue"
+     }
+    ],
+    "ban": {
+     "t": "螢光筆標的是形容詞子句｜後面直接接動詞 → 空格當主詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "用黃色螢光筆標出的這一段，是修飾前面名詞的形容詞子句。兩句的空格後面都直接接動詞，"
+    ],
+    [
+     "en",
+     "called"
+    ],
+    [
+     "zh",
+     "和"
+    ],
+    [
+     "en",
+     "arrived"
+    ],
+    [
+     "zh",
+     "，表示空格要當形容詞子句的主詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "r2",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：再看前面的名詞是人還是物",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The [client] ⟨______ [called] this morning⟩ wants a refund.",
+      "fill": "who"
+     },
+     {
+      "n": "②",
+      "s": "The [package] ⟨______ [arrived] this morning⟩ was damaged.",
+      "fill": "which"
+     }
+    ],
+    "ring": [
+     {
+      "w": "client",
+      "c": "ok"
+     },
+     {
+      "w": "package",
+      "c": "ok"
+     },
+     {
+      "w": "blank1",
+      "c": "ok"
+     },
+     {
+      "w": "blank2",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "人 → who｜物 → which",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "差別在空格前面的名詞："
+    ],
+    [
+     "en",
+     "client"
+    ],
+    [
+     "zh",
+     "是人，用"
+    ],
+    [
+     "en",
+     "who"
+    ],
+    [
+     "zh",
+     "；而"
+    ],
+    [
+     "en",
+     "package"
+    ],
+    [
+     "zh",
+     "是物，用"
+    ],
+    [
+     "en",
+     "which."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "open",
+   "view": {
+    "kind": "title",
+    "h": "who、which 還是 whose？",
+    "s": "先看前面的名詞，再看後面缺什麼"
+   },
+   "say": [
+    [
+     "zh",
+     "這一課要學會：先看空格前面的名詞是人還是物，再看空格後面缺什麼。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "p1",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "關係代名詞＝連接詞＋代名詞",
+    "rows": [
+     [
+      "連接詞的功能",
+      "把兩句話接成一句"
+     ],
+     [
+      "代名詞的功能",
+      "代替前面的名詞（who 代替 the client）"
+     ],
+     [
+      "它帶出的那一段",
+      "形容詞子句：修飾前面的名詞（螢光筆標出）"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "先說這個文法的目的。關係代名詞同時有兩個功能：像連接詞一樣，把兩句話接成一句；也像代名詞一樣，代替前面的名詞。它帶出的那一段叫形容詞子句，用來修飾前面的名詞。接下來，形容詞子句都會用黃色螢光筆標出來。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c1",
+   "view": {
+    "kind": "pair",
+    "t": "先懂一件事：把兩句話接成一句",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "[The client] called this morning.",
+      "zh": "客戶今天早上打電話來。"
+     },
+     {
+      "n": "②",
+      "s": "The client wants a refund.",
+      "zh": "客戶想要退款。"
+     },
+     {
+      "n": "→",
+      "s": "The client ⟨[who] called this morning⟩ wants a refund.",
+      "zh": "who 代替 called 前面的 the client｜螢光筆：形容詞子句"
+     }
+    ],
+    "ring": [
+     {
+      "w": "The client",
+      "c": "blue"
+     },
+     {
+      "w": "who",
+      "c": "ok"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "先看第一句。"
+    ],
+    [
+     "en",
+     "Who"
+    ],
+    [
+     "zh",
+     "代替"
+    ],
+    [
+     "en",
+     "called"
+    ],
+    [
+     "zh",
+     "前面的"
+    ],
+    [
+     "en",
+     "the client"
+    ],
+    [
+     "zh",
+     "，當形容詞子句的主詞，同時把兩句接起來。螢光筆標出的"
+    ],
+    [
+     "en",
+     "who called this morning"
+    ],
+    [
+     "zh",
+     "，就是形容詞子句，修飾前面的"
+    ],
+    [
+     "en",
+     "client."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c1b",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "先看前面的名詞：人還是物",
+    "rows": [
+     [
+      "人＋缺主詞",
+      "who"
+     ],
+     [
+      "物＋缺主詞",
+      "which"
+     ],
+     [
+      "人或物＋表示所屬",
+      "whose＋名詞"
+     ],
+     [
+      "that",
+      "常和 who、which 都能填 → 本課選項不放"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "前面是人、後面缺主詞，用"
+    ],
+    [
+     "en",
+     "who"
+    ],
+    [
+     "zh",
+     "；是物，用"
+    ],
+    [
+     "en",
+     "which."
+    ],
+    [
+     "zh",
+     "表示所屬，人和物都用"
+    ],
+    [
+     "en",
+     "whose"
+    ],
+    [
+     "zh",
+     "加名詞。"
+    ],
+    [
+     "en",
+     "That"
+    ],
+    [
+     "zh",
+     "常常和"
+    ],
+    [
+     "en",
+     "who"
+    ],
+    [
+     "zh",
+     "和"
+    ],
+    [
+     "en",
+     "which"
+    ],
+    [
+     "zh",
+     "都能填，所以本課的選項不放。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "hook3",
+   "view": {
+    "kind": "pair",
+    "t": "再一句：空格後面不是動詞",
+    "xs": true,
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "lines": [
+     {
+      "n": "③",
+      "s": "The client ______ order was delayed received a refund."
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "再看第三句："
+    ],
+    [
+     "en",
+     "The client blank order was delayed received a refund."
+    ],
+    [
+     "zh",
+     "空格要填什麼？"
+    ]
+   ]
+  },
+  {
+   "id": "hook3t",
+   "view": {
+    "kind": "pair",
+    "t": "再一句：空格後面不是動詞",
+    "xs": true,
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "lines": [
+     {
+      "n": "③",
+      "s": "The client ______ order was delayed received a refund."
+     }
+    ]
+   },
+   "pause": 5
+  },
+  {
+   "id": "r3a",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：空格後面接名詞",
+    "xs": true,
+    "lines": [
+     {
+      "n": "③",
+      "s": "The client ⟨______ [order] was delayed⟩ received a refund."
+     }
+    ],
+    "ring": [
+     {
+      "w": "order",
+      "c": "blue",
+      "label": "名詞：客戶的訂單"
+     }
+    ],
+    "ban": {
+     "t": "後面接名詞，表示所屬 → whose＋名詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "這一句，空格後面不是動詞，是名詞"
+    ],
+    [
+     "en",
+     "order"
+    ],
+    [
+     "zh",
+     "，而且是「客戶的訂單」。表示所屬，就用"
+    ],
+    [
+     "en",
+     "whose"
+    ],
+    [
+     "zh",
+     "加名詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "r3b",
+   "view": {
+    "kind": "pair",
+    "t": "揭曉：空格後面接名詞",
+    "xs": true,
+    "lines": [
+     {
+      "n": "③",
+      "s": "The client ⟨______ [order] was delayed⟩ received a refund.",
+      "fill": "whose"
+     }
+    ],
+    "ring": [
+     {
+      "w": "order",
+      "c": "blue"
+     },
+     {
+      "w": "blank1",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "whose order ＝ 客戶的訂單",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是"
+    ],
+    [
+     "en",
+     "whose."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c2",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "再看空格後面缺什麼",
+    "rows": [
+     [
+      "直接接動詞",
+      "缺主詞 → who／which"
+     ],
+     [
+      "接名詞，表示所屬",
+      "whose＋名詞"
+     ],
+     [
+      "主詞＋動詞，動詞少了受詞",
+      "缺動詞的受詞 → which"
+     ],
+     [
+      "介系詞在空格前面",
+      "缺介系詞的受詞 → whom"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "整理一下空格後面缺什麼。直接接動詞，缺主詞。接名詞、表示所屬，用"
+    ],
+    [
+     "en",
+     "whose."
+    ],
+    [
+     "zh",
+     "有主詞和動詞，但動詞少了受詞，用"
+    ],
+    [
+     "en",
+     "which."
+    ],
+    [
+     "zh",
+     "空格前面是介系詞，缺的是介系詞的受詞，人就用"
+    ],
+    [
+     "en",
+     "whom."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "c3",
+   "view": {
+    "kind": "pair",
+    "t": "先懂一件事：括起形容詞子句，找主句",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The client ⟨who called this morning⟩ [wants] a refund.",
+      "zh": "主句：The client wants a refund."
+     },
+     {
+      "n": "②",
+      "s": "We [contacted] the customer ⟨whose package was sent⟩.",
+      "zh": "主句：We contacted the customer."
+     }
+    ],
+    "ring": [
+     {
+      "w": "wants",
+      "c": "ok"
+     },
+     {
+      "w": "contacted",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "螢光筆（形容詞子句）先括起來 → 圈起來的是主句的主要動詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "最後，先把形容詞子句括起來，再找主句的主詞和主要動詞。第一句的主要動詞"
+    ],
+    [
+     "en",
+     "wants"
+    ],
+    [
+     "zh",
+     "在形容詞子句後面；第二句的"
+    ],
+    [
+     "en",
+     "contacted"
+    ],
+    [
+     "zh",
+     "在前面。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "s1",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "看空格前面的名詞：人還是物？",
+     "看空格後面缺什麼：主詞、所屬、動詞的受詞、介系詞的受詞",
+     "括起形容詞子句，找主句的主詞＋主要動詞"
+    ],
+    "show": 1
+   },
+   "say": [
+    [
+     "zh",
+     "判斷三步奏。第一步，看空格前面的名詞，是人還是物？"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "s2",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "看空格前面的名詞：人還是物？",
+     "看空格後面缺什麼：主詞、所屬、動詞的受詞、介系詞的受詞",
+     "括起形容詞子句，找主句的主詞＋主要動詞"
+    ],
+    "show": 2
+   },
+   "say": [
+    [
+     "zh",
+     "第二步，看空格後面缺什麼。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "s3",
+   "view": {
+    "kind": "steps",
+    "t": "先懂一件事",
+    "h": "判斷三步驟",
+    "steps": [
+     "看空格前面的名詞：人還是物？",
+     "看空格後面缺什麼：主詞、所屬、動詞的受詞、介系詞的受詞",
+     "括起形容詞子句，找主句的主詞＋主要動詞"
+    ],
+    "show": 3
+   },
+   "say": [
+    [
+     "zh",
+     "第三步，把形容詞子句括起來，找主句的主詞和主要動詞。好，我們來實際做做看。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1q",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　人＋缺主詞",
+    "s": "[Employees] ______ [work] overtime|will receive an extra day off.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "whom"
+    ],
+    "fs": 60
+   },
+   "say": [
+    [
+     "zh",
+     "第一題。先自己想一下，空格要填什麼。"
+    ]
+   ]
+  },
+  {
+   "id": "d1t",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　人＋缺主詞",
+    "s": "[Employees] ______ [work] overtime|will receive an extra day off.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "whom"
+    ],
+    "fs": 60
+   },
+   "pause": 5
+  },
+  {
+   "id": "d1a",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　人＋缺主詞",
+    "s": "[Employees] ______ [work] overtime|will receive an extra day off.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "whom"
+    ],
+    "fs": 60,
+    "ring": [
+     {
+      "w": "Employees",
+      "c": "blue",
+      "label": "人"
+     }
+    ],
+    "ban": {
+     "t": "前面的名詞是人",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格前面是"
+    ],
+    [
+     "en",
+     "employees"
+    ],
+    [
+     "zh",
+     "，人。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1b",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　人＋缺主詞",
+    "s": "[Employees] ⟨______ [work] overtime⟩|will receive an extra day off.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "whom"
+    ],
+    "fs": 60,
+    "ring": [
+     {
+      "w": "Employees",
+      "c": "blue"
+     },
+     {
+      "w": "work",
+      "c": "ok",
+      "label": "動詞"
+     }
+    ],
+    "ban": {
+     "t": "後面直接接動詞 → 缺主詞 → who",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格後面直接接動詞"
+    ],
+    [
+     "en",
+     "work"
+    ],
+    [
+     "zh",
+     "，缺主詞，用"
+    ],
+    [
+     "en",
+     "who."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1r",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　人＋缺主詞",
+    "s": "[Employees] ⟨______ [work] overtime⟩|will receive an extra day off.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "whom"
+    ],
+    "fs": 60,
+    "ans": 0,
+    "zh": "加班的員工會多一天休假。",
+    "otag": {
+     "0": "人・主詞",
+     "1": "所屬",
+     "2": "物",
+     "3": "人・受詞"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 A，"
+    ],
+    [
+     "en",
+     "who."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1x",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　人＋缺主詞",
+    "s": "[Employees] ⟨______ [work] overtime⟩|will receive an extra day off.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "whom"
+    ],
+    "fs": 60,
+    "ans": 0,
+    "trap": 3,
+    "zh": "加班的員工會多一天休假。",
+    "otag": {
+     "0": "人・主詞",
+     "1": "所屬",
+     "2": "物",
+     "3": "人・受詞"
+    },
+    "ban": {
+     "t": "whom：受詞，不能當主詞",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Whom"
+    ],
+    [
+     "zh",
+     "是陷阱，它是受詞，不能當主詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1f",
+   "view": {
+    "kind": "full",
+    "t": "示範1　人＋缺主詞",
+    "html": "Employees <span class=\"ucl\"><span class=\"blank fill\">who</span> work overtime</span> will receive an extra day off.",
+    "zh": "加班的員工會多一天休假。"
+   },
+   "say": [
+    [
+     "en",
+     "Employees who work overtime will receive an extra day off."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2q",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　物＋缺主詞",
+    "s": "The [printer] ______ [is] next to the elevator|is out of order.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "what"
+    ],
+    "fs": 60
+   },
+   "say": [
+    [
+     "zh",
+     "第二題，一樣先想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d2t",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　物＋缺主詞",
+    "s": "The [printer] ______ [is] next to the elevator|is out of order.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "what"
+    ],
+    "fs": 60
+   },
+   "pause": 5
+  },
+  {
+   "id": "d2a",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　物＋缺主詞",
+    "s": "The [printer] ______ [is] next to the elevator|is out of order.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "what"
+    ],
+    "fs": 60,
+    "ring": [
+     {
+      "w": "printer",
+      "c": "blue",
+      "label": "物"
+     },
+     {
+      "w": "is",
+      "c": "ok",
+      "label": "動詞"
+     }
+    ],
+    "ban": {
+     "t": "物＋直接接動詞 → which",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格前面是"
+    ],
+    [
+     "en",
+     "the printer"
+    ],
+    [
+     "zh",
+     "，物。後面直接接動詞"
+    ],
+    [
+     "en",
+     "is"
+    ],
+    [
+     "zh",
+     "，缺主詞，用"
+    ],
+    [
+     "en",
+     "which."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2r",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　物＋缺主詞",
+    "s": "The [printer] ⟨______ [is] next to the elevator⟩|is out of order.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "what"
+    ],
+    "fs": 60,
+    "ans": 2,
+    "zh": "電梯旁邊的那台印表機故障了。",
+    "otag": {
+     "0": "人",
+     "1": "所屬",
+     "2": "物",
+     "3": "前面不能有名詞"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 C，"
+    ],
+    [
+     "en",
+     "which."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2x",
+   "view": {
+    "kind": "sent",
+    "t": "示範2　物＋缺主詞",
+    "s": "The [printer] ⟨______ [is] next to the elevator⟩|is out of order.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "what"
+    ],
+    "fs": 60,
+    "ans": 2,
+    "trap": 3,
+    "zh": "電梯旁邊的那台印表機故障了。",
+    "otag": {
+     "0": "人",
+     "1": "所屬",
+     "2": "物",
+     "3": "前面不能有名詞"
+    },
+    "ban": {
+     "t": "what：前面不能有名詞",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "What"
+    ],
+    [
+     "zh",
+     "是陷阱，它前面不能有名詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d2f",
+   "view": {
+    "kind": "full",
+    "t": "示範2　物＋缺主詞",
+    "html": "The printer <span class=\"ucl\"><span class=\"blank fill\">which</span> is next to the elevator</span> is out of order.",
+    "zh": "電梯旁邊的那台印表機故障了。"
+   },
+   "say": [
+    [
+     "en",
+     "The printer which is next to the elevator is out of order."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3q",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　whose＋名詞",
+    "s": "We contacted the [customer] ______ [package]|was sent to the wrong address.",
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "fs": 60
+   },
+   "say": [
+    [
+     "zh",
+     "第三題。想想看。"
+    ]
+   ]
+  },
+  {
+   "id": "d3t",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　whose＋名詞",
+    "s": "We contacted the [customer] ______ [package]|was sent to the wrong address.",
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "fs": 60
+   },
+   "pause": 5
+  },
+  {
+   "id": "d3a",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　whose＋名詞",
+    "s": "We contacted the [customer] ______ [package]|was sent to the wrong address.",
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "fs": 60,
+    "ring": [
+     {
+      "w": "customer",
+      "c": "blue"
+     },
+     {
+      "w": "package",
+      "c": "ok",
+      "label": "名詞：客戶的包裹"
+     }
+    ],
+    "ban": {
+     "t": "表示所屬 → whose＋名詞",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格後面接名詞"
+    ],
+    [
+     "en",
+     "package"
+    ],
+    [
+     "zh",
+     "，而且是「客戶的包裹」，表示所屬。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3r",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　whose＋名詞",
+    "s": "We contacted the [customer] ⟨______ [package]⟩|⟨was sent to the wrong address⟩.",
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "fs": 60,
+    "ans": 2,
+    "zh": "我們聯絡了包裹被寄錯地址的那位顧客。",
+    "otag": {
+     "0": "人・主詞",
+     "1": "人・受詞",
+     "2": "所屬",
+     "3": "物"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 C，"
+    ],
+    [
+     "en",
+     "whose."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3x",
+   "view": {
+    "kind": "sent",
+    "t": "示範3　whose＋名詞",
+    "s": "We contacted the [customer] ⟨______ [package]⟩|⟨was sent to the wrong address⟩.",
+    "o": [
+     "who",
+     "whom",
+     "whose",
+     "which"
+    ],
+    "fs": 60,
+    "ans": 2,
+    "trap": 0,
+    "zh": "我們聯絡了包裹被寄錯地址的那位顧客。",
+    "otag": {
+     "0": "人・主詞",
+     "1": "人・受詞",
+     "2": "所屬",
+     "3": "物"
+    },
+    "ban": {
+     "t": "who：本題需要表示所屬的 whose＋名詞",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Who"
+    ],
+    [
+     "zh",
+     "是陷阱，這題需要表示所屬的"
+    ],
+    [
+     "en",
+     "whose"
+    ],
+    [
+     "zh",
+     "加名詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d3f",
+   "view": {
+    "kind": "full",
+    "t": "示範3　whose＋名詞",
+    "html": "We contacted the customer <span class=\"ucl\"><span class=\"blank fill\">whose</span> package was sent to the wrong address</span>.",
+    "zh": "我們聯絡了包裹被寄錯地址的那位顧客。"
+   },
+   "say": [
+    [
+     "en",
+     "We contacted the customer whose package was sent to the wrong address."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4q",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　物＋缺動詞的受詞",
+    "s": "The [proposal] ______ Ms. Kim [submitted] last week|has been approved.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "what"
+    ],
+    "fs": 60
+   },
+   "say": [
+    [
+     "zh",
+     "第四題。看看空格後面缺什麼？"
+    ]
+   ]
+  },
+  {
+   "id": "d4t",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　物＋缺動詞的受詞",
+    "s": "The [proposal] ______ Ms. Kim [submitted] last week|has been approved.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "what"
+    ],
+    "fs": 60
+   },
+   "pause": 5
+  },
+  {
+   "id": "d4a",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　物＋缺動詞的受詞",
+    "s": "The [proposal] ______ Ms. Kim [submitted] last week|has been approved.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "what"
+    ],
+    "fs": 60,
+    "ring": [
+     {
+      "w": "proposal",
+      "c": "blue",
+      "label": "物"
+     },
+     {
+      "w": "submitted",
+      "c": "ok",
+      "label": "交了什麼？"
+     }
+    ],
+    "ban": {
+     "t": "動詞 submitted 少了受詞 → which",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格前面是"
+    ],
+    [
+     "en",
+     "the proposal"
+    ],
+    [
+     "zh",
+     "，物。後面"
+    ],
+    [
+     "en",
+     "Ms. Kim submitted"
+    ],
+    [
+     "zh",
+     "，有主詞、有動詞，但"
+    ],
+    [
+     "en",
+     "submitted"
+    ],
+    [
+     "zh",
+     "少了受詞，交了什麼？缺的是動詞的受詞，用"
+    ],
+    [
+     "en",
+     "which."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4r",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　物＋缺動詞的受詞",
+    "s": "The [proposal] ⟨______ Ms. Kim [submitted] last week⟩|has been approved.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "what"
+    ],
+    "fs": 60,
+    "ans": 2,
+    "zh": "金小姐上週提交的提案已經核准了。",
+    "otag": {
+     "0": "人",
+     "1": "所屬",
+     "2": "物",
+     "3": "前面不能有名詞"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "答案是 C，"
+    ],
+    [
+     "en",
+     "which."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4x",
+   "view": {
+    "kind": "sent",
+    "t": "示範4　物＋缺動詞的受詞",
+    "s": "The [proposal] ⟨______ Ms. Kim [submitted] last week⟩|has been approved.",
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "what"
+    ],
+    "fs": 60,
+    "ans": 2,
+    "trap": 0,
+    "zh": "金小姐上週提交的提案已經核准了。",
+    "otag": {
+     "0": "人",
+     "1": "所屬",
+     "2": "物",
+     "3": "前面不能有名詞"
+    },
+    "ban": {
+     "t": "who：用在人，proposal 是物",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Who"
+    ],
+    [
+     "zh",
+     "是陷阱，它用在人，"
+    ],
+    [
+     "en",
+     "proposal"
+    ],
+    [
+     "zh",
+     "是物。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d4f",
+   "view": {
+    "kind": "full",
+    "t": "示範4　物＋缺動詞的受詞",
+    "html": "The proposal <span class=\"ucl\"><span class=\"blank fill\">which</span> Ms. Kim submitted last week</span> has been approved.",
+    "zh": "金小姐上週提交的提案已經核准了。"
+   },
+   "say": [
+    [
+     "en",
+     "The proposal which Ms. Kim submitted last week has been approved."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "wm1",
+   "view": {
+    "kind": "pair",
+    "t": "補充：介系詞＋whom",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The coordinator confirmed receipt.",
+      "zh": "協調人確認已收到。"
+     },
+     {
+      "n": "②",
+      "s": "I sent the schedule [to the coordinator].",
+      "zh": "我把行程表寄給協調人。（coordinator 是介系詞 to 的受詞）"
+     }
+    ],
+    "ring": [
+     {
+      "w": "to the coordinator",
+      "c": "blue"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "補充一個介系詞放前面的例子。先看兩句："
+    ],
+    [
+     "en",
+     "The coordinator confirmed receipt."
+    ],
+    [
+     "zh",
+     "和"
+    ],
+    [
+     "en",
+     "I sent the schedule to the coordinator."
+    ],
+    [
+     "en",
+     "Coordinator"
+    ],
+    [
+     "zh",
+     "是介系詞 to 的受詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "wm2",
+   "view": {
+    "kind": "pair",
+    "t": "補充：介系詞＋whom",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The coordinator confirmed receipt.",
+      "zh": "協調人確認已收到。"
+     },
+     {
+      "n": "②",
+      "s": "I sent the schedule [to the coordinator].",
+      "zh": "我把行程表寄給協調人。（coordinator 是介系詞 to 的受詞）"
+     },
+     {
+      "n": "③",
+      "s": "The coordinator ⟨[whom] I sent the schedule [to]⟩ confirmed receipt.",
+      "zh": "先合併：whom 代替 the coordinator，to 留在後面"
+     }
+    ],
+    "ring": [
+     {
+      "w": "whom",
+      "c": "ok"
+     },
+     {
+      "w": "to",
+      "c": "blue"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "先合併成一句："
+    ],
+    [
+     "en",
+     "whom"
+    ],
+    [
+     "zh",
+     "代替"
+    ],
+    [
+     "en",
+     "the coordinator"
+    ],
+    [
+     "zh",
+     "，to 先留在後面。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "wm3",
+   "view": {
+    "kind": "pair",
+    "t": "補充：再把 to 往前拉",
+    "xs": true,
+    "lines": [
+     {
+      "n": "③",
+      "s": "The coordinator ⟨[whom] I sent the schedule [to]⟩ confirmed receipt.",
+      "zh": "先合併：whom 代替 the coordinator，to 留在後面"
+     },
+     {
+      "n": "④",
+      "s": "The coordinator ⟨[to whom] I sent the schedule⟩ confirmed receipt.",
+      "zh": "再把 to 往前拉：to whom（不能用 to who）"
+     }
+    ],
+    "ring": [
+     {
+      "w": "to whom",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "介系詞放前面 → to whom（不能用 who）",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "第三步，再把 to 往前拉，變成"
+    ],
+    [
+     "en",
+     "to whom."
+    ],
+    [
+     "zh",
+     "介系詞放在前面時，用"
+    ],
+    [
+     "en",
+     "whom"
+    ],
+    [
+     "zh",
+     "，不能用"
+    ],
+    [
+     "en",
+     "who."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "e1",
+   "view": {
+    "kind": "sum",
+    "t": "本課整理",
+    "h": "先看前面的名詞，再看後面缺什麼",
+    "rows": [
+     [
+      "人＋直接接動詞",
+      "who"
+     ],
+     [
+      "物＋直接接動詞",
+      "which"
+     ],
+     [
+      "人或物＋表示所屬",
+      "whose＋名詞"
+     ],
+     [
+      "物＋動詞少了受詞",
+      "which"
+     ],
+     [
+      "人＋介系詞在前面",
+      "whom"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "最後整理一下。人，後面直接接動詞，用"
+    ],
+    [
+     "en",
+     "who"
+    ],
+    [
+     "zh",
+     "；物，用"
+    ],
+    [
+     "en",
+     "which."
+    ],
+    [
+     "zh",
+     "表示所屬，用"
+    ],
+    [
+     "en",
+     "whose"
+    ],
+    [
+     "zh",
+     "加名詞。"
+    ],
+    [
+     "zh",
+     "物，動詞少了受詞，用"
+    ],
+    [
+     "en",
+     "which"
+    ],
+    [
+     "zh",
+     "；人，介系詞在前面，用"
+    ],
+    [
+     "en",
+     "whom."
+    ],
+    [
+     "zh",
+     "最後，括起形容詞子句，找主句確認。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "e2",
+   "view": {
+    "kind": "cta",
+    "q": [
+     "看完了？",
+     "往下做 10 題練習，",
+     "再用 4 題確認你會不會判斷。"
+    ],
+    "down": true
+   },
+   "say": [
+    [
+     "zh",
+     "看完了？往下做 10 題練習，再用 4 題確認你會不會判斷。"
+    ]
+   ],
+   "hold": 3.0
+  }
+ ]
+}

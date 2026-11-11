@@ -1,0 +1,27 @@
+[
+ {
+  "scene": "q",
+  "start": 0.0,
+  "sec": 2.83
+ },
+ {
+  "scene": "t",
+  "start": 2.83,
+  "sec": 3.45
+ },
+ {
+  "scene": "r",
+  "start": 6.28,
+  "sec": 9.72
+ },
+ {
+  "scene": "f",
+  "start": 16.01,
+  "sec": 3.71
+ },
+ {
+  "scene": "end",
+  "start": 19.72,
+  "sec": 6.01
+ }
+]
