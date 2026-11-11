@@ -119,8 +119,23 @@ def build_frames(data, cues, lens, tmp):  # noqa: C901
                     shots.append((p, 1.0 if k < n - 1 else L - (n - 1)))
             else:
                 p = tmp / ('f%02d.png' % i)
-                pg.evaluate('v=>render(v,0)', cue['view']); pg.screenshot(path=str(p))
-                shots.append((p, L))
+                pg.evaluate('v=>render(v,0)', cue['view'])
+                # "anim": true → 這一幕新出現的圈，用約 0.4 秒畫出來（前一幕已經有的圈不重畫）
+                prev = [r['w'] for r in (cues[i - 1]['view'].get('ring') or [])] if i else []
+                new = [r['w'] for r in (cue['view'].get('ring') or []) if r['w'] not in prev]
+                if data.get('anim') and new and L > 0.8:
+                    pg.evaluate('''ws=>{document.querySelectorAll('.ring').forEach(function(e){if(ws.indexOf(e.dataset.w)>=0){e.classList.add('new');
+                      var l=e.nextElementSibling;if(l&&l.classList.contains('lab'))l.classList.add('new')}})}''', new)
+                    steps = [0.12, 0.3, 0.5, 0.7, 0.88]
+                    for k, rp in enumerate(steps):
+                        q = tmp / ('f%02d_a%d.png' % (i, k))
+                        pg.evaluate('p=>document.documentElement.style.setProperty("--rp",p)', rp); pg.screenshot(path=str(q))
+                        shots.append((q, 0.08))
+                    pg.evaluate('()=>document.documentElement.style.setProperty("--rp",1)')
+                    pg.screenshot(path=str(p)); shots.append((p, L - 0.08 * len(steps)))
+                else:
+                    pg.screenshot(path=str(p))
+                    shots.append((p, L))
         b.close()
     return shots
 

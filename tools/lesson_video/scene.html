@@ -61,6 +61,8 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper);col
 .ring{position:absolute;inset:-10px -16px;border:8px solid var(--bad);border-radius:999px;pointer-events:none}
 .ring.blue{border-color:var(--blue)}
 .ring.ok{border-color:var(--ok)}
+.ring.new{clip-path:inset(0 calc((1 - var(--rp,1)) * 100%) 0 0)}
+.lab.new{opacity:var(--rp,1)}
 .ring.pt{inset:-2px -7px;border-width:5px;border-color:#C77700}
 .lab.pt{background:#C77700}
 .uline{position:absolute;left:0;right:0;bottom:-14px;height:8px;border-radius:4px;background:var(--blue)}
@@ -137,7 +139,7 @@ function sentHTML(s,fill,solo){
 function el(w){return document.querySelector('[data-w="'+w+'"]')}
 function marks(v){
   (v.dim||[]).forEach(function(w){var e=el(w);if(e)e.classList.add('dimw')});   // 淡化：例如主詞後面的介系詞片語
-  (v.ring||[]).forEach(function(r){var e=el(r.w);if(!e)return;var pt=/^[.,;:]$/.test(r.w);e.insertAdjacentHTML('beforeend','<span class="ring '+(pt?'pt':(r.c||''))+'"></span>'+(r.label?'<span class="lab '+(pt?'pt':(r.c||'red'))+(r.below?' below':'')+(r.side?' side':'')+'">'+esc(r.label)+'</span>':''))});
+  (v.ring||[]).forEach(function(r){var e=el(r.w);if(!e)return;var pt=/^[.,;:]$/.test(r.w);e.insertAdjacentHTML('beforeend','<span class="ring '+(pt?'pt':(r.c||''))+'" data-w="'+esc(r.w)+'"></span>'+(r.label?'<span class="lab '+(pt?'pt':(r.c||'red'))+(r.below?' below':'')+(r.side?' side':'')+'">'+esc(r.label)+'</span>':''))});
   (v.under||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="uline"></span>'+(r.label?'<span class="lab blue'+(r.below?' below':'')+(r.side?' side':'')+'">'+esc(r.label)+'</span>':''))});
   (v.bracket||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="brk"></span>'+(r.label?'<span class="lab ok'+(r.below?' below':'')+'">'+esc(r.label)+'</span>':''))});
   (v.tag||[]).forEach(function(r){var e=el(r.w);if(!e)return;e.insertAdjacentHTML('beforeend','<span class="lab '+(r.c||'gray')+(r.below?' below':'')+'">'+esc(r.label)+'</span>')});

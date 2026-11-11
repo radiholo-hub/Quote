@@ -1,7 +1,8 @@
 {
  "title": "Score Rescue｜詞性小課 第6課（課程內嵌版）",
  "brand": "Score Rescue｜詞性小課 第6課",
- "rev": "v3",
+ "rev": "v4",
+ "anim": true,
  "cues": [
   {
    "id": "hook1",
@@ -838,6 +839,14 @@
     [
      "en",
      "therefore"
+    ],
+    [
+     "zh",
+     "和"
+    ],
+    [
+     "en",
+     "as a result"
     ],
     [
      "zh",
