@@ -1,0 +1,264 @@
+{
+ "title": "短片｜The artists ___ their work will give a short talk.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "句子裡的 V-ing，<br>不一定是動詞。",
+    "top": 640
+   },
+   "say": [
+    [
+     "zh",
+     "句子裡的"
+    ],
+    [
+     "en",
+     "V-ing"
+    ],
+    [
+     "zh",
+     "，不一定是動詞。"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [artists] ______ their work|[will give] a short talk.",
+      "zh": "展出作品的藝術家將進行簡短演講。"
+     }
+    ],
+    "o": [
+     "display",
+     "displays",
+     "displaying",
+     "displayed"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "The artists blank their work will give a short talk."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [artists] ______ their work|[will give] a short talk.",
+      "zh": "展出作品的藝術家將進行簡短演講。"
+     }
+    ],
+    "o": [
+     "display",
+     "displays",
+     "displaying",
+     "displayed"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [artists] ______ their work|[will give] a short talk.",
+      "zh": "展出作品的藝術家將進行簡短演講。"
+     }
+    ],
+    "o": [
+     "display",
+     "displays",
+     "displaying",
+     "displayed"
+    ],
+    "ring": [
+     {
+      "w": "artists",
+      "c": "red",
+      "label": "主詞"
+     }
+    ],
+    "ban": {
+     "t": "主詞後面 → 填動詞 display？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "空格在主詞"
+    ],
+    [
+     "en",
+     "artists"
+    ],
+    [
+     "zh",
+     "後面，所以填動詞"
+    ],
+    [
+     "en",
+     "display"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [artists] ______ their work|[will give] a short talk.",
+      "zh": "展出作品的藝術家將進行簡短演講。"
+     }
+    ],
+    "o": [
+     "display",
+     "displays",
+     "displaying",
+     "displayed"
+    ],
+    "ans": 2,
+    "fill": "displaying",
+    "ring": [
+     {
+      "w": "will give",
+      "c": "blue",
+      "label": "主要動詞已經有了",
+      "below": true
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "空格修飾 artists<br>藝術家「展示」作品 → displaying",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "不對。句子已經有主要動詞"
+    ],
+    [
+     "en",
+     "will give."
+    ],
+    [
+     "zh",
+     "空格是在修飾"
+    ],
+    [
+     "en",
+     "artists"
+    ],
+    [
+     "zh",
+     "，藝術家是展示作品的一方，所以選 C，"
+    ],
+    [
+     "en",
+     "displaying."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：名詞是被展示的",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [paintings] ______ at the gallery|were created by local artists.",
+      "zh": "在畫廊展出的畫作是在地藝術家創作的。"
+     }
+    ],
+    "fill": "displayed",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "paintings",
+      "c": "blue",
+      "label": "被展示"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "畫作「被」展示 → displayed",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "如果名詞是被展示的畫作，就用"
+    ],
+    [
+     "en",
+     "displayed."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "完整方案 第 4 課",
+    "h": "V-ing 還是 p.p.？<br>先看名詞和動作",
+    "sub": "5 分鐘影片＋14 題練習",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}

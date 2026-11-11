@@ -1,0 +1,247 @@
+{
+ "title": "短片｜___ the heavy rain, the flight departed on time.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "意思一樣，<br>答案卻不一樣。",
+    "top": 640
+   },
+   "say": [
+    [
+     "zh",
+     "意思一樣，答案卻不一樣。"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "______ [the heavy rain],|the flight departed on time.",
+      "zh": "儘管下大雨，班機仍準時起飛。"
+     }
+    ],
+    "o": [
+     "Although",
+     "Despite",
+     "Nevertheless",
+     "Because"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "Blank the heavy rain, the flight departed on time."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "______ [the heavy rain],|the flight departed on time.",
+      "zh": "儘管下大雨，班機仍準時起飛。"
+     }
+    ],
+    "o": [
+     "Although",
+     "Despite",
+     "Nevertheless",
+     "Because"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "______ [the heavy rain],|the flight departed on time.",
+      "zh": "儘管下大雨，班機仍準時起飛。"
+     }
+    ],
+    "o": [
+     "Although",
+     "Despite",
+     "Nevertheless",
+     "Because"
+    ],
+    "ring": [
+     {
+      "w": "blank",
+      "c": "red",
+      "label": "雖然…"
+     }
+    ],
+    "ban": {
+     "t": "「雖然」→ 選 Although？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "意思是「雖然下大雨」，所以選"
+    ],
+    [
+     "en",
+     "although"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "______ [the heavy rain],|the flight departed on time.",
+      "zh": "儘管下大雨，班機仍準時起飛。"
+     }
+    ],
+    "o": [
+     "Although",
+     "Despite",
+     "Nevertheless",
+     "Because"
+    ],
+    "ans": 1,
+    "fill": "Despite",
+    "ring": [
+     {
+      "w": "the heavy rain",
+      "c": "blue",
+      "label": "名詞片語"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "名詞片語 → 介系詞 Despite<br>（＝ In spite of）",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "不對。空格後面"
+    ],
+    [
+     "en",
+     "the heavy rain"
+    ],
+    [
+     "zh",
+     "是名詞片語，要用介系詞，選 B，"
+    ],
+    [
+     "en",
+     "despite."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：後面換成子句",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "______ [it was raining] heavily,|the flight departed on time.",
+      "zh": "雖然雨下得很大，班機仍準時起飛。"
+     }
+    ],
+    "fill": "Although",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "it was raining",
+      "c": "blue",
+      "label": "子句（主詞＋動詞）"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "子句 → 連接詞 Although",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "後面換成子句"
+    ],
+    [
+     "en",
+     "it was raining"
+    ],
+    [
+     "zh",
+     "，才用"
+    ],
+    [
+     "en",
+     "although."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "完整方案 第 6 課",
+    "h": "意思相近，怎麼選？<br>看句型，也看標點",
+    "sub": "7 分半影片＋14 題練習",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}
