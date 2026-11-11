@@ -10,7 +10,7 @@ window.VOCAB = {
    "hw": "tight",
    "key": "adj",
    "pos": "adj.",
-   "zh": "緊湊的;(時間、經費)吃緊的;緊的",
+   "zh": "緊的;(行程)緊湊的;(時間、預算)吃緊的",
    "forms": [
     "tight",
     "tighter",
@@ -45,28 +45,32 @@ window.VOCAB = {
      "zh": "我們預算吃緊,所以買不起新車。"
     }
    ],
-   "note": "形容「時間、行程、預算」時,表示餘裕很少、排得很滿。",
+   "note": "tight 表示「緊的、緊湊的、缺乏餘裕的」,實際意思會隨搭配詞改變:tight schedule(行程緊湊)、tight budget(預算有限、預算吃緊)、tight deadline(截止期限緊迫)。解題時應根據後面的名詞與上下文判斷字義。",
    "rel": {
     "syn": [
      {
       "w": "packed",
-      "zh": "(行程)排得滿滿的"
+      "zh": "adj. 排滿的、擁擠的；常見搭配：a packed schedule＝行程排得滿滿的"
      }
     ],
     "ant": [
      {
-      "w": "flexible",
-      "zh": "有彈性的"
+      "w": "loose",
+      "zh": "鬆的；與 tight 相反"
      },
      {
-      "w": "loose",
-      "zh": "寬鬆的"
+      "w": "a light schedule",
+      "zh": "行程較空閒；與 a tight schedule 相對"
      }
     ],
     "confusable": [
      {
       "w": "busy",
-      "note": "busy 形容「人」或某段時間很忙;tight 形容行程、預算本身排得緊、沒有餘裕,常搭配 schedule、budget、deadline。"
+      "note": "busy schedule 和 tight schedule 都是自然的英文搭配。busy schedule 強調事情多、行程忙碌;tight schedule 更強調時間安排緊湊、缺乏餘裕。兩者意思相近且可能重疊,不能說 busy 只能形容人,或不能修飾 schedule。"
+     },
+     {
+      "w": "flexible",
+      "note": "a flexible schedule 指時間安排具有彈性,可以調整時段,但不代表工作或行程一定不忙碌。因此 flexible schedule 不等於 light schedule。"
      }
     ]
    },
@@ -151,7 +155,7 @@ window.VOCAB = {
    "hw": "tightness",
    "key": "n",
    "pos": "n.",
-   "zh": "緊;緊繃感;(經費)吃緊",
+   "zh": "緊度;緊繃感;緊密程度",
    "forms": [
     "tightness"
    ],
@@ -2428,7 +2432,7 @@ window.VOCAB = {
  "phrases": {
   "arrange-an-interview": {
    "t": "arrange an interview",
-   "zh": "安排訪談(面談)"
+   "zh": "安排採訪／訪談"
   },
   "such-a-that": {
    "t": "such a tight schedule that",

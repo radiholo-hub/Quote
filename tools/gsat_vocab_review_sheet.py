@@ -42,8 +42,10 @@ def group_of(r, ent):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument('--out', required=True); ap.add_argument('--suggestions'); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument('--out', required=True); ap.add_argument('--suggestions'); ap.add_argument('--decisions'); a = ap.parse_args()
     sg = json.loads(pathlib.Path(a.suggestions).read_text(encoding='utf8')) if a.suggestions else {}
+    dec = json.loads(pathlib.Path(a.decisions).read_text(encoding='utf8')) if a.decisions else {}      # 負責人已決定、但尚未由審核者確認的紀錄:只做醒目標示與「一鍵套用」,不預先選取、不填審核者
+    jump = []
     out = pathlib.Path(a.out).resolve()
     if out == ROOT or ROOT in out.parents:
         sys.exit('拒絕：待審核表含試題，輸出位置必須在版本庫（' + str(ROOT) + '）以外。')
@@ -67,32 +69,41 @@ def main():
         for f in r['f']: ctx = re.sub(r'(?i)\b(%s)\b' % re.escape(f), r'<mark>\1</mark>', ctx)
         s_ = sg.get(r['k'], {})
         where = (f'第 {r["n"]} 題 {html.escape(r["loc"])}' if r.get('n') else f'題組 {r["qs"][0]}–{r["qs"][-1]} 題(共用文章){html.escape(r["loc"])}')
-        src = f'大考中心 {r["y"]} 學年度學科能力測驗英文考科試卷' + (f',第 {s_["page"]} 頁' if s_.get('page') else '')
+        src = f'大考中心 {r["y"]} 學年度學科能力測驗英文考科試卷' + (f',試卷第 {s_["page"]} 頁(試卷上印的頁碼,不是 PDF 檔的第幾頁)' if s_.get('page') else '')
         ai = ''
         if s_:
             ai = (f'<details class="ai"><summary>AI 參考意見(未採用,僅供對照)</summary>AI 傾向:{"計入" if s_["suggest"] == "confirmed" else "排除"}(信心:{html.escape(s_["conf"])})<br>此處詞性/字義:{html.escape(s_["pos"])}'
                   f'<br>另一種可能:{html.escape(s_["alt"])}<br>理由:{html.escape(s_["why"])}</details>')
         k = html.escape(r['k'], quote=True)
-        secs.append(f'<div class="rec" data-k="{k}" id="r{n}"><div class="hd"><b>#{n}　{html.escape(eid)}</b> <span class="note">詞條:{html.escape(ent["pos"])} {html.escape(ent["zh"])}{("　|　此字形也可能是:" + html.escape(ent["alsoPos"])) if ent["alsoPos"] and r["r"] != "compound" else ""}</span></div>'
+        d_ = dec.get(r['k'])
+        dbox = ''
+        if d_:
+            jump.append(n)
+            dbox = (f'<div class="decision" data-v="{d_["verdict"]}" data-a="{html.escape(d_["pos_sense"], quote=True)}" data-c="{html.escape(d_["reason"], quote=True)}"><b>★ 負責人預定決定(尚未生效,需要你確認)</b>:{"計入" if d_["verdict"] == "confirmed" else "排除"}'
+                    f'<br>實際詞性/字義:{html.escape(d_["pos_sense"])}<br>理由:{html.escape(d_["reason"])}<br><button type="button" class="apply">套用這個決定到我的選擇</button> <button type="button" class="undo">撤回(回到待確認並清空這兩欄)</button> <span class="note">套用只會選好「計入／排除」並填入上面兩欄;審核者姓名與日期仍由你填,按「匯出」才會產生內容。</span></div>')
+        secs.append(f'<div class="rec{" has-dec" if d_ else ""}" data-k="{k}" id="r{n}"><div class="hd"><b>#{n}　{html.escape(eid)}</b> <span class="note">詞條:{html.escape(ent["pos"])} {html.escape(ent["zh"])}{("　|　此字形也可能是:" + html.escape(ent["alsoPos"])) if ent["alsoPos"] and r["r"] != "compound" else ""}</span></div>'
                     f'<div class="meta">{r["y"]} 學年度・{html.escape(r["t"])}・{where}・角色:{html.escape(ROLE[r["role"]])}・來源:{html.escape(src)}</div>'
-                    f'<div class="ctx">{ctx}</div>{ai}'
+                    f'<div class="ctx">{ctx}</div>{ai}{dbox}'
                     f'<div class="ctl"><label><input type="radio" name="s{n}" value="confirmed"> 計入(此處就是這個詞條)</label><label><input type="radio" name="s{n}" value="rejected"> 排除(不是這個詞條)</label><label><input type="radio" name="s{n}" value="" checked> 待確認</label>'
                     f'<input class="act" placeholder="此處實際詞性/字義(選填)" aria-label="實際詞性"><input class="c" placeholder="意見(選填)" aria-label="意見"></div></div>')
     secs.append('</div>')
     css = ('body{font:15px/1.65 -apple-system,"Noto Sans TC",sans-serif;max-width:980px;margin:0 auto;padding:12px 14px 130px;background:#f6f7f9;color:#1c2330}h2{font-size:1.1rem;margin:26px 0 4px;border-top:3px solid #8a94a6;padding-top:8px}'
            '.note{color:#5d6778;font-size:.86rem}.warn{background:#fff4d6;border-left:4px solid #e0a800;padding:6px 12px}.rec{background:#fff;border:1px solid #d3d9e3;border-left:5px solid #b8bfcc;border-radius:10px;padding:8px 10px;margin:8px 0}.rec.done{border-left-color:#12703a}.rec.rej{border-left-color:#b3261e}'
            '.meta{font-size:.84rem;color:#5d6778}.ctx{font-family:Georgia,serif;white-space:pre-wrap;margin:6px 0;background:#f2f4f8;border-radius:8px;padding:6px 8px}mark{background:#ffe27a}.ctl{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}.ctl label{min-height:30px;display:inline-flex;gap:4px;align-items:center}'
-           '.ctl input.act,.ctl input.c{flex:1;min-width:150px;font:inherit;border:1px solid #c5ccd8;border-radius:6px;padding:3px 6px}.ai{margin:4px 0;font-size:.85rem;color:#5d6778}'
+           '.ctl input.act,.ctl input.c{flex:1;min-width:150px;font:inherit;border:1px solid #c5ccd8;border-radius:6px;padding:3px 6px}.decision{background:#e8f1ff;border-left:4px solid #1f5fbf;padding:6px 10px;margin:6px 0;border-radius:6px}.rec.has-dec{outline:2px solid #1f5fbf}.jump{background:#e8f1ff;border-left:4px solid #1f5fbf;padding:6px 12px;margin:8px 0}.ai{margin:4px 0;font-size:.85rem;color:#5d6778}'
            '#bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #b8bfcc;padding:8px 14px calc(8px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;align-items:center;flex-wrap:wrap}#bar span{flex:1;min-width:160px;font-size:.86rem}button{font:inherit;border:1px solid #b8bfcc;background:#fff;border-radius:8px;min-height:40px}#exp{width:100%;height:170px;box-sizing:border-box}')
     js = r"""(function(){var KEY='gsat-vocabreview-'+location.pathname,S={};try{S=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function cnt(){var c=0,j=0,w=0;document.querySelectorAll('.rec').forEach(function(r){var v=(S[r.dataset.k]||{}).v||'';if(v==='confirmed')c++;else if(v==='rejected')j++;else w++});document.getElementById('cnt').textContent='計入 '+c+'・排除 '+j+'・待確認 '+w}
 document.querySelectorAll('.rec').forEach(function(r){var k=r.dataset.k,s=S[k]=S[k]||{};
  function paint(){r.classList.toggle('done',s.v==='confirmed');r.classList.toggle('rej',s.v==='rejected')}
  r.querySelectorAll('input[type=radio]').forEach(function(x){if(s.v!=null&&x.value===s.v)x.checked=true;x.addEventListener('change',function(){s.v=x.value;paint();save();cnt()})});
- var a=r.querySelector('.act'),c=r.querySelector('.c');if(s.a)a.value=s.a;if(s.c)c.value=s.c;a.oninput=function(){s.a=a.value;save()};c.oninput=function(){s.c=c.value;save()};paint()});
+ var a=r.querySelector('.act'),c=r.querySelector('.c');if(s.a)a.value=s.a;if(s.c)c.value=s.c;a.oninput=function(){s.a=a.value;save()};c.oninput=function(){s.c=c.value;save()};
+ var d=r.querySelector('.decision');if(d){d.querySelector('.apply').onclick=function(){s.v=d.dataset.v;s.a=d.dataset.a;s.c=d.dataset.c;r.querySelectorAll('input[type=radio]').forEach(function(x){x.checked=(x.value===s.v)});a.value=s.a;c.value=s.c;paint();save();cnt()};
+  d.querySelector('.undo').onclick=function(){s.v='';s.a='';s.c='';r.querySelectorAll('input[type=radio]').forEach(function(x){x.checked=(x.value==='')});a.value='';c.value='';paint();save();cnt()}}
+ paint()});
 var by=document.getElementById('by');if(S.__by)by.value=S.__by;by.oninput=function(){S.__by=by.value;save()};cnt();
 document.getElementById('btn').onclick=function(){var by=document.getElementById('by').value.trim(),at=new Date().toISOString().slice(0,10),L=[],J=[];
- document.querySelectorAll('.rec').forEach(function(r){var s=S[r.dataset.k]||{};if(s.v||s.c||s.a){L.push('['+r.querySelector('.hd b').textContent.trim()+'] '+(s.v==='confirmed'?'計入':s.v==='rejected'?'排除':'待確認')+(s.a?'　實際:'+s.a:'')+(s.c?'　意見:'+s.c:''))}
+ document.querySelectorAll('.rec').forEach(function(r){var s=S[r.dataset.k]||{};if(s.v||s.c||s.a){L.push('['+r.dataset.k+'] '+(s.v==='confirmed'?'計入':s.v==='rejected'?'排除':'待確認')+(s.a?'　實際:'+s.a:'')+(s.c?'　意見:'+s.c:''))}
   if(s.v)J.push('  '+JSON.stringify(r.dataset.k)+': {"verdict": "'+s.v+'", "by": '+JSON.stringify(by)+', "at": "'+at+'"}')});
  document.getElementById('exp').value=document.getElementById('cnt').textContent+'\n'+(L.join('\n')||'(尚未標記)')+'\n\n'+(by?'── 可貼進 gsat/exam/vocab_reviews.js 的內容(只含你選了計入/排除的紀錄)──\n{\n'+J.join(',\n')+'\n}':'(要產生 vocab_reviews.js 內容,請先在下方填審核者姓名)')};
 document.getElementById('clr').onclick=function(){var b=document.getElementById('clr');if(b.dataset.arm!=='1'){b.dataset.arm='1';b.textContent='再按一次確認清除';return}try{localStorage.removeItem(KEY)}catch(e){}location.reload()};})();"""
@@ -100,7 +111,7 @@ document.getElementById('clr').onclick=function(){var b=document.getElementById(
 <h1>單字出現紀錄・詞性待確認({n} 筆)</h1>
 <p class="warn"><b>注意:</b>含大考中心試題,使用權利尚未確認,請勿公開轉貼。這 {n} 筆是系統無法自動確定詞性、詞義或屬於複合詞的原始紀錄,<b>全部保留、預設「待確認」、不計入任何統計</b>。分組只依客觀旗標(複合詞／詞性可能不同／字義可能不同),不是 AI 的判斷。</p>
 <p>每筆請看原句(黃底是比對到的字),選「計入／排除／待確認」,並可填「此處實際詞性/字義」與意見。選擇自動存在這個瀏覽器;最下面按「匯出」,會得到可貼進 <code>gsat/exam/vocab_reviews.js</code> 的內容(需要填審核者姓名),再執行 <code>python3 tools/build_vocab_index.py</code> 才會改變統計。優先處理:impact、escape、official、stress、tight(已排在各組最前面)。</p>
-{''.join(secs)}
+{('<div class="jump"><b>負責人已決定、待你確認的紀錄:</b>' + '　'.join(f'<a href="#r{i}">#{i}</a>' for i in jump) + '(每筆下方有藍色「預定決定」方塊;沒有預先選取,按「套用」或自己選都可以。)</div>') if jump else ''}{''.join(secs)}
 <h3>匯出</h3><textarea id="exp" readonly placeholder="按「匯出」後顯示"></textarea>
 <div id="bar"><span id="cnt"></span>審核者:<input id="by" size="8"><button id="btn">匯出</button><button id="clr">清除全部選擇</button></div><script>{js}</script></html>'''
     (out / 'vocab-review-sheet.html').write_text(doc, encoding='utf8')

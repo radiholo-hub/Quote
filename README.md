@@ -34,7 +34,7 @@
 - **免費/付費權限掛鉤**(`gsat/access.js`、`GSAT_ACCESS`):只判斷「能不能看這一題」,預設全部開放;沒有價格、訂閱或金流
 
 ### 著作權與部署(重要)
-歷屆試題、答案、評分原則與圖片(`gsat/exam/`)的著作權屬大學入學考試中心,**授權尚未確認,預設不隨網站部署**:`tools/stage_site.sh` 只會放空殼,網站會降級成「導向大考中心官網 + 原創題」。確認可公開後,部署時設定環境變數 `GSAT_PUBLISH_EXAMS=1` 才會包含。原創內容放在 `gsat/data/`。
+歷屆試題、答案、評分原則與圖片(`gsat/exam/`)的著作權屬大學入學考試中心,**授權尚未確認,預設不隨網站部署**:`tools/stage_site.sh` 只會放空殼,網站會降級成「導向大考中心官網 + 原創題」。**保守發布方案:權利不明素材不公開**——`GSAT_PUBLISH_EXAMS` 已停用(設成任何非空、非 0 的值,整理腳本會直接失敗),評分文件頁、試題圖片、試題與衍生詳解一律不隨網站部署;`gsat/audio/` 只部署「來源紀錄(`docs/gsat/audio-provenance.json`)為 `azure-paid`(Azure AI Speech 付費層)且雜湊相符」的音檔(免費層 F0 測試音檔與 edge-tts 舊檔都不部署),其餘由播放器改用裝置語音。原創內容放在 `gsat/data/`。
 
 - 單字索引與語音的統計方法、核對結果、待人工確認事項:[`docs/gsat/VOCAB_INDEX_METHOD.md`](docs/gsat/VOCAB_INDEX_METHOD.md)
 - 內容來源與權利清單:[`docs/gsat/CONTENT_INVENTORY.md`](docs/gsat/CONTENT_INVENTORY.md)(`python3 tools/gsat_inventory.py` 產生;測試會檢查清單與實際檔案一致)

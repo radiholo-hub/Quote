@@ -29,9 +29,10 @@ def test_teacher_review_sheet_splits_every_part_into_separately_reviewable_items
     assert len(ids) == len(set(ids)) >= 40
     for part in ('115-1:q', '115-1:zh', '115-1:key1', '115-1:key3', '115-1:optA', '115-1:optD', '115-1:w:tight-adj:def', '115-1:w:tight-adj:forms', '115-1:w:tight-adj:coll1',
                  '115-1:w:tight-adj:ex1', '115-1:w:tight-adj:fam:tightly-adv', '115-1:w:tight-adj:syn', '115-1:w:tight-adj:ant', '115-1:w:tight-adj:conf1', '115-1:pat1', '115-1:gram',
-                 '115-1:rec:tight-adj:sum', '115-1:rec:tight-adj:待審核1', '115-1:ext:x115-1-a', '115-1:ext:x115-1-b', '115-1:final'):
+                 '115-1:rec:tight-adj:sum', '115-1:rec:tight-adj:確認1', '115-1:rec:tight-adj:確認2', '115-1:ext:x115-1-a', '115-1:ext:x115-1-b', '115-1:final'):
         assert f'data-id="{part}"' in t, part
-    assert 'The mayor has such a ______ schedule' in t and '行程排得非常緊湊' in t and '官方答案:(B)' in t
+    assert 'data-id="115-1:rec:tight-adj:待審核' not in t and '已確認 2 次:正確答案 1、干擾選項 0、題幹 0、文章用字 1' in t and '待審核 0 筆' in t      # 教師審核後:2 次已確認、沒有待審核
+    assert 'The mayor has such a ______ schedule' in t and '行程安排非常緊湊' in t and '官方答案:(B)' in t
     n = len(ids)
     assert t.count('value="待確認" checked') == n and 'value="通過" checked' not in t and 'value="需修改" checked' not in t     # 全部預設待確認,不會自動通過
     assert t.count('<textarea') >= 30 and 'data-orig=' in t                                                                  # 可直接修改文字
@@ -84,7 +85,7 @@ def test_pending_pos_sheet_keeps_every_original_record_unchosen_and_never_writes
     t = (tmp_path / 'vocab-review-sheet.html').read_text(encoding='utf8')
     assert t.count('class="rec"') == pending and t.count('value="" checked') == pending                  # 每一筆都保留,而且全部預設「待確認」
     assert 'value="confirmed" checked' not in t and 'value="rejected" checked' not in t                  # AI 建議不會變成預設選項
-    assert t.count('AI 參考意見(未採用') == pending and '第 2 頁' in t
+    assert t.count('AI 參考意見(未採用') == pending and '試卷第 2 頁' in t
     for g in ('連字號複合詞內的比對', '此字形也可能是別的詞性', '同詞性但字義可能不同'):                    # 複合詞、詞性不同、字義不同分開
         assert g in t
     assert t.index('impact-n') < t.index('crash-v')
@@ -93,6 +94,36 @@ def test_pending_pos_sheet_keeps_every_original_record_unchosen_and_never_writes
     out = pg.input_value('#exp')
     assert '"verdict": "confirmed"' in out and '"by": "測試審核者"' in out and out.count('"verdict"') == 1
     assert (ROOT / 'exam' / 'vocab_reviews.js').read_text(encoding='utf8') == before                  # 工具不會改動審核資料檔
+
+
+@need_node
+@needs_exam
+def test_decisions_are_shown_as_pending_proposals_not_preselected_and_never_fill_the_reviewer(make_page, tmp_path):
+    """--decisions:負責人已決定、待審核者確認的紀錄只做醒目標示與「一鍵套用」;預設仍是待確認、審核者與日期不會被預先填寫。"""
+    idx = json.loads(subprocess.run(['node', '-e', "global.window={};require(process.argv[1]);console.log(JSON.stringify(window.VOCAB_INDEX))", str(ROOT / 'exam' / 'vocab_index.js')], capture_output=True, text=True, check=True).stdout)
+    keys = [r['k'] for e in idx['entries'].values() for r in e['review']][:2]                       # 不寫死詞條:取索引裡任意兩筆仍待審核的紀錄
+    assert len(keys) == 2
+    d = {keys[0]: {'verdict': 'rejected', 'pos_sense': '測試字義甲', 'reason': '測試理由甲'}, keys[1]: {'verdict': 'confirmed', 'pos_sense': '測試字義乙', 'reason': '測試理由乙'}}
+    f = tmp_path / 'dec.json'; f.write_text(json.dumps(d, ensure_ascii=False), encoding='utf8')
+    run(TOOLS / 'gsat_vocab_review_sheet.py', '--out', tmp_path, '--decisions', f)
+    pg = make_page('desktop', url=(tmp_path / 'vocab-review-sheet.html').as_uri())
+    assert pg.locator('.decision').count() == 2 and pg.locator('.jump a').count() == 2
+    assert pg.locator('input[value=confirmed]:checked, input[value=rejected]:checked').count() == 0 and pg.input_value('#by') == ''      # 沒有預先選取、沒有審核者
+    pg.click('#btn'); assert '(要產生 vocab_reviews.js 內容' in pg.input_value('#exp') and '"verdict"' not in pg.input_value('#exp')   # 沒填姓名就不會產生可貼上的內容
+    pg.locator('.decision .apply').first.click()
+    assert '排除 1' in pg.inner_text('#cnt') and pg.locator('.has-dec').first.locator('input.act').input_value() == '測試字義甲'
+    pg.fill('#by', '某審核者'); pg.click('#btn')
+    out = pg.input_value('#exp')
+    assert out_has(out, keys[0], 'rejected', '某審核者') and f'[{keys[0]}] 排除' in out and '[#' not in out            # 以穩定的紀錄 ID 辨識,不用會隨分組變動的流水號
+    assert keys[1] not in out and out.startswith('計入 0・排除 1・待確認 ')                                              # 沒套用的決定不會被匯出,其餘紀錄維持待確認
+    pg.locator('.decision .undo').first.click()                                                                        # 撤回:回到待確認並清空兩欄
+    assert pg.inner_text('#cnt').startswith('計入 0・排除 0・待確認 ') and pg.locator('.has-dec').first.locator('input.act').input_value() == ''
+    pg.locator('.has-dec').first.locator('input[value=confirmed]').check()                                             # 使用者也可以自己改選
+    assert pg.inner_text('#cnt').startswith('計入 1・排除 0')
+
+
+def out_has(text, key, verdict, by):
+    return f'"{key}": {{"verdict": "{verdict}", "by": "{by}"' in text
 
 
 @pytest.mark.skipif(shutil.which('ffprobe') is None or shutil.which('ffmpeg') is None, reason='需要 ffprobe 與 ffmpeg')

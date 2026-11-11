@@ -541,7 +541,7 @@ function viewNs(p) {
 }
 
 if (window.GSATAudio) window.GSATAudio.init({ blocked: () => { const S = loadSession(); return !!(S && S.formal && Date.now() < S.deadline); } });   // 正式模擬考進行中不提供朗讀
-if (window.GSATLearn) window.GSATLearn.init({ h, back, QB, DB, saveDB, LET, loadSession, startSession, questionNode, prevHash: () => prevHash });
+if (window.GSATLearn) window.GSATLearn.init({ h, back, QB, DB, saveDB, LET, loadSession, startSession, questionNode, prevHash: () => prevHash, EXPL: () => EXPL });
 render();
 window.__gsat = { QB, yearInfo, DB: () => DB, loadSession, EXPL: () => EXPL };
 })();

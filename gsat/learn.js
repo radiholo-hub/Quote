@@ -13,6 +13,10 @@ window.GSATLearn = (function () {
   const wide = () => window.matchMedia && window.matchMedia('(min-width: 700px)').matches;
   const spk = (text, label, o) => window.GSATAudio.button(h, text, label || text, o);
   const draftTag = h => h('span', { class: 'tag' }, '待審核草稿');
+  // 教師已簽核的題目(explain.js 的 status 為 reviewed;有效簽核由 docs/gsat/signoffs/ 與測試保證):該題詳解頁面呈現的單字與延伸練習屬於簽核範圍,
+  // 在該題內顯示「本題教師已確認」而不是「待審核草稿」;詞條與延伸題自己的 status 不變,其他題目、單字頁仍照各自的 status 顯示。
+  const signedTag = h => h('span', { class: 'tag ok', 'data-role': 'signed' }, '本題教師已確認');
+  const signedQ = k => { const x = (env && env.EXPL ? env.EXPL() : window.EXPLAIN || {})[k]; return !!(x && x.status === 'reviewed'); };
 
   function init(e) { env = e; env.DB.ext = env.DB.ext || {}; }
 
@@ -37,7 +41,7 @@ window.GSATLearn = (function () {
     o = o || {};
     const e = ent(id); if (!e) return h('p', { class: 'notice' }, '找不到詞條 ' + id);
     const c = h('div', { class: 'wcard', 'data-entry': id });
-    c.append(h('div', { class: 'whead' }, h('b', { class: 'hw' }, e.hw), h('span', { class: 'fine' }, ' ' + e.pos + ' '), spk(e.hw, e.hw), h('span', { class: 'wzh' }, e.zh), e.status === 'draft' ? draftTag(h) : null));
+    c.append(h('div', { class: 'whead' }, h('b', { class: 'hw' }, e.hw), h('span', { class: 'fine' }, ' ' + e.pos + ' '), spk(e.hw, e.hw), h('span', { class: 'wzh' }, e.zh), e.status === 'draft' ? (o.signedScope ? signedTag(h) : draftTag(h)) : null));
     if (e.alsoPos) c.append(h('p', { class: 'fine' }, '另有詞性:' + e.alsoPos));
     c.append(h('p', { class: 'fine', 'data-role': 'forms' }, '詞形變化(原字):' + e.forms.join('、')));
     if (e.note) c.append(h('p', { class: 'note' }, e.note));
@@ -134,7 +138,8 @@ window.GSATLearn = (function () {
         h('div', { class: 'fine' }, posZh(en) + (en.alsoPos ? '(另有詞性:' + en.alsoPos + ')' : '')), h('p', {}, o.why),
         h('div', { class: 'fine' }, wlink(o.entry, '單字頁→'))); }));
     // 4 單字與發音
-    const s4 = h('div', {}, e.words.map(w => wordCard(w, { noLink: false })));
+    const signed = e.status === 'reviewed';
+    const s4 = h('div', {}, e.words.map(w => wordCard(w, { noLink: false, signedScope: signed })));
     if (e.phrases.length) s4.append(h('div', { class: 'sub' }, '這題用到的片語'), h('ul', { class: 'colls' }, e.phrases.map(p => { const x = V.phrases[p]; return h('li', {}, spk(x.t, x.t), h('b', {}, ' ' + x.t), h('span', { class: 'fine' }, '　' + x.zh)); })));
     if (e.grammar) s4.append(h('div', { class: 'sub' }, '文法補充'), h('p', { 'data-role': 'grammar' }, e.grammar));
     // 5 衍生字與延伸
@@ -145,7 +150,7 @@ window.GSATLearn = (function () {
     s6.append(h('p', {}, wlink(e.focus, '看完整歷屆出現紀錄與統計方法→')));
     // 7 延伸練習
     const items = EXT.filter(x => x.forQuestion === (q.year + '-' + q.n));
-    const s7 = items.length ? h('div', {}, h('p', {}, '針對這一題的常見錯誤設計的原創練習,共 ' + items.length + ' 題。', draftTag(h)),
+    const s7 = items.length ? h('div', {}, h('p', {}, '針對這一題的常見錯誤設計的原創練習,共 ' + items.length + ' 題。', signed ? signedTag(h) : draftTag(h)),
       h('a', { class: 'btn', href: '#/ext/' + q.year + '-' + q.n, 'data-role': 'ext-start' }, '開始延伸練習')) : h('p', { class: 'fine' }, '這一題還沒有延伸練習。');
     const W = wide();
     box.append(sec(key + ':1', '① 正確答案', s1, true), sec(key + ':2', '② 解題關鍵', s2, true), sec(key + ':3', '③ 選項解析', s3, true),
@@ -253,7 +258,10 @@ window.GSATLearn = (function () {
     const root = h('div', { 'data-view': 'ext' }, h('a', { class: 'link', href: prev && /^#\/(rev|word)\//.test(prev) ? prev : '#/words', 'data-restore': '1' }, '← 返回'));
     if (!items.length) return root.appendChild(h('p', { class: 'notice mt' }, '沒有這組延伸練習。')) && root;
     if (extRun.key !== key) { extRun.key = key; extRun.i = 0; extRun.picked = {}; }
-    root.append(h('h1', { class: 'brand' }, '延伸練習'), h('p', { class: 'fine' }, '原創練習題,針對這一題的常見錯誤設計。', draftTag(h), ' 內容尚未經老師審核。'));
+    const covered = items.every(x => signedQ(x.forQuestion));             // 這組練習全部屬於已簽核的題目 → 不再標「待審核草稿」;只要有一題未簽核就照舊
+    root.append(h('h1', { class: 'brand' }, '延伸練習'), covered
+      ? h('p', { class: 'fine', 'data-role': 'ext-signed' }, '原創練習題,針對這一題的常見錯誤設計。', signedTag(h), ' 內容已由教師確認(簽核範圍:' + [...new Set(items.map(x => x.forQuestion))].join('、') + ')。')
+      : h('p', { class: 'fine' }, '原創練習題,針對這一題的常見錯誤設計。', draftTag(h), ' 內容尚未經老師審核。'));
     const body = h('div'); root.append(body);
     function paint() {
       body.innerHTML = '';
@@ -264,7 +272,7 @@ window.GSATLearn = (function () {
         return;
       }
       const x = items[extRun.i], picked = extRun.picked[x.id];
-      body.append(h('div', { class: 'fine mt' }, '第 ' + (extRun.i + 1) + ' / ' + items.length + ' 題・' + ({ pos: '詞性判斷', synonym: '近義字比較', collocation: '搭配詞', pattern: '句型運用', context: '上下文語意' }[x.type] || x.type), ' ', draftTag(h)),
+      body.append(h('div', { class: 'fine mt' }, '第 ' + (extRun.i + 1) + ' / ' + items.length + ' 題・' + ({ pos: '詞性判斷', synonym: '近義字比較', collocation: '搭配詞', pattern: '句型運用', context: '上下文語意' }[x.type] || x.type), ' ', signedQ(x.forQuestion) ? signedTag(h) : draftTag(h)),
         h('div', { class: 'qtext', 'data-role': 'ext-q' }, x.q),
         h('div', { role: 'radiogroup' }, x.options.map((t, i) => h('button', { class: 'opt' + (picked != null ? (i === x.answer ? ' ok' : i === picked ? ' bad' : '') : ''), role: 'radio', disabled: picked != null, 'data-i': i,
           onclick: () => { extRun.picked[x.id] = i; const s = env.DB.ext[x.id] = env.DB.ext[x.id] || { a: 0, c: 0 }; s.a++; if (i === x.answer) s.c++; env.saveDB(); paint(); } }, h('span', { class: 'k' }, '(' + 'ABCD'[i] + ')'), h('span', {}, t)))));

@@ -1,4 +1,5 @@
 """逐題詳解（schema 2）：交卷後才可進入、五段式內容、分層收合、詳解與官方答案不符就不顯示、人工審核表。"""
+import json
 import shutil
 import subprocess
 import sys
@@ -6,6 +7,8 @@ import sys
 import pytest
 
 from conftest import ROOT, URL, needs_exam, run_exam
+
+SIGNED_OFF = {json.loads(p.read_text(encoding='utf8'))['question'] for p in (ROOT.parent / 'docs' / 'gsat' / 'signoffs').glob('*.json')}
 
 REPO = ROOT.parent
 SECTIONS = ['① 正確答案', '② 解題關鍵', '③ 選項解析', '④ 單字與發音', '⑤ 衍生字與延伸', '⑥ 歷屆出題紀錄', '⑦ 延伸練習']
@@ -24,14 +27,14 @@ def test_explanation_shows_all_five_parts_in_the_required_order(make_page):
     page = make_page('desktop')
     open_review(page, 1)
     box = page.locator('.explain.v2')
-    assert box.get_attribute('data-explain') == 'draft'
+    assert box.get_attribute('data-explain') == 'reviewed'                                  # 115 第 1 題已由教師簽核(其餘題目仍是 draft)
     assert box.locator('summary .ttl').all_inner_texts() == SECTIONS                       # 順序：答案 → 解題關鍵 → 選項 → 單字 → 衍生字 → 出題紀錄 → 延伸練習
     # 1 正確答案：答案、中文意思、學生選擇、對錯原因
     ans = box.locator('[data-role=answer]').inner_text()
     assert '正確答案:(B) tight' in ans and '緊湊的' in ans and 'adj.' in ans
     assert box.locator('[data-role=verdict]').inner_text().startswith('✘ 你選了 (C) diligent')
-    assert 'diligent 是「勤勉的」' in box.locator('[data-role=why-wrong]').inner_text() and 'tight schedule' in box.locator('[data-role=why-right]').inner_text()
-    assert '行程排得非常緊湊' in box.locator('[data-role=zh]').inner_text()
+    assert 'diligent 表示「勤勉的、用功的」' in box.locator('[data-role=why-wrong]').inner_text() and 'tight schedule' in box.locator('[data-role=why-right]').inner_text()
+    assert '行程安排非常緊湊' in box.locator('[data-role=zh]').inner_text()
     # 2 解題關鍵：有判斷步驟，不是只寫「依上下文可知」
     steps = box.locator('[data-role=key] li').all_inner_texts()
     assert len(steps) == 3 and 'such a' in steps[0] and 'that' in steps[0] and all(len(t) > 20 for t in steps)
@@ -45,7 +48,7 @@ def test_explanation_shows_all_five_parts_in_the_required_order(make_page):
     assert w.locator('.whead .spk').count() == 1 and w.locator('.colls .spk').count() == 3 and w.locator('.exs .spk').count() == 2
     assert 'tight schedule' in w.inner_text() and 'such a' in box.locator('[data-role=grammar]').inner_text()
     # 5 衍生字與延伸：字族(B)、語意相關(C)分開，常考句型
-    assert box.locator('[data-role=family] li').count() == 3 and box.locator('[data-role=syn]').count() == 1 and box.locator('[data-role=conf]').count() == 1
+    assert box.locator('[data-role=family] li').count() == 3 and box.locator('[data-role=syn]').count() == 1 and box.locator('[data-role=conf]').count() == 2
     assert box.locator('[data-role=patterns] li').count() == 2
 
 
@@ -70,7 +73,7 @@ def test_each_of_the_ten_explanations_renders_every_section(make_page, n):
     assert box.locator('summary .ttl').all_inner_texts() == SECTIONS
     assert box.locator('.optcard').count() == 4 and box.locator('[data-role=key] li').count() >= 3
     assert box.locator('.wcard').count() >= 1 and box.locator('[data-role=grammar]').count() == 1
-    assert box.locator('.tag').first.inner_text() == '草稿・待人工審核'
+    assert box.locator('.tag').first.inner_text() == ('已審核' if f'115-{n}' in SIGNED_OFF else '草稿・待人工審核')       # 只有有教師簽核紀錄的題目顯示「已審核」
 
 
 @needs_exam

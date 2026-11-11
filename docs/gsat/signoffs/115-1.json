@@ -1,0 +1,492 @@
+{
+ "question": "115-1",
+ "status": "passed",
+ "reviewer": "教師（負責人）",
+ "signedAt": "2026-11-09",
+ "scope": "115 學年度學測英文第 1 題:教學內容(中文翻譯、解題步驟、選項解析、單字與片語、文法補充、延伸練習)與對應發音。只限這一題;不含其他題目,也不含其餘音檔與其餘歷屆詞彙待審核紀錄。",
+ "evidence": {
+  "reviewHtmlSha256": "9db3ab372d6832d7cd2e40021e84127a0ae6ef1e4c394a6b8979b930cdc292e3",
+  "note": "簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。"
+ },
+ "contentFingerprint": {
+  "algorithm": "sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()",
+  "value": "9255de0891e06a3f85d06f15b46144850ad1ca4dbe2aaea9ee8f94643af9c3b5",
+  "covers": "題目與選項與官方答案、詳解內容、引用的單字詞條、畫面列出的衍生字、片語、延伸練習、重點字的歷屆出題紀錄、每個發音按鈕對應的 mp3 檔名、審核項目 ID 清單(mp3 檔案內容不在其中,見 audio 區塊)",
+  "excludes": "status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條",
+  "formulaNote": "2026-11-09 公式調整:原指紋(3ded4457…)同時納入 mp3 檔案內容雜湊;為了讓音檔可以更換來源而不使文字簽核失效，改為只納入 mp3 檔名,mp3 內容改由 audio 區塊的 status/approvedFiles 管理。教學內容本身未改動。"
+ },
+ "items": [
+  {
+   "id": "115-1:q",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:zh",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:key1",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:key2",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:key3",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:optA",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:optB",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:optC",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:optD",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:coll3",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:ex1",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:ex2",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:fam:tightly-adv",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:fam:tighten-v",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:fam:tightness-n",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:syn",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:ant",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:conf1",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:tight-adj:conf2",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:hasty-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:hasty-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:hasty-adj:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:hasty-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:diligent-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:diligent-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:diligent-adj:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:diligent-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:routine-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:routine-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:routine-adj:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:w:routine-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:ph:arrange-an-interview",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:ph:such-a-that",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:pat1",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:pat2",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:gram",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:rec:tight-adj:sum",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:rec:tight-adj:確認1",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:rec:tight-adj:確認2",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:ext:x115-1-a",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:ext:x115-1-b",
+   "result": "passed"
+  },
+  {
+   "id": "115-1:final",
+   "result": "passed"
+  }
+ ],
+ "audio": {
+  "status": "invalidated",
+  "scope": "正式（production）試聽簽核目前沒有任何通過的音檔:Q1 先前以舊 edge-tts 音檔完成的試聽簽核已作廢(edge-tts 為非官方來源，不再適用於正式簽核，也不部署)。正式發布需以 Azure 付費層(azure-paid)重新產生音檔，並由教師重新聆聽、重新簽核。教學文字的簽核不受影響。",
+  "approvedFiles": [],
+  "buttons": [
+   {
+    "item": "115-1:optA",
+    "file": "4fb3d55c571ba.mp3"
+   },
+   {
+    "item": "115-1:optB",
+    "file": "91affae26a94e.mp3"
+   },
+   {
+    "item": "115-1:optC",
+    "file": "85394f87212a7.mp3"
+   },
+   {
+    "item": "115-1:optD",
+    "file": "abca7d4f09cda.mp3"
+   },
+   {
+    "item": "115-1:w:tight-adj:def",
+    "file": "91affae26a94e.mp3"
+   },
+   {
+    "item": "115-1:w:tight-adj:coll1",
+    "file": "11a1fd5f8437eb.mp3"
+   },
+   {
+    "item": "115-1:w:tight-adj:coll2",
+    "file": "164d6f5e807c0f.mp3"
+   },
+   {
+    "item": "115-1:w:tight-adj:coll3",
+    "file": "140373c20e2200.mp3"
+   },
+   {
+    "item": "115-1:w:tight-adj:ex1",
+    "file": "618b6323e450a.mp3"
+   },
+   {
+    "item": "115-1:w:tight-adj:ex2",
+    "file": "12f1558bf6ff63.mp3"
+   },
+   {
+    "item": "115-1:w:tight-adj:fam:tightly-adv",
+    "file": "14d610937fb962.mp3"
+   },
+   {
+    "item": "115-1:w:tight-adj:fam:tighten-v",
+    "file": "168ceb65c568db.mp3"
+   },
+   {
+    "item": "115-1:w:tight-adj:fam:tightness-n",
+    "file": "f1b9b2c366fc.mp3"
+   },
+   {
+    "item": "115-1:w:hasty-adj:def",
+    "file": "4fb3d55c571ba.mp3"
+   },
+   {
+    "item": "115-1:w:hasty-adj:coll1",
+    "file": "12014d486af75d.mp3"
+   },
+   {
+    "item": "115-1:w:diligent-adj:def",
+    "file": "85394f87212a7.mp3"
+   },
+   {
+    "item": "115-1:w:diligent-adj:coll1",
+    "file": "20dec51b1ba1b.mp3"
+   },
+   {
+    "item": "115-1:w:routine-adj:def",
+    "file": "abca7d4f09cda.mp3"
+   },
+   {
+    "item": "115-1:w:routine-adj:coll1",
+    "file": "1dec0b99b0d922.mp3"
+   },
+   {
+    "item": "115-1:ph:arrange-an-interview",
+    "file": "fd787e9533b9c.mp3"
+   },
+   {
+    "item": "115-1:ph:such-a-that",
+    "file": "1f99fb96e18810.mp3"
+   }
+  ],
+  "buttonCount": 21,
+  "distinctFileCount": 0,
+  "totalAudioFiles": 187,
+  "notIncludedCount": 187,
+  "notIncluded": "所有音檔(含 Q1 曾以舊 edge-tts 音檔通過試聽的 17 個對應檔)都不得視為已通過正式簽核。",
+  "previousApproval": {
+   "reviewer": "教師（負責人）",
+   "signedAt": "2026-11-09",
+   "approvedFiles": [
+    {
+     "file": "11a1fd5f8437eb.mp3",
+     "sha256": "da3c5969d4c1fc307c67ead20d10a2f67c31f96dc43ee983ec7b1a9e0c0f237d",
+     "result": "passed"
+    },
+    {
+     "file": "12014d486af75d.mp3",
+     "sha256": "603b325e9bc3e9de8cc75adeebcf8ccc696f514aae6e966b59bdf09cc7fa0868",
+     "result": "passed"
+    },
+    {
+     "file": "12f1558bf6ff63.mp3",
+     "sha256": "c7a11a5cf226ca3cfcd52c8a8d41571793f5c899de81a43f4fc7e45f18ea4fdf",
+     "result": "passed"
+    },
+    {
+     "file": "140373c20e2200.mp3",
+     "sha256": "e32334fc7b9dd33e9ed577087bb4cce3fa503fe06993e37ce4be6fc9fbb04bf4",
+     "result": "passed"
+    },
+    {
+     "file": "14d610937fb962.mp3",
+     "sha256": "509a24d3c9759d34c66d102d015688d5ffd74ef90776ed39dc59d5ac220630ca",
+     "result": "passed"
+    },
+    {
+     "file": "164d6f5e807c0f.mp3",
+     "sha256": "b0910b3c33894c759ea558a5188e1724700372365d5b2a8c82179f020e9fbb86",
+     "result": "passed"
+    },
+    {
+     "file": "168ceb65c568db.mp3",
+     "sha256": "e1bc39ad96d86f01f4378433fc19cde53765299be4ea5345e2d71ab819271c57",
+     "result": "passed"
+    },
+    {
+     "file": "1dec0b99b0d922.mp3",
+     "sha256": "d8494358f486dee7ec8a65bd5814a69a3de2840cf2ccea87a8073579de4a716b",
+     "result": "passed"
+    },
+    {
+     "file": "1f99fb96e18810.mp3",
+     "sha256": "7920f24b11ac8268518ca8300684b55c0a2803390d51dbf0dddd28a638f56199",
+     "result": "passed"
+    },
+    {
+     "file": "20dec51b1ba1b.mp3",
+     "sha256": "c262cd04f90283bf8c990377eae2ffec6710ad42990d73a9e6e4c88fbcabd508",
+     "result": "passed"
+    },
+    {
+     "file": "4fb3d55c571ba.mp3",
+     "sha256": "2a78a8722e49c763aeb5727863f9b740d7384ceded85e0414e41a59d50cae1b1",
+     "result": "passed"
+    },
+    {
+     "file": "618b6323e450a.mp3",
+     "sha256": "a9a82dbf9558a833ab07aed143afc357f777036d9c62b03a5d49e8136794fbb8",
+     "result": "passed"
+    },
+    {
+     "file": "85394f87212a7.mp3",
+     "sha256": "b609f9f7efbf7f4540a0e0c2e6667136bc2f1905e46ae1026d801477c1529b83",
+     "result": "passed"
+    },
+    {
+     "file": "91affae26a94e.mp3",
+     "sha256": "8bc14e2f259b9b20560eafb19ade3eee7ad66d616711a4f6b6f7ecbb23280024",
+     "result": "passed"
+    },
+    {
+     "file": "abca7d4f09cda.mp3",
+     "sha256": "b2511e3edc1ea9e7a0b387097977b9c5b6f4d4c1919aa9b1d014eb50150f7477",
+     "result": "passed"
+    },
+    {
+     "file": "f1b9b2c366fc.mp3",
+     "sha256": "bcf828b7da4635ed646dd13fd1aeec2f7d3ed5bf1431b7d3cb2fb1967c1579d8",
+     "result": "passed"
+    },
+    {
+     "file": "fd787e9533b9c.mp3",
+     "sha256": "c1a5940cdfc8b52a4ba735c97090749361b82ea238b739af472e766f90e9f733",
+     "result": "passed"
+    }
+   ],
+   "scope": "Q1 對應的 17 個不同 mp3(21 個播放按鈕)已由教師人工試聽通過;清單中其餘 170 個音檔不在本次簽核範圍,不得視為已通過"
+  },
+  "invalidatedAt": "2026-11-10",
+  "reason": "Q1 的 17 個舊 edge-tts 音檔不再適用於正式 production 簽核(來源非官方)。Azure F0 開發測試音檔曾完成教師人工音質檢查(見 devTestChecks)，但該批音檔未放入公開 Git repository；正式發布需 Azure paid 音檔重新產生及重新人工簽核。",
+  "devTestChecks": [
+   {
+    "purpose": "development-test audio quality check",
+    "scope": "115-1 的 17 個不同 mp3(開發測試版,Azure Speech F0;未放入公開 Git repository)",
+    "engine": "azure-free-test",
+    "tier": "F0",
+    "usage": "development-test-only",
+    "productionApproved": false,
+    "result": "passed",
+    "reviewer": "教師（負責人）",
+    "checkedAt": "2026-11-10",
+    "checked": "發音、語速、停頓與音質",
+    "files": [
+     {
+      "file": "11a1fd5f8437eb.mp3",
+      "sha256": "602d5c2f8c758bb3104399c5ba0ef4e8080c9e20ce86c0b2616e5ea6f2db02d8"
+     },
+     {
+      "file": "12014d486af75d.mp3",
+      "sha256": "155a4f87828fb5ff8556c9431da283283dbd7d9cf0cb5daae36ab62d6768699b"
+     },
+     {
+      "file": "12f1558bf6ff63.mp3",
+      "sha256": "dab626114687b065d7872f49810790bfbb391d26feafa6c1ecef05c0ad60966d"
+     },
+     {
+      "file": "140373c20e2200.mp3",
+      "sha256": "9a18f7af574a4ef90178c9271a63d8eecbe7cfe63834ee8bbfd1727c946fe610"
+     },
+     {
+      "file": "14d610937fb962.mp3",
+      "sha256": "b96366220515b243d7f85fe7ca2c8264a3b43f2cecd0dbb04d834bd42fda2c79"
+     },
+     {
+      "file": "164d6f5e807c0f.mp3",
+      "sha256": "d9a093ec1aa0b5882326ba5d99f561fe8a40c9f2b43d80ef8a5bb81097db8d43"
+     },
+     {
+      "file": "168ceb65c568db.mp3",
+      "sha256": "c05b8e684831d5ac738032c7b6635bb95d4a8d366729f98a5e130e21961f821a"
+     },
+     {
+      "file": "1dec0b99b0d922.mp3",
+      "sha256": "d61b3e9d8bd4969f34d7af0ca9374e8b46bc710989aa318f2dc5e6885d413920"
+     },
+     {
+      "file": "1f99fb96e18810.mp3",
+      "sha256": "3c1192808580b22f6342080b36f09df18881f9098e04d63169fbcfbdaeb7d042"
+     },
+     {
+      "file": "20dec51b1ba1b.mp3",
+      "sha256": "f71af21380f7cd636e99a720622da1c3936f0a1ecfd44baac2d05bf6701aaa61"
+     },
+     {
+      "file": "4fb3d55c571ba.mp3",
+      "sha256": "08d9aae65f4dc3d31f1e6f7c7f2700ba5ec0e7ddcbac2c11d288c24d333923ce"
+     },
+     {
+      "file": "618b6323e450a.mp3",
+      "sha256": "096353a9c2ff1a17b8c057740add50bd7374f03b5d8866d2ef9b0f46f89616ec"
+     },
+     {
+      "file": "85394f87212a7.mp3",
+      "sha256": "40fb82962a09db45773b183e4d200b2171dff993b962cf96f3917e04f9fcb2fd"
+     },
+     {
+      "file": "91affae26a94e.mp3",
+      "sha256": "1be290513021e985f33a15c87fecd0dc284fc5b9fc4c604c41781a1a4804c120"
+     },
+     {
+      "file": "abca7d4f09cda.mp3",
+      "sha256": "e275c9f2fae330c5bb309411f12251147baec4ced19dc88161420e194ca45ba1"
+     },
+     {
+      "file": "f1b9b2c366fc.mp3",
+      "sha256": "bc869edd232abbc7f46830208b86998ce65dfbd1b3364b963f0ec8c712ce3526"
+     },
+     {
+      "file": "fd787e9533b9c.mp3",
+      "sha256": "457a3445e242a1382a4726aa06ffe1a11ab5e3ea40c3e789a3d3da2a2a6ddd93"
+     }
+    ],
+    "note": "這不是 production 試聽簽核:不使 audio.status 變為 passed、不使任何檔案成為 approvedFiles。filesInRepository 為 false:files 內的 SHA-256 對應的是教師實際試聽過、但未放入公開 Git repository 的 Azure F0 音檔(因此與 repository 現有 edge-tts 檔案的雜湊不同是正常的)。正式發布前須改用付費層(azure-paid)重產，並重新聆聽、以 approve-audio 正式簽核。",
+    "filesInRepository": false
+   }
+  ]
+ },
+ "vocabularyOccurrenceRecords": {
+  "entry": "tight-adj",
+  "note": "三筆歷屆出題紀錄的人工裁定(skin-tight 排除、tight against 計入文章用字、tight schedule 計入正確答案)維持不變,正式裁定資料在 gsat/exam/vocab_reviews.js;本簽核不涉及其他詞條與其他待審核紀錄。"
+ }
+}

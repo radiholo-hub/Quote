@@ -1,0 +1,1878 @@
+{
+ "files": {
+  "10c2bcb0919e6c.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "e1f7acccb23bd3fd1adeab0da2bc94a6b56928795bedb602e41a4e60c12aa400",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "10c5fc8cadbe7f.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8d257b398ace5cffe2df42a352c2ab3b2d0dfa8dcef58e811dd8634258332eb4",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "110f8c001dc355.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "540c52be5c511627169e0633e3e92f6b17236e6c29bf42ded48ce4b519a5225c",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "116fc321582b98.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "74c33458edd97e708c87111b95b762313099574d40327101989f62f1ff5fb945",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "117d54d22a57c9.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "56d5e13538022c6cefa4b8a5bf2a15d43e6007ba811f459c40aa6a89de15f044",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "11a1fd5f8437eb.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "da3c5969d4c1fc307c67ead20d10a2f67c31f96dc43ee983ec7b1a9e0c0f237d",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "11a8548de85974.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "1f2e1a9350c3978df509ef0c14ade87b0ca5bc69a489d1df6d3fef9f8b43012e",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "11ac26509bd75a.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "f8f75c9d1625498517af8f0e334980e46bd333d8a5c45f521f211676551ef5b0",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "11d129fa640116.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "ed27ccf357a31ad65a3f80acf95f8e4fb0934ec5083d0549ccb80aec5f90d36a",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "11ee989533395a.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "d62763ff6f0d237d6f2029de28abee3c1967938f38724d1c044a7fd54c4bedcb",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "12014d486af75d.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "603b325e9bc3e9de8cc75adeebcf8ccc696f514aae6e966b59bdf09cc7fa0868",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "12077e5c73ee34.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8936d0775d66b622546997f7851bf57773ca32f19d45644f232683f64a1caba5",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1207af8ef2a27d.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "dad6c9d06893a9bf2f610cf931c5258a39adc31179c50068fdf754ae351d13bc",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1239a0a225a0c9.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "0cefb837f3184a87c75489453dcfaa92975851e366cffdb0be2ccdc580335c4c",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "125a48ccf867fc.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "a2c06e7e0f29c34db3c6d408a2de041245ed0f7c4689c3b3e97f60569fc4ed7c",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "12ee210626967b.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "39597db55dbb10a8cc25ccb09c9d989ff39f336cdd72d3cba52b6dfde239ede8",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "12f1558bf6ff63.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "c7a11a5cf226ca3cfcd52c8a8d41571793f5c899de81a43f4fc7e45f18ea4fdf",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "13082de95a7e88.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "cffe09d717fef692329f36f4927750286d772b8840b785a55744d00a8d04bf3f",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "133944e5b9cd48.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "a64062970ef951f3b296cbb25952498ff644441dd0a0c88979e9d51db516f9b8",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "137843db43bd8.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "d2854b2275fd0f5ce4ab658a298b96f96da7b2faaa93d10c150aa0f8870b2cb9",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "137900341d44d7.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "efb984c384e39fbe884f6d568020fbf7d1197dd0a0c62d67f0f206d774976bf2",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "13a4319ba22521.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "a798c2c7f9664f04f21dfdfbc98af73e91a4deaffdaf0dbbdaab2ed5a660e638",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "13ade230b30271.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8e52280c96660bb5a1584d851fa969ecf1f7350e98871ecd70296c742cc2cb84",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "13caf47f681eea.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "5a851fbd08a11837869195f6c5070729263ea5bdcdbf39b5e8e1dd354677e359",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "13fc16667cc728.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "bd96ac8bb6ec9fa6f2ce0c0b7ff78783d86d092b1defcec2fc01b86818250485",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "140373c20e2200.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "e32334fc7b9dd33e9ed577087bb4cce3fa503fe06993e37ce4be6fc9fbb04bf4",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "141baed4eec1ef.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "61e8419d2f3214a854d27e0a86bf6a11b379183b936887026a391427afa761a1",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "14365c1b3a5878.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "87110674667b029d4b11fba73b5cc8c3a4853280edb153a9a3562f648f8eb7cf",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "14700b36cb953d.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "10687063f65f7120165d400d6411910d33bbc2dacb09ecd75303406fbdca4850",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "148f1e2efb9df3.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "d8ed4ba3d944299ba8f81942b3150e4e6976689e4b2a38c4cd730172fdec408b",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "14c56458427166.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "dea4b073551ffe867bf3712b866a4dfa72d445d19626ff31b2243e858644df4e",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "14d610937fb962.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "509a24d3c9759d34c66d102d015688d5ffd74ef90776ed39dc59d5ac220630ca",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "164d6f5e807c0f.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "b0910b3c33894c759ea558a5188e1724700372365d5b2a8c82179f020e9fbb86",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "168ceb65c568db.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "e1bc39ad96d86f01f4378433fc19cde53765299be4ea5345e2d71ab819271c57",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "168fc3749f6438.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8c781d53902501121d6263baed3008cf336b03306ac7f386127132703ff9e903",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "169485e9f6dda7.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "159d058f23d0b3fcf2202ddf08052e67bb2b609445dfd2e1d016fc7f17049790",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "169b9780e0c04e.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8ddbb5435340ac704b3ac7face49ed157999f36f6dd6199e703b4ebb78f18f09",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "16dd2811af7a86.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "2973a73995d912ba46a07d776e9b82438273069d76a9549ce9a7b1b03ff094e3",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "16e2286cedc86a.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "0f47e5ee9df423c2799fe5d7b878a7eb200f1d4910793974d46d0ee6de2df6b8",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "16f3ef750be250.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "28fd2dc82d0aee34db8d02bca7fea237d6d89c1d32aacdbdf8ed4bed5b3095cf",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "16fd1a3b7cceb.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "bb3ebcd2901d6801243d23126b61ef2db6df22632f3e66612294295ef728ddb5",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "17016198a6c522.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "6dac3c018e343c3a26b45f2ee9a586cd644ff9ad44467f30ad3a52d18c999480",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "17203357c8aaa1.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "38717160612fada0b3a4eccd6f1d144673d0193e483dad171b41a61cf96505e4",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "17460fb62ffd23.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "20ced8e61b2b2dbaf7b6294dc127d0fbf8939a62319dbb7194c40bae25d5e86a",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "177fb9cab7f436.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "50c98bb58d69eb8d46ebe9ce6d67372f58b9043fa93a7c9e6b4d0674d8439aa3",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "17c057bfd67217.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "4e805658f46e3b975ac79417c3f91aa581bc16512e47e95057c6ba542babb1d2",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "17f11b56551aaa.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "781888dab73988dad1c5428def14eef71b0a2c18fc77dc826ad598c9ddc9b703",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "184aafb7245f67.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "479a8b9d8a26997ce5e2648f65b269cb893cac4b3d295a149fe945e01df8fd09",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "186c0dffb06082.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "fba52acb20ee5d9f2c8ed2bb1b3e584ce4cea514ee722effbb56b65dbdc7555e",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "18b1aba860ba63.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "958dc9c13fc4a6673fc897e420c56895e6a1840554dd1561c3daa005533f964d",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "18d5011643daae.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "21eb4fd073075ab2103cb96f06d0e6fb3f9d1f4eaee46acba4e6dfa14c56ecbb",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "18e9619a35f47a.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "a7fb3757b61970bd997cbb476fcdfd01821d5f4ae93cb0aaa974cfe9fdd0807f",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1903fd2f5c81e6.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "af2992496fc6a2c5f1f1af7b685b4c332112ca8e1416fdc6481953e61c1c7df0",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1937144c02c37c.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "fb87bbd8ef68b88e271f106b628f805946e8a29e7c7f354681f743dc9dda96e7",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "193b6b56e2dbc1.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "a2114d1eed8bbf1eb74b83a5433b016efe1003bdca4832132d1fc5f0d8dbbf21",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "19574460bf7257.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "e6f2c3ebfb8e4ecc5953eafe081ebcb621ae0fbad283ef4e4505365bbc0eb5b4",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "197a18024630ef.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "fc5a7ca1a85f221df0070e492a189b8541d6d953fdd39f996d110c8cbf4936bf",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1992e7ac83f712.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "b642f1cf38ded866c0437287d3afdbfa744e22459d7c744dd11584b35b8cb063",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "19a6c6e5f86b25.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "611a4becd8f26ffd9cddd41c556ba905f81ec72987f8c739e68456b8c6299add",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "19ccdeb92c65be.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "f0a2a88a6f85e8393ef2e7b430d38e7f36a649f73b60c650b8b3c52451b91c3e",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "19e43ae9ea8585.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8c07c8c225d5aef020691ea88a291147ffaf569ee51e638673dd52da1430fd1a",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "19ee1b4caf0cf2.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "6d026c12477975381fc1971f3a5360918fbe77d2c8eb7742d20af30b85b2381b",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1a1546c9e2813f.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "1f0be4d89d622d475bb9de15ddf1742eacbf0dda21d37c1f27aeb574d68b8fc4",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1a9395c10e0885.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "53ce882d0a559d2e28ec3d8fdd2238bab9fb3c61d36d0193a0415c7e324ce636",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1acbff8611bbcf.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "f06915a5484230630dfd861d5d21858a8d991109952e84008759e3619703328c",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1b02152634e618.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "0db21aa175d223d933898dcaaba290bef56918a6c2566041c170ff61504daf81",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1b3d76fa96569c.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "a7f148740c5bf340fb725b58bc2e01861578f5f9734b093ef3a7803fb06b30f1",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1bb9df41134874.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "b9f3de8d45bca468e7854ef8ae0d53e146548863252c09ad1f7181ea29ed46d6",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1bea36792ea8f5.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "d51674007319f916b8e6d356a338c660f903797081550e8c3b76219b3a980303",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1c0acca305073d.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "a341d488b16a7797281f46903bafea244610718974a20735ba558bbb435802da",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1c0c8769e250b9.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "34c678920c5036116111d01651fa311f757ad194bdfe8a4a1f3fd677eba2b09b",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1c0c9d281947f5.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8e4b65d6c1c181d68d7329a40d3cc21629f6619ceb5a98ddc0a39928c3f17a94",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1c297b1e4bce0d.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8f81883aa8abf008d490d24a1e185ac2f558cb347a7b32df56fe5aa5c230f4e6",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1c50d8df6d6b4b.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "abb3ee8be444e62806178250ac60fc7a9009efec5f2651567d2ed858844ed1a5",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1c6e377553e08e.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "c32e3522c0d9667b9fdff1b12ab9fa144003d1795486d05e1f0f730c26c7f168",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1c780e2d8a4cdb.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "20add9b8c7896a150c23d45ab5538dec1c85c3a0ec463f4774c4fbcbcab531ab",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1ca4b037c36e00.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "7cb70b86c0aec141819b81e7e40055be8d9facc9764a6dc45833c2e0659525b1",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1cc5a839453209.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "f5b2ab81ce619b50a4bcaf4032e5cc2779455dd9acc083eb6720f7aa3bdb12ae",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1cfb0ff1d8f4e5.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "eee2de27fabe1aa1b948be1f88cd167470b6da9f525ea985dbcb77ce98c172c5",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1d2d3f8944b7a.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8daf7cc57c5f7d2d127ad58d48e6d32215b656c0da341d998012ee6526b735a8",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1d33be9dba73b7.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "22d4c1f7966c31591af1f93bcd856731452697d844c2c430f7a1ff1fc9301cbe",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1d5421682b058f.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "9cec10b1d5c0730179685477b0c821131aad72b881eac611cbf674ca7f57eefe",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1d736cc9c7d505.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "89e74cd1acafb160b69150532cb3e14c539e70d7d5f55098968c935b94a40cff",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1d7a7a44e9c556.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "0ee90b440b6a847f511930573a342c8db05948f46c704473d8e2443dc536d200",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1d97abe8e26865.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "3d2b50d8e2efca83265a25909c0f2c44228efb665afa37d99ab53908fc873814",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1da9fa45955f3d.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "e70781b9defd313357c24598764ca0b5ee02fd24878ebe5553d5bafc13f6fb2e",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1dec0b99b0d922.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "d8494358f486dee7ec8a65bd5814a69a3de2840cf2ccea87a8073579de4a716b",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1e75e7eddc52a3.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "42db96644b32403e4f11bde1ca8aa69995d9840234c9878a112bb7fbb3f529df",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1e8029744b5568.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "df317d01d4772f318640e0953d3cc7f0b6d15c19d72b4a4618cd2a7c24f720e0",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1e8c6d1763eeb5.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "1b652d7d8498ded0a53910f4dcab64fe222ba603c14d9b0f58abd95c1b5d380f",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1e8d9bfabf75e.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "dd8afc2713ece68aed40768c8070dfe8be5c2c2b93f12e3e836f737c2f40dddf",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1ebe0016cf8e5b.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "cc0d81a3886a09249fcb27b13aa8af93f68a666961ddd7be43640effbfe6c6f2",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1f7c4ba16c6b2f.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "bb7ebab0ec2e2d00957262d9920db8d09ca1435d1e9052f6865036dbb8376dc2",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1f99fb96e18810.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "7920f24b11ac8268518ca8300684b55c0a2803390d51dbf0dddd28a638f56199",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1fa2ee75b397cb.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "1e99c8260f185eea37d148c6e34146f584f145b93d18df2ffd5225e878a8e675",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1fb32211353764.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "80b16afb42f9d205926b356895f2d0a00099d75e99d95296580763c081942e4e",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1fb4047884722e.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "b0211d16372ff626b300cb289c07ad616d1f86d448142520a1d94c68b266f741",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1fd748cc52ee2c.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "abaa6b0b82b161cf111aa910c4d079f6693062df680ebf8ef833ceb58b7ec139",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "1fea416d32e9e1.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "f7580c3ba366dc0872b51a02b48be53af0367a935fe767ca4c7955af8fe0cb55",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "2052c302ed20a.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "c9b8c9b1d9f546d6d5c6d973980a43751122555ba46ef808f80f8d90a51d0f98",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "20dec51b1ba1b.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "c262cd04f90283bf8c990377eae2ffec6710ad42990d73a9e6e4c88fbcabd508",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "221c35b29a7ba.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "a5821abacc53710dc30ced8e91ba62f3f1ab6cea13e767fa14dd08491994d748",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "25afd7f28ba15.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "e34179b5a64520e6f636996c1d9050c0a183f4fc7d5abb2d7201af66234d845b",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "266d700dbfc39.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "553510b96b6513d7739e013e1f39e1b604cdab5e7621fa30086d1a8629023e12",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "2f2fa91ebaa47.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "d79f068c733019be7a3ceb67b745515e295d9e8cb4743adba1dbc9789a60c59b",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "333f836dc7181.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "6d97a3ec12f145f2d22144a4ed839a2ac6dbc5df903d4f86c4d92bc64b601dfd",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "3414c38e12134.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8b2b9f4892be12ad8ee526c28596f1d5526882772a4c27312b2e7ad95fcbccf0",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "341cb64341e8.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "b7018a966dbbb2fa0cdde710430d56a536246669762bd29ed3726348351ad3c9",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "361b7d6c75152.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "f5bc78e9ba873d2fa662b2e54aa40544ed5eca866c639bdeea2be27314d41b01",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "3827c11efc903.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "11b8cefc9b4230371b4aeb35b61791d267ccc280e1983e59c3372723ebcc43da",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "393ac07f3aca3.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "529ed76425498860bc44592cef078ef8090a5acc07f6606acf79d723314ab2d9",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "3a0858955dbe3.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "54a2c6579cb152b9f454863d9d7043d346dd672bb7183ca98f091b980abecb23",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "409a048869236.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "61d33e713f75d10bca756f05a594746ca18eb67060b0ba2ff1c449acd9d2abf5",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "42e9fb22ee31.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "2311452d39105330144cd17c8a6c260dc3fdc2070817f9db299c4c43d06956ff",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "4b945415b370c.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "2940bdeb67f76747bcc9560c6a840e88be18d3e8b8ac3694b3f6875734a49e71",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "4ed9a11e846e6.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "7858cf49a86dac70be9511ae4328c39f44588e92815b3d471985c85430096d8b",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "4fb3d55c571ba.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "2a78a8722e49c763aeb5727863f9b740d7384ceded85e0414e41a59d50cae1b1",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "51168493bdb23.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "0f7c4a7faf608c19a3f4e60482362e1e66895e3e91742d771e99fd1e9fca95b4",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "52be38f351289.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "7be4bb35e06e2e64deaefc8e4809e0eac3fc6e9b75f6e6f6bc6ccef6f000cc26",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "5459a55ad82f0.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "4c61b7fec3d120d54fcbca6cbc2dba9dcfe22868f6386acdf1258bc8991c4a42",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "56e31501a86f1.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "96a300618478f1fe7de832fa4cb497b5c79e124ebea475e6d8cee7813e8829c2",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "57c19f72c9cac.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "53009be1bf98ef10262b341fbf1a1eb5f3c6e8a00ed85e7278bf38ab0506b07a",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "58275bbc36fe4.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "d430e366cc97da24f5c337022aa5db8028f68c48d89a8b9722b01858b87a0898",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "5b8c675d00184.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "1e24bd8f7bcb9ca8ee08a8d6c22f7f3cc3b0f575b8b11957fad5f75bee0e49a0",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "5f01711ccc7cf.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "140d53785d23286f6a285d9154b5117d3a563aee62eb1cc6db1ef4d49473c581",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "5fdb17062be48.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "96ba54126d922baf706f5357be4ffbfcaa7752f6e607c266f0efc5ee6741aeec",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "618b6323e450a.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "a9a82dbf9558a833ab07aed143afc357f777036d9c62b03a5d49e8136794fbb8",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "61b4ed1d6f9b9.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "c8ca6b495393860bacbdc6f383f0003dc0fb24e2cc01082667360e831fb62c4f",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "61ca33bbc6ea.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "61fe35f9820fb2478e86a84a5b96653d6d06158419cc5c34c39d684b7264f7b6",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "6736c5b5a74ff.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "4ff44cf7b74e610940d439597bea9f87c0c0b0ed62b1571d5e24f778aed07837",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "6761f73f0e1d5.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "31b56f0b20f2fc2320a293f110506f13fdec691ce7aace1e4d1660865bc64abe",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "784b93099133e.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "ef3bfde6d65d6e65e1a517c3f6212702f5d6fc0f840409bc9ffb0d21986de8aa",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "78b35198819e.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "96006c2eb9029c08f1d91cf83e95b218b14f4c6a530e4e2ceac1248ad47ce3d2",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "7a8d739607ea9.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "6d1388343933010f887b0bce833ebfde8b7cb42e5349ddb2cfbc5b62743d46b9",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "7c40d4fe0bc44.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "51cce9661026b33de6f87afe6ae1ad90a97d470805de4bd6101bd128c58e212a",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "81a7392aa9fcf.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "ec531f58953a8c829ca8ba8e02e9d5f3bebd31a240a6cca798f8e0d74a5b5578",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "85394f87212a7.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "b609f9f7efbf7f4540a0e0c2e6667136bc2f1905e46ae1026d801477c1529b83",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "874dc3865a33d.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "ef93d565b3d4f6450d29d6767b18963821a74f16de92da7a100d1e1ce01adfc2",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "8a9cf3d21fce4.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "384b3575ca10ab8f79c5fcb7c09b64cc34fb79fa77bc8d8992f27ea254c4cee9",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "8b2cab28a81d9.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "b53efb88bce606ed5999225040f30b83d764918033896acbfcdfdd7fe3169bb1",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "8bb742e21b788.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "c3b3c7d231df1cb37c8d5acd653a3be1c89805929c43519ff409045136e057d0",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "8f260db7bcb7.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "16f290e0ee5d7983b0cee03ff2aa04b6e44e7f4ba7f607c016243b79e8745e4a",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "91841e41215b2.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "4bed24252d111b6bf7ecc7d9601ebdf2809bfa3f6b8008c6b8f799478063bdff",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "91affae26a94e.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8bc14e2f259b9b20560eafb19ade3eee7ad66d616711a4f6b6f7ecbb23280024",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "93e6835c7c50e.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "cc34e00aed8fde4bb59de1f1d4f8c83a06ad68153b523524d67cc3fbb4c1408c",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "990e24c866ce.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "25bb637080706956178c46511b904fd4fd27edfd4229da4ccd15ac01c9ed9c69",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "9a4cca40e027b.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "721b8efb1d7d4a08e25db9a1ff2393b617be20fdfcfde6eecd1f84d39487a6b5",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "9b41967b82110.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "56c95f09b1724f50c2f52b7ff741e2290ee2746de1fec684583f202e828eef40",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "9c4dc068671bb.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "368406d1854c9c2d7cee6d6709cf27cce822a065e59946abfb4194290d4e8e4d",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "9f0ae2fc1eb02.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "7f90c252fada7dc83a91df74e8127b10f1784127a6d3f0386e7fd4dc58dce2ce",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "a53db0aa0a245.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "bda6c390fece19a0551237ff8a313c4f84ccd055f120ac78f121519a2c760291",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "a58f4de58d4ad.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "2bc9277355ee14fd80394ee0ef18765fca4b10ebe3fd4fde6d0007e09e525d74",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "a89a633b0f303.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "95eaa07f58054a98aa7c7f975f15367bb5de5ebe52253cf50be3d8305b59df56",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "abca7d4f09cda.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "b2511e3edc1ea9e7a0b387097977b9c5b6f4d4c1919aa9b1d014eb50150f7477",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "ac6167ba6467c.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "ad8a0657d5a8b77ee3eacb6d5e08d1e285164c2bd4b4f5b76277e402d23289bd",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "af10ed4658136.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "6a4503767df38ee9ba9633e8d22baa0588f614dfe15ad177f2bc8b4e3a15021e",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "af94fbe014232.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "24d59a4b7d453da295267e4ed099b4c57235db4b0e6f4010667554aefb527b36",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "affd0d001f72f.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "145a86d4d91c198122c50475a16238f3f534f2d2e57371e89db9391ce1092e10",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "b0050202551dc.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "e5f11d905efbf92ac78bf69e6cdc3cd506bd437a3c5484a48771dce8038bae15",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "b29c1ef8f967.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "ab956966e12054d3572522e5e87ba090791c3f915e3a2cf209eebcd40fcf4b94",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "b6f626a874006.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8445ce5f37f49cbb1a6d3311903b9fedd51ec0e0015cc3ad6f41ac56774b676a",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "ba93a6a82efe7.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "aecf266210e10bf005a47e1ad7aba897238af21e460208ee2f580eeaf39db513",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "baefe2196b28f.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "3ff8401fdeee44b3c396af9c4931f7d7d0c80d62992437eaa04f0c9b2dec244c",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "bcf53d15dbddd.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "088ae228c6c7954946caa602b67f108faa9bad1b5770b2799102d3ac1f4e0edd",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "bd738eaa620fc.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "dc41eb68f2443d3f0dd980eb0a7df3eca74dc8caa07caedd6bcce5c6e555b28c",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "c922ef31ec068.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "aef2339477e5be08b733deb3189796ddbd43daba5820895a6c70816ed0b9eb2e",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "ccc71e9e06c3b.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "99a4720f8258a0b49d5c70506538de6279f28609075ddb3cc6d77313498d939c",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "d219a8d4fdc27.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "7c7909d8784df176bd51a4e0318214077e07202ac36d29f615be393bde6141f7",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "d4d10c453f851.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "64581a896adc1ccd08d99a4140a8baa3e7e1c212ac36e2e15aa7fd3da83e13e8",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "d5d5235c4e009.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "913bf023f19d871352894ade74db7fde7afae7f94cc8553682a53867fbbfcddf",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "d668437baa28b.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "b73e26840b54e829c737e67109e23d46dc303e5dde445703fc2a0e540b4f0fe0",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "daf28c69151cd.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "dc25682d9ff44fa2d7cb2469751c31f77f79db4c5a1c85d5879758ed300af474",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "dde8971c0b17b.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "39e4cb666c02aac63d6c84b5239f50b222d5552077b5c9cf3a11f92f83691e48",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "e474e74249b7a.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "6de22edeef1473e4c248c85faae6292211e5ee327991420fe74c528bbd7b4cde",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "e905895d7864a.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "ff7e4c650bb6d62eac7115d6d6d21c976ad205a58ff5ec7cbc29bdd471c981fc",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "e99172c8c5f.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "cf922f060cb43af49e34b409c3ddc9b03e2c2373b0eb118a02b5d714661bf581",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "eaa51fb0cf021.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "64f9ec48dfff402de5d7225f1b3f18108e1def28082be84ce42438a5d13a2a8e",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "ebb212e7b7ccd.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "f0f298775d9d880d638f913e5c9ae1b1c321d683d5f0ebb1b40e58d9ca5f0f5b",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "ec13b3388395b.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "4e8301691798b57fd8b20bad7ef280f2219e36f62dbcd9b5ba69b2f30a7e0cd0",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "f0a931b3cdd89.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "338f835edc08c7f86345076472e78ee2e194d38a68f138606b37b18857e68da5",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "f1b9b2c366fc.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "bcf828b7da4635ed646dd13fd1aeec2f7d3ed5bf1431b7d3cb2fb1967c1579d8",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "f58de8df899bc.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "59379f96b1326cb7e31ff772f26d641279182b74bc6c9818d6d72c9f45058030",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "fa022fc19b6ad.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "8c43b9a46214b98d06e047a0e92c83ad0cee29d061a6895a6589b34b5a81d87f",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "fa30ca744b335.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "de5fefb1e814b900b082f60228aa725e12d894cf84b6888787ded57a9cb4b746",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "fd57357257d42.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "ecf1d502dd5e8abbe51caf35620c1ea967ad7cbec7d3d03525c0e88bc85678d1",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "fd787e9533b9c.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "c1a5940cdfc8b52a4ba735c97090749361b82ea238b739af472e766f90e9f733",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  },
+  "fe4eb5e877e64.mp3": {
+   "engine": "edge-tts",
+   "productionApproved": false,
+   "rate": "manifest",
+   "recordedAt": "2026-11-09",
+   "sha256": "121378d28ecfeb4697c093fadfa7a172b644229600ea44a47b8d60ba87100a6a",
+   "tier": "unofficial",
+   "usage": "unofficial-not-deployable",
+   "voice": "en-US-AriaNeural"
+  }
+ },
+ "productionEngines": [
+  "azure-paid"
+ ],
+ "schema": 2
+}

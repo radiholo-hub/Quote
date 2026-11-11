@@ -1,12 +1,26 @@
-name: GSAT audio (PR branches)
-# 學測英文的單字、搭配詞、例句與原創文章音檔。沿用既有做法（tools/make_score_rescue_audio.py 的 sr_hash 與聲音設定、Azure 優先、edge-tts 僅供試用）。
-# 這個流程只在「上線分支以外」的 claude/** 分支執行，讓 PR 在合併前就有可播放的音檔；上線分支維持原本的 Generate audio 流程
-# （合併後，把 tools/make_gsat_audio.py 與 gsat/audio 納入該流程即可，見 docs/gsat/VOCAB_INDEX_METHOD.md）。
-# 權限分兩段：產生音檔的工作只有唯讀權限；提交音檔的工作只接受 gsat/audio/<雜湊>.mp3，檔名、大小與數量都有限制。
+name: GSAT audio (official Azure TTS, manual)
+# 學測英文的單字、搭配詞、例句與原創文章音檔。**只使用官方 Azure AI Speech**，不使用非官方的 edge-tts，
+# 也不會在缺少金鑰時悄悄退回別的引擎：沒有設定 AZURE_SPEECH_KEY／AZURE_SPEECH_REGION 這個流程會直接失敗。
+# 只能手動啟動（Actions → Run workflow），並須選 tier（必須和 secrets 裡金鑰的實際層級一致）：
+#   free-test（免費層 F0）：產生開發測試音檔，**只上傳 CI artifact 供下載／試聽，不 commit、不 push 任何 mp3**，不修改版本庫裡的來源紀錄與簽核，
+#                           不會取得 productionApproved。
+#   paid（付費層 S0）：才會進入正式音檔更新流程：產生後提交 gsat/audio/*.mp3 與 docs/gsat/audio-provenance.json，
+#                      若已簽核的音檔內容改變，docs/gsat/signoffs/ 的「試聽簽核」自動標為 invalidated（絕不自動標為通過，需教師重新聆聽並簽核）。
+# 只有來源紀錄為 azure-paid 的 mp3 才會被 tools/stage_site.sh 部署。force=true 會把全部音檔重新產生並覆蓋。
+# 權限分兩段：產生音檔的工作只有唯讀權限；提交的工作（僅 paid）只接受 gsat/audio/<雜湊>.mp3、audio-provenance.json 與 signoffs/*.json，檔名、大小與數量都有限制，
+# 並再次確認來源紀錄裡沒有 azure-free-test。
 on:
-  push:
-    branches: ['claude/**', '!claude/daily-quotes-website-lbh2wi']
-    paths: ['gsat/data/audio_manifest.js', 'tools/make_gsat_audio.py', 'tools/make_score_rescue_audio.py', '.github/workflows/gsat-audio-preview.yml']
+  workflow_dispatch:
+    inputs:
+      force:
+        description: '全部重新產生並覆蓋（true／false）'
+        type: boolean
+        default: false
+      tier:
+        description: 'free-test＝免費層 F0（開發試聽，不可正式部署）；paid＝付費層 S0（正式版）。必須和 secrets 裡金鑰的實際層級一致'
+        type: choice
+        options: [free-test, paid]
+        default: free-test
 permissions: {}
 concurrency:
   group: gsat-audio-${{ github.ref }}
@@ -25,32 +39,52 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install edge-tts
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: 確認已設定 Azure 金鑰（沒有就停止，不退回其他引擎）
+        env:
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+        run: |
+          [ -n "$AZURE_SPEECH_KEY" ] && [ -n "$AZURE_SPEECH_REGION" ] || { echo "::error::未設定 AZURE_SPEECH_KEY／AZURE_SPEECH_REGION（Repository secrets）。請先建立付費 Azure AI Speech 資源並加入這兩個 secret。"; exit 1; }
       - env:
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
-        run: python tools/make_gsat_audio.py
-      - name: 收集新產生的音檔
+          FORCE: ${{ inputs.force }}
+          TIER: ${{ inputs.tier }}
+        run: |
+          if [ "$FORCE" = "true" ]; then python tools/make_gsat_audio.py --tier "$TIER" --force; else python tools/make_gsat_audio.py --tier "$TIER"; fi
+      - name: 核對（機器可檢查的部分）
+        run: |
+          sudo apt-get install -y -qq ffmpeg >/dev/null
+          if [ "${{ inputs.tier }}" = "paid" ]; then python tools/gsat_audio_provenance.py check --require-production; else python tools/gsat_audio_provenance.py check; fi
+          python tools/verify_gsat_audio.py
+          python tools/gsat_signoff.py check
+      - name: 收集新產生或改動的檔案
         id: pack
         run: |
-          mkdir -p "$RUNNER_TEMP/new-audio"
+          mkdir -p "$RUNNER_TEMP/out/audio" "$RUNNER_TEMP/out/signoffs"
           n=0
-          for f in $(git ls-files --others --exclude-standard gsat/audio); do
-            case "$f" in gsat/audio/*.mp3) cp "$f" "$RUNNER_TEMP/new-audio/"; n=$((n+1));; esac
+          for f in $(git ls-files --others --modified --exclude-standard gsat/audio); do
+            case "$f" in gsat/audio/*.mp3) cp "$f" "$RUNNER_TEMP/out/audio/"; n=$((n+1));; esac
           done
-          echo "新音檔:$n 個"
+          cp docs/gsat/audio-provenance.json "$RUNNER_TEMP/out/"
+          cp docs/gsat/signoffs/*.json "$RUNNER_TEMP/out/signoffs/"
+          echo "新／改動的音檔:$n 個"
           if [ "$n" -gt 0 ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; else echo "changed=false" >> "$GITHUB_OUTPUT"; fi
       - if: steps.pack.outputs.changed == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: gsat-new-audio
-          path: ${{ runner.temp }}/new-audio
-          retention-days: 1
+          name: gsat-new-audio-${{ inputs.tier }}
+          path: ${{ runner.temp }}/out
+          # free-test：留 7 天供下載與試聽（不會進版本庫）；paid：只供下一個工作使用
+          retention-days: ${{ inputs.tier == 'free-test' && 7 || 1 }}
           if-no-files-found: error
 
   commit:
     needs: generate
-    if: needs.generate.outputs.changed == 'true'
+    # free-test（F0 開發測試音檔）絕不 commit／push；只有 paid 才進入提交流程
+    if: needs.generate.outputs.changed == 'true' && inputs.tier == 'paid'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -59,11 +93,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
-          name: gsat-new-audio
-          path: ${{ runner.temp }}/new-audio
-      - name: 只放入合格的 mp3（檔名、大小、數量、檔頭都檢查）
+          name: gsat-new-audio-paid
+          path: ${{ runner.temp }}/out
+      - name: 只放入合格的檔案（檔名、大小、數量、檔頭都檢查）
         run: |
-          cd "$RUNNER_TEMP/new-audio"
+          cd "$RUNNER_TEMP/out/audio"
           count=$(ls | wc -l)
           [ "$count" -le 400 ] || { echo "::error::音檔數量異常($count)"; exit 1; }
           for f in *; do
@@ -71,24 +105,28 @@ jobs:
             size=$(stat -c %s "$f"); [ "$size" -gt 1000 ] && [ "$size" -lt 3000000 ] || { echo "::error::大小異常:$f $size"; exit 1; }
           done
           python3 - <<'PY'
-          import os, sys
-          d = os.environ['RUNNER_TEMP'] + '/new-audio'
+          import os, sys, json
+          d = os.environ['RUNNER_TEMP'] + '/out/audio'
           for f in os.listdir(d):
               b = open(os.path.join(d, f), 'rb').read(3)
               if not (b == b'ID3' or (b[0] == 0xFF and (b[1] & 0xE0) == 0xE0)):
                   sys.exit('::error::不是 mp3:' + f)
+          prov = json.load(open(os.environ['RUNNER_TEMP'] + '/out/audio-provenance.json'))
+          bad = [f for f, e in prov['files'].items() if e.get('engine') != 'azure-paid']
+          if bad: sys.exit('::error::來源紀錄含非 azure-paid 的檔案（F0／edge-tts），拒絕提交:' + ', '.join(bad[:3]))
           PY
-          mkdir -p "$GITHUB_WORKSPACE/gsat/audio"
-          cp -n ./*.mp3 "$GITHUB_WORKSPACE/gsat/audio/"
+          cp -f ./*.mp3 "$GITHUB_WORKSPACE/gsat/audio/"
+          cp -f "$RUNNER_TEMP/out/audio-provenance.json" "$GITHUB_WORKSPACE/docs/gsat/audio-provenance.json"
+          cp -f "$RUNNER_TEMP/out/signoffs/"*.json "$GITHUB_WORKSPACE/docs/gsat/signoffs/"
       - name: 提交到同一個分支
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add gsat/audio
-          git diff --cached --quiet && { echo "沒有新的音檔"; exit 0; }
-          bad=$(git diff --cached --name-status | awk '!($1=="A" && $2 ~ /^gsat\/audio\/[0-9a-f]+\.mp3$/)')
+          git add gsat/audio docs/gsat/audio-provenance.json docs/gsat/signoffs
+          git diff --cached --quiet && { echo "沒有變更"; exit 0; }
+          bad=$(git diff --cached --name-status | awk '!(($1=="A" || $1=="M") && ($2 ~ /^gsat\/audio\/[0-9a-f]+\.mp3$/ || $2 == "docs/gsat/audio-provenance.json" || $2 ~ /^docs\/gsat\/signoffs\/[0-9-]+\.json$/))')
           [ -z "$bad" ] || { echo "::error::包含不允許的變更:$bad"; exit 1; }
-          git commit -q -m "GSAT audio: generate vocabulary and passage audio (Aria)"
+          git commit -q -m "GSAT audio: regenerate with Azure AI Speech (Aria), tier ${{ inputs.tier }}, record provenance"
           for i in 1 2 3 4; do
             git pull --rebase -q origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
             sleep $((i*5))
