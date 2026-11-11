@@ -1,7 +1,7 @@
 {
  "title": "Score Rescue｜詞性小課 第6課（課程內嵌版）",
  "brand": "Score Rescue｜詞性小課 第6課",
- "rev": "v2",
+ "rev": "v3",
  "cues": [
   {
    "id": "hook1",
@@ -294,7 +294,7 @@
    "view": {
     "kind": "sum",
     "t": "先懂一件事",
-    "h": "despite ＝ in spite of",
+    "h": "despite ＝ in spite of（儘管）",
     "rows": [
      [
       "Despite the heavy rain",
@@ -443,13 +443,12 @@
     "lines": [
      {
       "n": "③",
-      "s": "It was raining [heavily.] ______, the flight departed on time."
+      "s": "It was raining heavily[.] ______, the flight departed on time."
      }
     ],
     "ring": [
      {
-      "w": "heavily.",
-      "c": "blue",
+      "w": ".",
       "label": "句號：前一句已結束"
      }
     ],
@@ -475,14 +474,13 @@
     "lines": [
      {
       "n": "③",
-      "s": "It was raining [heavily.] ______, the flight departed on time.",
+      "s": "It was raining heavily[.] ______, the flight departed on time.",
       "fill": "Nevertheless"
      }
     ],
     "ring": [
      {
-      "w": "heavily.",
-      "c": "blue"
+      "w": "."
      },
      {
       "w": "blank1",
@@ -1030,7 +1028,7 @@
    "view": {
     "kind": "sent",
     "t": "示範1　連接詞＋子句",
-    "s": "______ [the store opened] only last month,|it already has many regular customers.",
+    "s": "______ [the store opened] only last month[,]|it already has many regular customers.",
     "o": [
      "Despite",
      "Although",
@@ -1051,7 +1049,7 @@
    "view": {
     "kind": "sent",
     "t": "示範1　連接詞＋子句",
-    "s": "______ [the store opened] only last month,|it already has many regular customers.",
+    "s": "______ [the store opened] only last month[,]|it already has many regular customers.",
     "o": [
      "Despite",
      "Although",
@@ -1067,7 +1065,39 @@
    "view": {
     "kind": "sent",
     "t": "示範1　連接詞＋子句",
-    "s": "______ [the store opened] only last month,|it already has many regular customers.",
+    "s": "______ [the store opened] only last month[,]|it already has many regular customers.",
+    "o": [
+     "Despite",
+     "Although",
+     "However",
+     "Due to"
+    ],
+    "fs": 60,
+    "ring": [
+     {
+      "w": ",",
+      "label": "逗號"
+     }
+    ],
+    "ban": {
+     "t": "只有逗號 → 同一個句子",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "先看標點：這句只有逗號，是同一個句子。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "d1b",
+   "view": {
+    "kind": "sent",
+    "t": "示範1　連接詞＋子句",
+    "s": "______ [the store opened] only last month[,]|it already has many regular customers.",
     "o": [
      "Despite",
      "Although",
@@ -1090,7 +1120,7 @@
    "say": [
     [
      "zh",
-     "先看標點：這句只有逗號，是同一個句子。再看空格後面："
+     "再看空格後面："
     ],
     [
      "en",
@@ -1108,7 +1138,7 @@
    "view": {
     "kind": "sent",
     "t": "示範1　連接詞＋子句",
-    "s": "______ [the store opened] only last month,|it already has many regular customers.",
+    "s": "______ [the store opened] only last month[,]|it already has many regular customers.",
     "o": [
      "Despite",
      "Although",
@@ -1142,7 +1172,7 @@
    "view": {
     "kind": "sent",
     "t": "示範1　連接詞＋子句",
-    "s": "______ [the store opened] only last month,|it already has many regular customers.",
+    "s": "______ [the store opened] only last month[,]|it already has many regular customers.",
     "o": [
      "Despite",
      "Although",
@@ -1364,7 +1394,7 @@
    "view": {
     "kind": "sent",
     "t": "示範3　句號後的連接副詞",
-    "s": "Sales dropped in the first [quarter.]|______, the company met its annual target.",
+    "s": "Sales dropped in the first quarter[.]|______, the company met its annual target.",
     "o": [
      "Although",
      "In spite of",
@@ -1385,7 +1415,7 @@
    "view": {
     "kind": "sent",
     "t": "示範3　句號後的連接副詞",
-    "s": "Sales dropped in the first [quarter.]|______, the company met its annual target.",
+    "s": "Sales dropped in the first quarter[.]|______, the company met its annual target.",
     "o": [
      "Although",
      "In spite of",
@@ -1401,7 +1431,7 @@
    "view": {
     "kind": "sent",
     "t": "示範3　句號後的連接副詞",
-    "s": "Sales dropped in the first [quarter.]|______, the company met its annual target.",
+    "s": "Sales dropped in the first quarter[.]|______, the company met its annual target.",
     "o": [
      "Although",
      "In spite of",
@@ -1411,9 +1441,8 @@
     "fs": 60,
     "ring": [
      {
-      "w": "quarter.",
-      "label": "句號",
-      "c": "blue"
+      "w": ".",
+      "label": "句號"
      }
     ],
     "ban": {
@@ -1434,7 +1463,7 @@
    "view": {
     "kind": "sent",
     "t": "示範3　句號後的連接副詞",
-    "s": "Sales dropped in the first [quarter.]|______, the company met its annual target.",
+    "s": "Sales dropped in the first quarter[.]|______, the company met its annual target.",
     "o": [
      "Although",
      "In spite of",
@@ -1468,7 +1497,7 @@
    "view": {
     "kind": "sent",
     "t": "示範3　句號後的連接副詞",
-    "s": "Sales dropped in the first [quarter.]|______, the company met its annual target.",
+    "s": "Sales dropped in the first quarter[.]|______, the company met its annual target.",
     "o": [
      "Although",
      "In spite of",
