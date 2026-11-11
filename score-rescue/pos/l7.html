@@ -121,6 +121,7 @@ div.opt .say.ico{width:36px;min-height:36px;margin-left:-4px}
 .fb .mv{border:2px solid var(--wine);border-radius:6px;padding:0 4px;font-weight:700}
 .fb .contrast{display:block;margin-top:8px;padding:10px 12px;border-radius:8px;background:#fff;border:1px solid var(--line)}
 .fb .contrast .en{display:block;font-family:var(--serif);font-size:1.05rem;margin:4px 0}
+u.ucl{text-decoration-color:var(--blue,#1F5C99);text-decoration-thickness:3px;text-underline-offset:5px}
 </style>
 </head>
 <body>
@@ -402,29 +403,33 @@ function viewLesson(){
     '<div class="qid">詞性小課 第 7 課（完整方案）</div>'+
     '<h1>who、which 還是 whose？先看前面的名詞，再看後面缺什麼</h1>'+
     '<video id="l1video" class="vid" controls playsinline preload="metadata" poster="lesson7-poster.jpg" src="lesson7.mp4">你的瀏覽器無法播放影片，可以直接往下看文字版重點。</video>'+
-    '<p class="fine">約 6 分鐘：先考你三句，再教判斷觀念＋四個示範。</p>'+
+    '<p class="fine">約 7 分鐘：先考你三句，再教判斷觀念＋四個示範。</p>'+
     '<div class="sheet" id="afterVideo"><h3>看完了？</h3><p style="margin-top:4px">往下做 10 題練習，再用 4 題確認你會不會判斷。</p>'+
       '<div style="margin-top:14px"><button class="btn pri" id="toPr">開始 10 題練習</button></div></div>'+
     '<details class="sheet more" id="textVersion"><summary>影片重點文字版（判斷觀念與四個示範）</summary><div class="stack" style="margin-top:12px">'+
-    '<div class="sheet stack"><h2>先懂一件事：關係代名詞把兩句話接成一句</h2>'+
-      '<p>The client called this morning. ＋ The client wants a refund.<br>→ The client <b>who</b> called this morning wants a refund.</p>'+
-      '<p class="fine">who 代替 called 前面的 the client，當關係子句的主詞。</p>'+
+    '<div class="sheet stack"><h2>先懂一件事：關係代名詞＝連接詞＋代名詞</h2>'+
+      '<p>關係代名詞同時有兩個功能：像<b>連接詞</b>一樣把兩句話接成一句，也像<b>代名詞</b>一樣代替前面的名詞。它帶出的那一段叫<b>形容詞子句</b>（下面畫底線），修飾前面的名詞。</p>'+
+      '<p>The client called this morning. ＋ The client wants a refund.<br>→ The client <u class="ucl"><b>who</b> called this morning</u> wants a refund.</p>'+
+      '<p class="fine">who 代替 called 前面的 the client，當形容詞子句的主詞。</p>'+
       '<table class="tbl"><thead><tr><th>空格後面</th><th>缺什麼</th><th>用</th></tr></thead><tbody>'+
       '<tr><td>直接接動詞（called、arrived）</td><td>缺主詞</td><td>who（人）／which（物）</td></tr>'+
       '<tr><td>接名詞，名詞屬於前面的人或物（order）</td><td>表示所屬</td><td>whose＋名詞</td></tr>'+
       '<tr><td>主詞＋動詞，動詞少了受詞（Ms. Kim submitted ___）</td><td>缺動詞的受詞</td><td>which（物）</td></tr>'+
       '<tr><td>介系詞在空格前面（to ___）</td><td>缺介系詞的受詞</td><td>whom（人）</td></tr></tbody></table>'+
       '<p class="fine">that 常和 who、which 都能填，本課選項不放 that。介系詞放在關係代名詞前面時，正式英文用 to whom，不能用 who。</p>'+
-      '<h3>括起關係子句，找主句</h3>'+
-      '<p>The client (who called this morning) <b>wants</b> a refund.<br>We <b>contacted</b> the customer (whose package was sent to the wrong address).</p>'+
+      '<h3>括起形容詞子句，找主句</h3>'+
+      '<p>The client <u class="ucl">who called this morning</u> <b>wants</b> a refund.<br>We <b>contacted</b> the customer <u class="ucl">whose package was sent to the wrong address</u>.</p>'+
       '<h3>判斷三步驟</h3><ol class="steps">'+
       '<li>看空格前面的名詞：人還是物？</li>'+
       '<li>看空格後面缺什麼：主詞、所屬、動詞的受詞，還是介系詞的受詞？</li>'+
-      '<li>括起關係子句，找主句的主詞＋主要動詞。</li></ol></div>'+
+      '<li>括起形容詞子句，找主句的主詞＋主要動詞。</li></ol></div>'+
     '<h2>看老師怎麼判斷</h2>'+
     DEMOS.map(function(d){return demoHTML(d,false)}).join('')+
-    '<div class="sheet stack"><h3>補充：介系詞＋whom</h3><p>The coordinator <b>to whom</b> I sent the schedule confirmed receipt.</p>'+
-      '<p class="fine">還原：I sent the schedule to the coordinator. → coordinator 是介系詞 to 的受詞，是人 → to whom。</p></div>'+
+    '<div class="sheet stack"><h3>補充：介系詞＋whom（分三步）</h3><ol class="steps">'+
+      '<li>兩句：The coordinator confirmed receipt.／I sent the schedule <b>to the coordinator</b>.</li>'+
+      '<li>先合併：The coordinator <u class="ucl"><b>whom</b> I sent the schedule <b>to</b></u> confirmed receipt.</li>'+
+      '<li>再把 to 往前拉：The coordinator <u class="ucl"><b>to whom</b> I sent the schedule</u> confirmed receipt.</li></ol>'+
+      '<p class="fine">介系詞放在前面時用 whom，不能用 who。</p></div>'+
     '<div class="sheet stack"><h3>本課整理</h3><table class="tbl"><thead><tr><th>空格前面</th><th>空格後面</th><th>選</th></tr></thead><tbody>'+
       '<tr><td>人</td><td>直接接動詞</td><td>who</td></tr>'+
       '<tr><td>物</td><td>直接接動詞</td><td>which</td></tr>'+
