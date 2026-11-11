@@ -132,7 +132,7 @@ def test_each_check_wrong_jumps_to_its_demo(open_page, i):
         assert cid in t and '空格的工作' in t and p.query_selector('#toDemo')
 
 
-def test_l7_done_screen_and_no_entry_from_l6(open_page):
+def test_l7_done_screen_and_entry_from_l6(open_page):
     p = open_page()
     assert p.query_selector('#l1video').get_attribute('src') == 'lesson7.mp4'
     assert '完整方案' in p.inner_text('#app')
@@ -143,4 +143,6 @@ def test_l7_done_screen_and_no_entry_from_l6(open_page):
     assert p.evaluate('window.__ins') == [], '第 7 課目前不送事件'
     q = open_page(L3_PAGE)
     finish(q)
-    assert 'l7.html' not in q.content(), '第 6 課完成畫面暫不接第 7 課'
+    assert q.get_attribute('#nextl', 'href') == 'l7.html', '第 6 課完成畫面接第 7 課'
+    assert 'pri' in q.get_attribute('#nextl', 'class') and 'line' in q.get_attribute('#d17', 'class')
+    assert p.query_selector('#nextl') is None, '第 7 課是最後一課'
