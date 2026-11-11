@@ -1,7 +1,7 @@
 // 原創詳解(自行撰寫,非第三方解析)。鍵為「年度-題號」。schema 2:引用單字詞條(gsat/data/vocab.js),字義與詞性只在詞條裡定義一次。
 // status:draft＝AI 草稿,待英文老師審核;reviewed＝已審核(審核前不得標為 reviewed)。reviewer／reviewedAt／reviewNotes 由審核者填寫。
 // 【資料來源】本檔是版本控制下的唯一來源,直接編輯;沒有任何 repo 外的產生流程,也不得再用腳本整檔重新產生(會把教師簽核欄位覆蓋回 draft;gsat/tests/test_signoff.py 會擋)。
-// 已簽核的題目(目前只有 115-1)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
+// 已簽核的題目(目前有 115-1、115-2)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
 // 審核方式:python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾> 產生含題目與檢核欄位的審核表(內含試題,請勿公開)。
 window.EXPLAIN = {
  "115-1": {
@@ -55,14 +55,14 @@ window.EXPLAIN = {
  "115-2": {
   "schema": 2,
   "answer": "C",
-  "status": "draft",
-  "reviewer": null,
-  "reviewedAt": null,
-  "reviewNotes": "",
+  "status": "reviewed",
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-11",
+  "reviewNotes": "2026-11-11 教師（負責人）確認:Q2 教學文字與 41 個教師審核項目已正式簽核通過。音檔的人工驗收狀態與適用的音檔版本,以 docs/gsat/signoffs/115-2.json 的 audio 區塊為準(本欄位不記載音檔通過數量)。",
   "key": [
    "but 表示轉折:現在擁有「專業」(professional)的工作室,代表先前的身分與「專業」相反。",
    "started as… 說明剛起步時的身分;從業餘到專業,是常見的成長過程。",
-   "所以空格填「業餘的」amateur。另外 an 後面要接母音開頭的字,amateur 符合。"
+   "所以應選 amateur『業餘的』，與後面的 professional 形成最直接的語意對比。注意：四個選項都以母音音素開頭，因此前面的 an 不能作為判斷答案的依據。"
   ],
   "options": {
    "A": {
@@ -79,7 +79,7 @@ window.EXPLAIN = {
    },
    "D": {
     "entry": "elementary-adj",
-    "why": "elementary 是「初級的、基本的」,用在程度或教育階段(elementary school),不用來描述「業餘 vs. 專業」的身分。"
+    "why": "elementary 可表示『初級的、基本的』，通常修飾程度、知識或教育階段，如 elementary level、elementary school；但 an elementary art designer 並不是自然的搭配，也不能表達『業餘設計師』的意思。"
    }
   },
   "words": [
@@ -94,10 +94,7 @@ window.EXPLAIN = {
   ],
   "grammar": "a studio of her own:「a + 名詞 + of + 所有格 + own」＝她自己的工作室(等於 her own studio)。這個形式前面要用 a / an,不能寫成 a her own studio。",
   "focus": "amateur-adj",
-  "zh": "珍一開始是個業餘的藝術設計師,但現在她擁有自己的專業工作室。",
-  "aiFlags": [
-   "選項 D elementary:說明是否足夠(elementary 也可指「基本的」程度)?"
-  ]
+  "zh": "珍一開始是個業餘的藝術設計師,但現在她擁有自己的專業工作室。"
  },
  "115-3": {
   "schema": 2,

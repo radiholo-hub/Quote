@@ -8,5 +8,7 @@ window.VOCAB_REVIEWS = {
   // 115 年閱讀第 39–42 題共用文章第三段(試卷第 7 頁):tight against 採形容詞受詞補語分析(have + 受詞 + 補語),字義「緊貼、緊靠」;文章用字 1 次(共用文章只算 1 個單位)。tight 另有副詞用法,此為人工裁定。
   "tight-adj|115|115:reading:39-42||passage|文章第 3 段": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-08"},
   // 115 年第 1 題(試卷第 1 頁;官方答案表第 1 題為 B):tight schedule,形容詞,字義「行程緊湊」;正確答案 1 次。
-  "tight-adj|115|115:vocab:1|1|answer|選項 (B)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-08"}
+  "tight-adj|115|115:vocab:1|1|answer|選項 (B)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-08"},
+  // 2026-11-11 教師(負責人)人工審核 amateur 一筆。115 年第 2 題(試卷第 1 頁;官方答案表第 2 題為 C):選項 (C) amateur,在 an amateur art designer 中作形容詞,修飾 art designer,字義「業餘的」;正確答案 1 次。
+  "amateur-adj|115|115:vocab:1|2|answer|選項 (C)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-11"}
 };

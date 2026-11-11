@@ -213,7 +213,7 @@ window.VOCAB = {
      "zh": "他是週末拍照的業餘攝影師。"
     }
    ],
-   "note": "amateur 以母音開頭,前面的冠詞用 an(an amateur)。",
+   "note": "amateur 以母音音素開頭，因此前面使用 an：an amateur。",
    "rel": {
     "syn": [],
     "ant": [
