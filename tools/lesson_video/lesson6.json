@@ -1,6 +1,7 @@
 {
  "title": "Score Rescue｜詞性小課 第6課（課程內嵌版）",
  "brand": "Score Rescue｜詞性小課 第6課",
+ "rev": "v2",
  "cues": [
   {
    "id": "hook1",
@@ -293,7 +294,7 @@
    "view": {
     "kind": "sum",
     "t": "先懂一件事",
-    "h": "in spite of 和 despite",
+    "h": "despite ＝ in spite of",
     "rows": [
      [
       "Despite the heavy rain",
@@ -316,7 +317,7 @@
     ],
     [
      "zh",
-     "也可以換成"
+     "等於"
     ],
     [
      "en",
@@ -324,23 +325,15 @@
     ],
     [
      "zh",
-     "注意，of 是"
+     "但是"
     ],
     [
      "en",
-     "in spite of"
+     "despite of"
     ],
     [
      "zh",
-     "的一部分，"
-    ],
-    [
-     "en",
-     "despite"
-    ],
-    [
-     "zh",
-     "後面不加 of。"
+     "是錯的，常常出現在錯誤選項。"
     ]
    ],
    "hold": 1.55
@@ -353,19 +346,35 @@
     "h": "適用範圍",
     "rows": [
      [
-      "本課",
-      "練完整子句和名詞片語的對照"
+      "despite／in spite of",
+      "＋名詞片語，也可以＋V-ing"
      ],
      [
       "之後再學",
-      "despite＋V-ing、連接詞的省略結構"
+      "連接詞的省略結構"
      ]
     ]
    },
    "say": [
     [
      "zh",
-     "本課先練完整子句和名詞片語的對照。其他用法，之後再學。"
+     "本課先練完整子句和名詞片語的對照。"
+    ],
+    [
+     "en",
+     "Despite"
+    ],
+    [
+     "zh",
+     "和"
+    ],
+    [
+     "en",
+     "in spite of"
+    ],
+    [
+     "zh",
+     "後面也可以接 V I N G。連接詞的省略結構，之後再學。"
     ]
    ],
    "hold": 1.55
@@ -496,11 +505,61 @@
     ],
     [
      "zh",
-     "，儘管如此。也可以用"
+     "，儘管如此。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "r3c",
+   "view": {
+    "kind": "pair",
+    "t": "也可以這樣寫",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "It was raining. [Nevertheless], the flight departed on time.",
+      "zh": "句號＋Nevertheless"
+     },
+     {
+      "n": "②",
+      "s": "It was raining. [Nonetheless], the flight departed on time.",
+      "zh": "句號＋Nonetheless（意思一樣）"
+     },
+     {
+      "n": "③",
+      "s": "It was raining[;] nevertheless, the flight departed on time.",
+      "zh": "分號＋nevertheless"
+     }
+    ],
+    "ring": [
+     {
+      "w": "Nevertheless",
+      "c": "ok"
+     },
+     {
+      "w": "Nonetheless",
+      "c": "ok"
+     },
+     {
+      "w": ";",
+      "c": "blue"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "也可以用"
     ],
     [
      "en",
-     "nonetheless."
+     "nonetheless"
+    ],
+    [
+     "zh",
+     "，意思一樣。前面用分號也可以。"
     ]
    ],
    "hold": 1.55
@@ -543,7 +602,7 @@
    "hold": 1.55
   },
   {
-   "id": "c2b",
+   "id": "c2bp",
    "view": {
     "kind": "pair",
     "t": "先懂一件事：but 和 however，差在標點",
@@ -557,7 +616,7 @@
      {
       "n": "✓",
       "s": "It was raining heavily[;] [however], the flight departed on time.",
-      "zh": "分號或句號＋however（連接副詞）"
+      "zh": "分號或句號＋however（不是連接詞）"
      }
     ],
     "ring": [
@@ -573,7 +632,50 @@
       "w": "however",
       "c": "ok"
      }
-    ]
+    ],
+    "ban": {
+     "t": "however、nevertheless 不是連接詞 → 前面要用分號或句號",
+     "c": "blue"
+    }
+   },
+   "hold": 1.0
+  },
+  {
+   "id": "c2b",
+   "view": {
+    "kind": "pair",
+    "t": "先懂一件事：but 和 however，差在標點",
+    "xs": true,
+    "lines": [
+     {
+      "n": "✓",
+      "s": "It was raining heavily, [but] the flight departed on time.",
+      "zh": "逗號＋but（連接詞）"
+     },
+     {
+      "n": "✓",
+      "s": "It was raining heavily[;] [however], the flight departed on time.",
+      "zh": "分號或句號＋however（不是連接詞）"
+     }
+    ],
+    "ring": [
+     {
+      "w": "but",
+      "c": "ok"
+     },
+     {
+      "w": ";",
+      "c": "blue"
+     },
+     {
+      "w": "however",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "however、nevertheless 不是連接詞 → 前面要用分號或句號",
+     "c": "blue"
+    }
    },
    "say": [
     [
@@ -590,7 +692,15 @@
     ],
     [
      "zh",
-     "是連接副詞，前面要用分號或句號。"
+     "和"
+    ],
+    [
+     "en",
+     "nevertheless"
+    ],
+    [
+     "zh",
+     "不是連接詞，不能只用逗號連兩個子句，所以前面要用分號或句號。"
     ]
    ],
    "hold": 1.55
@@ -682,6 +792,75 @@
    "hold": 1.55
   },
   {
+   "id": "s1x",
+   "view": {
+    "kind": "sum",
+    "t": "第 1 步：先看選項與句意",
+    "h": "選項常常是同一組意思",
+    "rows": [
+     [
+      "讓步（雖然）",
+      "although・despite・nevertheless"
+     ],
+     [
+      "原因（因為）",
+      "because・because of・due to"
+     ],
+     [
+      "結果（因此）",
+      "therefore・as a result"
+     ],
+     [
+      "時間（在…時候）",
+      "while・during"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "例如「雖然」這一組有"
+    ],
+    [
+     "en",
+     "although, despite, nevertheless"
+    ],
+    [
+     "zh",
+     "；「因為」有"
+    ],
+    [
+     "en",
+     "because, because of, due to"
+    ],
+    [
+     "zh",
+     "；「因此」有"
+    ],
+    [
+     "en",
+     "therefore"
+    ],
+    [
+     "zh",
+     "；「在…時候」有"
+    ],
+    [
+     "en",
+     "while"
+    ],
+    [
+     "zh",
+     "和"
+    ],
+    [
+     "en",
+     "during."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
    "id": "s2",
    "view": {
     "kind": "steps",
@@ -697,7 +876,60 @@
    "say": [
     [
      "zh",
-     "第二步，看標點。前面已經是完整句子，空格在句號或分號後面，就用連接副詞。兩個子句只用逗號連起來，就用"
+     "第二步，看標點。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "s2x",
+   "view": {
+    "kind": "pair",
+    "t": "第 2 步：看標點",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "Sales dropped[.] [Nevertheless], the company met its target.",
+      "zh": "完整句子＋句號 → 連接副詞"
+     },
+     {
+      "n": "②",
+      "s": "The hotel is far from downtown[,] [but] it offers a free shuttle.",
+      "zh": "兩個子句只用逗號 → 連接詞 but、so"
+     }
+    ],
+    "ring": [
+     {
+      "w": ".",
+      "c": "blue"
+     },
+     {
+      "w": "Nevertheless",
+      "c": "ok"
+     },
+     {
+      "w": ",",
+      "c": "blue"
+     },
+     {
+      "w": "but",
+      "c": "ok"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "前面已經是完整句子，空格在句號或分號後面，就用連接副詞，例如"
+    ],
+    [
+     "en",
+     "nevertheless."
+    ],
+    [
+     "zh",
+     "兩個子句只用逗號連起來，就用"
     ],
     [
      "en",
@@ -731,7 +963,64 @@
    "say": [
     [
      "zh",
-     "第三步，其餘的看空格後面。完整子句用連接詞，名詞片語用介系詞。最後把答案代回去，確認句意。好，我們來實際做做看。"
+     "第三步，其餘的看空格後面。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "s3x",
+   "view": {
+    "kind": "pair",
+    "t": "第 3 步：其餘看後接",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "[Although] it was raining heavily, the flight departed on time.",
+      "zh": "＋子句 → 連接詞"
+     },
+     {
+      "n": "②",
+      "s": "[Despite] the heavy rain, the flight departed on time.",
+      "zh": "＋名詞片語 → 介系詞"
+     }
+    ],
+    "ring": [
+     {
+      "w": "Although",
+      "c": "ok"
+     },
+     {
+      "w": "Despite",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "最後把答案代回去，確認句意",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "完整子句用連接詞，例如"
+    ],
+    [
+     "en",
+     "although"
+    ],
+    [
+     "zh",
+     "；名詞片語用介系詞，例如"
+    ],
+    [
+     "en",
+     "despite."
+    ],
+    [
+     "zh",
+     "最後把答案代回去，確認句意。好，我們來實際做做看。"
     ]
    ],
    "hold": 1.55
@@ -801,7 +1090,7 @@
    "say": [
     [
      "zh",
-     "沒有句號，看空格後面："
+     "先看標點：這句只有逗號，是同一個句子。再看空格後面："
     ],
     [
      "en",
@@ -1403,31 +1692,39 @@
    "id": "e1",
    "view": {
     "kind": "sum",
-    "t": "本課整理",
-    "h": "看句型，也看標點",
+    "t": "本課整理 1／3",
+    "h": "＋子句：連接詞",
     "rows": [
      [
-      "完整句子。／；______，",
-      "連接副詞"
+      "讓步",
+      "although・even though・though"
      ],
      [
-      "兩個子句只用逗號",
+      "原因",
+      "because・since"
+     ],
+     [
+      "時間",
+      "while"
+     ],
+     [
+      "逗號連兩個子句",
       "but・so"
-     ],
-     [
-      "＋子句",
-      "連接詞"
-     ],
-     [
-      "＋名詞片語",
-      "介系詞"
      ]
     ]
    },
    "say": [
     [
      "zh",
-     "最後整理一下。先看句意，再看標點：完整句子後面的句號或分號，用連接副詞；兩個子句只用逗號連起來，用"
+     "最後把這一課出現的字整理一下。後面接子句，用連接詞："
+    ],
+    [
+     "en",
+     "although, even though, though, because, since, while."
+    ],
+    [
+     "zh",
+     "兩個子句只用逗號連起來，用"
     ],
     [
      "en",
@@ -1440,10 +1737,92 @@
     [
      "en",
      "so."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "e1b",
+   "view": {
+    "kind": "sum",
+    "t": "本課整理 2／3",
+    "h": "＋名詞片語／V-ing：介系詞",
+    "rows": [
+     [
+      "讓步",
+      "despite ＝ in spite of"
+     ],
+     [
+      "原因",
+      "because of・due to"
+     ],
+     [
+      "時間",
+      "during"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "後面接名詞片語，或是 V I N G，用介系詞："
+    ],
+    [
+     "en",
+     "despite"
     ],
     [
      "zh",
-     "其餘的看空格後面，子句用連接詞，名詞片語用介系詞。"
+     "等於"
+    ],
+    [
+     "en",
+     "in spite of"
+    ],
+    [
+     "zh",
+     "，還有"
+    ],
+    [
+     "en",
+     "because of, due to, during."
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "e1c",
+   "view": {
+    "kind": "sum",
+    "t": "本課整理 3／3",
+    "h": "句號／分號＋___，：連接副詞",
+    "rows": [
+     [
+      "轉折",
+      "however・nevertheless ＝ nonetheless"
+     ],
+     [
+      "結果",
+      "therefore・as a result"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "放在句號或分號後面、再接逗號的，是連接副詞：轉折用"
+    ],
+    [
+     "en",
+     "however, nevertheless, nonetheless"
+    ],
+    [
+     "zh",
+     "；結果用"
+    ],
+    [
+     "en",
+     "therefore, as a result."
     ]
    ],
    "hold": 1.55
