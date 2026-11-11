@@ -65,6 +65,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper);col
 .lab.new{opacity:var(--rp,1)}
 .ring.pt{inset:-2px -7px;border-width:5px;border-color:#C77700}
 .lab.pt{background:#C77700}
+.ucl{border-bottom:7px solid var(--blue);padding-bottom:6px}
 .uline{position:absolute;left:0;right:0;bottom:-14px;height:8px;border-radius:4px;background:var(--blue)}
 .brk{position:absolute;left:-6px;right:-6px;bottom:-22px;height:26px;border:8px solid var(--ok);border-top:0;border-radius:0 0 16px 16px}
 .lab{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;font:700 44px "Noto Sans TC","Noto Sans CJK TC",sans-serif;padding:6px 22px;border-radius:999px;color:#fff;bottom:calc(100% + 18px)}
@@ -132,7 +133,7 @@ function head(t){return '<div class="head"><div class="title">'+esc(t||'')+'</di
 function sentHTML(s,fill,solo){
   var lines=s.split('|').map(function(line){
     return esc(line).replace(/\[([^\]]+)\]/g,function(_,w){return '<span class="w" data-w="'+w+'">'+w+'</span>'}).replace(/\{/g,'<span class="np">[</span>').replace(/\}/g,'<span class="np">]</span>')
-      .replace('______',fill?'<span class="w" data-w="blank"><span class="blank fill">'+esc(fill)+'</span></span>':'<span class="w" data-w="blank"><span class="blank"></span></span>');
+      .replace('______',fill?'<span class="w" data-w="blank"><span class="blank fill">'+esc(fill)+'</span></span>':'<span class="w" data-w="blank"><span class="blank"></span></span>').replace(/⟨/g,'<span class="ucl">').replace(/⟩/g,'</span>');
   });
   return '<div class="sent serif'+(solo?' solo':'')+'">'+lines.map(function(l,i){return '<div'+(i?' class="l2"':'')+'>'+l+'</div>'}).join('')+'</div>';
 }
@@ -186,7 +187,7 @@ function render(v,n){
     /* 兩句對比：lines=[{n,s,fill,zh}]，s 用 [詞] 標可圈選的字，______ 是空格 */
     h=head(v.t)+'<div class="pair'+(v.sm?' sm':'')+(v.xs?' xs':'')+'">'+v.lines.map(function(L,k){
       var t=esc(L.s).replace(/\[([^\]]+)\]/g,function(_,w){return '<span class="w" data-w="'+w+'">'+w+'</span>'}).replace(/\{/g,'<span class="np">[</span>').replace(/\}/g,'<span class="np">]</span>')
-        .replace('______',L.fill?'<span class="w" data-w="blank'+(k+1)+'"><span class="blank fill">'+esc(L.fill)+'</span></span>':'<span class="w" data-w="blank'+(k+1)+'"><span class="blank"></span></span>');
+        .replace('______',L.fill?'<span class="w" data-w="blank'+(k+1)+'"><span class="blank fill">'+esc(L.fill)+'</span></span>':'<span class="w" data-w="blank'+(k+1)+'"><span class="blank"></span></span>').replace(/⟨/g,'<span class="ucl">').replace(/⟩/g,'</span>');
       return '<div class="pl serif"><span class="pn">'+esc(L.n)+'</span>'+t+'</div>'+(L.zh?'<div class="pzh">'+esc(L.zh)+'</div>':'');
     }).join('')+'</div>';
     if(v.o)h+='<div class="opts serif popts">'+v.o.map(function(t,k){return '<div class="opt"><span class="bub">'+'ABCD'[k]+'</span><span>'+esc(t)+'</span></div>'}).join('')+'</div>';

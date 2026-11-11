@@ -2,6 +2,7 @@
  "title": "Score Rescue｜詞性小課 第7課（課程內嵌版）",
  "brand": "Score Rescue｜詞性小課 第7課",
  "anim": true,
+ "rev": "v2",
  "cues": [
   {
    "id": "hook1",
@@ -130,11 +131,11 @@
     "lines": [
      {
       "n": "①",
-      "s": "The [client] ______ [called] this morning wants a refund."
+      "s": "The [client] ⟨______ [called] this morning⟩ wants a refund."
      },
      {
       "n": "②",
-      "s": "The [package] ______ [arrived] this morning was damaged."
+      "s": "The [package] ⟨______ [arrived] this morning⟩ was damaged."
      }
     ],
     "ring": [
@@ -148,14 +149,14 @@
      }
     ],
     "ban": {
-     "t": "後面直接接動詞 → 空格當關係子句的主詞",
+     "t": "底線是形容詞子句｜後面直接接動詞 → 空格當主詞",
      "c": "blue"
     }
    },
    "say": [
     [
      "zh",
-     "兩句的空格後面都直接接動詞，"
+     "畫底線的這一段，是修飾前面名詞的形容詞子句。兩句的空格後面都直接接動詞，"
     ],
     [
      "en",
@@ -171,7 +172,7 @@
     ],
     [
      "zh",
-     "，表示空格要當關係子句的主詞。"
+     "，表示空格要當形容詞子句的主詞。"
     ]
    ],
    "hold": 1.55
@@ -185,12 +186,12 @@
     "lines": [
      {
       "n": "①",
-      "s": "The [client] ______ [called] this morning wants a refund.",
+      "s": "The [client] ⟨______ [called] this morning⟩ wants a refund.",
       "fill": "who"
      },
      {
       "n": "②",
-      "s": "The [package] ______ [arrived] this morning was damaged.",
+      "s": "The [package] ⟨______ [arrived] this morning⟩ was damaged.",
       "fill": "which"
      }
     ],
@@ -269,6 +270,35 @@
    "hold": 1.55
   },
   {
+   "id": "p1",
+   "view": {
+    "kind": "sum",
+    "t": "先懂一件事",
+    "h": "關係代名詞＝連接詞＋代名詞",
+    "rows": [
+     [
+      "連接詞的功能",
+      "把兩句話接成一句"
+     ],
+     [
+      "代名詞的功能",
+      "代替前面的名詞（who 代替 the client）"
+     ],
+     [
+      "它帶出的那一段",
+      "形容詞子句：修飾前面的名詞（畫底線）"
+     ]
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "先說這個文法的目的。關係代名詞同時有兩個功能：像連接詞一樣，把兩句話接成一句；也像代名詞一樣，代替前面的名詞。它帶出的那一段叫形容詞子句，用來修飾前面的名詞。接下來，形容詞子句都會畫底線。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
    "id": "c1",
    "view": {
     "kind": "pair",
@@ -287,8 +317,8 @@
      },
      {
       "n": "→",
-      "s": "The client [who] called this morning wants a refund.",
-      "zh": "who 代替 called 前面的 the client"
+      "s": "The client ⟨[who] called this morning⟩ wants a refund.",
+      "zh": "who 代替 called 前面的 the client｜底線：形容詞子句"
      }
     ],
     "ring": [
@@ -329,7 +359,19 @@
     ],
     [
      "zh",
-     "，當關係子句的主詞，同時把兩句接起來。"
+     "，當形容詞子句的主詞，同時把兩句接起來。畫底線的"
+    ],
+    [
+     "en",
+     "who called this morning"
+    ],
+    [
+     "zh",
+     "，就是形容詞子句，修飾前面的"
+    ],
+    [
+     "en",
+     "client."
     ]
    ],
    "hold": 1.55
@@ -479,7 +521,7 @@
     "lines": [
      {
       "n": "③",
-      "s": "The client ______ [order] was delayed received a refund."
+      "s": "The client ⟨______ [order] was delayed⟩ received a refund."
      }
     ],
     "ring": [
@@ -527,7 +569,7 @@
     "lines": [
      {
       "n": "③",
-      "s": "The client ______ [order] was delayed received a refund.",
+      "s": "The client ⟨______ [order] was delayed⟩ received a refund.",
       "fill": "whose"
      }
     ],
@@ -615,44 +657,39 @@
    "id": "c3",
    "view": {
     "kind": "pair",
-    "t": "先懂一件事：括起關係子句，找主句",
+    "t": "先懂一件事：括起形容詞子句，找主句",
     "xs": true,
     "lines": [
      {
       "n": "①",
-      "s": "The client [who called this morning] [wants] a refund.",
+      "s": "The client ⟨who called this morning⟩ [wants] a refund.",
       "zh": "主句：The client wants a refund."
      },
      {
       "n": "②",
-      "s": "We [contacted] the customer [whose package was sent].",
+      "s": "We [contacted] the customer ⟨whose package was sent⟩.",
       "zh": "主句：We contacted the customer."
      }
     ],
     "ring": [
      {
-      "w": "who called this morning",
-      "c": "blue",
-      "label": "關係子句"
-     },
-     {
       "w": "wants",
       "c": "ok"
-     },
-     {
-      "w": "whose package was sent",
-      "c": "blue"
      },
      {
       "w": "contacted",
       "c": "ok"
      }
-    ]
+    ],
+    "ban": {
+     "t": "底線（形容詞子句）先括起來 → 圈起來的是主句的主要動詞",
+     "c": "blue"
+    }
    },
    "say": [
     [
      "zh",
-     "最後，先把關係子句括起來，再找主句的主詞和主要動詞。第一句的主要動詞"
+     "最後，先把形容詞子句括起來，再找主句的主詞和主要動詞。第一句的主要動詞"
     ],
     [
      "en",
@@ -660,7 +697,7 @@
     ],
     [
      "zh",
-     "在關係子句後面；第二句的"
+     "在形容詞子句後面；第二句的"
     ],
     [
      "en",
@@ -682,7 +719,7 @@
     "steps": [
      "看空格前面的名詞：人還是物？",
      "看空格後面缺什麼：主詞、所屬、動詞的受詞、介系詞的受詞",
-     "括起關係子句，找主句的主詞＋主要動詞"
+     "括起形容詞子句，找主句的主詞＋主要動詞"
     ],
     "show": 1
    },
@@ -703,7 +740,7 @@
     "steps": [
      "看空格前面的名詞：人還是物？",
      "看空格後面缺什麼：主詞、所屬、動詞的受詞、介系詞的受詞",
-     "括起關係子句，找主句的主詞＋主要動詞"
+     "括起形容詞子句，找主句的主詞＋主要動詞"
     ],
     "show": 2
    },
@@ -724,14 +761,14 @@
     "steps": [
      "看空格前面的名詞：人還是物？",
      "看空格後面缺什麼：主詞、所屬、動詞的受詞、介系詞的受詞",
-     "括起關係子句，找主句的主詞＋主要動詞"
+     "括起形容詞子句，找主句的主詞＋主要動詞"
     ],
     "show": 3
    },
    "say": [
     [
      "zh",
-     "第三步，把關係子句括起來，找主句的主詞和主要動詞。好，我們來實際做做看。"
+     "第三步，把形容詞子句括起來，找主句的主詞和主要動詞。好，我們來實際做做看。"
     ]
    ],
    "hold": 1.55
@@ -819,7 +856,7 @@
    "view": {
     "kind": "sent",
     "t": "示範1　人＋缺主詞",
-    "s": "[Employees] ______ [work] overtime|will receive an extra day off.",
+    "s": "[Employees] ⟨______ [work] overtime⟩|will receive an extra day off.",
     "o": [
      "who",
      "whose",
@@ -868,7 +905,7 @@
    "view": {
     "kind": "sent",
     "t": "示範1　人＋缺主詞",
-    "s": "[Employees] ______ [work] overtime|will receive an extra day off.",
+    "s": "[Employees] ⟨______ [work] overtime⟩|will receive an extra day off.",
     "o": [
      "who",
      "whose",
@@ -902,7 +939,7 @@
    "view": {
     "kind": "sent",
     "t": "示範1　人＋缺主詞",
-    "s": "[Employees] ______ [work] overtime|will receive an extra day off.",
+    "s": "[Employees] ⟨______ [work] overtime⟩|will receive an extra day off.",
     "o": [
      "who",
      "whose",
@@ -941,7 +978,7 @@
    "view": {
     "kind": "full",
     "t": "示範1　人＋缺主詞",
-    "html": "Employees <span class=\"blank fill\">who</span> work overtime will receive an extra day off.",
+    "html": "Employees <span class=\"ucl\"><span class=\"blank fill\">who</span> work overtime</span> will receive an extra day off.",
     "zh": "加班的員工會多一天休假。"
    },
    "say": [
@@ -1052,7 +1089,7 @@
    "view": {
     "kind": "sent",
     "t": "示範2　物＋缺主詞",
-    "s": "The [printer] ______ [is] next to the elevator|is out of order.",
+    "s": "The [printer] ⟨______ [is] next to the elevator⟩|is out of order.",
     "o": [
      "who",
      "whose",
@@ -1086,7 +1123,7 @@
    "view": {
     "kind": "sent",
     "t": "示範2　物＋缺主詞",
-    "s": "The [printer] ______ [is] next to the elevator|is out of order.",
+    "s": "The [printer] ⟨______ [is] next to the elevator⟩|is out of order.",
     "o": [
      "who",
      "whose",
@@ -1125,7 +1162,7 @@
    "view": {
     "kind": "full",
     "t": "示範2　物＋缺主詞",
-    "html": "The printer <span class=\"blank fill\">which</span> is next to the elevator is out of order.",
+    "html": "The printer <span class=\"ucl\"><span class=\"blank fill\">which</span> is next to the elevator</span> is out of order.",
     "zh": "電梯旁邊的那台印表機故障了。"
    },
    "say": [
@@ -1223,7 +1260,7 @@
    "view": {
     "kind": "sent",
     "t": "示範3　whose＋名詞",
-    "s": "We contacted the [customer] ______ [package]|was sent to the wrong address.",
+    "s": "We contacted the [customer] ⟨______ [package]⟩|⟨was sent to the wrong address⟩.",
     "o": [
      "who",
      "whom",
@@ -1257,7 +1294,7 @@
    "view": {
     "kind": "sent",
     "t": "示範3　whose＋名詞",
-    "s": "We contacted the [customer] ______ [package]|was sent to the wrong address.",
+    "s": "We contacted the [customer] ⟨______ [package]⟩|⟨was sent to the wrong address⟩.",
     "o": [
      "who",
      "whom",
@@ -1304,7 +1341,7 @@
    "view": {
     "kind": "full",
     "t": "示範3　whose＋名詞",
-    "html": "We contacted the customer <span class=\"blank fill\">whose</span> package was sent to the wrong address.",
+    "html": "We contacted the customer <span class=\"ucl\"><span class=\"blank fill\">whose</span> package was sent to the wrong address</span>.",
     "zh": "我們聯絡了包裹被寄錯地址的那位顧客。"
    },
    "say": [
@@ -1423,7 +1460,7 @@
    "view": {
     "kind": "sent",
     "t": "示範4　物＋缺動詞的受詞",
-    "s": "The [proposal] ______ Ms. Kim [submitted] last week|has been approved.",
+    "s": "The [proposal] ⟨______ Ms. Kim [submitted] last week⟩|has been approved.",
     "o": [
      "who",
      "whose",
@@ -1457,7 +1494,7 @@
    "view": {
     "kind": "sent",
     "t": "示範4　物＋缺動詞的受詞",
-    "s": "The [proposal] ______ Ms. Kim [submitted] last week|has been approved.",
+    "s": "The [proposal] ⟨______ Ms. Kim [submitted] last week⟩|has been approved.",
     "o": [
      "who",
      "whose",
@@ -1504,7 +1541,7 @@
    "view": {
     "kind": "full",
     "t": "示範4　物＋缺動詞的受詞",
-    "html": "The proposal <span class=\"blank fill\">which</span> Ms. Kim submitted last week has been approved.",
+    "html": "The proposal <span class=\"ucl\"><span class=\"blank fill\">which</span> Ms. Kim submitted last week</span> has been approved.",
     "zh": "金小姐上週提交的提案已經核准了。"
    },
    "say": [
@@ -1516,42 +1553,42 @@
    "hold": 1.55
   },
   {
-   "id": "wm",
+   "id": "wm1",
    "view": {
     "kind": "pair",
     "t": "補充：介系詞＋whom",
     "xs": true,
     "lines": [
      {
-      "n": "還原",
-      "s": "I sent the schedule [to the coordinator].",
-      "zh": "coordinator 是介系詞 to 的受詞"
+      "n": "①",
+      "s": "The coordinator confirmed receipt.",
+      "zh": "協調人確認已收到。"
      },
      {
-      "n": "→",
-      "s": "The coordinator [to whom] I sent the schedule confirmed receipt.",
-      "zh": "我寄行程表給他的那位協調人確認已收到。"
+      "n": "②",
+      "s": "I sent the schedule [to the coordinator].",
+      "zh": "我把行程表寄給協調人。（coordinator 是介系詞 to 的受詞）"
      }
     ],
     "ring": [
      {
       "w": "to the coordinator",
       "c": "blue"
-     },
-     {
-      "w": "to whom",
-      "c": "ok"
      }
-    ],
-    "ban": {
-     "t": "介系詞在前面 → whom（不能用 who）",
-     "c": "ok"
-    }
+    ]
    },
    "say": [
     [
      "zh",
-     "補充一個短例。先還原："
+     "補充一個介系詞放前面的例子。先看兩句："
+    ],
+    [
+     "en",
+     "The coordinator confirmed receipt."
+    ],
+    [
+     "zh",
+     "和"
     ],
     [
      "en",
@@ -1563,11 +1600,114 @@
     ],
     [
      "zh",
-     "是介系詞 to 的受詞，是人。介系詞放在前面時，用"
+     "是介系詞 to 的受詞。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "wm2",
+   "view": {
+    "kind": "pair",
+    "t": "補充：介系詞＋whom",
+    "xs": true,
+    "lines": [
+     {
+      "n": "①",
+      "s": "The coordinator confirmed receipt.",
+      "zh": "協調人確認已收到。"
+     },
+     {
+      "n": "②",
+      "s": "I sent the schedule [to the coordinator].",
+      "zh": "我把行程表寄給協調人。（coordinator 是介系詞 to 的受詞）"
+     },
+     {
+      "n": "③",
+      "s": "The coordinator ⟨[whom] I sent the schedule [to]⟩ confirmed receipt.",
+      "zh": "先合併：whom 代替 the coordinator，to 留在後面"
+     }
+    ],
+    "ring": [
+     {
+      "w": "whom",
+      "c": "ok"
+     },
+     {
+      "w": "to",
+      "c": "blue"
+     }
+    ]
+   },
+   "say": [
+    [
+     "zh",
+     "先合併成一句："
     ],
     [
      "en",
-     "to whom"
+     "whom"
+    ],
+    [
+     "zh",
+     "代替"
+    ],
+    [
+     "en",
+     "the coordinator"
+    ],
+    [
+     "zh",
+     "，to 先留在後面。"
+    ]
+   ],
+   "hold": 1.55
+  },
+  {
+   "id": "wm3",
+   "view": {
+    "kind": "pair",
+    "t": "補充：再把 to 往前拉",
+    "xs": true,
+    "lines": [
+     {
+      "n": "③",
+      "s": "The coordinator ⟨[whom] I sent the schedule [to]⟩ confirmed receipt.",
+      "zh": "先合併：whom 代替 the coordinator，to 留在後面"
+     },
+     {
+      "n": "④",
+      "s": "The coordinator ⟨[to whom] I sent the schedule⟩ confirmed receipt.",
+      "zh": "再把 to 往前拉：to whom（不能用 to who）"
+     }
+    ],
+    "ring": [
+     {
+      "w": "to whom",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "介系詞放前面 → to whom（不能用 who）",
+     "c": "ok"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "第三步，再把 to 往前拉，變成"
+    ],
+    [
+     "en",
+     "to whom."
+    ],
+    [
+     "zh",
+     "介系詞放在前面時，用"
+    ],
+    [
+     "en",
+     "whom"
     ],
     [
      "zh",
@@ -1656,7 +1796,7 @@
     ],
     [
      "zh",
-     "最後，括起關係子句，找主句確認。"
+     "最後，括起形容詞子句，找主句確認。"
     ]
    ],
    "hold": 1.55
