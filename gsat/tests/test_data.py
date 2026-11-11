@@ -1,8 +1,13 @@
 """題庫與計分設定的一致性：題數、配分、答案、圖片檔、不同年度制度不可混用。"""
+import json
 import re
 import pytest
 
 from conftest import ROOT, needs_exam
+
+
+SIGNED_OFF = {json.loads(p.read_text(encoding='utf8'))['question'] for p in (ROOT.parent / 'docs' / 'gsat' / 'signoffs').glob('*.json')}    # 有教師簽核紀錄的題目
+
 
 pytestmark = needs_exam
 
@@ -138,18 +143,24 @@ def test_explanations_agree_with_the_official_key(data):
         assert e['status'] in ('draft', 'reviewed')
 
 
-def test_explanations_are_complete_and_never_claim_to_be_reviewed(data):
+def test_explanations_are_complete_and_only_signed_off_ones_claim_to_be_reviewed(data):
     assert len(data['expl']) >= 10
     V = data['vocab']['entries']
     for k, e in data['expl'].items():
-        assert e['schema'] == 2 and e['status'] == 'draft', f'{k}：未經人工審核不得標為 reviewed'
+        assert e['schema'] == 2 and e['status'] in ('draft', 'reviewed'), k
+        if k not in SIGNED_OFF:
+            assert e['status'] == 'draft', f'{k}：沒有教師簽核紀錄(docs/gsat/signoffs/)不得標為 reviewed'
         assert isinstance(e['key'], list) and len(e['key']) >= 3 and all(len(t) >= 15 for t in e['key']), f'{k}：解題關鍵要有判斷的步驟'
         assert not any(t.strip() in ('依照上下文可知', '依上下文可知') for t in e['key']), k
         assert sorted(e['options']) == list('ABCD') and all(o['why'].strip() and o['entry'] in V for o in e['options'].values()), f'{k}：四個選項都要有分析並引用詞條'
         assert e['words'] and e['grammar'].strip() and e['patterns'], f'{k}：詳解必須包含重要單字、文法補充與常考句型'
         assert all(w in V for w in e['words']) and e['focus'] in V and all(p in data['vocab']['phrases'] for p in e['phrases']), k
         assert re.search(r'[\u4e00-\u9fff]', e.get('zh', '')) and len(e['zh']) >= 15, f'{k}：缺題目中譯'
-        assert 'reviewer' in e and e['reviewer'] is None and e['reviewedAt'] is None, f'{k}：缺審核欄位或未經審核卻填了審核者'
+        assert 'reviewer' in e and 'reviewedAt' in e and 'reviewNotes' in e, f'{k}：缺審核欄位'
+        if k in SIGNED_OFF:
+            assert e['status'] == 'reviewed' and e['reviewer'] and e['reviewedAt'] and e['reviewNotes'].strip(), f'{k}：已有簽核紀錄,審核欄位必須完整'
+        else:
+            assert e['reviewer'] is None and e['reviewedAt'] is None, f'{k}：未經教師簽核卻填了審核者'
 
 
 def test_explanation_options_match_the_real_option_text(data):
@@ -172,3 +183,21 @@ def test_extension_practice_items_are_original_drafts_with_one_correct_answer(da
         assert len(x['options']) == 4 and len(set(x['options'])) == 4 and 0 <= x['answer'] < 4 and x['explain'].strip(), x['id']
         assert all(t in V for t in x['targets']) and x['forQuestion'] in data['expl'], x['id']
         assert x['type'] in ('pos', 'synonym', 'collocation', 'pattern', 'context')
+
+
+@needs_exam
+def test_q1_tight_teacher_revisions_are_in_place_and_signed_off(data):
+    """第 1 題 tight 的教師修訂(逐項確認過):保留 such…that 提示、三個步驟、選項 A/C 改寫、三類相關字重新分類、延伸題中譯放最前面;全部仍是草稿。"""
+    e = data['expl']['115-1']; V = data['vocab']['entries']; x = {i['id']: i for i in data['ext'] if i['forQuestion'] == '115-1'}
+    assert e['status'] == 'reviewed' and e['reviewer'] == '教師（負責人）' and e['reviewedAt'] == '2026-11-09'      # 2026-11-09 教師簽核(簽核紀錄與一致性見 test_signoff.py)
+    assert len(e['key']) == 3 and 'such a + 形容詞 + 單數可數名詞 + that + 子句' in e['key'][0] and '因此選 (B)' in e['key'][2]
+    assert 'a hasty decision' in e['options']['A']['why'] and 'a diligent student' in e['options']['C']['why'] and '不能形容' not in e['options']['C']['why']
+    assert 'so tight a schedule that' in e['grammar'] and 'She has such a busy schedule' in e['patterns'][0] and 'It takes me two hours' in e['patterns'][1]
+    t = V['tight-adj']
+    assert t['zh'] == '緊的;(行程)緊湊的;(時間、預算)吃緊的' and 'tight deadline' in t['note'] and 'tight budget' in t['note']
+    assert [a['w'] for a in t['rel']['ant']] == ['loose', 'a light schedule'] and [c['w'] for c in t['rel']['confusable']] == ['busy', 'flexible']   # flexible 不再是反義字
+    assert t['rel']['syn'][0]['w'] == 'packed' and 'a packed schedule' in t['rel']['syn'][0]['zh']
+    assert V['tightness-n']['zh'] == '緊度;緊繃感;緊密程度'
+    a, b = x['x115-1-a'], x['x115-1-b']
+    assert a['q'].startswith('The team had to work overtime') and a['answer'] == 0 and a['explain'].index('中文翻譯') < a['explain'].index('正確答案') < a['explain'].index('解題原因') < a['explain'].index('其他選項')
+    assert b['answer'] == 2 and b['options'][2] == 'tighten' and '祈使句' in b['explain'] and a['status'] == b['status'] == 'draft'

@@ -1,3 +1,4 @@
+// 【資料來源】本檔是版本控制下的唯一來源,直接編輯;沒有 repo 外的產生流程。
 // 原創延伸練習(針對各題常見錯誤設計)。全部 status=draft(AI 草稿,待老師審核),審核前畫面上一律標示「待審核草稿」。
 window.EXT_PRACTICE = [
  {
@@ -7,7 +8,7 @@ window.EXT_PRACTICE = [
   "targets": [
    "tight-adj"
   ],
-  "q": "We cannot finish the project early because the deadline is very ______.",
+  "q": "The team had to work overtime because they were facing a ______ deadline.",
   "options": [
    "tight",
    "diligent",
@@ -15,7 +16,7 @@ window.EXT_PRACTICE = [
    "elementary"
   ],
   "answer": 0,
-  "explain": "tight deadline＝緊迫的截止期限。diligent 形容人,hasty 形容決定或行動,elementary 形容程度,都不能形容 deadline。",
+  "explain": "中文翻譯：團隊因為面臨緊迫的截止期限，所以必須加班。\n正確答案：(A) tight。\n解題原因：tight deadline 是常見搭配，表示「緊迫的截止期限」，最符合句意。\n其他選項：(B) diligent 表示「勤勉的」，通常形容人或努力的態度。(C) hasty 表示「倉促的、草率的」，不符合此處需要表達的期限緊迫。(D) elementary 表示「初級的、基本的」，不符合句意。",
   "status": "draft"
  },
  {
@@ -34,7 +35,7 @@ window.EXT_PRACTICE = [
    "tightness"
   ],
   "answer": 2,
-  "explain": "Please 後面接原形動詞,所以用動詞 tighten(旋緊)。tight 是形容詞、tightly 是副詞、tightness 是名詞。",
+  "explain": "本句為祈使句，Please 後面需要使用原形動詞作為主要動詞，因此選 (C) tighten，表示「旋緊」。\n(A) tight 是形容詞。\n(B) tightly 是副詞。\n(C) tighten 是動詞。\n(D) tightness 是名詞。",
   "status": "draft"
  },
  {
@@ -52,7 +53,7 @@ window.EXT_PRACTICE = [
    "elementary"
   ],
   "answer": 0,
-  "explain": "Although 表示讓步,前後對比:雖然只是「業餘的」選手,卻常打敗專業選手。an 後面接母音開頭的 amateur。",
+  "explain": "Although 表示讓步，前後形成對比：雖然只是『業餘的』選手，卻常打敗專業選手，因此應選 amateur。注意：四個選項都能接在 an 後面，所以冠詞不能作為判斷答案的依據。",
   "status": "draft"
  },
  {
@@ -70,7 +71,7 @@ window.EXT_PRACTICE = [
    "champion"
   ],
   "answer": 0,
-  "explain": "novice 是「新手」,強調經驗不足。professional、expert、champion 都表示很厲害。amateur 指非專業的人,不一定是新手。",
+  "explain": "novice 指『新手』，強調剛開始學、經驗不足，因此符合 has just started 和 has little experience。professional 指以某項工作為職業的人，expert 指專家，champion 指冠軍，三者都不符合此處『經驗很少』的語境。amateur 則強調非職業身分，不一定缺乏經驗。",
   "status": "draft"
  },
  {

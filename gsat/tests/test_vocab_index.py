@@ -205,3 +205,59 @@ def test_the_demonstration_family_communicate_has_real_traceable_data(real):
     assert (r['y'], r['n'], r['t'], r['loc'], r['role'], r['f']) == ('115', 12, 'cloze', '選項 (C)', 'answer', ['communicate'])
     assert I['communication-n']['years'] == ['114'] and I['communication-n']['role']['distractor'] == 1
     assert I['communicative-adj']['total'] == 0 and I['communicator-n']['total'] == 0
+
+
+# ---------------- 連字號複合詞優先於詞性疑義(合成語料,不含任何考題文字) ----------------
+def compound_corpus(reviews=None):
+    paras = ['Her skin-tight jeans fit.',                  # 1 複合詞(tight 在右邊),且 tight 另有詞性疑義 → 必須標為「複合詞」
+             'A low-impact exercise helps.',               # 2 複合詞,impact 另有詞性疑義
+             'It is a time-consuming task.',               # 3 複合詞,consuming 沒有詞性疑義
+             'They are a tight-knit group.',               # 4 複合詞(tight 在左邊)
+             'She has a tight schedule.',                  # 5 不是複合詞,只有詞性疑義
+             'He felt tight—really tight.',                # 6 破折號不是連字號:不是複合詞
+             'A tight - loose pair.',                      # 7 連字號兩側有空白:不是複合詞
+             'It was tight- and loose.',                   # 8 連字號後面是空白:不是複合詞(懸掛連字號是已知限制,不處理)
+             'This is a known fact.']                      # 9 沒有任何疑義:正常計入
+    v = {'entries': {e['id']: e for e in [entry('tight-adj', ['tight'], {'tight': '也可作副詞'}), entry('impact-n', ['impact'], {'impact': '也可作動詞'}),
+                                          entry('consume-v', ['consume', 'consuming']), entry('known-adj', ['known'])]}}
+    return {'vocab': v, 'reviews': reviews or {}, 'exams': [{'year': '903', 'sections': [{'type': 'reading', 'groups': [{'passage': paras, 'questions': [{'n': 1, 'stem': 'q?', 'opts': ['a', 'b', 'c', 'd']}]}]}]}], 'answers': {'903': 'A'}}
+
+
+def reason_by_paragraph(index, eid):
+    out = {}
+    for r in index['entries'][eid]['records'] + index['entries'][eid]['review'] + index['entries'][eid]['rejected']:
+        out[r['loc']] = r['r']
+    return out
+
+
+def test_hyphen_compound_takes_priority_over_ambiguous_pos():
+    idx = bvi.build(compound_corpus())
+    t = reason_by_paragraph(idx, 'tight-adj')
+    assert t['文章第 1 段'] == 'compound' and t['文章第 4 段'] == 'compound'                  # skin-tight、tight-knit:複合詞(即使 tight 也有詞性疑義)
+    assert t['文章第 5 段'] == 'pos'                                                       # a tight schedule:只有詞性疑義
+    assert t['文章第 6 段'] == 'pos' and t['文章第 7 段'] == 'pos' and t['文章第 8 段'] == 'pos'   # 破折號、帶空白的連字號、結尾連字號:不是複合詞
+    assert reason_by_paragraph(idx, 'impact-n')['文章第 2 段'] == 'compound'                 # low-impact
+    assert reason_by_paragraph(idx, 'consume-v')['文章第 3 段'] == 'compound'                # time-consuming(原本就是複合詞)
+    assert reason_by_paragraph(idx, 'known-adj')['文章第 9 段'] is None                      # 正常字:已確認
+
+
+def test_priority_change_does_not_change_what_is_counted_or_pending():
+    """複合詞與詞性疑義都是「待審核、不計入」:換優先順序只會換標籤,不會讓任何紀錄多算或少算。"""
+    e = bvi.build(compound_corpus())['entries']
+    assert e['tight-adj']['total'] == 0 and len(e['tight-adj']['review']) == 6              # 含 tight 的 6 段文章(段 1、4、5、6、7、8;段 6 的兩次在同一段,算一筆)全部待審核
+    assert e['impact-n']['total'] == 0 and len(e['impact-n']['review']) == 1
+    assert e['consume-v']['total'] == 0 and len(e['consume-v']['review']) == 1
+    assert e['known-adj']['total'] == 1 and e['known-adj']['review'] == []
+    assert e['tight-adj']['role'] == {'answer': 0, 'distractor': 0, 'stem': 0, 'passage': 0}
+
+
+def test_human_review_still_decides_compound_records_and_blank_reviewer_does_not():
+    base = bvi.build(compound_corpus())['entries']['tight-adj']
+    rec = next(r for r in base['review'] if r['loc'] == '文章第 1 段')
+    assert rec['r'] == 'compound'
+    ok = bvi.build(compound_corpus({rec['k']: {'verdict': 'confirmed', 'by': '王老師', 'at': '2026-11-08'}}))['entries']['tight-adj']
+    assert ok['total'] == 1 and ok['role']['passage'] == 1 and rec['k'] in [r['k'] for r in ok['records']]       # 人工確認 → 計入
+    no = bvi.build(compound_corpus({rec['k']: {'verdict': 'rejected', 'by': '王老師', 'at': 'x'}}))['entries']['tight-adj']
+    assert no['total'] == 0 and len(no['rejected']) == 1 and no['rejected'][0]['k'] == rec['k']                  # 人工排除 → 排除清單
+    blank = bvi.build(compound_corpus({rec['k']: {'verdict': 'confirmed', 'by': '', 'at': 'x'}}))['entries']['tight-adj']
+    assert blank['total'] == 0 and len(blank['review']) == len(base['review'])                                    # 沒有審核者姓名 → 不生效(AI 或佔位資料不能決定)

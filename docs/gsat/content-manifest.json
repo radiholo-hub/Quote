@@ -811,8 +811,8 @@
    "path": "gsat/exam/explain.js",
    "category": "derived-original",
    "year": null,
-   "bytes": 17479,
-   "sha256": "bb109cf739ce455a14f96340f99374cd434bef48f17f9644cee22e3514ddef16"
+   "bytes": 19720,
+   "sha256": "371543f1a0d6a3e73a5914fc5b989f72ce517223d4b609927b613008ae4e613d"
   },
   {
    "path": "gsat/exam/img/109-41.png",
@@ -1210,15 +1210,15 @@
    "path": "gsat/exam/vocab_index.js",
    "category": "exam-derived-index",
    "year": null,
-   "bytes": 39235,
-   "sha256": "fa77ea6dbbddfafd4460a22c5c8628bd9b511f268012780b30289cc01a51d73d"
+   "bytes": 39374,
+   "sha256": "c8d69a3910ad8cfc8e321a7c5b1f4ee639cbb6be644a1625df93dccbbb7d5e5b"
   },
   {
    "path": "gsat/exam/vocab_reviews.js",
    "category": "review-data",
    "year": null,
-   "bytes": 431,
-   "sha256": "99a4bbfd751df920e58e53ed1803029d3ecbe7ca0da26bc80e1512b7904a9d1f"
+   "bytes": 1963,
+   "sha256": "9855722c388e406098bc2b606e92e496669b1db43dda5c48a5547cb11a7d7db1"
   },
   {
    "path": "gsat/index.html",

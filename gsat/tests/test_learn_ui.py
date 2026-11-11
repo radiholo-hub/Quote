@@ -47,13 +47,33 @@ def test_family_members_are_listed_separately_with_their_own_records(make_page):
 
 @needs_exam
 def test_pending_review_matches_are_listed_but_not_counted(make_page):
+    """待審核紀錄會列出但不計入次數。不寫死某個詞條:挑一個「已確認 0 次、仍有待審核紀錄」的詞條(人工審核完成的詞條會自然換掉)。"""
+    page = make_page('desktop')
+    page.goto(URL + '#/word/tight-adj')
+    pick = page.evaluate("Object.entries(window.VOCAB_INDEX.entries).filter(([k, e]) => e.total === 0 && e.review.length > 0).map(([k, e]) => [k, e.review.length])[0]")
+    assert pick, '索引裡必須至少有一個已確認 0 次、仍有待審核紀錄的詞條'
+    eid, n = pick
+    page.goto(URL + '#/word/' + eid)
+    box = page.locator('[data-role=records]')
+    assert box.locator('[data-k=total] b').inner_text() == '0'
+    assert f'另有 {n} 筆待審核' in box.locator('[data-role=review] summary').inner_text()
+    box.locator('[data-role=review] summary').click()
+    assert '詞性有疑義' in box.locator('[data-role=review]').inner_text() or '複合詞' in box.locator('[data-role=review]').inner_text()
+
+
+@needs_exam
+def test_human_reviewed_records_are_counted_and_no_longer_pending(make_page):
+    """tight-adj 的三筆待審核已由教師(負責人)審核:計入 2 次(正確答案 1、文章用字 1)、待審核 0 筆;skin-tight 不計入獨立 tight-adj。"""
     page = make_page('desktop')
     page.goto(URL + '#/word/tight-adj')
     box = page.locator('[data-role=records]')
-    assert box.locator('[data-k=total] b').inner_text() == '0'
-    assert '另有 3 筆待審核' in box.locator('[data-role=review] summary').inner_text()
-    box.locator('[data-role=review] summary').click()
-    assert '詞性有疑義' in box.locator('[data-role=review]').inner_text() and '也可作副詞' in box.locator('[data-role=review]').inner_text()
+    assert box.locator('[data-k=total] b').inner_text() == '2' and box.locator('[data-k=years] b').inner_text() == '1'
+    brk = box.locator('[data-role=breakdown]').inner_text()
+    assert '題幹:0 次' in brk and '選項・正確答案:1 次' in brk and '選項・干擾選項:0 次' in brk and '文章原文:1 次' in brk
+    assert box.locator('[data-role=review]').count() == 0                                    # 沒有待審核提示
+    roles = box.locator('[data-role=rec-table] tr[data-role-type]').evaluate_all('rs => rs.map(r => r.dataset.roleType)')
+    assert sorted(roles) == ['answer', 'passage']
+    assert page.evaluate("window.VOCAB_INDEX.entries['tight-adj'].rejected.map(r => r.y + ':' + r.n)") == ['109:13']      # skin-tight:人工排除,不計入
 
 
 @needs_exam
@@ -181,14 +201,15 @@ def test_browser_back_button_also_restores_the_position(make_page):
 
 # ---------------------------------------------------------------- 延伸練習
 @needs_exam
-def test_extension_practice_is_original_draft_with_instant_feedback_and_saved_stats(make_page):
+def test_extension_practice_has_instant_feedback_and_saved_stats(make_page):
+    """第 1 題已由教師簽核:延伸練習標示「本題教師已確認」,不再標「待審核草稿」(未簽核題目的草稿標示見 test_unsigned_questions_keep_the_draft_presentation)。"""
     page = make_page('phone')
     review_q1(page)
     page.locator('details.lsec[data-sec="7"] summary').click()
-    assert '待審核草稿' in page.locator('details.lsec[data-sec="7"]').inner_text()
+    assert '本題教師已確認' in page.locator('details.lsec[data-sec="7"]').inner_text() and '待審核草稿' not in page.locator('details.lsec[data-sec="7"]').inner_text()
     page.locator('[data-role=ext-start]').click()
     page.wait_for_selector('[data-role=ext-q]')
-    assert '待審核草稿' in page.inner_text('#app') and '尚未經老師審核' in page.inner_text('#app')
+    assert '本題教師已確認' in page.inner_text('#app') and '待審核草稿' not in page.inner_text('#app') and '尚未經老師審核' not in page.inner_text('#app')
     q = page.locator('[data-role=ext-q]').inner_text()
     assert 'deadline' in q
     page.locator('.opt', has_text='tight').first.click()                               # (A) tight：答對
@@ -203,6 +224,71 @@ def test_extension_practice_is_original_draft_with_instant_feedback_and_saved_st
     assert stats['x115-1-a'] == {'a': 1, 'c': 1} and stats['x115-1-b'] == {'a': 1, 'c': 0}
     page.get_by_role('link', name='回到詳解').click()
     page.wait_for_selector('.explain.v2')
+
+
+def review_q(page, n):
+    run_exam(page, '115', correct=lambda q: q['n'] != n)
+    page.locator('.nav a.bad').first.click()
+    page.wait_for_selector('.explain.v2')
+    page.evaluate("document.querySelectorAll('details.lsec').forEach(d=>d.open=true)")
+
+
+@needs_exam
+def test_signed_off_question_does_not_show_contradicting_draft_labels(make_page):
+    """第 1 題有有效教師簽核:頂端「已審核」,同一題內被簽核涵蓋的單字卡與延伸練習不再標「待審核草稿」;詞條與延伸題自己的 status 不變(不是全域改成 reviewed)。"""
+    page = make_page('desktop')
+    review_q(page, 1)
+    box = page.locator('.explain.v2')
+    assert box.get_attribute('data-explain') == 'reviewed' and box.locator('.tag').first.inner_text() == '已審核'
+    txt = box.inner_text()
+    assert '待審核草稿' not in txt and '草稿・待人工審核' not in txt
+    assert box.locator('.wcard[data-entry=tight-adj] [data-role=signed]').inner_text() == '本題教師已確認'
+    assert box.locator('details.lsec[data-sec="7"] [data-role=signed]').count() == 1
+    st = page.evaluate("[window.VOCAB.entries['tight-adj'].status, window.EXT_PRACTICE.filter(x => x.forQuestion === '115-1').map(x => x.status)]")
+    assert st == ['draft', ['draft', 'draft']]                                                       # 全域狀態沒有被改成 reviewed
+    page.goto(URL + '#/word/tight-adj')                                                              # 單字頁不屬於任何簽核題的上下文:仍照詞條自己的 status 顯示
+    w = page.locator('.wcard[data-entry=tight-adj]').inner_text()
+    assert '待審核草稿' in w and '本題教師已確認' not in w
+    page.goto(URL + '#/ext/115-1')                                                                   # 延伸練習頁:第 1 題簽核範圍
+    t = page.locator('[data-view=ext]').inner_text()
+    assert '本題教師已確認' in t and '尚未經老師審核' not in t and '待審核草稿' not in t and '115-1' in page.locator('[data-role=ext-signed]').inner_text()
+    page.goto(URL + '#/ext/word:tight-adj')                                                          # 這個字的練習全部屬於第 1 題 → 同樣不再標草稿
+    assert page.locator('[data-role=ext-signed]').count() == 1
+
+
+@needs_exam
+def test_q2_signed_text_is_shown_as_reviewed_without_touching_global_entry_status(make_page):
+    """第 2 題已有教師文字簽核:詳解顯示已審核、amateur 單字卡與延伸練習標示「本題教師已確認」;全域詞條狀態不變。"""
+    page = make_page('desktop')
+    review_q(page, 2)
+    box = page.locator('.explain.v2')
+    assert box.get_attribute('data-explain') == 'reviewed' and box.locator('.tag').first.inner_text() == '已審核'
+    txt = box.inner_text()
+    assert '待審核草稿' not in txt and '草稿・待人工審核' not in txt and '四個選項都以母音音素開頭' in txt
+    assert box.locator('.wcard[data-entry=amateur-adj] [data-role=signed]').inner_text() == '本題教師已確認'
+    assert page.evaluate("window.VOCAB.entries['amateur-adj'].status") == 'draft'
+
+
+@needs_exam
+def test_unsigned_questions_keep_the_draft_presentation(make_page):
+    """第 3 題沒有教師簽核:詳解、單字卡、延伸練習、延伸練習頁都維持原本的草稿呈現。"""
+    page = make_page('desktop')
+    review_q(page, 3)
+    box = page.locator('.explain.v2')
+    assert box.get_attribute('data-explain') == 'draft' and box.locator('.tag').first.inner_text() == '草稿・待人工審核'
+    assert '待審核草稿' in box.locator('.wcard').first.inner_text() and '待審核草稿' in box.locator('details.lsec[data-sec="7"]').inner_text()
+    assert '本題教師已確認' not in box.inner_text()
+    page.locator('[data-role=ext-start]').click()
+    page.wait_for_selector('[data-role=ext-q]')
+    assert '待審核草稿' in page.inner_text('#app') and '尚未經老師審核' in page.inner_text('#app') and page.locator('[data-role=signed]').count() == 0
+
+
+@needs_exam
+def test_other_questions_and_shared_entries_global_status_are_not_changed_by_the_signoff(make_page):
+    page = make_page('desktop')
+    page.goto(URL + '#/')
+    d = page.evaluate("({q: Object.entries(window.EXPLAIN).map(([k, e]) => [k, e.status]), v: [...new Set(Object.values(window.VOCAB.entries).map(e => e.status))], x: [...new Set(window.EXT_PRACTICE.map(e => e.status))]})")
+    assert dict(d['q']) == {**{f'115-{n}': 'draft' for n in range(3, 11)}, '115-1': 'reviewed', '115-2': 'reviewed'} and d['v'] == ['draft'] and d['x'] == ['draft']
 
 
 # ---------------------------------------------------------------- 版面

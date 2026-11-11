@@ -67,7 +67,7 @@ def render_md(files):
     bad = by.get('exam-unclassified', [])
     if bad: L += ['', f'⚠️ 有 {len(bad)} 個檔案放在 `gsat/exam/` 卻沒有登記分類：' + ', '.join(f"`{f['path']}`" for f in bad)]
     unc = [f for f in files if CATEGORIES.get(f['category'], ('', 'unconfirmed'))[1] == 'unconfirmed']
-    L += ['', f'**權利未確認的檔案共 {len(unc)} 個、{sum(f["bytes"] for f in unc) / 1024 / 1024:.1f} MB，全部位於 `gsat/exam/`。** 部署時預設不發布（`tools/stage_site.sh`，需 `GSAT_PUBLISH_EXAMS=1` 才會包含）。', '',
+    L += ['', f'**權利未確認的檔案共 {len(unc)} 個、{sum(f["bytes"] for f in unc) / 1024 / 1024:.1f} MB，全部位於 `gsat/exam/`。** 部署時一律不發布（`tools/stage_site.sh` 只放空殼；`GSAT_PUBLISH_EXAMS` 已停用，設定會讓整理失敗）。', '',
           '## 依學年度（來自大考中心的圖片檔）', '', '| 學年度 | 試題附圖 | 試卷非選擇題頁面 | 評分原則頁面 |', '|---|---:|---:|---:|']
     cnt = defaultdict(Counter)
     for f in files:

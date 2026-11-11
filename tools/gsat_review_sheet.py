@@ -142,7 +142,7 @@ class Sheet:
 
 def build_question(S, i):
     d, e, k, V = S.d, i['e'], i['key'], S.V
-    h = [f'<h2 id="q{k}">{i["year"]} 學年度學科能力測驗　第 {i["n"]} 題・{esc(i["type"])}　<small class="note">詳解狀態:{esc(e["status"])}(AI 草稿,未經人工審核)</small></h2>']
+    h = [f'<h2 id="q{k}">{i["year"]} 學年度學科能力測驗　第 {i["n"]} 題・{esc(i["type"])}　<small class="note">詳解狀態:{esc(e["status"])}{("(教師已簽核:" + esc(str(e.get("reviewer"))) + "," + esc(str(e.get("reviewedAt"))) + ")") if e["status"] == "reviewed" else "(AI 草稿,未經人工審核)"}</small></h2>']
     if e['answer'] != i['official']: h.append('<p class="warn">⚠ 詳解答案與官方答案不一致!</p>')
     if e.get('aiFlags'): h.append('<div class="flag"><b>⚠ AI 自我檢查:較需要老師確認的地方</b><ul>' + ''.join(f'<li>{esc(x)}</li>' for x in e['aiFlags']) + '</ul></div>')
     opts = '\n'.join(f'({"ABCD"[j]}) {o}' + ('  ← 官方答案' if "ABCD"[j] == i['official'] else '') for j, o in enumerate(i['opts']))
@@ -182,12 +182,14 @@ def main():
     S = Sheet(data, files, not a.no_audio)
     body = ''.join(build_question(S, i) for i in items)
     toc = ''.join(f'<li><a href="#q{i["key"]}">{i["key"]}</a>　{esc(i["stem"][:44])}…　<b>官方({i["official"]})</b></li>' for i in items)
+    DRAFT_NOTE = ('詳解、中文翻譯、單字詞條、原創例句與延伸練習都是 AI 撰寫的<b>草稿,尚未經人工審核</b>。' if all(i['e']['status'] != 'reviewed' for i in items)
+                  else '詳解、中文翻譯、單字詞條、原創例句與延伸練習原為 AI 撰寫的草稿;<b>標示「教師已簽核」的題目以簽核紀錄(docs/gsat/signoffs/)為準,其餘仍是草稿、尚未經人工審核</b>。')
     emb = ''
     if not a.no_audio:
         emb = 'var DATA=' + json.dumps({f: base64.b64encode((ROOT / 'gsat' / 'audio' / f).read_bytes()).decode() for f in sorted(S.audio_used)}) + ';'
     doc = f'''<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>教師逐項審核介面</title><style>{CSS}</style>
 <h1>學測英文詳解・教師逐項審核介面({len(items)} 題)</h1>
-<p class="warn"><b>注意:</b>本文件含大學入學考試中心試題,使用權利尚未確認,請勿公開轉貼。詳解、中文翻譯、單字詞條、原創例句與延伸練習都是 AI 撰寫的<b>草稿,尚未經人工審核</b>。</p>
+<p class="warn"><b>注意:</b>本文件含大學入學考試中心試題,使用權利尚未確認,請勿公開轉貼。{DRAFT_NOTE}</p>
 <p>每個灰色/白色方塊是一個<b>獨立的審核項目</b>:選「通過／需修改／待確認」(預設待確認)、寫意見、或直接把輸入框裡的文字改成你要的版本(改過的方塊左邊會出現橘色線)。有 ▶ 的項目可以聽發音,並標記「正常／有問題」(音檔只有部分被人工試聽過、尚未全面驗收,所以逐項預設「待聽」,以你的標記為準)。
 左邊顏色:綠＝通過、紅＝需修改、灰＝待確認。選擇會自動存在這個瀏覽器;畫面最下面按「匯出」得到文字,貼回給開發者即可,不會自動改動任何資料。</p>
 <details><summary>題目清單</summary><ol>{toc}</ol></details>
@@ -201,4 +203,5 @@ def main():
     print(f'已輸出 {len(items)} 題到 {out / name}({(out / name).stat().st_size / 1e6:.1f} MB,內嵌 {len(S.audio_used) if not a.no_audio else 0} 個音檔)')
 
 
-main()
+if __name__ == '__main__':
+    main()
