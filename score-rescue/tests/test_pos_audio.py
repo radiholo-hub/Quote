@@ -13,7 +13,7 @@ TOOL = REPO / 'tools' / 'make_score_rescue_audio.py'
 src = TOOL.read_text(encoding='utf-8')
 G = {'__name__': 'pos_audio_test', '__file__': str(TOOL)}
 exec(src[:src.index('async def main')], G)
-PAGES = ['index.html', 'l2.html', 'l3.html', 'l4.html', 'l5.html']
+PAGES = ['index.html', 'l2.html', 'l3.html', 'l4.html', 'l5.html', 'l6.html']
 
 
 @pytest.fixture
