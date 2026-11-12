@@ -152,3 +152,50 @@ def open_app(browser):
 @pytest.fixture
 def app(open_app):
     return open_app()
+
+
+# ---------- 完整方案課程（第 4～7 課）：登入＋付費＋私有儲存空間的假伺服器 ----------
+# 課程內容不在公開儲存庫，測試從 score-rescue/private/lN.js 讀（由 tools/split_paid.py 產生；沒有就略過內容測試）。
+# window.__GATE = {user: {email,id} 或 null, paid: true/false, files: {'l4.js': '…'}}
+#   - paid_users 查詢：付費才回傳自己那一列（和 RLS 一樣）
+#   - storage 下載／限時網址：沒付費就回錯誤（和儲存桶規則一樣）
+PRIVATE = ROOT / 'private'
+GATE_STUB = r"""window.__ins=window.__ins||[];window.__gateLog=[];window.supabase={createClient:function(){
+  var G=function(){return window.__GATE||{}};
+  var user=function(){var g=G();return 'user' in g?g.user:{email:'paid@example.com',id:'u1'}};
+  var cb=null;
+  return {
+    from:function(t){return {
+      insert:function(row){window.__ins.push([t,row.name]);return Promise.resolve({error:null})},
+      select:function(){window.__gateLog.push('select:'+t);var u=user();
+        return Promise.resolve({data:(t==='paid_users'&&u&&G().paid)?[{email:u.email}]:[],error:null})}}},
+    auth:{
+      getSession:function(){var u=user();return Promise.resolve({data:{session:u?{user:u}:null}})},
+      onAuthStateChange:function(f){cb=f;window.__gateEmit=function(ev,s){if(s)window.__GATE.user=s.user;cb&&cb(ev,s)};return {data:{subscription:{unsubscribe:function(){}}}}},
+      signInWithOtp:function(o){window.__gateLog.push('otp:'+o.email+'>'+o.options.emailRedirectTo);return Promise.resolve({error:null})},
+      signOut:function(){window.__GATE.user=null;window.__gateLog.push('signout');return Promise.resolve({error:null})}},
+    storage:{from:function(b){return {
+      download:function(p){window.__gateLog.push('download:'+b+'/'+p);var u=user(),f=(G().files||{})[p];
+        if(!u||!G().paid||b!=='lessons')return Promise.resolve({data:null,error:{message:'not allowed'}});
+        if(f==null)return Promise.resolve({data:null,error:{message:'not found'}});
+        return Promise.resolve({data:new Blob([f]),error:null})},
+      createSignedUrl:function(p){window.__gateLog.push('sign:'+b+'/'+p);var u=user();
+        if(!u||!G().paid)return Promise.resolve({data:null,error:{message:'not allowed'}});
+        return Promise.resolve({data:{signedUrl:'https://signed.test/'+b+'/'+p+'?token=t'},error:null})}}}}
+  };
+}};"""
+
+
+def private_files():
+    return {p.name: p.read_text(encoding='utf-8') for p in PRIVATE.glob('l[4-7].js')}
+
+
+def gate_init(user='paid', paid=True, files=None):
+    """add_init_script 用：設定 window.__GATE。user='paid' 表示預設的登入帳號；None 表示沒登入。"""
+    import json
+    u = {'email': 'paid@example.com', 'id': 'u1'} if user == 'paid' else user
+    return 'window.__GATE=%s;' % json.dumps({'user': u, 'paid': paid, 'files': private_files() if files is None else files})
+
+
+need_private = pytest.mark.skipif(not (PRIVATE / 'l7.js').exists(),
+                                  reason='沒有 private/ 課程內容（公開儲存庫不含第 4～7 課，請先執行 tools/split_paid.py）')

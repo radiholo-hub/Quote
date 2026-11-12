@@ -8,8 +8,9 @@ L2 = ROOT / 'pos' / 'l2.html'
 L3 = ROOT / 'pos' / 'l6.html'
 L3_PAGE = ROOT / 'pos' / 'l5.html'
 POS = ROOT / 'pos' / 'index.html'
-STUB = ("window.__ins=[];window.supabase={createClient:function(){return {from:function(t){return {insert:function(row){"
-        "window.__ins.push([t,row.name]);return Promise.resolve({error:null})}}}}}};")
+from conftest import GATE_STUB as STUB, gate_init, need_private
+
+pytestmark = need_private
 JUMP = [('L6-CHK-01', 'L6-DEMO-01', '看同類示範（示範1）', '答案：(B) Although'),
         ('L6-CHK-02', 'L6-DEMO-02', '看同類示範（示範2）', '答案：(C) Despite'),
         ('L6-CHK-03', 'L6-DEMO-03', '看同類示範（示範3）', '答案：(C) Nevertheless'),
@@ -23,6 +24,7 @@ def open_page(browser):
     def _open(path=L3, query=''):
         ctx = browser.new_context(viewport={'width': 390, 'height': 844})
         ctx.route('**/supabase-js@2*', lambda r: r.fulfill(status=200, content_type='application/javascript', body=STUB))
+        ctx.add_init_script(gate_init())   # 已登入、已付費的帳號
         page = ctx.new_page()
         errs = []
         page.on('pageerror', lambda e: errs.append(str(e)))
@@ -135,7 +137,7 @@ def test_each_check_wrong_jumps_to_its_demo(open_page, i):
 
 def test_l6_done_screen_and_entry_from_l5(open_page):
     p = open_page()
-    assert p.query_selector('#l1video').get_attribute('src') == 'lesson6.mp4'
+    assert p.query_selector('#l1video').get_attribute('src') == 'https://signed.test/lessons/lesson6.mp4?token=t'
     assert '完整方案' in p.inner_text('#app')
     finish(p)
     t = p.inner_text('#app')

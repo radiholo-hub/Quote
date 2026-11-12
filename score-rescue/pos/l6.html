@@ -127,6 +127,7 @@ div.opt .say.ico{width:36px;min-height:36px;margin-left:-4px}
 .fb .mv{border:2px solid var(--wine);border-radius:6px;padding:0 4px;font-weight:700}
 .fb .contrast{display:block;margin-top:8px;padding:10px 12px;border-radius:8px;background:#fff;border:1px solid var(--line)}
 .fb .contrast .en{display:block;font-family:var(--serif);font-size:1.05rem;margin:4px 0}
+.inp{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid #DDD8C8;border-radius:10px;font:inherit;background:#fff}
 </style>
 </head>
 <body>
@@ -151,13 +152,7 @@ var DEBUG=/[?&]debug=1\b/.test(location.search);
 var sb=null,sbReady=null;
 function initSb(){
   if(DEBUG)return Promise.resolve();
-  sbReady=new Promise(function(ok){
-    var t=document.createElement('script');
-    t.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-    t.onload=function(){try{sb=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:false}})}catch(e){}ok()};
-    t.onerror=function(){ok()};
-    document.head.appendChild(t);
-  });
+  sbReady=loadLib().then(function(){try{sb=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:false}})}catch(e){}});
   return sbReady;
 }
 function dbg(name,state){
@@ -206,11 +201,8 @@ var PRE=[
  {id:'P5-PRE-015',s:'Our customer service team ______ to inquiries within one business day.',o:['response','responsive','responds','responsively'],a:2,c:'MAIN_V',w:'空格需要主要動詞；responds to inquiries 表示「回覆詢問」。'}
 ];
 
-var DEMOS=[{"id": "L6-DEMO-01", "t": "示範1　連接詞＋子句", "s": "______ the store opened only last month, it already has many regular customers.", "o": ["Despite", "Although", "However", "Due to"], "a": 1, "how": ["沒有句號，看空格後面：the store opened only last month，有主詞 the store、有動詞 opened → 子句。", "子句前面用連接詞 → Although。"], "ex": "排除：(A) Despite：介系詞，後面不能接子句。(C) However：副詞，不能把兩個子句連成一句。(D) Due to：介系詞片語，後面不能接子句；意思也不對。", "zh": "雖然這家店上個月才開幕，已經有很多常客了。"}, {"id": "L6-DEMO-02", "t": "示範2　介系詞＋名詞片語", "s": "______ the high price, the new phone sold out within a week.", "o": ["Even though", "Nevertheless", "Despite", "Because"], "a": 2, "how": ["空格後面 the high price：本題的 the high price 是名詞片語。", "名詞片語前面用介系詞 → Despite。"], "ex": "排除：(A) Even though：連接詞，後面要接子句。(B) Nevertheless：副詞，後面不接名詞片語。(D) Because：連接詞，後面要接子句；意思也不對。", "zh": "儘管價格很高，新手機一週內就賣光了。"}, {"id": "L6-DEMO-03", "t": "示範3　句號後的連接副詞", "s": "Sales dropped in the first quarter. ______, the company met its annual target.", "o": ["Although", "In spite of", "Nevertheless", "Because of"], "a": 2, "how": ["前一句已經用句號結束。", "空格在下一句開頭，後面接逗號 → 連接副詞。", "前後意思相反（銷售下滑，仍達成目標）→ 轉折 → Nevertheless。"], "ex": "排除：(A) Although：連接詞要把兩個子句連在同一句，不能放在句號後再接逗號。(B) In spite of：介系詞片語，後面要接名詞片語。(D) Because of：介系詞片語，後面要接名詞片語；意思也不對。", "zh": "第一季銷售下滑。儘管如此，公司仍達成了年度目標。"}, {"id": "L6-DEMO-04", "t": "示範4　because 還是 because of", "s": "The outdoor concert was canceled ______ the strong winds.", "o": ["because", "because of", "therefore", "although"], "a": 1, "how": ["空格後面 the strong winds：本題的 the strong winds 是名詞片語。", "表示原因，接名詞片語 → because of。"], "ex": "排除：(A) because：連接詞，後面要接子句（because the winds were strong）。(C) therefore：連接副詞，不能直接接名詞片語。(D) although：連接詞，要接子句；意思也不對。", "zh": "戶外音樂會因為強風取消了。"}];
 
-var PR=[{"id": "L6-PR-01", "s": "______ Mr. Chen has worked here for only six months, he has already been promoted to team leader.", "o": ["Despite", "However", "Because of", "Although"], "a": 3, "c": "LINK", "work": "空格後面是子句 Mr. Chen has worked → 連接詞", "why": "空格後面 Mr. Chen has worked here：有主詞、有動詞，是子句，用連接詞。", "x": ["(A) Despite：介系詞，後面不能接子句。", "(B) However：副詞，不能把兩個子句連成一句。", "(C) Because of：介系詞片語，後面不能接子句；意思也不對。", null], "zh": "雖然陳先生在這裡只工作了六個月，已經升為組長。"}, {"id": "L6-PR-02", "s": "______ the delay at the airport, the speaker arrived in time for her presentation.", "o": ["In spite of", "Even though", "Nevertheless", "Because"], "a": 0, "c": "LINK", "work": "空格後面是名詞片語 the delay → 介系詞", "why": "空格後面 the delay at the airport：名詞片語，用介系詞。", "x": [null, "(B) Even though：連接詞，後面要接子句。", "(C) Nevertheless：副詞，後面不接名詞片語。", "(D) Because：連接詞，後面要接子句；意思也不對。"], "zh": "儘管機場延誤，講者仍及時趕上她的簡報。"}, {"id": "L6-PR-03", "s": "The new printer is expensive. ______, it uses much less ink than the old model.", "o": ["Although", "Despite", "However", "Because"], "a": 2, "c": "LINK", "work": "句號後、接逗號 → 連接副詞；前後相反 → 轉折", "why": "前一句已經用句號結束，空格在下一句開頭、後面接逗號 → 連接副詞。前後意思相反（很貴／省墨水）→ 表轉折的 however。", "x": ["(A) Although：連接詞，不能放在句號後再接逗號。", "(B) Despite：介系詞，後面要接名詞片語。", null, "(D) Because：結構不對，意思也不對。"], "zh": "新印表機很貴。然而，它比舊機型省很多墨水。"}, {"id": "L6-PR-04", "s": "Several flights were delayed ______ heavy fog.", "o": ["because", "because of", "so", "therefore"], "a": 1, "c": "LINK", "work": "空格後面是名詞片語 heavy fog → because of", "why": "空格後面 heavy fog：名詞片語，表示原因 → because of。", "x": ["(A) because：連接詞，後面要接子句（because there was heavy fog）。", null, "(C) so：連接詞，表示結果，後面要接子句。", "(D) therefore：連接副詞，不能直接接名詞片語。（本題示範的是 therefore 放在句號或分號後的用法。）"], "zh": "幾班飛機因為濃霧而延誤。"}, {"id": "L6-PR-05", "s": "The meeting was moved to Room 5 ______ the projector in Room 3 was broken.", "o": ["because of", "due to", "because", "despite"], "a": 2, "c": "LINK", "work": "空格後面是子句 the projector was broken → because", "why": "空格後面 the projector in Room 3 was broken：子句，表示原因 → because。", "x": ["(A) because of：介系詞片語，後面不能接子句。", "(B) due to：介系詞片語，後面不能接子句。", null, "(D) despite：介系詞，後面不能接子句；意思也不對。"], "zh": "因為 3 號會議室的投影機壞了，會議改到 5 號會議室。"}, {"id": "L6-PR-06", "s": "Please turn off your phones ______ the performance.", "o": ["while", "during", "when", "although"], "a": 1, "c": "LINK", "work": "空格後面是名詞片語 the performance → during", "why": "空格後面 the performance：名詞片語 → 介系詞 during（在…期間）。while／during 是同一組：while 接子句，during 接名詞片語。", "x": ["(A) while：連接詞，後面要接子句（while the show is on）。", null, "(C) when：連接詞，後面要接子句。", "(D) although：連接詞，要接子句；意思也不對。"], "zh": "表演期間請關閉手機。"}, {"id": "L6-PR-07", "s": "______ the office is being renovated, employees will work from home.", "o": ["While", "During", "Despite", "Because of"], "a": 0, "c": "LINK", "work": "空格後面是子句 the office is being renovated → While", "why": "空格後面 the office is being renovated：子句 → 連接詞 while。", "x": [null, "(B) During：介系詞，後面不能接子句。", "(C) Despite：介系詞，後面不能接子句；意思也不對。", "(D) Because of：介系詞片語，後面不能接子句。"], "zh": "辦公室整修期間，員工將在家工作。"}, {"id": "L6-PR-08", "s": "The client approved the design on Monday. ______, production can begin next week.", "o": ["Because", "Although", "Due to", "Therefore"], "a": 3, "c": "LINK", "work": "句號後、接逗號 → 連接副詞；前因後果 → 結果", "why": "前一句已經用句號結束，空格在下一句開頭、後面接逗號 → 連接副詞。前因後果（核准了設計 → 可以開始生產）→ 表結果的 therefore。本題示範 therefore 放在句號或分號後的用法；therefore 也能出現在句中。", "x": ["(A) Because：連接詞，不能放在句號後再接逗號。", "(B) Although：連接詞，不能放在句號後再接逗號；意思也不對。", "(C) Due to：介系詞片語，後面要接名詞片語。", null], "zh": "客戶星期一核准了設計。因此，下週可以開始生產。"}, {"id": "L6-PR-09", "s": "The hotel is far from downtown, ______ it offers a free shuttle to the station.", "o": ["however", "but", "despite", "nevertheless"], "a": 1, "c": "LINK", "work": "對照題：逗號連兩個子句 → 連接詞 but", "why": "空格前面是逗號，前後都是完整子句（The hotel is far…／it offers…）。用逗號連兩個子句，中間要放連接詞 → but。意思一樣的 but 和 however，差在標點：逗號 → but；句號或分號 → however。", "x": ["(A) however：意思對，但 however 是副詞，不能只用逗號連兩個子句。要寫成 …downtown; however, it offers… 或 …downtown. However, it offers…", null, "(C) despite：介系詞，後面不能接子句。", "(D) nevertheless：和 however 一樣是副詞，不能只用逗號連兩個子句。"], "zh": "這間飯店離市中心很遠，但提供到車站的免費接駁車。", "whyHtml": "空格前面是逗號，前後都是完整子句（The hotel is far…／it offers…）。用逗號連兩個子句，中間要放連接詞 → but。<span class=\"contrast\"><b>改寫：</b><span class=\"en\">The hotel is far from downtown<span class=\"mv\">; however,</span> it offers a free shuttle to the station.</span>意思一樣的 but 和 however，差在標點：逗號 → but；句號或分號 → however。</span>"}, {"id": "L6-PR-10", "s": "The park will be closed this weekend ______ maintenance work.", "o": ["due to", "because", "although", "so that"], "a": 0, "c": "LINK", "work": "空格後面是名詞片語 maintenance work → due to", "why": "空格後面 maintenance work：名詞片語，表示原因 → due to。", "x": [null, "(B) because：連接詞，後面要接子句。", "(C) although：連接詞，要接子句；意思也不對。", "(D) so that：連接詞，後面要接子句，表示目的。"], "zh": "公園因維修工程，本週末關閉。"}];
 
-var CHK=[{"id": "L6-CHK-01", "s": "______ the weather was perfect, few people attended the outdoor market.", "o": ["Even though", "In spite of", "Nonetheless", "Due to"], "a": 0, "c": "LINK", "work": "空格後面是子句 the weather was perfect → 連接詞", "why": "空格後面 the weather was perfect：子句 → 連接詞。even though 和 although 同義。", "x": [null, "(B) In spite of：介系詞片語，後面不能接子句。", "(C) Nonetheless：副詞，不能把兩個子句連成一句。", "(D) Due to：介系詞片語，後面不能接子句；意思也不對。"], "zh": "雖然天氣很好，戶外市集的人卻不多。", "demo": 0}, {"id": "L6-CHK-02", "s": "______ a busy schedule, Ms. Tan answers every customer e-mail on the same day.", "o": ["Although", "Despite", "However", "Because"], "a": 1, "c": "LINK", "work": "空格後面是名詞片語 a busy schedule → 介系詞", "why": "空格後面 a busy schedule：名詞片語 → 介系詞。", "x": ["(A) Although：連接詞，後面要接子句。", null, "(C) However：副詞，後面不接名詞片語。", "(D) Because：連接詞，後面要接子句；意思也不對。"], "zh": "儘管行程忙碌，譚小姐每封客戶電子郵件都當天回覆。", "demo": 1}, {"id": "L6-CHK-03", "s": "The training session ran longer than planned. ______, most participants stayed until the end.", "o": ["Even though", "Despite", "Nevertheless", "Due to"], "a": 2, "c": "LINK", "work": "句號後、接逗號 → 連接副詞；前後相反 → 轉折", "why": "前一句已經用句號結束，空格後面接逗號 → 連接副詞。前後意思相反（課程超時，學員仍留下）→ 轉折 → nevertheless。", "x": ["(A) Even though：連接詞，不能放在句號後再接逗號。", "(B) Despite：介系詞，後面要接名詞片語。", null, "(D) Due to：介系詞片語，後面要接名詞片語；意思也不對。"], "zh": "訓練課程比預定時間長。儘管如此，大多數學員都留到最後。", "demo": 2}, {"id": "L6-CHK-04", "s": "The store will close early today ______ a power outage.", "o": ["because", "so", "therefore", "because of"], "a": 3, "c": "LINK", "work": "空格後面是名詞片語 a power outage → because of", "why": "空格後面 a power outage：名詞片語，表示原因 → because of。", "x": ["(A) because：連接詞，後面要接子句。", "(B) so：連接詞，表示結果，後面要接子句。", "(C) therefore：連接副詞，不能直接接名詞片語。", null], "zh": "因為停電，這家店今天會提早打烊。", "demo": 3}];
 
 /* ---------- 狀態（只存在這個分頁的記憶體裡，重新整理會從頭開始） ---------- */
 var st={pre:{i:0,ans:{}},pr:{i:0,ans:{}},chk:{i:0,ans:{},first:{}}};
@@ -402,52 +394,6 @@ function bindReveal(){
     var box=h(b.dataset.reveal);box.querySelector('.reveal').hidden=true;box.querySelector('.body').hidden=false;
   })});
 }
-function viewLesson(){
-  prog(null);
-  render('<div class="stack">'+
-    '<div class="qid">詞性小課 第 6 課（完整方案）</div>'+
-    '<h1>意思相近，怎麼選？看句型，也看標點</h1>'+
-    '<video id="l1video" class="vid" controls playsinline preload="metadata" poster="lesson6-poster.jpg" src="lesson6.mp4">你的瀏覽器無法播放影片，可以直接往下看文字版重點。</video>'+
-    '<p class="fine">約 7 分鐘：先考你三句，再教判斷觀念＋四個示範。</p>'+
-    '<div id="afterVideo"><button class="btn pri" id="toPr">開始練習（10 題）</button>'+
-      '<p style="text-align:center"><button class="link" id="toText">看文字版</button></p></div>'+
-    '<details class="sheet more" id="textVersion"><summary>影片重點文字版（判斷觀念與四個示範）</summary><div class="stack" style="margin-top:12px">'+
-    '<div class="sheet stack"><h2>先懂一件事：意思相近，看句型，也看標點</h2>'+
-      '<h3>(1) 雖然、儘管：看後面接什麼</h3>'+
-      '<table class="tbl"><thead><tr><th>後面接子句（主詞＋動詞）</th><th>後面接名詞片語</th></tr></thead><tbody>'+
-      '<tr><td>although、even though、though</td><td>despite、in spite of</td></tr></tbody></table>'+
-      '<p>Although <b>it was raining</b> heavily, …／Despite <b>the heavy rain</b>, …</p>'+
-      '<p class="fine">despite ＝ in spite of；despite of 是錯的，常出現在錯誤選項。本課先練完整子句與名詞片語的對照；despite／in spite of 也可以接 V-ing，連接詞另有省略結構，後續再學。</p>'+
-      '<h3>(2) 兩個完整句子：連接副詞／副詞片語</h3>'+
-      '<p>It was raining heavily. <b>Nevertheless</b>, the flight departed on time.</p>'+
-      '<table class="tbl"><thead><tr><th>意思</th><th>句號或分號後，接逗號</th></tr></thead><tbody>'+
-      '<tr><td>轉折</td><td>however、nevertheless、nonetheless</td></tr>'+
-      '<tr><td>結果</td><td>therefore、as a result</td></tr></tbody></table>'+
-      '<p class="fine">but 是連接詞，可以用逗號連兩個子句；however、nevertheless 不是連接詞，所以前面要用分號或句號。</p>'+
-      '<h3>(3) 因為：because 和 because of</h3>'+
-      '<p>The order arrived late <b>because</b> the shipment was delayed.<br>The order arrived late <b>because of</b> the delay.</p>'+
-      '<p class="fine">因為貨運延誤，訂購的貨品晚到了。</p>'+
-      '<h3>判斷三步驟</h3><ol class="steps">'+
-      '<li>先看選項與句意：讓步、原因、結果，還是時間？</li>'+
-      '<li>看空格前後的標點與子句：「完整句子。／；______，完整句子」→ 連接副詞；兩個子句只用逗號 → but、so。</li>'+
-      '<li>其餘看後接結構：完整子句 → 連接詞；名詞片語 → 介系詞。最後代回確認句意。</li></ol></div>'+
-    '<h2>看老師怎麼判斷</h2>'+
-    DEMOS.map(function(d){return demoHTML(d,false)}).join('')+
-    '<div class="sheet stack"><h3>本課整理：出現過的字</h3><table class="tbl"><thead><tr><th>意思</th><th>＋子句（連接詞）</th><th>＋名詞片語／V-ing（介系詞）</th><th>句號／分號＋___，（連接副詞）</th></tr></thead><tbody>'+
-      '<tr><td>讓步／轉折</td><td>although、even though、though</td><td>despite ＝ in spite of</td><td>however、nevertheless ＝ nonetheless</td></tr>'+
-      '<tr><td>原因</td><td>because、since</td><td>because of、due to</td><td>—</td></tr>'+
-      '<tr><td>結果</td><td>—</td><td>—</td><td>therefore、as a result</td></tr>'+
-      '<tr><td>時間</td><td>while</td><td>during</td><td>—</td></tr></tbody></table>'+
-      '<p class="fine">兩個子句只用逗號連起來 → but、so（連接詞）。however、nevertheless 不是連接詞，所以前面要用分號或句號。</p></div>'+
-    '<button class="btn line" id="toPr2">開始 10 題練習</button></div></details>'+
-  '</div>');
-  bindReveal();
-  function start(){st.pr.i=0;viewItem('pr')}
-  h('toPr').addEventListener('click',start);
-  h('toPr2').addEventListener('click',start);
-  h('toText').addEventListener('click',function(){var t=h('textVersion');t.open=true;t.scrollIntoView({block:'start'})});
-  h('l1video').addEventListener('ended',function(){var a=h('afterVideo');if(a)a.scrollIntoView({behavior:'smooth',block:'center'})});
-}
 
 /* ---------- 5. 練習與確認（共用作答畫面） ---------- */
 function feedbackHTML(q,k,kind){
@@ -508,27 +454,106 @@ function viewDemoJump(q){
 }
 
 /* ---------- 7. 完成畫面 ---------- */
-function viewDone(){
-  prog(1);
-  var x=0;CHK.forEach(function(q){if(st.chk.first[q.id])x++});
-  render('<div class="stack">'+
-    '<h1>第 6 課完成！</h1>'+
-    '<div class="sheet stack"><p>你已經練習了「意思相近，先看句型和標點」的判斷方式。</p>'+
-      '<p class="score">這次答對 '+x+'／4 題</p>'+
-      '<p class="fine">以每題第一次作答計算。</p></div>'+
-    '<div class="sheet stack"><h3>下一課</h3>'+
-      '<a class="btn pri" id="nextl" href="l7.html">繼續第 7 課：who、which 還是 whose？</a></div>'+
-    '<div class="sheet stack"><h3>想接著練其他閱讀題型？</h3>'+
-      '<a class="btn line" id="d17" href="../#day1-7">繼續 Day 1–7 免費體驗</a></div>'+
-    '<a class="btn line" href="../">回到 Score Rescue</a>'+
-    '<p style="text-align:center"><button class="link" id="again">重看第 6 課</button></p>'+
-  '</div>');
-  h('again').addEventListener('click',viewLesson);
+
+/* ---------- 完整方案：登入＋確認付費後，才從私有儲存空間載入課程內容 ----------
+   沿用主站的 Email 登入（同一個網域，登入狀態共用）與 paid_users 付費名單。
+   題目、解析和影片放在 Supabase Storage 的 lessons 儲存桶（不公開）；儲存桶規則只讓付費名單裡的帳號讀取，
+   所以就算直接打開這個網址或看原始碼，沒有付費也拿不到內容。 */
+var LESSON_NO=6,STORE='lessons',VIDEO='',authSb=null,gated=false;
+var DEMOS=[],PR=[],CHK=[],viewLesson,viewDone;
+var libReady=null;
+function loadLib(){
+  if(!libReady)libReady=new Promise(function(ok){
+    if(window.supabase)return ok();
+    var t=document.createElement('script');
+    t.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    t.onload=function(){ok()};t.onerror=function(){ok()};
+    document.head.appendChild(t);
+  });
+  return libReady;
 }
+function lessonTitle(){return document.title.split('｜')[0]}
+function gateHead(){return '<div class="qid">詞性小課 第 '+LESSON_NO+' 課（完整方案）</div><h1>'+esc(lessonTitle().replace(/^詞性小課 第\d課：/,''))+'</h1>'}
+function planHTML(){
+  return '<div class="sheet stack"><h3>還沒購買完整方案？</h3>'+
+    '<p>完整方案包含詞性小課第 4～7 課、30 天個人化路線和 3 份模擬試題。第 1～3 課可以免費試學。</p>'+
+    '<a class="btn line" id="toPlan" href="../#pricing">看完整方案</a>'+
+    '<p style="text-align:center"><a class="link" href="l3.html">回到免費的第 3 課</a></p></div>';
+}
+function gateMsg(t){prog(null);render('<div class="stack">'+gateHead()+'<div class="sheet"><p>'+t+'</p></div></div>')}
+function gateError(){
+  gateMsg('課程暫時載入失敗。請重新整理再試一次；如果一直出現，請加<a class="link" href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener">官方 LINE</a> 告訴我們。');
+}
+function viewLogin(){
+  prog(null);logEvent('pos_paywall_view');
+  render('<div class="stack">'+gateHead()+
+    '<div class="sheet stack"><h3>已經購買？登入就能上課</h3>'+
+      '<p>請輸入購買時登記的 Email，我們會寄一封登入連結給你。點開連結就會回到這一課。</p>'+
+      '<form id="lf" class="stack" novalidate><input class="inp" type="email" id="le" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-label="Email">'+
+      '<button class="btn pri" id="ls" type="submit">寄登入連結</button></form><p class="fine" id="lm" aria-live="polite"></p></div>'+
+    planHTML()+'</div>');
+  h('lf').addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=h('le').value.trim(),m=h('lm'),b=h('ls');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){m.textContent='請輸入正確的 Email。';return}
+    if(!confirm('登入連結會寄到：\n'+email+'\n\n拼對了嗎？拼錯的話，連結會寄給別人。')){m.textContent='請修改 Email 後再送出。';h('le').focus();return}
+    b.disabled=true;m.textContent='寄送中…';
+    authSb.auth.signInWithOtp({email:email,options:{emailRedirectTo:location.origin+location.pathname}}).then(function(r){
+      b.disabled=false;
+      if(r&&r.error){m.textContent='寄送失敗：'+(r.error.message||'請稍後再試');return}
+      logEvent('pos_paywall_login_sent');m.textContent='已寄出！請到信箱點開登入連結（沒收到請看垃圾郵件）。';
+    },function(){b.disabled=false;m.textContent='寄送失敗，請稍後再試。'});
+  });
+}
+function viewNotPaid(email){
+  prog(null);logEvent('pos_paywall_notpaid');
+  render('<div class="stack">'+gateHead()+
+    '<div class="sheet stack"><h3>這個帳號還沒開通完整方案</h3>'+
+      '<p>你目前登入的是 <b id="who">'+esc(email||'')+'</b>。</p>'+
+      '<p class="fine">已經轉帳了嗎？開通通常在數小時內完成。如果用的是另一個 Email，請換帳號登入。</p>'+
+      '<button class="btn line" id="swap" type="button">換一個 Email 登入</button></div>'+
+    planHTML()+'</div>');
+  h('swap').addEventListener('click',function(){authSb.auth.signOut().then(viewLogin,viewLogin)});
+}
+function loadContent(){
+  gateMsg('載入課程中…');
+  var b=authSb.storage.from(STORE);
+  return Promise.all([b.download('l'+LESSON_NO+'.js'),b.createSignedUrl('lesson'+LESSON_NO+'.mp4',6*3600)]).then(function(r){
+    if(r[0].error||!r[0].data)throw r[0].error||new Error('no content');
+    VIDEO=(r[1]&&r[1].data&&r[1].data.signedUrl)||'';
+    return r[0].data.text();
+  }).then(function(code){
+    eval(code);   // 只會設定 DEMOS、PR、CHK、viewLesson、viewDone（見 tools/split_paid.py）
+    if(!PR.length||typeof viewLesson!=='function')throw new Error('bad content');
+    expose();viewLesson();
+  });
+}
+function checkPaid(user){
+  gateMsg('確認購買資格中…');
+  return authSb.from('paid_users').select('email').then(function(r){
+    if(r.error)throw r.error;
+    if(!(r.data||[]).length)return viewNotPaid(user&&user.email);
+    return loadContent();
+  });
+}
+function gate(){
+  gateMsg('載入中…');
+  loadLib().then(function(){
+    if(!window.supabase)throw new Error('no lib');
+    authSb=window.supabase.createClient(SB_URL,SB_KEY);   // 和主站相同設定：登入狀態存在這個網域的 localStorage
+    authSb.auth.onAuthStateChange(function(ev,s){if(ev==='SIGNED_IN'&&!gated&&s){gated=true;checkPaid(s.user).catch(gateError)}});
+    return authSb.auth.getSession().then(function(r){
+      var s=r&&r.data&&r.data.session;
+      if(gated)return;
+      if(!s)return viewLogin();
+      gated=true;return checkPaid(s.user);
+    });
+  }).catch(gateError);
+}
+function expose(){window.__pos={st:st,PR:PR,CHK:CHK,DEMOS:DEMOS,view:viewItem,sayTexts:function(){var o=[];[].concat(DEMOS,PR,CHK).forEach(function(q){o.push.apply(o,q.o);o.push(fullSent(q))});return o}}}
 
 initSb();
-viewLesson();
-window.__pos={st:st,PR:PR,CHK:CHK,DEMOS:DEMOS,view:viewItem,sayTexts:function(){var o=[];[].concat(DEMOS,PR,CHK).forEach(function(q){o.push.apply(o,q.o);o.push(fullSent(q))});return o}};
+gate();
 })();
 </script>
 </body>

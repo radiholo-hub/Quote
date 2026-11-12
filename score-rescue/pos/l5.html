@@ -127,6 +127,7 @@ div.opt .say.ico{width:36px;min-height:36px;margin-left:-4px}
 .fb .mv{border:2px solid var(--wine);border-radius:6px;padding:0 4px;font-weight:700}
 .fb .contrast{display:block;margin-top:8px;padding:10px 12px;border-radius:8px;background:#fff;border:1px solid var(--line)}
 .fb .contrast .en{display:block;font-family:var(--serif);font-size:1.05rem;margin:4px 0}
+.inp{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid #DDD8C8;border-radius:10px;font:inherit;background:#fff}
 </style>
 </head>
 <body>
@@ -151,13 +152,7 @@ var DEBUG=/[?&]debug=1\b/.test(location.search);
 var sb=null,sbReady=null;
 function initSb(){
   if(DEBUG)return Promise.resolve();
-  sbReady=new Promise(function(ok){
-    var t=document.createElement('script');
-    t.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-    t.onload=function(){try{sb=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:false}})}catch(e){}ok()};
-    t.onerror=function(){ok()};
-    document.head.appendChild(t);
-  });
+  sbReady=loadLib().then(function(){try{sb=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:false}})}catch(e){}});
   return sbReady;
 }
 function dbg(name,state){
@@ -206,11 +201,8 @@ var PRE=[
  {id:'P5-PRE-015',s:'Our customer service team ______ to inquiries within one business day.',o:['response','responsive','responds','responsively'],a:2,c:'MAIN_V',w:'空格需要主要動詞；responds to inquiries 表示「回覆詢問」。'}
 ];
 
-var DEMOS=[{"id": "L5-DEMO-01", "t": "示範1　動詞＋to V", "s": "The bakery plans ______ a second location next spring.", "o": ["open", "to open", "opening", "opened"], "a": 1, "how": ["空格前面是動詞 plans。", "plan 後接 to＋原形 → to open。"], "ex": "排除：(A) open：plans 已經是主要動詞，後面不能直接接原形動詞。(C) opening：plan 後面不接 V-ing。(D) opened：plans opened 是兩個動詞連在一起。", "zh": "這家麵包店計畫明年春天開第二家店。"}, {"id": "L5-DEMO-02", "t": "示範2　動詞＋V-ing", "s": "We are considering ______ our office to a larger building.", "o": ["move", "to move", "moving", "moved"], "a": 2, "how": ["空格前面是動詞 considering（are considering 是進行式）。", "consider 後接 V-ing → moving。"], "ex": "排除：(A) move：considering 後面不能直接接原形動詞。(B) to move：consider 後面不接 to V。(D) moved：considering moved 是兩個動詞連在一起。", "zh": "我們正在考慮把辦公室搬到更大的大樓。"}, {"id": "L5-DEMO-03", "t": "示範3　介系詞 to＋V-ing", "s": "Our team is dedicated to ______ high-quality service.", "o": ["provide", "provides", "providing", "provided"], "a": 2, "how": ["空格前面是 to。", "換成名詞測試：is dedicated to our customers 通 → to 是介系詞。", "介系詞後面接 V-ing → providing。"], "ex": "排除：(A) provide：這是最常見的陷阱。to 是介系詞，不是不定詞，後面不接原形。(B) provides：to 後面不接加 -s 的動詞。(D) provided：to 後面不接 p.p.。", "zh": "我們的團隊致力於提供高品質的服務。"}, {"id": "L5-DEMO-04", "t": "示範4　其他介系詞＋V-ing", "s": "Please read the instructions carefully before ______ the machine.", "o": ["operate", "to operate", "operating", "operated"], "a": 2, "how": ["空格前面是介系詞 before，後面有受詞 the machine，空格是一個動作。", "介系詞後面接 V-ing → operating。"], "ex": "排除：(A) operate：介系詞後面不接原形動詞。(B) to operate：before to operate 是介系詞後面再接 to，不合文法。(D) operated：before operated 不合文法；before 後接過去式要有主詞（before we operated the machine）。", "zh": "操作機器前，請仔細閱讀說明書。"}];
 
-var PR=[{"id": "L5-PR-01", "s": "The hotel hopes ______ more guests this summer.", "o": ["to welcome", "welcome", "welcoming", "welcomed"], "a": 0, "c": "VFORM", "work": "空格前面是 hopes：hope → to V", "why": "空格前面是動詞 hopes。hope 後接 to＋原形 → hopes to welcome。", "x": [null, "(B) welcome：hopes 後面不能直接接原形動詞。", "(C) welcoming：hope 後面不接 V-ing。", "(D) welcomed：hopes welcomed 是兩個動詞連在一起。"], "zh": "飯店希望今年夏天迎接更多客人。"}, {"id": "L5-PR-02", "s": "The editor has finished ______ the first draft.", "o": ["edit", "to edit", "edited", "editing"], "a": 3, "c": "VFORM", "work": "空格前面是 finished：finish → V-ing", "why": "空格前面是 has finished。finish 後接 V-ing → finished editing。", "x": ["(A) edit：finished 後面不能直接接原形動詞。", "(B) to edit：finish 後面不接 to V。", "(C) edited：has finished edited 是兩個 p.p. 連在一起。", null], "zh": "編輯已經改完第一份草稿。"}, {"id": "L5-PR-03", "s": "We look forward to ______ with you again.", "o": ["work", "working", "worked", "works"], "a": 1, "c": "VFORM", "work": "空格前面是 look forward to：介系詞 to", "why": "空格前面是 to。換成名詞測試：We look forward to your visit. 通 → to 是介系詞 → V-ing。", "x": ["(A) work：最常見的陷阱。look forward to 的 to 是介系詞，不接原形。", null, "(C) worked：to 後面不接 p.p. 或過去式。", "(D) works：to 後面不接加 -s 的動詞。"], "zh": "我們期待再次和您合作。"}, {"id": "L5-PR-04", "s": "The supplier agreed ______ the delivery fee.", "o": ["lowering", "to lower", "lowered", "lower"], "a": 1, "c": "VFORM", "work": "空格前面是 agreed：agree → to V", "why": "空格前面是動詞 agreed。agree 後接 to＋原形 → agreed to lower。", "x": ["(A) lowering：agree 後面不接 V-ing。", null, "(C) lowered：agreed lowered 是兩個動詞連在一起。", "(D) lower：agreed 後面不能直接接原形動詞。"], "zh": "供應商同意降低運費。"}, {"id": "L5-PR-05", "s": "The bank added more staff in order to ______ waiting times.", "o": ["shorten", "shortening", "shortened", "shortens"], "a": 0, "c": "VFORM", "work": "對照題：in order to 的 to 是不定詞 → 原形", "why": "空格前面是 to。換成名詞測試：in order to shorter waiting times 不通 → 這個 to 是不定詞 → 原形。in order to 表示「為了」。看到 to 不能直接選 V-ing，也不能直接選原形，先用名詞測試判斷是哪一種 to。對照：The bank is committed to shortening waiting times.（committed to 的 to 是介系詞）", "x": [null, "(B) shortening：這裡的 to 不是介系詞，不接 V-ing。", "(C) shortened：to 後面不接 p.p.。", "(D) shortens：to 後面不接加 -s 的動詞。"], "zh": "銀行增加人手，以縮短等候時間。", "whyHtml": "空格前面是 to。換成名詞測試：in order to <s>shorter waiting times</s> 不通 → 這個 to 是不定詞 → 原形。in order to 表示「為了」。<span class=\"contrast\"><b>對照：</b><span class=\"en\">The bank is committed to <span class=\"mv\">shortening</span> waiting times.</span>committed to 的 to 是介系詞，所以用 V-ing。看到 to 不能直接選 V-ing，也不能直接選原形，先用名詞測試判斷是哪一種 to。</span>"}, {"id": "L5-PR-06", "s": "The committee postponed ______ a final decision until next month.", "o": ["make", "to make", "making", "made"], "a": 2, "c": "VFORM", "work": "空格前面是 postponed：postpone → V-ing", "why": "空格前面是動詞 postponed。postpone 後接 V-ing → postponed making。", "x": ["(A) make：postponed 後面不能直接接原形動詞。", "(B) to make：postpone 後面不接 to V。", null, "(D) made：postponed made 是兩個動詞連在一起。"], "zh": "委員會把最後決定延到下個月。"}, {"id": "L5-PR-07", "s": "You can save time by ______ your tickets online.", "o": ["book", "booked", "to book", "booking"], "a": 3, "c": "VFORM", "work": "空格前面是介系詞 by → V-ing", "why": "空格前面是介系詞 by，後面有受詞 your tickets。介系詞後接 V-ing → by booking。", "x": ["(A) book：介系詞後面不接原形動詞。（book 當名詞「書」意思不通，後面也不能再接 your tickets。）", "(B) booked：by booked 不合文法。", "(C) to book：by to book 是介系詞後面再接 to，不合文法。", null], "zh": "線上訂票可以節省時間。"}, {"id": "L5-PR-08", "s": "The museum is devoted to ______ local history.", "o": ["preserving", "preserve", "preserved", "to preserve"], "a": 0, "c": "VFORM", "work": "空格前面是 be devoted to：介系詞 to", "why": "空格前面是 to。換成名詞測試：The museum is devoted to local history. 通 → to 是介系詞 → V-ing。", "x": [null, "(B) preserve：be devoted to 的 to 是介系詞，不接原形。", "(C) preserved：to 後面不接 p.p.。", "(D) to preserve：to to preserve，重複了 to。"], "zh": "這間博物館致力於保存在地歷史。"}, {"id": "L5-PR-09", "s": "The contractor refused ______ the damaged fence without a written agreement.", "o": ["repairing", "repair", "to repair", "repaired"], "a": 2, "c": "VFORM", "work": "空格前面是 refused：refuse → to V", "why": "判斷空格的動詞形式時，先看 refused。refuse 後接 to＋原形動詞，所以選 to repair。句尾的 without a written agreement 說明「沒有書面協議就拒絕維修」的條件。", "x": ["(A) repairing：refuse 後面不接 V-ing。", "(B) repair：refused 後面不能直接接原形動詞。", null, "(D) repaired：refused repaired 是兩個動詞連在一起。"], "zh": "承包商在沒有書面協議的情況下，拒絕修理受損的圍欄。"}, {"id": "L5-PR-10", "s": "The airline offered ______ the passengers' hotel costs.", "o": ["covered", "to cover", "covering", "cover"], "a": 1, "c": "VFORM", "work": "空格前面是 offered：offer → to V", "why": "空格前面是動詞 offered。offer 後接 to＋原形 → offered to cover（主動表示要負擔）。", "x": ["(A) covered：offered covered 是兩個動詞連在一起。", null, "(C) covering：offer 後面不接 V-ing。", "(D) cover：offered 後面不能直接接原形動詞。"], "zh": "航空公司主動表示要負擔旅客的住宿費用。"}];
 
-var CHK=[{"id": "L5-CHK-01", "s": "The company expects ______ a new app next year.", "o": ["to release", "release", "releasing", "released"], "a": 0, "c": "VFORM", "work": "空格前面是 expects：expect → to V", "why": "空格前面是動詞 expects。expect 後接 to＋原形 → expects to release。", "x": [null, "(B) release：expects 後面不能直接接原形動詞。", "(C) releasing：expect 後面不接 V-ing。", "(D) released：expects released 是兩個動詞連在一起。"], "zh": "公司預計明年推出一款新的應用程式。", "demo": 0}, {"id": "L5-CHK-02", "s": "Mr. Davis enjoys ______ new employees how to use the system.", "o": ["teach", "teaching", "to teach", "taught"], "a": 1, "c": "VFORM", "work": "空格前面是 enjoys：enjoy → V-ing", "why": "空格前面是動詞 enjoys。enjoy 後接 V-ing → enjoys teaching。", "x": ["(A) teach：enjoys 後面不能直接接原形動詞。", null, "(C) to teach：enjoy 後面不接 to V。", "(D) taught：enjoys taught 是兩個動詞連在一起。"], "zh": "戴維斯先生喜歡教新進員工如何使用系統。", "demo": 1}, {"id": "L5-CHK-03", "s": "The new system has contributed to ______ energy costs.", "o": ["reduce", "reduces", "reducing", "to reduce"], "a": 2, "c": "VFORM", "work": "空格前面是 contributed to：介系詞 to", "why": "空格前面是 to。換成名詞測試：has contributed to cost savings 通 → to 是介系詞 → V-ing。", "x": ["(A) reduce：contribute to 的 to 是介系詞，不接原形。", "(B) reduces：to 後面不接加 -s 的動詞。", null, "(D) to reduce：to to reduce，重複了 to。"], "zh": "新系統幫助降低了能源成本。", "demo": 2}, {"id": "L5-CHK-04", "s": "Visitors may not enter the lab without ______ their badges.", "o": ["show", "to show", "shows", "showing"], "a": 3, "c": "VFORM", "work": "空格前面是介系詞 without → V-ing", "why": "空格前面是介系詞 without，後面有受詞 their badges。介系詞後接 V-ing → without showing。", "x": ["(A) show：介系詞後面不接原形動詞。", "(B) to show：without to show 是介系詞後面再接 to，不合文法。", "(C) shows：介系詞後面不接加 -s 的動詞。", null], "zh": "訪客沒有出示識別證，不得進入實驗室。", "demo": 3}];
 
 /* ---------- 狀態（只存在這個分頁的記憶體裡，重新整理會從頭開始） ---------- */
 var st={pre:{i:0,ans:{}},pr:{i:0,ans:{}},chk:{i:0,ans:{},first:{}}};
@@ -402,52 +394,6 @@ function bindReveal(){
     var box=h(b.dataset.reveal);box.querySelector('.reveal').hidden=true;box.querySelector('.body').hidden=false;
   })});
 }
-function viewLesson(){
-  prog(null);
-  render('<div class="stack">'+
-    '<div class="qid">詞性小課 第 5 課（完整方案）</div>'+
-    '<h1>to V 還是 V-ing？先看前面的搭配</h1>'+
-    '<video id="l1video" class="vid" controls playsinline preload="metadata" poster="lesson5-poster.jpg" src="lesson5.mp4">你的瀏覽器無法播放影片，可以直接往下看文字版重點。</video>'+
-    '<p class="fine">約 7 分鐘：先考你三句，再教判斷觀念＋四個示範。</p>'+
-    '<div id="afterVideo"><button class="btn pri" id="toPr">開始練習（10 題）</button>'+
-      '<p style="text-align:center"><button class="link" id="toText">看文字版</button></p></div>'+
-    '<details class="sheet more" id="textVersion"><summary>影片重點文字版（判斷觀念與四個示範）</summary><div class="stack" style="margin-top:12px">'+
-    '<div class="sheet stack"><h2>先懂一件事：後面的動作用什麼形式，看前面</h2>'+
-      '<h3>(1) 前面是動詞：記搭配</h3>'+
-      '<table class="tbl"><thead><tr><th>後接 to V</th><th>後接 V-ing</th></tr></thead><tbody>'+
-      '<tr><td>decide、plan、hope、expect</td><td>avoid、consider、finish</td></tr>'+
-      '<tr><td>agree、offer、intend</td><td>postpone、recommend、enjoy</td></tr>'+
-      '<tr><td>refuse、fail、want、need</td><td>suggest、keep、discontinue</td></tr></tbody></table>'+
-      '<p class="fine">記法：to V 的動詞多半是「還沒做、打算去做」；V-ing 的動詞多半是「針對這件事本身」。這只是幫忙記，考試時還是以搭配為準。</p>'+
-      '<h3>(2) 前面是 to：換成名詞測試</h3>'+
-      '<p>介系詞 to 後面接名詞（to＋N）：be committed to <b>safety</b>（致力於安全）。動作要放在 to 後面，就變成 V-ing 再接名詞：be committed to <b>replacing</b> its aging equipment（致力於汰換老舊設備）。</p>'+
-      '<table class="tbl"><thead><tr><th>句子</th><th>to 是</th><th>後面接</th></tr></thead><tbody>'+
-      '<tr><td>be committed to <b>safety</b> ✓</td><td>介系詞</td><td>V-ing：committed to <b>replacing</b></td></tr>'+
-      '<tr><td>decided to <s>safety</s> ✗</td><td>不定詞</td><td>原形：decided to <b>replace</b></td></tr></tbody></table>'+
-      '<p class="fine">常考的介系詞 to：be committed to、be dedicated to、look forward to（hearing from you）、contribute to、in addition to、be devoted to。</p>'+
-      '<h3>(3) 其他介系詞：一律接 V-ing</h3>'+
-      '<p>before <b>leaving</b>、by <b>booking</b> online、without <b>asking</b></p>'+
-      '<h3>判斷三步驟</h3><ol class="steps">'+
-      '<li>看空格前面是什麼：動詞？to？還是其他介系詞？</li>'+
-      '<li>前面是動詞 → 想搭配：後接 to V，還是 V-ing？</li>'+
-      '<li>前面是 to → 換成名詞測試：能接名詞 → V-ing；不能接名詞 → 原形。其他介系詞 → V-ing。</li></ol></div>'+
-    '<h2>看老師怎麼判斷</h2>'+
-    DEMOS.map(function(d){return demoHTML(d,false)}).join('')+
-    '<div class="sheet stack"><h3>本課整理</h3><table class="tbl"><thead><tr><th>空格前面</th><th>選</th></tr></thead><tbody>'+
-      '<tr><td>動詞（decide、plan、hope…）</td><td>to V</td></tr>'+
-      '<tr><td>動詞（avoid、consider、finish…）</td><td>V-ing</td></tr>'+
-      '<tr><td>to：換成名詞通 → 介系詞</td><td>V-ing</td></tr>'+
-      '<tr><td>to：換成名詞不通 → 不定詞</td><td>原形</td></tr>'+
-      '<tr><td>before、by、without…</td><td>V-ing</td></tr></tbody></table></div>'+
-    '<button class="btn line" id="toPr2">開始 10 題練習</button></div></details>'+
-  '</div>');
-  bindReveal();
-  function start(){st.pr.i=0;viewItem('pr')}
-  h('toPr').addEventListener('click',start);
-  h('toPr2').addEventListener('click',start);
-  h('toText').addEventListener('click',function(){var t=h('textVersion');t.open=true;t.scrollIntoView({block:'start'})});
-  h('l1video').addEventListener('ended',function(){var a=h('afterVideo');if(a)a.scrollIntoView({behavior:'smooth',block:'center'})});
-}
 
 /* ---------- 5. 練習與確認（共用作答畫面） ---------- */
 function feedbackHTML(q,k,kind){
@@ -508,27 +454,106 @@ function viewDemoJump(q){
 }
 
 /* ---------- 7. 完成畫面 ---------- */
-function viewDone(){
-  prog(1);
-  var x=0;CHK.forEach(function(q){if(st.chk.first[q.id])x++});
-  render('<div class="stack">'+
-    '<h1>第 5 課完成！</h1>'+
-    '<div class="sheet stack"><p>你已經練習了「先看空格前面的搭配」的判斷方式。</p>'+
-      '<p class="score">這次答對 '+x+'／4 題</p>'+
-      '<p class="fine">以每題第一次作答計算。</p></div>'+
-    '<div class="sheet stack"><h3>下一課</h3>'+
-      '<a class="btn pri" id="nextl" href="l6.html">繼續第 6 課：意思相近，怎麼選？</a></div>'+
-    '<div class="sheet stack"><h3>想接著練其他閱讀題型？</h3>'+
-      '<a class="btn line" id="d17" href="../#day1-7">繼續 Day 1–7 免費體驗</a></div>'+
-    '<a class="btn line" href="../">回到 Score Rescue</a>'+
-    '<p style="text-align:center"><button class="link" id="again">重看第 5 課</button></p>'+
-  '</div>');
-  h('again').addEventListener('click',viewLesson);
+
+/* ---------- 完整方案：登入＋確認付費後，才從私有儲存空間載入課程內容 ----------
+   沿用主站的 Email 登入（同一個網域，登入狀態共用）與 paid_users 付費名單。
+   題目、解析和影片放在 Supabase Storage 的 lessons 儲存桶（不公開）；儲存桶規則只讓付費名單裡的帳號讀取，
+   所以就算直接打開這個網址或看原始碼，沒有付費也拿不到內容。 */
+var LESSON_NO=5,STORE='lessons',VIDEO='',authSb=null,gated=false;
+var DEMOS=[],PR=[],CHK=[],viewLesson,viewDone;
+var libReady=null;
+function loadLib(){
+  if(!libReady)libReady=new Promise(function(ok){
+    if(window.supabase)return ok();
+    var t=document.createElement('script');
+    t.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    t.onload=function(){ok()};t.onerror=function(){ok()};
+    document.head.appendChild(t);
+  });
+  return libReady;
 }
+function lessonTitle(){return document.title.split('｜')[0]}
+function gateHead(){return '<div class="qid">詞性小課 第 '+LESSON_NO+' 課（完整方案）</div><h1>'+esc(lessonTitle().replace(/^詞性小課 第\d課：/,''))+'</h1>'}
+function planHTML(){
+  return '<div class="sheet stack"><h3>還沒購買完整方案？</h3>'+
+    '<p>完整方案包含詞性小課第 4～7 課、30 天個人化路線和 3 份模擬試題。第 1～3 課可以免費試學。</p>'+
+    '<a class="btn line" id="toPlan" href="../#pricing">看完整方案</a>'+
+    '<p style="text-align:center"><a class="link" href="l3.html">回到免費的第 3 課</a></p></div>';
+}
+function gateMsg(t){prog(null);render('<div class="stack">'+gateHead()+'<div class="sheet"><p>'+t+'</p></div></div>')}
+function gateError(){
+  gateMsg('課程暫時載入失敗。請重新整理再試一次；如果一直出現，請加<a class="link" href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener">官方 LINE</a> 告訴我們。');
+}
+function viewLogin(){
+  prog(null);logEvent('pos_paywall_view');
+  render('<div class="stack">'+gateHead()+
+    '<div class="sheet stack"><h3>已經購買？登入就能上課</h3>'+
+      '<p>請輸入購買時登記的 Email，我們會寄一封登入連結給你。點開連結就會回到這一課。</p>'+
+      '<form id="lf" class="stack" novalidate><input class="inp" type="email" id="le" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-label="Email">'+
+      '<button class="btn pri" id="ls" type="submit">寄登入連結</button></form><p class="fine" id="lm" aria-live="polite"></p></div>'+
+    planHTML()+'</div>');
+  h('lf').addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=h('le').value.trim(),m=h('lm'),b=h('ls');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){m.textContent='請輸入正確的 Email。';return}
+    if(!confirm('登入連結會寄到：\n'+email+'\n\n拼對了嗎？拼錯的話，連結會寄給別人。')){m.textContent='請修改 Email 後再送出。';h('le').focus();return}
+    b.disabled=true;m.textContent='寄送中…';
+    authSb.auth.signInWithOtp({email:email,options:{emailRedirectTo:location.origin+location.pathname}}).then(function(r){
+      b.disabled=false;
+      if(r&&r.error){m.textContent='寄送失敗：'+(r.error.message||'請稍後再試');return}
+      logEvent('pos_paywall_login_sent');m.textContent='已寄出！請到信箱點開登入連結（沒收到請看垃圾郵件）。';
+    },function(){b.disabled=false;m.textContent='寄送失敗，請稍後再試。'});
+  });
+}
+function viewNotPaid(email){
+  prog(null);logEvent('pos_paywall_notpaid');
+  render('<div class="stack">'+gateHead()+
+    '<div class="sheet stack"><h3>這個帳號還沒開通完整方案</h3>'+
+      '<p>你目前登入的是 <b id="who">'+esc(email||'')+'</b>。</p>'+
+      '<p class="fine">已經轉帳了嗎？開通通常在數小時內完成。如果用的是另一個 Email，請換帳號登入。</p>'+
+      '<button class="btn line" id="swap" type="button">換一個 Email 登入</button></div>'+
+    planHTML()+'</div>');
+  h('swap').addEventListener('click',function(){authSb.auth.signOut().then(viewLogin,viewLogin)});
+}
+function loadContent(){
+  gateMsg('載入課程中…');
+  var b=authSb.storage.from(STORE);
+  return Promise.all([b.download('l'+LESSON_NO+'.js'),b.createSignedUrl('lesson'+LESSON_NO+'.mp4',6*3600)]).then(function(r){
+    if(r[0].error||!r[0].data)throw r[0].error||new Error('no content');
+    VIDEO=(r[1]&&r[1].data&&r[1].data.signedUrl)||'';
+    return r[0].data.text();
+  }).then(function(code){
+    eval(code);   // 只會設定 DEMOS、PR、CHK、viewLesson、viewDone（見 tools/split_paid.py）
+    if(!PR.length||typeof viewLesson!=='function')throw new Error('bad content');
+    expose();viewLesson();
+  });
+}
+function checkPaid(user){
+  gateMsg('確認購買資格中…');
+  return authSb.from('paid_users').select('email').then(function(r){
+    if(r.error)throw r.error;
+    if(!(r.data||[]).length)return viewNotPaid(user&&user.email);
+    return loadContent();
+  });
+}
+function gate(){
+  gateMsg('載入中…');
+  loadLib().then(function(){
+    if(!window.supabase)throw new Error('no lib');
+    authSb=window.supabase.createClient(SB_URL,SB_KEY);   // 和主站相同設定：登入狀態存在這個網域的 localStorage
+    authSb.auth.onAuthStateChange(function(ev,s){if(ev==='SIGNED_IN'&&!gated&&s){gated=true;checkPaid(s.user).catch(gateError)}});
+    return authSb.auth.getSession().then(function(r){
+      var s=r&&r.data&&r.data.session;
+      if(gated)return;
+      if(!s)return viewLogin();
+      gated=true;return checkPaid(s.user);
+    });
+  }).catch(gateError);
+}
+function expose(){window.__pos={st:st,PR:PR,CHK:CHK,DEMOS:DEMOS,view:viewItem,sayTexts:function(){var o=[];[].concat(DEMOS,PR,CHK).forEach(function(q){o.push.apply(o,q.o);o.push(fullSent(q))});return o}}}
 
 initSb();
-viewLesson();
-window.__pos={st:st,PR:PR,CHK:CHK,DEMOS:DEMOS,view:viewItem,sayTexts:function(){var o=[];[].concat(DEMOS,PR,CHK).forEach(function(q){o.push.apply(o,q.o);o.push(fullSent(q))});return o}};
+gate();
 })();
 </script>
 </body>

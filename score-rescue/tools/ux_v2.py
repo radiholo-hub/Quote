@@ -1,4 +1,5 @@
-"""詞性小課作答畫面 v2（2026-11-12）。對 pos/index.html、l2～l7.html 套用同一組修改，可重複執行。
+"""詞性小課作答畫面 v2（2026-11-12）。順序：課程頁產生器 → 本檔 → split_paid.py（第 4～7 課）。
+對 pos/index.html、l2～l7.html 套用同一組修改，可重複執行。
 
 - 拿掉頁首「預覽版」標籤
 - 作答按鈕固定在手機底部：送出前「確認答案」，送出後同一位置變「下一題」
@@ -74,9 +75,12 @@ def patch(f):
     s = sub1(s, "function viewItem(kind){", "function viewItem(kind,fresh){", 'viewItem sig', f)
     s = sub1(s, "      if(kind==='chk'&&!(q.id in s.first))s.first[q.id]=a.k===q.a;\n      viewItem(kind);",
              "      if(kind==='chk'&&!(q.id in s.first))s.first[q.id]=a.k===q.a;\n      viewItem(kind,true);", 'submit fresh', f)
-    # 影片下方
-    s = sub1(s, AFTER_VIDEO_OLD, AFTER_VIDEO_NEW, 'afterVideo', f)
-    s = sub1(s, "  h('toPr2').addEventListener('click',start);",
+    # 影片下方（第 4～7 課的外殼不含 viewLesson，這段已在 private/lN.full.html 套用過，見 split_paid.py）
+    paid_shell = 'var LESSON_NO=' in s
+    if not paid_shell:
+        s = sub1(s, AFTER_VIDEO_OLD, AFTER_VIDEO_NEW, 'afterVideo', f)
+    if not paid_shell:
+      s = sub1(s, "  h('toPr2').addEventListener('click',start);",
              "  h('toPr2').addEventListener('click',start);\n"
              "  h('toText').addEventListener('click',function(){var t=h('textVersion');t.open=true;t.scrollIntoView({block:'start'})});", 'toText', f)
     s = sub1(s, CSS_OLD, CSS_NEW, 'css', f)

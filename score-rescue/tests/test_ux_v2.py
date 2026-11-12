@@ -2,8 +2,10 @@
 import pathlib
 import pytest
 
+from conftest import GATE_STUB, gate_init, PRIVATE
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-PAGES = ['index.html'] + ['l%d.html' % n for n in range(2, 8)]
+PAGES = ['index.html', 'l2.html', 'l3.html'] + (['l%d.html' % n for n in range(4, 8)] if (PRIVATE / 'l7.js').exists() else [])   # 第 4～7 課內容在 private/
 
 
 @pytest.fixture
@@ -12,7 +14,8 @@ def page_of(browser):
 
     def _open(name):
         ctx = browser.new_context(viewport={'width': 390, 'height': 844})
-        ctx.route('**/supabase-js@2*', lambda r: r.abort())
+        ctx.route('**/supabase-js@2*', lambda r: r.fulfill(status=200, content_type='application/javascript', body=GATE_STUB))
+        ctx.add_init_script(gate_init())
         ctx.route('**/*.mp3', lambda r: r.fulfill(status=200, content_type='audio/mpeg', body=b''))
         p = ctx.new_page()
         p.goto((ROOT / 'pos' / name).as_uri() + '?debug=1')
