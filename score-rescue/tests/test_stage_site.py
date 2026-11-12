@@ -115,3 +115,26 @@ def test_refuses_existing_output(repo):
     (repo / '_site').mkdir()
     p = stage(repo, '_site')
     assert p.returncode != 0
+
+
+def test_private_lessons_never_deployed(repo):
+    """在有教材的工作目錄部署：private/、上傳用壓縮檔、完整頁面備份、第 4～7 課影片都不會進公開輸出。"""
+    for f in ['score-rescue/private/l4.js', 'score-rescue/private/l4.full.html', 'score-rescue/private/lesson4.mp4',
+              'score-rescue/private/audio-texts-paid.json', 'score-rescue/lessons_upload.zip', 'score-rescue/pos/lesson5.mp4',
+              'score-rescue/tests/test_l4.py', 'score-rescue/pos/l4.html']:
+        (repo / f).parent.mkdir(parents=True, exist_ok=True)
+        (repo / f).write_text('x ' + f)
+    p = stage(repo, '_site')
+    assert p.returncode == 0, p.stdout + p.stderr
+    out = repo / '_site' / 'score-rescue'
+    assert not (out / 'private').exists() and not (out / 'tests').exists()
+    assert not (out / 'lessons_upload.zip').exists() and not (out / 'pos' / 'lesson5.mp4').exists()
+    assert (out / 'pos' / 'l4.html').exists(), '公開外殼照常部署'
+
+
+@pytest.mark.parametrize('leak', ['score-rescue/pos/l6.html', 'score-rescue/pos/l6.js'])
+def test_deploy_fails_if_paid_content_leaks(repo, leak):
+    (repo / leak).parent.mkdir(parents=True, exist_ok=True)
+    (repo / leak).write_text('var PR=[{"id": "L6-PR-01"}];')
+    p = stage(repo, '_site')
+    assert p.returncode != 0 and '完整方案教材' in p.stdout + p.stderr
