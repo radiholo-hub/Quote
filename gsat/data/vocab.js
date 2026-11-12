@@ -2444,7 +2444,7 @@ window.VOCAB = {
   },
   "a-dozen": {
    "t": "more than a dozen",
-   "zh": "十幾個以上"
+   "zh": "超過十二個"
   },
   "well-qualified": {
    "t": "well-qualified applicants",

@@ -89,7 +89,7 @@ window.EXT_PRACTICE = [
    "vacantly"
   ],
   "answer": 1,
-  "explain": "no 後面要接名詞,所以用 vacancy。No vacancy 是旅館常見的「客滿」告示。vacant 是形容詞、vacate 是動詞。",
+  "explain": "空格位在 no 後、tonight 前，而且空格後沒有另一個名詞，因此空格本身需要能作名詞，應選 vacancy。No Vacancy 是旅館常見的『客滿』告示。vacant 是形容詞，vacate 是動詞，vacantly 是副詞，表示『茫然地／空洞地』。",
   "status": "draft"
  },
  {
@@ -107,7 +107,7 @@ window.EXT_PRACTICE = [
    "career"
   ],
   "answer": 0,
-  "explain": "fill a vacancy＝補職缺。其他三個名詞不能被 fill。",
+  "explain": "fill a vacancy 是『填補職缺』的常見搭配；本句表示業務團隊有一個職缺需要找人補上，因此應選 vacancy。inspiration、expectation、career 都不符合此處的搭配與語意。",
   "status": "draft"
  },
  {

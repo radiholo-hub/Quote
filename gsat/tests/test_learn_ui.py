@@ -270,10 +270,23 @@ def test_q2_signed_text_is_shown_as_reviewed_without_touching_global_entry_statu
 
 
 @needs_exam
-def test_unsigned_questions_keep_the_draft_presentation(make_page):
-    """第 3 題沒有教師簽核:詳解、單字卡、延伸練習、延伸練習頁都維持原本的草稿呈現。"""
+def test_q3_signed_text_is_shown_as_reviewed_without_touching_global_entry_status(make_page):
+    """第 3 題已有教師文字簽核:詳解顯示已審核、vacancy 單字卡標示「本題教師已確認」;全域詞條狀態不變。"""
     page = make_page('desktop')
     review_q(page, 3)
+    box = page.locator('.explain.v2')
+    assert box.get_attribute('data-explain') == 'reviewed' and box.locator('.tag').first.inner_text() == '已審核'
+    txt = box.inner_text()
+    assert '待審核草稿' not in txt and '草稿・待人工審核' not in txt and '超過十二位' in txt
+    assert box.locator('.wcard[data-entry=vacancy-n] [data-role=signed]').inner_text() == '本題教師已確認'
+    assert page.evaluate("window.VOCAB.entries['vacancy-n'].status") == 'draft'
+
+
+@needs_exam
+def test_unsigned_questions_keep_the_draft_presentation(make_page):
+    """第 4 題沒有教師簽核:詳解、單字卡、延伸練習、延伸練習頁都維持原本的草稿呈現。"""
+    page = make_page('desktop')
+    review_q(page, 4)
     box = page.locator('.explain.v2')
     assert box.get_attribute('data-explain') == 'draft' and box.locator('.tag').first.inner_text() == '草稿・待人工審核'
     assert '待審核草稿' in box.locator('.wcard').first.inner_text() and '待審核草稿' in box.locator('details.lsec[data-sec="7"]').inner_text()
@@ -288,7 +301,7 @@ def test_other_questions_and_shared_entries_global_status_are_not_changed_by_the
     page = make_page('desktop')
     page.goto(URL + '#/')
     d = page.evaluate("({q: Object.entries(window.EXPLAIN).map(([k, e]) => [k, e.status]), v: [...new Set(Object.values(window.VOCAB.entries).map(e => e.status))], x: [...new Set(window.EXT_PRACTICE.map(e => e.status))]})")
-    assert dict(d['q']) == {**{f'115-{n}': 'draft' for n in range(3, 11)}, '115-1': 'reviewed', '115-2': 'reviewed'} and d['v'] == ['draft'] and d['x'] == ['draft']
+    assert dict(d['q']) == {**{f'115-{n}': 'draft' for n in range(4, 11)}, '115-1': 'reviewed', '115-2': 'reviewed', '115-3': 'reviewed'} and d['v'] == ['draft'] and d['x'] == ['draft']
 
 
 # ---------------------------------------------------------------- 版面

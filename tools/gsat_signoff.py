@@ -112,7 +112,7 @@ def draft(data, key, reviewer, date, html_sha, audio_scope, audio_status='pendin
         'status': 'passed',
         'reviewer': reviewer,
         'signedAt': date,
-        'scope': (f'{key[:3]} 學年度學測英文第 {key.split("-")[1]} 題:教學文字內容(中文翻譯、解題步驟、選項解析、單字與片語、文法補充)與原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。' if audio_status == 'pending' else f'{key[:3]} 學年度學測英文第 {key.split("-")[1]} 題:教學內容(中文翻譯、解題步驟、選項解析、單字與片語、文法補充、延伸練習)與對應發音。只限這一題;不含其他題目,也不含其餘音檔與其餘歷屆詞彙待審核紀錄。'),
+        'scope': (f'{key[:3]} 學年度學測英文第 {key.split("-")[1]} 題:教學文字內容(中文翻譯、解題步驟、選項解析、文法補充)、引用的相關單字與片語、重點字的歷屆出題紀錄,以及原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。' if audio_status == 'pending' else f'{key[:3]} 學年度學測英文第 {key.split("-")[1]} 題:教學內容(中文翻譯、解題步驟、選項解析、單字與片語、文法補充、延伸練習)與對應發音。只限這一題;不含其他題目,也不含其餘音檔與其餘歷屆詞彙待審核紀錄。'),
         'evidence': {'reviewHtmlSha256': html_sha, 'note': '簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。'},
         'contentFingerprint': {
             'algorithm': 'sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()',

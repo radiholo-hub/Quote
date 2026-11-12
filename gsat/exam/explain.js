@@ -1,7 +1,7 @@
 // 原創詳解(自行撰寫,非第三方解析)。鍵為「年度-題號」。schema 2:引用單字詞條(gsat/data/vocab.js),字義與詞性只在詞條裡定義一次。
 // status:draft＝AI 草稿,待英文老師審核;reviewed＝已審核(審核前不得標為 reviewed)。reviewer／reviewedAt／reviewNotes 由審核者填寫。
 // 【資料來源】本檔是版本控制下的唯一來源,直接編輯;沒有任何 repo 外的產生流程,也不得再用腳本整檔重新產生(會把教師簽核欄位覆蓋回 draft;gsat/tests/test_signoff.py 會擋)。
-// 已簽核的題目(目前有 115-1、115-2)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
+// 已簽核的題目(目前有 115-1、115-2、115-3)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
 // 審核方式:python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾> 產生含題目與檢核欄位的審核表(內含試題,請勿公開)。
 window.EXPLAIN = {
  "115-1": {
@@ -99,12 +99,12 @@ window.EXPLAIN = {
  "115-3": {
   "schema": 2,
   "answer": "B",
-  "status": "draft",
-  "reviewer": null,
-  "reviewedAt": null,
-  "reviewNotes": "",
+  "status": "reviewed",
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-12",
+  "reviewNotes": "2026-11-12 教師（負責人）確認:Q3 教學文字與 38 個教師審核項目已正式簽核通過。音檔的人工驗收狀態與適用的音檔版本,以 docs/gsat/signoffs/115-3.json 的 audio 區塊為準(本欄位不記載音檔通過數量)。",
   "key": [
-   "看後半句:這件事「吸引了十幾位資格優良的 applicants(應徵者)」。",
+   "看後半句:這件事「吸引了超過十二位資格優良的 applicants(應徵者)」。",
    "學校釋出「教職缺額」才會有人來應徵,所以主詞要是「職缺」:teaching vacancy。",
    "其他三個名詞無法跟「吸引應徵者」形成因果,可以用這個因果關係檢查答案。"
   ],
@@ -119,11 +119,11 @@ window.EXPLAIN = {
    },
    "C": {
     "entry": "expectation-n",
-    "why": "expectation 是「期望」,不會「吸引」應徵者。"
+    "why": "expectation 是『期待、預期』；teaching expectation 在本句不能表示學校釋出的職缺，因此無法與 applicants 的應徵語境銜接。"
    },
    "D": {
     "entry": "inspiration-n",
-    "why": "inspiration 是「靈感、啟發」,與應徵無關。"
+    "why": "inspiration 是『靈感、啟發』；teaching inspiration 不能表示學校的職缺，因此不符合後面吸引 applicants 的語境。"
    }
   },
   "words": [
@@ -134,11 +134,11 @@ window.EXPLAIN = {
    "well-qualified"
   ],
   "patterns": [
-   "more than a dozen + 複數名詞(十幾個以上)"
+   "more than a dozen + 複數名詞（超過十二個……）"
   ],
-  "grammar": "more than a dozen applicants:dozen 前面有 a 或數字時不加 s(two dozen eggs);沒有數字、表示「很多」時才用 dozens of。soon 是副詞,放在主詞與動詞之間(soon attracted)。",
+  "grammar": "a dozen + 複數名詞＝十二個……；數字 + dozen + 複數名詞時，dozen 不加 -s，如 two dozen eggs。dozens of + 複數名詞則表示『數十個／好幾十個……』。本句 soon 是副詞，置於主要動詞 attracted 前：soon attracted。",
   "focus": "vacancy-n",
-  "zh": "這所知名高中的教職缺額很快就吸引了十多位資格優良的應徵者。"
+  "zh": "這所知名高中的教職缺額很快就吸引了超過十二位資格優良的應徵者。"
  },
  "115-4": {
   "schema": 2,
