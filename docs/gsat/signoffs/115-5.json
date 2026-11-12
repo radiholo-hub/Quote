@@ -1,0 +1,283 @@
+{
+ "question": "115-5",
+ "status": "passed",
+ "reviewer": "教師（負責人）",
+ "signedAt": "2026-11-12",
+ "scope": "115 學年度學測英文第 5 題:教學文字內容(中文翻譯、解題步驟、選項解析、文法補充)、引用的相關單字與片語、重點字的歷屆出題紀錄,以及原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。",
+ "evidence": {
+  "reviewHtmlSha256": "fc92354508863798d3f86910d3b84aba62f4d0e12dca496ebae8166d25f22191",
+  "note": "簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。"
+ },
+ "contentFingerprint": {
+  "algorithm": "sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()",
+  "value": "be1d03ebf058dcc158193eb8bd769d5cdd7ec3e0701501074241fd42d4d34df5",
+  "covers": "題目與選項與官方答案、詳解內容、引用的單字詞條、畫面列出的衍生字、片語、延伸練習、重點字的歷屆出題紀錄、每個發音按鈕對應的 mp3 檔名、審核項目 ID 清單(mp3 檔案內容不在其中,見 audio 區塊)",
+  "excludes": "status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條"
+ },
+ "items": [
+  {
+   "id": "115-5:q",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:zh",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:key1",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:key2",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:key3",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:optA",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:optB",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:optC",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:optD",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:coll3",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:ex1",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:fam:consume-v",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:fam:consumer-n",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:syn",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:consumption-n:conf1",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:dimension-n:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:dimension-n:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:dimension-n:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:integration-n:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:integration-n:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:integration-n:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:provision-n:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:provision-n:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:provision-n:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:w:provision-n:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:pat1",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:pat2",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:pat3",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:gram",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:rec:consumption-n:sum",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:rec:consumption-n:確認1",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:rec:consumption-n:確認2",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:rec:consumption-n:確認3",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:rec:consumption-n:確認4",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:rec:consumption-n:確認5",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:rec:consumption-n:確認6",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:rec:consumption-n:確認7",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:ext:x115-5-a",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:ext:x115-5-b",
+   "result": "passed"
+  },
+  {
+   "id": "115-5:final",
+   "result": "passed"
+  }
+ ],
+ "audio": {
+  "status": "pending",
+  "scope": "正式（production）試聽簽核尚未進行:沒有任何音檔視為已通過。目前 repository 內的音檔是舊 edge-tts 檔(非官方來源,不部署);正式音檔需以 Azure 付費層(azure-paid)產生,並由教師聆聽後以 approve-audio 正式簽核。教學文字的簽核不受影響。",
+  "approvedFiles": [],
+  "buttons": [
+   {
+    "item": "115-5:optA",
+    "file": "1d5421682b058f.mp3"
+   },
+   {
+    "item": "115-5:optB",
+    "file": "11ee989533395a.mp3"
+   },
+   {
+    "item": "115-5:optC",
+    "file": "1cc5a839453209.mp3"
+   },
+   {
+    "item": "115-5:optD",
+    "file": "184aafb7245f67.mp3"
+   },
+   {
+    "item": "115-5:w:consumption-n:def",
+    "file": "184aafb7245f67.mp3"
+   },
+   {
+    "item": "115-5:w:consumption-n:coll1",
+    "file": "361b7d6c75152.mp3"
+   },
+   {
+    "item": "115-5:w:consumption-n:coll2",
+    "file": "17203357c8aaa1.mp3"
+   },
+   {
+    "item": "115-5:w:consumption-n:coll3",
+    "file": "f0a931b3cdd89.mp3"
+   },
+   {
+    "item": "115-5:w:consumption-n:ex1",
+    "file": "1d97abe8e26865.mp3"
+   },
+   {
+    "item": "115-5:w:consumption-n:fam:consume-v",
+    "file": "1e8c6d1763eeb5.mp3"
+   },
+   {
+    "item": "115-5:w:consumption-n:fam:consumer-n",
+    "file": "ac6167ba6467c.mp3"
+   },
+   {
+    "item": "115-5:w:dimension-n:def",
+    "file": "1d5421682b058f.mp3"
+   },
+   {
+    "item": "115-5:w:dimension-n:coll1",
+    "file": "affd0d001f72f.mp3"
+   },
+   {
+    "item": "115-5:w:integration-n:def",
+    "file": "11ee989533395a.mp3"
+   },
+   {
+    "item": "115-5:w:integration-n:coll1",
+    "file": "3414c38e12134.mp3"
+   },
+   {
+    "item": "115-5:w:provision-n:def",
+    "file": "1cc5a839453209.mp3"
+   },
+   {
+    "item": "115-5:w:provision-n:coll1",
+    "file": "12ee210626967b.mp3"
+   }
+  ],
+  "buttonCount": 17,
+  "distinctFileCount": 0,
+  "totalAudioFiles": 187,
+  "notIncludedCount": 187,
+  "notIncluded": "所有音檔都不得視為已通過正式簽核。"
+ },
+ "vocabularyOccurrenceRecords": {
+  "entry": "consumption-n",
+  "note": "consumption 的歷屆出題紀錄(已確認 8 次:正確答案 1、干擾選項 2、題幹 0、文章用字 5;待審核 0、被排除 0)納入本簽核;紀錄資料在 gsat/exam/vocab_index.js(由 tools/build_vocab_index.py 逐字計算)。dimension、integration、provision 的歷屆紀錄維持既有狀態,沒有需要另案裁定的紀錄。本簽核不涉及其他詞條與其他待審核紀錄。"
+ }
+}

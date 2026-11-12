@@ -20,6 +20,8 @@ Q1 = '115-1'
 Q2 = '115-2'
 Q3 = '115-3'
 Q4 = '115-4'
+Q5 = '115-5'
+Q4_FINGERPRINT = '59ab1647b21aca94977af93efeca35116757e0ec59810139322d40e0e53c0c4b'
 Q3_FINGERPRINT = '09716c7b0e67bd2611c9d3e95fcec8dd0a601a0d481f5b0cb6ce9914e2fb0b6b'
 Q2_FINGERPRINT = 'ba6225f2a09f770cbeaa81bb32c915ad0e57ef8c9143b7d3e1ae135f16c50fad'
 Q1_FINGERPRINT = '9255de0891e06a3f85d06f15b46144850ad1ca4dbe2aaea9ee8f94643af9c3b5'
@@ -43,10 +45,10 @@ def test_every_reviewed_question_has_a_complete_valid_signoff(data, recs):
         assert so.validate(r, data) == [], k
 
 
-def test_only_q1_to_q4_are_signed_off_and_the_other_six_stay_draft(data, recs):
-    assert set(recs) == {Q1, Q2, Q3, Q4}
-    others = [i for i in data['items'] if i['key'] not in (Q1, Q2, Q3, Q4)]
-    assert len(others) == 6 and [i['key'] for i in others] == [f'115-{n}' for n in range(5, 11)]
+def test_only_q1_to_q5_are_signed_off_and_the_other_five_stay_draft(data, recs):
+    assert set(recs) == {Q1, Q2, Q3, Q4, Q5}
+    others = [i for i in data['items'] if i['key'] not in (Q1, Q2, Q3, Q4, Q5)]
+    assert len(others) == 5 and [i['key'] for i in others] == [f'115-{n}' for n in range(6, 11)]
     for i in others:
         e = i['e']
         assert e['status'] == 'draft' and e['reviewer'] is None and e['reviewedAt'] is None and not e['reviewNotes'], i['key']
@@ -56,8 +58,8 @@ def test_only_q1_to_q4_are_signed_off_and_the_other_six_stay_draft(data, recs):
 
 def test_a_question_marked_reviewed_without_a_signoff_is_caught(data, recs):
     d = copy.deepcopy(data)
-    next(i for i in d['items'] if i['key'] == '115-5')['e']['status'] = 'reviewed'                 # 模擬:AI 產生的內容自己標成 reviewed
-    assert so.unsigned_reviewed(d, set(recs)) == ['115-5']
+    next(i for i in d['items'] if i['key'] == '115-6')['e']['status'] = 'reviewed'                 # 模擬:AI 產生的內容自己標成 reviewed
+    assert so.unsigned_reviewed(d, set(recs)) == ['115-6']
 
 
 def test_the_48_item_ids_match_current_data_exactly_and_all_passed(data, recs):
@@ -120,7 +122,7 @@ def test_no_audio_file_is_marked_as_passed_anywhere(data, recs):
     a = recs[Q1]['audio']
     assert a['totalAudioFiles'] == len(data['man']['items']) == 187 and a['notIncludedCount'] == 187
     assert all(r['audio']['approvedFiles'] == [] and r['audio']['status'] in ('invalidated', 'pending') for r in recs.values())      # Q1 作廢、Q2 尚未簽核；沒有任何通過的音檔
-    assert (recs[Q1]['audio']['status'], recs[Q2]['audio']['status'], recs[Q3]['audio']['status'], recs[Q4]['audio']['status']) == ('invalidated', 'pending', 'pending', 'pending')
+    assert (recs[Q1]['audio']['status'], recs[Q2]['audio']['status'], recs[Q3]['audio']['status'], recs[Q4]['audio']['status'], recs[Q5]['audio']['status']) == ('invalidated', 'pending', 'pending', 'pending', 'pending')
     assert not any(k in i for i in data['man']['items'] for k in ('status', 'reviewed', 'passed', 'approved'))    # 清單本身沒有任何「已通過」標記
     assert '不得視為已通過' in a['notIncluded']
 
@@ -389,7 +391,7 @@ def test_q2_fingerprint_protects_the_signed_text(data, recs):
     # 審核中繼資料、別題、無關單字不影響
     def meta(d):
         e = item(d)['e']; e['status'] = 'draft'; e['reviewNotes'] = '改'; e['aiFlags'] = ['x']; d['vocab']['entries']['amateur-adj']['status'] = 'reviewed'
-        next(i for i in d['items'] if i['key'] == '115-5')['e']['zh'] = '別題'; d['vocab']['entries']['tight-adj']['zh'] = '別字'
+        next(i for i in d['items'] if i['key'] == '115-6')['e']['zh'] = '別題'; d['vocab']['entries']['tight-adj']['zh'] = '別字'
     assert not changed(meta)
     d = copy.deepcopy(data); item(d)['e']['key'][2] += '。'
     sigd = copy.deepcopy(recs[Q2])
@@ -450,7 +452,7 @@ def test_q3_fingerprint_protects_the_signed_text(data, recs):
     assert changed(lambda d: d['index']['entries']['vacancy-n']['role'].__setitem__('answer', 0))                 # 歷屆出題紀錄
     def meta(d):
         e = item(d)['e']; e['status'] = 'draft'; e['reviewNotes'] = '改'; e['aiFlags'] = ['x']; d['vocab']['entries']['vacancy-n']['status'] = 'reviewed'
-        next(i for i in d['items'] if i['key'] == '115-5')['e']['zh'] = '別題'; d['vocab']['entries']['amateur-adj']['zh'] = '別字'
+        next(i for i in d['items'] if i['key'] == '115-6')['e']['zh'] = '別題'; d['vocab']['entries']['amateur-adj']['zh'] = '別字'
     assert not changed(meta)
 
 
@@ -505,7 +507,7 @@ def test_q4_fingerprint_protects_the_signed_text(data, recs):
     assert changed(lambda d: d['index']['entries']['initially-adv'].__setitem__('total', 3))
     def meta(d):
         e = item(d)['e']; e['status'] = 'draft'; e['reviewNotes'] = '改'; e['aiFlags'] = ['x']; ini(d)['status'] = 'reviewed'
-        next(i for i in d['items'] if i['key'] == '115-5')['e']['zh'] = '別題'; d['vocab']['entries']['vacancy-n']['zh'] = '別字'
+        next(i for i in d['items'] if i['key'] == '115-6')['e']['zh'] = '別題'; d['vocab']['entries']['vacancy-n']['zh'] = '別字'
         d['index']['entries']['initial-adj']['review'] = []                                                       # initial-adj 的 108 學年度 pending 紀錄不屬於 Q4 簽核內容
     assert not changed(meta)
 
@@ -515,3 +517,74 @@ def test_initially_confirmed_and_initial_adj_pending_records_are_as_signed(data)
     assert (e['total'], e['role']['answer'], e['role']['distractor'], e['role']['stem'], e['role']['passage'], e['review'], e.get('rejected', [])) == (4, 1, 1, 0, 2, [], [])
     p = data['index']['entries']['initial-adj']['review']
     assert [r['k'] for r in p] == ['initial-adj|108|108:vocab:1|10|distractor|選項 (A)']                              # 這一筆維持 pending，不納入 Q4 簽核
+
+
+def test_q5_text_signoff_is_complete_and_audio_is_not_approved(data, recs):
+    """Q5（115-5）文字簽核：45 個審核項目完整、passed；正式試聽簽核尚未進行（pending），沒有任何通過的音檔。"""
+    r = recs[Q5]; rows = so.rows_of(data, Q5); ids = [x for x, _ in rows]
+    assert (r['question'], r['status'], r['reviewer'], r['signedAt']) == (Q5, 'passed', '教師（負責人）', '2026-11-12')
+    assert r['evidence']['reviewHtmlSha256'] == 'fc92354508863798d3f86910d3b84aba62f4d0e12dca496ebae8166d25f22191'
+    assert len(ids) == 45 and len(set(ids)) == 45 and sorted(x['id'] for x in r['items']) == sorted(ids) and all(x['result'] == 'passed' for x in r['items'])
+    assert all(i.startswith(Q5 + ':') for i in ids) and {'115-5:zh', '115-5:key1', '115-5:key2', '115-5:key3', '115-5:optA', '115-5:optB', '115-5:optC', '115-5:optD', '115-5:pat1', '115-5:pat2', '115-5:pat3', '115-5:gram',
+                                                       '115-5:w:consumption-n:note', '115-5:w:consumption-n:conf1', '115-5:w:provision-n:note', '115-5:ext:x115-5-a', '115-5:ext:x115-5-b'} <= set(ids)
+    assert not any(i.endswith(':ant') for i in ids)                                                                   # production 反義字已移除
+    assert r['contentFingerprint']['value'] == so.fingerprint(data, Q5) == 'be1d03ebf058dcc158193eb8bd769d5cdd7ec3e0701501074241fd42d4d34df5' and so.validate(r, data) == []
+    assert '重點字的歷屆出題紀錄' in r['scope'] and '原創延伸練習' in r['scope'] and '不含發音' in r['scope']
+    a = r['audio']
+    assert a['status'] == 'pending' and a['approvedFiles'] == [] and a['distinctFileCount'] == 0 and a['notIncludedCount'] == a['totalAudioFiles'] == 187 and 'devTestChecks' not in a
+    e = next(i for i in data['items'] if i['key'] == Q5)['e']
+    assert (e['status'], e['reviewer'], e['reviewedAt']) == ('reviewed', '教師（負責人）', '2026-11-12') and '115-5.json' in e['reviewNotes'] and not e.get('aiFlags')
+    prov = json.loads((REPO / 'docs' / 'gsat' / 'audio-provenance.json').read_text(encoding='utf8'))['files']
+    assert not any(x['productionApproved'] for x in prov.values())
+
+
+def test_q1_to_q4_fingerprints_are_unchanged_by_q5_signoff(data, recs):
+    for q, fp in ((Q1, Q1_FINGERPRINT), (Q2, Q2_FINGERPRINT), (Q3, Q3_FINGERPRINT), (Q4, Q4_FINGERPRINT)):
+        assert so.fingerprint(data, q) == recs[q]['contentFingerprint']['value'] == fp, q
+
+
+def test_q5_fingerprint_protects_the_signed_text(data, recs):
+    sig = recs[Q5]['contentFingerprint']['value']
+    item = lambda d: next(i for i in d['items'] if i['key'] == Q5)
+    con = lambda d: d['vocab']['entries']['consumption-n']
+    def changed(edit):
+        d = copy.deepcopy(data); edit(d)
+        return so.fingerprint(d, Q5) != sig
+    assert changed(lambda d: item(d)['e'].__setitem__('zh', 'x'))                                                 # 中文翻譯
+    for n in range(3):                                                                                            # 解題步驟 1～3
+        assert changed(lambda d, n=n: item(d)['e']['key'].__setitem__(n, 'x')), n
+    for o in 'ABCD':                                                                                              # 選項解析
+        assert changed(lambda d, o=o: item(d)['e']['options'][o].__setitem__('why', 'x')), o
+    assert changed(lambda d: con(d).__setitem__('note', 'x'))                                                     # consumption 字義補充
+    assert changed(lambda d: con(d).__setitem__('zh', 'x'))                                                       # consumption 字義
+    assert changed(lambda d: con(d)['coll'][2].__setitem__('zh', 'x'))                                            # 搭配詞
+    assert changed(lambda d: con(d)['ex'][0].__setitem__('zh', 'x'))                                              # 例句
+    assert changed(lambda d: con(d)['rel']['syn'][0].__setitem__('zh', 'x'))                                      # 同義字
+    assert changed(lambda d: con(d)['rel']['confusable'][0].__setitem__('note', 'x'))                             # intake 辨析
+    assert changed(lambda d: con(d)['rel']['ant'].append({'w': 'production', 'zh': '生產'}))                       # 反義字被加回去
+    assert changed(lambda d: d['vocab']['entries']['consume-v'].__setitem__('zh', 'x'))                           # consume 字族
+    assert changed(lambda d: d['vocab']['entries']['provision-n'].__setitem__('note', 'x'))                       # provision 字義補充
+    assert changed(lambda d: d['vocab']['entries']['dimension-n'].__setitem__('zh', 'x'))
+    assert changed(lambda d: d['vocab']['entries']['integration-n'].__setitem__('zh', 'x'))
+    for n in range(3):                                                                                            # pat1～pat3
+        assert changed(lambda d, n=n: item(d)['e']['patterns'].__setitem__(n, 'x')), n
+    assert changed(lambda d: item(d)['e'].__setitem__('grammar', 'x'))                                            # 文法補充
+    assert changed(lambda d: item(d)['ext'][0].__setitem__('explain', 'x'))                                       # x115-5-a
+    assert changed(lambda d: item(d)['ext'][1].__setitem__('q', 'x'))                                             # x115-5-b 題目
+    assert changed(lambda d: item(d)['ext'][1].__setitem__('explain', 'x'))                                       # x115-5-b 解析
+    assert changed(lambda d: d['index']['entries']['consumption-n']['role'].__setitem__('answer', 0))            # consumption 已確認歷屆紀錄
+    assert changed(lambda d: d['index']['entries']['consumption-n'].__setitem__('total', 7))
+    def meta(d):
+        e = item(d)['e']; e['status'] = 'draft'; e['reviewNotes'] = '改'; e['aiFlags'] = ['x']; con(d)['status'] = 'reviewed'
+        next(i for i in d['items'] if i['key'] == '115-6')['e']['zh'] = '別題'; d['vocab']['entries']['vacancy-n']['zh'] = '別字'
+        d['index']['entries']['initial-adj']['review'] = []                                                       # 其他詞條的 pending 紀錄不屬於 Q5 簽核內容
+    assert not changed(meta)
+
+
+def test_consumption_confirmed_records_and_other_option_records_are_as_signed(data):
+    E = data['index']['entries']
+    c = E['consumption-n']
+    assert (c['total'], c['role']['answer'], c['role']['distractor'], c['role']['stem'], c['role']['passage'], c['review'], c.get('rejected', [])) == (8, 1, 2, 0, 5, [], [])
+    assert [(E[k]['total'], E[k]['review'], E[k].get('rejected', [])) for k in ('dimension-n', 'integration-n')] == [(1, [], []), (1, [], [])]
+    assert (E['provision-n']['total'], E['provision-n']['review'], E['provision-n'].get('rejected', [])) == (2, [], [])
+    assert data['vocab']['entries']['consumption-n']['rel']['ant'] == []                                              # production 不再是 consumption 的反義字
