@@ -18,9 +18,9 @@ cp -r score-rescue "$OUT"/score-rescue
 # 完整方案教材（詞性小課第 4～7 課）只放在 Supabase 私有儲存桶。private/ 雖然不進 git，
 # 但在有教材的工作目錄執行這支腳本時仍會被複製，所以這裡一律刪掉，最後再檢查一次。
 rm -rf "$OUT"/score-rescue/private "$OUT"/score-rescue/tests
-find "$OUT"/score-rescue \( -name 'lessons_upload*.zip' -o -name '*.full.html' -o -name 'lesson[4-7].mp4' -o -name 'audio-texts-paid.json' \) -delete
-if grep -rlE 'L[4-7]-(DEMO|PR|CHK)-[0-9]' "$OUT"/score-rescue >/dev/null 2>&1 || find "$OUT"/score-rescue -name 'l[4-7].js' | grep -q .; then
-  echo "::error::公開輸出含有完整方案教材（第 4～7 課）"; exit 1
+find "$OUT"/score-rescue \( -name 'lessons_upload*.zip' -o -name '*.full.html' -o -name 'lesson[4-7].mp4' -o -name 'audio-texts-paid.json' -o -name 'final.js' \) -delete
+if grep -rlE 'L[4-7]-(DEMO|PR|CHK)-[0-9]|FINAL-[0-9][0-9]' "$OUT"/score-rescue >/dev/null 2>&1 || find "$OUT"/score-rescue -name 'l[4-7].js' | grep -q .; then
+  echo "::error::公開輸出含有完整方案教材（第 4～7 課或結業測驗）"; exit 1
 fi
 cp -r gsat "$OUT"/gsat
 rm -rf "$OUT"/gsat/tests

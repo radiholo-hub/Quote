@@ -458,6 +458,9 @@ function feedbackHTML(q,k,kind){
     '</div></details>'+
   '</div>';
 }
+/* 完成紀錄：提交 4 題確認題、進入完成畫面就記為完成（存在這個瀏覽器；結業測驗用來判斷 7 課是否都完成） */
+function lessonNo(){var m=location.pathname.match(/\/l([2-7])\.html$/);return m?+m[1]:1}
+function markDone(){try{localStorage.setItem('sr_pos_done_'+lessonNo(),String(Date.now()))}catch(e){}}
 function viewItem(kind,fresh){
   var set=kind==='pr'?PR:CHK,s=st[kind],i=s.i,q=set[i],a=s.ans[q.id]||{},done=a.done;
   prog(kind==='pr'?(i/(PR.length+CHK.length)):((PR.length+i)/(PR.length+CHK.length)));
@@ -487,7 +490,7 @@ function viewItem(kind,fresh){
     h('next').addEventListener('click',function(){
       if(!last){s.i++;viewItem(kind)}
       else if(kind==='pr'){st.chk.i=0;viewItem('chk')}
-      else viewDone();
+      else{markDone();viewDone()}
     });
   }
 }
