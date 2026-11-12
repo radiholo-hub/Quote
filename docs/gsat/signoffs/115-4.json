@@ -1,0 +1,255 @@
+{
+ "question": "115-4",
+ "status": "passed",
+ "reviewer": "教師（負責人）",
+ "signedAt": "2026-11-12",
+ "scope": "115 學年度學測英文第 4 題:教學文字內容(中文翻譯、解題步驟、選項解析、文法補充)、引用的相關單字與片語、重點字的歷屆出題紀錄,以及原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。",
+ "evidence": {
+  "reviewHtmlSha256": "faef3183779563dea65e582ce7796f2a6f937ba5ef47585b70492849bc6ffa93",
+  "note": "簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。"
+ },
+ "contentFingerprint": {
+  "algorithm": "sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()",
+  "value": "59ab1647b21aca94977af93efeca35116757e0ec59810139322d40e0e53c0c4b",
+  "covers": "題目與選項與官方答案、詳解內容、引用的單字詞條、畫面列出的衍生字、片語、延伸練習、重點字的歷屆出題紀錄、每個發音按鈕對應的 mp3 檔名、審核項目 ID 清單(mp3 檔案內容不在其中,見 audio 區塊)",
+  "excludes": "status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條"
+ },
+ "items": [
+  {
+   "id": "115-4:q",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:zh",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:key1",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:key2",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:key3",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:optA",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:optB",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:optC",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:optD",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:ex1",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:fam:initial-adj",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:fam:initiate-v",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:syn",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:ant",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:initially-adv:conf1",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:genuinely-adv:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:genuinely-adv:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:genuinely-adv:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:alternatively-adv:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:alternatively-adv:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:alternatively-adv:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:fundamentally-adv:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:fundamentally-adv:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:w:fundamentally-adv:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:pat1",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:pat2",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:gram",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:rec:initially-adv:sum",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:rec:initially-adv:確認1",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:rec:initially-adv:確認2",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:rec:initially-adv:確認3",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:rec:initially-adv:確認4",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:ext:x115-4-a",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:ext:x115-4-b",
+   "result": "passed"
+  },
+  {
+   "id": "115-4:final",
+   "result": "passed"
+  }
+ ],
+ "audio": {
+  "status": "pending",
+  "scope": "正式（production）試聽簽核尚未進行:沒有任何音檔視為已通過。目前 repository 內的音檔是舊 edge-tts 檔(非官方來源,不部署);正式音檔需以 Azure 付費層(azure-paid)產生,並由教師聆聽後以 approve-audio 正式簽核。教學文字的簽核不受影響。",
+  "approvedFiles": [],
+  "buttons": [
+   {
+    "item": "115-4:optA",
+    "file": "bcf53d15dbddd.mp3"
+   },
+   {
+    "item": "115-4:optB",
+    "file": "ec13b3388395b.mp3"
+   },
+   {
+    "item": "115-4:optC",
+    "file": "d668437baa28b.mp3"
+   },
+   {
+    "item": "115-4:optD",
+    "file": "e474e74249b7a.mp3"
+   },
+   {
+    "item": "115-4:w:initially-adv:def",
+    "file": "bcf53d15dbddd.mp3"
+   },
+   {
+    "item": "115-4:w:initially-adv:coll1",
+    "file": "1c6e377553e08e.mp3"
+   },
+   {
+    "item": "115-4:w:initially-adv:coll2",
+    "file": "8bb742e21b788.mp3"
+   },
+   {
+    "item": "115-4:w:initially-adv:ex1",
+    "file": "1fb4047884722e.mp3"
+   },
+   {
+    "item": "115-4:w:initially-adv:fam:initial-adj",
+    "file": "91841e41215b2.mp3"
+   },
+   {
+    "item": "115-4:w:initially-adv:fam:initiate-v",
+    "file": "19ee1b4caf0cf2.mp3"
+   },
+   {
+    "item": "115-4:w:genuinely-adv:def",
+    "file": "ec13b3388395b.mp3"
+   },
+   {
+    "item": "115-4:w:genuinely-adv:coll1",
+    "file": "e99172c8c5f.mp3"
+   },
+   {
+    "item": "115-4:w:alternatively-adv:def",
+    "file": "d668437baa28b.mp3"
+   },
+   {
+    "item": "115-4:w:fundamentally-adv:def",
+    "file": "e474e74249b7a.mp3"
+   },
+   {
+    "item": "115-4:w:fundamentally-adv:coll1",
+    "file": "19ccdeb92c65be.mp3"
+   }
+  ],
+  "buttonCount": 15,
+  "distinctFileCount": 0,
+  "totalAudioFiles": 187,
+  "notIncludedCount": 187,
+  "notIncluded": "所有音檔都不得視為已通過正式簽核。"
+ },
+ "vocabularyOccurrenceRecords": {
+  "entry": "initially-adv",
+  "note": "initially 的歷屆出題紀錄(已確認 4 次:正確答案 1、干擾選項 1、題幹 0、文章用字 2;待審核 0)納入本簽核;紀錄資料在 gsat/exam/vocab_index.js(由 tools/build_vocab_index.py 逐字計算)。衍生字 initial-adj 的 108 學年度 vocab 第 10 題選項 (A) 待審核紀錄維持 pending,不納入本簽核,也不是本簽核的阻礙。本簽核不涉及其他詞條與其他待審核紀錄。"
+ }
+}

@@ -126,7 +126,7 @@ window.EXT_PRACTICE = [
    "initiation"
   ],
   "answer": 1,
-  "explain": "空格修飾形容詞 difficult,要用副詞 initially(起初)。initial 是形容詞,不能修飾形容詞。",
+  "explain": "空格直接修飾形容詞 difficult，需要副詞，因此選 initially『起初』。initial 是形容詞，initiate 是動詞，initiation 是名詞，都不符合此處需要副詞的詞性位置。",
   "status": "draft"
  },
  {
@@ -144,7 +144,7 @@ window.EXT_PRACTICE = [
    "rarely"
   ],
   "answer": 0,
-  "explain": "initially＝at first(起初)。finally、eventually 是「最後」,與它相反;rarely 是「很少」。",
+  "explain": "initially＝at first，兩者都表示『起初』，因此選 (A)。finally 表示『最後、終於』，eventually 表示『最終、終究』，rarely 表示『很少』，三者都不是 initially 的近義詞。",
   "status": "draft"
  },
  {

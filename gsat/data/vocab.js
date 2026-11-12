@@ -413,7 +413,7 @@ window.VOCAB = {
      "zh": "這個計畫一開始看起來很難,但後來越來越容易。"
     }
    ],
-   "note": "than initially expected 是 than (it was) initially expected 的省略。",
+   "note": "than initially expected＝比最初預期的……，是比較結構中的省略形式，可理解為 than was initially expected。",
    "rel": {
     "syn": [
      {
@@ -438,7 +438,7 @@ window.VOCAB = {
     "confusable": [
      {
       "w": "originally",
-      "note": "兩者常可互換;initially 強調過程「一開始的階段」,originally 強調「本來的狀態」(常暗示後來有改變)。"
+      "note": "兩者都可表示『起初』，有些情況可以互換。initially 常著重某個過程或情況的開始階段；originally 常表示『原本、最初』，尤其常用於最初的計畫、用途、身分或來源。實際使用仍要依搭配與語境判斷。"
      }
     ]
    },
