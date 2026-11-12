@@ -9,10 +9,10 @@ L3 = ROOT / 'pos' / 'l3.html'
 POS = ROOT / 'pos' / 'index.html'
 STUB = ("window.__ins=[];window.supabase={createClient:function(){return {from:function(t){return {insert:function(row){"
         "window.__ins.push([t,row.name]);return Promise.resolve({error:null})}}}}}};")
-JUMP = [('L3-CHK-01', 'L3-DEMO-01', '回看示範1（L3-DEMO-01）', '答案：(B) guides'),
-        ('L3-CHK-02', 'L3-DEMO-02', '回看示範2（L3-DEMO-02）', '答案：(A) show'),
-        ('L3-CHK-03', 'L3-DEMO-03', '回看示範3（L3-DEMO-03）', '答案：(C) notify'),
-        ('L3-CHK-04', 'L3-DEMO-04', '回看示範4（L3-DEMO-04）', '答案：(D) review')]
+JUMP = [('L3-CHK-01', 'L3-DEMO-01', '看同類示範（示範1）', '答案：(B) guides'),
+        ('L3-CHK-02', 'L3-DEMO-02', '看同類示範（示範2）', '答案：(A) show'),
+        ('L3-CHK-03', 'L3-DEMO-03', '看同類示範（示範3）', '答案：(C) notify'),
+        ('L3-CHK-04', 'L3-DEMO-04', '看同類示範（示範4）', '答案：(D) review')]
 
 
 @pytest.fixture
@@ -91,12 +91,13 @@ def test_each_check_wrong_jumps_to_its_demo(open_page, i):
         p.evaluate("()=>{delete __pos.st.chk.ans['%s'];__pos.view('chk')}" % cid)
         answer(p, wrong)
         assert p.inner_text('#toDemo') == label
+        assert p.is_hidden('#demoBox')
         p.click('#toDemo')
-        t = p.inner_text('#app')
-        assert did in t and ans in t and ('你在 %s 答錯了' % cid) in t
-        p.click('#back')
-        t = p.inner_text('#app')
-        assert cid in t and '空格的工作' in t and p.query_selector('#toDemo')
+        t = p.inner_text('#demoBox')
+        assert did in t and ans in t, '示範直接在原題下方展開'
+        assert p.inner_text('#toDemo') == '收起示範'
+        p.click('#toDemo')
+        assert p.is_hidden('#demoBox') and cid in p.inner_text('#app'), '收起後仍在原題'
 
 
 def test_l3_done_screen(open_page):
@@ -130,8 +131,9 @@ def _pretest(p, wrong_codes):
     for q in p.evaluate('__pos.PRE.map(q=>[q.a,q.c])'):
         a, c = q
         p.click('.opt[data-k="%d"]' % (((a + 1) % 4) if c in wrong_codes else a))
-        p.click('[data-conf="sure"]')
-        p.click('#next')
+        p.evaluate('window.__pi=__pos.st.pre.i')
+        p.click('[data-conf="sure"]')   # 點把握度就自動下一題
+        p.wait_for_function('__pos.st.pre.i!==window.__pi||!!document.getElementById("trial")')
 
 
 @pytest.mark.parametrize('codes,href,btn', [

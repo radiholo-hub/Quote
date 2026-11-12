@@ -91,7 +91,13 @@ table.tbl{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:10px}
 table.tbl th,table.tbl td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
 table.tbl th{color:var(--muted);font-weight:700;font-size:.85rem}
 .vid{display:block;width:100%;aspect-ratio:16/9;border-radius:12px;background:#2E2A26}
-#afterVideo{border-left:4px solid var(--wine)}
+#afterVideo{display:grid;gap:4px}
+#app{padding-bottom:calc(130px + env(safe-area-inset-bottom))}
+.actions{position:fixed;left:0;right:0;bottom:0;z-index:20;margin:0;padding:14px max(18px,calc((100vw - 684px)/2)) calc(14px + env(safe-area-inset-bottom))}
+.fb #toDemo{margin-top:4px}
+.fb .demo{margin-top:4px}
+.fbmore{display:grid;gap:8px;margin-top:8px}
+.fbmore ul{margin:4px 0 0 1.2em}
 .steps{display:grid;gap:8px;counter-reset:s;padding:0;list-style:none}
 .steps li{counter-increment:s;display:flex;gap:10px}
 .steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:var(--wine);color:#fff;font-weight:700;font-size:.85rem;display:grid;place-items:center;margin-top:2px}
@@ -127,7 +133,7 @@ div.opt .say.ico{width:36px;min-height:36px;margin-left:-4px}
 <div class="topbar">
   <div class="wrap bar">
     <a class="link" href="../">← Score Rescue</a>
-    <span><b class="brand">詞性小課 第4課</b> <span class="tag-preview">預覽版</span></span>
+    <span><b class="brand">詞性小課 第4課</b></span>
   </div>
   <div class="progress" id="prog" hidden><i></i></div>
 </div>
@@ -403,8 +409,8 @@ function viewLesson(){
     '<h1>V-ing 還是 p.p.？先問名詞是「做動作」還是「被做」</h1>'+
     '<video id="l1video" class="vid" controls playsinline preload="metadata" poster="lesson4-poster.jpg" src="lesson4.mp4">你的瀏覽器無法播放影片，可以直接往下看文字版重點。</video>'+
     '<p class="fine">約 5 分鐘：先考你兩句，再教判斷觀念＋四個示範。</p>'+
-    '<div class="sheet" id="afterVideo"><h3>看完了？</h3><p style="margin-top:4px">往下做 10 題練習，再用 4 題確認你會不會判斷。</p>'+
-      '<div style="margin-top:14px"><button class="btn pri" id="toPr">開始 10 題練習</button></div></div>'+
+    '<div id="afterVideo"><button class="btn pri" id="toPr">開始練習（10 題）</button>'+
+      '<p style="text-align:center"><button class="link" id="toText">看文字版</button></p></div>'+
     '<details class="sheet more" id="textVersion"><summary>影片重點文字版（判斷觀念與四個示範）</summary><div class="stack" style="margin-top:12px">'+
     '<div class="sheet stack"><h2>先懂一件事：V-ing 和 p.p. 可以修飾名詞</h2>'+
       '<p>動詞變成 <b>V-ing</b> 或 <b>p.p.（過去分詞）</b>，就可以像形容詞一樣修飾名詞，這叫「分詞」。先問：<b>這個名詞是做動作的一方，還是承受動作的一方？</b></p>'+
@@ -434,46 +440,51 @@ function viewLesson(){
   function start(){st.pr.i=0;viewItem('pr')}
   h('toPr').addEventListener('click',start);
   h('toPr2').addEventListener('click',start);
+  h('toText').addEventListener('click',function(){var t=h('textVersion');t.open=true;t.scrollIntoView({block:'start'})});
   h('l1video').addEventListener('ended',function(){var a=h('afterVideo');if(a)a.scrollIntoView({behavior:'smooth',block:'center'})});
 }
 
 /* ---------- 5. 練習與確認（共用作答畫面） ---------- */
-function feedbackHTML(q,k){
+function feedbackHTML(q,k,kind){
   var ok=k===q.a;
   var others=q.x.map(function(t,j){return (t&&j!==k)?'<li>'+esc(t)+'</li>':''}).join('');
-  return '<div class="fb '+(ok?'ok':'bad')+'">'+
-    '<div class="work">空格的工作：'+esc(q.work)+'</div>'+
+  return '<div class="fb '+(ok?'ok':'bad')+'" id="fb">'+
     '<div><b>'+(ok?'答對了！':'正解是 ('+LET[q.a]+') '+esc(q.o[q.a]))+'</b>'+(q.whyHtml||esc(q.why))+'</div>'+
-    (ok?'':'<div>'+esc(q.x[k])+'</div>')+sentHTML(q)+
-    (others?'<details class="more"><summary>其他選項為什麼不合適</summary><ul>'+others+'</ul></details>':'')+
+    (kind==='chk'&&!ok?'<button class="btn line" id="toDemo">看同類示範（示範'+(q.demo+1)+'）</button>'+
+      '<div id="demoBox" hidden>'+demoHTML(DEMOS[q.demo],true)+'</div>':'')+
+    '<details class="more" id="fullFb"><summary>看完整解析</summary><div class="fbmore">'+
+      '<div class="work">空格的工作：'+esc(q.work)+'</div>'+
+      (ok?'':'<div>你選的 '+esc(q.x[k])+'</div>')+sentHTML(q)+
+      (others?'<div><div class="work">其他選項</div><ul>'+others+'</ul></div>':'')+
+    '</div></details>'+
   '</div>';
 }
-function viewItem(kind){
+function viewItem(kind,fresh){
   var set=kind==='pr'?PR:CHK,s=st[kind],i=s.i,q=set[i],a=s.ans[q.id]||{},done=a.done;
   prog(kind==='pr'?(i/(PR.length+CHK.length)):((PR.length+i)/(PR.length+CHK.length)));
   var label=kind==='pr'?'練習 第 '+(i+1)+' / '+PR.length+' 題':'確認 第 '+(i+1)+' / '+CHK.length+' 題';
   var html='<div class="sheet"><div class="qid">'+label+' · '+q.id+'</div><p class="q">'+stem(q.s)+'</p>'+
-    optsHTML(q,a.k,!!done)+(done?feedbackHTML(q,a.k):'')+'</div>';   // 練習與確認題不問把握度（只有前測用來判讀）
+    optsHTML(q,a.k,!!done)+(done?feedbackHTML(q,a.k,kind):'')+'</div>';   // 練習與確認題不問把握度（只有前測用來判讀）
   var last=i===set.length-1;
-  var actions='<div class="actions'+(done?' static':'')+'">';
+  var actions='<div class="actions">';
   if(!done){
     actions+='<button class="btn pri" id="submit"'+(a.k==null?' disabled':'')+'>確認答案</button>';
   }else{
-    if(kind==='chk'&&a.k!==q.a)actions+='<button class="btn line" id="toDemo" style="margin-bottom:10px">回看示範'+(q.demo+1)+'（'+DEMOS[q.demo].id+'）</button>';
     actions+='<button class="btn pri" id="next">'+(last?(kind==='pr'?'開始 4 題確認':'看完成畫面'):'下一題')+'</button>';
   }
   actions+='</div>';
-  if(kind==='chk'&&i===0&&!done)html='<div class="sheet" style="margin-bottom:14px"><h3>確認是否學會</h3><p class="fine" style="margin-top:4px">4 題新題。答錯時可以回看對應的示範，再回到原題。</p></div>'+html;
+  if(kind==='chk'&&i===0&&!done)html='<div class="sheet" style="margin-bottom:14px"><h3>確認是否學會</h3><p class="fine" style="margin-top:4px">4 題新題。答錯時可以直接在題目下方看同類示範。</p></div>'+html;
   render(html+actions);
   if(!done){
     bindPick(function(f,v){var r=s.ans[q.id]=s.ans[q.id]||{};r[f]=v;viewItem(kind)});
     h('submit').addEventListener('click',function(){
       a.done=true;
       if(kind==='chk'&&!(q.id in s.first))s.first[q.id]=a.k===q.a;
-      viewItem(kind);
+      viewItem(kind,true);
     });
   }else{
-    if(h('toDemo'))h('toDemo').addEventListener('click',function(){viewDemoJump(q)});
+    if(h('toDemo'))h('toDemo').addEventListener('click',function(){var b=h('demoBox');b.hidden=!b.hidden;this.textContent=b.hidden?'看同類示範（示範'+(q.demo+1)+'）':'收起示範';if(!b.hidden)b.scrollIntoView({block:'start'})});
+    if(fresh)h('fb').scrollIntoView({block:'nearest'});
     h('next').addEventListener('click',function(){
       if(!last){s.i++;viewItem(kind)}
       else if(kind==='pr'){st.chk.i=0;viewItem('chk')}

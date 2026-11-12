@@ -60,8 +60,11 @@ def test_answer_keys_match_answer_card(open_pos):
 
 def answer(p, k, conf='sure', btn='#next'):
     p.click('.opt[data-k="%d"]' % k)
-    if btn == '#next':   # 只有前測問「有把握／不確定」
+    if btn == '#next':   # 只有前測問「有把握／不確定」：點把握度就自動下一題
+        p.evaluate('window.__pi=__pos.st.pre.i')
         p.click('[data-conf="%s"]' % conf)
+        p.wait_for_function('__pos.st.pre.i!==window.__pi||!!document.getElementById("trial")')
+        return
     p.click(btn)
 
 
@@ -79,7 +82,7 @@ def walk(p, chk_wrong=(3,)):
         answer(p, (a + 1) % 4 if i in chk_wrong else a, btn='#submit')
         if i in chk_wrong:
             p.click('#toDemo')
-            p.click('#back')
+            p.click('#toDemo')
         p.click('#next')
 
 
@@ -116,11 +119,12 @@ def test_check_wrong_jumps_to_demo_and_back(open_pos):
         answer(p2, a, btn='#submit'); p2.click('#next')
     a = p2.evaluate('__pos.CHK[0].a')
     answer(p2, (a + 1) % 4, btn='#submit')
-    assert p2.inner_text('#toDemo') == '回看示範2（L1-DEMO-02）'
+    assert p2.inner_text('#toDemo') == '看同類示範（示範2）'
     p2.click('#toDemo')
-    t = p2.inner_text('#app')
+    t = p2.inner_text('#demoBox')
     assert 'L1-DEMO-02' in t and '答案：(B) confidently' in t
-    p2.click('#back')
+    p2.wait_for_timeout(800)   # 等展開示範的平滑捲動結束
+    p2.click('#fullFb summary')
     t = p2.inner_text('#app')
     assert 'L1-CHK-01' in t and '空格的工作：說明 responded 的方式' in t
 
@@ -284,8 +288,9 @@ def test_home_card_to_pretest_keeps_debug(browser, http_root, debug):
         page.click('#go')
         for a in page.evaluate('__pos.PRE.map(q=>q.a)'):
             page.click('.opt[data-k="%d"]' % a)
-            page.click('[data-conf="sure"]')
-            page.click('#next')
+            page.evaluate('window.__pi=__pos.st.pre.i')
+            page.click('[data-conf="sure"]')   # 點把握度就自動下一題
+            page.wait_for_function('__pos.st.pre.i!==window.__pi||!!document.getElementById("trial")')
         assert page.query_selector('#trial')
         page.wait_for_timeout(500)
         if debug:

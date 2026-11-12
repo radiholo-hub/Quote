@@ -10,10 +10,10 @@ L3_PAGE = ROOT / 'pos' / 'l4.html'
 POS = ROOT / 'pos' / 'index.html'
 STUB = ("window.__ins=[];window.supabase={createClient:function(){return {from:function(t){return {insert:function(row){"
         "window.__ins.push([t,row.name]);return Promise.resolve({error:null})}}}}}};")
-JUMP = [('L5-CHK-01', 'L5-DEMO-01', '回看示範1（L5-DEMO-01）', '答案：(B) to open'),
-        ('L5-CHK-02', 'L5-DEMO-02', '回看示範2（L5-DEMO-02）', '答案：(C) moving'),
-        ('L5-CHK-03', 'L5-DEMO-03', '回看示範3（L5-DEMO-03）', '答案：(C) providing'),
-        ('L5-CHK-04', 'L5-DEMO-04', '回看示範4（L5-DEMO-04）', '答案：(C) operating')]
+JUMP = [('L5-CHK-01', 'L5-DEMO-01', '看同類示範（示範1）', '答案：(B) to open'),
+        ('L5-CHK-02', 'L5-DEMO-02', '看同類示範（示範2）', '答案：(C) moving'),
+        ('L5-CHK-03', 'L5-DEMO-03', '看同類示範（示範3）', '答案：(C) providing'),
+        ('L5-CHK-04', 'L5-DEMO-04', '看同類示範（示範4）', '答案：(C) operating')]
 
 
 @pytest.fixture
@@ -115,12 +115,13 @@ def test_each_check_wrong_jumps_to_its_demo(open_page, i):
         p.evaluate("()=>{delete __pos.st.chk.ans['%s'];__pos.view('chk')}" % cid)
         answer(p, wrong)
         assert p.inner_text('#toDemo') == label
+        assert p.is_hidden('#demoBox')
         p.click('#toDemo')
-        t = p.inner_text('#app')
-        assert did in t and ans in t and ('你在 %s 答錯了' % cid) in t
-        p.click('#back')
-        t = p.inner_text('#app')
-        assert cid in t and '空格的工作' in t and p.query_selector('#toDemo')
+        t = p.inner_text('#demoBox')
+        assert did in t and ans in t, '示範直接在原題下方展開'
+        assert p.inner_text('#toDemo') == '收起示範'
+        p.click('#toDemo')
+        assert p.is_hidden('#demoBox') and cid in p.inner_text('#app'), '收起後仍在原題'
 
 
 def test_l5_done_screen_and_entry_from_l4(open_page):

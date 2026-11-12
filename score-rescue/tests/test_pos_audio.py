@@ -60,6 +60,7 @@ def test_practice_feedback_has_word_and_sentence(page_of):
         b.click()
         assert p.evaluate('window.__lastSpoken.text') == q['o'][k]
     full = q['s'].replace('______', q['o'][q['a']])
+    p.click('#fullFb summary')   # 完整句、翻譯、聽整句收在「看完整解析」
     sent = p.query_selector('.fb .sent')
     assert sent.query_selector('.en').inner_text() == full and sent.query_selector('.en b').inner_text() == 'choice'
     assert sent.query_selector('.zh').inner_text() == '請在本週結束前告訴我們你的選擇。'
@@ -85,7 +86,8 @@ def test_demo_reveal_and_pretest_review_have_audio(page_of):
     p.click('#go')
     for a in p.evaluate('__pos.PRE.map(q=>q.a)'):
         p.click('.opt[data-k="%d"]' % a)
-        p.click('[data-conf="sure"]')
-        p.click('#next')
+        p.evaluate('window.__pi=__pos.st.pre.i')
+        p.click('[data-conf="sure"]')   # 點把握度就自動下一題
+        p.wait_for_function('__pos.st.pre.i!==window.__pi||!!document.getElementById("trial")')
     assert len(p.query_selector_all('.review-item .say')) == 30, '前測 15 題：正解單字＋整句'
     assert len(p.query_selector_all('.review-item .sent .zh')) == 15
