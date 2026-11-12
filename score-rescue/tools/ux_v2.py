@@ -53,7 +53,7 @@ def sub1(s, old, new, name, f):
 def patch(f):
     p = POS / f
     s = p.read_text()
-    s = s.replace(' <span class="tag-preview">預覽版</span>', '')
+    s = s.replace(' <span class="tag-preview">預覽版</span>', '').replace('（預覽）｜Score Rescue</title>', '｜Score Rescue</title>')
     # 答題回饋
     if 'function feedbackHTML(q,k,kind)' not in s:
         s, n = re.subn(r'function feedbackHTML\(q,k\)\{.*?\n\}', lambda m: FB_NEW, s, count=1, flags=re.S)
@@ -83,7 +83,7 @@ def patch(f):
     # 前測：選好答案後點把握度直接下一題
     if f == 'index.html':
         s = sub1(s, "  bindPick(function(f,v){var r=st.pre.ans[q.id]=st.pre.ans[q.id]||{};r[f]=v;viewPre()});\n  h('next')",
-                 "  bindPick(function(f,v){var r=st.pre.ans[q.id]=st.pre.ans[q.id]||{};r[f]=v;\n"
+                 "  bindPick(function(f,v){var r=st.pre.ans[q.id]=st.pre.ans[q.id]||{};if(f==='k'&&r.k!==v)delete r.conf;r[f]=v;   // 改選答案要重新選把握度\n"
                  "    if(f==='conf'&&r.k!=null){viewPre();setTimeout(function(){var n=h('next');if(n&&st.pre.i===i)n.click()},220);return}\n"
                  "    viewPre()});\n  h('next')", 'pretest auto', f)
     p.write_text(s)

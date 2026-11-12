@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Part 5 詞性判斷前測（預覽）｜Score Rescue</title>
+<title>Part 5 詞性判斷前測｜Score Rescue</title>
 <meta name="theme-color" content="#F7F3E8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -353,7 +353,7 @@ function viewPre(){
     '<p class="q">'+stem(q.s)+'</p>'+optsHTML(q,a.k,false)+confHTML(a.conf)+'</div>'+
     '<div class="actions"><button class="btn pri" id="next"'+(a.k==null||!a.conf?' disabled':'')+'>'+(i===PRE.length-1?'看結果':'下一題')+'</button>'+
     (i>0?'<p style="text-align:center"><button class="link" id="prev">上一題</button></p>':'')+'</div>');
-  bindPick(function(f,v){var r=st.pre.ans[q.id]=st.pre.ans[q.id]||{};r[f]=v;
+  bindPick(function(f,v){var r=st.pre.ans[q.id]=st.pre.ans[q.id]||{};if(f==='k'&&r.k!==v)delete r.conf;r[f]=v;   // 改選答案要重新選把握度
     if(f==='conf'&&r.k!=null){viewPre();setTimeout(function(){var n=h('next');if(n&&st.pre.i===i)n.click()},220);return}
     viewPre()});
   h('next').addEventListener('click',function(){

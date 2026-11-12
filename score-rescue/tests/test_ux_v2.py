@@ -37,7 +37,7 @@ def to_lesson(p, name):
 @pytest.mark.parametrize('name', PAGES)
 def test_no_preview_badge_and_video_starts_practice(page_of, name):
     p = page_of(name)
-    assert '預覽版' not in p.content()
+    assert '預覽版' not in p.content() and '預覽' not in p.title()
     to_lesson(p, name)
     assert p.inner_text('#toPr') == '開始練習（10 題）'
     assert '看完了？' not in p.inner_text('#app')
@@ -50,20 +50,25 @@ def test_button_stays_at_bottom_and_short_feedback(page_of, name):
     p = page_of(name)
     to_lesson(p, name)
     p.click('#toPr')
-    box = lambda: p.evaluate("(()=>{var r=document.querySelector('.actions').getBoundingClientRect();return [r.bottom,innerHeight,getComputedStyle(document.querySelector('.actions')).position]})()")
-    before = box()
+
+    def bottom_button_top():
+        bar = p.locator('.actions')
+        assert bar.evaluate('bar => getComputedStyle(bar).position') == 'fixed'
+        assert bar.evaluate('bar => Math.abs(bar.getBoundingClientRect().bottom - innerHeight)') < 2
+        return bar.get_by_role('button').bounding_box()['y']
+
+    before = bottom_button_top()
     q = p.evaluate('__pos.PR[0]')
     p.click('.opt[data-k="%d"]' % ((q['a'] + 1) % 4))
     p.click('#submit')
-    p.wait_for_timeout(500)
-    after = box()
-    assert after[2] == 'fixed' and abs(after[0] - after[1]) < 2 and abs(before[0] - before[1]) < 2, '送出前後按鈕都貼在畫面底部'
+    assert abs(bottom_button_top() - before) < 2, '確認答案與下一題在同一個位置'
     assert p.inner_text('.actions') == '下一題'
     assert not p.evaluate("document.getElementById('fullFb').open"), '完整解析預設收起'
     assert p.is_hidden('.fb .sent') and p.is_hidden('.fb .work')
     p.click('#fullFb summary')
     assert p.is_visible('.fb .sent') and '空格的工作' in p.inner_text('#fb')
     p.evaluate('scrollTo(0,document.body.scrollHeight)')
+    assert abs(bottom_button_top() - before) < 2, '捲動解析時按鈕仍固定'
     gap = p.evaluate("document.querySelector('.actions').getBoundingClientRect().top-document.getElementById('fb').getBoundingClientRect().bottom")
     assert gap > 0, '捲到底時，解析最後一行不會被底部按鈕蓋住'
 
@@ -82,3 +87,22 @@ def test_pretest_conf_tap_goes_next(page_of):
     assert p.evaluate('__pos.st.pre.i') == 1, '只前進一題'
     p.click('#prev')
     assert p.evaluate('__pos.st.pre.i') == 0 and p.get_attribute('.opt[data-k="%d"]' % a[0], 'aria-pressed') == 'true', '上一題保留答案'
+
+
+def test_pretest_change_answer_resets_confidence(page_of):
+    p = page_of('index.html')
+    p.click('#go')
+    a = p.evaluate('__pos.PRE.map(q=>q.a)')
+    p.click('.opt[data-k="%d"]' % a[0])
+    p.click('[data-conf="unsure"]')
+    p.wait_for_function('__pos.st.pre.i===1')
+    p.click('#prev')
+    other = (a[0] + 1) % 4
+    p.click('.opt[data-k="%d"]' % other)
+    assert p.get_attribute('[data-conf="unsure"]', 'aria-pressed') == 'false', '改選答案後把握度清空'
+    assert p.is_disabled('#next'), '要重新選把握度才能下一題'
+    p.wait_for_timeout(400)
+    assert p.evaluate('__pos.st.pre.i') == 0, '改選答案不會自動跳題'
+    p.click('[data-conf="sure"]')
+    p.wait_for_function('__pos.st.pre.i===1')
+    assert p.evaluate("__pos.st.pre.ans[__pos.PRE[0].id]") == {'k': other, 'conf': 'sure'}
