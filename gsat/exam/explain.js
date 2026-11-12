@@ -1,7 +1,7 @@
 // 原創詳解(自行撰寫,非第三方解析)。鍵為「年度-題號」。schema 2:引用單字詞條(gsat/data/vocab.js),字義與詞性只在詞條裡定義一次。
 // status:draft＝AI 草稿,待英文老師審核;reviewed＝已審核(審核前不得標為 reviewed)。reviewer／reviewedAt／reviewNotes 由審核者填寫。
 // 【資料來源】本檔是版本控制下的唯一來源,直接編輯;沒有任何 repo 外的產生流程,也不得再用腳本整檔重新產生(會把教師簽核欄位覆蓋回 draft;gsat/tests/test_signoff.py 會擋)。
-// 已簽核的題目(目前有 115-1、115-2、115-3)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
+// 已簽核的題目(目前有 115-1、115-2、115-3、115-4)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
 // 審核方式:python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾> 產生含題目與檢核欄位的審核表(內含試題,請勿公開)。
 window.EXPLAIN = {
  "115-1": {
@@ -143,31 +143,31 @@ window.EXPLAIN = {
  "115-4": {
   "schema": 2,
   "answer": "A",
-  "status": "draft",
-  "reviewer": null,
-  "reviewedAt": null,
-  "reviewNotes": "",
+  "status": "reviewed",
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-12",
+  "reviewNotes": "2026-11-12 教師（負責人）確認:Q4 教學文字與 40 個教師審核項目已正式簽核通過。音檔的人工驗收狀態與適用的音檔版本,以 docs/gsat/signoffs/115-4.json 的 audio 區塊為準(本欄位不記載音檔通過數量)。",
   "key": [
-   "看 than ___ expected:than 後面省略了「主詞 + be」,完整是 than (it was) initially expected。",
-   "句意是「獲利遠超過『原先』的預期」,空格要放表示時間先後的副詞(一開始、當初)。",
-   "initially 是「起初」,符合;其餘三個副詞都不表示時間先後。"
+   "先看 than ___ expected。四個選項都是副詞，因此不能只靠詞性排除，必須根據語意判斷。",
+   "實際創造的利潤比『最初預期』的還高；空格修飾 expected，要表達『最初／起初預期』，因此需要 initially。",
+   "initially 是『起初、最初』，initially expected＝『最初預期』，最符合本句；其他三個副詞的語意都不符合這個上下文。"
   ],
   "options": {
    "A": {
     "entry": "initially-adv",
-    "why": "initially＝起初,than initially expected＝比起原先的預期。"
+    "why": "initially 是『起初、最初』；initially expected 表示『最初預期』，正好符合實際利潤與原先預期相比的語意。"
    },
    "B": {
     "entry": "genuinely-adv",
-    "why": "genuinely 是「真誠地、確實地」,不表示時間先後,放在這裡無法說明「比當初預期更多」。"
+    "why": "genuinely 是『真誠地、確實地』。genuinely expected 在其他語境中可以表示『確實預期』，但本句要比較實際利潤與『最初的預期』，因此語意不符。"
    },
    "C": {
     "entry": "alternatively-adv",
-    "why": "alternatively 是「或者、另一個選擇是」,用來提出另一個方案。"
+    "why": "alternatively 是『或者、作為另一個選擇』，通常用來提出另一種方案或可能性；本句沒有『另一種預期』的語境，因此不符合。"
    },
    "D": {
     "entry": "fundamentally-adv",
-    "why": "fundamentally 是「根本上」,和「預期」的先後無關。"
+    "why": "fundamentally 是『根本上、基本上』，不能表達『最初預期』的時間概念，因此不符合本句語意。"
    }
   },
   "words": [
@@ -176,14 +176,11 @@ window.EXPLAIN = {
   "phrases": [],
   "patterns": [
    "far + 比較級 + than(遠比…)",
-   "than (it was) + 副詞 + 過去分詞(省略主詞與 be)"
+   "than (initially) expected＝比（最初）預期的……；這是比較結構中的常見省略形式"
   ],
-  "grammar": "far more profit than…:far 用來加強比較級(more)。than 引導的比較子句常省略「主詞 + be」。",
+  "grammar": "far 可加強比較級 more：far more profit＝多得多的利潤。than initially expected 是比較結構中的省略形式，表示『比最初預期的……』，可理解為 than was initially expected；initially 修飾 expected。Designed by a young engineer 是過去分詞片語，補充說明 the new product 是由一位年輕工程師設計的。profit 在本句作不可數名詞使用，因此用 more profit。",
   "focus": "initially-adv",
-  "zh": "由一位年輕工程師設計的這項新產品,所創造的利潤遠比起初預期的多得多。",
-  "aiFlags": [
-   "解題關鍵 1 把 than 後面還原成 than (it was) initially expected,是否符合高中教學的說法?"
-  ]
+  "zh": "這項由一位年輕工程師設計的新產品，所創造的利潤遠高於最初的預期。"
  },
  "115-5": {
   "schema": 2,
