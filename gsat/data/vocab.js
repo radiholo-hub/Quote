@@ -543,16 +543,16 @@ window.VOCAB = {
     },
     {
      "t": "the consumption of sugar",
-     "zh": "糖的攝取"
+     "zh": "糖分的攝取／攝取量"
     }
    ],
    "ex": [
     {
      "en": "Too much sugar consumption can harm your health.",
-     "zh": "攝取過多糖分可能傷害健康。"
+     "zh": "攝取過多糖分可能有害健康。"
     }
    ],
-   "note": "談健康時,指人「實際吃進去的量」。",
+   "note": "consumption 可指使用、食用或飲用某物的行為，也可依語境表示其用量或攝取量。談食物時可翻成『食用、攝取(量)』；談能源、水等時常翻成『消耗(量)』。中文翻譯會隨受詞改變，例如 food consumption 可譯為食用／攝取，energy consumption 是能源消耗。",
    "rel": {
     "syn": [
      {
@@ -560,16 +560,11 @@ window.VOCAB = {
       "zh": "攝取量"
      }
     ],
-    "ant": [
-     {
-      "w": "production",
-      "zh": "生產"
-     }
-    ],
+    "ant": [],
     "confusable": [
      {
       "w": "intake",
-      "note": "intake 專指吃進身體的量(food intake);consumption 範圍更廣,也能指電力、水、能源的消耗。"
+      "note": "在飲食與營養語境中，intake 常著重某種食物、飲料或物質『攝入的量』，如 daily calorie intake；consumption 可表示食用／飲用的行為或數量，而且使用範圍更廣，也常指能源、水、燃料等的消耗。"
      }
     ]
    },
@@ -1676,7 +1671,7 @@ window.VOCAB = {
     }
    ],
    "ex": [],
-   "note": "指提供的一方;與「吃進去的量」不同。",
+   "note": "provision 是『提供、供給』，指提供某物的行為或安排。",
    "rel": {
     "syn": [],
     "ant": [],

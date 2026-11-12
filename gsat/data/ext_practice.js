@@ -163,7 +163,7 @@ window.EXT_PRACTICE = [
    "consuming"
   ],
   "answer": 2,
-  "explain": "high sugar consumption＝高糖攝取量,名詞。consume 是動詞,consumer 是「消費者」(人)。",
+  "explain": "空格位在形容詞 high 與名詞片語 sugar 的語意組合中，需要名詞表示『糖分攝取量』，high sugar consumption 是自然搭配，因此選 consumption。consume 是動詞；consumer 是『消費者』；consuming 雖可作現在分詞／動名詞，但放在此處不能形成題目要表達的 high sugar consumption。中文意思是『糖分攝取量過高／攝取過多糖分』。",
   "status": "draft"
  },
  {
@@ -173,7 +173,7 @@ window.EXT_PRACTICE = [
   "targets": [
    "consumption-n"
   ],
-  "q": "Reducing energy ______ can help protect the environment.",
+  "q": "This appliance uses less electricity, so its energy ______ is lower than that of the older model.",
   "options": [
    "consumption",
    "provision",
@@ -181,7 +181,7 @@ window.EXT_PRACTICE = [
    "integration"
   ],
   "answer": 0,
-  "explain": "energy consumption＝能源消耗(量),是固定搭配。",
+  "explain": "前半句說這台電器使用較少的電，因此後面要表示『能源消耗量較低』，energy consumption 最符合語意。provision 是能源的提供／供應，dimension 是層面／尺寸，integration 是整合，都不符合這台電器『使用能源』的語境。",
   "status": "draft"
  },
  {

@@ -1,7 +1,7 @@
 // 原創詳解(自行撰寫,非第三方解析)。鍵為「年度-題號」。schema 2:引用單字詞條(gsat/data/vocab.js),字義與詞性只在詞條裡定義一次。
 // status:draft＝AI 草稿,待英文老師審核;reviewed＝已審核(審核前不得標為 reviewed)。reviewer／reviewedAt／reviewNotes 由審核者填寫。
 // 【資料來源】本檔是版本控制下的唯一來源,直接編輯;沒有任何 repo 外的產生流程,也不得再用腳本整檔重新產生(會把教師簽核欄位覆蓋回 draft;gsat/tests/test_signoff.py 會擋)。
-// 已簽核的題目(目前有 115-1、115-2、115-3、115-4)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
+// 已簽核的題目(目前有 115-1、115-2、115-3、115-4、115-5)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
 // 審核方式:python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾> 產生含題目與檢核欄位的審核表(內含試題,請勿公開)。
 window.EXPLAIN = {
  "115-1": {
@@ -185,31 +185,31 @@ window.EXPLAIN = {
  "115-5": {
   "schema": 2,
   "answer": "D",
-  "status": "draft",
-  "reviewer": null,
-  "reviewedAt": null,
-  "reviewNotes": "",
+  "status": "reviewed",
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-12",
+  "reviewNotes": "2026-11-12 教師（負責人）確認:Q5 教學文字與 45 個教師審核項目已正式簽核通過。音檔的人工驗收狀態與適用的音檔版本,以 docs/gsat/signoffs/115-5.json 的 audio 區塊為準(本欄位不記載音檔通過數量)。",
   "key": [
-   "看 a balanced ___ of fruit and vegetables:與「健康」有關的,是人實際「吃進去」的量。",
-   "「攝取」要用 consumption(攝取、消耗);a balanced consumption of… ＝均衡攝取…。",
-   "注意 provision 是「供應、提供」,指給的一方;影響健康的是吃進去的量,不是供應的量。"
+   "先看 a balanced ___ of fruit and vegetables。四個選項都是名詞，因此要根據名詞的意思以及和 fruit and vegetables 的搭配來判斷。",
+   "句子談的是水果和蔬菜與健康的關係；consumption 可表示『食用、攝取』或『攝取量』，consumption of fruit and vegetables 符合這個語境。",
+   "dimension 是『層面、尺寸』，integration 是『整合、融合』，provision 是『提供、供給』；三者雖都是名詞，但在本句『攝取蔬果有益健康』的語意下，都不如 consumption 合適。"
   ],
   "options": {
    "A": {
     "entry": "dimension-n",
-    "why": "dimension 是「層面、尺寸」,a balanced dimension of fruit 語意不通。"
+    "why": "dimension 可表示『層面、面向、尺寸』。a dimension of something 在其他語境可以成立，但 balanced dimension of fruit and vegetables 無法表達『攝取蔬果』的意思，因此不符合本句健康語境。"
    },
    "B": {
     "entry": "integration-n",
-    "why": "integration 是「整合」,語意不通。"
+    "why": "integration 是『整合、融合』，通常指把不同部分結合在一起。integration of fruit and vegetables 在適當上下文中並非文法錯誤，但本句重點是實際食用蔬果與健康的關係，因此 consumption 最合適。"
    },
    "C": {
     "entry": "provision-n",
-    "why": "provision 是「供應、提供」,指提供的一方;這題談的是對健康的影響,應該是人吃進去的量。"
+    "why": "provision 是『提供、供給』，指提供某物的行為或安排。balanced provision of fruit and vegetables 在某些供應或政策語境中可以成立，但本句談的是食用蔬果與健康的關係，因此不選 provision。"
    },
    "D": {
     "entry": "consumption-n",
-    "why": "consumption＝攝取(量),a balanced consumption of fruit and vegetables＝均衡攝取蔬果。"
+    "why": "consumption 可表示『食用、攝取』或『攝取量』；consumption of fruit and vegetables 表示食用／攝取水果與蔬菜，最符合本句語意。"
    }
   },
   "words": [
@@ -218,14 +218,12 @@ window.EXPLAIN = {
   "phrases": [],
   "patterns": [
    "It has been confirmed that…(已證實…)",
-   "a balanced diet / consumption(均衡的飲食/攝取)"
+   "a balanced diet＝均衡飲食",
+   "consumption of + 名詞＝……的食用／消耗(例:consumption of fruit and vegetables、energy consumption)"
   ],
-  "grammar": "It has been confirmed that…:It 是虛主詞,現在完成式被動,真主詞是 that 子句;the key element to… 的 to 是介系詞。",
+  "grammar": "It has been confirmed that… 中，It 是形式主詞，that 子句承載主要內容；has been confirmed 是現在完成式被動。a balanced consumption of fruit and vegetables 是名詞片語，中心名詞是 consumption，of fruit and vegetables 補充說明攝取的對象。a key element to good health 中的 to 是介系詞。",
   "focus": "consumption-n",
-  "zh": "已經證實,均衡攝取水果與蔬菜是維持健康的關鍵要素。",
-  "aiFlags": [
-   "選項 C provision 的說明用「指提供的一方」區分,是否清楚?"
-  ]
+  "zh": "已經證實,均衡攝取水果與蔬菜是維持健康的關鍵要素。"
  },
  "115-6": {
   "schema": 2,

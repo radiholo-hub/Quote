@@ -296,10 +296,23 @@ def test_q4_signed_text_is_shown_as_reviewed_without_touching_global_entry_statu
 
 
 @needs_exam
-def test_unsigned_questions_keep_the_draft_presentation(make_page):
-    """第 5 題沒有教師簽核:詳解、單字卡、延伸練習、延伸練習頁都維持原本的草稿呈現。"""
+def test_q5_signed_text_is_shown_as_reviewed_without_touching_global_entry_status(make_page):
+    """第 5 題已有教師文字簽核:詳解顯示已審核、consumption 單字卡標示「本題教師已確認」;全域詞條狀態不變。"""
     page = make_page('desktop')
     review_q(page, 5)
+    box = page.locator('.explain.v2')
+    assert box.get_attribute('data-explain') == 'reviewed' and box.locator('.tag').first.inner_text() == '已審核'
+    txt = box.inner_text()
+    assert '待審核草稿' not in txt and '草稿・待人工審核' not in txt and 'consumption of fruit and vegetables' in txt and '吃進去' not in txt
+    assert box.locator('.wcard[data-entry=consumption-n] [data-role=signed]').inner_text() == '本題教師已確認'
+    assert page.evaluate("window.VOCAB.entries['consumption-n'].status") == 'draft'
+
+
+@needs_exam
+def test_unsigned_questions_keep_the_draft_presentation(make_page):
+    """第 6 題沒有教師簽核:詳解、單字卡、延伸練習、延伸練習頁都維持原本的草稿呈現。"""
+    page = make_page('desktop')
+    review_q(page, 6)
     box = page.locator('.explain.v2')
     assert box.get_attribute('data-explain') == 'draft' and box.locator('.tag').first.inner_text() == '草稿・待人工審核'
     assert '待審核草稿' in box.locator('.wcard').first.inner_text() and '待審核草稿' in box.locator('details.lsec[data-sec="7"]').inner_text()
@@ -314,7 +327,7 @@ def test_other_questions_and_shared_entries_global_status_are_not_changed_by_the
     page = make_page('desktop')
     page.goto(URL + '#/')
     d = page.evaluate("({q: Object.entries(window.EXPLAIN).map(([k, e]) => [k, e.status]), v: [...new Set(Object.values(window.VOCAB.entries).map(e => e.status))], x: [...new Set(window.EXT_PRACTICE.map(e => e.status))]})")
-    assert dict(d['q']) == {**{f'115-{n}': 'draft' for n in range(5, 11)}, '115-1': 'reviewed', '115-2': 'reviewed', '115-3': 'reviewed', '115-4': 'reviewed'} and d['v'] == ['draft'] and d['x'] == ['draft']
+    assert dict(d['q']) == {**{f'115-{n}': 'draft' for n in range(6, 11)}, '115-1': 'reviewed', '115-2': 'reviewed', '115-3': 'reviewed', '115-4': 'reviewed', '115-5': 'reviewed'} and d['v'] == ['draft'] and d['x'] == ['draft']
 
 
 # ---------------------------------------------------------------- 版面
