@@ -6,7 +6,8 @@ import pytest
 from conftest import ROOT, TEST_PAGE
 
 POS = ROOT / 'pos' / 'index.html'
-EVENTS = ['pos_pretest_start', 'pos_pretest_done', 'pos_trial_click', 'pos_l1_done', 'pos_day17_click']
+AT = ['pos_pretest_at%d' % n for n in (3, 6, 9, 12)]   # 前測做到第幾題
+EVENTS = ['pos_pretest_start', *AT, 'pos_pretest_done', 'pos_trial_click', 'pos_l1_done', 'pos_day17_click']
 
 # 假 Supabase：記下每一筆 insert（資料表與事件名稱），不連到真的資料庫
 POS_STUB = ("window.__ins=[];window.supabase={createClient:function(){return {from:function(t){return {insert:function(row){"
@@ -82,14 +83,14 @@ def walk(p, chk_wrong=(3,)):
         p.click('#next')
 
 
-def test_full_flow_records_five_events(open_pos):
+def test_full_flow_records_all_events(open_pos):
     p = open_pos()
     walk(p)
     assert '這次答對 3／4 題' in p.inner_text('#app')
     assert p.get_attribute('#d17', 'href') == '../#day1-7'
     p.evaluate("()=>{document.getElementById('d17').setAttribute('href','#stay')}")   # 測試裡不真的離開頁面
     p.click('#d17')
-    p.wait_for_function('window.__ins.length===5')
+    p.wait_for_function('window.__ins.length===%d' % len(EVENTS))
     ins = p.evaluate('window.__ins')
     assert ins == [['events', n] for n in EVENTS]
     assert all(re.fullmatch(r'[a-z0-9_]{1,40}', n) for n in EVENTS), '符合 events 表的名稱限制'
@@ -291,6 +292,6 @@ def test_home_card_to_pretest_keeps_debug(browser, http_root, debug):
             assert ins == [], '首頁和前測頁在 debug 模式都不送事件'
             assert 'pos_pretest_start' in page.inner_text('#dbg'), '前測頁的 debug 面板有顯示事件'
         else:
-            assert ins == ['pos_home_card_click', 'pos_pretest_start', 'pos_pretest_done']
+            assert ins == ['pos_home_card_click', 'pos_pretest_start', *AT, 'pos_pretest_done']
     finally:
         ctx.close()

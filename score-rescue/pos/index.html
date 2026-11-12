@@ -341,6 +341,7 @@ function viewIntro(){
 /* ---------- 2. 前測作答 ---------- */
 function viewPre(){
   var i=st.pre.i,q=PRE[i],a=st.pre.ans[q.id]||{};
+  if(i>0&&i%3===0)logEvent('pos_pretest_at'+i);   // 做完第 3、6、9、12 題時各記一次，找出中途離開的位置
   prog(i/PRE.length);
   render('<div class="sheet"><div class="qid">第 '+(i+1)+' / '+PRE.length+' 題</div>'+
     '<p class="q">'+stem(q.s)+'</p>'+optsHTML(q,a.k,false)+confHTML(a.conf)+'</div>'+

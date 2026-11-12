@@ -1588,6 +1588,8 @@ function renderQ(){
   const q=R.list[R.i],n=R.total;
   $('#runCount').textContent=countText();
   $('#progFill').style.width=(R.i/n*100)+'%';
+  /* 第一次診斷做到第幾題（每 5 題記一次），用來找出中途離開的位置；Day 14／30 重測不記 */
+  if(R.mode==='diag'&&!R.redoDay&&R.i>0&&R.i%5===0)logEvent('diag_at'+R.i);
   const ms=$('#milestone');
   if(R.mode==='diag'&&(R.i===10||R.i===20)){ms.hidden=false;ms.textContent=R.i===10?'前 10 題完成了，還剩 20 題。':'20 題完成了，只剩最後 10 題。'}else ms.hidden=true;
   $('#qText').innerHTML=blankify(q.q);
