@@ -155,3 +155,61 @@ def test_paid_but_download_fails_keeps_exam2_locked(open_app):
     assert not app.js("__t.examAllowed(2)") and app.js("__t.examAllowed(1)")
     app.js("()=>__t.show('home')")
     assert '載入失敗' in app.text('#examCards')
+
+
+# ---------- #90 審查修正 ----------
+
+def test_old_record_whitelist_has_no_question_text():
+    ok = json.loads(re.search(r'const P7_OLD_OK=(\[.*?\]);', PAGE).group(1))
+    assert ok and all(re.fullmatch(r'[0-9a-z]{8,16}', h) for x in ok for h in x['q']), '白名單只存雜湊'
+
+
+@pytest.mark.skipif(not (PRIVATE / 'exams.json').exists(), reason='需要 private/exams.json')
+def test_no_paid_part7_question_in_public_page():
+    d = json.loads((PRIVATE / 'exams.json').read_text(encoding='utf-8'))
+    for n in (2, 3):
+        for st in d['exam%d' % n]['p7']:
+            for q in st['questions']:
+                assert q['q'] not in PAGE and json.dumps(q['q'], ensure_ascii=False)[1:-1] not in PAGE, q['q']
+
+
+def test_logout_after_paid_shows_only_five_demos(open_app):
+    app = open_app(paid=True, init=sbk(True))
+    app.page.wait_for_function("__t.paidExamsState()==='ok'")
+    submit_exam1(app, right_first=0)
+    app.js("()=>{window.__SBK.paid=false;window.__SB_PAID=false;__t.S.paid=false}")   # 登出／付費資格失效，同一分頁
+    app.js("()=>__t.examRenderReview(1)")
+    rv = app.page.locator('#examReviewBody')
+    assert rv.locator('h1').inner_text() == '每題正解'
+    assert rv.locator('.ac-lock').count() == 95 and rv.locator('[data-demo]').count() == 5
+    assert '完整詳解 ' not in rv.inner_text(), '記憶體裡的付費詳解不外露'
+
+
+def test_bad_private_file_marks_failed(open_app):
+    app = open_app(paid=True, init='window.__SBK={"paid":true,"files":{"exams.json":"{not json"}};')
+    app.page.wait_for_function("__t.paidExamsState()==='fail'")
+    app.js("()=>__t.show('home')")
+    assert '載入失敗' in app.text('#examCards') and app.js("__t.examAllowed(1)")
+
+
+def test_demo_button_and_wrong_demos_open(open_app):
+    app = open_app(paid=False, init=sbk(False))
+    submit_exam1(app, right_first=100)             # 全對也找得到示範
+    app.page.click('#examResultBody [data-act="examDemos"]')
+    rv = app.page.locator('#examReviewBody')
+    vis = [c for c in rv.locator('.ans-fold').all() if c.is_visible()]
+    assert len(vis) == 5 and all(c.get_attribute('data-demo') == '1' for c in vis)
+    assert all(c.evaluate('d=>d.open') for c in vis)
+    app.page.click('#showAllQ')
+    assert sum(1 for c in rv.locator('.ans-fold').all() if c.is_visible()) > 5
+    submit_exam1(app, right_first=0)
+    app.page.click('#examResultBody [data-act="examReview"]')
+    demos = rv.locator('[data-demo]')
+    assert demos.count() == 5 and all(d.evaluate('d=>d.open') for d in demos.all()), '答錯的示範題直接展開'
+
+
+def test_whitelist_hashes_match_frontend_signature(app):
+    """白名單的雜湊要和前端 srHash(題目＋排序後選項＋正解) 算法一致（用第 1 回的公開題目核對）。"""
+    n = app.js("""()=>{const ok=JSON.parse(JSON.stringify(%s)),S='\\u0001',sig=x=>x.q+S+x.o.slice().sort().join(S)+S+x.o[x.a];
+      let hit=0;ok.filter(w=>w.x===1).forEach(w=>{const st=__t.EXAM1_P7[w.s];st.questions.forEach(q=>{if(w.q.indexOf(__t.srHash(sig(q)))>=0)hit++})});return hit}""" % re.search(r'const P7_OLD_OK=(\[.*?\]);', PAGE).group(1))
+    assert n >= 3

@@ -130,6 +130,8 @@ def main():
         for part in ('P5_TEXTS', 'P6', 'P7'):
             s = set_array(s, 'EXAM%d_%s' % (n, part), [])
 
+    demo_js = 'const EXAM_DEMO=' + json.dumps(DEMO, ensure_ascii=False) + ';'
+    s = re.sub(r'const EXAM_DEMO=\{.*?\};', lambda m: demo_js, s, count=1)
     if MARK not in s:
         anchor = 'const EXAM_STEMS='
         assert s.count(anchor) == 1
@@ -141,8 +143,10 @@ def main():
     for n in (2, 3):
         for t in data['exam%d' % n]['p5'][:10]:
             assert t not in pub, t
-        for p in data['exam%d' % n]['p7'][:3]:
+        for p in data['exam%d' % n]['p7']:
             assert p['passages'][0]['body'][:80] not in pub
+            for q in p['questions']:
+                assert q['q'] + '\u0001' not in pub and json.dumps(q['q'] + '\u0001')[1:-1] not in pub, q['q']
     for sid, full in data['rows'].items():
         if full[1] in e1 and full[1] not in DEMO['p5'] and full[5]:
             assert json.dumps(full[5], ensure_ascii=False)[1:-1] not in pub, full[1]
