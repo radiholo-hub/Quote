@@ -1,0 +1,23 @@
+name: Card audio preview
+# 試聽用：只在這個不合併的試聽 PR 執行，產生 Aria 預覽音檔並 commit 回 PR 分支
+on:
+  pull_request:
+    paths: ['tools/card_audio_preview/texts.txt']
+permissions:
+  contents: write
+jobs:
+  audio:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          sparse-checkout: tools/card_audio_preview
+      - run: python3 -m pip install edge-tts && python3 tools/card_audio_preview/make.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/card_audio_preview/out
+          git diff --cached --quiet || (git commit -m "試聽：產生詞卡預覽音檔" && git push origin HEAD:${{ github.head_ref }})
