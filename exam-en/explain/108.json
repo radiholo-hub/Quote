@@ -1,0 +1,1270 @@
+{
+ "1": {
+  "key": "後半句「不希望父母未經允許翻他的東西」指向對個人空間的重視,故選 privacy。",
+  "opts": {
+   "A": "discipline 是紀律,與翻東西無關",
+   "B": "facility 是設施,語意不合",
+   "C": "privacy 隱私,符合「不經同意翻東西」",
+   "D": "representation 是代表/呈現,不通"
+  },
+  "vocab": [
+   [
+    "privacy",
+    "n. 隱私"
+   ],
+   [
+    "permission",
+    "n. 許可"
+   ],
+   [
+    "discipline",
+    "n. 紀律"
+   ]
+  ]
+ },
+ "2": {
+  "key": "空格與 bossy 並列,且對比前經理 kind and humble,需負面詞,mean 指刻薄、苛刻。",
+  "opts": {
+   "A": "eager 熱切,屬正面或中性",
+   "B": "liberal 開明,與 bossy 不連貫",
+   "C": "mean 刻薄,與 bossy 並列且對比 kind",
+   "D": "inferior 較差的,不描述性格"
+  },
+  "vocab": [
+   [
+    "mean",
+    "adj. 刻薄的"
+   ],
+   [
+    "humble",
+    "adj. 謙遜的"
+   ],
+   [
+    "bossy",
+    "adj. 愛指使人的"
+   ]
+  ]
+ },
+ "3": {
+  "key": "後面 warned 警告可能危險,氣象局應是「預測」颱風會帶來強風豪雨。",
+  "opts": {
+   "A": "conveyed 傳達,不含預測義",
+   "B": "associated 使關聯,語意不合",
+   "C": "interpreted 詮釋,不合",
+   "D": "predicted 預測,符合 would bring"
+  },
+  "vocab": [
+   [
+    "predict",
+    "v. 預測"
+   ],
+   [
+    "bureau",
+    "n. 局、處"
+   ],
+   [
+    "convey",
+    "v. 傳達"
+   ]
+  ]
+ },
+ "4": {
+  "key": "各航空公司對隨身行李有不同「限制」,後句限重 7 公斤即為例子。",
+  "opts": {
+   "A": "landmarks 地標,不合",
+   "B": "restrictions 限制,對應 limit 7 kg",
+   "C": "percentages 百分比,不合",
+   "D": "circumstances 情況,搭配 for luggage 不自然"
+  },
+  "vocab": [
+   [
+    "restriction",
+    "n. 限制"
+   ],
+   [
+    "carry-on",
+    "adj. 隨身攜帶的"
+   ],
+   [
+    "limit",
+    "v. 限制"
+   ]
+  ]
+ },
+ "5": {
+  "key": "政府把兒童節「宣布」為國定假日,declare ... as 為慣用搭配。",
+  "opts": {
+   "A": "appointed 任命,對象是人",
+   "B": "declared 宣布,符合",
+   "C": "performed 執行/表演,不合",
+   "D": "involved 牽涉,不合"
+  },
+  "vocab": [
+   [
+    "declare",
+    "v. 宣布"
+   ],
+   [
+    "appoint",
+    "v. 任命"
+   ],
+   [
+    "national holiday",
+    "國定假日"
+   ]
+  ]
+ },
+ "6": {
+  "key": "為達目標,Michelle「提出」開十家新店的計畫,propose a plan 為常見搭配。",
+  "opts": {
+   "A": "advised 勸告,後接人或 that 子句",
+   "B": "occupied 佔據,不合",
+   "C": "proposed 提出,符合 a plan",
+   "D": "recognized 認出,不合"
+  },
+  "vocab": [
+   [
+    "propose",
+    "v. 提議"
+   ],
+   [
+    "market leader",
+    "市場領導者"
+   ],
+   [
+    "occupy",
+    "v. 佔據"
+   ]
+  ]
+ },
+ "7": {
+  "key": "沉默如同言語一樣「有表達力」,後句說可用來表示不同意或無興趣。",
+  "opts": {
+   "A": "sociable 好交際,不合",
+   "B": "expressive 有表達力,符合 show disagreement",
+   "C": "reasonable 合理,不合",
+   "D": "objective 客觀,不合"
+  },
+  "vocab": [
+   [
+    "expressive",
+    "adj. 富表達力的"
+   ],
+   [
+    "disagreement",
+    "n. 不同意"
+   ],
+   [
+    "objective",
+    "adj. 客觀的"
+   ]
+  ]
+ },
+ "8": {
+  "key": "節目為兒童設計,「尤其」是五歲以下,particularly 引出特別強調的對象。",
+  "opts": {
+   "A": "particularly 尤其,符合",
+   "B": "sensibly 明智地,不合",
+   "C": "moderately 適度地,不合",
+   "D": "considerably 相當地,不接 for 片語"
+  },
+  "vocab": [
+   [
+    "particularly",
+    "adv. 尤其"
+   ],
+   [
+    "violence",
+    "n. 暴力"
+   ],
+   [
+    "moderately",
+    "adv. 適度地"
+   ]
+  ]
+ },
+ "9": {
+  "key": "玩具不收好可能被絆倒受傷,stumble on 絆到。",
+  "opts": {
+   "A": "stumble 絆倒,符合 hurt yourself",
+   "B": "graze 擦傷/放牧,不接 on 且不通",
+   "C": "navigate 導航,不合",
+   "D": "dwell 居住,不合"
+  },
+  "vocab": [
+   [
+    "stumble",
+    "v. 絆倒"
+   ],
+   [
+    "graze",
+    "v. 擦傷;吃草"
+   ],
+   [
+    "dwell",
+    "v. 居住"
+   ]
+  ]
+ },
+ "10": {
+  "key": "每年九月舉辦,故為「年度的」化裝派對。",
+  "opts": {
+   "A": "initial 最初的,不合",
+   "B": "annual 每年的,符合 every September",
+   "C": "evident 明顯的,不合",
+   "D": "occasional 偶爾的,與每年固定矛盾"
+  },
+  "vocab": [
+   [
+    "annual",
+    "adj. 每年的"
+   ],
+   [
+    "costume",
+    "n. 服裝"
+   ],
+   [
+    "occasional",
+    "adj. 偶爾的"
+   ]
+  ]
+ },
+ "11": {
+  "key": "態度與個性是影響面試官決定的重要「因素」。",
+  "opts": {
+   "A": "factors 因素,符合 influence",
+   "B": "outcomes 結果,不是影響決定者",
+   "C": "missions 任務,不合",
+   "D": "identities 身分,不合"
+  },
+  "vocab": [
+   [
+    "factor",
+    "n. 因素"
+   ],
+   [
+    "outcome",
+    "n. 結果"
+   ],
+   [
+    "influence",
+    "v. 影響"
+   ]
+  ]
+ },
+ "12": {
+  "key": "描述得「生動」,使場景彷彿活現眼前,修飾 described。",
+  "opts": {
+   "A": "distantly 遙遠地,不合",
+   "B": "meaningfully 有意義地,不合 come alive",
+   "C": "cheerfully 愉快地,不合",
+   "D": "vividly 生動地,符合"
+  },
+  "vocab": [
+   [
+    "vividly",
+    "adv. 生動地"
+   ],
+   [
+    "snow-capped",
+    "adj. 白雪覆頂的"
+   ],
+   [
+    "describe",
+    "v. 描述"
+   ]
+  ]
+ },
+ "13": {
+  "key": "與 birds 搭配、表示鳥快樂地「啁啾」,chirp 為鳥鳴。",
+  "opts": {
+   "A": "napping 打盹,與 merrily 不搭",
+   "B": "scooping 舀,不合",
+   "C": "flipping 翻轉,不合",
+   "D": "chirping 啁啾,符合"
+  },
+  "vocab": [
+   [
+    "chirp",
+    "v. 啁啾"
+   ],
+   [
+    "merrily",
+    "adv. 歡樂地"
+   ],
+   [
+    "bloom",
+    "v. 開花"
+   ]
+  ]
+ },
+ "14": {
+  "key": "要在需要時有人可談,就需與朋友保持經常「聯絡」,maintain contact。",
+  "opts": {
+   "A": "benefit 好處,不搭 maintain",
+   "B": "contact 聯繫,符合",
+   "C": "gesture 手勢,不合",
+   "D": "favor 恩惠,不合"
+  },
+  "vocab": [
+   [
+    "contact",
+    "n. 聯繫"
+   ],
+   [
+    "constant",
+    "adj. 持續的"
+   ],
+   [
+    "essential",
+    "adj. 必要的"
+   ]
+  ]
+ },
+ "15": {
+  "key": "房屋營建、採果屬於體力的「manual labor」(勞力工作)。",
+  "opts": {
+   "A": "causal 因果的,不合",
+   "B": "durable 耐用的,不修飾 labor",
+   "C": "manual 體力的,符合例子",
+   "D": "violent 暴力的,不合"
+  },
+  "vocab": [
+   [
+    "manual labor",
+    "體力勞動"
+   ],
+   [
+    "durable",
+    "adj. 耐用的"
+   ],
+   [
+    "causal",
+    "adj. 因果的"
+   ]
+  ]
+ },
+ "16": {
+  "key": "「源自於」採用新曆,stem from 表起源,呼應 unclear origin。",
+  "opts": {
+   "A": "leads to 導致,因果顛倒",
+   "B": "brings out 帶出,不合",
+   "C": "stems from 源自,符合起源主題",
+   "D": "comes across 偶遇,不合"
+  },
+  "vocab": [
+   [
+    "stem from",
+    "片語 源自"
+   ],
+   [
+    "origin",
+    "n. 起源"
+   ],
+   [
+    "adoption",
+    "n. 採用"
+   ]
+  ]
+ },
+ "17": {
+  "key": "主詞 many people 缺主要動詞,過去式 continued 與 In 1582 的時態一致。",
+  "opts": {
+   "A": "continue 原形,時態與主詞不合",
+   "B": "continuing 現在分詞,不能當主要動詞",
+   "C": "to continue 不定詞,缺動詞",
+   "D": "continued 過去式,為主要動詞"
+  },
+  "vocab": [
+   [
+    "continue",
+    "v. 繼續"
+   ],
+   [
+    "traditionalist",
+    "n. 守舊者"
+   ],
+   [
+    "refuse",
+    "v. 拒絕"
+   ]
+  ]
+ },
+ "18": {
+  "key": "嘲弄行為後來「終於」傳遍歐洲與世界,Eventually 表示時間演變的結果。",
+  "opts": {
+   "A": "Precisely 精確地,不合",
+   "B": "Eventually 最終,符合",
+   "C": "Additionally 此外,非追加關係",
+   "D": "Literally 字面上,不合"
+  },
+  "vocab": [
+   [
+    "eventually",
+    "adv. 終究"
+   ],
+   [
+    "precisely",
+    "adv. 精確地"
+   ],
+   [
+    "literally",
+    "adv. 照字面地"
+   ]
+  ]
+ },
+ "19": {
+  "key": "人們會「不惜費盡心力」設計精心騙局,go to great lengths 符合 elaborate hoaxes。",
+  "opts": {
+   "A": "come to an end 結束,不合",
+   "B": "go to great lengths 不遺餘力,符合",
+   "C": "put in service 啟用,不合",
+   "D": "hold in store 準備著,不合"
+  },
+  "vocab": [
+   [
+    "go to great lengths",
+    "片語 不遺餘力"
+   ],
+   [
+    "elaborate",
+    "adj. 精心製作的"
+   ],
+   [
+    "hoax",
+    "n. 惡作劇、騙局"
+   ]
+  ]
+ },
+ "20": {
+  "key": "為了騙觀眾而做「虛構的」報導,下文 BBC 義大利麵樹即虛構。",
+  "opts": {
+   "A": "fictional 虛構的,符合",
+   "B": "essential 必要的,不合",
+   "C": "ancient 古代的,不合",
+   "D": "subjective 主觀的,不合騙人意圖"
+  },
+  "vocab": [
+   [
+    "fictional",
+    "adj. 虛構的"
+   ],
+   [
+    "audience",
+    "n. 觀眾"
+   ],
+   [
+    "subjective",
+    "adj. 主觀的"
+   ]
+  ]
+ },
+ "21": {
+  "key": "鳳梨葉可「當作」皮革的替代品,serve as 表擔任、充當。",
+  "opts": {
+   "A": "bring along 帶著,不合",
+   "B": "turn out 結果是,後不接 a substitute",
+   "C": "account for 解釋/佔,不合",
+   "D": "serve as 充當,符合"
+  },
+  "vocab": [
+   [
+    "serve as",
+    "片語 充當"
+   ],
+   [
+    "substitute",
+    "n. 替代品"
+   ],
+   [
+    "account for",
+    "片語 說明;佔"
+   ]
+  ]
+ },
+ "22": {
+  "key": "shirt 與 together 的關係是被動,過去分詞 woven 作後置修飾,指被織成的襯衫。",
+  "opts": {
+   "A": "wove 過去式,不能直接修飾 shirt",
+   "B": "weaving 主動,襯衫不會自己織",
+   "C": "woven 被動分詞,符合",
+   "D": "to weave 不定詞,語意不合"
+  },
+  "vocab": [
+   [
+    "weave",
+    "v. 編織(wove, woven)"
+   ],
+   [
+    "fiber",
+    "n. 纖維"
+   ],
+   [
+    "traditional",
+    "adj. 傳統的"
+   ]
+  ]
+ },
+ "23": {
+  "key": "bags, shoes, and 「其他」紡織品,other + 複數名詞。",
+  "opts": {
+   "A": "else 須放在疑問詞後,不合",
+   "B": "those 代名詞,不接名詞",
+   "C": "other 其他,接 textile products",
+   "D": "such 須接 such as 或 such+名詞,語意不合"
+  },
+  "vocab": [
+   [
+    "textile",
+    "n. 紡織品"
+   ],
+   [
+    "biodegradable",
+    "adj. 可生物分解的"
+   ],
+   [
+    "eco-friendly",
+    "adj. 環保的"
+   ]
+  ]
+ },
+ "24": {
+  "key": "後文說所需化學品較少、碳足跡較小,故對環境有明顯「優點」。",
+  "opts": {
+   "A": "advantages 優點,符合",
+   "B": "considerations 考量,不合",
+   "C": "opportunities 機會,不合",
+   "D": "responsibilities 責任,不合"
+  },
+  "vocab": [
+   [
+    "advantage",
+    "n. 優勢"
+   ],
+   [
+    "carbon footprint",
+    "碳足跡"
+   ],
+   [
+    "fertilizer",
+    "n. 肥料"
+   ]
+  ]
+ },
+ "25": {
+  "key": "空格後 its low cost 為成本低的原因,故用 Due to 「由於」。",
+  "opts": {
+   "A": "Due to 由於,表原因,符合",
+   "B": "Nothing but 只有,不合",
+   "C": "In contrast to 與…相反,不合",
+   "D": "On behalf of 代表,不合"
+  },
+  "vocab": [
+   [
+    "due to",
+    "片語 由於"
+   ],
+   [
+    "innovative",
+    "adj. 創新的"
+   ],
+   [
+    "on behalf of",
+    "片語 代表"
+   ]
+  ]
+ },
+ "26": {
+  "key": "鏡頭與顯示系統被「裝進」眼鏡,built into 為慣用語。",
+  "opts": {
+   "A": "beyond 超越,不合",
+   "B": "into 裝入,built into 符合",
+   "C": "from 來自,不合",
+   "D": "with 與,不成慣用語"
+  },
+  "vocab": [
+   [
+    "built into",
+    "片語 內建於"
+   ],
+   [
+    "perception",
+    "n. 知覺"
+   ],
+   [
+    "magnify",
+    "v. 放大"
+   ]
+  ]
+ },
+ "27": {
+  "key": "與前面 The size of the food 對比,代替 the size 並接 of their hand,用 that。",
+  "opts": {
+   "A": "this 不能代替前面名詞",
+   "B": "that 代替 the size,符合",
+   "C": "some 不合",
+   "D": "other 不合"
+  },
+  "vocab": [
+   [
+    "magnify",
+    "v. 放大"
+   ],
+   [
+    "normal",
+    "adj. 正常的"
+   ],
+   [
+    "remain",
+    "v. 維持"
+   ]
+  ]
+ },
+ "28": {
+  "key": "食物被放大,因此大腦被騙以為吃得多,因果關係用 therefore。",
+  "opts": {
+   "A": "beforehand 事先,不合",
+   "B": "likewise 同樣地,不合",
+   "C": "instead 反而,不合",
+   "D": "therefore 因此,符合"
+  },
+  "vocab": [
+   [
+    "therefore",
+    "adv. 因此"
+   ],
+   [
+    "beforehand",
+    "adv. 事先"
+   ],
+   [
+    "likewise",
+    "adv. 同樣地"
+   ]
+  ]
+ },
+ "29": {
+  "key": "以氣味與視覺騙人,讓人覺得普通點心「更美味」,後文 chocolate 例子即味道。",
+  "opts": {
+   "A": "prettier 更漂亮,不合氣味",
+   "B": "larger 更大,是前段眼鏡的效果",
+   "C": "healthier 更健康,不合",
+   "D": "tastier 更美味,符合"
+  },
+  "vocab": [
+   [
+    "tasty",
+    "adj. 美味的"
+   ],
+   [
+    "scent",
+    "n. 氣味"
+   ],
+   [
+    "plain",
+    "adj. 無味的、樸素的"
+   ]
+  ]
+ },
+ "30": {
+  "key": "裝置能「釋放」出你喜歡的口味,配合 scent bottles。",
+  "opts": {
+   "A": "impress 使印象深刻,不合",
+   "B": "release 釋放,符合",
+   "C": "bother 打擾,不合",
+   "D": "attract 吸引,不合 flavor"
+  },
+  "vocab": [
+   [
+    "release",
+    "v. 釋放"
+   ],
+   [
+    "bother",
+    "v. 打擾"
+   ],
+   [
+    "trickery",
+    "n. 欺騙把戲"
+   ]
+  ]
+ },
+ "31": {
+  "key": "father 玫瑰總晚一個月送到,這常「毀了」紀念日慶祝,ruin。",
+  "opts": {
+   "G": "ruined 毀了,符合慶祝被破壞",
+   "H": "privilege 特權,詞性與語意不合"
+  },
+  "vocab": [
+   [
+    "ruin",
+    "v. 毀壞"
+   ],
+   [
+    "anniversary",
+    "n. 週年紀念"
+   ],
+   [
+    "bouquet",
+    "n. 花束"
+   ]
+  ]
+ },
+ "32": {
+  "key": "whenever Dad 「堅持」要去,insist on going,後接 on。",
+  "opts": {
+   "E": "insisted 堅持,符合 insist on",
+   "D": "requests 名詞,不能當動詞"
+  },
+  "vocab": [
+   [
+    "insist on",
+    "片語 堅持"
+   ],
+   [
+    "traditional",
+    "adj. 傳統的"
+   ],
+   [
+    "shopping list",
+    "購物清單"
+   ]
+  ]
+ },
+ "33": {
+  "key": "have the list ready 表清單準備好,賓語補語用形容詞。",
+  "opts": {
+   "F": "ready 準備好,符合 have sth ready",
+   "J": "obvious 明顯,語意不合"
+  },
+  "vocab": [
+   [
+    "ready",
+    "adj. 準備好的"
+   ],
+   [
+    "somehow",
+    "adv. 不知怎地"
+   ],
+   [
+    "obvious",
+    "adj. 明顯的"
+   ]
+  ]
+ },
+ "34": {
+  "key": "空格作名詞,指爸爸買的東西 (purchases),與後句 items 呼應。",
+  "opts": {
+   "B": "purchases 購買的物品,符合",
+   "D": "requests 是媽媽的要求,與下句 Mom's 對應"
+  },
+  "vocab": [
+   [
+    "purchase",
+    "n./v. 購買"
+   ],
+   [
+    "based on",
+    "片語 根據"
+   ],
+   [
+    "item",
+    "n. 項目"
+   ]
+  ]
+ },
+ "35": {
+  "key": "Mom's requests 指媽媽要的東西,與爸爸買的 purchases 形成對比。",
+  "opts": {
+   "D": "requests 要求,符合 Mom's",
+   "B": "purchases 已用於上一空"
+  },
+  "vocab": [
+   [
+    "request",
+    "n./v. 要求"
+   ],
+   [
+    "unfortunately",
+    "adv. 不幸地"
+   ],
+   [
+    "usually",
+    "adv. 通常"
+   ]
+  ]
+ },
+ "36": {
+  "key": "be trusted with secrets 被託付祕密,後有 with。",
+  "opts": {
+   "C": "trusted 被信任,be trusted with 符合",
+   "I": "revealed 洩露,搭配 with 不通"
+  },
+  "vocab": [
+   [
+    "trust sb with sth",
+    "片語 託付"
+   ],
+   [
+    "secret",
+    "n. 祕密"
+   ],
+   [
+    "community",
+    "n. 社區"
+   ]
+  ]
+ },
+ "37": {
+  "key": "the privilege of hearing 有聽到私事的特權,a/the 後接名詞。",
+  "opts": {
+   "H": "privilege 特權,符合 the ... of hearing",
+   "A": "little 不能與 the 構成名詞"
+  },
+  "vocab": [
+   [
+    "privilege",
+    "n. 特權"
+   ],
+   [
+    "private",
+    "adj. 私人的"
+   ],
+   [
+    "matter",
+    "n. 事情"
+   ]
+  ]
+ },
+ "38": {
+  "key": "The reason was obvious,後面冒號解釋理由。",
+  "opts": {
+   "J": "obvious 明顯的,補語形容詞符合",
+   "C": "trusted 語意不合"
+  },
+  "vocab": [
+   [
+    "obvious",
+    "adj. 明顯的"
+   ],
+   [
+    "reason",
+    "n. 原因"
+   ],
+   [
+    "remember",
+    "v. 記得"
+   ]
+  ]
+ },
+ "39": {
+  "key": "祕密永遠不會被洩露,never be revealed 被動。",
+  "opts": {
+   "I": "revealed 被揭露,符合",
+   "G": "ruined 被毀壞,不如 revealed 切合祕密"
+  },
+  "vocab": [
+   [
+    "reveal",
+    "v. 洩露"
+   ],
+   [
+    "ruin",
+    "v. 毀壞"
+   ],
+   [
+    "neighbor",
+    "n. 鄰居"
+   ]
+  ]
+ },
+ "40": {
+  "key": "father cared little about who did what,表示不太在意。",
+  "opts": {
+   "A": "little 副詞,cared little 不太在乎,符合",
+   "H": "privilege 名詞,不能修飾 cared"
+  },
+  "vocab": [
+   [
+    "care about",
+    "片語 在乎"
+   ],
+   [
+    "little",
+    "adv. 幾乎不"
+   ],
+   [
+    "show up",
+    "片語 現身"
+   ]
+  ]
+ },
+ "41": {
+  "key": "第二段說多數天使魚扮演其他魚的清潔工,啄食死皮組織。",
+  "opts": {
+   "A": "清潔工,符合 act as cleaners",
+   "B": "保鏢是雄魚對雌魚的角色,不是整體工作",
+   "C": "園丁沒提到",
+   "D": "海綿與藻類是食物,不是被照顧對象"
+  },
+  "vocab": [
+   [
+    "occupation",
+    "n. 職業"
+   ],
+   [
+    "tissue",
+    "n. 組織"
+   ],
+   [
+    "algae",
+    "n. 藻類"
+   ]
+  ]
+ },
+ "42": {
+  "key": "首段:夜晚不活動時顏色可能變淡,故晚上較不鮮豔。",
+  "opts": {
+   "A": "雌魚是黃色,雄魚是藍色",
+   "B": "夜晚顏色變淡,符合",
+   "C": "雄魚在性轉完成時有黑條紋,與題述不符",
+   "D": "幼魚與成魚顏色不同"
+  },
+  "vocab": [
+   [
+    "inactive",
+    "adj. 不活躍的"
+   ],
+   [
+    "pale",
+    "adj. 蒼白的"
+   ],
+   [
+    "indicate",
+    "v. 顯示"
+   ]
+  ]
+ },
+ "43": {
+  "key": "第三段:雄魚死亡時,群體需要新的 security guard,最大的雌魚才開始轉變。",
+  "opts": {
+   "A": "危險並非轉性原因",
+   "B": "飲食沒提到影響",
+   "C": "幼魚誕生沒提",
+   "D": "雄魚死亡,符合"
+  },
+  "vocab": [
+   [
+    "trigger",
+    "v. 引發"
+   ],
+   [
+    "gender",
+    "n. 性別"
+   ],
+   [
+    "at random",
+    "片語 隨機"
+   ]
+  ]
+ },
+ "44": {
+  "key": "文中順序:變大 → 一週後變色 → 行為漸漸改變 → 兩週後出現黑條紋。",
+  "opts": {
+   "A": "行為不在顏色之前",
+   "B": "體型最先變化,不是顏色",
+   "C": "size→color→behavior→stripes,符合",
+   "D": "順序錯誤"
+  },
+  "vocab": [
+   [
+    "appearance",
+    "n. 外觀"
+   ],
+   [
+    "behavior",
+    "n. 行為"
+   ],
+   [
+    "stripe",
+    "n. 條紋"
+   ]
+  ]
+ },
+ "45": {
+  "key": "全文依序介紹歡迎柱、屋內柱、紀念柱、墓柱與恥辱柱的用途,重點在功能。",
+  "opts": {
+   "A": "全文非談傳說",
+   "B": "Functions 符合各類柱子用途",
+   "C": "抗爭只在末段略提",
+   "D": "設計不是主軸,重點在用途分類"
+  },
+  "vocab": [
+   [
+    "totem pole",
+    "圖騰柱"
+   ],
+   [
+    "function",
+    "n. 功能"
+   ],
+   [
+    "clan",
+    "n. 氏族"
+   ]
+  ]
+ },
+ "46": {
+  "key": "第二到四段依位置與場合把圖騰柱分成幾類,屬分類法。",
+  "opts": {
+   "A": "沒有按重要性排序",
+   "B": "沒有按時間順序",
+   "C": "沒有因果關係",
+   "D": "依類別介紹,符合"
+  },
+  "vocab": [
+   [
+    "classification",
+    "n. 分類"
+   ],
+   [
+    "categories",
+    "n. 類別"
+   ],
+   [
+    "occasion",
+    "n. 場合"
+   ]
+  ]
+ },
+ "47": {
+  "key": "第二段:welcome poles 放在村落海灘前迎接乘獨木舟的訪客。",
+  "opts": {
+   "A": "house pole 在屋內",
+   "B": "shame pole 現在僅在博物館",
+   "C": "memorial pole 在屋前",
+   "D": "welcome pole 在海灘邊,符合"
+  },
+  "vocab": [
+   [
+    "beachfront",
+    "n. 海濱"
+   ],
+   [
+    "erect",
+    "v. 豎立"
+   ],
+   [
+    "ridicule",
+    "v. 嘲笑"
+   ]
+  ]
+ },
+ "48": {
+  "key": "encroachment 指殖民勢力入侵文化與政治,對應 Invasion。",
+  "opts": {
+   "A": "Invasion 入侵,符合",
+   "B": "Appointment 任命,不合",
+   "C": "Objection 反對,不合",
+   "D": "Enrichment 豐富,與威脅相反"
+  },
+  "vocab": [
+   [
+    "encroachment",
+    "n. 侵犯"
+   ],
+   [
+    "invasion",
+    "n. 入侵"
+   ],
+   [
+    "colonial",
+    "adj. 殖民的"
+   ]
+  ]
+ },
+ "49": {
+  "key": "首段說 earworm 是不斷在腦中重複播放的旋律。",
+  "opts": {
+   "A": "不是生物",
+   "B": "並非必然是個人記住的曲調",
+   "C": "重複播放的旋律,符合",
+   "D": "廣告歌只是舉例,不能等同"
+  },
+  "vocab": [
+   [
+    "earworm",
+    "n. 洗腦歌曲"
+   ],
+   [
+    "loop",
+    "n. 循環"
+   ],
+   [
+    "embed",
+    "v. 嵌入"
+   ]
+  ]
+ },
+ "50": {
+  "key": "scientists 探討的 subject 為被研究的主題,對應 matter being studied。",
+  "opts": {
+   "A": "不是精神疾病",
+   "B": "不是修課科目",
+   "C": "受試者的意思不符上下文",
+   "D": "被研究的主題,符合"
+  },
+  "vocab": [
+   [
+    "subject",
+    "n. 主題;受試者"
+   ],
+   [
+    "phenomenon",
+    "n. 現象"
+   ],
+   [
+    "explore",
+    "v. 探究"
+   ]
+  ]
+ },
+ "51": {
+  "key": "第二段列出簡單旋律、重複歌詞、近期接觸、聯想詞等,未提及節奏流暢。",
+  "opts": {
+   "A": "repeated exposure 有提到",
+   "B": "smooth rhythms 沒提到,為正解",
+   "C": "recent exposure 有提到",
+   "D": "word associations 有提到"
+  },
+  "vocab": [
+   [
+    "trigger",
+    "v. 觸發"
+   ],
+   [
+    "fragment",
+    "n. 片段"
+   ],
+   [
+    "exposure",
+    "n. 接觸"
+   ]
+  ]
+ },
+ "52": {
+  "key": "第三段談人們對 earworm 的感受,以及依感受採取不同因應方式。",
+  "opts": {
+   "A": "只說多數人不覺得煩",
+   "B": "主要談人們如何反應,符合",
+   "C": "不是消除洗腦歌曲的方法",
+   "D": "沒談何時注意到"
+  },
+  "vocab": [
+   [
+    "cope with",
+    "片語 應付"
+   ],
+   [
+    "neutral",
+    "adj. 中性的"
+   ],
+   [
+    "disturb",
+    "v. 打擾"
+   ]
+  ]
+ },
+ "53": {
+  "key": "全文說明 foggers 對蟲子成效不佳且有危險,重點是無效。",
+  "opts": {
+   "A": "沒有列出除蟲步驟",
+   "B": "未教正確使用",
+   "C": "主旨為 bug bombs 無效,符合",
+   "D": "過於籠統,主題是 foggers"
+  },
+  "vocab": [
+   [
+    "fogger",
+    "n. 殺蟲煙霧彈"
+   ],
+   [
+    "pesticide",
+    "n. 殺蟲劑"
+   ],
+   [
+    "ineffective",
+    "adj. 無效的"
+   ]
+  ]
+ },
+ "54": {
+  "key": "首段與次段:蟲子偵測到化學霧後會躲到牆縫或床墊深處。",
+  "opts": {
+   "A": "不是靜止不動",
+   "B": "躲到安全處,符合",
+   "C": "沒說停止咬人",
+   "D": "沒說逃到別人家"
+  },
+  "vocab": [
+   [
+    "retreat",
+    "v. 撤退"
+   ],
+   [
+    "crevice",
+    "n. 縫隙"
+   ],
+   [
+    "resistant",
+    "adj. 有抗藥性的"
+   ]
+  ]
+ },
+ "55": {
+  "key": "末段指出氣體高度易燃,使用不當有火災或爆炸風險。",
+  "opts": {
+   "A": "可能引起火災,符合",
+   "B": "會落在每個表面,與題述相反",
+   "C": "對蟲子效果有限",
+   "D": "含有毒化學物質"
+  },
+  "vocab": [
+   [
+    "flammable",
+    "adj. 易燃的"
+   ],
+   [
+    "explosion",
+    "n. 爆炸"
+   ],
+   [
+    "toxic",
+    "adj. 有毒的"
+   ]
+  ]
+ },
+ "56": {
+  "key": "結尾 Therefore 建議把問題交給專業人員,即諮詢除蟲專家。",
+  "opts": {
+   "A": "文中不推薦選購煙霧彈",
+   "B": "沒提定期打掃",
+   "C": "未建議關門",
+   "D": "請專業人員處理,符合"
+  },
+  "vocab": [
+   [
+    "professional",
+    "n. 專業人士"
+   ],
+   [
+    "consult",
+    "v. 請教"
+   ],
+   [
+    "last resort",
+    "最後手段"
+   ]
+  ]
+ }
+}

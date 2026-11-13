@@ -465,8 +465,8 @@
  "24": {
   "key": "只有 Emmanuel 在法國大革命中「倖存」,其餘被熔毀,動詞過去式。",
   "opts": {
-   "F": "survived 倖存,後直接接受詞 the French Revolution",
-   "D": "retained 為保留,常接 its sound,此處指逃過劫難不合"
+   "F": "survived 倖存,直接接受詞 the French Revolution",
+   "D": "retained 為保留某物,不指熬過事件"
   },
   "vocab": [
    [
@@ -486,8 +486,8 @@
  "25": {
   "key": "除 Emmanuel 外都被換掉,它「保留」了原本優美音色,過去式 retained。",
   "opts": {
-   "D": "retained 保留,受詞 its sound",
-   "F": "survived 前題已用,且語意為保持音質較佳用 retained"
+   "D": "retained 保留,受詞 its renowned sound",
+   "F": "survived 已用於上題,且不能接 its sound"
   },
   "vocab": [
    [
@@ -689,12 +689,12 @@
   ]
  },
  "36": {
-  "key": "文章說水平臂為停、降 45 度為行,並加紅綠燈,由警察操作;選 C(依官方答案)。",
+  "key": "Knight 的設計源自鐵路可動臂信號,附紅綠煤氣燈,臂水平為停、降至 45 度為行;圖 C 有兩側可下垂的臂與頂部燈。",
   "opts": {
-   "A": "需符合臂與燈的描述,見圖與文章對照",
-   "B": "同上",
-   "C": "符合水平臂停止、斜 45 度前進與紅綠燈",
-   "D": "同上"
+   "A": "燈號箱加人像,為後來電燈式號誌",
+   "B": "僅有固定橫桿,無燈",
+   "C": "有可動臂加燈,符合描述",
+   "D": "STOP/GO 字樣方箱,非 Knight 設計"
   },
   "vocab": [
    [

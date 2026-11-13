@@ -1,0 +1,1022 @@
+{
+ "1": {
+  "key": "後句說鬧鐘在沒設定時也會響,表示它運作不「正常」,function properly 為固定搭配。",
+  "opts": {
+   "A": "tenderly 溫柔地,不合鬧鐘運作",
+   "B": "properly 正常地,符合語意",
+   "C": "solidly 堅固地,與運作無關",
+   "D": "favorably 有利地,語意不通"
+  },
+  "vocab": [
+   [
+    "function",
+    "v. 運作"
+   ],
+   [
+    "properly",
+    "adv. 正常地、適當地"
+   ]
+  ]
+ },
+ "2": {
+  "key": "後句 set his mind on becoming a professor,表示決定「從事」物理學的職涯,pursue a career 為常見搭配。",
+  "opts": {
+   "A": "pursue 追求、從事,正確",
+   "B": "swear 發誓,不接 career",
+   "C": "reserve 預訂、保留,語意不合",
+   "D": "draft 起草,不合"
+  },
+  "vocab": [
+   [
+    "pursue a career",
+    "片語 從事某職業"
+   ],
+   [
+    "reserve",
+    "v. 預訂"
+   ]
+  ]
+ },
+ "3": {
+  "key": "不會遇到任何人好幾天,表示是「偏遠的」地區,remote。",
+  "opts": {
+   "A": "native 本地的,與人煙稀少無關",
+   "B": "tricky 棘手的,不修飾地區位置",
+   "C": "remote 偏遠的,正確",
+   "D": "vacant 空缺的(房間、職位),不用於地區"
+  },
+  "vocab": [
+   [
+    "remote",
+    "adj. 偏遠的"
+   ],
+   [
+    "vacant",
+    "adj. 空著的"
+   ]
+  ]
+ },
+ "4": {
+  "key": "identify with 表示「認同」所屬團體,且後文把團體利益放在個人之前。",
+  "opts": {
+   "A": "appoint 任命,不接 with",
+   "B": "eliminate 消除,語意不合",
+   "C": "occupy 佔據,不接 with",
+   "D": "identify 認同(identify with),正確"
+  },
+  "vocab": [
+   [
+    "identify with",
+    "片語 認同"
+   ],
+   [
+    "eliminate",
+    "v. 消除"
+   ]
+  ]
+ },
+ "5": {
+  "key": "把陌生人誤認為名人而要簽名,事後的感受是「尷尬的」,embarrassing。",
+  "opts": {
+   "A": "relaxing 令人放鬆的,不合情境",
+   "B": "embarrassing 令人尷尬的,正確",
+   "C": "appealing 吸引人的,不合",
+   "D": "defending 防衛的,不合"
+  },
+  "vocab": [
+   [
+    "embarrassing",
+    "adj. 令人尷尬的"
+   ],
+   [
+    "mistake A for B",
+    "片語 把A誤認為B"
+   ]
+  ]
+ },
+ "6": {
+  "key": "薪水大多花在房租與伙食,所以「幾乎沒有」錢可娛樂,barely 帶否定意味。",
+  "opts": {
+   "A": "barely 幾乎不,正確",
+   "B": "fairly 相當地,語意相反",
+   "C": "merely 僅僅,不表否定",
+   "D": "readily 欣然地,不合"
+  },
+  "vocab": [
+   [
+    "barely",
+    "adv. 幾乎不"
+   ],
+   [
+    "merely",
+    "adv. 僅僅"
+   ]
+  ]
+ },
+ "7": {
+  "key": "disappear without a trace 為固定用法,意指「不留痕跡地」消失。",
+  "opts": {
+   "A": "guide 嚮導,不合搭配",
+   "B": "trace 痕跡,正確",
+   "C": "code 密碼,不合",
+   "D": "print 印記,不成固定搭配"
+  },
+  "vocab": [
+   [
+    "without a trace",
+    "片語 不留痕跡"
+   ],
+   [
+    "disappear",
+    "v. 消失"
+   ]
+  ]
+ },
+ "8": {
+  "key": "揮手、喊招呼是為了「催促/力勸」路過的購物者來店,urge sb to V。",
+  "opts": {
+   "A": "accessed 存取,不合",
+   "B": "edited 編輯,不合",
+   "C": "imposed 強加,不接 to V 受詞",
+   "D": "urged 力勸,正確"
+  },
+  "vocab": [
+   [
+    "urge",
+    "v. 力勸、催促"
+   ],
+   [
+    "impose",
+    "v. 強加"
+   ]
+  ]
+ },
+ "9": {
+  "key": "藝術家用細沙創作的是「雕塑品」sculptures。",
+  "opts": {
+   "A": "constitutions 憲法",
+   "B": "objections 反對",
+   "C": "sculptures 雕塑,正確",
+   "D": "adventures 冒險,無法用沙創作"
+  },
+  "vocab": [
+   [
+    "sculpture",
+    "n. 雕塑"
+   ],
+   [
+    "objection",
+    "n. 反對"
+   ]
+  ]
+ },
+ "10": {
+  "key": "雲散開後一「道」光穿過窗戶,a beam of light 為固定搭配。",
+  "opts": {
+   "A": "dip 浸、下降",
+   "B": "beam 光束,正確",
+   "C": "spark 火花,不用於陽光",
+   "D": "path 小徑,不與 light 搭配"
+  },
+  "vocab": [
+   [
+    "beam",
+    "n. 光束"
+   ],
+   [
+    "spark",
+    "n. 火花"
+   ]
+  ]
+ },
+ "11": {
+  "key": "生日卡片中「附上」錢,enclose 有隨信附入之意。",
+  "opts": {
+   "A": "enclosed 附入,正確",
+   "B": "installed 安裝,不合",
+   "C": "preserved 保存,不合",
+   "D": "rewarded 獎賞,不接 in the card"
+  },
+  "vocab": [
+   [
+    "enclose",
+    "v. 隨附、圍住"
+   ],
+   [
+    "install",
+    "v. 安裝"
+   ]
+  ]
+ },
+ "12": {
+  "key": "Olympic athlete 夢想贏得的是金「牌」gold medal。",
+  "opts": {
+   "A": "signal 信號",
+   "B": "glory 榮耀,不與 gold 搭配成名詞",
+   "C": "medal 獎牌,正確",
+   "D": "profit 利潤"
+  },
+  "vocab": [
+   [
+    "medal",
+    "n. 獎牌"
+   ],
+   [
+    "glory",
+    "n. 榮耀"
+   ]
+  ]
+ },
+ "13": {
+  "key": "小偷偷了東西後「喬裝」成保全離開,disguise oneself as。",
+  "opts": {
+   "A": "balanced 使平衡",
+   "B": "calculated 計算",
+   "C": "disguised 喬裝,正確",
+   "D": "registered 登記"
+  },
+  "vocab": [
+   [
+    "disguise oneself as",
+    "片語 喬裝成"
+   ],
+   [
+    "register",
+    "v. 登記"
+   ]
+  ]
+ },
+ "14": {
+  "key": "遊戲引發意外,所以建議玩家要「留意」環境危險,be aware of。",
+  "opts": {
+   "A": "aware 察覺到,正確",
+   "B": "ashamed 羞愧,不合",
+   "C": "doubtful 懷疑的,不合",
+   "D": "guilty 內疚的,不合"
+  },
+  "vocab": [
+   [
+    "be aware of",
+    "片語 察覺、留意"
+   ],
+   [
+    "ashamed",
+    "adj. 羞愧的"
+   ]
+  ]
+ },
+ "15": {
+  "key": "福爾摩斯以驚人的「觀察」力與對瑣事的知識著稱,powers of observation。",
+  "opts": {
+   "A": "innocence 清白",
+   "B": "estimation 估計,不是其特色",
+   "C": "assurance 保證",
+   "D": "observation 觀察力,正確"
+  },
+  "vocab": [
+   [
+    "observation",
+    "n. 觀察(力)"
+   ],
+   [
+    "trivial",
+    "adj. 瑣碎的"
+   ]
+  ]
+ },
+ "16": {
+  "key": "到鏡子前「查看」發現紅點,look into the mirror 表示往鏡中看。",
+  "opts": {
+   "A": "check out 查看/結帳,常指檢查事物,不接 the mirror 的看法",
+   "B": "look into 看進(鏡子),本句語意最自然(亦有調查之意)",
+   "C": "watch over 看守,不合",
+   "D": "see through 看穿,不合"
+  },
+  "vocab": [
+   [
+    "look into",
+    "片語 往內看;調查"
+   ],
+   [
+    "see through",
+    "片語 看穿"
+   ]
+  ]
+ },
+ "17": {
+  "key": "紅點是眼瞼腺炎的前兆,即「症狀」symptoms。",
+  "opts": {
+   "A": "incidents 事件",
+   "B": "measures 措施",
+   "C": "symptoms 症狀,正確",
+   "D": "explanations 解釋"
+  },
+  "vocab": [
+   [
+    "symptom",
+    "n. 症狀"
+   ],
+   [
+    "stye",
+    "n. 針眼"
+   ]
+  ]
+ },
+ "18": {
+  "key": "細菌從鼻子被「傳到」眼睛,transfer to,與 are easily ... to the eye 搭配。",
+  "opts": {
+   "A": "attracted 吸引",
+   "B": "contributed 貢獻(contribute to 為主動用法)",
+   "C": "exposed 暴露,應接 to 但語意為曝露於,不如傳播貼切",
+   "D": "transferred 轉移,正確"
+  },
+  "vocab": [
+   [
+    "transfer",
+    "v. 轉移、傳染"
+   ],
+   [
+    "bacteria",
+    "n. 細菌"
+   ]
+  ]
+ },
+ "19": {
+  "key": "前後為讓步關係:雖然看起來不舒服,但通常無害,用 Although。",
+  "opts": {
+   "A": "As 因為,語意不合",
+   "B": "If 如果,不合",
+   "C": "Unless 除非,不合",
+   "D": "Although 雖然,正確"
+  },
+  "vocab": [
+   [
+    "although",
+    "conj. 雖然"
+   ],
+   [
+    "harmless",
+    "adj. 無害的"
+   ]
+  ]
+ },
+ "20": {
+  "key": "press a warm washcloth against your eyelid,將毛巾「貼壓在」眼瞼上。",
+  "opts": {
+   "A": "against 緊貼,正確",
+   "B": "among 在…之中,不合",
+   "C": "about 關於,不合",
+   "D": "after 在…之後,不合"
+  },
+  "vocab": [
+   [
+    "press against",
+    "片語 緊貼"
+   ],
+   [
+    "washcloth",
+    "n. 毛巾"
+   ]
+  ]
+ },
+ "21": {
+  "key": "前面說窮人常沒有鞋,後面接「更別說」合腳的鞋,let alone 用於否定語境加強。",
+  "opts": {
+   "A": "except for 除了",
+   "B": "provided with 被提供",
+   "C": "far from 遠非",
+   "D": "let alone 更別說,正確"
+  },
+  "vocab": [
+   [
+    "let alone",
+    "片語 更不用說"
+   ],
+   [
+    "poverty",
+    "n. 貧窮"
+   ]
+  ]
+ },
+ "22": {
+  "key": "鞋太小時孩子只好「將就」,make do with 意為湊合著用。",
+  "opts": {
+   "A": "get done 完成",
+   "B": "get lost 迷路",
+   "C": "make do 將就,正確",
+   "D": "make believe 假裝"
+  },
+  "vocab": [
+   [
+    "make do with",
+    "片語 將就使用"
+   ],
+   [
+    "grow out of",
+    "片語 長大而穿不下"
+   ]
+  ]
+ },
+ "23": {
+  "key": "鞋子可隨腳長大讓孩子「調整」尺寸,adjust。",
+  "opts": {
+   "A": "adjust 調整,正確",
+   "B": "explore 探索",
+   "C": "insert 插入",
+   "D": "overlook 忽略"
+  },
+  "vocab": [
+   [
+    "adjust",
+    "v. 調整"
+   ],
+   [
+    "overlook",
+    "v. 忽略"
+   ]
+  ]
+ },
+ "24": {
+  "key": "come in two sizes 為固定說法,表示有兩種尺寸。",
+  "opts": {
+   "A": "by",
+   "B": "in 正確(come in 尺寸/顏色)",
+   "C": "from",
+   "D": "down"
+  },
+  "vocab": [
+   [
+    "come in",
+    "片語 (商品)有…款式"
+   ],
+   [
+    "resemble",
+    "v. 類似"
+   ]
+  ]
+ },
+ "25": {
+  "key": "前半說鞋跟與鞋頭控制長度,後半說兩側控制寬度,兩者對比,用 while。",
+  "opts": {
+   "A": "whether 是否",
+   "B": "while 而(對比),正確",
+   "C": "with 介系詞,不能連接子句",
+   "D": "for 因為,不合語意"
+  },
+  "vocab": [
+   [
+    "while",
+    "conj. 然而(對比)"
+   ],
+   [
+    "width",
+    "n. 寬度"
+   ]
+  ]
+ },
+ "26": {
+  "key": "前句說天氣影響心情,後句「因此」許多人相信壞天氣降低效率,Accordingly 表結果。",
+  "opts": {
+   "A": "At most 至多",
+   "B": "In contrast 相對地,不合",
+   "C": "Literally 字面上",
+   "D": "Accordingly 因此,正確"
+  },
+  "vocab": [
+   [
+    "accordingly",
+    "adv. 因此"
+   ],
+   [
+    "productivity",
+    "n. 生產力"
+   ]
+  ]
+ },
+ "27": {
+  "key": "however 指出信念與實際效應之間有顯著「落差」gap。",
+  "opts": {
+   "A": "gap 差距,正確",
+   "B": "link 關聯,與 however 語氣相反",
+   "C": "clue 線索",
+   "D": "ratio 比率"
+  },
+  "vocab": [
+   [
+    "gap between",
+    "片語 …之間的落差"
+   ],
+   [
+    "significant",
+    "adj. 顯著的"
+   ]
+  ]
+ },
+ "28": {
+  "key": "實驗室實驗資料「以及」銀行實地觀察,as well as 表並列。",
+  "opts": {
+   "A": "out of 出自",
+   "B": "as well as 以及,正確",
+   "C": "in case of 萬一",
+   "D": "due to 由於"
+  },
+  "vocab": [
+   [
+    "as well as",
+    "片語 以及"
+   ],
+   [
+    "empirical",
+    "adj. 實證的"
+   ]
+  ]
+ },
+ "29": {
+  "key": "想著下班後可從事的活動,engage in 從事。",
+  "opts": {
+   "A": "break off 中斷",
+   "B": "approve of 贊成",
+   "C": "engage in 從事,正確",
+   "D": "take over 接管"
+  },
+  "vocab": [
+   [
+    "engage in",
+    "片語 從事"
+   ],
+   [
+    "approve of",
+    "片語 贊成"
+   ]
+  ]
+ },
+ "30": {
+  "key": "圖片會使人分心,因此「降低」生產力,lower。",
+  "opts": {
+   "A": "reform 改革",
+   "B": "lower 降低,正確",
+   "C": "switch 切換",
+   "D": "demand 要求"
+  },
+  "vocab": [
+   [
+    "distract",
+    "v. 使分心"
+   ],
+   [
+    "lower",
+    "v. 降低"
+   ]
+  ]
+ },
+ "31": {
+  "key": "no culture ___ onions quite as much,需動詞過去式,「欣賞、推崇」洋蔥最合理。",
+  "opts": {
+   "C": "admired 推崇,正確",
+   "A": "reflected 反映,語意不合"
+  },
+  "vocab": [
+   [
+    "admire",
+    "v. 欣賞、推崇"
+   ]
+  ]
+ },
+ "32": {
+  "key": "空格修飾名詞 meaning,洋蔥具有「精神/宗教上」意義,spiritual。",
+  "opts": {
+   "G": "spiritual 精神的,正確",
+   "J": "healing 為療癒,但後文 meaning 指象徵意涵"
+  },
+  "vocab": [
+   [
+    "spiritual",
+    "adj. 精神的"
+   ]
+  ]
+ },
+ "33": {
+  "key": "be considered to be ___ of eternal life,洋蔥被視為永生的「象徵」。",
+  "opts": {
+   "I": "symbols 象徵,正確",
+   "B": "parts 部分,語意不合"
+  },
+  "vocab": [
+   [
+    "symbol of",
+    "片語 …的象徵"
+   ]
+  ]
+ },
+ "34": {
+  "key": "圓中有圓的結構「反映」永恆,動詞 reflected 配 the eternity。",
+  "opts": {
+   "A": "reflected 反映,正確",
+   "D": "functioned 須接 as,不合"
+  },
+  "vocab": [
+   [
+    "reflect",
+    "v. 反映"
+   ]
+  ]
+ },
+ "35": {
+  "key": "the ___ power of the vegetable 與 medicinal 相呼應,為「療效力量」healing。",
+  "opts": {
+   "J": "healing 療癒的,正確",
+   "G": "spiritual 與 magical 對比的是 medical,故不選"
+  },
+  "vocab": [
+   [
+    "healing",
+    "adj. 療癒的"
+   ]
+  ]
+ },
+ "36": {
+  "key": "paintings ___ inside pyramids,為過去分詞「被發現於」,discovered 作後置修飾。",
+  "opts": {
+   "H": "discovered 被發現,正確",
+   "F": "decorating 為主動,畫作不能裝飾金字塔此處語意不通"
+  },
+  "vocab": [
+   [
+    "discover",
+    "v. 發現"
+   ],
+   [
+    "tomb",
+    "n. 墳墓"
+   ]
+  ]
+ },
+ "37": {
+  "key": "They ___ as a funeral offering,function as 表「作為…」。",
+  "opts": {
+   "D": "functioned 充當,正確",
+   "A": "reflected 不接 as"
+  },
+  "vocab": [
+   [
+    "function as",
+    "片語 作為…"
+   ],
+   [
+    "offering",
+    "n. 供品"
+   ]
+  ]
+ },
+ "38": {
+  "key": "on or around various ___ of their bodies,身體的各個「部位」。",
+  "opts": {
+   "B": "parts 部位,正確",
+   "I": "symbols 與 bodies 不搭"
+  },
+  "vocab": [
+   [
+    "part",
+    "n. 部位"
+   ]
+  ]
+ },
+ "39": {
+  "key": "mummies found with onions ___ their pelvis…,洋蔥「裝飾/擺在」身體部位,decorating 作分詞修飾。",
+  "opts": {
+   "F": "decorating 正確",
+   "H": "discovered 已用於 36 題,且語意不合"
+  },
+  "vocab": [
+   [
+    "decorate",
+    "v. 裝飾"
+   ],
+   [
+    "pelvis",
+    "n. 骨盆"
+   ]
+  ]
+ },
+ "40": {
+  "key": "strong scent would ___ the dead to breathe again,prompt sb to V 意為促使。",
+  "opts": {
+   "E": "prompt 促使,正確",
+   "C": "admired 詞性與語意不合"
+  },
+  "vocab": [
+   [
+    "prompt sb to V",
+    "片語 促使某人做"
+   ],
+   [
+    "scent",
+    "n. 氣味"
+   ]
+  ]
+ },
+ "41": {
+  "key": "第三段依序講填問卷、進行遊戲測驗、得到報告,重點在評估狗智力的流程。",
+  "opts": {
+   "A": "問卷理論文中未談",
+   "B": "程序,正確",
+   "C": "未談產品清單",
+   "D": "只談活動性質,偏重點"
+  },
+  "vocab": [
+   [
+    "questionnaire",
+    "n. 問卷"
+   ],
+   [
+    "procedure",
+    "n. 程序"
+   ]
+  ]
+ },
+ "42": {
+  "key": "第二段:人有多種智力,狗亦然,問題只在狗較依賴哪種,即不同狗強項不同。",
+  "opts": {
+   "A": "不同狗有不同強項,正確",
+   "B": "是九種類型而非九種技能",
+   "C": "目的是了解而非控制行為",
+   "D": "文中說不是單一數字的 IQ"
+  },
+  "vocab": [
+   [
+    "cognitive",
+    "adj. 認知的"
+   ],
+   [
+    "trait",
+    "n. 特質"
+   ]
+  ]
+ },
+ "43": {
+  "key": "venture 指 recently-founded company 的共同創辦事業,即「新事業」。",
+  "opts": {
+   "A": "創意測量,不合",
+   "B": "risky attempt 為另一義,此處不合",
+   "C": "非營利組織,文中收費",
+   "D": "new business,正確"
+  },
+  "vocab": [
+   [
+    "venture",
+    "n. 新創事業;冒險"
+   ],
+   [
+    "co-founder",
+    "n. 共同創辦人"
+   ]
+  ]
+ },
+ "44": {
+  "key": "第四段:Charmer 相信主人到寧可用主人提供的資訊,而非自己眼見的資訊,即依賴主人指出零食位置。",
+  "opts": {
+   "A": "文中說信任主人,非躲避",
+   "B": "未提模仿他犬",
+   "C": "依賴主人指點,正確",
+   "D": "相反,Charmer 不靠自己感官"
+  },
+  "vocab": [
+   [
+    "rely on",
+    "片語 依賴"
+   ],
+   [
+    "brag about",
+    "片語 吹噓"
+   ]
+  ]
+ },
+ "45": {
+  "key": "全文講起源、被禁、被認可到傳播,主軸是 Capoeira 的歷史。",
+  "opts": {
+   "A": "歷史,正確",
+   "B": "價值只是片段",
+   "C": "貢獻僅末句提及",
+   "D": "技巧僅首段略述"
+  },
+  "vocab": [
+   [
+    "martial art",
+    "n. 武術"
+   ],
+   [
+    "oppressor",
+    "n. 壓迫者"
+   ]
+  ]
+ },
+ "46": {
+  "key": "首段列出手腳等技巧、歌唱與鼓,且為徒手搏鬥,沒有武器,故不會有持劍刺。",
+  "opts": {
+   "A": "首段有 drumming, singing",
+   "B": "用腿的技巧屬實",
+   "C": "stabbing with swords 文中是徒手,正確",
+   "D": "用手的技巧屬實"
+  },
+  "vocab": [
+   [
+    "stab",
+    "v. 刺"
+   ],
+   [
+    "acrobatics",
+    "n. 特技"
+   ]
+  ]
+ },
+ "47": {
+  "key": "作者平實敘述歷史與現況,無明顯讚美或批評,態度客觀。",
+  "opts": {
+   "A": "admiring 無明顯讚美",
+   "B": "objective 客觀,正確",
+   "C": "doubtful 無懷疑語氣",
+   "D": "harsh 無嚴厲批評"
+  },
+  "vocab": [
+   [
+    "objective",
+    "adj. 客觀的"
+   ],
+   [
+    "admiring",
+    "adj. 欽佩的"
+   ]
+  ]
+ },
+ "48": {
+  "key": "第三段:Mestre Bimba 說服當局使其成為官方格鬥風格與國家運動。",
+  "opts": {
+   "A": "相反,是它影響了現代舞",
+   "B": "最初是為自衛,以舞蹈偽裝",
+   "C": "原為取得新娘而戰的傳說,非保護",
+   "D": "透過 Bimba 努力獲官方認可,正確"
+  },
+  "vocab": [
+   [
+    "authorities",
+    "n. 當局"
+   ],
+   [
+    "camouflage",
+    "v. 偽裝"
+   ]
+  ]
+ },
+ "49": {
+  "key": "文章介紹畫家生平並說 This two-week exhibition,是展覽宣傳,最可能在畫廊網站。",
+  "opts": {
+   "A": "畫家為十九世紀,非當代藝術",
+   "B": "畫廊網站,正確",
+   "C": "Homer 為美國人,非英籍",
+   "D": "主題非印刷藝術"
+  },
+  "vocab": [
+   [
+    "exhibition",
+    "n. 展覽"
+   ],
+   [
+    "gallery",
+    "n. 畫廊"
+   ]
+  ]
+ },
+ "50": {
+  "key": "首段:他在波士頓故鄉學徒後,以插畫在當地成名。",
+  "opts": {
+   "A": "國際名聲來自戰地畫,非英國畫",
+   "B": "文中未稱最偉大插畫家",
+   "C": "文中說三種都擅長",
+   "D": "先在故鄉以插畫建立名聲,正確"
+  },
+  "vocab": [
+   [
+    "apprentice",
+    "n. 學徒"
+   ],
+   [
+    "freelance",
+    "adj. 自由接案的"
+   ]
+  ]
+ },
+ "51": {
+  "key": "第三段:作品描繪兒童、農家女等,成為十九世紀美國生活經典影像。",
+  "opts": {
+   "A": "生動描繪美國人生活,正確",
+   "B": "只是其中一部分題材",
+   "C": "相反,獨立於藝術慣例",
+   "D": "文中未提逃離社會"
+  },
+  "vocab": [
+   [
+    "convention",
+    "n. 慣例"
+   ],
+   [
+    "depiction",
+    "n. 描繪"
+   ]
+  ]
+ },
+ "52": {
+  "key": "Many of his works...; Others speak to... 指「其他作品」。",
+  "opts": {
+   "A": "artists 不合",
+   "B": "themes 若代入 Others themes 重複不通",
+   "C": "works 對照前句 Many of his works,正確",
+   "D": "images 非句首對象"
+  },
+  "vocab": [
+   [
+    "universal",
+    "adj. 普遍的"
+   ],
+   [
+    "primal",
+    "adj. 原始的"
+   ]
+  ]
+ },
+ "53": {
+  "key": "全文從十七世紀凱薩琳王后、1800 年左右、十九世紀至今,依時間順序鋪陳。",
+  "opts": {
+   "A": "非因果主軸",
+   "B": "非重要性排序",
+   "C": "時間順序,正確",
+   "D": "非比較對照"
+  },
+  "vocab": [
+   [
+    "chronological",
+    "adj. 依時間順序的"
+   ],
+   [
+    "beverage",
+    "n. 飲料"
+   ]
+  ]
+ },
+ "54": {
+  "key": "inventing a lasting British institution 指茶休成為長久存在的傳統。",
+  "opts": {
+   "A": "非最受歡迎組織",
+   "B": "長久的傳統,正確",
+   "C": "非最後一家茶公司",
+   "D": "非商業機構"
+  },
+  "vocab": [
+   [
+    "institution",
+    "n. 制度、慣例"
+   ],
+   [
+    "lasting",
+    "adj. 持久的"
+   ]
+  ]
+ },
+ "55": {
+  "key": "首段:在社交場合喝茶超出多數人負擔,價格高且還被課稅。",
+  "opts": {
+   "A": "coffee houses 只是流行處之一",
+   "B": "並非被當酒類課稅",
+   "C": "文中未說被禁止",
+   "D": "太貴,正確"
+  },
+  "vocab": [
+   [
+    "beyond one's means",
+    "片語 負擔不起"
+   ],
+   [
+    "tax",
+    "v. 課稅"
+   ]
+  ]
+ },
+ "56": {
+  "key": "高茶是工人下班後吃的正餐,比約四點的下午茶晚。",
+  "opts": {
+   "A": "高茶較晚,正確",
+   "B": "未提十八世紀兩次茶休",
+   "C": "凱薩琳是在葡萄牙長大,非參訪後帶來",
+   "D": "下午茶由貝德福公爵夫人開始"
+  },
+  "vocab": [
+   [
+    "afternoon tea",
+    "n. 下午茶"
+   ],
+   [
+    "working-class",
+    "adj. 勞工階級的"
+   ]
+  ]
+ }
+}

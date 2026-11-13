@@ -1,0 +1,803 @@
+{
+ "1": {
+  "key": "figure 指身材,與 exercise、healthy eating 呼應,應選「苗條的」。",
+  "opts": {
+   "A": "spicy 辛辣的,不能形容身材",
+   "B": "slender 苗條的,符合語意",
+   "C": "slight 輕微的,不搭 figure",
+   "D": "slippery 滑的,語意不合"
+  },
+  "vocab": [
+   [
+    "slender",
+    "adj 苗條的"
+   ],
+   [
+    "figure",
+    "n 身材"
+   ]
+  ]
+ },
+ "2": {
+  "key": "watch the sun ___ from a sea of clouds,「從雲海中升起」用 emerging 最自然。",
+  "opts": {
+   "A": "emerge 浮現、出現,正確",
+   "B": "flash 閃現,不指日出",
+   "C": "rush 衝,語意不合",
+   "D": "float 漂浮,不表示從雲中出現"
+  },
+  "vocab": [
+   [
+    "emerge",
+    "vi 浮現、出現"
+   ],
+   [
+    "a must-do",
+    "n 必做之事"
+   ]
+  ]
+ },
+ "3": {
+  "key": "bus is due 表示「預定(某時)到達」,等了30分鐘故問下班車何時到。",
+  "opts": {
+   "A": "apt 易於,後接 to V",
+   "B": "due 預定到達的,正確",
+   "C": "bound 前往(+for)",
+   "D": "docked 停靠碼頭"
+  },
+  "vocab": [
+   [
+    "due",
+    "adj 預定的、應到的"
+   ],
+   [
+    "be bound for",
+    "片語 前往"
+   ]
+  ]
+ },
+ "4": {
+  "key": "roasting heat 與 sticky 並列,高「濕度」造成黏膩感。",
+  "opts": {
+   "A": "density 密度",
+   "B": "humidity 濕度,正確",
+   "C": "circulation 循環",
+   "D": "atmosphere 大氣、氣氛"
+  },
+  "vocab": [
+   [
+    "humidity",
+    "n 濕度"
+   ],
+   [
+    "sticky",
+    "adj 黏膩的"
+   ]
+  ]
+ },
+ "5": {
+  "key": "固定搭配 stand the test of time(經得起時間考驗)。",
+  "opts": {
+   "A": "stay 停留,無此搭配",
+   "B": "take the test 是參加考試",
+   "C": "serve 服務,不合",
+   "D": "stand 經得起,正確"
+  },
+  "vocab": [
+   [
+    "stand the test of time",
+    "片語 經得起時間考驗"
+   ]
+  ]
+ },
+ "6": {
+  "key": "women do not have to serve 說明男性是「強制」服兵役。",
+  "opts": {
+   "A": "forceful 有力的,指人或論點",
+   "B": "realistic 現實的",
+   "C": "compulsory 義務的、強制的,正確",
+   "D": "distinctive 獨特的"
+  },
+  "vocab": [
+   [
+    "compulsory",
+    "adj 強制的"
+   ],
+   [
+    "military service",
+    "n 兵役"
+   ]
+  ]
+ },
+ "7": {
+  "key": "take the credit for 表示把功勞攬在自己身上,與團隊抱怨相符。",
+  "opts": {
+   "A": "take advantage of 才是利用",
+   "B": "revenge 報復,不搭 take the ...for",
+   "C": "remedy 補救",
+   "D": "credit 功勞,正確"
+  },
+  "vocab": [
+   [
+    "take the credit for",
+    "片語 居功"
+   ],
+   [
+    "complain",
+    "vi 抱怨"
+   ]
+  ]
+ },
+ "8": {
+  "key": "主詞 hotel,受詞為 good service 與交通便利,promise 在此指「保證提供」。",
+  "opts": {
+   "A": "propose 提議",
+   "B": "contain 包含(容器)",
+   "C": "promise 保證會有,正確",
+   "D": "confirm 確認"
+  },
+  "vocab": [
+   [
+    "promise",
+    "v 預示、保證"
+   ],
+   [
+    "convenient",
+    "adj 便利的"
+   ]
+  ]
+ },
+ "9": {
+  "key": "血庫存量過低,醫院對大眾「呼籲」捐血,make an appeal for。",
+  "opts": {
+   "A": "appeal 呼籲,正確",
+   "B": "approach 方法,不搭 make an ... for",
+   "C": "operation 手術、運作",
+   "D": "observation 觀察"
+  },
+  "vocab": [
+   [
+    "make an appeal for",
+    "片語 呼籲"
+   ],
+   [
+    "donate",
+    "v 捐贈"
+   ]
+  ]
+ },
+ "10": {
+  "key": "could not choose 表示分組是無法自選的,因此是「隨機」分配。",
+  "opts": {
+   "A": "eligibly 符合資格地",
+   "B": "randomly 隨機地,正確",
+   "C": "apparently 顯然地",
+   "D": "consequently 因此,但語意不合"
+  },
+  "vocab": [
+   [
+    "randomly",
+    "adv 隨機地"
+   ],
+   [
+    "eligible",
+    "adj 有資格的"
+   ]
+  ]
+ },
+ "11": {
+  "key": "後接 regular customers,mystery shoppers 是「假扮」一般顧客去購物。",
+  "opts": {
+   "A": "call for 要求",
+   "B": "pose as 假扮成,正確",
+   "C": "attend to 照料",
+   "D": "engage in 從事,後不接 as 的身分"
+  },
+  "vocab": [
+   [
+    "pose as",
+    "片語 假扮成"
+   ],
+   [
+    "inquiry",
+    "n 詢問"
+   ]
+  ]
+ },
+ "12": {
+  "key": "關係子句 the stores to which they are assigned(被分派到的商店),介係詞+關代。",
+  "opts": {
+   "A": "in that 因為,為連接詞",
+   "B": "with which 介詞不合 assign",
+   "C": "for that 不成文法",
+   "D": "to which,正確"
+  },
+  "vocab": [
+   [
+    "assign",
+    "v 分派"
+   ]
+  ]
+ },
+ "13": {
+  "key": "遵循標準程序是為了避免「個人偏見」,配合下文 checklist 求一致性。",
+  "opts": {
+   "A": "keen competitions 激烈競爭",
+   "B": "financial hardship 財務困難",
+   "C": "racial conflicts 種族衝突",
+   "D": "personal bias 個人偏見,正確"
+  },
+  "vocab": [
+   [
+    "bias",
+    "n 偏見"
+   ],
+   [
+    "consistency",
+    "n 一致性"
+   ]
+  ]
+ },
+ "14": {
+  "key": "下文 arguing without a good reason,是在扮演「難搞的」顧客。",
+  "opts": {
+   "A": "difficult 難搞的,正確",
+   "B": "potential 潛在的",
+   "C": "constant 持續的",
+   "D": "anonymous 匿名的,與無故爭吵無關"
+  },
+  "vocab": [
+   [
+    "difficult customer",
+    "片語 難纏顧客"
+   ],
+   [
+    "pretend",
+    "v 假裝"
+   ]
+  ]
+ },
+ "15": {
+  "key": "透過蒐集資料找出可「改善」之處,進而提升品質。",
+  "opts": {
+   "A": "distribution 分配",
+   "B": "expectation 期待",
+   "C": "improvement 改善,正確",
+   "D": "management 管理"
+  },
+  "vocab": [
+   [
+    "improvement",
+    "n 改善"
+   ],
+   [
+    "competitive edge",
+    "片語 競爭優勢"
+   ]
+  ]
+ },
+ "16": {
+  "key": "句意:他們本來「可以」用鬧鐘(已發明),但太貴又不可靠,故用 knocker-up。could have p.p. 表過去可能卻沒做。",
+  "opts": {
+   "A": "must be using 現在推測,時態不合",
+   "B": "could have used,正確",
+   "C": "had hardly used 語意不合",
+   "D": "were mostly using 與後文 relied on 人工叫醒矛盾"
+  },
+  "vocab": [
+   [
+    "could have p.p.",
+    "片語 本來可以(卻沒)"
+   ],
+   [
+    "unreliable",
+    "adj 不可靠的"
+   ]
+  ]
+ },
+ "17": {
+  "key": "分詞構句,human alarms 「配備著」棍子或豌豆吹管。",
+  "opts": {
+   "A": "Aimed at 瞄準",
+   "B": "Trained for 為...受訓",
+   "C": "Equipped with 配備,正確",
+   "D": "Exhausted by 被耗盡"
+  },
+  "vocab": [
+   [
+    "be equipped with",
+    "片語 配備有"
+   ],
+   [
+    "wield",
+    "v 揮舞"
+   ]
+  ]
+ },
+ "18": {
+  "key": "他們每天在大街小巷出現,成為英國各地「熟悉的存在」。",
+  "opts": {
+   "A": "familiar presences 熟悉的身影,正確",
+   "B": "distant memories 遙遠回憶",
+   "C": "vague images 模糊印象",
+   "D": "public eyesores 礙眼之物"
+  },
+  "vocab": [
+   [
+    "presence",
+    "n 存在"
+   ],
+   [
+    "eyesore",
+    "n 礙眼的東西"
+   ]
+  ]
+ },
+ "19": {
+  "key": "隨鬧鐘普及且便宜,此習俗「衰退」;as 子句為因果線索。",
+  "opts": {
+   "A": "remained 維持,與 as 後文不合",
+   "B": "dismissed 解散、駁回",
+   "C": "revised 修訂",
+   "D": "declined 衰退,正確"
+  },
+  "vocab": [
+   [
+    "decline",
+    "vi 衰退"
+   ],
+   [
+    "affordable",
+    "adj 負擔得起的"
+   ]
+  ]
+ },
+ "20": {
+  "key": "鬧鐘雖方便,但無法「比得上」敲窗聲帶來的個人關注。",
+  "opts": {
+   "A": "forget 忘記",
+   "B": "change 改變",
+   "C": "match 比得上,正確",
+   "D": "regret 後悔"
+  },
+  "vocab": [
+   [
+    "match",
+    "v 比得上"
+   ],
+   [
+    "distinctive",
+    "adj 獨特的"
+   ]
+  ]
+ },
+ "21": {
+  "key": "loved ones 前需形容詞,「已逝的」親人,對應 who died in the tsunami。",
+  "opts": {
+   "E": "departed 已逝的,修飾 loved ones"
+  },
+  "vocab": [
+   [
+    "depart",
+    "v 離開;逝世"
+   ]
+  ]
+ },
+ "22": {
+  "key": "that ___ day 指海嘯那個命運攸關的日子,fateful 為形容詞,且與 words they never got to say 呼應。",
+  "opts": {
+   "I": "fateful 命運攸關的,指海嘯那一天"
+  },
+  "vocab": [
+   [
+    "fateful",
+    "adj 命運攸關的"
+   ]
+  ]
+ },
+ "23": {
+  "key": "The idea ... was first ___ by,被動語態,表「被提出」,brought forth 符合。",
+  "opts": {
+   "J": "brought forth 被提出,構成被動 was ... by"
+  },
+  "vocab": [
+   [
+    "bring forth",
+    "片語 提出"
+   ]
+  ]
+ },
+ "24": {
+  "key": "grieving 悲痛,navigate through the sorrow 指走過悲傷。",
+  "opts": {
+   "C": "sorrow 悲傷,指 navigate through 的對象"
+  },
+  "vocab": [
+   [
+    "sorrow",
+    "n 悲傷"
+   ],
+   [
+    "navigate",
+    "v 度過、應對"
+   ]
+  ]
+ },
+ "25": {
+  "key": "The booth ___ only an old dial phone,過去式動詞,housed 表「裡面放著」。",
+  "opts": {
+   "G": "housed 內有、容納,主詞 booth"
+  },
+  "vocab": [
+   [
+    "house",
+    "v 容納"
+   ]
+  ]
+ },
+ "26": {
+  "key": "thoughts couldn't be ___ through a phone line,被動且指「傳遞」,passed on 正確。",
+  "opts": {
+   "A": "passed on 被傳遞,thoughts 透過電話線傳送"
+  },
+  "vocab": [
+   [
+    "pass on",
+    "片語 傳達"
+   ]
+  ]
+ },
+ "27": {
+  "key": "renders the grieving process more ___,後面補語為形容詞,manageable 表更能承受。",
+  "opts": {
+   "H": "manageable 較能承受,renders ... more manageable"
+  },
+  "vocab": [
+   [
+    "manageable",
+    "adj 可應付的"
+   ],
+   [
+    "render",
+    "v 使得"
+   ]
+  ]
+ },
+ "28": {
+  "key": "the booth has become a ___ between the living and the dead,bridge 連結兩者。",
+  "opts": {
+   "B": "bridge 橋梁,連結生死兩界"
+  },
+  "vocab": [
+   [
+    "bridge",
+    "n 橋梁"
+   ]
+  ]
+ },
+ "29": {
+  "key": "a natural ___ for coping with loss,coping mechanism 為常見搭配。",
+  "opts": {
+   "F": "mechanism 因應機制 (coping mechanism)"
+  },
+  "vocab": [
+   [
+    "mechanism",
+    "n 機制"
+   ],
+   [
+    "cope with",
+    "片語 應付"
+   ]
+  ]
+ },
+ "30": {
+  "key": "冒號後說明人們相信訊息會傳達,故主詞為 hope,為單數 is。",
+  "opts": {
+   "D": "hope 希望,冒號後說明相信訊息會送達",
+   "A": "其餘名詞如 sorrow 與冒號後正面內容不合"
+  },
+  "vocab": [
+   [
+    "hope",
+    "n 希望"
+   ]
+  ]
+ },
+ "31": {
+  "key": "此空後文講一般建議受傷後先休息,而 Weinstein 說那已過時;前文他受傷反而跑步,故接「這似乎與常規相反」。",
+  "opts": {
+   "D": "This seems to run counter to the common practice. 承接 Weinstein 的做法,並引出下句 When people have sprained...",
+   "B": "談研究者逐漸了解運動重要,應放在末段開頭"
+  },
+  "vocab": [
+   [
+    "run counter to",
+    "片語 與...相反"
+   ],
+   [
+    "sprain",
+    "v 扭傷"
+   ]
+  ]
+ },
+ "32": {
+  "key": "前句說各專家建議不同,本空應提出一種建議(可繼續運動),下句 nevertheless caution 為轉折。",
+  "opts": {
+   "C": "Many suggest most patients can continue with the sport,與 nevertheless 的減量提醒形成對比",
+   "A": "For example 的例子應在 cross-train 之後"
+  },
+  "vocab": [
+   [
+    "nevertheless",
+    "adv 然而"
+   ],
+   [
+    "cutback",
+    "n 縮減"
+   ]
+  ]
+ },
+ "33": {
+  "key": "前句 cross-train all the time,例子(跑者改騎車、游泳)最適合說明交叉訓練。",
+  "opts": {
+   "A": "For example 舉例說明 cross-train",
+   "D": "此句講與常規相反,不合"
+  },
+  "vocab": [
+   [
+    "cross-train",
+    "v 交叉訓練"
+   ],
+   [
+    "consensus",
+    "n 共識"
+   ]
+  ]
+ },
+ "34": {
+  "key": "末段 Thus ... more and more patients are advised to keep moving,前一句應為「研究者逐漸了解受傷時運動的重要」作因。",
+  "opts": {
+   "B": "Over time, researchers have come to realize... 為 Thus 的原因",
+   "D": "counter to common practice 已在第二段使用"
+  },
+  "vocab": [
+   [
+    "rule of thumb",
+    "片語 經驗法則"
+   ],
+   [
+    "diagnosis",
+    "n 診斷"
+   ]
+  ]
+ },
+ "35": {
+  "key": "文中 hooks and loops 彼此緊扣,即魔鬼氈(Velcro),圖 B 為毛絨面與鉤面兩片黏合。",
+  "opts": {
+   "A": "A 為按扣",
+   "B": "B 為魔鬼氈,正確",
+   "C": "C 為彈簧扣環",
+   "D": "D 為鉤扣"
+  },
+  "vocab": [
+   [
+    "fastener",
+    "n 扣件"
+   ],
+   [
+    "burr",
+    "n 毛刺果"
+   ]
+  ]
+ },
+ "36": {
+  "key": "他看到毛刺果,立刻跑去用顯微鏡看,lightbulb moment 即靈光一閃。",
+  "opts": {
+   "A": "blessing in disguise 因禍得福",
+   "B": "happy ending 圓滿結局",
+   "C": "unpredictable future 難測未來",
+   "D": "sudden inspiration 突發靈感,正確"
+  },
+  "vocab": [
+   [
+    "lightbulb moment",
+    "片語 靈光乍現"
+   ],
+   [
+    "inspiration",
+    "n 靈感"
+   ]
+  ]
+ },
+ "37": {
+  "key": "第三段 He first tried cotton, but it proved too soft and could not withstand repeated openings,故棉不耐用。",
+  "opts": {
+   "A": "Initially Velcro did not fare well,不符",
+   "B": "棉不夠耐用,正確",
+   "C": "名字來自法文字根,但並非在法國製造",
+   "D": "靈感來自毛刺果,非求絲絨光滑"
+  },
+  "vocab": [
+   [
+    "withstand",
+    "v 承受"
+   ],
+   [
+    "durable",
+    "adj 耐用的"
+   ]
+  ]
+ },
+ "38": {
+  "key": "文中提到運動器材、太空(NASA)、醫療(人工心臟、手術袍),未提土木工程。",
+  "opts": {
+   "A": "Civil engineering 未提及,正確",
+   "B": "NASA 太空用途",
+   "C": "人工心臟、手術袍",
+   "D": "athletic equipment"
+  },
+  "vocab": [
+   [
+    "patent",
+    "n 專利"
+   ],
+   [
+    "mass-produce",
+    "v 大量生產"
+   ]
+  ]
+ },
+ "39": {
+  "key": "文章敘述 Moran 因讀到 Langford 的描述而渴望親見黃石,進而前往作畫,說明他為何畫黃石。",
+  "opts": {
+   "A": "文章只談黃石,非全球國家公園",
+   "B": "未談地形成因",
+   "C": "只提家人移居,未說原因",
+   "D": "Captivated by... eager to see,正確"
+  },
+  "vocab": [
+   [
+    "captivate",
+    "v 吸引"
+   ],
+   [
+    "expedition",
+    "n 探險隊"
+   ]
+  ]
+ },
+ "40": {
+  "key": "blackened heart 指工業革命核心地帶,後文有 dark hole、dirty water,暗示汙染嚴重。",
+  "opts": {
+   "A": "severely polluted 嚴重汙染,正確",
+   "B": "holes 為引文中的比喻,非字面",
+   "C": "文中未提工廠主邪惡",
+   "D": "未提制服"
+  },
+  "vocab": [
+   [
+    "blackened",
+    "adj 變黑的"
+   ],
+   [
+    "Industrial Revolution",
+    "n 工業革命"
+   ]
+  ]
+ },
+ "41": {
+  "key": "第四段 Before Moran arrived, Yellowstone 被想像為荒蕪之地,他畫作後才為人所知,故1870年代前美國人對其美景所知甚少。",
+  "opts": {
+   "A": "非 Langford 提議",
+   "B": "正確",
+   "C": "國會是受畫作啟發,非資源",
+   "D": "Moran 另畫了十餘處,並非唯一"
+  },
+  "vocab": [
+   [
+    "picturesque",
+    "adj 如畫的"
+   ],
+   [
+    "lawmaker",
+    "n 立法者"
+   ]
+  ]
+ },
+ "42": {
+  "key": "Moran 的水彩為 first color renderings,並與 Jackson 的照片一同呈給國會,可推論當時彩色照片不普遍。",
+  "opts": {
+   "A": "Scribner’s 為插畫雜誌,未說推廣公園",
+   "B": "他是因 Langford 故事才去,首次前往",
+   "C": "可推論當時尚無彩色照片,正確",
+   "D": "文中未比較水彩的普及度"
+  },
+  "vocab": [
+   [
+    "infer",
+    "v 推論"
+   ],
+   [
+    "rendering",
+    "n 描繪"
+   ]
+  ]
+ },
+ "43": {
+  "key": "第二段 encourage full utilization of each fish,即充分利用海洋資源。",
+  "opts": {
+   "A": "非海洋科技",
+   "B": "減少糧食危機只是背景",
+   "C": "合作是手段",
+   "D": "make the most of marine resources,正確"
+  },
+  "vocab": [
+   [
+    "utilization",
+    "n 利用"
+   ],
+   [
+    "marine",
+    "adj 海洋的"
+   ]
+  ]
+ },
+ "44": {
+  "key": "this pioneering procedure 前一句指 Oddsson 的魚皮移植手術,故指該手術。",
+  "opts": {
+   "A": "100% Fish 為專案",
+   "B": "Oddsson 的皮膚移植,正確",
+   "C": "fundamental change 為計畫目標",
+   "D": "環保並非手術"
+  },
+  "vocab": [
+   [
+    "pioneering",
+    "adj 開創性的"
+   ],
+   [
+    "transplant",
+    "v n 移植"
+   ]
+  ]
+ },
+ "45": {
+  "key": "末段說成功來自各產業合作,並創造許多創新產品,顯示跨領域合作成效豐碩。",
+  "opts": {
+   "A": "30% 是每條魚價值增加,非捕撈量",
+   "B": "Oddsson 是受益者,非成員",
+   "C": "cross-field collaboration 成果豐碩,正確",
+   "D": "文中未說是國際大企業"
+  },
+  "vocab": [
+   [
+    "collaboration",
+    "n 合作"
+   ],
+   [
+    "fruitful",
+    "adj 成果豐碩的"
+   ]
+  ]
+ },
+ "46": {
+  "key": "第三段從 60% 浪費到只剩約 5%,並列出各部位用途,最後可總結幾乎無垃圾。",
+  "opts": {
+   "A": "第一段講手術案例",
+   "B": "第二段講計畫目標",
+   "C": "第三段列舉利用魚的各部位,正確",
+   "D": "第四段談合作"
+  },
+  "vocab": [
+   [
+    "detritus",
+    "n 殘渣"
+   ],
+   [
+    "waste",
+    "n v 浪費"
+   ]
+  ]
+ }
+}
