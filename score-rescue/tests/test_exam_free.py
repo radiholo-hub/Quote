@@ -195,7 +195,7 @@ def test_bad_private_file_marks_failed(open_app):
 def test_demo_button_and_wrong_demos_open(open_app):
     app = open_app(paid=False, init=sbk(False))
     submit_exam1(app, right_first=100)             # 全對也找得到示範
-    app.page.click('#examResultBody [data-act="examDemos"]')
+    app.page.click('#examDemoBox > .btn')
     rv = app.page.locator('#examReviewBody')
     vis = [c for c in rv.locator('.ans-fold').all() if c.is_visible()]
     assert len(vis) == 5 and all(c.get_attribute('data-demo') == '1' for c in vis)

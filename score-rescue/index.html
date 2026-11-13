@@ -541,6 +541,25 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 .p7-q .qn{font-weight:700;color:var(--muted);font-size:.88rem;margin-bottom:10px}
 .p7-q .qt{font-size:1.02rem;margin-bottom:12px}
 .mini-opts{display:grid;gap:8px}
+/* 模考閱讀題（Part 6／7）字級：接近 Part 5 題目，電腦上再放大，長文比較好讀 */
+#examBody .passage .body{font-size:1.1rem;line-height:1.8}
+#examBody .p7-q .qt{font-size:1.14rem;line-height:1.6}
+#examBody .mini-opt{font-size:1.08rem;min-height:50px}
+.ans-card .passage .body{font-size:1.05rem;line-height:1.8}
+@media (min-width:760px){
+  #examBody .passage .body{font-size:1.2rem}
+  #examBody .p7-q .qt{font-size:1.22rem}
+  #examBody .mini-opt{font-size:1.14rem;min-height:54px}
+  .ans-card .passage .body{font-size:1.12rem}
+}
+/* 免費版的 5 題示範詳解：黃色標示，一眼看得出哪幾題有完整解析 */
+.demo-box{background:#FFF8DC;border:2px solid #E8C547}
+.demo-box h3{color:var(--wine)}
+.demo-list{display:grid;gap:8px;margin:12px 0 14px;padding:0;list-style:none}
+.demo-list button{width:100%;text-align:left;display:flex;gap:10px;align-items:baseline;padding:10px 12px;border:1.5px solid #E8C547;border-radius:10px;background:#fff;font:inherit;cursor:pointer}
+.demo-list .dn{font-weight:800;color:var(--wine);white-space:nowrap}
+.ans-card[data-demo]{border:2px solid #E8C547;box-shadow:0 0 0 4px #FFF8DC}
+.demo-badge{display:inline-block;font-size:.78rem;font-weight:800;background:#E8C547;color:#3A2A00;border-radius:999px;padding:2px 9px;margin-right:6px}
 .mini-opt{display:flex;align-items:center;gap:12px;min-height:46px;padding:8px 14px;background:#fff;border:1.5px solid var(--line);border-radius:8px;text-align:left;cursor:pointer;font-size:.98rem}
 @media (hover:hover){.mini-opt:hover{border-color:#6B2D3C}}
 .mini-opt:focus{outline:none}
@@ -2611,11 +2630,16 @@ function examRenderResult(examId){
       (p5low?'<section class="sheet" id="examPosTip"><h3>Part 5 先從詞性下手</h3><p>Part 5 答對不到七成。多數失分來自詞性判斷，可以先做免費的 15 題詞性前測，找出自己卡在哪一類。</p><a class="btn line" href="./pos/">免費做 15 題詞性前測</a></section>':''):'';
   /* 交卷後最想看的是錯題：分數和各 Part 表現下面，直接放「看錯題與正解」 */
   const reviewRow='<div class="cta-row" id="examReviewRow" style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">'+
-   (free?'<button class="btn pri lg" type="button" data-act="examReview" data-exam="'+examId+'">看錯題與正解</button><button class="btn line lg" type="button" data-act="examDemos" data-exam="'+examId+'">看 5 題示範詳解</button>'
+   (free?'<button class="btn pri lg" type="button" data-act="examReview" data-exam="'+examId+'">看錯題與正解</button>'
         :'<button class="btn pri lg" type="button" data-act="examReview" data-exam="'+examId+'">看錯題與逐題解析</button>')+'</div>';
+  const dn=examId===1&&free&&sc.items?examDemoNums(sc.items):[];
+  const demoBox=dn.length?'<section class="sheet demo-box" id="examDemoBox"><h3>免費看老師怎麼解：5 題示範詳解</h3>'+
+    '<p>這 5 題附完整解析：先找哪裡、為什麼選、其他選項錯在哪。</p><ul class="demo-list">'+
+    dn.map((n,k)=>{const mine=sc.ans[n-1],ok=mine===sc.items[n-1].a;return '<li><button type="button" data-act="examDemos" data-exam="'+examId+'" data-jump="'+n+'"><span class="dn">第 '+n+' 題</span><span>'+esc(EXAM_DEMO_LABEL[k]||'')+'</span><span class="fine" style="margin-left:auto">'+(ok?'✓ 答對':'✕ 答錯')+'</span></button></li>'}).join('')+
+    '</ul><button class="btn pri" type="button" data-act="examDemos" data-exam="'+examId+'">看 5 題示範詳解</button></section>':'';
   $('#examResultBody').innerHTML=
    (sc.total===100?estScoreHTML(sc,e.title):'<section class="sheet score-big"><p class="lab">'+e.title+'</p><p class="n">'+sc.correct+' / '+sc.total+'</p><p class="fine">答對題數</p></section>')+
-   partHTML+reviewRow+freeCta+weakHTML+
+   partHTML+reviewRow+demoBox+freeCta+weakHTML+
    '<div class="cta-row" style="margin-top:28px"><button class="btn line lg" type="button" data-go="home">回首頁</button></div>';
   show('exam-result');
   ['#examGBars','#examRBars'].forEach(id=>{const el=$(id);if(el)growBars(el.closest('section'))});
@@ -2678,6 +2702,10 @@ function p7Ev(it){
 }
 let lastReviewExam=0;
 const EXAM_DEMO={"p5": ["Employees ___ in the wellness program will receive a discounted gym membership.", "To give staff extra time with their families, the store will close early ___ the holiday."], "p6": [[2, 2]], "p7": [[0, 0], [11, 1]]};   // 第 1 回 5 題示範詳解（所有人可看）；見 tools/split_exams.py 的 DEMO
+const EXAM_DEMO_LABEL=['Part 5｜V-ing 修飾名詞：哪些員工','Part 5｜because of＋名詞片語','Part 6｜所有格後面接名詞','Part 7｜看第一段抓 Email 目的','Part 7｜雙篇閱讀中的同義改寫'];
+function examDemoNums(items){
+  const out=[];items.forEach((it,i)=>{if(examDemoKey(it))out.push(i+1)});return out;
+}
 function examDemoKey(it){
   if(it.part===5)return EXAM_DEMO.p5.indexOf(it.q)>=0;
   if(it.part===6)return EXAM_DEMO.p6.some(([pi,bi])=>EXAM1_P6[pi]&&EXAM1_P6[pi].title===(it.passage&&it.passage.title)&&bi===it.blankIndex);
@@ -2769,7 +2797,8 @@ function examRenderReview(examId,demosOnly){
   const ptab=(f,label)=>'<button type="button" class="qtab'+(f==='all'?' on':'')+'" data-pf="'+f+'">'+label+'</button>';
   const chips=[5,6,7].map(pt=>'<p class="qidx-h">Part '+pt+'（'+pc[pt]+' 題）</p><div class="qidx">'+items.map((it,i)=>it.part===pt?'<button type="button" class="qchip '+sts[i]+'" data-jump="'+(i+1)+'" aria-label="第 '+(i+1)+' 題">'+(i+1)+'</button>':'').join('')+'</div>').join('');
   let h=(full?'<h1>逐題解析</h1>':'<h1>每題正解</h1>')+'<p class="lead">點題目可以展開或收起。綠色 ✓ 是正確答案，紅色 ✕ 是你當時選的。</p>'+
-    (full?'':'<section class="sheet unlock-box"><p>免費版顯示每題正解；標「示範詳解」的 5 題可以看完整解析。<button class="btn fire" type="button" data-act="examUnlock" data-exam="'+examId+'">解鎖本回完整詳解</button></p></section>')+
+    (full?'':(()=>{const dn=examId===1?examDemoNums(items):[];return dn.length?'<section class="sheet demo-box" id="reviewDemoBox"><p><b>黃框的 5 題有老師示範詳解：</b>'+dn.map(n=>'<button class="link" type="button" data-jump-demo="'+n+'">第 '+n+' 題</button>').join('、')+'</p></section>':''})()+
+      '<section class="sheet unlock-box"><p>其他 95 題顯示正解。想看每一題為什麼錯？<button class="btn fire" type="button" data-act="examUnlock" data-exam="'+examId+'">解鎖本回完整詳解</button></p></section>')+
     '<div class="qtabs" role="tablist">'+stTab('wrong','答錯／未作答',cnt.wrong)+stTab('right','答對',cnt.right)+stTab('all','全部',items.length)+'</div>'+
     '<div class="qtabs ptabs">'+ptab('all','全部 Part')+ptab('5','Part 5')+ptab('6','Part 6')+ptab('7','Part 7')+'</div>'+
     '<details class="qjump" id="qJump"><summary>跳到題號</summary>'+chips+'</details>'+'<div id="xList">'+cards+'</div>'+
@@ -2778,7 +2807,9 @@ function examRenderReview(examId,demosOnly){
   $('#examReviewBody').innerHTML=h;
   const box=$('#examReviewBody'),list=$$('.ans-fold',box);
   /* 示範詳解：答錯的直接展開；從結果頁「看 5 題示範詳解」進來時只列這 5 題 */
-  items.forEach((it,i)=>{if(!it.demoTag)return;const c=$('#xc-'+(i+1));if(!c)return;c.dataset.demo='1';if(c.dataset.st==='wrong')c.open=true});
+  items.forEach((it,i)=>{if(!it.demoTag)return;const c=$('#xc-'+(i+1));if(!c)return;c.dataset.demo='1';if(c.dataset.st==='wrong')c.open=true;
+    const sn=c.querySelector('.ac-sn');if(sn)sn.insertAdjacentHTML('afterbegin','<span class="demo-badge">老師示範詳解</span>')});
+  $$('[data-jump-demo]',box).forEach(b=>b.addEventListener('click',()=>{const c=$('#xc-'+b.dataset.jumpDemo);if(!c)return;if(c.hidden){fs='all';fp='all';fdemo=false;apply()}c.open=true;c.scrollIntoView({behavior:'smooth',block:'start'})}));
   let fs=demosOnly?'all':defSt,fp='all',fdemo=!!demosOnly&&!full;
   if(fdemo){
     box.insertAdjacentHTML('afterbegin','<p class="sheet" id="demoNote">只顯示 5 題示範詳解。<button class="link" type="button" id="showAllQ">顯示全部題目</button></p>');
@@ -2808,7 +2839,7 @@ document.addEventListener('click',e=>{
   if(act==='examStart')examStartScreen(+el.dataset.exam);
   else if(act==='examBegin')examBegin(+el.dataset.exam);
   else if(act==='examReview')examRenderReview(+el.dataset.exam);
-  else if(act==='examDemos')examRenderReview(+el.dataset.exam,true);
+  else if(act==='examDemos'){examRenderReview(+el.dataset.exam,true);const n=el.dataset.jump,c=n&&$('#xc-'+n);if(c){c.open=true;setTimeout(()=>c.scrollIntoView({block:'start'}),0)}}
   else if(act==='examUnlock'){logEvent('exam_unlock_click');if(sbUser&&S.paid)toast('完整詳解載入中，請稍候');else openModal('30')}
   else if(act==='examDrill'){
     const st=examGrammarStats(+el.dataset.exam);
