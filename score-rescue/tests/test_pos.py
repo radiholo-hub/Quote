@@ -207,7 +207,7 @@ def test_home_leads_with_pos_pretest(app):
     pg = app.page
     btn = pg.locator('.hero-cta a#posCardBtn')
     assert btn.inner_text() == '開始免費詞性前測' and btn.get_attribute('href') == './pos/'
-    assert 'fire' in btn.get_attribute('class')
+    assert 'pri' in btn.get_attribute('class'), '開始類按鈕用酒紅'
     assert btn.bounding_box()['y'] + btn.bounding_box()['height'] < 844, '手機第一屏就看得到主按鈕'
     card = pg.locator('#diagCard')
     diag = card.locator('[data-start]')

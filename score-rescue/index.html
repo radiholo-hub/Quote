@@ -12,7 +12,7 @@
 <style>
 :root{
   --paper:#F7F3E8; --sheet:#fff; --ink:#262626; --muted:#5B5B5B; --line:#E4DCC6;
-  --fire:#D63A1F; --fire-d:#B72E16; --fire-soft:#FCE8E3; --hi:#FFE27A;
+  --fire:#B72E16; --fire-d:#962410; --wine:#6B2D3C; --wine-d:#55222F; --fire-soft:#FCE8E3; --hi:#FFE27A;
   --ok:#2A7A52; --ok-soft:#E1F2E9; --warn:#9A5B00; --warn-bar:#B8730A;
   --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,"Segoe UI",sans-serif;
   --serif:"Source Serif 4","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
@@ -43,6 +43,10 @@ mark{background:linear-gradient(transparent 58%,var(--hi) 58%);color:inherit;pad
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 26px;border-radius:999px;border:2px solid transparent;font-weight:700;font-size:1rem;cursor:pointer;text-decoration:none;transition:background .15s,color .15s,border-color .15s}
 .btn.fire{background:var(--fire);color:#fff}
+.btn.pri{background:var(--wine);color:#fff}   /* 酒紅：開始、下一題、看結果等一般操作；深橘 .fire 只用在購買與解鎖 */
+@media (hover:hover){.btn.pri:hover{background:var(--wine-d)}}
+.qjump{margin:10px 0 14px}
+.qjump>summary{cursor:pointer;font-weight:700;color:var(--wine);padding:6px 0}
 @media (hover:hover){.btn.fire:hover{background:var(--fire-d)}}
 .btn.line{background:transparent;border-color:var(--ink);color:var(--ink)}
 @media (hover:hover){.btn.line:hover{background:var(--ink);color:#fff}}
@@ -690,7 +694,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <div class="bar-actions">
         <button class="btn line sm" id="btnAccount" type="button" hidden>登入</button>
         <button class="btn line sm" id="btnContinue" data-go="plan" hidden>繼續學習</button>
-        <a class="btn fire sm" href="./pos/">免費前測</a>
+        <a class="btn pri sm" href="./pos/">免費前測</a>
       </div>
     </div>
   </header>
@@ -701,10 +705,10 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
         <h1>多益 Part 5，<br>先學會判斷空格。</h1>
         <p class="lead">免費做 15 題詞性前測，約 5–8 分鐘，馬上知道你卡在哪一種詞性。看完結果，直接上免費的詞性小課第 1～3 課。</p>
         <div class="hero-cta">
-          <a class="btn fire lg" id="posCardBtn" href="./pos/">開始免費詞性前測</a>
+          <a class="btn pri lg" id="posCardBtn" href="./pos/">開始免費詞性前測</a>
         </div>
         <p class="note">免費 · 不用註冊 · 約 5–8 分鐘</p>
-        <p class="resume-bar" id="resumeBar" hidden><button class="btn fire" type="button" id="resumeBtn" data-act="resumeDiag">繼續診斷</button> <button class="link fine" type="button" data-act="dropDraft">放棄，重新開始</button></p>
+        <p class="resume-bar" id="resumeBar" hidden><button class="btn pri" type="button" id="resumeBtn" data-act="resumeDiag">繼續診斷</button> <button class="link fine" type="button" data-act="dropDraft">放棄，重新開始</button></p>
         <div class="sheet pos-card" id="diagCard">
           <h2>想看整份閱讀弱點？</h2>
           <p>30 題閱讀診斷，涵蓋 8 種常見錯因，約 20 分鐘，做完拿到「先補哪裡」的報告。</p>
@@ -756,7 +760,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <div>
         <h2>診斷後，你會拿到一份「先補哪裡」的報告</h2>
         <p class="lead">不是只給你一個分數，而是告訴你哪一類先補、哪一類先放著。</p>
-        <button class="btn fire" data-start>開始免費診斷</button>
+        <button class="btn pri" data-start>開始免費診斷</button>
       </div>
       <div class="sheet" aria-label="範例報告">
         <span class="rep-tag">範例報告</span>
@@ -812,7 +816,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <label class="unsure" id="unsureBox" hidden><input type="checkbox" id="unsureCb"> 這題我不太確定（猜的也請勾，結果會更準）</label>
       <div class="fb" id="qFb" aria-live="polite" hidden></div>
     </div>
-    <div class="q-actions"><button class="btn fire lg" id="nextBtn" type="button" disabled>下一題</button></div>
+    <div class="q-actions"><button class="btn pri lg" id="nextBtn" type="button" disabled>下一題</button></div>
   </main>
 </div>
 
@@ -880,7 +884,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
     <p class="lead">輸入 Email，我們會寄一封登入連結給你，點開就登入，不用設密碼。換手機或電腦時用同一個 Email 登入，進度和解鎖狀態就會回來。</p>
     <form id="authForm" novalidate>
       <label>Email<input type="email" id="authEmail" autocomplete="email" placeholder="you@example.com" required></label>
-      <button class="btn fire lg" type="submit" id="authSend">寄登入連結</button>
+      <button class="btn pri lg" type="submit" id="authSend">寄登入連結</button>
       <p class="err" id="authMsg" role="status"></p>
     </form>
     <p class="fine">只用來登入與同步進度，不會寄廣告信。<button class="link fine" type="button" data-privacy>隱私權說明</button></p>
@@ -1745,7 +1749,7 @@ function startPlacement(){
   runQuiz({list:[pickPlace(P)],mode:'place',title:'程度判斷',total:PLACE_N,P:P,back:'level',onDone:r=>{
     pendingLevel=placeLevel(r.P);placeIds=r.P.ids;
     const n=Math.round(pendingLevel);
-    $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">程度判斷完成</p><p class="big">'+LV_NAME[n]+'</p><p>先從「'+LV_NAME[n]+'（'+LV_RANGE[n]+' 分）」難度開始。這只是起點：30 題裡約有 8 題會來自相鄰難度，幫助確認你的程度，做完後還能調整。</p><button class="btn fire lg" type="button" data-act="beginDiag">開始 30 題診斷</button><p class="cta-row"><button class="link" type="button" data-go="level">改選其他難度</button></p></section>';
+    $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">程度判斷完成</p><p class="big">'+LV_NAME[n]+'</p><p>先從「'+LV_NAME[n]+'（'+LV_RANGE[n]+' 分）」難度開始。這只是起點：30 題裡約有 8 題會來自相鄰難度，幫助確認你的程度，做完後還能調整。</p><button class="btn pri lg" type="button" data-act="beginDiag">開始 30 題診斷</button><p class="cta-row"><button class="link" type="button" data-go="level">改選其他難度</button></p></section>';
     show('done');
   }});
 }
@@ -1763,8 +1767,8 @@ function adjustHTML(r){
     else msg='答對率 '+pct+'%，別急，先從計畫裡的規則練習開始。';
   }
   let btns='';
-  if(canUp)btns+='<button class="btn '+(upFire?'fire':'line')+' sm" type="button" data-act="lvup">題目太簡單，換更難的</button>';
-  if(canDown)btns+='<button class="btn '+(downFire?'fire':'line')+' sm" type="button" data-act="lvdown">題目太難，換簡單的</button>';
+  if(canUp)btns+='<button class="btn '+(upFire?'pri':'line')+' sm" type="button" data-act="lvup">題目太簡單，換更難的</button>';
+  if(canDown)btns+='<button class="btn '+(downFire?'pri':'line')+' sm" type="button" data-act="lvdown">題目太難，換簡單的</button>';
   return '<section class="adjust"><h2>題目難度合適嗎？</h2><p>'+msg+'</p>'+(btns?'<div class="adjust-b">'+btns+'</div>':'')+'</section>';
 }
 function shareText(r){
@@ -1788,7 +1792,7 @@ function roadPreviewHTML(r){
   return '<section class="road-sec rp"><h2>為你排好的 30 天路線</h2>'+
     '<p class="lead">'+(names.length?'依你的結果，路線會從「'+names.join(' → ')+'」依序補起，':'依你的結果，')+'先做 Day 1–7 看看適不適合你。</p>'+
     '<ol class="road">'+rows+'</ol>'+
-    '<div class="cta-row"><button class="btn fire lg" type="button" data-go="plan">開始 Day 1（免費）</button>'+
+    '<div class="cta-row"><button class="btn pri lg" type="button" data-go="plan">開始 Day 1（免費）</button>'+
     '<button class="btn line" type="button" data-modal="30">了解完整方案（NT$'+pr.now+(pr.promo?' 限時特價':'')+'）</button></div></section>';
 }
 function compareHTML(r){
@@ -1826,7 +1830,7 @@ function renderResult(){
     '<section class="sheet weak"><p class="lab">'+(unsureOnly?'答對但尚待確認的能力':'最大弱點')+'</p><h2><mark>'+(perfect?'沒有明顯弱點':T.name)+'</mark></h2>'+
     '<p>'+(perfect?'這 30 題你全部答對。建議從「'+T.name+'」開始鞏固，並把重點放在作答速度。':unsureOnly?'這一類你答對了，但有題目標示不太確定，可能是猜的。建議用練習確認，並把重點放在判斷依據。':'你在這一類答對 '+r.ranked[0].c+' / '+r.ranked[0].n+' 題。'+T.why)+'</p>'+
     '<p class="tip"><b>老師提醒</b>'+T.tip+'</p>'+
-    '<button class="btn fire lg" type="button" data-act="explain">看我的錯題與解析</button></section>'+
+    '<button class="btn pri lg" type="button" data-act="explain">看我的錯題與解析</button></section>'+
     '<section class="sheet score"><div class="stat"><b>'+pct+'%</b><span>答對 '+r.correct+' / '+r.total+' 題</span></div>'+
     '<div class="stat"><b>'+LV_NAME[lv]+'</b><span>這次的題目難度（'+LV_RANGE[lv]+' 分）</span></div>'+
     '<p class="fine">難度是依你的選擇（或程度判斷）設定的起點，不是官方分數。</p></section>'+
@@ -1865,7 +1869,7 @@ function renderExplain(){
     '<p class="fine qnote" id="qNote"></p>'+
     '<div class="qidx" aria-label="題號">'+idx+'</div>'+
     '<div id="qList">'+cards+'</div>'+
-    '<div class="next-box"><button class="btn fire lg" type="button" data-act="drill">用 3 題新題確認弱點</button><span class="fine">題目會集中在你的最大弱點。</span></div>';
+    '<div class="next-box"><button class="btn pri lg" type="button" data-act="drill">用 3 題新題確認弱點</button><span class="fine">題目會集中在你的最大弱點。</span></div>';
   $('#exBody').innerHTML=h;
   const box=$('#exBody'),list=$$('.ans-fold',box),notes={unsure:'這幾題可能是猜對的，建議當成還沒學會。',right:'這些題你答對而且有把握，想複習原因時再打開看。'};
   function applyFilter(f){
@@ -1889,7 +1893,7 @@ function startDrill(){
     let ok=0;r.list.forEach((q,i)=>{const c=r.ans[i]===q.a;if(c)ok++;S.extra[q.id]=c});save();
     const T=TAGS[S.res.weak];
     const msg=ok===r.list.length?'你已經抓到「'+T.name+'」的訣竅，接下來的計畫會把它練成直覺。':ok>0?'方向對了，還有幾個細節要補。Day 1 會從規則開始，一步一步練。':'這一類確實是你目前最需要補的地方。Day 1 會從最基本的規則開始。';
-    $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">補強完成</p><p class="big">'+ok+' / '+r.list.length+'</p><p>'+msg+'</p><button class="btn fire lg" type="button" data-go="plan">看我的 30 天計畫</button></section>';
+    $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">補強完成</p><p class="big">'+ok+' / '+r.list.length+'</p><p>'+msg+'</p><button class="btn pri lg" type="button" data-go="plan">看我的 30 天計畫</button></section>';
     show('done');
   }});
 }
@@ -2005,7 +2009,7 @@ function renderPlan(){
     hero='<h1 class="day-h">'+(nT?'今天的助攻目標：「'+nT.name+'」。':'今天的任務：'+nd.title+'。')+'</h1>'+
      '<p class="lead">Day '+nd.day+' / '+N+' · '+nd.sub+' · 起始程度：'+LV_NAME[Math.round(S.level||2)]+'</p>'+(nd.tag?'<p class="lead lv-now">「'+esc(TAGS[nd.tag].name)+'」目前練習難度：<b>'+LV_NAME[tagLevel(nd.tag)]+'</b></p>':'')+progLine+
      (nd.kind==='rule'&&nT?'<section class="sheet"><h2 class="rule-t">'+nT.rule+'</h2><p class="ex-en serif">'+esc(nT.ex)+speakIconHTML(nT.ex)+'</p><p class="ex-zh">'+nT.exZh+'</p></section>':'')+
-     '<div class="cta-row"><button class="btn fire lg" type="button" data-act="day" data-day="'+nd.day+'">開始 Day '+nd.day+'</button></div>';
+     '<div class="cta-row"><button class="btn pri lg" type="button" data-act="day" data-day="'+nd.day+'">開始 Day '+nd.day+'</button></div>';
   }else{
     hero='<h1 class="day-h">'+(paid?'30 天路線全部完成，辛苦了。':'免費體驗的 7 天都完成了。')+'</h1>'+
      '<p class="lead">'+(paid?'可以點下方任一天重練。':'解鎖後可以繼續 Day 8 以後的路線。')+'</p>'+progLine;
@@ -2090,7 +2094,7 @@ function startChallenge(tag,day,skipIntro){
     const pr=chProgress(st);
     $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">Day '+day+' · 挑戰練習</p><h2 class="rule-t" style="margin:6px 0 4px">'+esc(name)+'</h2>'+
       '<p class="lead">目前難度：'+LV_NAME[st.lv]+'　挑戰：'+LV_NAME[st.lv+1]+'</p><p class="redo-note">'+CH_MSG+(pr?'<br>'+pr:'')+'</p>'+
-      '<button class="btn fire lg" type="button" data-act="chTag" data-tag="'+tag+'" data-day="'+day+'" data-skip="1">開始 '+n+' 題挑戰</button>'+
+      '<button class="btn pri lg" type="button" data-act="chTag" data-tag="'+tag+'" data-day="'+day+'" data-skip="1">開始 '+n+' 題挑戰</button>'+
       '<p class="cta-row"><button class="link" type="button" data-go="plan">回我的學習計畫</button></p></section>';
     show('done');return;
   }
@@ -2151,7 +2155,7 @@ function showScore(r,label,more){
   $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">'+esc(label)+'</p><p class="big">'+ok+' / '+n+'</p>'+
     '<p class="sc-pct">'+pct+'%</p><div class="sc-strip" aria-label="逐題對錯">'+strip+'</div>'+(more&&more.ch&&S.paid?chResultHTML(more.tag,more.ch):'<p>'+msg+'</p>')+
     (wrong?'<div class="sc-wrong"><h3>答錯的題目</h3><ul>'+wrong+'</ul></div>':'')+moreHTML(more)+
-    '<button class="btn fire lg" type="button" data-go="plan">回我的學習計畫</button></section>';
+    '<button class="btn pri lg" type="button" data-go="plan">回我的學習計畫</button></section>';
   show('done');
 }
 /* 「新觀念」的日子:先看規則卡(規則 + 例句 + 發音 + 翻譯),再開始 5 題 */
@@ -2160,8 +2164,8 @@ function showRuleIntro(day,spec,redoN){
   $('#doneBody').innerHTML='<section class="sheet done-card rule-intro"><p class="lab">Day '+day+' · '+(redoN!=null?'複習':'新觀念')+'</p><h2 class="rule-t" style="margin:6px 0 4px">'+esc(T.name)+'</h2>'+
     '<p class="rule-t">'+T.rule+'</p><p class="ex-en serif">'+esc(T.ex)+speakIconHTML(T.ex)+'</p><p class="ex-zh">'+T.exZh+'</p>'+
     '<p class="tip" style="text-align:left"><b>老師提醒</b>'+T.tip+'</p>'+
-    (redoN!=null?'<p class="redo-note">'+REVIEW_NOTE+'</p>'+(redoN?'<button class="btn fire lg" type="button" data-act="beginDay" data-day="'+day+'">開始 '+redoN+' 題複習</button>':'<p>目前還沒有可複習的同類題目。</p>')
-      :'<button class="btn fire lg" type="button" data-act="beginDay" data-day="'+day+'">開始 5 題練習</button>')+
+    (redoN!=null?'<p class="redo-note">'+REVIEW_NOTE+'</p>'+(redoN?'<button class="btn pri lg" type="button" data-act="beginDay" data-day="'+day+'">開始 '+redoN+' 題複習</button>':'<p>目前還沒有可複習的同類題目。</p>')
+      :'<button class="btn pri lg" type="button" data-act="beginDay" data-day="'+day+'">開始 5 題練習</button>')+
     '<p class="cta-row"><button class="link" type="button" data-go="plan">回我的學習計畫</button></p></section>';
   show('done');
 }
@@ -2176,7 +2180,7 @@ function seenReviewList(tag,n){
 function showRedoIntro(day,spec,n){
   $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">Day '+day+' · 複習</p><h2 class="rule-t" style="margin:6px 0 4px">'+esc(TAGS[spec.tag].name)+'</h2>'+
     '<p class="redo-note">'+REVIEW_NOTE+'</p>'+
-    (n?'<button class="btn fire lg" type="button" data-act="beginDay" data-day="'+day+'">開始 '+n+' 題複習</button>':'<p>目前還沒有可複習的同類題目。</p>')+
+    (n?'<button class="btn pri lg" type="button" data-act="beginDay" data-day="'+day+'">開始 '+n+' 題複習</button>':'<p>目前還沒有可複習的同類題目。</p>')+
     '<p class="cta-row"><button class="link" type="button" data-go="plan">回我的學習計畫</button></p></section>';
   show('done');
 }
@@ -2212,7 +2216,7 @@ function startPlanDay(day,skipIntro){
 const NO_WRONG_NOTE='目前沒有錯題，這次為你安排弱項練習。';
 function showFallbackIntro(lab,n,startAttrs){
   $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">'+esc(lab)+'</p><h2 class="rule-t" style="margin:6px 0 4px">'+esc(TAGS[planRanked()[0].t].name)+'</h2>'+
-    '<p class="redo-note">'+NO_WRONG_NOTE+'</p><button class="btn fire lg" type="button" '+startAttrs+'>開始 '+n+' 題練習</button>'+
+    '<p class="redo-note">'+NO_WRONG_NOTE+'</p><button class="btn pri lg" type="button" '+startAttrs+'>開始 '+n+' 題練習</button>'+
     '<p class="cta-row"><button class="link" type="button" data-go="plan">回我的學習計畫</button></p></section>';
   show('done');
 }
@@ -2288,11 +2292,11 @@ function examCardsHTML(){
     if(e.id===1&&!examFull()){
       const r1=score?'<span class="ec-score">'+score.correct+' / 100</span>'+(score.items?'<button class="btn line sm" type="button" data-act="examReview" data-exam="1">看正解</button>':''):'';
       return '<div class="exam-card free" id="exam1Card"><div><h3>'+e.title+' <span class="free-tag">免費</span></h3><p class="ec-meta">閱讀 100 題｜建議作答時間 75 分鐘</p><p class="ec-meta">交卷看預估分數、Part 5／6／7 表現與每題正解</p></div><div class="ec-right">'+r1+
-        '<button class="btn fire sm" type="button" data-act="examStart" data-exam="1">'+(score?'再做一次':'免費做第 1 回閱讀模考')+'</button></div></div>';
+        '<button class="btn pri sm" type="button" data-act="examStart" data-exam="1">'+(score?'再做一次':'免費做第 1 回閱讀模考')+'</button></div></div>';
     }
     const right=score
-      ? '<span class="ec-score">'+score.correct+' / 100</span>'+(score.items?'<button class="btn line sm" type="button" data-act="examReview" data-exam="'+e.id+'">看解析</button>':'')+'<button class="btn fire sm" type="button" data-act="examStart" data-exam="'+e.id+'">重新測驗</button>'
-      : '<button class="btn fire sm" type="button" data-act="examStart" data-exam="'+e.id+'">開始測驗</button>';
+      ? '<span class="ec-score">'+score.correct+' / 100</span>'+(score.items?'<button class="btn line sm" type="button" data-act="examReview" data-exam="'+e.id+'">看解析</button>':'')+'<button class="btn pri sm" type="button" data-act="examStart" data-exam="'+e.id+'">重新測驗</button>'
+      : '<button class="btn pri sm" type="button" data-act="examStart" data-exam="'+e.id+'">開始測驗</button>';
     return '<div class="exam-card"><div><h3>'+e.title+'</h3><p class="ec-meta">閱讀 100 題（無聽力）· Part 5/6/7 · 約 75 分鐘</p></div><div class="ec-right">'+right+'</div></div>';
   }).join('');
 }
@@ -2320,7 +2324,7 @@ function examStartScreen(examId){
    '<li>還沒作答到的題目，交卷後一律算錯，不會留空等你補答</li>'+
    '<li>平常練習就習慣抓時間寫完，上考場才不會因為時間分配不好而來不及做完</li>'+
    '</ul></section>'+
-   '<div class="cta-row"><button class="btn fire lg" type="button" data-act="examBegin" data-exam="'+examId+'">開始作答</button></div>';
+   '<div class="cta-row"><button class="btn pri lg" type="button" data-act="examBegin" data-exam="'+examId+'">開始作答</button></div>';
   show('exam-start');
 }
 
@@ -2432,7 +2436,7 @@ function examNavHTML(){
   }).join('');
   return '<details class="qnav"><summary id="examNavSum">題號　已答 '+answered+' / '+EX.items.length+'</summary>'+secs+'</details>'+
    '<div class="exam-actions"><button class="btn line" type="button" id="examPrevBtn"'+(cs===0?' disabled':'')+'>上一'+noun+'</button>'+
-   '<button class="btn fire" type="button" id="examNextBtn">'+(isLast?'前往交卷':'下一'+noun)+'</button></div>';
+   '<button class="btn pri" type="button" id="examNextBtn">'+(isLast?'前往交卷':'下一'+noun)+'</button></div>';
 }
 function examBindOptClicks(){
   $$('#examBody .mini-opt').forEach(b=>{
@@ -2559,7 +2563,7 @@ function examStartReadingDrill(skill){
     let ok=0;r.list.forEach((q,i)=>{const c=r.ans[i]===q.a;if(c)ok++;S.readSeen[q.id]=c});save();
     const T=RTAGS[skill];
     const msg=ok===r.list.length?'你已經掌握「'+T.name+'」的做法了，做得好。':ok>0?'方向對了，記得每題都回文章找依據。':'這一類確實是你目前最需要補的地方，可以再做一輪補強。';
-    $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">閱讀補強完成</p><p class="big">'+ok+' / '+r.list.length+'</p><p>'+msg+'</p><button class="btn fire lg" type="button" data-act="examReadDrill" data-skill="'+skill+'">再練 3 題</button><p class="cta-row"><button class="link" type="button" data-go="exam-result">回測驗結果</button></p></section>';
+    $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">閱讀補強完成</p><p class="big">'+ok+' / '+r.list.length+'</p><p>'+msg+'</p><button class="btn pri lg" type="button" data-act="examReadDrill" data-skill="'+skill+'">再練 3 題</button><p class="cta-row"><button class="link" type="button" data-go="exam-result">回測驗結果</button></p></section>';
     show('done');
   }});
 }
@@ -2568,7 +2572,7 @@ function examStartWeakDrill(examId,weakTag){
     let ok=0;r.list.forEach((q,i)=>{const c=r.ans[i]===q.a;if(c)ok++;S.extra[q.id]=c});save();
     const T=TAGS[weakTag];
     const msg=ok===r.list.length?'你已經抓到「'+T.name+'」的訣竅了，做得好。':ok>0?'方向對了，還有幾個細節要補，可以到 30 天計畫繼續練習。':'這一類確實是你目前最需要補的地方，建議到 30 天計畫做完整練習。';
-    $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">補強完成</p><p class="big">'+ok+' / '+r.list.length+'</p><p>'+msg+'</p><button class="btn fire lg" type="button" data-go="exam-result">回測驗結果</button></section>';
+    $('#doneBody').innerHTML='<section class="sheet done-card"><p class="lab">補強完成</p><p class="big">'+ok+' / '+r.list.length+'</p><p>'+msg+'</p><button class="btn pri lg" type="button" data-go="exam-result">回測驗結果</button></section>';
     show('done');
   }});
 }
@@ -2587,13 +2591,13 @@ function examRenderResult(examId){
   if(g){
     const T=g.weak==='ins'?INS_INFO:TAGS[g.weak];
     weakHTML+=weakSectionHTML('文法弱點分析（Part 5 + 6）','依 Part 5、6 共 '+g.ranked.reduce((a,x)=>a+x.n,0)+' 題的作答，抓出你最需要補的文法類別。','examGBars',g.ranked,t=>t==='ins'?INS_INFO.name:TAGS[t].name,
-      g.weak==='ins'?'<p class="tip" style="margin-top:16px"><b>怎麼補</b>'+INS_INFO.tip+'</p>':'<button class="btn fire lg" type="button" data-act="examDrill" data-exam="'+examId+'" style="margin-top:18px">加強「'+T.name+'」3 題</button>',
+      g.weak==='ins'?'<p class="tip" style="margin-top:16px"><b>怎麼補</b>'+INS_INFO.tip+'</p>':'<button class="btn pri lg" type="button" data-act="examDrill" data-exam="'+examId+'" style="margin-top:18px">加強「'+T.name+'」3 題</button>',
       'Part 5、6 全部答對，八大文法類別都很穩。');
   }
   if(rd){
     const T=rd.weak==='ins'?INS_INFO:RTAGS[rd.weak];
     weakHTML+=weakSectionHTML('閱讀技巧分析（Part 7）','依 Part 7 共 '+rd.ranked.reduce((a,x)=>a+x.n,0)+' 題的作答，看你在哪一種閱讀技巧失分最多。','examRBars',rd.ranked,t=>t==='ins'?INS_INFO.name:RTAGS[t].name,
-      '<p class="tip" style="margin-top:16px"><b>怎麼補</b>'+T.tip+'</p>'+(rd.weak==='ins'?'':'<button class="btn fire lg" type="button" data-act="examReadDrill" data-skill="'+rd.weak+'">加強「'+T.name+'」3 題</button>'),
+      '<p class="tip" style="margin-top:16px"><b>怎麼補</b>'+T.tip+'</p>'+(rd.weak==='ins'?'':'<button class="btn pri lg" type="button" data-act="examReadDrill" data-skill="'+rd.weak+'">加強「'+T.name+'」3 題</button>'),
       'Part 7 全部答對，各種閱讀技巧都很穩。');
   }
   const tb=sc.totalByPart||{5:30,6:16,7:54},bp=sc.byPart||{5:0,6:0,7:0};
@@ -2605,14 +2609,14 @@ function examRenderResult(examId){
       '<p>免費版可以看每題正解和 5 題示範詳解。完整方案解鎖本回全部 100 題的逐題解析、中文翻譯和文章依據，再加第 2、3 回模擬試題。</p>'+
       '<button class="btn fire lg" type="button" data-act="examUnlock" data-exam="'+examId+'">解鎖本回完整詳解</button></section>'+
       (p5low?'<section class="sheet" id="examPosTip"><h3>Part 5 先從詞性下手</h3><p>Part 5 答對不到七成。多數失分來自詞性判斷，可以先做免費的 15 題詞性前測，找出自己卡在哪一類。</p><a class="btn line" href="./pos/">免費做 15 題詞性前測</a></section>':''):'';
+  /* 交卷後最想看的是錯題：分數和各 Part 表現下面，直接放「看錯題與正解」 */
+  const reviewRow='<div class="cta-row" id="examReviewRow" style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">'+
+   (free?'<button class="btn pri lg" type="button" data-act="examReview" data-exam="'+examId+'">看錯題與正解</button><button class="btn line lg" type="button" data-act="examDemos" data-exam="'+examId+'">看 5 題示範詳解</button>'
+        :'<button class="btn pri lg" type="button" data-act="examReview" data-exam="'+examId+'">看錯題與逐題解析</button>')+'</div>';
   $('#examResultBody').innerHTML=
    (sc.total===100?estScoreHTML(sc,e.title):'<section class="sheet score-big"><p class="lab">'+e.title+'</p><p class="n">'+sc.correct+' / '+sc.total+'</p><p class="fine">答對題數</p></section>')+
-   partHTML+freeCta+weakHTML+
-   '<div class="cta-row" style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">'+
-   (free?'<button class="btn line lg" type="button" data-act="examReview" data-exam="'+examId+'">看每題正解</button><button class="btn line lg" type="button" data-act="examDemos" data-exam="'+examId+'">看 5 題示範詳解</button>'
-        :'<button class="btn fire lg" type="button" data-act="examReview" data-exam="'+examId+'">看逐題解析</button>')+
-   '<button class="btn line lg" type="button" data-go="home">回首頁</button>'+
-   '</div>';
+   partHTML+reviewRow+freeCta+weakHTML+
+   '<div class="cta-row" style="margin-top:28px"><button class="btn line lg" type="button" data-go="home">回首頁</button></div>';
   show('exam-result');
   ['#examGBars','#examRBars'].forEach(id=>{const el=$(id);if(el)growBars(el.closest('section'))});
 }
@@ -2768,8 +2772,9 @@ function examRenderReview(examId,demosOnly){
     (full?'':'<section class="sheet unlock-box"><p>免費版顯示每題正解；標「示範詳解」的 5 題可以看完整解析。<button class="btn fire" type="button" data-act="examUnlock" data-exam="'+examId+'">解鎖本回完整詳解</button></p></section>')+
     '<div class="qtabs" role="tablist">'+stTab('wrong','答錯／未作答',cnt.wrong)+stTab('right','答對',cnt.right)+stTab('all','全部',items.length)+'</div>'+
     '<div class="qtabs ptabs">'+ptab('all','全部 Part')+ptab('5','Part 5')+ptab('6','Part 6')+ptab('7','Part 7')+'</div>'+
-    chips+'<div id="xList">'+cards+'</div>'+
-    '<div class="cta-row" style="margin-top:24px"><button class="btn fire lg" type="button" data-go="home">回首頁</button></div>';
+    '<details class="qjump" id="qJump"><summary>跳到題號</summary>'+chips+'</details>'+'<div id="xList">'+cards+'</div>'+
+    (full?'':'<section class="sheet unlock-box" style="margin-top:20px"><p>看過示範詳解，想把其他 95 題也弄懂？</p><button class="btn fire" type="button" data-act="examUnlock" data-exam="'+examId+'">解鎖本回完整詳解</button></section>')+
+    '<div class="cta-row" style="margin-top:24px"><button class="btn line lg" type="button" data-go="home">回首頁</button></div>';
   $('#examReviewBody').innerHTML=h;
   const box=$('#examReviewBody'),list=$$('.ans-fold',box);
   /* 示範詳解：答錯的直接展開；從結果頁「看 5 題示範詳解」進來時只列這 5 題 */
@@ -2791,6 +2796,7 @@ function examRenderReview(examId,demosOnly){
   $$('.qchip',box).forEach(b=>b.addEventListener('click',()=>{
     const c=$('#xc-'+b.dataset.jump);if(!c)return;
     if(c.hidden){fs='all';fp='all';fdemo=false;const n=$('#demoNote');if(n)n.remove();apply()}
+    const j=$('#qJump');if(j)j.open=false;
     c.open=true;c.scrollIntoView({behavior:'smooth',block:'start'});
   }));
   show('exam-review');
@@ -2904,7 +2910,7 @@ if(location.hash==='#day1-7'){
   else{
     const n=document.createElement('div');n.id='d17Notice';n.setAttribute('role','status');
     n.style.cssText='margin:16px auto 0;max-width:720px;padding:16px 18px;border-radius:12px;background:#FFF4E0;border:1px solid #E8CFA0;color:#262626';
-    n.innerHTML='<b>先完成 30 題診斷，就能開始 Day 1–7 免費體驗</b><p style="margin:6px 0 12px">Day 1–7 會依你的 30 題診斷結果排出練習路線，做完診斷後就能從 Day 1 開始。</p><button class="btn fire" data-start>開始 30 題診斷</button>';
+    n.innerHTML='<b>先完成 30 題診斷，就能開始 Day 1–7 免費體驗</b><p style="margin:6px 0 12px">Day 1–7 會依你的 30 題診斷結果排出練習路線，做完診斷後就能從 Day 1 開始。</p><button class="btn pri" data-start>開始 30 題診斷</button>';
     const m=$('#main');m.insertBefore(n,m.firstChild);
   }
 }

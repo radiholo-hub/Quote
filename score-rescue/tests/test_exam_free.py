@@ -213,3 +213,30 @@ def test_whitelist_hashes_match_frontend_signature(app):
     n = app.js("""()=>{const ok=JSON.parse(JSON.stringify(%s)),S='\\u0001',sig=x=>x.q+S+x.o.slice().sort().join(S)+S+x.o[x.a];
       let hit=0;ok.filter(w=>w.x===1).forEach(w=>{const st=__t.EXAM1_P7[w.s];st.questions.forEach(q=>{if(w.q.indexOf(__t.srHash(sig(q)))>=0)hit++})});return hit}""" % re.search(r'const P7_OLD_OK=(\[.*?\]);', PAGE).group(1))
     assert n >= 3
+
+
+def test_result_puts_review_right_below_parts_and_colors(open_app):
+    app = open_app(paid=False, init=sbk(False))
+    submit_exam1(app, right_first=50)
+    order = app.js("()=>['#examParts','#examReviewRow','#examUnlockBox'].map(q=>document.querySelector(q).getBoundingClientRect().top)")
+    assert order == sorted(order), '分數 → 各 Part → 看錯題與正解 → 解鎖'
+    btn = app.page.locator('#examReviewRow [data-act="examReview"]')
+    assert btn.inner_text() == '看錯題與正解' and 'pri' in btn.get_attribute('class')
+    assert 'fire' in app.page.get_attribute('#examUnlockBox [data-act="examUnlock"]', 'class'), '購買與解鎖用深橘'
+    assert app.js("getComputedStyle(document.querySelector('#examReviewRow .btn.pri')).backgroundColor") == 'rgb(107, 45, 60)'
+    btn.click()
+    assert not app.js("document.getElementById('qJump').open"), '題號索引預設收起'
+    first = app.page.locator('#examReviewBody .ans-fold:not([hidden])').first
+    assert first.get_attribute('data-st') == 'wrong' and first.evaluate('d=>d.open'), '一進來就是第一道錯題'
+    app.page.click('#qJump summary')
+    app.page.locator('#qJump .qchip').nth(3).click()
+    assert not app.js("document.getElementById('qJump').open")
+    assert app.count('#examReviewBody .unlock-box [data-act="examUnlock"]') == 2
+
+
+def test_action_buttons_are_wine_and_buy_buttons_orange():
+    acts = re.findall(r'class="btn (fire|pri)[^"]*"[^>]*>([^<]{1,20})<', PAGE)
+    fire = {t for c, t in acts if c == 'fire'}
+    assert fire <= {'轉帳購買完整方案', '轉帳後加官方 LINE 回報', '解鎖完整方案', '解鎖本回完整詳解'}, fire
+    pri = {t for c, t in acts if c == 'pri'}
+    assert {'開始免費詞性前測', '免費前測', '下一題'} <= pri
