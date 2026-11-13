@@ -121,7 +121,7 @@ def test_private_lessons_never_deployed(repo):
     """在有教材的工作目錄部署：private/、上傳用壓縮檔、完整頁面備份、第 4～7 課影片都不會進公開輸出。"""
     for f in ['score-rescue/private/l4.js', 'score-rescue/private/l4.full.html', 'score-rescue/private/lesson4.mp4',
               'score-rescue/private/audio-texts-paid.json', 'score-rescue/lessons_upload.zip', 'score-rescue/pos/lesson5.mp4',
-              'score-rescue/tests/test_l4.py', 'score-rescue/pos/l4.html', 'score-rescue/private/final.js']:
+              'score-rescue/tests/test_l4.py', 'score-rescue/pos/l4.html', 'score-rescue/private/final.js', 'score-rescue/private/exams.json']:
         (repo / f).parent.mkdir(parents=True, exist_ok=True)
         (repo / f).write_text('x ' + f)
     p = stage(repo, '_site')

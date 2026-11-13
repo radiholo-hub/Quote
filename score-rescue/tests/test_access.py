@@ -4,10 +4,10 @@
 def test_paid_status_comes_from_server(open_app):
     paid = open_app(paid=True)
     assert paid.js("__t.S.paid") is True
-    assert paid.js("__t.coveredDays()") == 30 and paid.js("__t.examAllowed()") is True
+    assert paid.js("__t.coveredDays()") == 30 and paid.js("__t.examAllowed(1)") is True
     free = open_app(paid=False)
     assert free.js("__t.S.paid") is False
-    assert free.js("__t.coveredDays()") == 7 and free.js("__t.examAllowed()") is False
+    assert free.js("__t.coveredDays()") == 7 and free.js("__t.examAllowed(1)") is True and free.js("__t.examAllowed(2)") is False
 
 
 def test_free_can_start_day7_but_not_day8(app):
