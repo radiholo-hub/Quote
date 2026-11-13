@@ -52,3 +52,13 @@ pip install -r gsat/tests/requirements.txt
 python3 -m pytest gsat/tests
 ```
 測試涵蓋核心計分、題庫資料、多種螢幕寬度的互動與版面、部署閘門、寫作與成績單。iPhone Safari(WebKit)測試在本機沒有 WebKit 時略過;CI 會強制執行。沒有 `gsat/exam/` 內容的乾淨分支,依賴試題的測試會自動略過。
+
+## 學測英文考古題練習站(`exam-en/`)
+獨立的純靜態新站,網址 `…/exam-en/`,與每日佳句、`gsat/`、Score Rescue 互不影響。題目為英文、介面為中文。
+
+- 106–115 學年度選擇題(510 題),可依年度、題型(詞彙/綜合測驗/文意選填/篇章結構/閱讀測驗)篩選
+- **練習**:答完立即顯示對錯;**考試**:交卷後才看答案,整份試卷 100 分鐘倒數
+- 錯題本(連續答對 2 次才算掌握)、最近成績、未完成作答自動續答;資料只存在本機瀏覽器
+- 資料由 `python3 tools/build_exam_en.py` 自 `gsat/exam/` 產生(`exam-en/data.js`、`exam-en/img/`)
+- 本機預覽:`cd exam-en && python3 -m http.server`
+- **著作權**:試題屬大考中心,授權確認前請依上方「著作權與部署」處理;`exam-en/` 尚未加入 Pages 部署流程
