@@ -55,3 +55,14 @@ for p in sorted(imgs):
     if f.exists(): shutil.copy(f, out / "img" / f.name)
     else: print("missing image", p)
 print(f"{len(data)} 份試卷, {sum(len(g['questions']) for d in data for s in d['sections'] for g in s['groups'])} 題, {len(imgs)} 張圖")
+
+# 詳解:合併 exam-en/explain/<年>.json → exam-en/explain.js
+ex = {}
+for f in sorted((out / "explain").glob("*.json")):
+    ex[f.stem] = json.loads(f.read_text(encoding="utf-8"))
+(out / "explain.js").write_text(
+    "// 由 tools/build_exam_en.py 合併 exam-en/explain/*.json 產生。詳解為草稿,待老師審核。\nwindow.EXPLAIN = " +
+    json.dumps(ex, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
+missing = [f"{d['year']}-{q['n']}" for d in data for s in d['sections'] for g in s['groups'] for q in g['questions']
+           if str(q['n']) not in ex.get(d['year'], {})]
+print(f"詳解 {sum(len(v) for v in ex.values())} 題,缺 {len(missing)} 題", missing[:10])
