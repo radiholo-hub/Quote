@@ -1,0 +1,859 @@
+{
+ "1": {
+  "key": "have it ______ to his house:使役 have + 受詞 + 過去分詞,外送披薩「被送達」。",
+  "opts": {
+   "A": "advanced 被推進,不合",
+   "B": "delivered 被送達,符合外送語意",
+   "C": "offered 被提供,不指送到家",
+   "D": "stretched 被拉長,不合"
+  },
+  "vocab": [
+   [
+    "deliver",
+    "vt 遞送"
+   ],
+   [
+    "order",
+    "vt 訂購"
+   ]
+  ]
+ },
+ "2": {
+  "key": "後句「沒有她的協助無法經營辦公室」,可知 Jane 是最好的助理。",
+  "opts": {
+   "A": "assistant 助理,正確",
+   "B": "influence 影響力,不指人",
+   "C": "contribution 貢獻,不指人",
+   "D": "politician 政治人物,與辦公室協助無關"
+  },
+  "vocab": [
+   [
+    "assistant",
+    "n 助理"
+   ],
+   [
+    "influence",
+    "n 影響"
+   ],
+   [
+    "contribution",
+    "n 貢獻"
+   ]
+  ]
+ },
+ "3": {
+  "key": "與 lion dances、Taiwanese operas 並列的傳統表演,hand puppet show 即布袋戲。",
+  "opts": {
+   "A": "chat 聊天,不合",
+   "B": "quiz 測驗,不合",
+   "C": "puppet 木偶,hand puppet 為布袋戲",
+   "D": "variety show 為綜藝,但 hand variety 不成詞"
+  },
+  "vocab": [
+   [
+    "puppet",
+    "n 木偶"
+   ],
+   [
+    "Mazu",
+    "n 媽祖"
+   ]
+  ]
+ },
+ "4": {
+  "key": "疫苗因致命副作用被禁,修飾 fatal 應為「潛在地」致命。",
+  "opts": {
+   "A": "potentially 潛在地,正確",
+   "B": "delicately 精巧地,不合",
+   "C": "ambiguously 含糊地,不合",
+   "D": "optionally 可選擇地,不合"
+  },
+  "vocab": [
+   [
+    "potentially",
+    "adv 潛在地"
+   ],
+   [
+    "fatal",
+    "adj 致命的"
+   ],
+   [
+    "ban",
+    "vt 禁止"
+   ]
+  ]
+ },
+ "5": {
+  "key": "主詞需為動名詞,以日期和關鍵字「標註」照片才便於分類。",
+  "opts": {
+   "A": "Tagging 加標籤,正確",
+   "B": "Flocking 群聚,不合",
+   "C": "Rolling 滾動,不合",
+   "D": "Snapping 猛然折斷/快拍,不合"
+  },
+  "vocab": [
+   [
+    "tag",
+    "vt 加標籤"
+   ],
+   [
+    "sort",
+    "vt 分類"
+   ]
+  ]
+ },
+ "6": {
+  "key": "agreeable person 隨和好相處,與 always say yes 呼應。",
+  "opts": {
+   "A": "enormous 巨大的,不合",
+   "B": "intimate 親密的,不指隨和",
+   "C": "agreeable 隨和的,正確",
+   "D": "ultimate 最終的,不合"
+  },
+  "vocab": [
+   [
+    "agreeable",
+    "adj 隨和的"
+   ],
+   [
+    "intimate",
+    "adj 親密的"
+   ],
+   [
+    "ultimate",
+    "adj 最終的"
+   ]
+  ]
+ },
+ "7": {
+  "key": "入口藏在小巷中,路人幾乎「看不見」。",
+  "opts": {
+   "A": "identical 相同的,不合",
+   "B": "visible 看得見的,正確",
+   "C": "available 可得的,不合",
+   "D": "remarkable 顯著的,語意相反"
+  },
+  "vocab": [
+   [
+    "visible",
+    "adj 可見的"
+   ],
+   [
+    "passersby",
+    "n 路人"
+   ],
+   [
+    "alley",
+    "n 巷弄"
+   ]
+  ]
+ },
+ "8": {
+  "key": "original budget 與 eventual cost(最終花費)對照,高出五成。",
+  "opts": {
+   "A": "moderate 適度的,不合",
+   "B": "absolute 絕對的,不合",
+   "C": "promising 有希望的,不合",
+   "D": "eventual 最終的,正確"
+  },
+  "vocab": [
+   [
+    "eventual",
+    "adj 最終的"
+   ],
+   [
+    "budget",
+    "n 預算"
+   ]
+  ]
+ },
+ "9": {
+  "key": "go on a quest for 為尋找某物而展開探尋,符合找恐龍化石。",
+  "opts": {
+   "A": "trial 審判/試驗,不合",
+   "B": "route 路線,不接 for fossils",
+   "C": "strike 罷工,不合",
+   "D": "quest 探尋,正確"
+  },
+  "vocab": [
+   [
+    "quest",
+    "n 探尋"
+   ],
+   [
+    "fossil",
+    "n 化石"
+   ]
+  ]
+ },
+ "10": {
+  "key": "櫻花盛開的山谷在陽光下如少女般「臉紅/泛紅」,blush 為比喻。",
+  "opts": {
+   "A": "bounces 彈跳,不合",
+   "B": "blushes 臉紅,正確",
+   "C": "polishes 擦亮,不合",
+   "D": "transfers 轉移,不合"
+  },
+  "vocab": [
+   [
+    "blush",
+    "vi 臉紅"
+   ],
+   [
+    "blossom",
+    "n 花"
+   ]
+  ]
+ },
+ "11": {
+  "key": "Booth 開了第一家二手書店,是這個概念的「發起」者。",
+  "opts": {
+   "A": "initiated 發起,正確",
+   "B": "represented 代表,不合",
+   "C": "acknowledged 承認,不合",
+   "D": "manipulated 操縱,不合"
+  },
+  "vocab": [
+   [
+    "initiate",
+    "vt 發起"
+   ],
+   [
+    "antiquarian",
+    "adj 古書的"
+   ]
+  ]
+ },
+ "12": {
+  "key": "Since the 1970s 搭配現在完成進行式,表示自那時起持續冒出。",
+  "opts": {
+   "A": "spring 現在式,時態不合",
+   "B": "sprang 過去式,與 since 不搭",
+   "C": "had sprung 過去完成,不合",
+   "D": "have been springing 現在完成進行,正確"
+  },
+  "vocab": [
+   [
+    "spring up",
+    "片 湧現"
+   ],
+   [
+    "sustainable",
+    "adj 永續的"
+   ]
+  ]
+ },
+ "13": {
+  "key": "that's where the similarities end:相似處到此為止,下文各自有特色。",
+  "opts": {
+   "A": "form 形成,不合",
+   "B": "count 重要,不合",
+   "C": "end 結束,正確",
+   "D": "matter 要緊,不合"
+  },
+  "vocab": [
+   [
+    "similarity",
+    "n 相似處"
+   ],
+   [
+    "steer",
+    "vt 引導"
+   ]
+  ]
+ },
+ "14": {
+  "key": "作者談論「最新作品」,release 指新發行的書。",
+  "opts": {
+   "A": "trends 趨勢,不合",
+   "B": "releases 新發行品,正確",
+   "C": "agendas 議程,不合",
+   "D": "announcements 公告,不合"
+  },
+  "vocab": [
+   [
+    "release",
+    "n 新發行品"
+   ],
+   [
+    "annual",
+    "adj 年度的"
+   ]
+  ]
+ },
+ "15": {
+  "key": "末段強調實體書的觸感與氣味,故書鎮對「讓印刷文字延續」重要。",
+  "opts": {
+   "A": "獲得世界聲名,文中未提",
+   "B": "順應新模式,與強調傳統相反",
+   "C": "讓遊客滿意,偏離主旨",
+   "D": "keep the printed word alive,正確"
+  },
+  "vocab": [
+   [
+    "preserve",
+    "vt 保存"
+   ],
+   [
+    "complement",
+    "n 補充物"
+   ]
+  ]
+ },
+ "16": {
+  "key": "reasons other than aesthetics:設計理由不只是美觀。",
+  "opts": {
+   "A": "contrary to 與…相反,語意不合",
+   "B": "except for 除…之外,不接 reasons",
+   "C": "more of 不成語",
+   "D": "other than 除了,正確"
+  },
+  "vocab": [
+   [
+    "aesthetics",
+    "n 美學"
+   ],
+   [
+    "other than",
+    "片 除了"
+   ]
+  ]
+ },
+ "17": {
+  "key": "早期窗戶「過去是」方形,與現在對比,用 used to be。",
+  "opts": {
+   "A": "used to be 過去曾是,正確",
+   "B": "were to be 未來/假設,不合",
+   "C": "would have been 虛擬,不合",
+   "D": "must have been 推測,但為史實故不宜"
+  },
+  "vocab": [
+   [
+    "aviation",
+    "n 航空"
+   ],
+   [
+    "used to",
+    "片 過去曾"
+   ]
+  ]
+ },
+ "18": {
+  "key": "飛更高、壓差更大使應力增加,問題因而「加劇」。",
+  "opts": {
+   "A": "disguised 偽裝,不合",
+   "B": "understood 被理解,不合",
+   "C": "confronted 被面對,不合",
+   "D": "intensified 加劇,正確"
+  },
+  "vocab": [
+   [
+    "intensify",
+    "vt 加劇"
+   ],
+   [
+    "altitude",
+    "n 高度"
+   ],
+   [
+    "stress",
+    "n 應力"
+   ]
+  ]
+ },
+ "19": {
+  "key": "方窗四角反覆受壓,可能「釀成災難」,呼應三架飛機空中解體。",
+  "opts": {
+   "A": "cause conflict 引發衝突,不合",
+   "B": "rebuild strength 重建強度,不合",
+   "C": "spell disaster 預示災難,正確",
+   "D": "endure shock 承受衝擊,與弱點相反"
+  },
+  "vocab": [
+   [
+    "spell disaster",
+    "片 招致災難"
+   ],
+   [
+    "pressurization",
+    "n 加壓"
+   ]
+  ]
+ },
+ "20": {
+  "key": "圓形抗變形,因此能「承受」內外極端壓差。",
+  "opts": {
+   "A": "tolerate 容忍/承受,正確",
+   "B": "improve 改善,不合",
+   "C": "justify 證明合理,不合",
+   "D": "obtain 獲得,不合"
+  },
+  "vocab": [
+   [
+    "tolerate",
+    "vt 承受"
+   ],
+   [
+    "deformation",
+    "n 變形"
+   ]
+  ]
+ },
+ "21": {
+  "key": "危險動作對一般演員太「危險」,risky 修飾。",
+  "opts": {
+   "C": "risky 有風險的,正確",
+   "A": "possible 與 too 搭配語意不合"
+  },
+  "vocab": [
+   [
+    "stunt",
+    "n 特技"
+   ],
+   [
+    "risky",
+    "adj 危險的"
+   ]
+  ]
+ },
+ "22": {
+  "key": "特技工作自「需要」演變而來,necessity 切合演變因果。",
+  "opts": {
+   "I": "necessity 必要性,正確",
+   "D": "cost 無法與 emerge out of 搭配"
+  },
+  "vocab": [
+   [
+    "emerge",
+    "vi 浮現"
+   ],
+   [
+    "necessity",
+    "n 必要"
+   ]
+  ]
+ },
+ "23": {
+  "key": "當時還沒有「專業的」工作人員做特技,professional 修飾 crew members。",
+  "opts": {
+   "F": "professional 專業的,正確",
+   "J": "career 為名詞,不能修飾 crew"
+  },
+  "vocab": [
+   [
+    "professional",
+    "adj 專業的"
+   ],
+   [
+    "crew",
+    "n 工作人員"
+   ]
+  ]
+ },
+ "24": {
+  "key": "他們拍攝時第一次「嘗試」,try out things;空格接 things 需及物動詞。",
+  "opts": {
+   "H": "tried out 試做,正確(過去式)",
+   "G": "called for 需要,語意不合"
+  },
+  "vocab": [
+   [
+    "try out",
+    "片 試驗"
+   ]
+  ]
+ },
+ "25": {
+  "key": "從錯誤中學習,其代價是奪走一些人的性命,cost some their lives。",
+  "opts": {
+   "D": "cost 使失去(雙受詞),正確",
+   "E": "witnessed 目睹,不接雙受詞"
+  },
+  "vocab": [
+   [
+    "cost",
+    "vt 使付出代價"
+   ]
+  ]
+ },
+ "26": {
+  "key": "動作連續劇的流行「需要」專業特技演員,called for。",
+  "opts": {
+   "G": "called for 需要,正確",
+   "H": "tried out 試用,不合"
+  },
+  "vocab": [
+   [
+    "call for",
+    "片 需要"
+   ],
+   [
+    "serial",
+    "adj 連續的"
+   ]
+  ]
+ },
+ "27": {
+  "key": "牛仔轉行當特技演員,找到新的「職業」。",
+  "opts": {
+   "J": "career 職業,正確",
+   "I": "necessity 必需品,不合"
+  },
+  "vocab": [
+   [
+    "career",
+    "n 職業"
+   ]
+  ]
+ },
+ "28": {
+  "key": "1960、70 年代「見證」現代特技科技的發展,時代作主詞用 witness。",
+  "opts": {
+   "E": "witnessed 見證,正確",
+   "A": "possible 為形容詞,詞性不合"
+  },
+  "vocab": [
+   [
+    "witness",
+    "vt 見證"
+   ],
+   [
+    "squib",
+    "n 爆破裝置"
+   ]
+  ]
+ },
+ "29": {
+  "key": "it is now possible to + V,CGI 使逼真場景成為可能。",
+  "opts": {
+   "A": "possible 可能的,正確",
+   "C": "risky 與 to create 語意不合"
+  },
+  "vocab": [
+   [
+    "possible",
+    "adj 可能的"
+   ],
+   [
+    "lifelike",
+    "adj 逼真的"
+   ]
+  ]
+ },
+ "30": {
+  "key": "the realism and thrilling sensation:並列名詞,指真實特技的刺激感。",
+  "opts": {
+   "B": "sensation 感受,正確",
+   "D": "cost 不與 thrilling 搭配"
+  },
+  "vocab": [
+   [
+    "sensation",
+    "n 感覺;轟動"
+   ],
+   [
+    "thrilling",
+    "adj 驚險的"
+   ]
+  ]
+ },
+ "31": {
+  "key": "首段談節慶由來,承接 Obon 簡介,D 說明源於中元節並成為家人團聚時刻,接下去談「家人團聚」。",
+  "opts": {
+   "D": "說明來源與性質,正確",
+   "A": "掃墓屬儀式細節,應在中段",
+   "C": "結束篝火應在最後"
+  },
+  "vocab": [
+   [
+    "originate",
+    "vi 起源"
+   ],
+   [
+    "reunion",
+    "n 團聚"
+   ]
+  ]
+ },
+ "32": {
+  "key": "前句講迎火,後句講供品與祭壇;A 掃墓祭祖屬同一階段祭祖活動。",
+  "opts": {
+   "A": "掃墓祈福,銜接迎魂活動,正確",
+   "C": "送火是結尾,不應在此"
+  },
+  "vocab": [
+   [
+    "cemetery",
+    "n 墓地"
+   ],
+   [
+    "ancestor",
+    "n 祖先"
+   ]
+  ]
+ },
+ "33": {
+  "key": "後句紙燈籠沿河漂送、祖先回歸,對應結束的送火 okuribi。",
+  "opts": {
+   "C": "Obon concludes with okuribi,點出結尾,正確",
+   "B": "Such festive activities 需先提到舞蹈,此處尚無指涉"
+  },
+  "vocab": [
+   [
+    "conclude",
+    "vi 結束"
+   ],
+   [
+    "see off",
+    "片 送行"
+   ]
+  ]
+ },
+ "34": {
+  "key": "前文介紹 bon-odori 舞蹈,B 的 Such festive activities 指舞蹈等活動並說明舉辦地點。",
+  "opts": {
+   "B": "Such 回指舞蹈,正確",
+   "D": "談起源,不接舞蹈細節"
+  },
+  "vocab": [
+   [
+    "festive",
+    "adj 節慶的"
+   ],
+   [
+    "dedicate",
+    "vt 奉獻"
+   ]
+  ]
+ },
+ "35": {
+  "key": "文中提到 Maasai 戰士帶著矛與盾,圖 B 的人持長矛和繪紋盾、披布,符合。",
+  "opts": {
+   "A": "持弓箭、幾乎無衣,不合",
+   "B": "持矛與盾,披布,正確"
+  },
+  "vocab": [
+   [
+    "spear",
+    "n 矛"
+   ],
+   [
+    "shield",
+    "n 盾"
+   ],
+   [
+    "warrior",
+    "n 戰士"
+   ]
+  ]
+ },
+ "36": {
+  "key": "第二段:政府敦促他們現代化,他們卻抗拒並保留傳統。",
+  "opts": {
+   "A": "符合 resisted the urging of governments",
+   "B": "抗拒原因文中未說是因奴役",
+   "C": "until recently 才需獨力殺獅,今已非必要",
+   "D": "文中未提女性農耕"
+  },
+  "vocab": [
+   [
+    "resist",
+    "vt 抵抗"
+   ],
+   [
+    "semi-nomadic",
+    "adj 半游牧的"
+   ]
+  ]
+ },
+ "37": {
+  "key": "末段:歐洲貿易後玻璃珠取代天然材料,19 世紀後彩色玻璃珠普及。",
+  "opts": {
+   "A": "文中女性選格紋,非年輕人偏好",
+   "B": "黑色是割禮後穿,非成為戰士後",
+   "C": "玻璃珠於 19 世紀貿易後出現,正確",
+   "D": "文中未說明 shúkà 顏色代表地位"
+  },
+  "vocab": [
+   [
+    "circumcision",
+    "n 割禮"
+   ],
+   [
+    "ivory",
+    "n 象牙"
+   ]
+  ]
+ },
+ "38": {
+  "key": "引述 Blixen 說武器像鹿角般是身體一部分,強調武器不可分離。",
+  "opts": {
+   "A": "不是在說獵鹿",
+   "B": "重點不在武器種類",
+   "C": "強調武器為不可分割的一部分,正確",
+   "D": "類比的是武器與鹿角的關係,非行為相似"
+  },
+  "vocab": [
+   [
+    "antler",
+    "n 鹿角"
+   ],
+   [
+    "inseparable",
+    "adj 不可分的"
+   ]
+  ]
+ },
+ "39": {
+  "key": "全文談功能、外觀(顏色)、材質,未談缺點或限制。",
+  "opts": {
+   "A": "第一段談保護功能",
+   "B": "外觀與顏色有談",
+   "C": "材質演進有談",
+   "D": "未討論限制,正確"
+  },
+  "vocab": [
+   [
+    "mandatory",
+    "adj 強制的"
+   ],
+   [
+    "limitation",
+    "n 限制"
+   ]
+  ]
+ },
+ "40": {
+  "key": "先以煤焦油塗帽(d),再帆布皮革(c),後玻璃纖維(a),最後有透明面罩的帽(b)。",
+  "opts": {
+   "A": "d→c→a→b,正確"
+  },
+  "vocab": [
+   [
+    "coal tar",
+    "n 煤焦油"
+   ],
+   [
+    "fiberglass",
+    "n 玻璃纖維"
+   ]
+  ]
+ },
+ "41": {
+  "key": "Bullard 因目睹戰時金屬頭盔的救命效果而發明安全帽。",
+  "opts": {
+   "A": "文中只給兩年銷售額,無倍增說法",
+   "B": "符合 having witnessed the metal helmet in the War",
+   "C": "1930 年代才在大型工程強制使用",
+   "D": "顏色是依角色區分,不是產業"
+  },
+  "vocab": [
+   [
+    "inspiration",
+    "n 靈感"
+   ],
+   [
+    "witness",
+    "vt 目睹"
+   ]
+  ]
+ },
+ "42": {
+  "key": "文中使用 tool、device、helmet、headgear 指安全帽;code 與 accessories 並非指安全帽。",
+  "opts": {
+   "B": "a, c, d, f,正確",
+   "A": "code 是顏色規範,不指安全帽",
+   "C": "accessory 是配件"
+  },
+  "vocab": [
+   [
+    "headgear",
+    "n 頭部防護"
+   ],
+   [
+    "accessory",
+    "n 配件"
+   ]
+  ]
+ },
+ "43": {
+  "key": "全文說明斑馬魚可能帶來治療失明等醫學進展。",
+  "opts": {
+   "A": "文中未講實驗室研究方法",
+   "B": "再生來源只部分探討",
+   "C": "未解釋為何基因相近",
+   "D": "可能提供醫學進展,正確"
+  },
+  "vocab": [
+   [
+    "regenerate",
+    "vt 使再生"
+   ],
+   [
+    "advancement",
+    "n 進步"
+   ]
+  ]
+ },
+ "44": {
+  "key": "第四段:降低 GABA 可觸發視網膜再生,高濃度反而抑制。",
+  "opts": {
+   "A": "GABA 降低神經活動,非促進",
+   "B": "文中未說魚腦中 GABA 高",
+   "C": "降低 GABA 促使再生,正確",
+   "D": "文中未說明其成分"
+  },
+  "vocab": [
+   [
+    "neurotransmitter",
+    "n 神經傳導物質"
+   ],
+   [
+    "suppress",
+    "vt 抑制"
+   ],
+   [
+    "trigger",
+    "vt 觸發"
+   ]
+  ]
+ },
+ "45": {
+  "key": "replicate 指複製過程,近義 reproduced。",
+  "opts": {
+   "A": "Reproduced 複製,正確",
+   "B": "Reassembled 重新組裝,不合",
+   "C": "Recycled 回收,不合",
+   "D": "Restored 恢復,視力恢復不等於複製過程"
+  },
+  "vocab": [
+   [
+    "replicate",
+    "vt 複製"
+   ],
+   [
+    "retina",
+    "n 視網膜"
+   ]
+  ]
+ },
+ "46": {
+  "key": "「也許讓人類再生器官」是帶 may 的推測與期望,不是已證實的事實。",
+  "opts": {
+   "A": "70% 基因相同是研究數據",
+   "B": "視力恢復是已觀察事實",
+   "C": "測試小鼠是事實陳述",
+   "D": "may allow 是推測性的看法,正確"
+  },
+  "vocab": [
+   [
+    "opinion",
+    "n 意見"
+   ],
+   [
+    "regrow",
+    "vt 再生長"
+   ]
+  ]
+ }
+}

@@ -1,0 +1,1046 @@
+{
+ "1": {
+  "key": "「naughty boy」「play jokes on his younger sister」,捉弄妹妹的動作是 tease。",
+  "opts": {
+   "A": "alert 警告,語意不合。",
+   "B": "spare 饒過,與搗蛋相反。",
+   "C": "tease 取笑、捉弄,與 play jokes 並列。",
+   "D": "oppose 反對,不合情境。"
+  },
+  "vocab": [
+   [
+    "tease",
+    "v. 取笑、捉弄"
+   ],
+   [
+    "naughty",
+    "adj. 頑皮的"
+   ]
+  ]
+ },
+ "2": {
+  "key": "「move too fast」「keep their balance」指會移動的樓梯,故為 escalator。",
+  "opts": {
+   "A": "airway 航道,與商店無關。",
+   "B": "operator 操作員,不是可搭乘物。",
+   "C": "escalator 電扶梯,速度快、老人難站穩。",
+   "D": "instrument 儀器,不合。"
+  },
+  "vocab": [
+   [
+    "escalator",
+    "n. 電扶梯"
+   ],
+   [
+    "keep one's balance",
+    "片語 保持平衡"
+   ]
+  ]
+ },
+ "3": {
+  "key": "狗聽到主人叫喚就搖尾巴跟出去,表現「順從地」。",
+  "opts": {
+   "A": "obediently 順從地,符合服從主人叫喚。",
+   "B": "apparently 顯然地,與動作情境不搭。",
+   "C": "logically 合邏輯地,不自然。",
+   "D": "thoroughly 徹底地,不合。"
+  },
+  "vocab": [
+   [
+    "obediently",
+    "adv. 順從地"
+   ],
+   [
+    "wag",
+    "v. 搖(尾巴)"
+   ]
+  ]
+ },
+ "4": {
+  "key": "植物來自「humid jungle」,需要潮濕的空氣。",
+  "opts": {
+   "A": "moist 潮濕的,對應 humid。",
+   "B": "stale 不新鮮的,對植物不好。",
+   "C": "crisp 乾脆清爽的,多指食物或天氣。",
+   "D": "fertile 肥沃的,修飾土壤而非空氣。"
+  },
+  "vocab": [
+   [
+    "moist",
+    "adj. 潮濕的"
+   ],
+   [
+    "humid",
+    "adj. 濕熱的"
+   ]
+  ]
+ },
+ "5": {
+  "key": "跳傘者從飛機跳出後安全著陸,即使「failed to open」的是 parachute。",
+  "opts": {
+   "A": "glimpse 一瞥,不會打開。",
+   "B": "latitude 緯度,不合。",
+   "C": "segment 部分,不合。",
+   "D": "parachute 降落傘,可打開。"
+  },
+  "vocab": [
+   [
+    "parachute",
+    "n. 降落傘"
+   ],
+   [
+    "skydiver",
+    "n. 跳傘者"
+   ]
+  ]
+ },
+ "6": {
+  "key": "蒸汽機推動重型機器,帶來社會的「革命性」改變。",
+  "opts": {
+   "A": "persuasive 有說服力的,不合。",
+   "B": "harmonious 和諧的,不合。",
+   "C": "conventional 傳統的,與發明相反。",
+   "D": "revolutionary 革命性的,合語意。"
+  },
+  "vocab": [
+   [
+    "revolutionary",
+    "adj. 革命性的"
+   ],
+   [
+    "steam engine",
+    "n. 蒸汽機"
+   ]
+  ]
+ },
+ "7": {
+  "key": "老師讓學生分組一起解決問題,目的是促進課堂「互動」。",
+  "opts": {
+   "A": "operation 操作,不合。",
+   "B": "interaction 互動,合分組合作。",
+   "C": "adjustment 調整,不合。",
+   "D": "explanation 解釋,不合。"
+  },
+  "vocab": [
+   [
+    "interaction",
+    "n. 互動"
+   ],
+   [
+    "adjustment",
+    "n. 調整"
+   ]
+  ]
+ },
+ "8": {
+  "key": "打籃球時「onto the ground」並扭傷腳踝,表示跌倒。",
+  "opts": {
+   "A": "buried 掩埋,不合。",
+   "B": "punched 用拳打,不合。",
+   "C": "scattered 散開,不合。",
+   "D": "tumbled 跌倒,後接 onto the ground。"
+  },
+  "vocab": [
+   [
+    "tumble",
+    "v. 跌倒、翻滾"
+   ],
+   [
+    "ankle",
+    "n. 腳踝"
+   ]
+  ]
+ },
+ "9": {
+  "key": "居民檢測水中是否有化學物,需要的是 testing kits(檢測包)。",
+  "opts": {
+   "A": "kits 成套工具,testing kits 為檢測包。",
+   "B": "trials 試驗,不能搭 free testing 發放。",
+   "C": "zones 區域,不合。",
+   "D": "proofs 證據,不合。"
+  },
+  "vocab": [
+   [
+    "kit",
+    "n. 成套用品"
+   ],
+   [
+    "residents",
+    "n. 居民"
+   ]
+  ]
+ },
+ "10": {
+  "key": "諾貝爾獎由三位女性共同獲得,用 jointly。",
+  "opts": {
+   "A": "actively 積極地,不合。",
+   "B": "earnestly 認真地,不合。",
+   "C": "jointly 共同地,對應三人同獲。",
+   "D": "naturally 自然地,不合。"
+  },
+  "vocab": [
+   [
+    "jointly",
+    "adv. 共同地"
+   ],
+   [
+    "award",
+    "v. 授予"
+   ]
+  ]
+ },
+ "11": {
+  "key": "在明智領導下賺大錢,公司應是「蓬勃發展」。",
+  "opts": {
+   "A": "applauding 鼓掌,不合。",
+   "B": "flourishing 蓬勃發展,合 making great profits。",
+   "C": "circulating 循環流通,不合。",
+   "D": "exceeding 超過,及物動詞缺受詞。"
+  },
+  "vocab": [
+   [
+    "flourish",
+    "v. 繁榮、興盛"
+   ],
+   [
+    "profit",
+    "n. 利潤"
+   ]
+  ]
+ },
+ "12": {
+  "key": "沒有駕照卻花大錢買名車,是「荒謬的」。",
+  "opts": {
+   "A": "absurd 荒謬的,合。",
+   "B": "cautious 謹慎的,不合。",
+   "C": "vigorous 精力旺盛的,不合。",
+   "D": "obstinate 固執的,不合。"
+  },
+  "vocab": [
+   [
+    "absurd",
+    "adj. 荒謬的"
+   ],
+   [
+    "obstinate",
+    "adj. 固執的"
+   ]
+  ]
+ },
+ "13": {
+  "key": "毒品問題複雜,不能歸因於「單一」原因,用 singular。",
+  "opts": {
+   "A": "singular 單一的,對應 merely one。",
+   "B": "countable 可數的,不合。",
+   "C": "favorable 有利的,不合。",
+   "D": "defensive 防禦的,不合。"
+  },
+  "vocab": [
+   [
+    "singular",
+    "adj. 單一的"
+   ],
+   [
+    "trace to",
+    "片語 追溯到"
+   ]
+  ]
+ },
+ "14": {
+  "key": "組織五年內「承諾」投入一百萬美元資助醫療中心。",
+  "opts": {
+   "A": "equipped 裝備,不接金額。",
+   "B": "resolved 決心,不合。",
+   "C": "committed 承諾投入(資金),合。",
+   "D": "associated 使關聯,不合。"
+  },
+  "vocab": [
+   [
+    "commit",
+    "v. 承諾投入"
+   ],
+   [
+    "finance",
+    "v. 提供資金"
+   ]
+  ]
+ },
+ "15": {
+  "key": "颱風一週後橋樑開放,公車服務「恢復」。",
+  "opts": {
+   "A": "departed 出發,不合。",
+   "B": "resumed 恢復,合。",
+   "C": "transported 運送,及物動詞。",
+   "D": "corresponded 相符、通信,不合。"
+  },
+  "vocab": [
+   [
+    "resume",
+    "v. 恢復"
+   ],
+   [
+    "typhoon",
+    "n. 颱風"
+   ]
+  ]
+ },
+ "16": {
+  "key": "句意:參觀歐洲大城若「沒有」遇到牠們就不一樣,用 without。",
+  "opts": {
+   "A": "as 不合句型。",
+   "B": "for 不合。",
+   "C": "though 連接詞,後不接 encountering。",
+   "D": "without 後接動名詞,合 would not be the same。"
+  },
+  "vocab": [
+   [
+    "encounter",
+    "v. 遇見"
+   ],
+   [
+    "flock",
+    "v. 群聚"
+   ]
+  ]
+ },
+ "17": {
+  "key": "鴿子在市中心大便污染,表示「占據」市中心,take over。",
+  "opts": {
+   "A": "set up 建立,不合。",
+   "B": "hang on 堅持,不合。",
+   "C": "take over 接管、占據。",
+   "D": "break down 故障、崩潰,不合。"
+  },
+  "vocab": [
+   [
+    "take over",
+    "片語 接管"
+   ],
+   [
+    "perch",
+    "v. 棲息"
+   ]
+  ]
+ },
+ "18": {
+  "key": "以捕殺方式「減少」鴿子數量,後有 population 為受詞。",
+  "opts": {
+   "A": "counting 計算,不合。",
+   "B": "reducing 減少,合捕殺目的。",
+   "C": "displaying 展示,不合。",
+   "D": "maintaining 維持,與捕殺矛盾。"
+  },
+  "vocab": [
+   [
+    "reduce",
+    "v. 減少"
+   ],
+   [
+    "propose",
+    "v. 提議"
+   ]
+  ]
+ },
+ "19": {
+  "key": "另一個「同樣」有效的方法,similarly effective。",
+  "opts": {
+   "A": "nearly 幾乎,語意不順。",
+   "B": "shortly 不久,不合。",
+   "C": "precisely 精確地,不合。",
+   "D": "similarly 同樣地,修飾 effective 合邏輯。"
+  },
+  "vocab": [
+   [
+    "similarly",
+    "adv. 同樣地"
+   ],
+   [
+    "persuade",
+    "v. 說服"
+   ]
+  ]
+ },
+ "20": {
+  "key": "bird feeders 被安裝,用過去分詞作後置修飾,表被動。",
+  "opts": {
+   "A": "installing 主動,不合。",
+   "B": "installed 過去分詞,表被安裝的。",
+   "C": "to install 不定詞,不合。",
+   "D": "having installed 主動完成,不合。"
+  },
+  "vocab": [
+   [
+    "install",
+    "v. 安裝"
+   ],
+   [
+    "birth control",
+    "n. 節育"
+   ]
+  ]
+ },
+ "21": {
+  "key": "被雷擊中機率已很低,「更不用說」七次,not to mention。",
+  "opts": {
+   "A": "if it isn’t 若不是,不合。",
+   "B": "as you can see 如你所見,不合。",
+   "C": "not to mention 更不用說,合。",
+   "D": "with regard to 關於,不合。"
+  },
+  "vocab": [
+   [
+    "not to mention",
+    "片語 更不用說"
+   ],
+   [
+    "odds",
+    "n. 機率"
+   ]
+  ]
+ },
+ "22": {
+  "key": "被雷擊七次,每次都「倖存」,survived。",
+  "opts": {
+   "A": "piloted 駕駛,不合。",
+   "B": "rejected 拒絕,不合。",
+   "C": "survived 倖存,合。",
+   "D": "tracked 追蹤,不合。"
+  },
+  "vocab": [
+   [
+    "survive",
+    "v. 倖存"
+   ],
+   [
+    "bolt",
+    "n. 閃電"
+   ]
+  ]
+ },
+ "23": {
+  "key": "第四次後他開始「害怕」死亡並採取預防措施。",
+  "opts": {
+   "A": "fearful of 害怕,合。",
+   "B": "critical of 批評,不合。",
+   "C": "doubtful about 懷疑,不合。",
+   "D": "positive about 對…樂觀,與 precautions 矛盾。"
+  },
+  "vocab": [
+   [
+    "fearful of",
+    "片語 害怕"
+   ],
+   [
+    "precaution",
+    "n. 預防措施"
+   ]
+  ]
+ },
+ "24": {
+  "key": "他覺得雲在「追」他,試圖逃跑,coming after。",
+  "opts": {
+   "A": "coming after 追趕,合。",
+   "B": "getting over 克服,不合。",
+   "C": "holding on to 抓住,不合。",
+   "D": "watching out for 留意,不合。"
+  },
+  "vocab": [
+   [
+    "come after",
+    "片語 追趕"
+   ],
+   [
+    "survey",
+    "v. 勘查"
+   ]
+  ]
+ },
+ "25": {
+  "key": "與過去事實相反的假設:若上帝要對付他,第一道閃電就已足夠,用 would have been。",
+  "opts": {
+   "A": "was 不合。",
+   "B": "had been 不合,主句需 would have。",
+   "C": "would be 現在假設,時態不合。",
+   "D": "would have been 對過去假設,合。"
+  },
+  "vocab": [
+   [
+    "theorize",
+    "v. 推測"
+   ],
+   [
+    "mineral",
+    "n. 礦物質"
+   ]
+  ]
+ },
+ "26": {
+  "key": "某些山脈「擁有」冰川,home to 表為…的所在地。",
+  "opts": {
+   "A": "home to 為…的棲息地,合。",
+   "B": "covers of 封面,不合。",
+   "C": "roofs over 屋頂,不合。",
+   "D": "room for 空間,不合。"
+  },
+  "vocab": [
+   [
+    "home to",
+    "片語 是…的所在地"
+   ],
+   [
+    "glacier",
+    "n. 冰川"
+   ]
+  ]
+ },
+ "27": {
+  "key": "升溫對冰川構成「迫切的」威脅,immediate。",
+  "opts": {
+   "A": "occasional 偶爾的,不合。",
+   "B": "elaborate 精細的,不合。",
+   "C": "immediate 迫切的,合。",
+   "D": "offensive 冒犯的,不合。"
+  },
+  "vocab": [
+   [
+    "immediate",
+    "adj. 迫切的"
+   ],
+   [
+    "threat",
+    "n. 威脅"
+   ]
+  ]
+ },
+ "28": {
+  "key": "主詞 Papua’s glaciers 與縮小為主動,用分詞構句 Having already shrunk。",
+  "opts": {
+   "A": "Have 倒裝疑問,不合。",
+   "B": "Had 不合。",
+   "C": "Having 主動完成分詞構句,合。",
+   "D": "Having been 被動,不合 shrink。"
+  },
+  "vocab": [
+   [
+    "shrink",
+    "v. 縮小"
+   ],
+   [
+    "participial phrase",
+    "片語 分詞構句"
+   ]
+  ]
+ },
+ "29": {
+  "key": "後文談原住民視冰川為神聖象徵,故為「文化」影響。",
+  "opts": {
+   "A": "cultural 文化的,合。",
+   "B": "moral 道德的,不合。",
+   "C": "political 政治的,不合。",
+   "D": "environmental 環境的,後文談宗教象徵。"
+  },
+  "vocab": [
+   [
+    "indigenous",
+    "adj. 原住民的"
+   ],
+   [
+    "sacred",
+    "adj. 神聖的"
+   ]
+  ]
+ },
+ "30": {
+  "key": "溫室氣體「不受控制」而溫度持續上升,left unchecked。",
+  "opts": {
+   "A": "kept balanced 保持平衡,不合。",
+   "B": "made released 文法錯。",
+   "C": "seen dismissed 文法與語意不合。",
+   "D": "left unchecked 放任不管,合。"
+  },
+  "vocab": [
+   [
+    "unchecked",
+    "adj. 未受抑制的"
+   ],
+   [
+    "greenhouse gas",
+    "n. 溫室氣體"
+   ]
+  ]
+ },
+ "31": {
+  "key": "「even just 15 minutes」說明運動量為適度的 modest。",
+  "opts": {
+   "J": "modest 適度的,修飾 amounts,合 15 分鐘。",
+   "H": "current 現今的,不指份量。"
+  },
+  "vocab": [
+   [
+    "modest",
+    "adj. 適度的"
+   ],
+   [
+    "ease",
+    "v. 減輕"
+   ]
+  ]
+ },
+ "32": {
+  "key": "不必是健身狂熱者,a fitness fanatic。",
+  "opts": {
+   "G": "fanatic 狂熱者,合 fitness fanatic。",
+   "D": "argue 為動詞,詞性不合。"
+  },
+  "vocab": [
+   [
+    "fanatic",
+    "n. 狂熱者"
+   ],
+   [
+    "self-image",
+    "n. 自我形象"
+   ]
+  ]
+ },
+ "33": {
+  "key": "以「start slow and have fun」為座右銘去遵循,abide by。",
+  "opts": {
+   "F": "abide by 遵守,motto to abide by。",
+   "C": "point to 指向,不合。"
+  },
+  "vocab": [
+   [
+    "abide by",
+    "片語 遵守"
+   ],
+   [
+    "motto",
+    "n. 座右銘"
+   ]
+  ]
+ },
+ "34": {
+  "key": "空格修飾 health studies,表「目前的」研究,current。",
+  "opts": {
+   "H": "current 現今的,修飾名詞。",
+   "J": "modest 適度的,不合研究。"
+  },
+  "vocab": [
+   [
+    "current",
+    "adj. 當前的"
+   ],
+   [
+    "prove",
+    "v. 證明"
+   ]
+  ]
+ },
+ "35": {
+  "key": "you might argue that… 表你可能主張。",
+  "opts": {
+   "D": "argue 主張,後接 that 子句。",
+   "A": "means 為名詞或第三人稱,不合 might 後原形。"
+  },
+  "vocab": [
+   [
+    "argue",
+    "v. 主張"
+   ],
+   [
+    "work out",
+    "片語 運動"
+   ]
+  ]
+ },
+ "36": {
+  "key": "physically demanding exercises 指對體力要求高的運動。",
+  "opts": {
+   "E": "demanding 費力的,修飾 exercises。",
+   "J": "modest 適度,與使人喘息不合。"
+  },
+  "vocab": [
+   [
+    "demanding",
+    "adj. 費力的"
+   ],
+   [
+    "muscle",
+    "n. 肌肉"
+   ]
+  ]
+ },
+ "37": {
+  "key": "疼痛若有可能「顯示」受傷,may point to an injury。",
+  "opts": {
+   "C": "point to 指向、顯示。",
+   "D": "argue 主張,主詞 it 不合。"
+  },
+  "vocab": [
+   [
+    "point to",
+    "片語 顯示、指向"
+   ],
+   [
+    "strain",
+    "n. 拉傷"
+   ]
+  ]
+ },
+ "38": {
+  "key": "與 discomfort 並列,名詞「痠痛」soreness。",
+  "opts": {
+   "B": "soreness 痠痛,為名詞,與 discomfort 並列。",
+   "A": "means 手段,語意不合。"
+  },
+  "vocab": [
+   [
+    "soreness",
+    "n. 痠痛"
+   ],
+   [
+    "discomfort",
+    "n. 不適"
+   ]
+  ]
+ },
+ "39": {
+  "key": "短時間低強度運動是改善健康的有力「方法」,a means to。",
+  "opts": {
+   "A": "means 方法、手段,a powerful means to improve。",
+   "J": "modest 為形容詞,位置不合。"
+  },
+  "vocab": [
+   [
+    "means",
+    "n. 方法"
+   ],
+   [
+    "low-impact",
+    "adj. 低衝擊的"
+   ]
+  ]
+ },
+ "40": {
+  "key": "每天「撥出時間」運動,make time for。",
+  "opts": {
+   "I": "make time 撥出時間,後接 for。",
+   "F": "abide by 遵守,不合 for。"
+  },
+  "vocab": [
+   [
+    "make time for",
+    "片語 抽出時間做"
+   ],
+   [
+    "sake",
+    "n. 緣故"
+   ]
+  ]
+ },
+ "41": {
+  "key": "全文介紹仙人掌殼可轉為電力的新能源。",
+  "opts": {
+   "A": "只講優點太窄,主旨是新能源。",
+   "B": "正確,說明仙人掌生質能源。",
+   "C": "並未預測農業政策。",
+   "D": "並未要改變用能觀念。"
+  },
+  "vocab": [
+   [
+    "renewable",
+    "adj. 可再生的"
+   ],
+   [
+    "biogas",
+    "n. 沼氣"
+   ]
+  ]
+ },
+ "42": {
+  "key": "文中提到食用、飲用、藥品與洗髮精,未提園藝造景。",
+  "opts": {
+   "A": "藥品有提到。",
+   "B": "洗髮精屬個人衛生,有提到。",
+   "C": "eat it, drink it 有提到。",
+   "D": "gardening 未提及,故為答案。"
+  },
+  "vocab": [
+   [
+    "husk",
+    "n. 外殼"
+   ],
+   [
+    "sacred",
+    "adj. 神聖的"
+   ]
+  ]
+ },
+ "43": {
+  "key": "首段說仙人掌占國旗顯要位置。",
+  "opts": {
+   "A": "被丟棄的是外殼,不是軟肉。",
+   "B": "文中說古阿茲提克人已視為神聖,非現代才發現。",
+   "C": "廢棄物最多每日約十噸,不是年產 20 萬噸皆為廢物。",
+   "D": "與 prime spot on the flag 相符。"
+  },
+  "vocab": [
+   [
+    "prime",
+    "adj. 首要的"
+   ],
+   [
+    "prickly pear",
+    "n. 仙人掌果"
+   ]
+  ]
+ },
+ "44": {
+  "key": "第四段:只用外殼發電,果肉仍作食物,故不會對糧價造成壓力。",
+  "opts": {
+   "A": "未比較產能。",
+   "B": "正確,not put pressure on food prices。",
+   "C": "未提及取代飼料。",
+   "D": "未提及增加糧食產量。"
+  },
+  "vocab": [
+   [
+    "biofuel",
+    "n. 生質燃料"
+   ],
+   [
+    "pressure",
+    "n. 壓力"
+   ]
+  ]
+ },
+ "45": {
+  "key": "文章由西元前 450 年依序談到中世紀、十五世紀、一次大戰,依時間順序。",
+  "opts": {
+   "A": "時間順序,合。",
+   "B": "非因果。",
+   "C": "非重要性排序。",
+   "D": "非定義與例證。"
+  },
+  "vocab": [
+   [
+    "medieval",
+    "adj. 中世紀的"
+   ],
+   [
+    "credit with",
+    "片語 歸功於"
+   ]
+  ]
+ },
+ "46": {
+  "key": "最早提到的是波斯國王給官員尼希米的信。",
+  "opts": {
+   "A": "由波斯王所發,非猶大王。",
+   "B": "正確,給 Persia 的官員。",
+   "C": "約西元前 450 年,不到三千年。",
+   "D": "信是要求沿途讓他安全通行,非邀請。"
+  },
+  "vocab": [
+   [
+    "official",
+    "n. 官員"
+   ],
+   [
+    "safe passage",
+    "n. 安全通行"
+   ]
+  ]
+ },
+ "47": {
+  "key": "文中說 15 世紀法案後約一世紀才使用 passport 一詞,即 16 世紀。",
+  "opts": {
+   "A": "那是最早類似護照的物品。",
+   "B": "那是普遍要求護照的時間。",
+   "C": "15 世紀後約一個世紀,即十六世紀。",
+   "D": "�亨利五世時有文件,但名稱較晚出現。"
+  },
+  "vocab": [
+   [
+    "term",
+    "n. 用語"
+   ],
+   [
+    "reign",
+    "n. 統治期"
+   ]
+  ]
+ },
+ "48": {
+  "key": "文中提到信、納稅收據與身分證明,沒有把港口清單當作護照。",
+  "opts": {
+   "A": "尼希米的信,有提到。",
+   "B": "bara’a 稅收收據,有提到。",
+   "C": "亨利五世的文件證明身分,有提到。",
+   "D": "列的是允許進入的城鎮,不是海港清單。"
+  },
+  "vocab": [
+   [
+    "receipt",
+    "n. 收據"
+   ],
+   [
+    "inland",
+    "adv. 往內陸"
+   ]
+  ]
+ },
+ "49": {
+  "key": "文中描述一排玻璃半球套在鐵桿上,由腳踏的輪子帶動旋轉,圖 D 相符。",
+  "opts": {
+   "A": "A 是擺在盒中的杯子,不是套在桿上。",
+   "B": "B 為編鐘。",
+   "C": "C 為紡紗機,沒有玻璃半球。",
+   "D": "D 有大輪與成排玻璃,符合。"
+  },
+  "vocab": [
+   [
+    "hemisphere",
+    "n. 半球"
+   ],
+   [
+    "rim",
+    "n. 邊緣"
+   ]
+  ]
+ },
+ "50": {
+  "key": "富蘭克林「moistened his fingers」按在轉動的玻璃邊緣發聲。",
+  "opts": {
+   "A": "水沒有倒進半球內。",
+   "B": "油漆用來標示音符,不影響音色。",
+   "C": "鐵桿用來穿過半球使其旋轉,不是敲擊。",
+   "D": "手指需微濕,正確。"
+  },
+  "vocab": [
+   [
+    "moisten",
+    "v. 弄濕"
+   ],
+   [
+    "pitch",
+    "n. 音高"
+   ]
+  ]
+ },
+ "51": {
+  "key": "音樂廳變大,沒有擴音就聽不到,所以衰退。",
+  "opts": {
+   "A": "文中未說難學。",
+   "B": "貝多芬也為它作曲,未說有困難。",
+   "C": "正確,large concert halls。",
+   "D": "評論稱其聲音美妙,未說笨拙。"
+  },
+  "vocab": [
+   [
+    "amplification",
+    "n. 擴音"
+   ],
+   [
+    "abandon",
+    "v. 捨棄"
+   ]
+  ]
+ },
+ "52": {
+  "key": "「they could nest together」指前面的 glass hemispheres 能彼此套疊。",
+  "opts": {
+   "A": "鐵桿是穿過去,不是套疊的主體。",
+   "B": "hemispheres,從大到小套疊。",
+   "C": "色彩標示只是標記。",
+   "D": "音高不會套疊。"
+  },
+  "vocab": [
+   [
+    "nest",
+    "v. 套疊"
+   ],
+   [
+    "rod",
+    "n. 桿"
+   ]
+  ]
+ },
+ "53": {
+  "key": "全文談園區建立經過與各項特色設施。",
+  "opts": {
+   "A": "新擴建只占一段。",
+   "B": "正確,建立與特色。",
+   "C": "科技裝置只是部分。",
+   "D": "需求並非主題。"
+  },
+  "vocab": [
+   [
+    "establishment",
+    "n. 建立"
+   ],
+   [
+    "accessible",
+    "adj. 可使用的"
+   ]
+  ]
+ },
+ "54": {
+  "key": "文中說各種能力的人都能一起玩,ultra-accessible 指所有訪客都容易使用設施。",
+  "opts": {
+   "A": "容易使用,合。",
+   "B": "入場並非所有人免費。",
+   "C": "不是每個設施都提供輪椅。",
+   "D": "與地點便利無關。"
+  },
+  "vocab": [
+   [
+    "accessible",
+    "adj. 易取得、可使用的"
+   ],
+   [
+    "admission",
+    "n. 入場費"
+   ]
+  ]
+ },
+ "55": {
+  "key": "文中提到釣魚、開車、野餐,沒有健行。",
+  "opts": {
+   "A": "catch-and-release fishing 有。",
+   "B": "Off-Road Adventure 開車有。",
+   "C": "hiking 未提及。",
+   "D": "picnic areas 有。"
+  },
+  "vocab": [
+   [
+    "catch-and-release",
+    "adj. 釣後放生"
+   ],
+   [
+    "playground",
+    "n. 遊樂場"
+   ]
+  ]
+ },
+ "56": {
+  "key": "GPS 手環可互相追蹤並參與電子活動,是電子裝置的便利。",
+  "opts": {
+   "A": "防水椅用於戲水區,不是全園。",
+   "B": "25 英畝是主園區,不是 Inspiration Island。",
+   "C": "文中未說成功正是 Morgan 的目標。",
+   "D": "符合手環功能。"
+  },
+  "vocab": [
+   [
+    "expansion",
+    "n. 擴建"
+   ],
+   [
+    "track",
+    "v. 追蹤"
+   ]
+  ]
+ }
+}

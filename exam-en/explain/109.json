@@ -1,0 +1,1034 @@
+{
+ "1": {
+  "key": "空格前 reached 常與 conclusion 搭配,表「得出結論」。",
+  "opts": {
+   "A": "balance 平衡,不能 reach。",
+   "B": "conclusion 結論,reach a conclusion 為慣用語,正確。",
+   "C": "definition 定義,語意不合。",
+   "D": "harmony 和諧,不接 that 子句。"
+  },
+  "vocab": [
+   [
+    "reach a conclusion",
+    "片語 得出結論"
+   ],
+   [
+    "harmony",
+    "名詞 和諧"
+   ]
+  ]
+ },
+ "2": {
+  "key": "Jane 上學期差點不及格,這次近乎滿分,所以讓老師「驚訝」。",
+  "opts": {
+   "A": "bored 使無聊,不合。",
+   "B": "amazed 使驚訝,符合前後對比。",
+   "C": "charmed 使著迷,語氣不符。",
+   "D": "informed 通知,不合。"
+  },
+  "vocab": [
+   [
+    "amaze",
+    "動詞 使驚訝"
+   ],
+   [
+    "charm",
+    "動詞 使著迷"
+   ]
+  ]
+ },
+ "3": {
+  "key": "吸塵器壞了要送回「製造商」檢查維修。",
+  "opts": {
+   "A": "lecturer 講師。",
+   "B": "publisher 出版商。",
+   "C": "researcher 研究員。",
+   "D": "manufacturer 製造商,正確。"
+  },
+  "vocab": [
+   [
+    "manufacturer",
+    "名詞 製造商"
+   ],
+   [
+    "inspect",
+    "動詞 檢查"
+   ]
+  ]
+ },
+ "4": {
+  "key": "由 the largest drop 可知出口是「減少」40%。",
+  "opts": {
+   "A": "flatter 奉承。",
+   "B": "transform 轉變,無方向性。",
+   "C": "relieve 緩解。",
+   "D": "decrease 減少,與 drop 呼應。"
+  },
+  "vocab": [
+   [
+    "decrease",
+    "動詞 減少"
+   ],
+   [
+    "financial crisis",
+    "名詞片語 金融危機"
+   ]
+  ]
+ },
+ "5": {
+  "key": "洋芋片放太久不再新鮮,應是不再「酥脆」。",
+  "opts": {
+   "A": "solid 固體的。",
+   "B": "crispy 酥脆的,符合。",
+   "C": "original 原味的,不合語意。",
+   "D": "smooth 平滑的。"
+  },
+  "vocab": [
+   [
+    "crispy",
+    "形容詞 酥脆的"
+   ],
+   [
+    "uncovered",
+    "形容詞 沒蓋住的"
+   ]
+  ]
+ },
+ "6": {
+  "key": "為紀念犧牲的老師而建「紀念碑」。",
+  "opts": {
+   "A": "monument 紀念碑,正確。",
+   "B": "refugee 難民。",
+   "C": "souvenir 紀念品(非建造物)。",
+   "D": "firecracker 鞭炮。"
+  },
+  "vocab": [
+   [
+    "monument",
+    "名詞 紀念碑"
+   ],
+   [
+    "sacrifice",
+    "動詞 犧牲"
+   ]
+  ]
+ },
+ "7": {
+  "key": "古文課要求學生「背誦」詩。",
+  "opts": {
+   "A": "construct 建造。",
+   "B": "expose 暴露。",
+   "C": "recite 背誦,正確。",
+   "D": "install 安裝。"
+  },
+  "vocab": [
+   [
+    "recite",
+    "動詞 背誦"
+   ],
+   [
+    "classical",
+    "形容詞 古典的"
+   ]
+  ]
+ },
+ "8": {
+  "key": "he has not offered any proof of ownership:拿不出「所有權」證明。",
+  "opts": {
+   "A": "convention 慣例。",
+   "B": "relationship 關係。",
+   "C": "insurance 保險。",
+   "D": "ownership 所有權,對應 belongs to him。"
+  },
+  "vocab": [
+   [
+    "ownership",
+    "名詞 所有權"
+   ],
+   [
+    "claim",
+    "動詞 宣稱"
+   ]
+  ]
+ },
+ "9": {
+  "key": "the cradle of democracy 為慣用語「民主的搖籃」。",
+  "opts": {
+   "A": "mission 任務。",
+   "B": "target 目標。",
+   "C": "cradle 搖籃/發源地,正確。",
+   "D": "milestone 里程碑,不如 cradle 切合「早期發展」。"
+  },
+  "vocab": [
+   [
+    "cradle",
+    "名詞 搖籃、發源地"
+   ],
+   [
+    "democracy",
+    "名詞 民主"
+   ]
+  ]
+ },
+ "10": {
+  "key": "成分遠超過「容許的」標準,故不能販售。",
+  "opts": {
+   "A": "abundant 豐富的。",
+   "B": "immense 巨大的。",
+   "C": "permissible 容許的,permissible level 為搭配。",
+   "D": "descriptive 描述性的。"
+  },
+  "vocab": [
+   [
+    "permissible",
+    "形容詞 容許的"
+   ],
+   [
+    "artificial",
+    "形容詞 人工的"
+   ]
+  ]
+ },
+ "11": {
+  "key": "優異表現「消除」了對他能力的疑慮。",
+  "opts": {
+   "A": "erase 消除,正確。",
+   "B": "cancel 取消(多指活動、預約)。",
+   "C": "overlook 忽略,語意不通。",
+   "D": "replace 取代。"
+  },
+  "vocab": [
+   [
+    "erase",
+    "動詞 擦除、消除"
+   ],
+   [
+    "doubt",
+    "名詞 懷疑"
+   ]
+  ]
+ },
+ "12": {
+  "key": "後句說沒人應因發音被嘲笑,故為「嘲弄」口音。",
+  "opts": {
+   "A": "mock 嘲弄,正確。",
+   "B": "sneak 偷偷溜。",
+   "C": "prompt 提示。",
+   "D": "glare 怒視,不接口音。"
+  },
+  "vocab": [
+   [
+    "mock",
+    "動詞 嘲弄"
+   ],
+   [
+    "glare",
+    "動詞 怒視"
+   ]
+  ]
+ },
+ "13": {
+  "key": "瘦了十公斤,「以前」緊身的牛仔褲現在鬆垮。",
+  "opts": {
+   "A": "barely 幾乎不。",
+   "B": "evenly 均勻地。",
+   "C": "currently 目前,與 now 矛盾。",
+   "D": "formerly 以前,正確。"
+  },
+  "vocab": [
+   [
+    "formerly",
+    "副詞 以前"
+   ],
+   [
+    "skin-tight",
+    "形容詞 緊身的"
+   ]
+  ]
+ },
+ "14": {
+  "key": "酒駕事故圖片強調在路上保持「清醒」。",
+  "opts": {
+   "A": "sober 清醒的,正確。",
+   "B": "majestic 雄偉的。",
+   "C": "vigorous 精力旺盛的。",
+   "D": "noticeable 顯眼的。"
+  },
+  "vocab": [
+   [
+    "sober",
+    "形容詞 清醒的"
+   ],
+   [
+    "drunk driving",
+    "名詞片語 酒駕"
+   ]
+  ]
+ },
+ "15": {
+  "key": "證據不足,所以此說法「有爭議」。",
+  "opts": {
+   "A": "creative 創意的。",
+   "B": "disputable 有爭議的,正確。",
+   "C": "circular 圓形的/循環的。",
+   "D": "magnificent 壯麗的。"
+  },
+  "vocab": [
+   [
+    "disputable",
+    "形容詞 有爭議的"
+   ],
+   [
+    "evidence",
+    "名詞 證據"
+   ]
+  ]
+ },
+ "16": {
+  "key": "henna 自古以來至今持續被用,用現在完成式 have been used。",
+  "opts": {
+   "A": "were being 進行被動,不表持續至今。",
+   "B": "have been 現在完成被動,正確。",
+   "C": "will be 未來式。",
+   "D": "had to be 語意不合。"
+  },
+  "vocab": [
+   [
+    "tradition",
+    "名詞 傳統"
+   ],
+   [
+    "blessing",
+    "名詞 祝福"
+   ]
+  ]
+ },
+ "17": {
+  "key": "古老藝術在當代藝術家手中找到新的「應用」。",
+  "opts": {
+   "A": "competition 競爭。",
+   "B": "application 應用,find a new application。",
+   "C": "investigation 調查。",
+   "D": "participation 參與。"
+  },
+  "vocab": [
+   [
+    "application",
+    "名詞 應用"
+   ],
+   [
+    "contemporary",
+    "形容詞 當代的"
+   ]
+  ]
+ },
+ "18": {
+  "key": "以 henna 頭冠幫女性「面對」掉髮。",
+  "opts": {
+   "A": "carry away 帶走。",
+   "B": "build on 以…為基礎。",
+   "C": "cope with 應付、面對,正確。",
+   "D": "get off 下車。"
+  },
+  "vocab": [
+   [
+    "cope with",
+    "片語 應付"
+   ],
+   [
+    "substitute",
+    "名詞 替代品"
+   ]
+  ]
+ },
+ "19": {
+  "key": "頭冠是帽子假髮的替代品,否則(otherwise)病人會用那些遮頭。",
+  "opts": {
+   "A": "moreover 此外。",
+   "B": "altogether 完全。",
+   "C": "namely 也就是。",
+   "D": "otherwise 否則,正確。"
+  },
+  "vocab": [
+   [
+    "otherwise",
+    "副詞 否則"
+   ],
+   [
+    "moreover",
+    "副詞 此外"
+   ]
+  ]
+ },
+ "20": {
+  "key": "建立更「正面」的自我形象,對照 vulnerable and depressed。",
+  "opts": {
+   "A": "positive 正面的,正確。",
+   "B": "general 一般的。",
+   "C": "flexible 有彈性的。",
+   "D": "considerate 體貼的。"
+  },
+  "vocab": [
+   [
+    "self-image",
+    "名詞 自我形象"
+   ],
+   [
+    "vulnerable",
+    "形容詞 脆弱的"
+   ]
+  ]
+ },
+ "21": {
+  "key": "人打噴嚏傳病,植物也有「類似」的問題。",
+  "opts": {
+   "A": "similar 類似的,正確。",
+   "B": "miserable 悲慘的。",
+   "C": "realistic 實際的。",
+   "D": "temporary 暫時的。"
+  },
+  "vocab": [
+   [
+    "similar",
+    "形容詞 類似的"
+   ],
+   [
+    "transmission",
+    "名詞 傳播"
+   ]
+  ]
+ },
+ "22": {
+  "key": "為了「尋找」其他可能傳播途徑而觀察水滴。",
+  "opts": {
+   "A": "As a result of 由於。",
+   "B": "In a search for 為尋找,正確。",
+   "C": "With a view to 為了(後接 V-ing)。",
+   "D": "To the extent of 到…的程度。"
+  },
+  "vocab": [
+   [
+    "in search of",
+    "片語 尋找"
+   ],
+   [
+    "route",
+    "名詞 途徑"
+   ]
+  ]
+ },
+ "23": {
+  "key": "病株能「噴出」帶病菌的水滴。",
+  "opts": {
+   "A": "shoot out 射出,正確。",
+   "B": "hold on 堅持。",
+   "C": "come across 偶遇。",
+   "D": "give up 放棄。"
+  },
+  "vocab": [
+   [
+    "shoot out",
+    "片語 噴出"
+   ],
+   [
+    "infected",
+    "形容詞 被感染的"
+   ]
+  ]
+ },
+ "24": {
+  "key": "allow O to V,故用 to jump。",
+  "opts": {
+   "A": "jump 原形,缺 to。",
+   "B": "to jump 符合 allow 句型。",
+   "C": "jumping 不合。",
+   "D": "jumped 不合。"
+  },
+  "vocab": [
+   [
+    "allow sb to V",
+    "句型 允許…做"
+   ],
+   [
+    "release",
+    "動詞 釋放"
+   ]
+  ]
+ },
+ "25": {
+  "key": "此能力「獨有」於葉片疏水的植物。",
+  "opts": {
+   "A": "curious 好奇的。",
+   "B": "relative 相對的,不接 to 表此意。",
+   "C": "unique 獨特的,be unique to 為專有。",
+   "D": "primitive 原始的。"
+  },
+  "vocab": [
+   [
+    "unique to",
+    "片語 為…所獨有"
+   ],
+   [
+    "hydrophobic",
+    "形容詞 疏水的"
+   ]
+  ]
+ },
+ "26": {
+  "key": "旅遊公司想「鼓勵」大家一月度假。",
+  "opts": {
+   "A": "increase 增加(不接 to V)。",
+   "B": "require 要求。",
+   "C": "command 命令。",
+   "D": "encourage sb to V 鼓勵,正確。"
+  },
+  "vocab": [
+   [
+    "encourage",
+    "動詞 鼓勵"
+   ],
+   [
+    "psychologist",
+    "名詞 心理學家"
+   ]
+  ]
+ },
+ "27": {
+  "key": "企業把飲料、衣服當成「解方」來推銷。",
+  "opts": {
+   "A": "disguise 偽裝。",
+   "B": "merit 優點。",
+   "C": "remedy 解決辦法,正確。",
+   "D": "ceremony 儀式。"
+  },
+  "vocab": [
+   [
+    "remedy",
+    "名詞 療法、解方"
+   ],
+   [
+    "jump on the bandwagon",
+    "片語 跟風"
+   ]
+  ]
+ },
+ "28": {
+  "key": "前句說無科學證據,後句說概念仍存在,轉折用 And yet。",
+  "opts": {
+   "A": "If so 若是如此。",
+   "B": "And yet 然而,正確。",
+   "C": "On that 語法不當。",
+   "D": "With this 伴隨此。"
+  },
+  "vocab": [
+   [
+    "and yet",
+    "連接詞 然而"
+   ],
+   [
+    "persist",
+    "動詞 持續"
+   ]
+  ]
+ },
+ "29": {
+  "key": "人們一月情緒低落「是由於」節後失落。",
+  "opts": {
+   "A": "as for 至於。",
+   "B": "owing to 由於,正確。",
+   "C": "in spite of 儘管。",
+   "D": "with respect to 關於。"
+  },
+  "vocab": [
+   [
+    "owing to",
+    "片語 由於"
+   ],
+   [
+    "discontent",
+    "名詞 不滿"
+   ]
+  ]
+ },
+ "30": {
+  "key": "把複雜議題「分解」為簡單易懂。",
+  "opts": {
+   "A": "break down 分解,正確。",
+   "B": "mix up 混淆。",
+   "C": "tear off 撕下。",
+   "D": "result in 導致,後不接 into。"
+  },
+  "vocab": [
+   [
+    "break down",
+    "片語 分解"
+   ],
+   [
+    "appeal to",
+    "片語 吸引"
+   ]
+  ]
+ },
+ "31": {
+  "key": "空格前 a single dimple 為 relatively ___ phenomenon,單邊酒窩較「罕見」。",
+  "opts": {
+   "F": "rare 罕見,正確。",
+   "C": "chubby 圓胖,不修飾 phenomenon。"
+  },
+  "vocab": [
+   [
+    "rare",
+    "形容詞 罕見的"
+   ],
+   [
+    "phenomenon",
+    "名詞 現象"
+   ]
+  ]
+ },
+ "32": {
+  "key": "a sign of ___,文化偏好酒窩因其象徵「吸引力」(of 後接名詞)。",
+  "opts": {
+   "D": "attractiveness 吸引力,正確。",
+   "J": "presence 存在,語意不合。"
+  },
+  "vocab": [
+   [
+    "attractiveness",
+    "名詞 吸引力"
+   ],
+   [
+    "preference",
+    "名詞 偏好"
+   ]
+  ]
+ },
+ "33": {
+  "key": "後文 genetic defect,故 genetic「缺陷」。",
+  "opts": {
+   "A": "flaw 缺陷,正確。",
+   "H": "transfer 轉移,不合。"
+  },
+  "vocab": [
+   [
+    "flaw",
+    "名詞 缺陷"
+   ],
+   [
+    "genetic",
+    "形容詞 遺傳的"
+   ]
+  ]
+ },
+ "34": {
+  "key": "the ___ of dimples from parents to children,指「遺傳/傳遞」。",
+  "opts": {
+   "H": "transfer 傳遞(名詞),正確。",
+   "B": "exhibit 展示,不合。"
+  },
+  "vocab": [
+   [
+    "transfer",
+    "名詞/動詞 轉移"
+   ],
+   [
+    "inherit",
+    "動詞 遺傳"
+   ]
+  ]
+ },
+ "35": {
+  "key": "will not ___ the trait:父母無基因,子女不會「展現」該特徵。",
+  "opts": {
+   "B": "exhibit 展現,正確(原形接 will not)。",
+   "E": "fade 褪去,不及物不接受詞。"
+  },
+  "vocab": [
+   [
+    "exhibit",
+    "動詞 展現"
+   ],
+   [
+    "trait",
+    "名詞 特徵"
+   ]
+  ]
+ },
+ "36": {
+  "key": "due to the ___ of excessive fat:過多脂肪的「存在」。",
+  "opts": {
+   "J": "presence 存在,正確。",
+   "A": "flaw 缺陷,與 fat 搭配不如 presence。"
+  },
+  "vocab": [
+   [
+    "presence",
+    "名詞 存在"
+   ],
+   [
+    "excessive",
+    "形容詞 過多的"
+   ]
+  ]
+ },
+ "37": {
+  "key": "嬰兒臉頰有酒窩,與 baby fat 對應,為「圓胖的」。",
+  "opts": {
+   "C": "chubby 圓胖的,正確。",
+   "I": "natural 天生,不合 baby fat 語境。"
+  },
+  "vocab": [
+   [
+    "chubby",
+    "形容詞 圓胖的"
+   ]
+  ]
+ },
+ "38": {
+  "key": "隨長大失去嬰兒肥,酒窩會「消退」。",
+  "opts": {
+   "E": "fade 逐漸消失,正確。",
+   "G": "range 範圍,不合。"
+  },
+  "vocab": [
+   [
+    "fade",
+    "動詞 褪去"
+   ]
+  ]
+ },
+ "39": {
+  "key": "born without ___ dimples:天生沒有「天然」酒窩,之後可製造。",
+  "opts": {
+   "I": "natural 天然的,正確。",
+   "F": "rare 罕見,語意不合。"
+  },
+  "vocab": [
+   [
+    "natural",
+    "形容詞 天然的"
+   ]
+  ]
+ },
+ "40": {
+  "key": "These methods ___ from…to…:方法「涵蓋」從…到…,range from A to B。",
+  "opts": {
+   "G": "range 涵蓋範圍,正確。",
+   "E": "fade 褪色,不合。"
+  },
+  "vocab": [
+   [
+    "range from A to B",
+    "片語 範圍從 A 到 B"
+   ],
+   [
+    "drastic",
+    "形容詞 激烈的"
+   ]
+  ]
+ },
+ "41": {
+  "key": "圖片為趾縫在第二、三趾間的涼鞋,文中說羅馬版本為此。",
+  "opts": {
+   "A": "Indian 為 toe knob,不符。",
+   "B": "Greek 在一、二趾間。",
+   "C": "Mesopotamian 在三、四趾間。",
+   "D": "Roman 第二與第三趾,正確。"
+  },
+  "vocab": [
+   [
+    "variant",
+    "名詞 變體"
+   ],
+   [
+    "strap",
+    "名詞 帶子"
+   ]
+  ]
+ },
+ "42": {
+  "key": "首段末句:名稱來自走路拍打時發出的聲音。",
+  "opts": {
+   "A": "noise 聲音,正確。",
+   "B": "文中未談設計多變。",
+   "C": "simple 是描述,非命名原因。",
+   "D": "舒適度文中未提。"
+  },
+  "vocab": [
+   [
+    "slap",
+    "動詞 拍打"
+   ],
+   [
+    "outline",
+    "名詞 輪廓"
+   ]
+  ]
+ },
+ "43": {
+  "key": "第四段:美軍從占領期日本帶回 zōris,之後演變為現代 flip-flop。",
+  "opts": {
+   "A": "源自日本 zōris,非印度。",
+   "B": "受歡迎因便利,非顏色。",
+   "C": "橡膠取代稻草是二戰後。",
+   "D": "士兵帶回的涼鞋,正確。"
+  },
+  "vocab": [
+   [
+    "derive from",
+    "片語 源自"
+   ],
+   [
+    "seize",
+    "動詞 奪取"
+   ]
+  ]
+ },
+ "44": {
+  "key": "末段提到腳傷(健康)、街上露腳(合宜性)、塑膠垃圾(海洋污染),未提品質差。",
+  "opts": {
+   "A": "Personal health 提過(foot injuries)。",
+   "B": "Poor quality 未提,故為答案。",
+   "C": "適當性 提過。",
+   "D": "海洋污染 提過。"
+  },
+  "vocab": [
+   [
+    "provoke",
+    "動詞 引起"
+   ],
+   [
+    "decompose",
+    "動詞 分解"
+   ]
+  ]
+ },
+ "45": {
+  "key": "全文介紹 marine pilot 這個職業的工作與要求。",
+  "opts": {
+   "A": "A special profession 正確。",
+   "B": "航運貿易只是背景。",
+   "C": "安全靠港只是工作的一部分。",
+   "D": "環保僅末句提及。"
+  },
+  "vocab": [
+   [
+    "marine pilot",
+    "名詞 引水人"
+   ],
+   [
+    "profession",
+    "名詞 職業"
+   ]
+  ]
+ },
+ "46": {
+  "key": "第三段提到潮汐與風影響靠港,引水人需了解天氣狀況。",
+  "opts": {
+   "C": "天氣條件,正確。",
+   "A": "船價值未提。",
+   "B": "貨物內容未要求。",
+   "D": "海洋生物多樣性未提。"
+  },
+  "vocab": [
+   [
+    "tide",
+    "名詞 潮汐"
+   ],
+   [
+    "current",
+    "名詞 水流"
+   ]
+  ]
+ },
+ "47": {
+  "key": "引水人在船等待入港時上船控制,即 crucial time。",
+  "opts": {
+   "D": "等待進港時,正確。",
+   "A": "hit a flat 非文意。",
+   "B": "通道不夠深為背景危險。",
+   "C": "碰撞是要避免的。"
+  },
+  "vocab": [
+   [
+    "crucial",
+    "形容詞 關鍵的"
+   ],
+   [
+    "proficiency",
+    "名詞 熟練"
+   ]
+  ]
+ },
+ "48": {
+  "key": "末段重申職責與要求,為總結主旨。",
+  "opts": {
+   "C": "summarizing 總結,正確。",
+   "A": "未加新細節。",
+   "B": "未預測未來。",
+   "D": "未對大眾建議。"
+  },
+  "vocab": [
+   [
+    "conclude",
+    "動詞 作結"
+   ],
+   [
+    "risk management",
+    "名詞 風險管理"
+   ]
+  ]
+ },
+ "49": {
+  "key": "全文談橄欖油分級、儲存與品質檢測,主題為品質。",
+  "opts": {
+   "D": "quality 品質,正確。",
+   "A": "風味只是分級一部分。",
+   "B": "貿易僅末句。",
+   "C": "推廣非重點。"
+  },
+  "vocab": [
+   [
+    "grade",
+    "名詞 等級"
+   ],
+   [
+    "acidity",
+    "名詞 酸度"
+   ]
+  ]
+ },
+ "50": {
+  "key": "extra virgin 酸度低於 1%,virgin 低於 2%。",
+  "opts": {
+   "A": "仍有苦味(pleasant bitter)。",
+   "B": "精煉的是 pure olive oil。",
+   "C": "調和的是 pure oil。",
+   "D": "酸度較低,正確。"
+  },
+  "vocab": [
+   [
+    "refine",
+    "動詞 精煉"
+   ],
+   [
+    "impurity",
+    "名詞 雜質"
+   ]
+  ]
+ },
+ "51": {
+  "key": "需避光、防潮、隔氧且避免塑膠,故密閉玻璃瓶放櫥櫃。",
+  "opts": {
+   "A": "塑膠且潮濕,錯。",
+   "B": "透明瓶近爐火,見光受熱。",
+   "C": "密閉玻璃瓶放廚櫃,正確。",
+   "D": "靠窗明亮處,錯。"
+  },
+  "vocab": [
+   [
+    "oxidation",
+    "名詞 氧化"
+   ],
+   [
+    "shelf life",
+    "名詞 保存期限"
+   ]
+  ]
+ },
+ "52": {
+  "key": "IOC 想改善測試方法及重新定義術語,即改進分級方式。",
+  "opts": {
+   "B": "改善分級方法,正確。",
+   "A": "未提訓練品評員。",
+   "C": "未談產量。",
+   "D": "目的為促進貿易而非建立聯繫。"
+  },
+  "vocab": [
+   [
+    "transparency",
+    "名詞 透明度"
+   ],
+   [
+    "distinction",
+    "名詞 區別"
+   ]
+  ]
+ },
+ "53": {
+  "key": "第三段:鹿舔鐵軌以補充鐵質。",
+  "opts": {
+   "A": "夜間交配未提。",
+   "B": "從鐵軌取得營養(鐵),正確。",
+   "C": "snort 是警示,非喜歡。",
+   "D": "磨角未提。"
+  },
+  "vocab": [
+   [
+    "iron filings",
+    "名詞 鐵屑"
+   ],
+   [
+    "dietary",
+    "形容詞 飲食的"
+   ]
+  ]
+ },
+ "54": {
+  "key": "過去試過閃紅燈與獅子臉,新裝置是狗吠喇叭;未用過「吵鬧鐵軌」。",
+  "opts": {
+   "A": "Flashing lights 試過。",
+   "B": "Barking speakers 是新裝置。",
+   "C": "Noisy tracks 未提,為答案。",
+   "D": "獅子臉試過。"
+  },
+  "vocab": [
+   [
+    "trial",
+    "動詞 試驗"
+   ],
+   [
+    "device",
+    "名詞 裝置"
+   ]
+  ]
+ },
+ "55": {
+  "key": "新裝置播放鹿鳴與犬吠使鹿驚慌逃離。",
+  "opts": {
+   "A": "促使鹿逃跑,正確。",
+   "B": "住宅區不播放,非居民抱怨。",
+   "C": "613 件是延誤件數,非 45%。",
+   "D": "45% 是鹿目擊減少。"
+  },
+  "vocab": [
+   [
+    "panic",
+    "動詞 驚慌"
+   ],
+   [
+    "flee",
+    "動詞 逃跑"
+   ]
+  ]
+ },
+ "56": {
+  "key": "unforgiving nature of tons of onrushing rolling stock 指高速衝來的列車之危險。",
+  "opts": {
+   "D": "快速行駛列車的危險,正確。",
+   "A": "非指鐵的重量。",
+   "B": "非指獵犬。",
+   "C": "非指動物間戰鬥。"
+  },
+  "vocab": [
+   [
+    "onrushing",
+    "形容詞 疾衝的"
+   ],
+   [
+    "rolling stock",
+    "名詞 鐵路車輛"
+   ]
+  ]
+ }
+}

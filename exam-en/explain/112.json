@@ -1,0 +1,861 @@
+{
+ "1": {
+  "key": "口香糖黏在座椅下又難清除,形容詞應為「黏的」。",
+  "opts": {
+   "A": "sticky 黏的,符合",
+   "B": "greasy 油膩的,口香糖不以油膩為特徵",
+   "C": "clumsy 笨拙的,不能形容物品",
+   "D": "mighty 強大的,語意不合"
+  },
+  "vocab": [
+   [
+    "sticky",
+    "adj 黏的"
+   ],
+   [
+    "clumsy",
+    "adj 笨拙的"
+   ],
+   [
+    "greasy",
+    "adj 油膩的"
+   ]
+  ]
+ },
+ "2": {
+  "key": "model 拍照擺出優雅的姿勢,pose 可作名詞,adopt a pose 為常見搭配。",
+  "opts": {
+   "A": "clap 拍手,不能被 adopt",
+   "B": "toss 拋擲,語意不合",
+   "C": "pose 姿勢,符合",
+   "D": "snap 啪地一聲/快照,不合"
+  },
+  "vocab": [
+   [
+    "pose",
+    "n 姿勢"
+   ],
+   [
+    "adopt",
+    "v 採取"
+   ]
+  ]
+ },
+ "3": {
+  "key": "畫家族樹、追溯到抵達北美的人,應為「祖先」。",
+  "opts": {
+   "A": "siblings 兄弟姊妹,非往上追溯",
+   "B": "commuters 通勤者",
+   "C": "ancestors 祖先,符合",
+   "D": "instructors 講師"
+  },
+  "vocab": [
+   [
+    "ancestor",
+    "n 祖先"
+   ],
+   [
+    "sibling",
+    "n 手足"
+   ],
+   [
+    "trace back to",
+    "片語 追溯到"
+   ]
+  ]
+ },
+ "4": {
+  "key": "颱風前搶購使貨架幾乎空了,stock nearly gone 呼應 bare(空蕩蕩的)。",
+  "opts": {
+   "A": "blank 空白的,多指紙面或表情",
+   "B": "bare 空蕩的,符合",
+   "C": "hollow 中空的,非貨架空了",
+   "D": "queer 奇怪的"
+  },
+  "vocab": [
+   [
+    "bare",
+    "adj 空蕩的、光禿的"
+   ],
+   [
+    "hollow",
+    "adj 中空的"
+   ]
+  ]
+ },
+ "5": {
+  "key": "當面道歉卻感受不到誠意,sincerity 最合。",
+  "opts": {
+   "A": "liability 責任/負債",
+   "B": "generosity 慷慨",
+   "C": "integrity 正直",
+   "D": "sincerity 誠意,符合"
+  },
+  "vocab": [
+   [
+    "sincerity",
+    "n 誠意"
+   ],
+   [
+    "integrity",
+    "n 正直"
+   ],
+   [
+    "liability",
+    "n 責任、負債"
+   ]
+  ]
+ },
+ "6": {
+  "key": "祖父能生動描述入學第一天,代表 powers of recall(記憶力)。",
+  "opts": {
+   "A": "resolve 決心",
+   "B": "fraction 一小部分",
+   "C": "privilege 特權",
+   "D": "recall 回想力,符合"
+  },
+  "vocab": [
+   [
+    "recall",
+    "n/v 回想"
+   ],
+   [
+    "vivid",
+    "adj 生動的"
+   ],
+   [
+    "resolve",
+    "n 決心"
+   ]
+  ]
+ },
+ "7": {
+  "key": "研究證據用來反駁藥廠宣稱,counter 作動詞表「反駁」。",
+  "opts": {
+   "A": "provoke 激怒、引起",
+   "B": "counter 反駁,符合",
+   "C": "expose 揭露,不接 claims 反駁義",
+   "D": "convert 轉換"
+  },
+  "vocab": [
+   [
+    "counter",
+    "v 反駁、抵制"
+   ],
+   [
+    "provoke",
+    "v 激起"
+   ],
+   [
+    "claim",
+    "n 宣稱"
+   ]
+  ]
+ },
+ "8": {
+  "key": "腐敗官員與錯誤政策使經濟癱瘓並帶來債務,cripple 符合負面語意。",
+  "opts": {
+   "A": "crippled 使癱瘓,符合",
+   "B": "accelerated 加速,語意相反",
+   "C": "rendered 使成為,需接補語",
+   "D": "ventured 冒險"
+  },
+  "vocab": [
+   [
+    "cripple",
+    "v 使癱瘓"
+   ],
+   [
+    "accelerate",
+    "v 加速"
+   ],
+   [
+    "burden",
+    "v 使負重擔"
+   ]
+  ]
+ },
+ "9": {
+  "key": "球迷湧入使公路整天塞車,be choked with traffic 為「被車流堵塞」。",
+  "opts": {
+   "A": "choked 堵塞,符合",
+   "B": "disturbed 被打擾,搭配不當",
+   "C": "enclosed 被圍住",
+   "D": "injected 被注入"
+  },
+  "vocab": [
+   [
+    "choke",
+    "v 堵塞、使窒息"
+   ],
+   [
+    "enclose",
+    "v 圍住"
+   ],
+   [
+    "inject",
+    "v 注射"
+   ]
+  ]
+ },
+ "10": {
+  "key": "研究顯示「所謂」不偏頗的媒體其實受意識形態影響,supposedly 表「據稱」。",
+  "opts": {
+   "A": "undoubtedly 無疑地",
+   "B": "roughly 大約",
+   "C": "understandably 可理解地",
+   "D": "supposedly 據稱,符合"
+  },
+  "vocab": [
+   [
+    "supposedly",
+    "adv 據稱"
+   ],
+   [
+    "unbiased",
+    "adj 不偏頗的"
+   ],
+   [
+    "ideology",
+    "n 意識形態"
+   ]
+  ]
+ },
+ "11": {
+  "key": "almost touches 之後接 but not quite,表「幾乎碰到但還沒有」,承接語意。",
+  "opts": {
+   "A": "in no time 立刻",
+   "B": "by all means 務必",
+   "C": "but not quite 但並未真的碰到,符合",
+   "D": "and pretty much 與 almost 重複"
+  },
+  "vocab": [
+   [
+    "crown shyness",
+    "片語 樹冠羞避"
+   ],
+   [
+    "jigsaw puzzle",
+    "n 拼圖"
+   ]
+  ]
+ },
+ "12": {
+  "key": "科學家提出多種解釋,後面也列舉不同說法,故用 multiple。",
+  "opts": {
+   "A": "universal 普遍的",
+   "B": "productive 多產的",
+   "C": "conventional 傳統的",
+   "D": "multiple 多種的,符合"
+  },
+  "vocab": [
+   [
+    "multiple",
+    "adj 多重的"
+   ],
+   [
+    "conventional",
+    "adj 傳統的"
+   ],
+   [
+    "phenomenon",
+    "n 現象"
+   ]
+  ]
+ },
+ "13": {
+  "key": "植物如動物般為養分、水、光等資源「競爭」,compete for。",
+  "opts": {
+   "A": "get over 克服",
+   "B": "compete for 競爭,符合",
+   "C": "give way to 讓步",
+   "D": "make up for 彌補"
+  },
+  "vocab": [
+   [
+    "compete for",
+    "片語 爭奪"
+   ],
+   [
+    "nutrient",
+    "n 養分"
+   ]
+  ]
+ },
+ "14": {
+  "key": "樹冠縫隙讓樹增加「接觸」光線,exposure to light。",
+  "opts": {
+   "A": "reliance on 依賴",
+   "B": "exposure to 暴露於,符合",
+   "C": "sensitivity to 對…敏感",
+   "D": "reflection on 反思"
+  },
+  "vocab": [
+   [
+    "exposure to",
+    "片語 接觸、暴露於"
+   ],
+   [
+    "photosynthesis",
+    "n 光合作用"
+   ]
+  ]
+ },
+ "15": {
+  "key": "數十年研究「儘管如此」仍無共識,Despite 後接名詞片語。",
+  "opts": {
+   "A": "For 為了,語意不合",
+   "B": "Besides 除…之外,語意不合",
+   "C": "Despite 儘管,符合",
+   "D": "Concerning 關於"
+  },
+  "vocab": [
+   [
+    "despite",
+    "prep 儘管"
+   ],
+   [
+    "consensus",
+    "n 共識"
+   ]
+  ]
+ },
+ "16": {
+  "key": "火箭要擺脫地球引力,shoot free of Earth's pull。",
+  "opts": {
+   "A": "back to 回到",
+   "B": "free of 脫離,符合",
+   "C": "long before 早在…之前",
+   "D": "straight on 直接向前"
+  },
+  "vocab": [
+   [
+    "free of",
+    "片語 擺脫"
+   ],
+   [
+    "gravity",
+    "n 重力"
+   ]
+  ]
+ },
+ "17": {
+  "key": "對照前面火箭,今日關注低重力對太空人「身體」狀況的影響,後文談體液與健康。",
+  "opts": {
+   "A": "physical 身體的,符合",
+   "B": "perceptual 知覺的",
+   "C": "mental 心理的",
+   "D": "external 外在的"
+  },
+  "vocab": [
+   [
+    "physical",
+    "adj 身體的"
+   ],
+   [
+    "perceptual",
+    "adj 知覺的"
+   ]
+  ]
+ },
+ "18": {
+  "key": "our body fluids 為主詞,缺動詞;主詞複數、現在式,用原形 redistribute。",
+  "opts": {
+   "A": "redistribute 原形動詞,符合",
+   "B": "redistributed 過去式,時態不合",
+   "C": "redistributing 缺助動詞",
+   "D": "being redistributed 非完整動詞"
+  },
+  "vocab": [
+   [
+    "redistribute",
+    "v 重新分配"
+   ],
+   [
+    "fluid",
+    "n 體液"
+   ]
+  ]
+ },
+ "19": {
+  "key": "火星任務長達三年,此效應會更「嚴重」,severe。",
+  "opts": {
+   "A": "contagious 會傳染的",
+   "B": "unusual 不尋常的",
+   "C": "severe 嚴重的,符合",
+   "D": "aggressive 好攻擊的"
+  },
+  "vocab": [
+   [
+    "severe",
+    "adj 嚴重的"
+   ],
+   [
+    "contagious",
+    "adj 傳染的"
+   ]
+  ]
+ },
+ "20": {
+  "key": "此效應常「伴隨」暈太空、頭痛與噁心,be accompanied by。",
+  "opts": {
+   "A": "varied with 隨…而變",
+   "B": "brought about 造成,方向相反",
+   "C": "transferred from 由…轉移",
+   "D": "accompanied by 伴隨,符合"
+  },
+  "vocab": [
+   [
+    "accompany",
+    "v 伴隨"
+   ],
+   [
+    "nausea",
+    "n 噁心"
+   ]
+  ]
+ },
+ "21": {
+  "key": "is water the healthiest drink we can 後需動詞片語,reach for 表「伸手拿」。",
+  "opts": {
+   "J": "reach for 選擇、拿取,符合",
+   "E": "option 為名詞,不能接在 can 後"
+  },
+  "vocab": [
+   [
+    "reach for",
+    "片語 伸手去拿"
+   ]
+  ]
+ },
+ "22": {
+  "key": "對比坐辦公室的人,應填形容詞描述戶外工作者「活動量大」,active。",
+  "opts": {
+   "B": "active 活躍的,符合",
+   "C": "alert 警覺的,與流汗補水無關"
+  },
+  "vocab": [
+   [
+    "active",
+    "adj 活躍的"
+   ]
+  ]
+ },
+ "23": {
+  "key": "To even things out 為「使平衡」,與水多鹽少相呼應。",
+  "opts": {
+   "G": "even 使均衡,符合",
+   "H": "status 為名詞,無法接 out"
+  },
+  "vocab": [
+   [
+    "even out",
+    "片語 使平衡"
+   ]
+  ]
+ },
+ "24": {
+  "key": "牛奶含鹽與乳糖,補水比水「更有效」,effective。",
+  "opts": {
+   "F": "effective 有效的,符合",
+   "B": "active 活躍的,語意不合"
+  },
+  "vocab": [
+   [
+    "effective",
+    "adj 有效的"
+   ],
+   [
+    "lactose",
+    "n 乳糖"
+   ]
+  ]
+ },
+ "25": {
+  "key": "乳糖幫助刺激水分「吸收」,absorption。",
+  "opts": {
+   "A": "absorption 吸收,符合",
+   "E": "option 選項,語意不合"
+  },
+  "vocab": [
+   [
+    "absorption",
+    "n 吸收"
+   ],
+   [
+    "stimulate",
+    "v 刺激"
+   ]
+  ]
+ },
+ "26": {
+  "key": "運動後恢復並維持正常「體液狀態」,fluid status。",
+  "opts": {
+   "H": "status 狀態,符合",
+   "A": "absorption 吸收,不與 normal fluid 搭配"
+  },
+  "vocab": [
+   [
+    "status",
+    "n 狀態"
+   ],
+   [
+    "carbohydrate",
+    "n 碳水化合物"
+   ]
+  ]
+ },
+ "27": {
+  "key": "水仍是補水的好「選擇」,a very good option。",
+  "opts": {
+   "E": "option 選擇,符合",
+   "F": "effective 為形容詞,前面有 good 修飾名詞"
+  },
+  "vocab": [
+   [
+    "option",
+    "n 選項"
+   ],
+   [
+    "hydrated",
+    "adj 水分充足的"
+   ]
+  ]
+ },
+ "28": {
+  "key": "身體變化大到「引起意識警覺」,alert your consciousness。",
+  "opts": {
+   "C": "alert 使警覺,符合動詞用法",
+   "D": "combat 對抗,語意不合"
+  },
+  "vocab": [
+   [
+    "alert",
+    "v 警示"
+   ],
+   [
+    "consciousness",
+    "n 意識"
+   ]
+  ]
+ },
+ "29": {
+  "key": "大量水一次灌入使水「流過」身體迅速排出,pass through。",
+  "opts": {
+   "I": "pass through 通過,符合",
+   "J": "reach for 伸手拿,語意不合"
+  },
+  "vocab": [
+   [
+    "pass through",
+    "片語 穿過"
+   ]
+  ]
+ },
+ "30": {
+  "key": "為「對抗」這種情況,需整天飲水,combat。",
+  "opts": {
+   "D": "combat 對抗,符合",
+   "G": "even 使均衡,this 並非需平衡的對象"
+  },
+  "vocab": [
+   [
+    "combat",
+    "v 對抗"
+   ]
+  ]
+ },
+ "31": {
+  "key": "空格後接 however 轉折「1990 年代科學家發現顏色不變」,前句應為過去不被相信的說法。",
+  "opts": {
+   "C": "過去人們指控他們編造經驗,與 however 轉折相合",
+   "A": "consistency 一句須在發現後才出現,是下一句"
+  },
+  "vocab": [
+   [
+    "synesthesia",
+    "n 聯覺"
+   ],
+   [
+    "accuse",
+    "v 指控"
+   ]
+  ]
+ },
+ "32": {
+  "key": "前句顏色回答始終一致,此句說明這種一致性證明聯覺為真,接 most compelling support。",
+  "opts": {
+   "A": "This consistency 承接前文一致答案,符合",
+   "D": "此句為人人皆有聯覺,與本段無關"
+  },
+  "vocab": [
+   [
+    "consistency",
+    "n 一致性"
+   ],
+   [
+    "compelling",
+    "adj 有說服力的"
+   ]
+  ]
+ },
+ "33": {
+  "key": "前句說基因尚未找到,Meanwhile 轉到環境影響,後有童年口味為例。",
+  "opts": {
+   "B": "環境影響塑造聯覺,符合後面例子",
+   "C": "控訴編造一說,與段落不合"
+  },
+  "vocab": [
+   [
+    "genetic",
+    "adj 基因的"
+   ],
+   [
+    "environmental",
+    "adj 環境的"
+   ]
+  ]
+ },
+ "34": {
+  "key": "後文談多數人都把低音連到暗色,說明人人在某程度都有聯覺。",
+  "opts": {
+   "D": "人人都有某程度聯覺,符合 As is often observed",
+   "B": "環境影響屬第三段話題"
+  },
+  "vocab": [
+   [
+    "associate with",
+    "片語 聯想到"
+   ],
+   [
+    "infancy",
+    "n 嬰兒期"
+   ]
+  ]
+ },
+ "35": {
+  "key": "全文追溯 hula hoop 的歷史,並解釋 hula 與 hoop 結合成詞的過程。",
+  "opts": {
+   "A": "字詞如何來,符合第二段",
+   "B": "文中只說行銷成功,未談動機",
+   "C": "未談夏威夷舞蹈起源",
+   "D": "只提埃及玩法,未說最愛"
+  },
+  "vocab": [
+   [
+    "derive",
+    "v 衍生"
+   ],
+   [
+    "fad",
+    "n 風潮"
+   ]
+  ]
+ },
+ "36": {
+  "key": "第一段說希臘的鐵圈也是運動器材,對應 workout。",
+  "opts": {
+   "C": "希臘人用作運動工具,符合",
+   "A": "英國是娛樂,醫療只在記錄傷害",
+   "B": "美洲原住民用於舞蹈象徵動物,非訓練",
+   "D": "象徵生命循環者為美洲原住民,非夏威夷人"
+  },
+  "vocab": [
+   [
+    "workout",
+    "n 運動"
+   ],
+   [
+    "represent",
+    "v 象徵"
+   ]
+  ]
+ },
+ "37": {
+  "key": "文中出現 threw, jumped, slung, struck, rolled, twirled, spin,沒有 kicking。",
+  "opts": {
+   "D": "Kicking 文中未提,為答案",
+   "A": "Striking 第一段提到 struck",
+   "B": "Twirling 文中提到 twirled",
+   "C": "Spinning 文中提到 spun"
+  },
+  "vocab": [
+   [
+    "twirl",
+    "v 旋轉"
+   ],
+   [
+    "sling",
+    "v 甩動"
+   ]
+  ]
+ },
+ "38": {
+  "key": "埃及葡萄藤、美洲原住民蘆葦、希臘金屬、現代塑膠。",
+  "opts": {
+   "B": "reed, grapevine, plastic, metal,四者皆有",
+   "A": "bamboo 未提",
+   "C": "bamboo 與 animal skin 未提",
+   "D": "animal skin 未提"
+  },
+  "vocab": [
+   [
+    "grapevine",
+    "n 葡萄藤"
+   ],
+   [
+    "reed",
+    "n 蘆葦"
+   ]
+  ]
+ },
+ "39": {
+  "key": "文中說平地須挖排水溝避免積水傷害茶樹。",
+  "opts": {
+   "A": "保護茶樹,符合",
+   "B": "溝成陷阱是意外結果,非目的",
+   "C": "文中未談擴大",
+   "D": "未談劃界"
+  },
+  "vocab": [
+   [
+    "trench",
+    "n 溝渠"
+   ],
+   [
+    "drainage",
+    "n 排水"
+   ]
+  ]
+ },
+ "40": {
+  "key": "小象不習慣崎嶇地面,容易掉進溝裡受傷。",
+  "opts": {
+   "D": "不易在凹凸不平的地走動,符合",
+   "A": "文中是避難所,非找不到",
+   "B": "地標是用來導航,非受傷原因",
+   "C": "未提尖銳樹枝"
+  },
+  "vocab": [
+   [
+    "negotiate",
+    "v 通過(崎嶇地形)"
+   ],
+   [
+    "smother",
+    "v 使窒息"
+   ]
+  ]
+ },
+ "41": {
+  "key": "文中說象群不願拋下受傷或垂死同伴,可停留數小時。",
+  "opts": {
+   "C": "不願丟下受傷者,符合",
+   "A": "溝是陷阱,非用來漫遊",
+   "B": "文中是棲地被破壞,非食物",
+   "D": "母象反而選茶園生產"
+  },
+  "vocab": [
+   [
+    "reluctant",
+    "adj 不情願的"
+   ],
+   [
+    "linger",
+    "v 逗留"
+   ]
+  ]
+ },
+ "42": {
+  "key": "it 指前句 Is it possible for elephants to coexist with tea business 的 it 結果,即讓象與茶業共存。",
+  "opts": {
+   "D": "創造象與茶農雙贏,符合",
+   "A": "認證對象並非 trench",
+   "B": "獎勵是手段,非 it 指稱",
+   "C": "鼓勵消費者是手段"
+  },
+  "vocab": [
+   [
+    "coexist",
+    "v 共存"
+   ],
+   [
+    "take the initiative",
+    "片語 主動"
+   ]
+  ]
+ },
+ "43": {
+  "key": "亞洲商人比非洲大陸首批永久居民早約九百年到達。",
+  "opts": {
+   "C": "亞洲商人早數世紀,符合",
+   "A": "900 年是 1000 AD 之前的推算,不是最早",
+   "B": "首批永久居民才來自非洲",
+   "D": "波斯人 8 世紀建立聚落,非 1000 年"
+  },
+  "vocab": [
+   [
+    "settler",
+    "n 定居者"
+   ],
+   [
+    "permanent",
+    "adj 永久的"
+   ]
+  ]
+ },
+ "44": {
+  "key": "桑吉巴在坦尚尼亞外海的印度洋,對應東非海岸外島嶼。",
+  "opts": {
+   "B": "位於東非外海,符合官方答案(參考圖片 112-44)"
+  },
+  "vocab": [
+   [
+    "archipelago",
+    "n 群島"
+   ],
+   [
+    "off the coast of",
+    "片語 在…外海"
+   ]
+  ]
+ },
+ "45": {
+  "key": "末段說空氣中飄著丁香、香草與肉桂香,可推知香料在當地常見。",
+  "opts": {
+   "B": "三種香料常見,符合",
+   "A": "海灘是近年才知名,非數世紀",
+   "C": "jewels 是比喻,非珠寶",
+   "D": "達伽馬只是到訪,非統治者"
+  },
+  "vocab": [
+   [
+    "infer",
+    "v 推論"
+   ],
+   [
+    "clove",
+    "n 丁香"
+   ]
+  ]
+ },
+ "46": {
+  "key": "全文以 archipelago、islands、jewels、destination 指稱桑吉巴。",
+  "opts": {
+   "C": "四個詞皆指桑吉巴,符合",
+   "A": "settlements、crossroads 並非指全地",
+   "B": "posts 指貿易站,非整個桑吉巴",
+   "D": "settlements、paths 非指稱"
+  },
+  "vocab": [
+   [
+    "destination",
+    "n 目的地"
+   ],
+   [
+    "crossroads",
+    "n 十字路口"
+   ]
+  ]
+ }
+}

@@ -1,0 +1,902 @@
+{
+ "1": {
+  "key": "漏水水龍頭下要放的是能裝水的「容器」。",
+  "opts": {
+   "A": "border 邊界,不能裝水",
+   "B": "timer 計時器,不能收集水",
+   "C": "container 容器,可承接並累積水量",
+   "D": "marker 標記筆,語意不合"
+  },
+  "vocab": [
+   [
+    "container",
+    "n. 容器"
+   ],
+   [
+    "leaking",
+    "adj. 漏水的"
+   ],
+   [
+    "faucet",
+    "n. 水龍頭"
+   ]
+  ]
+ },
+ "2": {
+  "key": "farmers' market 販售新鮮當季的農產品,用 produce(名詞,農產品)。",
+  "opts": {
+   "A": "produce 農產品,符合語境",
+   "B": "fashion 時尚,不合",
+   "C": "brand 品牌,不合",
+   "D": "trend 趨勢,不合"
+  },
+  "vocab": [
+   [
+    "produce",
+    "n. 農產品 /v. 生產"
+   ],
+   [
+    "seasonal",
+    "adj. 季節性的"
+   ]
+  ]
+ },
+ "3": {
+  "key": "後句說「已無法清楚回想」,表示記憶逐漸「模糊」。",
+  "opts": {
+   "A": "blurring 變得模糊,切合",
+   "B": "trimming 修剪,不合",
+   "C": "draining 排乾,不合",
+   "D": "glaring 刺眼的,不合"
+  },
+  "vocab": [
+   [
+    "blur",
+    "v. 變模糊"
+   ],
+   [
+    "glaring",
+    "adj. 刺眼的"
+   ]
+  ]
+ },
+ "4": {
+  "key": "種族歧視言論本質上傷人,與 hurtful 並列的是「冒犯的」offensive。",
+  "opts": {
+   "A": "excessive 過度的,不指冒犯",
+   "B": "furious 憤怒的,通常形容人",
+   "C": "offensive 冒犯的,與 hurtful 相呼應",
+   "D": "stubborn 固執的,不合"
+  },
+  "vocab": [
+   [
+    "offensive",
+    "adj. 冒犯的"
+   ],
+   [
+    "racist",
+    "adj. 種族歧視的"
+   ],
+   [
+    "remark",
+    "n. 言論"
+   ]
+  ]
+ },
+ "5": {
+  "key": "反覆修改的對象是文章的「初稿」first draft。",
+  "opts": {
+   "A": "text 文本,first text 不成搭配",
+   "B": "brush 刷子,不合",
+   "C": "draft 草稿,first draft 為固定搭配",
+   "D": "plot 情節,不合"
+  },
+  "vocab": [
+   [
+    "draft",
+    "n. 草稿"
+   ],
+   [
+    "revise",
+    "v. 修改"
+   ]
+  ]
+ },
+ "6": {
+  "key": "房子被棄置多年而佈滿灰塵,表示 left vacant(空置)。",
+  "opts": {
+   "A": "casual 隨意的,不合",
+   "B": "fragile 易碎的,不合",
+   "C": "remote 偏遠的,left remote 不通",
+   "D": "vacant 空著的,符合 deserted house 語意"
+  },
+  "vocab": [
+   [
+    "vacant",
+    "adj. 空的"
+   ],
+   [
+    "deserted",
+    "adj. 廢棄的"
+   ],
+   [
+    "coating",
+    "n. 一層覆蓋物"
+   ]
+  ]
+ },
+ "7": {
+  "key": "courage 為不可數名詞,可用 enormous 形容「極大的」勇氣。",
+  "opts": {
+   "A": "gigantic 巨大(多指實體大小)",
+   "B": "exclusive 獨家的,不合",
+   "C": "multiple 多重的,不修飾不可數的 courage 的程度",
+   "D": "enormous 極大的,可修飾抽象名詞"
+  },
+  "vocab": [
+   [
+    "enormous",
+    "adj. 極大的"
+   ],
+   [
+    "exclusive",
+    "adj. 獨家的"
+   ],
+   [
+    "multiple",
+    "adj. 多個的"
+   ]
+  ]
+ },
+ "8": {
+  "key": "經濟困難、資源不足,公共工程會被「中止」或延遲,與 delayed 並列。",
+  "opts": {
+   "A": "halted 被中止,符合",
+   "B": "hatched 孵化,不合",
+   "C": "possessed 擁有,不合",
+   "D": "reinforced 加強,與資源不足矛盾"
+  },
+  "vocab": [
+   [
+    "halt",
+    "v. 使停止"
+   ],
+   [
+    "financed",
+    "adj. 出資的"
+   ],
+   [
+    "reinforce",
+    "v. 加強"
+   ]
+  ]
+ },
+ "9": {
+  "key": "總統以出席和演說「為典禮增光」,grace 作動詞表示蒞臨增添光彩。",
+  "opts": {
+   "A": "praised 稱讚,後接 with presence 不通",
+   "B": "graced 使增光,grace sth with one's presence 為固定用法",
+   "C": "addressed 對…演說,不接 with his presence",
+   "D": "credited 歸功於,不合"
+  },
+  "vocab": [
+   [
+    "grace",
+    "v. 使增光 /n. 優雅"
+   ],
+   [
+    "ceremony",
+    "n. 典禮"
+   ]
+  ]
+ },
+ "10": {
+  "key": "動詞 abusing 需副詞修飾,calling them losers 是言語辱罵,即 verbally abusing。",
+  "opts": {
+   "A": "verbally 以言語地,符合",
+   "B": "dominantly 支配地,不合",
+   "C": "legitimately 合法地,不合",
+   "D": "relevantly 相關地,不合"
+  },
+  "vocab": [
+   [
+    "verbally",
+    "adv. 口頭地"
+   ],
+   [
+    "abuse",
+    "v. 辱罵;虐待"
+   ],
+   [
+    "sue",
+    "v. 控告"
+   ]
+  ]
+ },
+ "11": {
+  "key": "過去某時點「即將/將會」傳遍世界,表過去的未來,用 would + V。",
+  "opts": {
+   "A": "had spread 過去完成,語意為已傳播,與 were about to create 時序不符",
+   "B": "would spread 過去未來式,正確",
+   "C": "had been spreading 完成進行,不合",
+   "D": "would have spread 為與事實相反的句型,不合"
+  },
+  "vocab": [
+   [
+    "social innovation",
+    "n. 社會創新"
+   ],
+   [
+    "rapidly",
+    "adv. 迅速地"
+   ]
+  ]
+ },
+ "12": {
+  "key": "下大雨使原本在花園的計畫「被打亂」,with 計畫 + 過去分詞。",
+  "opts": {
+   "A": "facilitated 促進,與下雨矛盾",
+   "B": "disrupted 被打亂,符合",
+   "C": "disclosed 揭露,不合",
+   "D": "fulfilled 實現,不合"
+  },
+  "vocab": [
+   [
+    "disrupt",
+    "v. 打亂"
+   ],
+   [
+    "facilitate",
+    "v. 促進"
+   ],
+   [
+    "pour",
+    "v. 傾盆而下"
+   ]
+  ]
+ },
+ "13": {
+  "key": "換桌使想法得以「流通」並深化。",
+  "opts": {
+   "A": "circulate 流通、傳播,符合",
+   "B": "emphasize 強調,不合",
+   "C": "recover 恢復,不合",
+   "D": "preserve 保存,與換桌交流相反"
+  },
+  "vocab": [
+   [
+    "circulate",
+    "v. 流通"
+   ],
+   [
+    "intimate",
+    "adj. 親密的"
+   ]
+  ]
+ },
+ "14": {
+  "key": "討論過程「產生/促成」一種新的集體合作形式。",
+  "opts": {
+   "A": "made up for 彌補,不合",
+   "B": "kept track of 追蹤,不合",
+   "C": "gave rise to 導致產生,符合",
+   "D": "looked out for 留意,不合"
+  },
+  "vocab": [
+   [
+    "give rise to",
+    "片語 引起、造成"
+   ],
+   [
+    "make up for",
+    "片語 彌補"
+   ],
+   [
+    "collective",
+    "adj. 集體的"
+   ]
+  ]
+ },
+ "15": {
+  "key": "前文描述過程,後句「因此」World Café 誕生,thus 表結果。",
+  "opts": {
+   "A": "still 仍然,不合",
+   "B": "also 也,無因果",
+   "C": "further 進一步,不合",
+   "D": "thus 因此,承接前述經過"
+  },
+  "vocab": [
+   [
+    "thus",
+    "adv. 因此"
+   ]
+  ]
+ },
+ "16": {
+  "key": "暈動症「突然襲來」,strike 可指疾病突然發作。",
+  "opts": {
+   "A": "crash 撞擊,不用於症狀",
+   "B": "flush 臉紅/沖洗,不合",
+   "C": "burst 爆裂,不接此語意",
+   "D": "strike 襲擊、突發,符合"
+  },
+  "vocab": [
+   [
+    "strike",
+    "v. 侵襲"
+   ],
+   [
+    "motion sickness",
+    "n. 暈動症"
+   ],
+   [
+    "nausea",
+    "n. 噁心"
+   ]
+  ]
+ },
+ "17": {
+  "key": "後文說各部位訊息互相衝突,即訊息「不一致」do not match。",
+  "opts": {
+   "A": "are not regular 不規律,不合衝突之意",
+   "B": "can hardly move 動不了,不合",
+   "C": "do not match 不吻合,呼應 conflicting",
+   "D": "are rarely cued 少被提示,不合"
+  },
+  "vocab": [
+   [
+    "conflicting",
+    "adj. 衝突的"
+   ],
+   [
+    "stationary",
+    "adj. 靜止的"
+   ]
+  ]
+ },
+ "18": {
+  "key": "省略前面 detects 的內容,前句主動詞為 detects(現在式),故用助動詞 don't(其他部分並未偵測到移動)。",
+  "opts": {
+   "A": "aren't 需有被動/進行,不合",
+   "B": "won't 未來式,不合",
+   "C": "don't 代替 don't detect,正確",
+   "D": "haven't 完成式,不合"
+  },
+  "vocab": [
+   [
+    "detect",
+    "v. 偵測"
+   ],
+   [
+    "balance-sensing",
+    "adj. 感知平衡的"
+   ]
+  ]
+ },
+ "19": {
+  "key": "後文列出避免不適的做法,即「預防措施」。",
+  "opts": {
+   "A": "special opportunities 特殊機會,不合",
+   "B": "preventive measures 預防措施,符合",
+   "C": "potential risks 潛在風險,不合",
+   "D": "significant advantages 顯著優點,不合"
+  },
+  "vocab": [
+   [
+    "preventive",
+    "adj. 預防的"
+   ],
+   [
+    "take measures",
+    "片語 採取措施"
+   ]
+  ]
+ },
+ "20": {
+  "key": "遠眺「也」有幫助,as well 表示補充另一個方法。",
+  "opts": {
+   "A": "as well 也,符合",
+   "B": "by far 遠遠地,不合",
+   "C": "at least 至少,不合",
+   "D": "after all 畢竟,不合"
+  },
+  "vocab": [
+   [
+    "as well",
+    "片語 也"
+   ],
+   [
+    "by far",
+    "片語 遠遠地"
+   ]
+  ]
+ },
+ "21": {
+  "key": "be noted for 以…聞名,與 famous 相近。",
+  "opts": {
+   "I": "noted 著名的,be noted for 正確",
+   "C": "familiar 為 be familiar with,不接 for"
+  },
+  "vocab": [
+   [
+    "be noted for",
+    "片語 以…聞名"
+   ],
+   [
+    "intricate",
+    "adj. 精細複雜的"
+   ]
+  ]
+ },
+ "22": {
+  "key": "documented reference to 為「有文獻提及」,reference 名詞。",
+  "opts": {
+   "A": "reference to 提及,符合",
+   "B": "bearing 為 have bearing on,不接 to"
+  },
+  "vocab": [
+   [
+    "reference",
+    "n. 提及;參考"
+   ],
+   [
+    "documented",
+    "adj. 有文獻記載的"
+   ]
+  ]
+ },
+ "23": {
+  "key": "each bearing a name 為分詞構句,「各自有一個名字」。",
+  "opts": {
+   "B": "bearing 帶有,符合",
+   "D": "retained 保留,語意與時態不合"
+  },
+  "vocab": [
+   [
+    "bear a name",
+    "片語 有名字"
+   ],
+   [
+    "vary",
+    "v. 不同"
+   ]
+  ]
+ },
+ "24": {
+  "key": "只有 Emmanuel 在法國大革命中「倖存」,其餘被熔毀,動詞過去式。",
+  "opts": {
+   "F": "survived 倖存,後直接接受詞 the French Revolution",
+   "D": "retained 為保留,常接 its sound,此處指逃過劫難不合"
+  },
+  "vocab": [
+   [
+    "survive",
+    "v. 倖存"
+   ],
+   [
+    "melt down",
+    "片語 熔化"
+   ],
+   [
+    "recast",
+    "v. 重鑄"
+   ]
+  ]
+ },
+ "25": {
+  "key": "除 Emmanuel 外都被換掉,它「保留」了原本優美音色,過去式 retained。",
+  "opts": {
+   "D": "retained 保留,受詞 its sound",
+   "F": "survived 前題已用,且語意為保持音質較佳用 retained"
+  },
+  "vocab": [
+   [
+    "retain",
+    "v. 保留"
+   ],
+   [
+    "renowned",
+    "adj. 著名的"
+   ],
+   [
+    "acoustic",
+    "adj. 聲學的"
+   ]
+  ]
+ },
+ "26": {
+  "key": "成為巴黎生活中「熟悉的」一部分,familiar part of life。",
+  "opts": {
+   "C": "familiar 熟悉的,符合",
+   "E": "faithful 忠實的,修飾 part 語意不佳"
+  },
+  "vocab": [
+   [
+    "familiar",
+    "adj. 熟悉的"
+   ],
+   [
+    "faithful",
+    "adj. 忠實的"
+   ]
+  ]
+ },
+ "27": {
+  "key": "call the faithful to prayer 召喚信徒去祈禱,the faithful 指信徒。",
+  "opts": {
+   "E": "faithful 加 the 為名詞,指信徒",
+   "C": "familiar 不能作為被召喚的對象"
+  },
+  "vocab": [
+   [
+    "the faithful",
+    "n. 信徒"
+   ],
+   [
+    "invasion",
+    "n. 入侵"
+   ]
+  ]
+ },
+ "28": {
+  "key": "與 mourning(哀悼)對比,應為 celebration(慶祝),後文提皇室婚禮與加冕。",
+  "opts": {
+   "G": "celebration 慶祝,與 mourning 並列",
+   "H": "restoration 修復,語意不合"
+  },
+  "vocab": [
+   [
+    "celebration",
+    "n. 慶祝"
+   ],
+   [
+    "coronation",
+    "n. 加冕"
+   ],
+   [
+    "mourning",
+    "n. 哀悼"
+   ]
+  ]
+ },
+ "29": {
+  "key": "2019 大火後鐘聲「沉寂」,fall silent 為固定用法。",
+  "opts": {
+   "J": "silent 沉默,fall silent 正確",
+   "C": "familiar 不合 fell 之後的補語"
+  },
+  "vocab": [
+   [
+    "fall silent",
+    "片語 變得沉默"
+   ],
+   [
+    "devastating",
+    "adj. 毀滅性的"
+   ]
+  ]
+ },
+ "30": {
+  "key": "大火後建築經歷複雜耗時的「修復」過程,名詞接 of。",
+  "opts": {
+   "H": "restoration 修復,符合重新開放",
+   "G": "celebration 慶祝,與前文不合"
+  },
+  "vocab": [
+   [
+    "restoration",
+    "n. 修復"
+   ],
+   [
+    "monument",
+    "n. 紀念建築"
+   ]
+  ]
+ },
+ "31": {
+  "key": "此處接在 Originated in Japan 之後,說明如今這類旅館提供大城市商業中心的低價住宿。",
+  "opts": {
+   "D": "Today... commerce centers 與前句 business districts 呼應",
+   "A": "談創新,應屬第三段"
+  },
+  "vocab": [
+   [
+    "lodging",
+    "n. 住宿"
+   ],
+   [
+    "commerce",
+    "n. 商業"
+   ]
+  ]
+ },
+ "32": {
+  "key": "前句談艙壁材質,後句談 Each capsule 的設備,中間 C 描述艙房排列與梯子,符合結構描述。",
+  "opts": {
+   "C": "chambers stacked, 上層用梯子,承接房間構造",
+   "B": "談隔音,屬缺點段落"
+  },
+  "vocab": [
+   [
+    "stack",
+    "v. 堆疊"
+   ],
+   [
+    "fiberglass",
+    "n. 玻璃纖維"
+   ],
+   [
+    "ladder",
+    "n. 梯子"
+   ]
+  ]
+ },
+ "33": {
+  "key": "後句 Instead of the traditional bare pod-sized style, new chains 為創新內容,前句以 innovation 回應需求引出。",
+  "opts": {
+   "A": "In response to rising demands... innovation,引出新設計",
+   "C": "描述傳統艙房,與 Instead of 矛盾"
+  },
+  "vocab": [
+   [
+    "innovation",
+    "n. 創新"
+   ],
+   [
+    "embrace",
+    "v. 擁抱;接受"
+   ]
+  ]
+ },
+ "34": {
+  "key": "缺點段:先談空調不良,再接 B 的薄牆隔音差,Also 再談共用設施。",
+  "opts": {
+   "B": "thin plastic walls transmit snoring,屬缺點",
+   "D": "談現今優點用途,與缺點段不合"
+  },
+  "vocab": [
+   [
+    "transmit",
+    "v. 傳送"
+   ],
+   [
+    "claustrophobic",
+    "adj. 幽閉恐懼的"
+   ]
+  ]
+ },
+ "35": {
+  "key": "全文依序介紹 Knight 的信號、美國的改良與黃燈、自駕車使信號可能消失,講的是交通號誌的演變。",
+  "opts": {
+   "A": "evolution 演變,涵蓋過去到未來",
+   "B": "只談發明者,範圍太窄",
+   "C": "未分析各信號功能",
+   "D": "範圍過大"
+  },
+  "vocab": [
+   [
+    "evolution",
+    "n. 演進"
+   ],
+   [
+    "signal",
+    "n. 信號"
+   ],
+   [
+    "intersection",
+    "n. 十字路口"
+   ]
+  ]
+ },
+ "36": {
+  "key": "文章說水平臂為停、降 45 度為行,並加紅綠燈,由警察操作;選 C(依官方答案)。",
+  "opts": {
+   "A": "需符合臂與燈的描述,見圖與文章對照",
+   "B": "同上",
+   "C": "符合水平臂停止、斜 45 度前進與紅綠燈",
+   "D": "同上"
+  },
+  "vocab": [
+   [
+    "movable-arm",
+    "adj. 可動臂的"
+   ],
+   [
+    "horizontally",
+    "adv. 水平地"
+   ]
+  ]
+ },
+ "37": {
+  "key": "最後段指出自駕車交叉路口可自動調速通過,故未來車輛可能不需紅綠燈。",
+  "opts": {
+   "A": "受傷的是操作警察,非 Knight",
+   "B": "Potts 的黃燈在底特律,非美國第一個",
+   "C": "源自鐵路信號,非交通指揮員",
+   "D": "符合末段自駕車內容"
+  },
+  "vocab": [
+   [
+    "emergence",
+    "n. 出現"
+   ],
+   [
+    "self-driving",
+    "adj. 自動駕駛的"
+   ]
+  ]
+ },
+ "38": {
+  "key": "此句指設計被世界各地後來採用,最適合放在第三段末,承接 Potts 三色系統的重大突破。",
+  "opts": {
+   "C": "第三段談 Potts 的三色系統,結尾接此句合理",
+   "B": "第二段談被禁用,不會被採用"
+  },
+  "vocab": [
+   [
+    "breakthrough",
+    "n. 突破"
+   ],
+   [
+    "adopt",
+    "v. 採用"
+   ]
+  ]
+ },
+ "39": {
+  "key": "研究探討觀影者的恐懼、焦慮、情緒釋放與創傷,屬心理學範疇。",
+  "opts": {
+   "A": "Psychology 心理學,符合",
+   "B": "Education 教育,不合",
+   "C": "Philosophy 哲學,不合",
+   "D": "Communication 傳播,不合"
+  },
+  "vocab": [
+   [
+    "therapeutic",
+    "adj. 治療的"
+   ],
+   [
+    "trauma",
+    "n. 創傷"
+   ]
+  ]
+ },
+ "40": {
+  "key": "vicariously 後文說「學習如何處理現實威脅」,藉由角色觀察而得,故為觀察獲得知識。",
+  "opts": {
+   "A": "沒有保留地發問,不合",
+   "B": "透過觀察獲得知識,正確",
+   "C": "面對面互動,與看電影不合",
+   "D": "個人親身經驗,與 vicarious 相反"
+  },
+  "vocab": [
+   [
+    "vicariously",
+    "adv. 替代性地"
+   ],
+   [
+    "rehearse",
+    "v. 預演"
+   ]
+  ]
+ },
+ "41": {
+  "key": "文中指兒童看恐怖片較易於成年後焦慮,並對暴力較不敏感,暗示對性格有長期影響。",
+  "opts": {
+   "A": "文中未說多數愛好者有攻擊傾向",
+   "B": "優缺點並未比較孰多",
+   "C": "COVID 只是觀影量增加,非靈感來源",
+   "D": "符合兒童與睡眠等長期影響"
+  },
+  "vocab": [
+   [
+    "irritability",
+    "n. 易怒"
+   ],
+   [
+    "aggression",
+    "n. 攻擊性"
+   ]
+  ]
+ },
+ "42": {
+  "key": "文章先談好處,再以 However 談負面影響,呈現問題的兩面。",
+  "opts": {
+   "A": "沒有只定義一個概念",
+   "B": "呈現對議題的對立觀點,符合",
+   "C": "並非單一問題的因果",
+   "D": "沒有解決步驟"
+  },
+  "vocab": [
+   [
+    "opposing",
+    "adj. 對立的"
+   ],
+   [
+    "revolve around",
+    "片語 以…為中心"
+   ]
+  ]
+ },
+ "43": {
+  "key": "第二段指出古俄羅斯酒不常見、伏特加非俄國發明,用以反駁「俄國人天生愛喝」。",
+  "opts": {
+   "A": "討論歐洲古代酒類含量,範圍不合",
+   "B": "法國只是起源之一,非主旨",
+   "C": "反駁俄國人天生愛喝的假設,符合",
+   "D": "基督教只是背景,非連結目的"
+  },
+  "vocab": [
+   [
+    "inherent",
+    "adj. 與生俱來的"
+   ],
+   [
+    "vineyard",
+    "n. 葡萄園"
+   ],
+   [
+    "assumption",
+    "n. 假設"
+   ]
+  ]
+ },
+ "44": {
+  "key": "文章說第一支俄製伏特加出現於 15 世紀。",
+  "opts": {
+   "A": "符合第二段",
+   "B": "文章說是葡萄酒精,非小麥",
+   "C": "德國人是最愛喝酒者,非最大生產者",
+   "D": "19 世紀是國家壟斷"
+  },
+  "vocab": [
+   [
+    "monopoly",
+    "n. 壟斷"
+   ],
+   [
+    "indulge",
+    "v. 沉迷"
+   ]
+  ]
+ },
+ "45": {
+  "key": "This soon filled the treasury 指前一句 emperors 建立的國家壟斷,只有政府能生產。",
+  "opts": {
+   "A": "the alcohol 不是能填滿國庫的事件",
+   "B": "the government 為人,不指事",
+   "C": "illegal production 是原因,非後文的結果",
+   "D": "the state monopoly 符合"
+  },
+  "vocab": [
+   [
+    "treasury",
+    "n. 國庫"
+   ],
+   [
+    "revenue",
+    "n. 收入"
+   ]
+  ]
+ },
+ "46": {
+  "key": "最後一段先談反酒精運動,最後以事實說明俄羅斯雖非第一但仍接近前段,屬補充事實。",
+  "opts": {
+   "A": "提供進一步事實,如人均消費排名",
+   "B": "並非重述全文",
+   "C": "沒有提出新問題",
+   "D": "沒有預測未來"
+  },
+  "vocab": [
+   [
+    "alcoholism",
+    "n. 酒精成癮"
+   ],
+   [
+    "per capita",
+    "片語 人均"
+   ]
+  ]
+ }
+}
