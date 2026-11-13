@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>詞性小課 第4課：V-ing 還是 p.p.（預覽）｜Score Rescue</title>
+<title>詞性小課 第4課：V-ing 還是 p.p.｜Score Rescue</title>
 <meta name="theme-color" content="#F7F3E8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,6 +75,7 @@ h3{font-weight:700;font-size:1.08rem;line-height:1.45}
 .fb.bad{border-color:var(--bad);background:var(--bad-soft)}
 .fb .work{font-weight:700}
 .fb b{margin-right:.5em}
+.fb .sent b{margin-right:0}
 .actions.static{position:static;background:none}
 details.more{margin-top:4px}
 details.more summary{cursor:pointer;color:var(--wine);font-weight:700;min-height:40px;display:flex;align-items:center}
@@ -90,7 +91,13 @@ table.tbl{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:10px}
 table.tbl th,table.tbl td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
 table.tbl th{color:var(--muted);font-weight:700;font-size:.85rem}
 .vid{display:block;width:100%;aspect-ratio:16/9;border-radius:12px;background:#2E2A26}
-#afterVideo{border-left:4px solid var(--wine)}
+#afterVideo{display:grid;gap:4px}
+#app{padding-bottom:calc(130px + env(safe-area-inset-bottom))}
+.actions{position:fixed;left:0;right:0;bottom:0;z-index:20;margin:0;padding:14px max(18px,calc((100vw - 684px)/2)) calc(14px + env(safe-area-inset-bottom))}
+.fb #toDemo{margin-top:4px}
+.fb .demo{margin-top:4px}
+.fbmore{display:grid;gap:8px;margin-top:8px}
+.fbmore ul{margin:4px 0 0 1.2em}
 .steps{display:grid;gap:8px;counter-reset:s;padding:0;list-style:none}
 .steps li{counter-increment:s;display:flex;gap:10px}
 .steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:var(--wine);color:#fff;font-weight:700;font-size:.85rem;display:grid;place-items:center;margin-top:2px}
@@ -120,13 +127,14 @@ div.opt .say.ico{width:36px;min-height:36px;margin-left:-4px}
 .fb .mv{border:2px solid var(--wine);border-radius:6px;padding:0 4px;font-weight:700}
 .fb .contrast{display:block;margin-top:8px;padding:10px 12px;border-radius:8px;background:#fff;border:1px solid var(--line)}
 .fb .contrast .en{display:block;font-family:var(--serif);font-size:1.05rem;margin:4px 0}
+.inp{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid #DDD8C8;border-radius:10px;font:inherit;background:#fff}
 </style>
 </head>
 <body>
 <div class="topbar">
   <div class="wrap bar">
     <a class="link" href="../">← Score Rescue</a>
-    <span><b class="brand">詞性小課 第4課</b> <span class="tag-preview">預覽版</span></span>
+    <span><b class="brand">詞性小課 第4課</b></span>
   </div>
   <div class="progress" id="prog" hidden><i></i></div>
 </div>
@@ -144,13 +152,7 @@ var DEBUG=/[?&]debug=1\b/.test(location.search);
 var sb=null,sbReady=null;
 function initSb(){
   if(DEBUG)return Promise.resolve();
-  sbReady=new Promise(function(ok){
-    var t=document.createElement('script');
-    t.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-    t.onload=function(){try{sb=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:false}})}catch(e){}ok()};
-    t.onerror=function(){ok()};
-    document.head.appendChild(t);
-  });
+  sbReady=loadLib().then(function(){try{sb=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:false}})}catch(e){}});
   return sbReady;
 }
 function dbg(name,state){
@@ -199,11 +201,8 @@ var PRE=[
  {id:'P5-PRE-015',s:'Our customer service team ______ to inquiries within one business day.',o:['response','responsive','responds','responsively'],a:2,c:'MAIN_V',w:'空格需要主要動詞；responds to inquiries 表示「回覆詢問」。'}
 ];
 
-var DEMOS=[{"id": "L4-DEMO-01", "t": "示範1　名詞前・承受動作", "s": "Please check the ______ schedule on the company website.", "o": ["adjust", "adjusts", "adjusting", "adjusted"], "a": 3, "how": ["主要動詞是 check（Please 開頭的請求句），空格不是動詞。", "空格在 the 和 schedule 之間，修飾 schedule。", "時程表是被調整的一方 → adjusted。"], "ex": "排除：(A) adjust：原形動詞，不能放在 the 和 schedule 之間修飾名詞。(B) adjusts：動詞加 -s，同樣不能修飾名詞。(C) adjusting：V-ing 表示名詞做動作，時程表不會去調整別的東西。", "zh": "請到公司網站查看調整後的時程表。"}, {"id": "L4-DEMO-02", "t": "示範2　名詞前・做動作", "s": "The city is building more parking spaces because of the ______ number of visitors.", "o": ["grow", "growing", "grown", "grows"], "a": 1, "how": ["主要動詞是 is building，空格不是動詞。", "空格在 the 和 number 之間，修飾 number。", "遊客人數是自己在增加，是做動作的一方 → growing。"], "ex": "排除：(A) grow：原形動詞，不能修飾名詞。(C) grown：p.p. 當形容詞是「長大的、成熟的」（a grown man），不是「不斷增加的」。(D) grows：動詞加 -s，不能修飾名詞。", "zh": "因為遊客人數不斷增加，市政府正在增建停車位。"}, {"id": "L4-DEMO-03", "t": "示範3　名詞後・做動作", "s": "Visitors ______ the factory must wear safety glasses.", "o": ["tour", "tours", "touring", "toured"], "a": 2, "how": ["主要動詞是 must wear，空格不是動詞。", "「______ the factory」整段在修飾 visitors。", "訪客是參觀的一方，參觀的對象是 the factory → touring。"], "ex": "排除：(A) tour：原形動詞，句子已經有 must wear，會變成兩個主要動詞。(B) tours：同上，而且主詞 visitors 是複數。(D) toured：當過去式會多一個主要動詞；當 p.p. 是「被參觀的訪客」，意思不通。", "zh": "參觀工廠的訪客必須戴護目鏡。"}, {"id": "L4-DEMO-04", "t": "示範4　名詞後・承受動作", "s": "The documents ______ to this email contain next year's budget.", "o": ["attached", "attach", "attaching", "attaches"], "a": 0, "how": ["主要動詞是 contain，空格不是動詞。", "「______ to this email」整段在修飾 documents。", "文件是被附上的一方 → attached。"], "ex": "排除：(B) attach：原形動詞，句子已經有 contain，不能再放動詞。(C) attaching：V-ing 表示名詞做動作，文件不會去附加別的東西。(D) attaches：動詞加 -s，同樣不能再放一個主要動詞。", "zh": "這封電子郵件附上的文件包含明年的預算。"}];
 
-var PR=[{"id": "L4-PR-01", "s": "The museum has several ______ paintings from the 18th century.", "o": ["restored", "restore", "restores", "restoring"], "a": 0, "c": "PART", "work": "修飾 paintings；畫是被修復的一方", "why": "主要動詞是 has；空格修飾 paintings。畫作是被修復的一方 → restored paintings（修復過的畫作）。", "x": [null, "(B) restore：原形動詞，不能放在 several 和 paintings 之間。", "(C) restores：動詞加 -s，不能修飾名詞。", "(D) restoring：V-ing 表示名詞做動作，「畫去修復別的東西」意思不通。"], "zh": "博物館有幾幅十八世紀的修復畫作。"}, {"id": "L4-PR-02", "s": "Visitors must park in ______ areas only.", "o": ["designate", "designated", "designating", "designates"], "a": 1, "c": "PART", "work": "修飾 areas；區域是被指定的一方", "why": "主要動詞是 must park；空格修飾 areas。停車區是被指定的一方 → designated areas（指定區域）。", "x": ["(A) designate：原形動詞，不能放在 in 和 areas 之間修飾名詞。", null, "(C) designating：V-ing 表示名詞做動作，「區域去指定別的東西」意思不通。", "(D) designates：動詞加 -s，不能修飾名詞。"], "zh": "訪客只能在指定區域停車。"}, {"id": "L4-PR-03", "s": "Passengers ______ international flights should arrive two hours early.", "o": ["take", "takes", "taking", "taken"], "a": 2, "c": "PART", "work": "修飾 passengers；乘客是搭飛機的一方", "why": "主要動詞是 should arrive；「______ international flights」修飾 passengers。乘客是搭乘的一方，搭的對象是 international flights → taking。", "x": ["(A) take：原形動詞，句子已經有 should arrive。", "(B) takes：動詞加 -s，同樣會多出一個主要動詞。", null, "(D) taken：p.p. 表示名詞承受動作，「被搭乘的乘客」意思不通。"], "zh": "搭乘國際航班的旅客應提早兩小時抵達。"}, {"id": "L4-PR-04", "s": "The products ______ in this catalog are available online.", "o": ["feature", "features", "featuring", "featured"], "a": 3, "c": "PART", "work": "修飾 products；產品是被刊登的一方", "why": "主要動詞是 are；「______ in this catalog」修飾 products。產品是被刊登在型錄裡的一方 → featured。", "x": ["(A) feature：原形動詞，句子已經有 are。", "(B) features：動詞加 -s，同樣會多出一個主要動詞。", "(C) featuring：V-ing 表示名詞做動作，後面要接被刊登的東西（a catalog featuring new products）；這裡產品是被刊登的。", null], "zh": "這本型錄上的產品都可以在網路上買到。"}, {"id": "L4-PR-05", "s": "The newsletter will ______ news from all our branches.", "o": ["include", "includes", "including", "included"], "a": 0, "c": "MAIN_V", "work": "對照題：will 後還缺原形動詞", "why": "句子只有助動詞 will，還缺主要動詞 → 空格是動詞，will 後用原形。對照：The newsletter including news from all our branches is sent every Friday. 先找主要動詞片語 is sent。再看 including news from all our branches，這段是在修飾 newsletter，說明電子報包含哪些內容。", "x": [null, "(B) includes：will 後面不加 -s。", "(C) including：will 後面不接 V-ing。", "(D) included：will 後面不接 p.p.。"], "zh": "電子報會收錄所有分店的消息。", "whyHtml": "句子只有助動詞 will，還缺主要動詞 → 空格是動詞，will 後用原形。<span class=\"contrast\"><b>對照：</b><span class=\"en\">The newsletter <i>including news from all our branches</i> <span class=\"mv\">is sent</span> every Friday.</span>先找主要動詞片語 <span class=\"mv\">is sent</span>。再看 including news from all our branches，這段是在修飾 newsletter，說明電子報包含哪些內容。</span>"}, {"id": "L4-PR-06", "s": "The seminar ______ by Dr. Chen received positive feedback.", "o": ["present", "presented", "presenting", "presents"], "a": 1, "c": "PART", "work": "修飾 seminar；研討會是被發表的一方", "why": "主要動詞是 received；「______ by Dr. Chen」修飾 seminar。研討會是被發表的一方，by Dr. Chen 說出做動作的人 → presented。", "x": ["(A) present：原形動詞，句子已經有 received。", null, "(C) presenting：V-ing 表示名詞做動作，「研討會去發表東西」意思不通。", "(D) presents：動詞加 -s，同樣會多出一個主要動詞。"], "zh": "陳博士發表的研討會獲得正面的回饋。"}, {"id": "L4-PR-07", "s": "The bank gives special rates to ______ customers.", "o": ["exist", "exists", "existing", "existed"], "a": 2, "c": "PART", "work": "進階：修飾 customers；exist 只有 V-ing", "why": "進階：主要動詞是 gives；空格修飾 customers。客戶是「存在」的一方；exist 不接受詞，沒有「被存在」的用法 → existing customers（現有客戶）。", "x": ["(A) exist：原形動詞，不能修飾名詞。", "(B) exists：動詞加 -s，不能修飾名詞。", null, "(D) existed：exist 沒有被動，existed 只能當過去式，不能修飾名詞。"], "zh": "這家銀行給現有客戶優惠利率。"}, {"id": "L4-PR-08", "s": "Anyone ______ to join the club should email Ms. Park.", "o": ["wish", "wishes", "wished", "wishing"], "a": 3, "c": "PART", "work": "修飾 anyone；想加入的是那個人", "why": "主要動詞是 should email；「______ to join the club」修飾 anyone。想加入的是那個人自己，是做動作的一方 → wishing。", "x": ["(A) wish：原形動詞，句子已經有 should email。", "(B) wishes：動詞加 -s，同樣會多出一個主要動詞。", "(C) wished：當過去式會多出一個主要動詞；當 p.p. 是「被希望的人」，意思不通。", null], "zh": "想加入社團的人請寄電子郵件給朴小姐。"}, {"id": "L4-PR-09", "s": "Please bring a ______ copy of your diploma.", "o": ["certify", "certified", "certifying", "certifies"], "a": 1, "c": "PART", "work": "修飾 copy；影本是被認證的一方", "why": "主要動詞是 bring；空格修飾 copy。影本是被認證的一方 → certified copy（經認證的影本）。", "x": ["(A) certify：原形動詞，不能放在 a 和 copy 之間。", null, "(C) certifying：V-ing 表示名詞做動作，「影本去認證別的東西」意思不通。", "(D) certifies：動詞加 -s，不能修飾名詞。"], "zh": "請攜帶一份經認證的畢業證書影本。"}, {"id": "L4-PR-10", "s": "Most of the shoes ______ by our company come from Italy.", "o": ["sold", "sell", "selling", "sells"], "a": 0, "c": "PART", "work": "修飾 shoes；鞋子是被賣的一方", "why": "主要動詞是 come；「______ by our company」修飾 shoes。鞋子是被賣的一方，by our company 說出做動作的一方 → sold（sell 的 p.p.）。", "x": [null, "(B) sell：原形動詞，句子已經有 come。", "(C) selling：V-ing 表示名詞做動作，「鞋子去賣東西」意思不通。", "(D) sells：動詞加 -s，同樣會多出一個主要動詞；主詞也是複數。"], "zh": "我們公司賣的鞋子大多來自義大利。"}];
 
-var CHK=[{"id": "L4-CHK-01", "s": "Please complete the ______ form and return it to us.", "o": ["enclosed", "enclose", "enclosing", "encloses"], "a": 0, "c": "PART", "work": "修飾 form；表格是被附上的一方", "why": "主要動詞是 complete、return；空格修飾 form。表格是被附上的一方 → enclosed form（隨附的表格）。", "x": [null, "(B) enclose：原形動詞，不能放在 the 和 form 之間。", "(C) enclosing：V-ing 表示名詞做動作，「表格去附上東西」意思不通。", "(D) encloses：動詞加 -s，不能修飾名詞。"], "zh": "請填寫隨附的表格並寄回給我們。", "demo": 0}, {"id": "L4-CHK-02", "s": "The ______ team will receive a trophy.", "o": ["win", "winning", "won", "wins"], "a": 1, "c": "PART", "work": "修飾 team；隊伍是贏的一方", "why": "主要動詞是 will receive；空格修飾 team。隊伍是贏得比賽的一方 → winning team（獲勝的隊伍）。", "x": ["(A) win：原形動詞，不能放在 the 和 team 之間修飾名詞。", null, "(C) won：p.p. 表示名詞承受動作，「被贏走的隊伍」意思不通。", "(D) wins：動詞加 -s；當名詞是「勝場」，也不能放在 the 和 team 之間。"], "zh": "獲勝的隊伍會獲得一座獎盃。", "demo": 1}, {"id": "L4-CHK-03", "s": "Customers ______ more than $100 will receive a free gift.", "o": ["spend", "spends", "spending", "spent"], "a": 2, "c": "PART", "work": "修飾 customers；顧客是花錢的一方", "why": "主要動詞是 will receive；「______ more than $100」修飾 customers。顧客是花錢的一方，花的是 more than $100 → spending。", "x": ["(A) spend：原形動詞，句子已經有 will receive。", "(B) spends：動詞加 -s，同樣會多出一個主要動詞；主詞也是複數。", null, "(D) spent：當過去式會多出一個主要動詞；當 p.p. 是「被花掉的顧客」，意思不通。"], "zh": "消費超過 100 美元的顧客會獲得一份贈品。", "demo": 2}, {"id": "L4-CHK-04", "s": "The rules ______ in the employee handbook apply to all staff.", "o": ["list", "lists", "listing", "listed"], "a": 3, "c": "PART", "work": "修飾 rules；規定是被列出的一方", "why": "主要動詞是 apply；「______ in the employee handbook」修飾 rules。規定是被列在手冊裡的一方 → listed。", "x": ["(A) list：原形動詞，句子已經有 apply。", "(B) lists：動詞加 -s，同樣會多出一個主要動詞。", "(C) listing：V-ing 表示名詞做動作，「規定去列出東西」意思不通。", null], "zh": "員工手冊裡列出的規定適用於所有員工。", "demo": 3}];
 
 /* ---------- 狀態（只存在這個分頁的記憶體裡，重新整理會從頭開始） ---------- */
 var st={pre:{i:0,ans:{}},pr:{i:0,ans:{}},chk:{i:0,ans:{},first:{}}};
@@ -395,88 +394,55 @@ function bindReveal(){
     var box=h(b.dataset.reveal);box.querySelector('.reveal').hidden=true;box.querySelector('.body').hidden=false;
   })});
 }
-function viewLesson(){
-  prog(null);
-  render('<div class="stack">'+
-    '<div class="qid">詞性小課 第 4 課（完整方案）</div>'+
-    '<h1>V-ing 還是 p.p.？先問名詞是「做動作」還是「被做」</h1>'+
-    '<video id="l1video" class="vid" controls playsinline preload="metadata" poster="lesson4-poster.jpg" src="lesson4.mp4">你的瀏覽器無法播放影片，可以直接往下看文字版重點。</video>'+
-    '<p class="fine">約 5 分鐘：先考你兩句，再教判斷觀念＋四個示範。</p>'+
-    '<div class="sheet" id="afterVideo"><h3>看完了？</h3><p style="margin-top:4px">往下做 10 題練習，再用 4 題確認你會不會判斷。</p>'+
-      '<div style="margin-top:14px"><button class="btn pri" id="toPr">開始 10 題練習</button></div></div>'+
-    '<details class="sheet more" id="textVersion"><summary>影片重點文字版（判斷觀念與四個示範）</summary><div class="stack" style="margin-top:12px">'+
-    '<div class="sheet stack"><h2>先懂一件事：V-ing 和 p.p. 可以修飾名詞</h2>'+
-      '<p>動詞變成 <b>V-ing</b> 或 <b>p.p.（過去分詞）</b>，就可以像形容詞一樣修飾名詞，這叫「分詞」。先問：<b>這個名詞是做動作的一方，還是承受動作的一方？</b></p>'+
-      '<table class="tbl"><thead><tr><th>名詞和動作的關係</th><th>用</th><th>例子</th></tr></thead><tbody>'+
-      '<tr><td>名詞做動作</td><td>V-ing</td><td>a <b>growing</b> number</td></tr>'+
-      '<tr><td>名詞承受動作</td><td>p.p.</td><td>the <b>attached</b> file</td></tr></tbody></table>'+
-      '<h3>名詞前、名詞後都可能</h3>'+
-      '<table class="tbl"><thead><tr><th>位置</th><th>例子</th></tr></thead><tbody>'+
-      '<tr><td>名詞前</td><td>the <b>adjusted</b> schedule</td></tr>'+
-      '<tr><td>名詞後</td><td>visitors <b>touring the factory</b></td></tr>'+
-      '<tr><td>名詞後</td><td>the documents <b>attached to this email</b></td></tr></tbody></table>'+
-      '<h3>判斷三步驟</h3><ol class="steps">'+
-      '<li>先找主要動詞：已經有了嗎？還沒有 → 空格是主要動詞（第 3 課）。</li>'+
-      '<li>找空格修飾的名詞。</li>'+
-      '<li>名詞做動作 → V-ing；名詞承受動作 → p.p.</li></ol>'+
-      '<p class="fine">輔助線索：後面有直接受詞（touring the factory）、有「by＋做動作的人」（presented by Dr. Chen），可以幫忙判斷。最後還是要用句意確認，不要變成「看到 by 就選 p.p.」。</p></div>'+
-    '<h2>看老師怎麼判斷</h2>'+
-    DEMOS.map(function(d){return demoHTML(d,false)}).join('')+
-    '<div class="sheet stack"><h3>本課整理</h3><table class="tbl"><thead><tr><th>情況</th><th>選</th></tr></thead><tbody>'+
-      '<tr><td>句子還沒有主要動詞</td><td>填主要動詞（第 3 課）</td></tr>'+
-      '<tr><td>已經有主要動詞，名詞是做動作的一方</td><td>V-ing</td></tr>'+
-      '<tr><td>已經有主要動詞，名詞是承受動作的一方</td><td>p.p.</td></tr>'+
-      '<tr><td>後面有直接受詞、有 by＋人</td><td>只當輔助線索，最後用句意確認</td></tr></tbody></table></div>'+
-    '<button class="btn line" id="toPr2">開始 10 題練習</button></div></details>'+
-  '</div>');
-  bindReveal();
-  function start(){st.pr.i=0;viewItem('pr')}
-  h('toPr').addEventListener('click',start);
-  h('toPr2').addEventListener('click',start);
-  h('l1video').addEventListener('ended',function(){var a=h('afterVideo');if(a)a.scrollIntoView({behavior:'smooth',block:'center'})});
-}
 
 /* ---------- 5. 練習與確認（共用作答畫面） ---------- */
-function feedbackHTML(q,k){
+function feedbackHTML(q,k,kind){
   var ok=k===q.a;
   var others=q.x.map(function(t,j){return (t&&j!==k)?'<li>'+esc(t)+'</li>':''}).join('');
-  return '<div class="fb '+(ok?'ok':'bad')+'">'+
-    '<div class="work">空格的工作：'+esc(q.work)+'</div>'+
+  return '<div class="fb '+(ok?'ok':'bad')+'" id="fb">'+
     '<div><b>'+(ok?'答對了！':'正解是 ('+LET[q.a]+') '+esc(q.o[q.a]))+'</b>'+(q.whyHtml||esc(q.why))+'</div>'+
-    (ok?'':'<div>'+esc(q.x[k])+'</div>')+sentHTML(q)+
-    (others?'<details class="more"><summary>其他選項為什麼不合適</summary><ul>'+others+'</ul></details>':'')+
+    (kind==='chk'&&!ok?'<button class="btn line" id="toDemo">看同類示範（示範'+(q.demo+1)+'）</button>'+
+      '<div id="demoBox" hidden>'+demoHTML(DEMOS[q.demo],true)+'</div>':'')+
+    '<details class="more" id="fullFb"><summary>看完整解析</summary><div class="fbmore">'+
+      '<div class="work">空格的工作：'+esc(q.work)+'</div>'+
+      (ok?'':'<div>你選的 '+esc(q.x[k])+'</div>')+sentHTML(q)+
+      (others?'<div><div class="work">其他選項</div><ul>'+others+'</ul></div>':'')+
+    '</div></details>'+
   '</div>';
 }
-function viewItem(kind){
+/* 完成紀錄：提交 4 題確認題、進入完成畫面就記為完成（存在這個瀏覽器；結業測驗用來判斷 7 課是否都完成） */
+function lessonNo(){var m=location.pathname.match(/\/l([2-7])\.html$/);return m?+m[1]:1}
+function markDone(){try{localStorage.setItem('sr_pos_done_'+lessonNo(),String(Date.now()))}catch(e){}}
+function viewItem(kind,fresh){
   var set=kind==='pr'?PR:CHK,s=st[kind],i=s.i,q=set[i],a=s.ans[q.id]||{},done=a.done;
   prog(kind==='pr'?(i/(PR.length+CHK.length)):((PR.length+i)/(PR.length+CHK.length)));
   var label=kind==='pr'?'練習 第 '+(i+1)+' / '+PR.length+' 題':'確認 第 '+(i+1)+' / '+CHK.length+' 題';
   var html='<div class="sheet"><div class="qid">'+label+' · '+q.id+'</div><p class="q">'+stem(q.s)+'</p>'+
-    optsHTML(q,a.k,!!done)+(done?feedbackHTML(q,a.k):'')+'</div>';   // 練習與確認題不問把握度（只有前測用來判讀）
+    optsHTML(q,a.k,!!done)+(done?feedbackHTML(q,a.k,kind):'')+'</div>';   // 練習與確認題不問把握度（只有前測用來判讀）
   var last=i===set.length-1;
-  var actions='<div class="actions'+(done?' static':'')+'">';
+  var actions='<div class="actions">';
   if(!done){
     actions+='<button class="btn pri" id="submit"'+(a.k==null?' disabled':'')+'>確認答案</button>';
   }else{
-    if(kind==='chk'&&a.k!==q.a)actions+='<button class="btn line" id="toDemo" style="margin-bottom:10px">回看示範'+(q.demo+1)+'（'+DEMOS[q.demo].id+'）</button>';
     actions+='<button class="btn pri" id="next">'+(last?(kind==='pr'?'開始 4 題確認':'看完成畫面'):'下一題')+'</button>';
   }
   actions+='</div>';
-  if(kind==='chk'&&i===0&&!done)html='<div class="sheet" style="margin-bottom:14px"><h3>確認是否學會</h3><p class="fine" style="margin-top:4px">4 題新題。答錯時可以回看對應的示範，再回到原題。</p></div>'+html;
+  if(kind==='chk'&&i===0&&!done)html='<div class="sheet" style="margin-bottom:14px"><h3>確認是否學會</h3><p class="fine" style="margin-top:4px">4 題新題。答錯時可以直接在題目下方看同類示範。</p></div>'+html;
   render(html+actions);
   if(!done){
     bindPick(function(f,v){var r=s.ans[q.id]=s.ans[q.id]||{};r[f]=v;viewItem(kind)});
     h('submit').addEventListener('click',function(){
       a.done=true;
       if(kind==='chk'&&!(q.id in s.first))s.first[q.id]=a.k===q.a;
-      viewItem(kind);
+      viewItem(kind,true);
     });
   }else{
-    if(h('toDemo'))h('toDemo').addEventListener('click',function(){viewDemoJump(q)});
+    if(h('toDemo'))h('toDemo').addEventListener('click',function(){var b=h('demoBox');b.hidden=!b.hidden;this.textContent=b.hidden?'看同類示範（示範'+(q.demo+1)+'）':'收起示範';if(!b.hidden)b.scrollIntoView({block:'start'})});
+    if(fresh)h('fb').scrollIntoView({block:'nearest'});
     h('next').addEventListener('click',function(){
       if(!last){s.i++;viewItem(kind)}
       else if(kind==='pr'){st.chk.i=0;viewItem('chk')}
-      else viewDone();
+      else{markDone();viewDone()}
     });
   }
 }
@@ -491,25 +457,106 @@ function viewDemoJump(q){
 }
 
 /* ---------- 7. 完成畫面 ---------- */
-function viewDone(){
-  prog(1);
-  var x=0;CHK.forEach(function(q){if(st.chk.first[q.id])x++});
-  render('<div class="stack">'+
-    '<h1>第 4 課完成！</h1>'+
-    '<div class="sheet stack"><p>你已經練習了「先問名詞是做動作還是被做」的判斷方式。</p>'+
-      '<p class="score">這次答對 '+x+'／4 題</p>'+
-      '<p class="fine">以每題第一次作答計算。</p></div>'+
-    '<div class="sheet stack"><h3>想接著練其他閱讀題型？</h3>'+
-      '<a class="btn pri" id="d17" href="../#day1-7">繼續 Day 1–7 免費體驗</a></div>'+
-    '<a class="btn line" href="../">回到 Score Rescue</a>'+
-    '<p style="text-align:center"><button class="link" id="again">重看第 4 課</button></p>'+
-  '</div>');
-  h('again').addEventListener('click',viewLesson);
+
+/* ---------- 完整方案：登入＋確認付費後，才從私有儲存空間載入課程內容 ----------
+   沿用主站的 Email 登入（同一個網域，登入狀態共用）與 paid_users 付費名單。
+   題目、解析和影片放在 Supabase Storage 的 lessons 儲存桶（不公開）；儲存桶規則只讓付費名單裡的帳號讀取，
+   所以就算直接打開這個網址或看原始碼，沒有付費也拿不到內容。 */
+var LESSON_NO=4,STORE='lessons',VIDEO='',authSb=null,gated=false;
+var DEMOS=[],PR=[],CHK=[],viewLesson,viewDone;
+var libReady=null;
+function loadLib(){
+  if(!libReady)libReady=new Promise(function(ok){
+    if(window.supabase)return ok();
+    var t=document.createElement('script');
+    t.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    t.onload=function(){ok()};t.onerror=function(){ok()};
+    document.head.appendChild(t);
+  });
+  return libReady;
 }
+function lessonTitle(){return document.title.split('｜')[0]}
+function gateHead(){return '<div class="qid">詞性小課 第 '+LESSON_NO+' 課（完整方案）</div><h1>'+esc(lessonTitle().replace(/^詞性小課 第\d課：/,''))+'</h1>'}
+function planHTML(){
+  return '<div class="sheet stack"><h3>還沒購買完整方案？</h3>'+
+    '<p>完整方案包含詞性小課第 4～7 課、30 天個人化路線和 3 份模擬試題。第 1～3 課可以免費試學。</p>'+
+    '<a class="btn line" id="toPlan" href="../#pricing">看完整方案</a>'+
+    '<p style="text-align:center"><a class="link" href="l3.html">回到免費的第 3 課</a></p></div>';
+}
+function gateMsg(t){prog(null);render('<div class="stack">'+gateHead()+'<div class="sheet"><p>'+t+'</p></div></div>')}
+function gateError(){
+  gateMsg('課程暫時載入失敗。請重新整理再試一次；如果一直出現，請加<a class="link" href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener">官方 LINE</a> 告訴我們。');
+}
+function viewLogin(){
+  prog(null);logEvent('pos_paywall_view');
+  render('<div class="stack">'+gateHead()+
+    '<div class="sheet stack"><h3>已經購買？登入就能上課</h3>'+
+      '<p>請輸入購買時登記的 Email，我們會寄一封登入連結給你。點開連結就會回到這一課。</p>'+
+      '<form id="lf" class="stack" novalidate><input class="inp" type="email" id="le" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-label="Email">'+
+      '<button class="btn pri" id="ls" type="submit">寄登入連結</button></form><p class="fine" id="lm" aria-live="polite"></p></div>'+
+    planHTML()+'</div>');
+  h('lf').addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=h('le').value.trim(),m=h('lm'),b=h('ls');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){m.textContent='請輸入正確的 Email。';return}
+    if(!confirm('登入連結會寄到：\n'+email+'\n\n拼對了嗎？拼錯的話，連結會寄給別人。')){m.textContent='請修改 Email 後再送出。';h('le').focus();return}
+    b.disabled=true;m.textContent='寄送中…';
+    authSb.auth.signInWithOtp({email:email,options:{emailRedirectTo:location.origin+location.pathname}}).then(function(r){
+      b.disabled=false;
+      if(r&&r.error){m.textContent='寄送失敗：'+(r.error.message||'請稍後再試');return}
+      logEvent('pos_paywall_login_sent');m.textContent='已寄出！請到信箱點開登入連結（沒收到請看垃圾郵件）。';
+    },function(){b.disabled=false;m.textContent='寄送失敗，請稍後再試。'});
+  });
+}
+function viewNotPaid(email){
+  prog(null);logEvent('pos_paywall_notpaid');
+  render('<div class="stack">'+gateHead()+
+    '<div class="sheet stack"><h3>這個帳號還沒開通完整方案</h3>'+
+      '<p>你目前登入的是 <b id="who">'+esc(email||'')+'</b>。</p>'+
+      '<p class="fine">已經轉帳了嗎？開通通常在數小時內完成。如果用的是另一個 Email，請換帳號登入。</p>'+
+      '<button class="btn line" id="swap" type="button">換一個 Email 登入</button></div>'+
+    planHTML()+'</div>');
+  h('swap').addEventListener('click',function(){authSb.auth.signOut().then(viewLogin,viewLogin)});
+}
+function loadContent(){
+  gateMsg('載入課程中…');
+  var b=authSb.storage.from(STORE);
+  return Promise.all([b.download('l'+LESSON_NO+'.js'),b.createSignedUrl('lesson'+LESSON_NO+'.mp4',6*3600)]).then(function(r){
+    if(r[0].error||!r[0].data)throw r[0].error||new Error('no content');
+    VIDEO=(r[1]&&r[1].data&&r[1].data.signedUrl)||'';
+    return r[0].data.text();
+  }).then(function(code){
+    eval(code);   // 只會設定 DEMOS、PR、CHK、viewLesson、viewDone（見 tools/split_paid.py）
+    if(!PR.length||typeof viewLesson!=='function')throw new Error('bad content');
+    expose();viewLesson();
+  });
+}
+function checkPaid(user){
+  gateMsg('確認購買資格中…');
+  return authSb.from('paid_users').select('email').then(function(r){
+    if(r.error)throw r.error;
+    if(!(r.data||[]).length)return viewNotPaid(user&&user.email);
+    return loadContent();
+  });
+}
+function gate(){
+  gateMsg('載入中…');
+  loadLib().then(function(){
+    if(!window.supabase)throw new Error('no lib');
+    authSb=window.supabase.createClient(SB_URL,SB_KEY);   // 和主站相同設定：登入狀態存在這個網域的 localStorage
+    authSb.auth.onAuthStateChange(function(ev,s){if(ev==='SIGNED_IN'&&!gated&&s){gated=true;checkPaid(s.user).catch(gateError)}});
+    return authSb.auth.getSession().then(function(r){
+      var s=r&&r.data&&r.data.session;
+      if(gated)return;
+      if(!s)return viewLogin();
+      gated=true;return checkPaid(s.user);
+    });
+  }).catch(gateError);
+}
+function expose(){window.__pos={st:st,PR:PR,CHK:CHK,DEMOS:DEMOS,view:viewItem,sayTexts:function(){var o=[];[].concat(DEMOS,PR,CHK).forEach(function(q){o.push.apply(o,q.o);o.push(fullSent(q))});return o}}}
 
 initSb();
-viewLesson();
-window.__pos={st:st,PR:PR,CHK:CHK,DEMOS:DEMOS,view:viewItem,sayTexts:function(){var o=[];[].concat(DEMOS,PR,CHK).forEach(function(q){o.push.apply(o,q.o);o.push(fullSent(q))});return o}};
+gate();
 })();
 </script>
 </body>

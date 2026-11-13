@@ -84,7 +84,7 @@ def test_mobile_three_part_title(open_app, width):
 
 
 def test_homepage_copy(app):
-    home = app.js("document.querySelector('#view-home').innerText")
+    home = app.js("document.querySelector('#view-home').textContent")   # 含「看更多」等收起的內容
     assert '15–20 分鐘' not in app.page.content() and '答錯副詞題' not in home
     assert '依診斷結果安排弱項練習，各類難度再依作答表現調整。' + PACE in home
     assert 'Day 1 可免費加練一次（需有足夠新題）' in home

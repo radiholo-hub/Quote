@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>詞性小課 結業測驗｜Score Rescue</title>
+<meta name="theme-color" content="#F7F3E8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F3E8;--sheet:#fff;--ink:#262626;--muted:#5B5B5B;--line:#E4DCC6;--wine:#6B2D3C;
+  --ok:#1F653C;--ok-soft:#EDF6EF;--ok-line:#A9D3B8;--bad:#A32C31;--bad-soft:#FBEDED;--bad-line:#E3B3B6;
+  --warn:#9A5B00;--warn-soft:#FFF4E0;--warn-line:#E8CFA0;--hi:#FFE27A;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Source Serif 4","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.7 var(--sans)}
+h1,h2,h3,p,ul,ol{margin:0}
+ul,ol{padding-left:1.3em}
+button{font:inherit;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+.topbar{position:sticky;top:0;z-index:15;background:var(--paper);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:54px}
+.brand b{font-weight:900}
+.tag-preview{font-size:.78rem;font-weight:700;color:var(--warn);background:var(--warn-soft);border:1px solid var(--warn-line);padding:2px 10px;border-radius:999px}
+.progress{height:6px;background:#E7E3D8}
+.progress i{display:block;height:100%;width:0;background:var(--wine);transition:width .3s}
+main{padding:22px 0 120px}
+h1{font-weight:900;font-size:clamp(1.7rem,6vw,2.3rem);line-height:1.25;color:var(--wine);letter-spacing:-.01em}
+h2{font-weight:900;font-size:1.35rem;line-height:1.35;color:var(--wine)}
+h3{font-weight:700;font-size:1.08rem;line-height:1.45}
+.lead{color:var(--muted);margin-top:10px}
+.fine{font-size:.88rem;color:var(--muted)}
+.stack>*+*{margin-top:16px}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(60,45,20,.06)}
+.serif{font-family:var(--serif)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:999px;border:2px solid transparent;font-weight:700;font-size:1rem;cursor:pointer;text-decoration:none;width:100%}
+.btn.pri{background:var(--wine);color:#fff}
+.btn.pri:disabled{background:#B9A8AC;cursor:not-allowed}
+.btn.line{background:#fff;border-color:var(--ink);color:var(--ink)}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.link{background:none;border:0;padding:0;color:var(--wine);font-weight:700;text-decoration:underline;text-underline-offset:4px;cursor:pointer;min-height:44px}
+.qid{font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.q{font-family:var(--serif);font-size:1.3rem;line-height:1.6;margin-top:6px}
+.blank{display:inline-block;min-width:4em;border-bottom:2px solid var(--ink);margin:0 .15em;transform:translateY(2px)}
+.opts{display:grid;gap:10px;margin-top:18px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;min-height:58px;padding:10px 14px;background:#fff;border:1.5px solid #DDD8C8;border-radius:10px;text-align:left;cursor:pointer}
+.opt:disabled,div.opt{cursor:default}
+.opt .bub{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--ink);font-weight:700;font-size:.92rem}
+.opt .t{font-family:var(--serif);font-size:1.15rem;flex:1}
+.opt .mk{font-size:.8rem;font-weight:700}
+.opt[aria-pressed=true]{border-color:var(--wine);background:#FBF7EC}
+.opt[aria-pressed=true] .bub{background:var(--wine);border-color:var(--wine);color:#fff}
+.opt.right{border-color:var(--ok-line);background:var(--ok-soft)}
+.opt.right .bub{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.right .mk{color:var(--ok)}
+.opt.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+.opt.wrong .bub{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.wrong .mk{color:var(--bad)}
+.conf{margin-top:16px}
+.conf p{font-size:.95rem;color:var(--muted)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.seg button{min-height:48px;border-radius:10px;border:1.5px solid #DDD8C8;background:#fff;font-weight:700;cursor:pointer}
+.seg button[aria-pressed=true]{border-color:var(--wine);background:var(--wine);color:#fff}
+.actions{position:sticky;bottom:0;padding:14px 0 calc(14px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--paper) 70%,rgba(247,243,232,0));margin-top:8px}
+.fb{margin-top:18px;padding:16px;border-radius:10px;background:#FBF7EC;border-left:4px solid var(--ink);display:grid;gap:8px;font-size:.98rem}
+.fb.ok{border-color:var(--ok);background:var(--ok-soft)}
+.fb.bad{border-color:var(--bad);background:var(--bad-soft)}
+.fb .work{font-weight:700}
+.fb b{margin-right:.5em}
+.fb .sent b{margin-right:0}
+.actions.static{position:static;background:none}
+details.more{margin-top:4px}
+details.more summary{cursor:pointer;color:var(--wine);font-weight:700;min-height:40px;display:flex;align-items:center}
+details.more ul{margin-top:6px}
+.pill{display:inline-block;font-size:.8rem;font-weight:700;padding:2px 10px;border-radius:999px}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.maybe{background:var(--warn-soft);color:var(--warn)}
+.dir{border-left:4px solid var(--wine);padding:14px 16px;background:#fff;border-radius:10px}
+.dir h3{color:var(--wine)}
+.dir p{margin-top:6px}
+table.tbl{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:10px}
+table.tbl th,table.tbl td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+table.tbl th{color:var(--muted);font-weight:700;font-size:.85rem}
+.vid{display:block;width:100%;aspect-ratio:16/9;border-radius:12px;background:#2E2A26}
+#afterVideo{display:grid;gap:4px}
+#app{padding-bottom:calc(130px + env(safe-area-inset-bottom))}
+.actions{position:fixed;left:0;right:0;bottom:0;z-index:20;margin:0;padding:14px max(18px,calc((100vw - 684px)/2)) calc(14px + env(safe-area-inset-bottom))}
+.fb #toDemo{margin-top:4px}
+.fb .demo{margin-top:4px}
+.fbmore{display:grid;gap:8px;margin-top:8px}
+.fbmore ul{margin:4px 0 0 1.2em}
+.steps{display:grid;gap:8px;counter-reset:s;padding:0;list-style:none}
+.steps li{counter-increment:s;display:flex;gap:10px}
+.steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:var(--wine);color:#fff;font-weight:700;font-size:.85rem;display:grid;place-items:center;margin-top:2px}
+.demo .reveal{margin-top:14px}
+.demo ol.how{margin-top:12px;display:grid;gap:6px}
+.demo .ans{margin-top:10px;font-weight:700;color:var(--ok)}
+.demo .ex{margin-top:6px;color:var(--muted);font-size:.95rem}
+.score{font-size:2.6rem;font-weight:900;color:var(--wine);line-height:1.2}
+.review-item{padding:12px 0;border-bottom:1px solid var(--line)}
+.review-item:last-child{border-bottom:0}
+.review-item .q{font-size:1.05rem}
+.review-item p{font-size:.95rem;margin-top:4px}
+#dbg{position:fixed;right:8px;top:64px;z-index:80;max-width:min(260px,70vw);background:#262626;color:#fff;font:11px/1.5 ui-monospace,monospace;padding:8px 10px;border-radius:10px;opacity:.88;pointer-events:none}
+#dbg b{color:var(--hi)}
+.say{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--wine);background:#fff;color:var(--wine);font:700 .9rem var(--sans);cursor:pointer;flex:none}
+.say.ico{width:40px;min-height:40px;padding:0;font-size:1rem}
+.say[aria-pressed="true"]{background:var(--wine);color:#fff}
+.sent{margin-top:4px;padding:12px 14px;border-radius:10px;background:#fff;border:1px solid var(--line);display:grid;gap:6px}
+.sent .en{font-family:var(--serif);font-size:1.12rem;line-height:1.5}
+.sent .en b{color:var(--wine)}
+.sentfoot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sent .zh{color:var(--muted);font-size:.95rem}
+.ansline{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+div.opt .t{flex:none}
+div.opt .mk{margin-left:auto}
+div.opt .say.ico{width:36px;min-height:36px;margin-left:-4px}
+.fb .mv{border:2px solid var(--wine);border-radius:6px;padding:0 4px;font-weight:700}
+.fb .contrast{display:block;margin-top:8px;padding:10px 12px;border-radius:8px;background:#fff;border:1px solid var(--line)}
+.fb .contrast .en{display:block;font-family:var(--serif);font-size:1.05rem;margin:4px 0}
+.inp{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid #DDD8C8;border-radius:10px;font:inherit;background:#fff}
+.inp{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid #DDD8C8;border-radius:10px;font:inherit;background:#fff}
+#byLesson tr.miss td{color:var(--bad)}
+.wrongq .q{margin:0}
+ul.left{margin:4px 0 0 1.2em}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap bar">
+    <a class="link" href="../">← Score Rescue</a>
+    <span><b class="brand">詞性小課 結業測驗</b></span>
+  </div>
+  <div class="progress" id="prog" hidden><i></i></div>
+</div>
+<main class="wrap" id="app" aria-live="polite"></main>
+
+<script>
+(function(){
+'use strict';
+var SB_URL='https://uzesrnvtbplloqqgmhcl.supabase.co';
+var SB_KEY='sb_publishable_jrTIfxDHkliZJ8ySXIZyYg_jjKuA5I5';
+var DEBUG=/[?&]debug=1\b/.test(location.search);
+var LET=['A','B','C','D'],STORE='lessons',FINAL=[],authSb=null,gated=false;
+var LESSON_NAME={1:'形容詞還是副詞',2:'空格需要名詞嗎',3:'空格需要動詞嗎',4:'V-ing 還是 p.p.',5:'to V 還是 V-ing',6:'意思相近，怎麼選',7:'關係代名詞'};
+var app=document.getElementById('app');
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function stem(s){return esc(s).replace('______','<span class="blank" aria-label="空格"></span>')}
+function h(id){return document.getElementById(id)}
+function prog(p){var b=h('prog');if(p==null){b.hidden=true;return}b.hidden=false;b.firstChild.style.width=Math.round(p*100)+'%'}
+function render(html){app.innerHTML=html;window.scrollTo(0,0)}
+function lessonHref(n){return n===1?'index.html#l1':'l'+n+'.html'}
+
+/* ---------- 事件：每次作答各記一次 pos_final_start／pos_final_done（重新整理、回看結果不重送） ---------- */
+function dbg(name,state){
+  if(!DEBUG)return;
+  var d=h('dbg');
+  if(!d){d=document.createElement('div');d.id='dbg';d.innerHTML='<b>事件紀錄（debug，不送出）</b>';document.body.appendChild(d)}
+  var r=document.createElement('div');r.textContent=name+' · '+state;r.setAttribute('data-ev',name);d.appendChild(r);
+}
+function logOnce(name,attempt){
+  var k='ev_'+name+'_'+attempt;
+  try{if(sessionStorage.getItem(k)){dbg(name,'本次作答已記錄');return}sessionStorage.setItem(k,'1')}catch(e){}
+  if(DEBUG){dbg(name,'記錄');return}
+  try{if(authSb)authSb.from('events').insert({name:name}).then(function(){},function(){})}catch(e){}
+}
+function logEvent(name){   // 登入頁等一般事件：同一分頁只記一次
+  var k='ev_'+name;
+  try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1')}catch(e){}
+  if(DEBUG){dbg(name,'記錄');return}
+  try{if(authSb)authSb.from('events').insert({name:name}).then(function(){},function(){})}catch(e){}
+}
+
+/* ---------- 7 課完成紀錄（存在這個瀏覽器；各課提交 4 題確認題、進入完成畫面時記下） ---------- */
+function doneLessons(){var o=[];for(var n=1;n<=7;n++){try{if(localStorage.getItem('sr_pos_done_'+n))o.push(n)}catch(e){}}return o}
+
+/* ---------- 作答狀態：存在這個分頁（重新整理會接著做同一次作答） ---------- */
+var ST=null;
+function load(){try{ST=JSON.parse(sessionStorage.getItem('sr_final')||'null')}catch(e){ST=null}}
+function save(){try{sessionStorage.setItem('sr_final',JSON.stringify(ST))}catch(e){}}
+function newAttempt(){ST={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),i:0,ans:{},done:false};save()}
+
+/* ---------- 登入與付費（沿用主站 Email 登入與 paid_users；題庫放在不公開的 lessons 儲存桶） ---------- */
+var libReady=null;
+function loadLib(){
+  if(!libReady)libReady=new Promise(function(ok){
+    if(window.supabase)return ok();
+    var t=document.createElement('script');
+    t.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    t.onload=function(){ok()};t.onerror=function(){ok()};
+    document.head.appendChild(t);
+  });
+  return libReady;
+}
+function head(){return '<div class="qid">詞性小課（完整方案）</div><h1>結業測驗：14 題，每課 2 題</h1>'}
+function msg(t){prog(null);render('<div class="stack">'+head()+'<div class="sheet"><p>'+t+'</p></div></div>')}
+function fail(){msg('結業測驗暫時載入失敗。請重新整理再試一次；如果一直出現，請加<a class="link" href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener">官方 LINE</a> 告訴我們。')}
+function planHTML(){
+  return '<div class="sheet stack"><h3>還沒購買完整方案？</h3>'+
+    '<p>結業測驗屬於完整方案，和詞性小課第 4～7 課一起提供。第 1～3 課可以免費試學。</p>'+
+    '<a class="btn line" id="toPlan" href="../#pricing">看完整方案</a></div>';
+}
+function viewLogin(){
+  prog(null);logEvent('pos_paywall_view');
+  render('<div class="stack">'+head()+
+    '<div class="sheet stack"><h3>已經購買？登入就能開始</h3>'+
+      '<p>請輸入購買時登記的 Email，我們會寄一封登入連結給你。點開連結就會回到這一頁。</p>'+
+      '<form id="lf" class="stack" novalidate><input class="inp" type="email" id="le" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-label="Email">'+
+      '<button class="btn pri" id="ls" type="submit">寄登入連結</button></form><p class="fine" id="lm" aria-live="polite"></p></div>'+
+    planHTML()+'</div>');
+  h('lf').addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=h('le').value.trim(),m=h('lm'),b=h('ls');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){m.textContent='請輸入正確的 Email。';return}
+    if(!confirm('登入連結會寄到：\n'+email+'\n\n拼對了嗎？拼錯的話，連結會寄給別人。')){m.textContent='請修改 Email 後再送出。';h('le').focus();return}
+    b.disabled=true;m.textContent='寄送中…';
+    authSb.auth.signInWithOtp({email:email,options:{emailRedirectTo:location.origin+location.pathname}}).then(function(r){
+      b.disabled=false;
+      if(r&&r.error){m.textContent='寄送失敗：'+(r.error.message||'請稍後再試');return}
+      logEvent('pos_paywall_login_sent');m.textContent='已寄出！請到信箱點開登入連結（沒收到請看垃圾郵件）。';
+    },function(){b.disabled=false;m.textContent='寄送失敗，請稍後再試。'});
+  });
+}
+function viewNotPaid(email){
+  prog(null);logEvent('pos_paywall_notpaid');
+  render('<div class="stack">'+head()+
+    '<div class="sheet stack"><h3>這個帳號還沒開通完整方案</h3>'+
+      '<p>你目前登入的是 <b id="who">'+esc(email||'')+'</b>。</p>'+
+      '<p class="fine">已經轉帳了嗎？開通通常在數小時內完成。如果用的是另一個 Email，請換帳號登入。</p>'+
+      '<button class="btn line" id="swap" type="button">換一個 Email 登入</button></div>'+
+    planHTML()+'</div>');
+  h('swap').addEventListener('click',function(){authSb.auth.signOut().then(viewLogin,viewLogin)});
+}
+function viewLocked(done){
+  prog(null);
+  var left=[1,2,3,4,5,6,7].filter(function(n){return done.indexOf(n)<0});
+  render('<div class="stack">'+head()+
+    '<div class="sheet stack" id="locked"><h3>先完成第 1～7 課</h3>'+
+      '<p>每一課做完 4 題確認題、看到完成畫面，就算完成。這個瀏覽器已完成 '+done.length+'／7 課。</p>'+
+      '<ul class="left">'+left.map(function(n){return '<li><a class="link" href="'+lessonHref(n)+'">第 '+n+' 課：'+LESSON_NAME[n]+'</a></li>'}).join('')+'</ul>'+
+      '<p class="fine">完成紀錄存在這個瀏覽器裡。換了手機或電腦，要在那台裝置上把各課的確認題再做一次。</p></div></div>');
+}
+function loadFinal(){
+  msg('載入結業測驗中…');
+  return authSb.storage.from(STORE).download('final.js').then(function(r){
+    if(r.error||!r.data)throw r.error||new Error('no content');
+    return r.data.text();
+  }).then(function(code){
+    eval(code);   // 只會設定 FINAL（見 tools/build_final.py）
+    if(FINAL.length!==14)throw new Error('bad content');
+    expose();
+    var done=doneLessons();
+    if(done.length<7)return viewLocked(done);
+    load();
+    if(ST&&ST.done)return viewResult();
+    if(ST&&ST.id)return viewQ();
+    viewIntro();
+  });
+}
+function checkPaid(user){
+  msg('確認購買資格中…');
+  return authSb.from('paid_users').select('email').then(function(r){
+    if(r.error)throw r.error;
+    if(!(r.data||[]).length)return viewNotPaid(user&&user.email);
+    return loadFinal();
+  });
+}
+function gate(){
+  msg('載入中…');
+  loadLib().then(function(){
+    if(!window.supabase)throw new Error('no lib');
+    authSb=window.supabase.createClient(SB_URL,SB_KEY);
+    authSb.auth.onAuthStateChange(function(ev,s){if(ev==='SIGNED_IN'&&!gated&&s){gated=true;checkPaid(s.user).catch(fail)}});
+    return authSb.auth.getSession().then(function(r){
+      var s=r&&r.data&&r.data.session;
+      if(gated)return;
+      if(!s)return viewLogin();
+      gated=true;return checkPaid(s.user);
+    });
+  }).catch(fail);
+}
+
+/* ---------- 測驗 ---------- */
+function viewIntro(){
+  prog(null);
+  render('<div class="stack">'+head()+
+    '<div class="sheet stack"><h3>7 課全部完成</h3>'+
+      '<ul><li>14 題，每課 2 題，混合排列，不標示考點。</li><li>一題一頁，作答時不顯示對錯，14 題做完再看結果。</li><li>約 10 分鐘。結果不換算多益分數。</li></ul></div>'+
+    '<div class="actions"><button class="btn pri" id="start">開始結業測驗</button></div></div>');
+  h('start').addEventListener('click',function(){newAttempt();logOnce('pos_final_start',ST.id);viewQ()});
+}
+function viewQ(){
+  var i=ST.i,q=FINAL[i],k=ST.ans[q.id];
+  prog(i/FINAL.length);
+  render('<div class="sheet"><div class="qid">結業測驗 第 '+(i+1)+' / '+FINAL.length+' 題</div><p class="q">'+stem(q.s)+'</p>'+
+    '<div class="opts" role="group" aria-label="選項">'+q.o.map(function(t,j){
+      return '<button type="button" class="opt" data-k="'+j+'" aria-pressed="'+(k===j)+'"><span class="bub">'+LET[j]+'</span><span class="t">'+esc(t)+'</span></button>'}).join('')+'</div></div>'+
+    '<div class="actions"><button class="btn pri" id="next"'+(k==null?' disabled':'')+'>'+(i===FINAL.length-1?'看結果':'下一題')+'</button>'+
+    (i>0?'<p style="text-align:center"><button class="link" id="prev">上一題</button></p>':'')+'</div>');
+  app.querySelectorAll('.opt').forEach(function(b){b.addEventListener('click',function(){ST.ans[q.id]=+b.dataset.k;save();viewQ()})});
+  h('next').addEventListener('click',function(){
+    if(i<FINAL.length-1){ST.i++;save();viewQ()}
+    else{ST.done=true;save();logOnce('pos_final_done',ST.id);viewResult()}
+  });
+  if(h('prev'))h('prev').addEventListener('click',function(){ST.i--;save();viewQ()});
+}
+function viewResult(){
+  prog(1);
+  var right=0,by={};
+  FINAL.forEach(function(q){var ok=ST.ans[q.id]===q.a;if(ok)right++;by[q.lesson]=by[q.lesson]||{c:0,n:0};by[q.lesson].n++;if(ok)by[q.lesson].c++});
+  var wrong=FINAL.filter(function(q){return ST.ans[q.id]!==q.a});
+  render('<div class="stack">'+
+    '<div class="qid">詞性小課 結業測驗</div><h1>答對 '+right+'／'+FINAL.length+' 題</h1>'+
+    '<div class="sheet"><table class="tbl" id="byLesson"><thead><tr><th>課程</th><th>答對</th></tr></thead><tbody>'+
+      [1,2,3,4,5,6,7].map(function(n){var b=by[n];return '<tr'+(b.c<b.n?' class="miss"':'')+'><td>第 '+n+' 課　'+LESSON_NAME[n]+'</td><td>'+b.c+'／'+b.n+'</td></tr>'}).join('')+
+    '</tbody></table><p class="fine" style="margin-top:8px">每課只有 2 題，只能當作複習方向，不換算多益分數。</p></div>'+
+    (wrong.length?'<h2>錯題</h2>'+wrong.map(function(q){
+      var k=ST.ans[q.id];
+      return '<div class="sheet stack wrongq" data-id="'+q.id+'"><div class="qid">第 '+q.n+' 題 · 第 '+q.lesson+' 課</div><p class="q">'+stem(q.s)+'</p>'+
+        '<p>你選 ('+LET[k]+') '+esc(q.o[k])+'，正解是 <b>('+LET[q.a]+') '+esc(q.o[q.a])+'</b></p>'+
+        '<p>'+esc(q.why)+'</p>'+
+        '<details class="more"><summary>看完整解析</summary><div class="fbmore"><div>'+esc(q.x[k])+'</div><p class="zh">'+esc(q.zh)+'</p></div></details>'+
+        '<a class="btn line" href="'+lessonHref(q.lesson)+'">回第 '+q.lesson+' 課複習</a></div>'}).join('')
+     :'<div class="sheet"><p>14 題全對！七課的判斷方法都用上了。</p></div>')+
+    '<a class="btn line" href="../">回到 Score Rescue</a>'+
+    '<p style="text-align:center"><button class="link" id="redo">重新作答</button></p></div>');
+  h('redo').addEventListener('click',function(){newAttempt();logOnce('pos_final_start',ST.id);viewQ()});
+}
+function expose(){window.__final={FINAL:FINAL,st:function(){return ST}}}
+
+gate();
+})();
+</script>
+</body>
+</html>

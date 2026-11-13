@@ -6,7 +6,8 @@ import pytest
 from conftest import ROOT, TEST_PAGE
 
 POS = ROOT / 'pos' / 'index.html'
-EVENTS = ['pos_pretest_start', 'pos_pretest_done', 'pos_trial_click', 'pos_l1_done', 'pos_day17_click']
+AT = ['pos_pretest_at%d' % n for n in (3, 6, 9, 12)]   # 前測做到第幾題
+EVENTS = ['pos_pretest_start', *AT, 'pos_pretest_done', 'pos_trial_click', 'pos_l1_done', 'pos_day17_click']
 
 # 假 Supabase：記下每一筆 insert（資料表與事件名稱），不連到真的資料庫
 POS_STUB = ("window.__ins=[];window.supabase={createClient:function(){return {from:function(t){return {insert:function(row){"
@@ -59,8 +60,11 @@ def test_answer_keys_match_answer_card(open_pos):
 
 def answer(p, k, conf='sure', btn='#next'):
     p.click('.opt[data-k="%d"]' % k)
-    if btn == '#next':   # 只有前測問「有把握／不確定」
+    if btn == '#next':   # 只有前測問「有把握／不確定」：點把握度就自動下一題
+        p.evaluate('window.__pi=__pos.st.pre.i')
         p.click('[data-conf="%s"]' % conf)
+        p.wait_for_function('__pos.st.pre.i!==window.__pi||!!document.getElementById("trial")')
+        return
     p.click(btn)
 
 
@@ -78,18 +82,18 @@ def walk(p, chk_wrong=(3,)):
         answer(p, (a + 1) % 4 if i in chk_wrong else a, btn='#submit')
         if i in chk_wrong:
             p.click('#toDemo')
-            p.click('#back')
+            p.click('#toDemo')
         p.click('#next')
 
 
-def test_full_flow_records_five_events(open_pos):
+def test_full_flow_records_all_events(open_pos):
     p = open_pos()
     walk(p)
     assert '這次答對 3／4 題' in p.inner_text('#app')
     assert p.get_attribute('#d17', 'href') == '../#day1-7'
     p.evaluate("()=>{document.getElementById('d17').setAttribute('href','#stay')}")   # 測試裡不真的離開頁面
     p.click('#d17')
-    p.wait_for_function('window.__ins.length===5')
+    p.wait_for_function('window.__ins.length===%d' % len(EVENTS))
     ins = p.evaluate('window.__ins')
     assert ins == [['events', n] for n in EVENTS]
     assert all(re.fullmatch(r'[a-z0-9_]{1,40}', n) for n in EVENTS), '符合 events 表的名稱限制'
@@ -115,11 +119,12 @@ def test_check_wrong_jumps_to_demo_and_back(open_pos):
         answer(p2, a, btn='#submit'); p2.click('#next')
     a = p2.evaluate('__pos.CHK[0].a')
     answer(p2, (a + 1) % 4, btn='#submit')
-    assert p2.inner_text('#toDemo') == '回看示範2（L1-DEMO-02）'
+    assert p2.inner_text('#toDemo') == '看同類示範（示範2）'
     p2.click('#toDemo')
-    t = p2.inner_text('#app')
+    t = p2.inner_text('#demoBox')
     assert 'L1-DEMO-02' in t and '答案：(B) confidently' in t
-    p2.click('#back')
+    p2.wait_for_timeout(800)   # 等展開示範的平滑捲動結束
+    p2.click('#fullFb summary')
     t = p2.inner_text('#app')
     assert 'L1-CHK-01' in t and '空格的工作：說明 responded 的方式' in t
 
@@ -197,17 +202,23 @@ def test_confidence_only_in_pretest(open_pos):
     assert not p.is_disabled('#submit')
 
 
-def test_home_has_pos_card_below_diagnosis(app):
-    """首頁：「開始免費診斷」主按鈕下方有詞性小課卡片，外框按鈕連到 ./pos/。"""
+def test_home_leads_with_pos_pretest(app):
+    """首頁第一屏：主按鈕是 15 題詞性前測（橘色），30 題閱讀診斷放在下方當次要選項；介紹與範例收進「看更多」，價格直接顯示。"""
     pg = app.page
-    card = pg.locator("#posCard")
-    assert card.locator('h2').inner_text() == '免費 Part 5 詞性小課'
-    assert card.locator('p').inner_text() == '先做 15 題詞性前測，第 1～3 課免費試學，練習判斷空格要填哪種詞性。'
-    btn = card.locator('a.btn')
+    btn = pg.locator('.hero-cta a#posCardBtn')
     assert btn.inner_text() == '開始免費詞性前測' and btn.get_attribute('href') == './pos/'
-    assert 'line' in btn.get_attribute('class'), '次要按鈕，和橘色的診斷主按鈕區分'
-    diag = pg.locator(".hero-cta [data-start]")
-    assert diag.bounding_box()['y'] + diag.bounding_box()['height'] < card.bounding_box()['y']
+    assert 'fire' in btn.get_attribute('class')
+    assert btn.bounding_box()['y'] + btn.bounding_box()['height'] < 844, '手機第一屏就看得到主按鈕'
+    card = pg.locator('#diagCard')
+    diag = card.locator('[data-start]')
+    assert diag.inner_text() == '開始 30 題閱讀診斷' and 'line' in diag.get_attribute('class')
+    assert btn.bounding_box()['y'] < card.bounding_box()['y']
+    assert pg.locator('header a.btn[href="./pos/"]').inner_text() == '免費前測'
+    assert not pg.evaluate("document.getElementById('more').open") and pg.is_hidden('#sample'), '介紹與範例預設收起'
+    assert pg.is_visible('#pricing [data-price]') and pg.is_visible('#promoDesc')
+    assert '詞性小課第 4～7 課' in pg.inner_text('#pricing .plan.hot')
+    pg.click('#more > summary')
+    assert pg.is_visible('#sample')
 
 
 def _home(browser, query=''):
@@ -283,14 +294,15 @@ def test_home_card_to_pretest_keeps_debug(browser, http_root, debug):
         page.click('#go')
         for a in page.evaluate('__pos.PRE.map(q=>q.a)'):
             page.click('.opt[data-k="%d"]' % a)
-            page.click('[data-conf="sure"]')
-            page.click('#next')
+            page.evaluate('window.__pi=__pos.st.pre.i')
+            page.click('[data-conf="sure"]')   # 點把握度就自動下一題
+            page.wait_for_function('__pos.st.pre.i!==window.__pi||!!document.getElementById("trial")')
         assert page.query_selector('#trial')
         page.wait_for_timeout(500)
         if debug:
             assert ins == [], '首頁和前測頁在 debug 模式都不送事件'
             assert 'pos_pretest_start' in page.inner_text('#dbg'), '前測頁的 debug 面板有顯示事件'
         else:
-            assert ins == ['pos_home_card_click', 'pos_pretest_start', 'pos_pretest_done']
+            assert ins == ['pos_home_card_click', 'pos_pretest_start', *AT, 'pos_pretest_done']
     finally:
         ctx.close()

@@ -8,12 +8,13 @@ L2 = ROOT / 'pos' / 'l2.html'
 L3 = ROOT / 'pos' / 'l4.html'
 L3_PAGE = ROOT / 'pos' / 'l3.html'
 POS = ROOT / 'pos' / 'index.html'
-STUB = ("window.__ins=[];window.supabase={createClient:function(){return {from:function(t){return {insert:function(row){"
-        "window.__ins.push([t,row.name]);return Promise.resolve({error:null})}}}}}};")
-JUMP = [('L4-CHK-01', 'L4-DEMO-01', '回看示範1（L4-DEMO-01）', '答案：(D) adjusted'),
-        ('L4-CHK-02', 'L4-DEMO-02', '回看示範2（L4-DEMO-02）', '答案：(B) growing'),
-        ('L4-CHK-03', 'L4-DEMO-03', '回看示範3（L4-DEMO-03）', '答案：(C) touring'),
-        ('L4-CHK-04', 'L4-DEMO-04', '回看示範4（L4-DEMO-04）', '答案：(A) attached')]
+from conftest import GATE_STUB as STUB, gate_init, need_private
+
+pytestmark = need_private
+JUMP = [('L4-CHK-01', 'L4-DEMO-01', '看同類示範（示範1）', '答案：(D) adjusted'),
+        ('L4-CHK-02', 'L4-DEMO-02', '看同類示範（示範2）', '答案：(B) growing'),
+        ('L4-CHK-03', 'L4-DEMO-03', '看同類示範（示範3）', '答案：(C) touring'),
+        ('L4-CHK-04', 'L4-DEMO-04', '看同類示範（示範4）', '答案：(A) attached')]
 
 
 @pytest.fixture
@@ -23,6 +24,7 @@ def open_page(browser):
     def _open(path=L3, query=''):
         ctx = browser.new_context(viewport={'width': 390, 'height': 844})
         ctx.route('**/supabase-js@2*', lambda r: r.fulfill(status=200, content_type='application/javascript', body=STUB))
+        ctx.add_init_script(gate_init())   # 已登入、已付費的帳號
         page = ctx.new_page()
         errs = []
         page.on('pageerror', lambda e: errs.append(str(e)))
@@ -104,17 +106,18 @@ def test_each_check_wrong_jumps_to_its_demo(open_page, i):
         p.evaluate("()=>{delete __pos.st.chk.ans['%s'];__pos.view('chk')}" % cid)
         answer(p, wrong)
         assert p.inner_text('#toDemo') == label
+        assert p.is_hidden('#demoBox')
         p.click('#toDemo')
-        t = p.inner_text('#app')
-        assert did in t and ans in t and ('你在 %s 答錯了' % cid) in t
-        p.click('#back')
-        t = p.inner_text('#app')
-        assert cid in t and '空格的工作' in t and p.query_selector('#toDemo')
+        t = p.inner_text('#demoBox')
+        assert did in t and ans in t, '示範直接在原題下方展開'
+        assert p.inner_text('#toDemo') == '收起示範'
+        p.click('#toDemo')
+        assert p.is_hidden('#demoBox') and cid in p.inner_text('#app'), '收起後仍在原題'
 
 
-def test_l4_done_screen_and_no_entry_from_l3(open_page):
+def test_l4_done_screen_and_entry_from_l3(open_page):
     p = open_page()
-    assert p.query_selector('#l1video').get_attribute('src') == 'lesson4.mp4'
+    assert p.query_selector('#l1video').get_attribute('src') == 'https://signed.test/lessons/lesson4.mp4?token=t'
     assert '完整方案' in p.inner_text('#app')
     finish(p)
     t = p.inner_text('#app')
@@ -123,4 +126,5 @@ def test_l4_done_screen_and_no_entry_from_l3(open_page):
     assert p.evaluate('window.__ins') == [], '第 4 課目前不送事件'
     q = open_page(L3_PAGE)
     finish(q)
-    assert 'l4.html' not in q.content(), '第 3 課完成畫面暫不接第 4 課'
+    assert q.get_attribute('#nextl', 'href') == 'l4.html', '第 3 課完成畫面接第 4 課'
+    assert 'pri' in q.get_attribute('#nextl', 'class') and 'line' in q.get_attribute('#d17', 'class')
