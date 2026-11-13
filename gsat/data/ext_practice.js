@@ -191,15 +191,15 @@ window.EXT_PRACTICE = [
   "targets": [
    "dread-v"
   ],
-  "q": "Many people dread ______ in front of a large audience.",
+  "q": "She dreads ______ bad news to her parents.",
   "options": [
-   "to speak",
-   "speaking",
-   "speak",
-   "spoken"
+   "giving",
+   "gives",
+   "gave",
+   "given"
   ],
-  "answer": 1,
-  "explain": "dread 後面接名詞或動名詞(V-ing),不接 to V。",
+  "answer": 0,
+  "explain": "本句要把『告訴父母壞消息』這個動作當作 dreads 的受詞,使用 V-ing 形式 giving 最自然。gives、gave 是限定動詞,given 是過去分詞,都不能在這個位置表達題目需要的結構。",
   "status": "draft"
  },
  {
@@ -209,15 +209,15 @@ window.EXT_PRACTICE = [
   "targets": [
    "dread-v"
   ],
-  "q": "He ______ the thought of losing his job, so he works extra hours.",
+  "q": "Nina ______ the upcoming job interview because she is afraid she will make a mistake.",
   "options": [
    "dreads",
-   "shatters",
-   "overturns",
-   "wanders"
+   "stresses",
+   "wanders",
+   "welcomes"
   ],
   "answer": 0,
-  "explain": "因為害怕失業才加班,所以填 dreads(害怕)。主詞 he 是第三人稱單數,動詞加 s。",
+  "explain": "後半句說 Nina 害怕自己會犯錯,因此前面需要表示她『很害怕／很不想面對』即將到來的面試。dreads 最符合語意。stresses 在此不能表達這種畏懼;wanders 是漫步／遊蕩;welcomes 是『欣然接受／歡迎』,與後面的害怕語境相反。",
   "status": "draft"
  },
  {

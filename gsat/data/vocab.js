@@ -675,7 +675,7 @@ window.VOCAB = {
      "zh": "很多學生一想到要考口試就害怕。"
     }
    ],
-   "note": "dread 後面直接接受詞或動名詞,不接 to V。",
+   "note": "dread 常直接接名詞或 V-ing,表示『害怕／很不想面對某事』,例如 dread the exam、dread speaking in public。英文也有 dread to think 等 to-infinitive 用法,因此不要把『dread 絕對不能接 to V』當成一般文法規則。",
    "rel": {
     "syn": [
      {
@@ -687,7 +687,7 @@ window.VOCAB = {
     "confusable": [
      {
       "w": "fear",
-      "note": "fear 可泛指各種害怕;dread 多指「對即將發生的事」強烈恐懼、不想面對,帶有預期的心理。"
+      "note": "fear 是較廣義的『害怕』;dread 常帶有對即將發生或預期會發生的不愉快事情感到強烈不安、畏懼的意味。兩者意思相近,但不能假設所有語境都可直接互換。"
      }
     ]
    },
@@ -699,7 +699,7 @@ window.VOCAB = {
    "hw": "dreadful",
    "key": "adj",
    "pos": "adj.",
-   "zh": "可怕的;糟透的",
+   "zh": "可怕的;很糟的",
    "forms": [
     "dreadful"
    ],
@@ -1736,7 +1736,7 @@ window.VOCAB = {
     }
    ],
    "ex": [],
-   "note": "不及物動詞,後面不能直接接受詞。",
+   "note": "wander 常表示漫無目的地走動,也可表示思緒飄移;它並非只能作不及物動詞,例如 wander the streets。判斷時要依實際語意與搭配。",
    "rel": {
     "syn": [],
     "ant": [],
@@ -2447,7 +2447,7 @@ window.VOCAB = {
   },
   "public-appearance": {
    "t": "make a public appearance",
-   "zh": "公開露面"
+   "zh": "公開露面;在公開場合露面。可用單數(make a public appearance:一次公開露面)或複數(make public appearances:多次／泛指公開露面),原題用的是 making public appearances。"
   },
   "devote-oneself": {
    "t": "devote oneself to",
