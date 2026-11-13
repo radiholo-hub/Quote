@@ -1,7 +1,7 @@
 // 原創詳解(自行撰寫,非第三方解析)。鍵為「年度-題號」。schema 2:引用單字詞條(gsat/data/vocab.js),字義與詞性只在詞條裡定義一次。
 // status:draft＝AI 草稿,待英文老師審核;reviewed＝已審核(審核前不得標為 reviewed)。reviewer／reviewedAt／reviewNotes 由審核者填寫。
 // 【資料來源】本檔是版本控制下的唯一來源,直接編輯;沒有任何 repo 外的產生流程,也不得再用腳本整檔重新產生(會把教師簽核欄位覆蓋回 draft;gsat/tests/test_signoff.py 會擋)。
-// 已簽核的題目(目前有 115-1、115-2、115-3、115-4、115-5)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
+// 已簽核的題目(目前有 115-1、115-2、115-3、115-4、115-5、115-6)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
 // 審核方式:python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾> 產生含題目與檢核欄位的審核表(內含試題,請勿公開)。
 window.EXPLAIN = {
  "115-1": {
@@ -228,31 +228,31 @@ window.EXPLAIN = {
  "115-6": {
   "schema": 2,
   "answer": "A",
-  "status": "draft",
-  "reviewer": null,
-  "reviewedAt": null,
-  "reviewNotes": "",
+  "status": "reviewed",
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-13",
+  "reviewNotes": "2026-11-13 教師（負責人）確認:Q6 教學文字與 40 個教師審核項目已正式簽核通過。音檔的人工驗收狀態與適用的音檔版本,以 docs/gsat/signoffs/115-6.json 的 audio 區塊為準(本欄位不記載音檔通過數量)。",
   "key": [
-   "句首說主詞是「害羞、怕公開露面」的男孩,所以空格要表達他對「在大批觀眾前演講」感到畏懼。",
-   "空格後面是 the thought of speaking…,能接 the thought of 並表示「害怕」的動詞是 dread。",
-   "Timmy 是第三人稱單數、時態是現在式,所以用 dreads。"
+   "句首先說 Timmy 生性害羞,又害怕公開露面,因此空格應表達他對『在眾多聽眾面前演講』感到害怕或畏懼。",
+   "the thought of speaking before large audiences 是空格後面的受詞內容,意思是『在眾多聽眾面前演講這件事／這個念頭』。四個選項中,dread 能表達對這件未來可能發生的事感到強烈害怕,因此語意最符合。",
+   "主詞 Timmy 是第三人稱單數,而且句子描述一般狀態,使用現在式,因此 dread 要變成 dreads。"
   ],
   "options": {
    "A": {
     "entry": "dread-v",
-    "why": "dread＝害怕、畏懼,dread the thought of speaking＝一想到要演講就害怕。"
+    "why": "dread 表示對可能發生、令人不安或不愉快的事情感到強烈害怕或憂慮。dreads the thought of speaking 在本句表示『一想到要演講就感到畏懼』,最符合前文 shy、afraid 的語境。"
    },
    "B": {
     "entry": "stress-v",
-    "why": "stress 當動詞主要是「強調」,stresses the thought 會變成「強調這個想法」,和前面 afraid 的語氣不合。"
+    "why": "stress 作動詞可表示『強調』,也有『使承受壓力』等用法;但 stresses the thought 在本句無法表達 Timmy『害怕演講』的心理,因此語意不合。"
    },
    "C": {
     "entry": "wander-v",
-    "why": "wander 是不及物動詞「閒逛、漫遊」,後面不能直接接 the thought。"
+    "why": "wander 可表示『漫步、閒逛』,也可表示思緒飄移;某些用法中也能直接接受詞,例如 wander the streets。因此本題不選 wander 的理由不是文法限制,而是 wander the thought 無法表達『對這個念頭感到害怕』的意思。"
    },
    "D": {
     "entry": "escape-v",
-    "why": "escape 是「逃脫、逃離」(地點或危險),escape the thought 不是慣用搭配,也不是題意要的「感到恐懼」。"
+    "why": "escape 可表示『逃離、逃脫、躲過』,而且可作及物動詞,例如 escape danger、escape notice。在本句若使用 escapes,無法表達 Timmy『對演講感到畏懼』的心理,因此語意不合。"
    }
   },
   "words": [
@@ -262,12 +262,12 @@ window.EXPLAIN = {
    "public-appearance"
   ],
   "patterns": [
-   "dread the thought of + V-ing(一想到…就害怕)",
-   "dread + V-ing(害怕做某事)"
+   "dread the thought of + N / V-ing(一想到…就害怕)",
+   "dread + N / dread + V-ing(害怕／很不想面對某事,例:dread the exam、dread speaking in public)"
   ],
-  "grammar": "the thought of + V-ing:介系詞 of 後面接動名詞,所以是 the thought of speaking,不能寫 the thought of to speak。句首 As a shy boy… 的 as 是「作為」,afraid of… 是放在 boy 後面的形容詞片語。",
+  "grammar": "the thought of + V-ing 中,of 是介系詞,因此後面可接動名詞,例如 the thought of speaking。句首 As a shy boy afraid of making public appearances 中,as + 名詞片語可理解為『身為……』;在本句語境中也提供後面行為的原因背景,但不要簡化成所有 as + 名詞都等於 because。afraid of making public appearances 是形容詞片語,用來補充描述 boy;其中 of 是介系詞,後接 making。",
   "focus": "dread-v",
-  "zh": "提米是個害羞的男孩,害怕公開露面,一想到要在一大群聽眾面前演講就感到畏懼。"
+  "zh": "提米生性害羞,也害怕公開露面,因此一想到要在眾多聽眾面前演講就感到畏懼。"
  },
  "115-7": {
   "schema": 2,
