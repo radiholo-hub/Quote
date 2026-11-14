@@ -55,6 +55,20 @@ function home(){
   var r=document.getElementById("resume");if(r)r.onclick=function(ev){ev.stopPropagation();location.hash="#/quiz"};
 }
 
+
+/* 語音(只在交卷後):使用裝置內建的英文語音 */
+var TTS="speechSynthesis" in window,spk={};
+function clean(t){return String(t).replace(/【\d+】/g," blank ").replace(/_{2,}/g," blank ").replace(/\s+/g," ").trim()}
+function stopSpeak(){if(TTS)speechSynthesis.cancel();[].forEach.call(document.querySelectorAll(".sp.on"),function(b){b.classList.remove("on")})}
+function speak(text,rate,btn){
+  if(!TTS){alert("這個瀏覽器不支援語音朗讀");return}
+  var was=btn&&btn.classList.contains("on");stopSpeak();if(was)return;
+  var parts=clean(text).match(/[^.!?;]+[.!?;]*/g)||[clean(text)],v=speechSynthesis.getVoices().filter(function(x){return /^en[-_]US/i.test(x.lang)})[0]||speechSynthesis.getVoices().filter(function(x){return /^en/i.test(x.lang)})[0];
+  if(btn)btn.classList.add("on");
+  parts.forEach(function(p,i){var u=new SpeechSynthesisUtterance(p.trim());u.lang="en-US";u.rate=rate||0.95;if(v)u.voice=v;
+    if(i===parts.length-1)u.onend=u.onerror=function(){if(btn)btn.classList.remove("on")};speechSynthesis.speak(u)});
+}
+function spBtn(key,text,label,rate){spk[key]=[text,rate||0.95];return '<button class="sp" data-sp="'+key+'" aria-label="朗讀">🔊'+(label?' '+label:'')+'</button>'}
 function fmt(s){s=Math.max(0,s);return Math.floor(s/60)+":"+("0"+Math.floor(s%60)).slice(-2)}
 var timer=null;
 function quiz(){
@@ -65,16 +79,20 @@ function quiz(){
   S.groups.forEach(function(g,gi){
     var key=g.year+g.type;
     if(key!==lastKey){h+='<div class="sec">'+g.year+' · '+g.name+'</div>';lastKey=key}
+    if(g.passage&&S.done)h+='<div class="spbar">'+spBtn('p'+gi,g.passage.join(' '),'朗讀文章')+spBtn('ps'+gi,g.passage.join(' '),'慢速',0.7)+'</div>';
     if(g.passage)h+='<div class="passage">'+g.passage.map(function(p){return '<p>'+esc(p).replace(/【(\d+)】/g,function(_,n){return '<span class="blank" data-b="'+g.year+'-'+n+'">'+n+'</span>'})+'</p>'}).join('')+'</div>';
     if(g.bank){var sent=g.type==="structure";
       h+='<div class="bank'+(sent?' sent':'')+'">'+g.bank.map(function(w,i){return '<div><b>('+L[i]+')</b> '+esc(w)+'</div>'}).join('')+'</div>'}
     g.qs.forEach(function(q){h+=qHtml(g,q)});
   });
   app.innerHTML=h;
-  app.onclick=function(ev){var b=ev.target.closest(".opt");if(!b||b.disabled)return;pick(b.dataset.id,b.dataset.l)};
+  app.onclick=function(ev){var sp=ev.target.closest("[data-sp]");if(sp){var t=spk[sp.dataset.sp];if(t)speak(t[0],t[1],sp);return}
+    var w=ev.target.closest("[data-w]");if(w){speak(w.dataset.w,0.85,w);return}
+    var b=ev.target.closest(".opt");if(!b||b.disabled)return;pick(b.dataset.id,b.dataset.l)};
   document.getElementById("submit").onclick=function(){
     var un=S.n-Object.keys(S.ans).length;
     if(un&&!S.locked&&!confirm("還有 "+un+" 題沒作答,確定要結束嗎?"))return;finish()};
+  if(S.done){var sb=document.getElementById("submit");sb.textContent="回首頁";sb.onclick=function(){location.hash="#/"};document.getElementById("clock").textContent="檢討"}
   refreshAll();tick();if(S.limit&&!S.done&&(Date.now()-S.t0)/1000>=S.limit)lock();clearInterval(timer);timer=setInterval(tick,1000);
 }
 function qHtml(g,q){
@@ -113,7 +131,7 @@ function exHtml(id){
   if(!x)return '<div class="mute">此題詳解尚未提供</div>';
   var q=find(id),h='<details class="ex"><summary>詳解 <span class="draft">草稿・待老師審核</span></summary><p>'+esc(x.key)+'</p>';
   if(x.opts)h+='<ul>'+Object.keys(x.opts).map(function(k){return '<li><b>'+k+(k===q.ans?' ✔':'')+'</b> '+esc(x.opts[k])+'</li>'}).join('')+'</ul>';
-  if(x.vocab&&x.vocab.length)h+='<p class="mute">'+x.vocab.map(function(v){return '<b>'+esc(v[0])+'</b> '+esc(v[1])}).join(' ・ ')+'</p>';
+  if(x.vocab&&x.vocab.length)h+='<p class="mute">'+x.vocab.map(function(v){return '<button class="sp w" data-w="'+esc(v[0])+'">🔊 <b>'+esc(v[0])+'</b></button> '+esc(v[1])}).join(' ・ ')+'</p>';
   return h+'</details>';
 }
 function refreshAll(){S.groups.forEach(function(g){g.qs.forEach(function(q){refresh(g.year+"-"+q.n)})});prog()}
@@ -144,7 +162,7 @@ function finish(){
   var wrong=[];S.groups.forEach(function(g){g.qs.forEach(function(q){var id=g.year+"-"+q.n;if(S.ans[id]!==q.ans)wrong.push(id)})});
   var h='<h1>成績</h1><div class="card"><div class="score">'+ok+' / '+S.n+'</div><div class="mute">答對率 '+Math.round(ok/S.n*100)+'% · 用時 '+fmt((Date.now()-S.t0)/1000)+'</div><div style="margin-top:10px">'+
     Object.keys(by).map(function(k){return '<div>'+k+':'+by[k][0]+' / '+by[k][1]+'</div>'}).join('')+'</div></div>'+
-    '<p class="mute">本站只計選擇題;填空簡答、中譯英、作文由老師人工批改。</p><p class="row"><button class="btn" id="rev">檢討全部題目</button>'+(wrong.length?'<button class="btn primary" id="rw">只看錯題('+wrong.length+')</button>':'')+'<a class="btn" href="#/" id="back">回首頁</a></p>';
+    '<p class="mute">本站只計選擇題;填空簡答、中譯英、作文由老師人工批改。</p><p class="row"><button class="btn" id="rev">檢討全部題目</button><a class="btn" href="#/vocab">本卷單字表</a>'+(wrong.length?'<button class="btn primary" id="rw">只看錯題('+wrong.length+')</button>':'')+'<a class="btn" href="#/" id="back">回首頁</a></p>';
   app.innerHTML=h;
   document.getElementById("rev").onclick=function(){review(null)};
   var rw=document.getElementById("rw");if(rw)rw.onclick=function(){review(wrong)};
@@ -162,8 +180,19 @@ function review(only){
   document.getElementById("clock").textContent="檢討";
   S.done=true;refreshAll();
 }
+
+function vocabPage(){
+  if(!S||!S.done){location.hash="#/";return}
+  var ex=(window.EXPLAIN||{})[S.opts.year]||{},seen={},rows=[];
+  Object.keys(ex).sort(function(a,b){return a-b}).forEach(function(n){(ex[n].vocab||[]).forEach(function(v){var k=v[0].toLowerCase();if(!seen[k]){seen[k]=1;rows.push([v[0],v[1],n])}})});
+  app.innerHTML='<h1>'+esc(S.title)+' 單字表</h1><p class="mute">共 '+rows.length+' 個(草稿・待老師審核),點 🔊 聽發音。</p><p><a class="btn" href="#/quiz">返回檢討</a></p><div class="card vocab">'+
+    rows.map(function(r){return '<div class="vrow"><button class="sp w" data-w="'+esc(r[0])+'">🔊</button><b>'+esc(r[0])+'</b><span>'+esc(r[1])+'</span><small class="mute">第 '+r[2]+' 題</small></div>'}).join('')+'</div>';
+  app.onclick=function(ev){var w=ev.target.closest("[data-w]");if(w)speak(w.dataset.w,0.85,w)};
+}
 function route(){
+  stopSpeak();
   clearInterval(timer);app.onclick=null;
+  if(location.hash==="#/vocab"){vocabPage();return}
   if(location.hash==="#/quiz"){
     if(!S)S=load("session",null);
     quiz();

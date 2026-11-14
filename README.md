@@ -59,6 +59,7 @@ python3 -m pytest gsat/tests
 - 首頁每學年一份整卷(106–115,共 10 份、510 題選擇題含文意選填/篇章結構),作答方式與正式考試相同:100 分鐘倒數,**時間到會鎖住作答、只能交卷**;交卷後才顯示對錯、答案與詳解
 - 詳解(`exam-en/explain/<年>.json`)為 AI 草稿,頁面標示「草稿・待老師審核」;審核完成後再移除標示
 - 填空簡答、中譯英、作文不在本站計分,由老師人工批改
+- **語音(只在交卷後)**:題目、文章(正常/慢速)、詳解與「本卷單字表」的單字都能點 🔊 朗讀;使用裝置內建英文語音(`speechSynthesis`),考試中沒有語音。之後取得 Azure 金鑰可改用 `tools/make_gsat_audio.py` 的 mp3
 - 成績紀錄與未完成作答存在本機瀏覽器
 - 資料由 `python3 tools/build_exam_en.py` 自 `gsat/exam/` 產生(`exam-en/data.js`、`exam-en/img/`)
 - 本機預覽:`cd exam-en && python3 -m http.server`

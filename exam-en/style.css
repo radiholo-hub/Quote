@@ -44,3 +44,10 @@ details.ex{margin-top:8px;border-top:1px dashed var(--line);padding-top:6px;font
 details.ex summary{cursor:pointer;font-weight:600}
 .draft{font-weight:400;font-size:.8em;background:#fff3cd;color:#7a5b00;border-radius:4px;padding:1px 6px;margin-left:4px}
 details.ex ul{padding-left:1.1em;margin:.3em 0}
+.spbar{display:flex;gap:8px;margin:6px 0}
+.sp{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 12px;font:inherit;font-size:.85em;cursor:pointer}
+.sp.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.sp.w{padding:1px 8px;margin-right:2px}
+.vrow{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,2fr) auto;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
+.vrow:last-child{border:0}
+@media(max-width:480px){.vrow{grid-template-columns:auto 1fr auto}.vrow span{grid-column:2/4}}
