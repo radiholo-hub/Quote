@@ -84,12 +84,10 @@ function speechClick(ev){
 
 
 function optText(g,q,i){return g.bank?g.bank[i]:(q.opts&&!q.optImgs?q.opts[i]:"")}
-function fullText(g,q){
-  var i=L.indexOf(q.ans),at=optText(g,q,i),p=[(q.stem?"Question ":"Blank ")+q.n+"."];
+function fullText(g,q){   // 不唸題號、不唸選項字母:題幹 → 答案單字 → 填好答案的完整句
+  var at=optText(g,q,L.indexOf(q.ans)).replace(/[.\s]+$/,""),p=[];
   if(q.stem)p.push(q.stem);
-  if(!g.bank&&q.opts&&!q.optImgs)q.opts.forEach(function(o,k){p.push("Option "+L[k]+": "+o+".")});
-  p.push("The answer is "+q.ans+(at?", "+at.replace(/[.\s]+$/,""):"")+".");
-  if(at&&q.stem&&/_{2,}/.test(q.stem)&&!g.bank)p.push("Complete sentence: "+q.stem.replace(/_{2,}/,at));
+  if(at){p.push(at+".");if(q.stem&&/_{2,}/.test(q.stem)&&!g.bank)p.push(q.stem.replace(/_{2,}/,at))}
   return p.join(" ");
 }
 function filledPassage(g){
@@ -106,7 +104,7 @@ function paperHtml(groups,review){
     if(g.passage&&review)h+='<div class="spbar">'+spBtn('p'+gi,g.passage.join(' '),'朗讀文章')+spBtn('ps'+gi,g.passage.join(' '),'慢速',0.7)+(g.bank||g.type==="cloze"?spBtn('pf'+gi,filledPassage(g),'填入答案朗讀'):'')+'</div>';
     if(g.passage)h+='<div class="passage">'+g.passage.map(function(p){return '<p>'+esc(p).replace(/【(\d+)】/g,function(_,n){return '<span class="blank" data-b="'+g.year+'-'+n+'">'+n+'</span>'})+'</p>'}).join('')+'</div>';
     if(g.bank){var sent=g.type==="structure";
-      h+='<div class="bank'+(sent?' sent':'')+'">'+g.bank.map(function(w,i){return '<div><b>('+L[i]+')</b> '+esc(w)+(review?' '+spBtn('b'+gi+L[i],"Option "+L[i]+": "+w+".",'',0.9).replace('class="sp"','class="sp w"'):'')+'</div>'}).join('')+'</div>'}
+      h+='<div class="bank'+(sent?' sent':'')+'">'+g.bank.map(function(w,i){return '<div><b>('+L[i]+')</b> '+esc(w)+(review?' '+spBtn('b'+gi+L[i],w,'',0.9).replace('class="sp"','class="sp w"'):'')+'</div>'}).join('')+'</div>'}
     g.qs.forEach(function(q){h+=qHtml(g,q,review)});
   });
   return h;
@@ -115,7 +113,7 @@ function qHtml(g,q,review){
   var id=g.year+"-"+q.n,h='<div class="q" id="q'+id+'"><p class="stem"><span class="no">'+q.n+'</span>'+(q.stem?esc(q.stem):'')+'</p>';
   if(review){
     h+='<div class="spbar">'+spBtn('q'+id,fullText(g,q),'朗讀題目與答案');
-    if(!g.bank&&q.opts&&!q.optImgs)h+=q.opts.map(function(o,k){return spBtn('o'+id+L[k],"Option "+L[k]+": "+o+".",L[k],0.9).replace('class="sp"','class="sp w"')}).join('');
+    if(!g.bank&&q.opts&&!q.optImgs)h+=q.opts.map(function(o,k){return spBtn('o'+id+L[k],o,L[k],0.9).replace('class="sp"','class="sp w"')}).join('');
     h+='</div>';
   }
   if(q.img)h+='<img src="'+img(q.img)+'" alt="題目附圖">';
