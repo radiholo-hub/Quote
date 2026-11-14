@@ -52,6 +52,8 @@ def collect():
     texts = set()
     # 單句填空(診斷、補強、解析、模擬試題 Part 5 的完整句子)
     for r in arr("RAW"):
+        if not r[2]:          # 付費模考的佔位列（內容在私有儲存桶，見 score-rescue/tools/split_exams.py）
+            continue
         texts.add(r[1].replace("___", r[2][r[3]], 1))
         texts.update(o for o in r[2] if o.strip())  # 每個選項單獨的發音(🔊 在 A/B/C/D 旁)
     # 閱讀補強題(RBANK):選項、每篇文章(作答後的「朗讀文章」),以及「題目 + Answer: 正解」

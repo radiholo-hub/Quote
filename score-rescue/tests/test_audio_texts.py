@@ -16,7 +16,7 @@ def test_page_texts_are_collected(app):
     texts, sr_hash = _collect()
     hashes = set(sr_hash(t) for t in texts)
     page_texts = app.js("""()=>{const t=__t,out=[];
-      t.BANK.forEach(q=>{out.push(q.q.replace('___',q.o[q.a]));q.o.forEach(o=>o.trim()&&out.push(o))});
+      t.BANK.forEach(q=>{if(!q.o.length)return;out.push(q.q.replace('___',q.o[q.a]));q.o.forEach(o=>o.trim()&&out.push(o))});
       t.RBANK.forEach(r=>{r.passages.forEach(p=>out.push(p.body));out.push(r.q+' Answer: '+r.o[r.a]);r.o.forEach(o=>o.trim()&&out.push(o))});
       return out.map(x=>[x,t.srHash(x)])}""")
     js_vs_py = [x for x, h in page_texts if sr_hash(x) != h]

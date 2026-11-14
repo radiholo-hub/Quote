@@ -20,8 +20,20 @@ USER = {'email': 'student@example.com', 'id': 'u9'}
 ALL_DONE = "for(var n=1;n<=7;n++)localStorage.setItem('sr_pos_done_'+n,'1');"
 
 
+@pytest.fixture(scope='module')
+def http_root():
+    """用本機 http 伺服器開頁面：file:// 頁面重新整理時，Chromium 偶爾會清掉分頁暫存（sessionStorage），測不準「重新整理接著做」。"""
+    import functools, http.server, threading
+    h = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(ROOT))
+    h.log_message = lambda *a: None
+    srv = http.server.ThreadingHTTPServer(('127.0.0.1', 0), h)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    yield 'http://127.0.0.1:%d' % srv.server_address[1]
+    srv.shutdown()
+
+
 @pytest.fixture
-def open_final(browser):
+def open_final(browser, http_root):
     ctxs = []
 
     def _open(user=USER, paid=True, done=ALL_DONE, files=None, ctx=None):
@@ -36,7 +48,7 @@ def open_final(browser):
         p = ctx.new_page()
         errs = []
         p.on('pageerror', lambda e: errs.append(str(e)))
-        p.goto((ROOT / 'pos' / 'final.html').as_uri())
+        p.goto(http_root + '/pos/final.html')
         p.errs = errs
         return p
 

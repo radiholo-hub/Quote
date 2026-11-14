@@ -22,6 +22,7 @@ EXPOSE = [
     'canChallenge', 'startPlanDay', 'startMore', 'startMoreReview',
     'startChallenge', 'startFreeMore', 'showScore', 'renderPlan', 'planRanked', 'doneCount',
     'runQuiz', 'applyBlob', 'backupBlob', 'fetchPaid', 'save', 'show', 'go', 'examAllowed', 'coveredDays', 'LV_V0',
+    'examBegin', 'examSubmit', 'examRenderCurrent', 'examRenderReview', 'examFull', 'loadPaidExams', 'EXAM1_P5_TEXTS', 'EXAM1_P6', 'EXAM1_P7', 'EXAM2_P5_TEXTS', 'EXAM2_P7',
 ]
 
 # 假 Supabase：登入中的使用者 a@b.c；window.__SB_PAID 決定付費名單裡有沒有他。
@@ -45,6 +46,8 @@ STUB = """window.supabase={createClient:()=>{
   return{auth:{getSession:async()=>{const u=user();cur=u;if(u)localStorage.setItem('%s',JSON.stringify({user:u}));return {data:{session:u?{user:u}:null}}},
     onAuthStateChange:f=>{cb=f;window.__sbEmit=(ev,s)=>{cur=(s&&s.user)||null;cb&&cb(ev,s)};return {data:{subscription:{unsubscribe(){}}}}},
     signInWithOtp:async()=>({}),signOut:async()=>{localStorage.removeItem('%s');cur=null;cb&&cb('SIGNED_OUT',null);return {}}},
+    storage:{from:b=>({download:async p=>{const f=(K().files||{})[p];console.log('__dl:'+b+'/'+p);
+      return (cur&&paid()&&b==='lessons'&&f!=null)?{data:new Blob([f]),error:null}:{data:null,error:{message:'not allowed'}}}})},
     from:t=>({select:()=>q(t),insert:async row=>{console.log('__ins:'+(row&&row.name));return {error:null}},upsert:async()=>fail(t)?{error:{message:'fail'}}:{error:null}})}}};""" % (SB_TOKEN_KEY, SB_TOKEN_KEY)
 
 
@@ -52,7 +55,7 @@ STUB = """window.supabase={createClient:()=>{
 def _build_test_page():
     s = SRC.read_text(encoding='utf-8')
     i = s.rindex('})();\n</script>')
-    hook = 'window.__t={' + ','.join(EXPOSE) + ',getR:()=>R,setR:v=>{R=v}};\n'
+    hook = 'window.__t={' + ','.join(EXPOSE) + ',getR:()=>R,setR:v=>{R=v},getEX:()=>EX,paidExamsState:()=>paidExams};\n'
     TEST_PAGE.write_text(s[:i] + hook + s[i:], encoding='utf-8')
 
 
@@ -130,9 +133,11 @@ def open_app(browser):
     """open_app(paid=False, width=390)：開一個新分頁並載入網站。paid 決定假伺服器回覆的付費狀態。"""
     pages = []
 
-    def _open(paid=False, width=390, height=900):
+    def _open(paid=False, width=390, height=900, init=None):
         ctx = browser.new_context(viewport={'width': width, 'height': height})
         ctx.add_init_script('window.__SB_PAID=%s;' % ('true' if paid else 'false'))
+        if init:
+            ctx.add_init_script(init)
         ctx.route('**/supabase-js@2*', lambda r: r.fulfill(status=200, content_type='application/javascript', body=STUB))
         page = ctx.new_page()
         app = App(page)
