@@ -751,7 +751,7 @@ window.VOCAB = {
      "zh": "烹飪是他的熱愛,他每天都練習。"
     }
    ],
-   "note": "life’s passion＝畢生熱愛的事。",
+   "note": "passion 可表示強烈的熱情,也可表示一個人非常熱愛並願意投入大量時間、心力的活動、事物或領域。life’s passion＝畢生熱愛的事物(這是常見說法,但不是唯一固定搭配)。",
    "rel": {
     "syn": [
      {
@@ -762,13 +762,17 @@ window.VOCAB = {
     "ant": [
      {
       "w": "indifference",
-      "zh": "冷漠"
+      "zh": "冷漠、不在意。可視為 passion 表示「強烈熱情」時的相反概念;當 passion 表示「熱愛的事物」時,並沒有完全對等的單一反義字"
      }
     ],
     "confusable": [
      {
       "w": "hobby",
-      "note": "hobby 只是休閒嗜好;passion 是強烈到願意投入大量時間與心力的熱愛。"
+      "note": "hobby 通常指休閒時間從事的嗜好;passion 強調強烈的熱愛與投入。兩者可能重疊:一項 hobby 也可能同時是某人的 passion。"
+     },
+     {
+      "w": "enthusiasm",
+      "note": "enthusiasm 表示「熱忱、熱情」,在 passion 表示強烈熱情時意思相近;但 enthusiasm 通常不表示「某人熱愛的事物」本身,因此在 music is his passion 這種用法中不能直接互換。"
      }
     ]
    },
@@ -780,7 +784,7 @@ window.VOCAB = {
    "hw": "passionate",
    "key": "adj",
    "pos": "adj.",
-   "zh": "熱情的;熱愛的",
+   "zh": "熱情的;熱衷的(be passionate about + N/V-ing＝對……非常熱衷)",
    "forms": [
     "passionate"
    ],
@@ -852,7 +856,7 @@ window.VOCAB = {
     "assault": "也可作名詞(攻擊、襲擊罪)",
     "assaults": "也可作名詞複數"
    },
-   "alsoPos": "n. 攻擊",
+   "alsoPos": "n. 攻擊;襲擊",
    "family": "assault",
    "coll": [
     {
@@ -870,7 +874,7 @@ window.VOCAB = {
      "zh": "那名男子因攻擊警察而被逮捕。"
     }
    ],
-   "note": "assault sb. with sth.:用…攻擊某人。",
+   "note": "assault sb. with sth.＝用……攻擊某人,是本句成立的自然用法,但不是唯一結構;assault 也可以直接接人,例如 assault someone。",
    "rel": {
     "syn": [
      {
@@ -882,7 +886,7 @@ window.VOCAB = {
     "confusable": [
      {
       "w": "attack",
-      "note": "attack 是最常用的「攻擊」,可用於人、動物、批評與疾病;assault 多指對人身的暴力攻擊,常見於新聞或法律用語。"
+      "note": "attack 是較廣泛的「攻擊」,可用於人、動物、疾病、言語批評等多種情境;assault 常指對人的暴力攻擊,也常出現在新聞或法律語境。兩者有重疊,但不能假設所有句子都能直接互換。"
      }
     ]
    },
@@ -894,7 +898,7 @@ window.VOCAB = {
    "hw": "elbow",
    "key": "v",
    "pos": "v.",
-   "zh": "用手肘推擠;擠",
+   "zh": "用手肘推擠;用手肘擠開",
    "forms": [
     "elbow",
     "elbows",
@@ -910,11 +914,11 @@ window.VOCAB = {
    "coll": [
     {
      "t": "elbow one’s way through the crowd",
-     "zh": "擠過人群"
+     "zh": "用手肘擠過人群"
     },
     {
      "t": "elbow sb. aside",
-     "zh": "用手肘把某人撥到一旁"
+     "zh": "用手肘把某人擠到一旁"
     }
    ],
    "ex": [
@@ -923,7 +927,7 @@ window.VOCAB = {
      "zh": "他用手肘擠到隊伍最前面。"
     }
    ],
-   "note": "「動詞 + one’s way + 介系詞」表示以某種方式前進。",
+   "note": "V + one’s way + 路徑可表示「以某種方式一路前進／設法前進」;前面的動詞通常補充前進的方式或困難,例如 elbow one’s way、push one’s way、force one’s way、struggle one’s way。",
    "rel": {
     "syn": [
      {
@@ -939,7 +943,7 @@ window.VOCAB = {
     "confusable": [
      {
       "w": "push",
-      "note": "push 是一般的「推」;elbow 特別指「用手肘頂開、擠開」前進。"
+      "note": "push 是一般的「推」;shove 常帶較用力、粗魯地推的意味;elbow 特別指出使用手肘推擠。"
      }
     ]
    },
@@ -982,7 +986,7 @@ window.VOCAB = {
      "zh": "醫生說病人處於嚴重的危險中。"
     }
    ],
-   "note": "grave 較正式,常搭配 concern、danger、mistake。",
+   "note": "grave 作「嚴重的、重大的」時語氣較正式,常見於 concern(s)、danger、mistake 等;作「嚴肅的」時也可形容 expression、face、tone 等。grave concern 與 grave concerns 都可使用;本題使用複數 grave concerns。",
    "rel": {
     "syn": [
      {
@@ -997,17 +1001,13 @@ window.VOCAB = {
     "ant": [
      {
       "w": "minor",
-      "zh": "輕微的"
-     },
-     {
-      "w": "trivial",
-      "zh": "瑣碎的"
+      "zh": "輕微的。minor 可在「嚴重程度」上與 grave 相對;trivial 偏向「不重要、瑣碎」,不是完全對等的反義字"
      }
     ],
     "confusable": [
      {
       "w": "serious / severe",
-      "note": "serious 最常用;severe 常用於疾病、天氣、處罰的「嚴重程度」;grave 較正式,常搭配 concern、danger、mistake。"
+      "note": "serious 使用範圍最廣;grave 較正式,常強調情況重大、令人憂慮;severe 常強調程度強烈或嚴苛,例如 severe pain、weather、punishment。三者意思有重疊,但不能假設所有搭配都可以直接互換。"
      }
     ]
    },
@@ -1047,7 +1047,7 @@ window.VOCAB = {
    "hw": "gravity",
    "key": "n",
    "pos": "n.",
-   "zh": "嚴重性;重力",
+   "zh": "嚴重性;重力。the gravity of a situation 中 gravity 表示「事情的嚴重性」;物理學中的 gravity 表示「重力」,是另一個字義",
    "forms": [
     "gravity"
    ],
@@ -1847,7 +1847,8 @@ window.VOCAB = {
    "pos": "n.",
    "zh": "強調;重點",
    "forms": [
-    "emphasis"
+    "emphasis",
+    "emphases"
    ],
    "amb": {},
    "alsoPos": "",
@@ -1890,7 +1891,7 @@ window.VOCAB = {
     }
    ],
    "ex": [],
-   "note": "受詞通常是玻璃、希望、夢想等「物」。",
+   "note": "shatter 常表示把玻璃等物品打碎,也可比喻嚴重打擊 hopes、confidence、dreams 等抽象事物。",
    "rel": {
     "syn": [],
     "ant": [],
@@ -1935,7 +1936,7 @@ window.VOCAB = {
    "hw": "condemn",
    "key": "v",
    "pos": "v.",
-   "zh": "譴責;宣判",
+   "zh": "譴責;判刑",
    "forms": [
     "condemn",
     "condemns",
@@ -2114,7 +2115,7 @@ window.VOCAB = {
     }
    ],
    "ex": [],
-   "note": "形容暴行本身。",
+   "note": "brutal 常表示殘暴、殘酷,也可形容非常嚴酷或毫不留情的事物,例如 a brutal attack、brutal honesty。",
    "rel": {
     "syn": [],
     "ant": [],
@@ -2455,15 +2456,15 @@ window.VOCAB = {
   },
   "drunk-driver": {
    "t": "a drunk driver",
-   "zh": "酒駕者"
+   "zh": "酒醉駕駛;酒駕者"
   },
   "board-the-bus": {
    "t": "board the bus",
-   "zh": "上公車"
+   "zh": "上公車。board 是及物動詞,可以直接接交通工具,如 board a bus / train / plane,不需要加 on。"
   },
   "raise-concerns": {
    "t": "raise concerns about",
-   "zh": "引發對…的憂慮"
+   "zh": "引發對…的憂慮;提出／表達對…的疑慮。raise concerns about 可依主詞理解:事件當主詞時常表示「引發憂慮」(The new policy raised concerns about privacy.＝新政策引發了對隱私的疑慮。);人或團體當主詞時可表示「提出疑慮、表達關切」(Several experts raised concerns about the plan.＝幾位專家對這項計畫提出了疑慮。)"
   }
  }
 };

@@ -1,0 +1,259 @@
+{
+ "question": "115-7",
+ "status": "passed",
+ "reviewer": "教師（負責人）",
+ "signedAt": "2026-11-14",
+ "scope": "115 學年度學測英文第 7 題:教學文字內容(中文翻譯、解題步驟、選項解析、文法補充)、引用的相關單字與片語、重點字的歷屆出題紀錄,以及原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。",
+ "evidence": {
+  "reviewHtmlSha256": "15066060af5fd1dab7f3e5d6a34dab75bab957c2fe25ab1224575dc1eaa844b7",
+  "note": "簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。"
+ },
+ "contentFingerprint": {
+  "algorithm": "sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()",
+  "value": "e4af48ac8034126154d6b94138cc792e1bd9b9ef80f348eaba7c2bf34b4e2130",
+  "covers": "題目與選項與官方答案、詳解內容、引用的單字詞條、畫面列出的衍生字、片語、延伸練習、重點字的歷屆出題紀錄、每個發音按鈕對應的 mp3 檔名、審核項目 ID 清單(mp3 檔案內容不在其中,見 audio 區塊)",
+  "excludes": "status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條"
+ },
+ "items": [
+  {
+   "id": "115-7:q",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:zh",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:key1",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:key2",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:key3",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:optA",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:optB",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:optC",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:optD",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:ex1",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:fam:passionate-adj",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:fam:passionately-adv",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:syn",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:ant",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:conf1",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:passion-n:conf2",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:resource-n:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:resource-n:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:resource-n:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:impact-n:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:impact-n:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:impact-n:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:impact-n:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:emphasis-n:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:emphasis-n:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:w:emphasis-n:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:ph:devote-oneself",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:pat1",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:gram",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:rec:passion-n:sum",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:rec:passion-n:確認1",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:ext:x115-7-a",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:ext:x115-7-b",
+   "result": "passed"
+  },
+  {
+   "id": "115-7:final",
+   "result": "passed"
+  }
+ ],
+ "audio": {
+  "status": "pending",
+  "scope": "正式（production）試聽簽核尚未進行:沒有任何音檔視為已通過。目前 repository 內的音檔是舊 edge-tts 檔(非官方來源,不部署);正式音檔需以 Azure 付費層(azure-paid)產生,並由教師聆聽後以 approve-audio 正式簽核。教學文字的簽核不受影響。",
+  "approvedFiles": [],
+  "buttons": [
+   {
+    "item": "115-7:optA",
+    "file": "1d7a7a44e9c556.mp3"
+   },
+   {
+    "item": "115-7:optB",
+    "file": "116fc321582b98.mp3"
+   },
+   {
+    "item": "115-7:optC",
+    "file": "b6f626a874006.mp3"
+   },
+   {
+    "item": "115-7:optD",
+    "file": "a89a633b0f303.mp3"
+   },
+   {
+    "item": "115-7:w:passion-n:def",
+    "file": "b6f626a874006.mp3"
+   },
+   {
+    "item": "115-7:w:passion-n:coll1",
+    "file": "1da9fa45955f3d.mp3"
+   },
+   {
+    "item": "115-7:w:passion-n:coll2",
+    "file": "bd738eaa620fc.mp3"
+   },
+   {
+    "item": "115-7:w:passion-n:ex1",
+    "file": "1c0acca305073d.mp3"
+   },
+   {
+    "item": "115-7:w:passion-n:fam:passionate-adj",
+    "file": "8b2cab28a81d9.mp3"
+   },
+   {
+    "item": "115-7:w:passion-n:fam:passionately-adv",
+    "file": "1239a0a225a0c9.mp3"
+   },
+   {
+    "item": "115-7:w:resource-n:def",
+    "file": "1d7a7a44e9c556.mp3"
+   },
+   {
+    "item": "115-7:w:resource-n:coll1",
+    "file": "4ed9a11e846e6.mp3"
+   },
+   {
+    "item": "115-7:w:impact-n:def",
+    "file": "116fc321582b98.mp3"
+   },
+   {
+    "item": "115-7:w:impact-n:coll1",
+    "file": "6761f73f0e1d5.mp3"
+   },
+   {
+    "item": "115-7:w:emphasis-n:def",
+    "file": "a89a633b0f303.mp3"
+   },
+   {
+    "item": "115-7:w:emphasis-n:coll1",
+    "file": "7a8d739607ea9.mp3"
+   },
+   {
+    "item": "115-7:ph:devote-oneself",
+    "file": "19a6c6e5f86b25.mp3"
+   }
+  ],
+  "buttonCount": 17,
+  "distinctFileCount": 0,
+  "totalAudioFiles": 187,
+  "notIncludedCount": 187,
+  "notIncluded": "所有音檔都不得視為已通過正式簽核。"
+ },
+ "vocabularyOccurrenceRecords": {
+  "entry": "passion-n",
+  "note": "passion 的歷屆出題紀錄(已確認 1 次:正確答案 1、干擾選項 0、題幹 0、文章用字 0;待審核 0、被排除 0)納入本簽核;紀錄資料在 gsat/exam/vocab_index.js(由 tools/build_vocab_index.py 逐字計算)。另外,2026-11-13 教師(負責人)將 115 年第 7 題選項 (B) impact(名詞,干擾選項)由待審核裁定為已確認(impact 現為已確認 1、待審核 9);impact 其餘 9 筆待審核紀錄不在本簽核範圍,維持待審核。resource 與 emphasis 的歷屆紀錄維持既有狀態。本簽核不涉及其他詞條與其他待審核紀錄。"
+ }
+}

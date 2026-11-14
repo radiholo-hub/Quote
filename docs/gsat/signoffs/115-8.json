@@ -1,0 +1,243 @@
+{
+ "question": "115-8",
+ "status": "passed",
+ "reviewer": "教師（負責人）",
+ "signedAt": "2026-11-14",
+ "scope": "115 學年度學測英文第 8 題:教學文字內容(中文翻譯、解題步驟、選項解析、文法補充)、引用的相關單字與片語、重點字的歷屆出題紀錄,以及原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。",
+ "evidence": {
+  "reviewHtmlSha256": "c9144d0e08e78e6743e30338cbbbf4cccd2eabe9020c8f554e5b9e5fd1916484",
+  "note": "簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。"
+ },
+ "contentFingerprint": {
+  "algorithm": "sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()",
+  "value": "567e4c36921f0bf40cf7332818f33586b3aaad43cee97495483144d2bda3b0c1",
+  "covers": "題目與選項與官方答案、詳解內容、引用的單字詞條、畫面列出的衍生字、片語、延伸練習、重點字的歷屆出題紀錄、每個發音按鈕對應的 mp3 檔名、審核項目 ID 清單(mp3 檔案內容不在其中,見 audio 區塊)",
+  "excludes": "status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條"
+ },
+ "items": [
+  {
+   "id": "115-8:q",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:zh",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:key1",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:key2",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:key3",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:optA",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:optB",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:optC",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:optD",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:assault-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:assault-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:assault-v:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:assault-v:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:assault-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:assault-v:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:assault-v:ex1",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:assault-v:syn",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:assault-v:conf1",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:shatter-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:shatter-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:shatter-v:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:shatter-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:overturn-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:overturn-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:overturn-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:condemn-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:condemn-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:w:condemn-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:ph:drunk-driver",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:pat1",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:pat2",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:gram",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:rec:assault-v:sum",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:rec:assault-v:確認1",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:ext:x115-8-a",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:ext:x115-8-b",
+   "result": "passed"
+  },
+  {
+   "id": "115-8:final",
+   "result": "passed"
+  }
+ ],
+ "audio": {
+  "status": "pending",
+  "scope": "正式（production）試聽簽核尚未進行:沒有任何音檔視為已通過。目前 repository 內的音檔是舊 edge-tts 檔(非官方來源,不部署);正式音檔需以 Azure 付費層(azure-paid)產生,並由教師聆聽後以 approve-audio 正式簽核。教學文字的簽核不受影響。",
+  "approvedFiles": [],
+  "buttons": [
+   {
+    "item": "115-8:optA",
+    "file": "133944e5b9cd48.mp3"
+   },
+   {
+    "item": "115-8:optB",
+    "file": "d4d10c453f851.mp3"
+   },
+   {
+    "item": "115-8:optC",
+    "file": "14700b36cb953d.mp3"
+   },
+   {
+    "item": "115-8:optD",
+    "file": "51168493bdb23.mp3"
+   },
+   {
+    "item": "115-8:w:assault-v:def",
+    "file": "d4d10c453f851.mp3"
+   },
+   {
+    "item": "115-8:w:assault-v:coll1",
+    "file": "ccc71e9e06c3b.mp3"
+   },
+   {
+    "item": "115-8:w:assault-v:coll2",
+    "file": "169485e9f6dda7.mp3"
+   },
+   {
+    "item": "115-8:w:assault-v:ex1",
+    "file": "5459a55ad82f0.mp3"
+   },
+   {
+    "item": "115-8:w:shatter-v:def",
+    "file": "133944e5b9cd48.mp3"
+   },
+   {
+    "item": "115-8:w:shatter-v:coll1",
+    "file": "1b3d76fa96569c.mp3"
+   },
+   {
+    "item": "115-8:w:overturn-v:def",
+    "file": "14700b36cb953d.mp3"
+   },
+   {
+    "item": "115-8:w:overturn-v:coll1",
+    "file": "61ca33bbc6ea.mp3"
+   },
+   {
+    "item": "115-8:w:condemn-v:def",
+    "file": "51168493bdb23.mp3"
+   },
+   {
+    "item": "115-8:w:condemn-v:coll1",
+    "file": "14365c1b3a5878.mp3"
+   },
+   {
+    "item": "115-8:ph:drunk-driver",
+    "file": "25afd7f28ba15.mp3"
+   }
+  ],
+  "buttonCount": 15,
+  "distinctFileCount": 0,
+  "totalAudioFiles": 187,
+  "notIncludedCount": 187,
+  "notIncluded": "所有音檔都不得視為已通過正式簽核。"
+ },
+ "vocabularyOccurrenceRecords": {
+  "entry": "assault-v",
+  "note": "assault 的歷屆出題紀錄(已確認 1 次:正確答案 1、干擾選項 0、題幹 0、文章用字 0;待審核 0、被排除 0)納入本簽核;紀錄資料在 gsat/exam/vocab_index.js(由 tools/build_vocab_index.py 逐字計算)。shatter、overturn、condemn 的歷屆紀錄維持既有狀態(各已確認 1 次、干擾選項 1;待審核 0、被排除 0),沒有需要另案裁定的紀錄。本簽核不涉及其他詞條與其他待審核紀錄。"
+ }
+}

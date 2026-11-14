@@ -1,0 +1,255 @@
+{
+ "question": "115-9",
+ "status": "passed",
+ "reviewer": "教師（負責人）",
+ "signedAt": "2026-11-14",
+ "scope": "115 學年度學測英文第 9 題:教學文字內容(中文翻譯、解題步驟、選項解析、文法補充)、引用的相關單字與片語、重點字的歷屆出題紀錄,以及原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。",
+ "evidence": {
+  "reviewHtmlSha256": "e3fe947005ef63882ceb261babb3e0b7a5320c7779a656a2528d7ffd22395532",
+  "note": "簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。"
+ },
+ "contentFingerprint": {
+  "algorithm": "sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()",
+  "value": "f741b1656158e9e65cc2f6824058c7bf8fc322ac43a9de8d1429c9bbdb66eec2",
+  "covers": "題目與選項與官方答案、詳解內容、引用的單字詞條、畫面列出的衍生字、片語、延伸練習、重點字的歷屆出題紀錄、每個發音按鈕對應的 mp3 檔名、審核項目 ID 清單(mp3 檔案內容不在其中,見 audio 區塊)",
+  "excludes": "status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條"
+ },
+ "items": [
+  {
+   "id": "115-9:q",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:zh",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:key1",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:key2",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:key3",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:key4",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:optA",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:optB",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:optC",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:optD",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:elbow-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:elbow-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:elbow-v:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:elbow-v:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:elbow-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:elbow-v:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:elbow-v:ex1",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:elbow-v:syn",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:elbow-v:conf1",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:crash-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:crash-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:crash-v:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:crash-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:tumble-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:tumble-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:tumble-v:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:tumble-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:struggle-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:struggle-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:struggle-v:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:w:struggle-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:ph:board-the-bus",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:pat1",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:pat2",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:gram",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:rec:elbow-v:sum",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:rec:elbow-v:確認1",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:ext:x115-9-a",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:ext:x115-9-b",
+   "result": "passed"
+  },
+  {
+   "id": "115-9:final",
+   "result": "passed"
+  }
+ ],
+ "audio": {
+  "status": "pending",
+  "scope": "正式（production）試聽簽核尚未進行:沒有任何音檔視為已通過。目前 repository 內的音檔是舊 edge-tts 檔(非官方來源,不部署);正式音檔需以 Azure 付費層(azure-paid)產生,並由教師聆聽後以 approve-audio 正式簽核。教學文字的簽核不受影響。",
+  "approvedFiles": [],
+  "buttons": [
+   {
+    "item": "115-9:optA",
+    "file": "1a9395c10e0885.mp3"
+   },
+   {
+    "item": "115-9:optB",
+    "file": "784b93099133e.mp3"
+   },
+   {
+    "item": "115-9:optC",
+    "file": "1bea36792ea8f5.mp3"
+   },
+   {
+    "item": "115-9:optD",
+    "file": "1903fd2f5c81e6.mp3"
+   },
+   {
+    "item": "115-9:w:elbow-v:def",
+    "file": "1bea36792ea8f5.mp3"
+   },
+   {
+    "item": "115-9:w:elbow-v:coll1",
+    "file": "a58f4de58d4ad.mp3"
+   },
+   {
+    "item": "115-9:w:elbow-v:coll2",
+    "file": "168fc3749f6438.mp3"
+   },
+   {
+    "item": "115-9:w:elbow-v:ex1",
+    "file": "110f8c001dc355.mp3"
+   },
+   {
+    "item": "115-9:w:crash-v:def",
+    "file": "1a9395c10e0885.mp3"
+   },
+   {
+    "item": "115-9:w:crash-v:coll1",
+    "file": "1cfb0ff1d8f4e5.mp3"
+   },
+   {
+    "item": "115-9:w:tumble-v:def",
+    "file": "784b93099133e.mp3"
+   },
+   {
+    "item": "115-9:w:tumble-v:coll1",
+    "file": "141baed4eec1ef.mp3"
+   },
+   {
+    "item": "115-9:w:struggle-v:def",
+    "file": "1903fd2f5c81e6.mp3"
+   },
+   {
+    "item": "115-9:w:struggle-v:coll1",
+    "file": "1c780e2d8a4cdb.mp3"
+   },
+   {
+    "item": "115-9:ph:board-the-bus",
+    "file": "12077e5c73ee34.mp3"
+   }
+  ],
+  "buttonCount": 15,
+  "distinctFileCount": 0,
+  "totalAudioFiles": 187,
+  "notIncludedCount": 187,
+  "notIncluded": "所有音檔都不得視為已通過正式簽核。"
+ },
+ "vocabularyOccurrenceRecords": {
+  "entry": "elbow-v",
+  "note": "elbow 的歷屆出題紀錄(已確認 1 次:正確答案 1、干擾選項 0、題幹 0、文章用字 0;待審核 0、被排除 0;2026-11-14 教師(負責人)將 115 年第 9 題選項 (C) elbow 由待審核裁定為已確認)納入本簽核;紀錄資料在 gsat/exam/vocab_index.js(由 tools/build_vocab_index.py 逐字計算)。同日教師也將 115 年第 9 題的選項 (A) crash、(B) tumble、(D) struggle(干擾選項,詞性均為動詞)由待審核裁定為已確認;結果為 crash 已確認 2、待審核 1;tumble 已確認 2、待審核 0;struggle 已確認 1、待審核 2。「干擾選項」只表示它在官方試題中的角色,不代表該英文用法錯誤。這三個選項字的歷屆紀錄不在重點字 fingerprint 範圍內,由測試固定。其他年度的待審核紀錄(crash 114 一筆、struggle 106 與 112 各一筆)不在本簽核範圍,維持待審核。本簽核不涉及其他詞條與其他待審核紀錄。"
+ }
+}

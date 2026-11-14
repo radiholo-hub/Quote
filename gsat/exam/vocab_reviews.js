@@ -12,5 +12,16 @@ window.VOCAB_REVIEWS = {
   // 2026-11-11 教師(負責人)人工審核 amateur 一筆。115 年第 2 題(試卷第 1 頁;官方答案表第 2 題為 C):選項 (C) amateur,在 an amateur art designer 中作形容詞,修飾 art designer,字義「業餘的」;正確答案 1 次。
   "amateur-adj|115|115:vocab:1|2|answer|選項 (C)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-11"},
   // 2026-11-13 教師(負責人)人工審核 dread 一筆。115 年第 6 題(官方答案表第 6 題為 A):選項 (A) dreads,在 Timmy dreads the thought of speaking… 中作動詞(原形 dread),字義「害怕、畏懼」;正確答案 1 次。
-  "dread-v|115|115:vocab:1|6|answer|選項 (A)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-13"}
+  "dread-v|115|115:vocab:1|6|answer|選項 (A)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-13"},
+  // 2026-11-13 教師(負責人)人工審核 impact 一筆。115 年第 7 題(官方答案表第 7 題為 C):選項 (B) impact,在 music is his life’s impact 中作名詞(空格位於所有格 his life’s 之後),字義「影響、衝擊」;干擾選項 1 次。impact 其餘 9 筆待審核紀錄不在本次裁定範圍。
+  "impact-n|115|115:vocab:1|7|distractor|選項 (B)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-13"},
+  // 2026-11-14 教師(負責人)人工審核 115 年第 9 題(官方答案表第 9 題為 C)四個選項。四個選項在 had to ______ my way through the crowd 中都明確是動詞原形,詞性為動詞:
+  // (C) elbow(正確答案)、(A) crash(干擾選項)、(B) tumble(干擾選項)、(D) struggle(干擾選項)。「干擾選項」只是它們在官方試題中的角色,不代表教師判定 struggle 是錯誤英文。各詞條其他年度的待審核紀錄不在本次裁定範圍。
+  "elbow-v|115|115:vocab:1|9|answer|選項 (C)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-14"},
+  "crash-v|115|115:vocab:1|9|distractor|選項 (A)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-14"},
+  "tumble-v|115|115:vocab:1|9|distractor|選項 (B)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-14"},
+  "struggle-v|115|115:vocab:1|9|distractor|選項 (D)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-14"},
+  // 2026-11-14 教師(負責人)人工審核 115 年第 10 題(官方答案表第 10 題為 D)兩筆。(D) grave 與 (A) swift 在 raised ______ concerns 中都明確是形容詞,詞性無歧義:grave(正確答案)、swift(干擾選項)。gravity 的待審核紀錄不在本次裁定範圍。
+  "grave-adj|115|115:vocab:1|10|answer|選項 (D)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-14"},
+  "swift-adj|115|115:vocab:1|10|distractor|選項 (A)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-14"}
 };

@@ -227,15 +227,15 @@ window.EXT_PRACTICE = [
   "targets": [
    "passion-n"
   ],
-  "q": "She has a ______ for music and plays the violin every day.",
+  "q": "Even after becoming a doctor, Maya never lost her ______ for painting.",
   "options": [
    "passion",
-   "impact",
-   "resource",
-   "emphasis"
+   "access",
+   "effect",
+   "dependence"
   ],
   "answer": 0,
-  "explain": "have a passion for…＝熱愛…。",
+  "explain": "passion for + N 表示「對……的強烈熱愛」。句子說 Maya 即使成為醫生後,仍沒有失去對繪畫的熱愛,因此 passion 最符合。access 常搭配 to,effect 常搭配 on,dependence 常搭配 on,在本句都不符合語意與搭配。",
   "status": "draft"
  },
  {
@@ -244,17 +244,17 @@ window.EXT_PRACTICE = [
   "type": "pos",
   "targets": [
    "passion-n",
-   "passionate-adj"
+   "passionately-adv"
   ],
-  "q": "Tom is very ______ about protecting the environment.",
+  "q": "Jordan spoke ______ about music education and explained why it mattered so much to him.",
   "options": [
    "passion",
    "passionate",
    "passionately",
    "passions"
   ],
-  "answer": 1,
-  "explain": "be 動詞後面接形容詞:be passionate about…(對…很熱衷)。",
+  "answer": 2,
+  "explain": "空格用來修飾動詞 spoke,表示 Jordan 說話時充滿熱情,因此需要副詞 passionately。passion 是名詞,passionate 是形容詞,passions 是名詞複數,都不符合這個位置與句意。",
   "status": "draft"
  },
  {
@@ -264,15 +264,15 @@ window.EXT_PRACTICE = [
   "targets": [
    "assault-v"
   ],
-  "q": "The man was arrested for ______ a police officer.",
+  "q": "The suspect was arrested for ______ a security guard during the argument.",
   "options": [
-   "assault",
-   "assaulted",
    "assaulting",
-   "assaults"
+   "praising",
+   "assisting",
+   "greeting"
   ],
-  "answer": 2,
-  "explain": "介系詞 for 後面接動名詞:for assaulting。",
+  "answer": 0,
+  "explain": "for 是介系詞,因此四個選項都刻意使用 V-ing 形式,不能只靠詞性作答。句子說嫌犯因為在爭執中對警衛做了某件事而被逮捕;assaulting 表示「攻擊」,最符合暴力事件的語境。praising 是「稱讚」、assisting 是「協助」、greeting 是「打招呼」,語意都不合。",
   "status": "draft"
  },
  {
@@ -282,51 +282,51 @@ window.EXT_PRACTICE = [
   "targets": [
    "assault-v"
   ],
-  "q": "The thief ______ the guard with a metal bar and ran away.",
+  "q": "During the fight, one man picked up a chair and ______ another man with it before running away.",
   "options": [
    "assaulted",
-   "shattered",
-   "condemned",
-   "overturned"
+   "praised",
+   "greeted",
+   "thanked"
   ],
   "answer": 0,
-  "explain": "受詞是人(the guard)又搭配 with a metal bar(用鐵棍),所以是 assaulted(攻擊)。",
+  "explain": "前文說其中一人拿起椅子,後面的 with it 指用那張椅子,而且情境是 during the fight,因此 assaulted「攻擊」最符合句意。praised 是「稱讚」、greeted 是「打招呼」、thanked 是「感謝」,都不符合暴力事件的語境。",
   "status": "draft"
  },
  {
   "id": "x115-9-a",
   "forQuestion": "115-9",
-  "type": "pattern",
+  "type": "collocation",
   "targets": [
    "elbow-v"
   ],
-  "q": "The fans ______ their way through the crowd to get closer to the singer.",
+  "q": "The impatient passenger ______ several people aside as he moved toward the door.",
   "options": [
    "elbowed",
-   "escaped",
-   "condemned",
-   "overturned"
+   "struggled",
+   "boarded",
+   "tumbled"
   ],
   "answer": 0,
-  "explain": "「動詞 + one’s way + through…」:elbowed their way through the crowd(擠過人群)。其他三個動詞不能組成這個句型。",
+  "explain": "elbow sb. aside 表示「用手肘把某人擠到一旁」。句子描述乘客在人群中把幾個人擠開,因此 elbowed 最符合。struggled 表示掙扎／費力,不能直接表達把人用手肘擠開;boarded 是登上交通工具;tumbled 是跌倒／翻滾。",
   "status": "draft"
  },
  {
   "id": "x115-9-b",
   "forQuestion": "115-9",
-  "type": "pos",
+  "type": "context",
   "targets": [
-   "elbow-v"
+   "struggle-v"
   ],
-  "q": "In which sentence is “elbow” used as a verb?",
+  "q": "Because of his injured ankle, Ryan ______ his way slowly up the stairs.",
   "options": [
-   "He hurt his elbow in the game.",
-   "She elbowed her way onto the train.",
-   "The elbow of the chair is broken.",
-   "My elbows feel sore."
+   "struggled",
+   "elbowed",
+   "boarded",
+   "condemned"
   ],
-  "answer": 1,
-  "explain": "elbowed her way… 中 elbowed 是動詞(用手肘擠)。其他三句的 elbow(s) 都是名詞「手肘」。",
+  "answer": 0,
+  "explain": "struggle one’s way 表示「費力地前進」。因為 Ryan 腳踝受傷,又有 slowly 的語境,所以 struggled 最自然。這也說明 struggle 可以和 one’s way 搭配;原題選 elbow 是因為官方答案偏向「用手肘在人群中擠過去」這個更具體的動作,而不是因為 struggle 的結構錯誤。",
   "status": "draft"
  },
  {
@@ -336,34 +336,33 @@ window.EXT_PRACTICE = [
   "targets": [
    "grave-adj"
   ],
-  "q": "The report shows that air pollution is a ______ danger to children’s health.",
+  "q": "The discovery of serious cracks in the bridge raised ______ concerns about public safety.",
   "options": [
    "grave",
-   "swift",
-   "brutal",
-   "harsh"
+   "rapid",
+   "violent",
+   "rough"
   ],
   "answer": 0,
-  "explain": "grave danger＝嚴重的危險。swift、brutal、harsh 都不與 danger 搭配。",
+  "explain": "句子說橋梁出現嚴重裂縫,因而引發對公共安全的重大憂慮。grave 表示「嚴重的、重大的」,grave concerns 最符合語意。rapid 是「快速的」、violent 是「暴力的／猛烈的」、rough 是「粗糙的／艱難的」,都無法表達本句 concerns 的嚴重程度。",
   "status": "draft"
  },
  {
   "id": "x115-10-b",
   "forQuestion": "115-10",
-  "type": "pos",
+  "type": "context",
   "targets": [
-   "grave-adj",
-   "gravely-adv"
+   "grave-adj"
   ],
-  "q": "The doctor looked at the test results ______ and said the situation was serious.",
+  "q": "Her expression became ______ when the doctor explained that the illness could be life-threatening.",
   "options": [
    "grave",
-   "gravely",
-   "gravity",
-   "graver"
+   "cheerful",
+   "playful",
+   "casual"
   ],
-  "answer": 1,
-  "explain": "空格修飾動詞 looked,要用副詞 gravely(嚴肅地)。",
+  "answer": 0,
+  "explain": "grave 除了表示「嚴重的」,也可表示人的神情或態度「嚴肅的、凝重的」。醫生說明疾病可能危及生命,因此 her expression became grave 最符合語境。cheerful 是「愉快的」、playful 是「愛玩鬧的」、casual 是「隨意的」,都與這個嚴肅情境不合。",
   "status": "draft"
  }
 ];
