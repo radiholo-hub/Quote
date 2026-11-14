@@ -172,6 +172,10 @@ print(f"非選擇題 {len(writing)} 年,作文附圖 {sum('img' in v for v in wr
 trans, problems = {}, []
 for f in sorted((out / "translate").glob("*.json")):
     y = f.stem; t = json.loads(f.read_text(encoding="utf-8")); trans[y] = t
+    # 頁面會自己加 (A)(B)…,去掉譯文開頭重複的字母標示,例如 "(A) 送達"、"A. 送達"
+    _strip = lambda x: _re.sub(r"^\s*[(（]?[A-J][)）.]\s*", "", x)
+    for e in t.get("q", {}).values(): e["opts"] = [_strip(x) for x in e.get("opts", [])]
+    for k, v in t.get("bank", {}).items(): t["bank"][k] = [_strip(x) for x in v]
     d = next((d for d in data if d["year"] == y), None)
     if not d: problems.append(f"{y}: 沒有這份試卷"); continue
     for sec in d["sections"]:
