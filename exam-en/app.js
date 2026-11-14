@@ -48,7 +48,7 @@ function notify(msg){
 
 /* ---------- 首頁 ---------- */
 function home(){
-  var h=load("history",[]),best={},last=load("last",null);
+  var h=load("history",[]),best={},last=lastRec();
   h.forEach(function(r){if(r.year&&r.raw!=null&&(!best[r.year]||r.raw>best[r.year]))best[r.year]=r.raw});
   app.innerHTML='<h1>學測英文考古題</h1><p class="mute">每學年一份「第壹部分單選題」整卷,不含混合題(111 學年度起)、中譯英與作文。計時 100 分鐘,時間到會鎖住作答、只能交卷;交卷後才顯示答案與詳解。<br>填空簡答、中譯英與作文不在本站計分,由老師人工批改。</p>'+
   (S?'<div class="card"><b>未完成:'+S.year+' 學年度</b><p class="mute">已答 '+Object.keys(S.ans).length+' 題'+(S.locked||expired()?'(時間已到,請交卷)':'')+'</p><button class="btn primary" id="resume">繼續作答</button></div>':'')+
@@ -172,7 +172,7 @@ function finish(){
   var g=grade(rec);
   var hist=load("history",[]);hist.unshift({year:rec.year,score:g.right,n:g.n,raw:g.raw,max:g.max,date:rec.date.slice(0,10)});save("history",hist.slice(0,30));
   save("last",rec);save("session",null);S=null;
-  location.hash="#result";if(location.hash==="#result")route();
+  location.hash="#result";   // 由 hashchange 觸發 route(),只畫一次
 }
 
 /* ---------- 沒有可檢討的紀錄 ---------- */
