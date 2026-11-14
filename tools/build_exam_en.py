@@ -164,3 +164,34 @@ assert sorted(writing) == sorted(d["year"] for d in data), "每一年都要有�
     "// 由 tools/build_exam_en.py 依 exam-en/src-data/writing.json 產生。只有題目,不含參考答案;由老師人工批改。\nwindow.WRITING = " +
     json.dumps(writing, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
 print(f"非選擇題 {len(writing)} 年,作文附圖 {sum('img' in v for v in writing.values())} 張")
+
+# 中文翻譯:合併 exam-en/translate/<年>.json → exam-en/translate.js,並逐項檢查對齊
+trans, problems = {}, []
+for f in sorted((out / "translate").glob("*.json")):
+    y = f.stem; t = json.loads(f.read_text(encoding="utf-8")); trans[y] = t
+    d = next((d for d in data if d["year"] == y), None)
+    if not d: problems.append(f"{y}: 沒有這份試卷"); continue
+    for sec in d["sections"]:
+        for g in sec["groups"]:
+            first = str(g["questions"][0]["n"])
+            if "passage" in g:
+                p = t.get("passage", {}).get(first)
+                if not p or len(p) != len(g["passage"]): problems.append(f"{y}-{first} 文章段落數不符")
+                elif "bank" in g or sec["type"] == "cloze":
+                    joined = "".join(p)
+                    for q in g["questions"]:
+                        if f"【{q['n']}】" not in joined: problems.append(f"{y}-{q['n']} 譯文缺【{q['n']}】")
+            if "bank" in g:
+                bk = t.get("bank", {}).get(first)
+                if not bk or len(bk) != len(g["bank"]): problems.append(f"{y}-{first} 選項庫翻譯數不符")
+            for q in g["questions"]:
+                e = t.get("q", {}).get(str(q["n"]))
+                if e is None: problems.append(f"{y}-{q['n']} 缺題目翻譯"); continue
+                if q.get("stem") and not e.get("stem"): problems.append(f"{y}-{q['n']} 缺題幹翻譯")
+                placeholder = "optImgs" in q or any(_re.search(r"[一-鿿]", o) for o in q.get("opts", []))
+                want = 0 if ("bank" in g or placeholder) else len(q.get("opts", []))
+                if len(e.get("opts", [])) != want: problems.append(f"{y}-{q['n']} 選項翻譯數 {len(e.get('opts', []))}≠{want}")
+(out / "translate.js").write_text(
+    "// 由 tools/build_exam_en.py 合併 exam-en/translate/*.json 產生。中文翻譯為草稿,待老師審核;只在交卷後的檢討頁顯示。\nwindow.TRANS = " +
+    json.dumps(trans, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
+print(f"翻譯 {len(trans)} 年,問題 {len(problems)} 項", problems[:15])

@@ -121,6 +121,23 @@ function filledPassage(g){
   orig.qs.forEach(function(q){m[q.n]=optText(orig,q,L.indexOf(q.ans))});
   return g.passage.join(" ").replace(/【(\d+)】/g,function(_,n){return m[n]||" blank "});
 }
+
+/* ---------- 中文翻譯(只在檢討頁,點開才顯示) ---------- */
+function trOf(year){return (window.TRANS||{})[year]||null}
+function origGroup(g){return groupsOf(g.year).filter(function(x){return x.passage?x.passage===g.passage:x.qs[0]===g.qs[0]})[0]||g}
+function trSummary(t){return '<summary>'+t+' <span class="draft">草稿・待老師審核</span></summary>'}
+function passageTrHtml(g){
+  var t=trOf(g.year);if(!t||!g.passage)return "";
+  var key=String(origGroup(g).qs[0].n),p=(t.passage||{})[key],bk=(t.bank||{})[key];if(!p&&!bk)return "";
+  return '<details class="tr">'+trSummary('全文中文翻譯')+
+    (p?p.map(function(x){return '<p>'+esc(x).replace(/【(\d+)】/g,'<span class="blank set">$1</span>')+'</p>'}).join(''):'')+
+    (bk?'<p class="mute">選項中譯:</p><ul class="trbank">'+bk.map(function(x,i){return '<li><b>('+L[i]+')</b> '+esc(x)+'</li>'}).join('')+'</ul>':'')+'</details>';
+}
+function qTrHtml(g,q){
+  var t=trOf(g.year),e=t&&(t.q||{})[q.n];if(!e||(!e.stem&&!(e.opts||[]).length))return "";
+  return '<details class="tr">'+trSummary('中文翻譯')+(e.stem?'<p>'+esc(e.stem)+'</p>':'')+
+    ((e.opts||[]).length?'<ul class="tropts">'+e.opts.map(function(x,i){return '<li><b>('+L[i]+')</b> '+esc(x)+'</li>'}).join('')+'</ul>':'')+'</details>';
+}
 /* ---------- 題目畫面(作答與檢討共用) ---------- */
 function paperHtml(groups,review){
   var h="",lastKey="";
@@ -131,6 +148,7 @@ function paperHtml(groups,review){
     if(g.passage)h+='<div class="passage">'+g.passage.map(function(p){return '<p>'+esc(p).replace(/【(\d+)】/g,function(_,n){return '<span class="blank" data-b="'+g.year+'-'+n+'">'+n+'</span>'})+'</p>'}).join('')+'</div>';
     if(g.bank){var sent=g.type==="structure";
       h+='<div class="bank'+(sent?' sent':'')+'">'+g.bank.map(function(w,i){return '<div><b>('+L[i]+')</b> '+esc(w)+(review?' '+spBtn('b'+gi+L[i],w,'',0.9).replace('class="sp"','class="sp w"'):'')+'</div>'}).join('')+'</div>'}
+    if(review&&g.passage)h+=passageTrHtml(g);
     g.qs.forEach(function(q){h+=qHtml(g,q,review)});
   });
   return h;
@@ -143,6 +161,7 @@ function qHtml(g,q,review){
   else{h+='<div class="opts">'+q.opts.map(function(o,i){
     var btn='<button class="opt" data-id="'+id+'" data-l="'+L[i]+'"><b>('+L[i]+')</b><span>'+(q.optImgs?'<img src="'+img(q.optImgs[i])+'" alt="選項 '+L[i]+' 的圖">':esc(o))+'</span></button>';
     return review&&!isPlaceholder(q)?'<div class="optrow">'+btn+spBtn('o'+id+L[i],o,'',0.9).replace('class="sp"','class="sp side"').replace('aria-label="朗讀"','aria-label="朗讀選項 '+L[i]+'"')+'</div>':btn}).join('')+'</div>'}
+  if(review)h+=qTrHtml(g,q);
   return h+'<div class="fb" id="fb'+id+'"></div><div id="ex'+id+'"></div></div>';
 }
 /* ---------- 非選擇題(中譯英、英文作文):只有題目,不提供答案,由老師批改 ---------- */

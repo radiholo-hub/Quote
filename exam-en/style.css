@@ -79,3 +79,9 @@ a.chip{text-decoration:none}
 .vg{display:flex;gap:8px;align-items:center;min-width:0}
 .vg-voice{flex:1 1 100%}
 #vsel{flex:1 1 auto;min-width:0}
+details.tr{margin:8px 0;padding:8px 12px;border:1px dashed var(--line);border-radius:8px;background:var(--card)}
+details.tr summary{cursor:pointer;font-weight:600;color:var(--accent)}
+details.tr p{margin:.5em 0;line-height:1.75}
+details.tr ul{list-style:none;padding:0;margin:.3em 0}
+details.tr li{margin:.2em 0}
+details.tr .blank{font-size:.75em;vertical-align:1px}
