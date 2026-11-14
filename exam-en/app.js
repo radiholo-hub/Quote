@@ -229,7 +229,7 @@ function itemHtml(year,it,rv,g){
     h+='<div class="opts">'+it.options.map(function(o,i){var l=L[i],on=sel.indexOf(l)>=0,cls="opt mopt";
       if(rv){var k=it.key.indexOf(l)>=0;cls+=on&&k?" ok":on&&!k?" bad":!on&&k?" miss":""}else if(on)cls+=" sel";
       return '<button class="'+cls+'" data-m="'+it.n+'" data-l="'+l+'" aria-pressed="'+on+'"'+(rv?' disabled':'')+'><b>('+l+')</b><span>'+esc(o)+'</span>'+(rv?'<em class="mtag">'+(on&&k?'✔ 選對':on&&!k?'✘ 多選':!on&&k?'✘ 漏選':'')+'</em>':'')+'</button>'}).join('')+'</div>'+
-      (rv?'':'<p class="mute">可複選;再按一次取消。</p>');
+      (rv?'':'<p class="ophint">可複選,點一下勾選,再點一下取消。</p>');
   }
   if(rv&&g){
     mine.forEach(function(r){
@@ -331,7 +331,7 @@ function grade(rec){
 function paperCard(){return '<div class="card"><b>中譯英、英文作文</b><div class="mrow"><span>中譯英(8 分)</span><span class="pend">紙筆作答,網站未評分</span></div><div class="mrow"><span>英文作文(20 分)</span><span class="pend">紙筆作答,網站未評分</span></div><p class="mute">不列入網站分數,也不算 0 分。</p></div>'}
 function fullResultHtml(rec,g){
   var f=gradeFull(rec),h='<div class="card"><b>第貳部分 混合題(10 分)</b>';
-  f.items.forEach(function(r){h+='<div class="mrow"><span>'+esc(r.label)+'</span><span>'+(r.score===null?'<span class="pend">待評('+r.points+' 分)</span>':r.score+' / '+r.points)+'</span></div>'});
+  f.items.forEach(function(r){h+='<div class="mrow"><span>'+esc(r.label)+'</span><span>'+(r.score===null?'<span class="pend">已作答,待評('+r.points+' 分,不列入分母)</span>':r.score+' / '+r.points+(r.status==="blank"?'(空白)':''))+'</span></div>'});
   h+='</div><div class="card"><b>已計分</b><div class="mrow"><span>第壹部分 單選</span><span>'+g.raw+' / '+g.max+'</span></div>'+
     '<div class="mrow"><span>第貳部分 已判定的部分</span><span>'+f.scored+' / '+f.scoredMax+'</span></div>'+
     '<div class="mrow total"><span>已計分部分合計</span><span>'+(Math.round((g.raw+f.scored)*100)/100)+' / '+(g.max+f.scoredMax)+'</span></div>'+

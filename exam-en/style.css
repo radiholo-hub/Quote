@@ -126,3 +126,4 @@ img.logo{float:right;width:84px;height:auto;margin:0 0 6px 10px}
 .wtclock.run{color:var(--accent)}.wtclock.up{color:var(--bad)}.wtclock.done{color:var(--ok)}
 .wtctl{align-items:center}
 .wtctl input{width:5em;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+.ophint{font-size:.8em;color:var(--mute);margin:6px 0 0;padding-left:2px}
