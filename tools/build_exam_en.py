@@ -154,7 +154,7 @@ writing = {}
 for y, w in wsrc.items():
     if y.startswith("_"): continue
     assert len(w["trans"]) == 2 and w["essay"], y
-    item = {"trans": w["trans"], "essay": w["essay"]}
+    item = {k: w[k] for k in ("trans", "essay", "partTitle", "partNote", "transTitle", "transNote", "essayTitle", "essayNote")}
     if "img" in w:
         fname, l, t, r, b = w["img"]
         im = Image.open(src / "img" / "ns" / fname).convert("L").crop((l, t, r, b))

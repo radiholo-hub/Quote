@@ -116,3 +116,13 @@ img.logo{float:right;width:84px;height:auto;margin:0 0 6px 10px}
 .mrow{display:flex;justify-content:space-between;gap:12px;padding:4px 0;border-bottom:1px solid var(--line)}
 .mrow:last-of-type{border-bottom:0}
 .mrow.total{font-weight:700}
+.papernote{border-left:4px solid var(--pend);padding:6px 10px;background:var(--card);border-radius:6px;font-weight:600}
+.wplist{display:grid;gap:6px;margin-top:6px}
+.wprow{display:flex;gap:8px;align-items:center}
+.wprow span{min-width:3em;font-weight:700;font-variant-numeric:tabular-nums}
+.wprow .btn{padding:6px 12px}
+.timerbox{position:sticky;top:0;z-index:5}
+.wtclock{font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums;margin-bottom:8px}
+.wtclock.run{color:var(--accent)}.wtclock.up{color:var(--bad)}.wtclock.done{color:var(--ok)}
+.wtctl{align-items:center}
+.wtctl input{width:5em;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}

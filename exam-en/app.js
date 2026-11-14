@@ -50,7 +50,7 @@ function notify(msg){
 function home(){
   var h=load("history",[]),best={},last=lastRec();
   h.forEach(function(r){if(r.year&&r.raw!=null&&(!best[r.year]||r.raw>best[r.year]))best[r.year]=r.raw});
-  app.innerHTML='<h1>學測英文考古題</h1><p class="mute">每學年一份試卷:第壹部分單選題,以及中譯英、英文作文題目(111 學年度起的第貳部分混合題未收錄)。計時 100 分鐘,時間到會鎖住作答、只能交卷;交卷後才顯示單選題答案與詳解。<br>中譯英與作文請寫在紙本答案卷上,由老師人工批改,本站不提供參考答案、不計分。<br><b>111、115 學年度另有「完整原卷」</b>:含第貳部分混合題(可複選的第 49 題、填充與簡答)和中譯英、作文的作答欄,全卷共用 100 分鐘。</p>'+
+  app.innerHTML='<h1>學測英文考古題</h1><p class="mute">每學年一份試卷:第壹部分單選題,以及中譯英、英文作文題目(111 學年度起的第貳部分混合題未收錄)。計時 100 分鐘,時間到會鎖住作答、只能交卷;交卷後才顯示單選題答案與詳解。<br>中譯英與作文只提供原題,紙筆作答,網站不提供答案、詳解、範文或評分。<br><b>111、115 學年度另有「完整原卷」</b>:含第貳部分混合題(可複選的第 49 題、填充與簡答)與中譯英、作文原題,全卷共用 100 分鐘。</p>'+writingPracticeCard()+
   (S?'<div class="card"><b>未完成:'+S.year+' 學年度'+(isFull(S)?'(完整原卷)':'')+'</b><p class="mute">已答 '+Object.keys(S.ans).length+' 題'+(S.locked||expired()?'(時間已到,請交卷)':'')+'</p><button class="btn primary" id="resume">繼續作答</button></div>':'')+
   (last?'<div class="card"><b>最近一次交卷:'+last.year+' 學年度</b><p class="mute">'+esc(last.date||"")+'</p><a class="btn" href="#result">回成績與檢討</a></div>':'')+
   '<div class="grid papers">'+DATA.map(function(e){var n=allQs(groupsOf(e.year)).length;
@@ -59,7 +59,7 @@ function home(){
   (h.length?'<h2>最近成績</h2>'+h.slice(0,8).map(function(r){return '<div class="mute">'+esc(r.year||"")+' 學年度:答對 '+r.score+' / '+r.n+' 題'+(r.mode==="full"?'(完整原卷)':'')+(r.raw!=null?',單選原始分數 '+r.raw+' / '+r.max:'')+(r.mixed!=null?',混合題已計分 '+r.mixed:'')+'('+esc(r.date)+')</div>'}).join(''):'');
   app.onclick=function(ev){var f=ev.target.closest(".fullbtn"),b=f||ev.target.closest(".paper");if(!b)return;
     var y=f?f.dataset.full:b.dataset.y;
-    var go=function(){S={year:y,mode:f?"full":"mc",ans:{},fill:{},multi:{},text:{},t0:Date.now(),limit:LIMIT,locked:false};persist();location.hash="#quiz"};
+    var go=function(){S={year:y,mode:f?"full":"mc",ans:{},fill:{},multi:{},t0:Date.now(),limit:LIMIT,locked:false};persist();location.hash="#quiz"};
     if(S)ask("目前有未完成的作答,開始新考卷會捨棄它。確定要開始新考卷嗎?","捨棄並開始",go);else go()};
   var r=document.getElementById("resume");if(r)r.onclick=function(ev){ev.stopPropagation();location.hash="#quiz"};
 }
@@ -167,15 +167,15 @@ function qHtml(g,q,review){
   return h+'<div class="fb" id="fb'+id+'"></div><div id="ex'+id+'"></div></div>';
 }
 /* ---------- 非選擇題(中譯英、英文作文):只有題目,不提供答案,由老師批改 ---------- */
-function writingHtml(year){
+var PAPER_NOTE='紙筆作答,網站未評分:請寫在紙上。本站不提供答案、詳解、範文或評分。';
+function noteHtml(t){return esc(t).replace(/\n/g,'<br>')}
+function transBlock(w){return '<div class="card wcard"><h3>'+esc(w.transTitle)+'</h3><p class="mute">'+noteHtml(w.transNote)+'</p><ol>'+w.trans.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ol></div>'}
+function essayBlock(w,year){return '<div class="card wcard"><h3>'+esc(w.essayTitle)+'</h3><p class="mute">'+noteHtml(w.essayNote)+'</p><p><b>提示:</b>'+esc(w.essay)+'</p>'+(w.img?'<img src="'+w.img+'" alt="'+year+' 學年度英文作文附圖">':'')+'</div>'}
+/* 非選擇題(中譯英、英文作文):只有原題,紙筆作答,網站不提供答案與評分 */
+function writingHtml(year,full){
   var w=(window.WRITING||{})[year];if(!w)return "";
-  var part=+year<=110?"第貳部分:非選擇題(占 28 分)":"第參部分:非選擇題(占 28 分)";
-  return '<section class="writing" id="writing"><div class="sec">'+year+' · '+part+'</div>'+
-    '<p class="mute">'+(+year>=111?'本站未收錄第貳部分混合題。':'')+'請把答案寫在紙本答案卷上,交給老師批改。本站只提供題目,不提供參考答案,也不計分。</p>'+
-    '<div class="card wcard"><h3>一、中譯英(占 8 分)</h3><p class="mute">說明:依題號將以下中文句子譯成正確、通順、達意的英文。每題 4 分,共 8 分。</p><ol>'+
-    w.trans.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ol></div>'+
-    '<div class="card wcard"><h3>二、英文作文(占 20 分)</h3><p class="mute">說明:依提示寫一篇英文作文,文長至少 120 個單詞(words)。</p><p><b>提示:</b>'+esc(w.essay)+'</p>'+
-    (w.img?'<img src="'+w.img+'" alt="'+year+' 學年度英文作文附圖">':'')+'</div></section>';
+  return '<section class="writing" id="writing"><div class="sec">'+year+' · '+esc(w.partTitle)+'</div><p class="mute">'+esc(w.partNote)+'</p>'+
+    '<p class="papernote">'+PAPER_NOTE+(+year>=111&&!full?'(此模式未收錄第貳部分混合題。)':'')+'</p>'+transBlock(w)+essayBlock(w,year)+'</section>';
 }
 function findQ(id){for(var i=0;i<V.qs.length;i++)if(V.qs[i].id===id)return V.qs[i].q}
 
@@ -203,8 +203,6 @@ function gradeFull(rec){
       res.push(r);if(sc!==null){scored+=sc;scoredMax+=b.points}else pend.push(r);
     });
   });
-  var t=rec.text||{};
-  pend.push({label:"中譯英第 1 題",points:4,ans:t.t1||"",manual:true},{label:"中譯英第 2 題",points:4,ans:t.t2||"",manual:true},{label:"英文作文",points:20,ans:t.essay||"",manual:true});
   return {items:res,scored:Math.round(scored*100)/100,scoredMax:scoredMax,pending:pend,pendingPts:pend.reduce(function(a,x){return a+x.points},0)};
 }
 function blankHtml(year,b,rv){
@@ -250,30 +248,18 @@ function part2Html(year,rv,g){
   p.items.forEach(function(it){h+=itemHtml(year,it,rv,g)});
   return h+'</section>';
 }
-function wc(t){var m=String(t||"").trim().match(/[A-Za-z0-9'’-]+/g);return m?m.length:0}
-function part3Html(year,rv){
-  var p=FP[year].part3,w=(window.WRITING||{})[year],t=rv?(rv.text||{}):((S&&S.text)||{});
-  function box(k,label,rows){return rv?'<div class="ttext">'+(t[k]?esc(t[k]):'<span class="mute">(空白)</span>')+'</div><div class="fb pend">'+label+':待人工評閱</div>'
-    :'<textarea class="tin" data-t="'+k+'" rows="'+rows+'" autocapitalize="sentences" spellcheck="false" aria-label="'+label+'作答">'+esc(t[k]||"")+'</textarea>'}
-  return '<section class="fullp" id="part3"><div class="sec">'+year+' · '+esc(p.title)+'</div><p class="mute">'+esc(p.note)+'</p>'+
-    '<div class="card wcard"><h3>一、中譯英(占 8 分)</h3><p class="mute">說明:依題號將以下中文句子譯成正確、通順、達意的英文。每題 4 分,共 8 分。</p>'+
-    w.trans.map(function(x,i){return '<p><b>'+(i+1)+'.</b> '+esc(x)+'</p>'+box('t'+(i+1),'中譯英第 '+(i+1)+' 題',3)}).join('')+'</div>'+
-    '<div class="card wcard"><h3>二、英文作文(占 20 分)</h3><p class="mute">說明:依提示寫一篇英文作文,文長至少 120 個單詞(words)。</p><p><b>提示:</b>'+esc(w.essay)+'</p>'+
-    (w.img?'<img src="'+w.img+'" alt="'+year+' 學年度英文作文附圖">':'')+box('essay','英文作文',14)+
-    (rv?'':'<p class="mute" id="wcount">'+wc(t.essay)+' 個單詞</p>')+'</div></section>';
-}
 /* ---------- 作答 ---------- */
 function quiz(){
   if(!S){location.hash="#home";return}
   var groups=groupsOf(S.year);V={groups:groups,review:false,qs:allQs(groups)};
   var full=isFull(S);
   app.innerHTML='<div class="bar"><span id="prog"></span><span id="clock" class="mute"></span><button class="btn primary" id="submit">交卷</button></div><h1>'+S.year+' 學年度 英文考科'+(full?'(完整原卷)':'')+'</h1>'+
-    (full?'<div class="sec">'+S.year+' · 第壹部分、選擇題(占 62 分)</div>':'')+paperHtml(groups,false)+(full?part2Html(S.year,null)+part3Html(S.year,null):writingHtml(S.year));
+    (full?'<div class="sec">'+S.year+' · 第壹部分、選擇題(占 62 分)</div>':'')+paperHtml(groups,false)+(full?part2Html(S.year,null)+writingHtml(S.year,true):writingHtml(S.year));
   app.onclick=function(ev){var m=ev.target.closest(".mopt");if(m){if(!m.disabled)toggleMulti(m.dataset.m,m.dataset.l);return}
     var b=ev.target.closest(".opt");if(!b||b.disabled)return;pick(b.dataset.id,b.dataset.l)};
-  app.oninput=function(ev){var el=ev.target;if(!el.matches||!(el.matches(".fin")||el.matches(".tin")))return;
-    if(expired()||S.locked){lock();el.value=el.matches(".fin")?((S.fill||{})[el.dataset.f]||""):((S.text||{})[el.dataset.t]||"");return}   // 到期後不能再改
-    if(el.matches(".fin")){S.fill=S.fill||{};S.fill[el.dataset.f]=el.value}else{S.text=S.text||{};S.text[el.dataset.t]=el.value;if(el.dataset.t==="essay"){var c=document.getElementById("wcount");if(c)c.textContent=wc(el.value)+" 個單詞"}}
+  app.oninput=function(ev){var el=ev.target;if(!el.matches||!el.matches(".fin"))return;
+    if(expired()||S.locked){lock();el.value=(S.fill||{})[el.dataset.f]||"";return}   // 到期後不能再改
+    if(el.matches(".fin")){S.fill=S.fill||{};S.fill[el.dataset.f]=el.value}
     clearTimeout(quiz.t);quiz.t=setTimeout(persist,300)};
   document.getElementById("submit").onclick=submit;
   V.qs.forEach(function(x){refresh(x.id)});prog();tick();
@@ -294,7 +280,7 @@ function submit(){
   if(expired())lock();
   var un=V.qs.length-Object.keys(S.ans).length,msg=un>0?"還有 "+un+" 題單選沒作答":"";
   if(isFull(S)){var e=0;FP[S.year].part2.items.forEach(function(it){if(it.type==="multi"){if(!((S.multi||{})[it.n]||[]).length)e++}else it.blanks.forEach(function(b){if(!normAns((S.fill||{})[b.id]))e++})});
-    ["t1","t2","essay"].forEach(function(k){if(!String((S.text||{})[k]||"").trim())e++});if(e){msg+=(msg?",":"還有 ")+e+" 處混合題或非選擇題空白";un+=e}}
+    if(e){msg+=(msg?",":"還有 ")+e+" 處混合題或非選擇題空白";un+=e}}
   if(un>0&&!S.locked)ask(msg+",確定要交卷嗎?交卷後不能再修改答案。","確認交卷",finish);
   else if(S.locked)finish();
   else ask("確定要交卷嗎?交卷後不能再修改答案。","確認交卷",finish);
@@ -309,14 +295,14 @@ function lock(){
   var first=!S.locked;S.locked=true;persist();
   var c=document.getElementById("clock");if(c)c.textContent="時間到";
   [].forEach.call(document.querySelectorAll(".opt"),function(b){b.disabled=true});
-  [].forEach.call(document.querySelectorAll(".fin,.tin"),function(b){b.readOnly=true});
+  [].forEach.call(document.querySelectorAll(".fin"),function(b){b.readOnly=true});
   if(first)notify("時間到!作答已鎖定,請按「交卷」。");
 }
 function finish(){
   if(!S)return;
   clearInterval(timer);
   var tEnd=Math.min(Date.now(),S.t0+S.limit*1000);   // 用時不超過 100 分鐘
-  var rec={year:S.year,mode:S.mode||"mc",fill:S.fill||{},multi:S.multi||{},text:S.text||{},ans:S.ans,t0:S.t0,tEnd:tEnd,locked:!!(S.locked||expired()),date:new Date().toISOString().slice(0,16).replace("T"," ")};
+  var rec={year:S.year,mode:S.mode||"mc",fill:S.fill||{},multi:S.multi||{},ans:S.ans,t0:S.t0,tEnd:tEnd,locked:!!(S.locked||expired()),date:new Date().toISOString().slice(0,16).replace("T"," ")};
   var g=grade(rec);
   var hist=load("history",[]);var gf=isFull(rec)?gradeFull(rec):null;hist.unshift({year:rec.year,mode:rec.mode,score:g.right,n:g.n,raw:g.raw,max:g.max,mixed:gf?gf.scored:null,date:rec.date.slice(0,10)});save("history",hist.slice(0,30));
   save("last",rec);save("session",null);S=null;
@@ -342,15 +328,16 @@ function grade(rec){
       else{r.wrong++;r.wrongIds.push(id)}})});
   return r;
 }
+function paperCard(){return '<div class="card"><b>中譯英、英文作文</b><div class="mrow"><span>中譯英(8 分)</span><span class="pend">紙筆作答,網站未評分</span></div><div class="mrow"><span>英文作文(20 分)</span><span class="pend">紙筆作答,網站未評分</span></div><p class="mute">不列入網站分數,也不算 0 分。</p></div>'}
 function fullResultHtml(rec,g){
   var f=gradeFull(rec),h='<div class="card"><b>第貳部分 混合題(10 分)</b>';
   f.items.forEach(function(r){h+='<div class="mrow"><span>'+esc(r.label)+'</span><span>'+(r.score===null?'<span class="pend">待評('+r.points+' 分)</span>':r.score+' / '+r.points)+'</span></div>'});
   h+='</div><div class="card"><b>已計分</b><div class="mrow"><span>第壹部分 單選</span><span>'+g.raw+' / '+g.max+'</span></div>'+
     '<div class="mrow"><span>第貳部分 已判定的部分</span><span>'+f.scored+' / '+f.scoredMax+'</span></div>'+
-    '<div class="mrow total"><span>已計分合計</span><span>'+(Math.round((g.raw+f.scored)*100)/100)+' 分</span></div>'+
+    '<div class="mrow total"><span>已計分部分合計</span><span>'+(Math.round((g.raw+f.scored)*100)/100)+' / '+(g.max+f.scoredMax)+'</span></div>'+
     '<p class="mute">填充、簡答只有與評分原則「滿分參考答案」完全相同才自動給分;空白依評分原則 0 分;其他答案可能得 1 分(字形或拼字錯誤),需老師判定,列為待評。</p></div>'+
-    '<div class="card"><b>待人工評閱(共 '+f.pendingPts+' 分)</b>'+f.pending.map(function(p){return '<div class="mrow"><span>'+esc(p.label)+(p.manual?'':'(你的答案:'+esc(p.ans)+')')+'</span><span class="pend">'+p.points+' 分</span></div>'}).join('')+
-    '<p><b>全卷總分:待人工評閱完成後才能確定,本站不顯示正式整卷分數。</b></p></div>';
+    (f.pending.length?'<div class="card"><b>混合題待人工評閱(共 '+f.pendingPts+' 分)</b>'+f.pending.map(function(p){return '<div class="mrow"><span>'+esc(p.label)+'(你的答案:'+esc(p.ans)+')</span><span class="pend">'+p.points+' 分</span></div>'}).join('')+'</div>':'')+
+    paperCard()+'<p><b>網站只顯示已計分部分的得分與滿分,不是整卷總分。</b></p>';
   return h;
 }
 function result(){
@@ -361,7 +348,7 @@ function result(){
     '<div style="margin-top:10px"><b>原始分數 '+g.raw+' / '+g.max+'</b><div class="mute">依官方配分的單選題原始分數('+si.txt+')。'+(isFull(rec)?'':'不含混合題、中譯英與作文,')+'不是整份學測的分數或級分。</div></div>'+
     '<div class="mute" style="margin-top:8px">用時 '+fmt(used)+(rec.locked?'(時間到,作答已鎖定)':'')+'</div>'+
     '<div style="margin-top:10px">'+Object.keys(g.by).map(function(k){return '<div>'+k+':'+g.by[k].right+' / '+g.by[k].n+'</div>'}).join('')+'</div></div>'+
-    (isFull(rec)?fullResultHtml(rec,g):'<p class="mute">填空簡答、中譯英、作文由老師人工批改,不在本站計分。</p>')+'<div class="row">'+
+    (isFull(rec)?fullResultHtml(rec,g):paperCard()+(+rec.year>=111?'<p class="mute">此模式未收錄第貳部分混合題。</p>':'')+'<p><b>網站只顯示已計分部分(單選題)的得分與滿分,不是整卷總分。</b></p>')+'<div class="row">'+
     '<a class="btn primary" href="#review-all">檢討全部題目</a>'+
     (g.wrong?'<a class="btn" href="#review-wrong">只看答錯('+g.wrong+')</a>':'')+
     (g.blank?'<a class="btn" href="#review-blank">只看未作答('+g.blank+')</a>':'')+
@@ -387,7 +374,7 @@ function review(name){
   app.innerHTML='<div class="bar"><a class="btn" href="#result">回成績</a><span class="mute">檢討:'+FILTERS[name]+' '+V.qs.length+' 題</span><a class="btn" href="#home">首頁</a></div><h1>'+rec.year+' 學年度 檢討</h1>'+
     '<div class="rtools"><div class="row" role="group" aria-label="篩選">'+seg+'</div>'+voiceBarHtml()+
     '<form id="jump" class="jump" novalidate><label for="jumpn">跳到題號</label><input id="jumpn" type="text" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="1–'+mx+'"><button class="btn" type="submit">前往</button></form></div>'+
-    (V.qs.length?paperHtml(groups,true):'<p class="mute">這個篩選沒有題目('+FILTERS[name]+' 0 題)。</p>')+(name==="review-all"?(isFull(rec)?part2Html(rec.year,rec,gradeFull(rec))+part3Html(rec.year,rec):writingHtml(rec.year)):'');
+    (V.qs.length?paperHtml(groups,true):'<p class="mute">這個篩選沒有題目('+FILTERS[name]+' 0 題)。</p>')+(name==="review-all"?(isFull(rec)?part2Html(rec.year,rec,gradeFull(rec))+writingHtml(rec.year,true):writingHtml(rec.year)):'');
   app.onclick=function(ev){speechClick(ev)};
   document.getElementById("jump").onsubmit=function(ev){
     ev.preventDefault();var raw=document.getElementById("jumpn").value.trim().replace(/[０-９]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-65248)}),n=/^\d+$/.test(raw)?Number(raw):NaN;   // 只接受純數字,小數、科學記號、正負號、空白都擋下
@@ -427,6 +414,42 @@ function exHtml(id,q){
   return h+'</details>';
 }
 
+/* ---------- 中譯英/作文 單項練習:獨立倒數,紙筆作答 ---------- */
+var WT=null;   // 計時器
+function writingPracticeCard(){
+  var ys=Object.keys(window.WRITING||{}).sort();
+  return '<div class="card"><b>中譯英、英文作文 單項練習</b><p class="mute">只有原題與倒數計時,紙筆作答。中譯英預設 10 分鐘,作文預設 30 分鐘,開始前可調整。</p><div class="wplist">'+
+    ys.map(function(y){return '<div class="wprow"><span>'+y+'</span><a class="btn" href="#wt-'+y+'">中譯英</a><a class="btn" href="#we-'+y+'">作文</a></div>'}).join('')+'</div></div>';
+}
+function wtKey(y,k){return y+"-"+k}
+function wtState(key,def){var all=load("wtimer",{});return all[key]||{min:def,start:null,done:null}}
+function wtSave(key,st){var all=load("wtimer",{});all[key]=st;save("wtimer",all)}
+function practicePage(kind,year){
+  var w=(window.WRITING||{})[year];if(!w){location.hash="#home";return}
+  var def=kind==="t"?10:30,key=wtKey(year,kind),name=kind==="t"?"中譯英":"英文作文";
+  app.innerHTML='<p><a class="btn" href="#home">回首頁</a></p><h1>'+year+' 學年度 '+name+' 單項練習</h1>'+
+    '<div class="card timerbox"><div class="wtclock" id="wtclock" aria-live="polite"></div>'+
+    '<div class="row wtctl"><label for="wmin">練習時間</label><input id="wmin" type="number" inputmode="numeric" min="1" max="180" step="1"> 分鐘'+
+    '<button class="btn primary" id="wstart">開始計時</button><button class="btn" id="wdone">完成練習</button><button class="btn" id="wreset">重新計時</button></div></div>'+
+    '<p class="papernote">'+PAPER_NOTE+'</p><div class="sec">'+year+' · '+esc(w.partTitle)+'</div>'+(kind==="t"?transBlock(w):essayBlock(w,year));
+  var minEl=document.getElementById("wmin"),warned=false;
+  function draw(){
+    var st=wtState(key,def),c=document.getElementById("wtclock");if(!c)return;
+    minEl.value=st.min;minEl.disabled=!!st.start;
+    document.getElementById("wstart").disabled=!!st.start;document.getElementById("wdone").disabled=!st.start||!!st.done;document.getElementById("wreset").disabled=!st.start;
+    if(!st.start){c.textContent="尚未開始 · "+st.min+" 分鐘";c.className="wtclock"}
+    else if(st.done){c.textContent="已完成 · 用時 "+fmt(Math.min(st.done-st.start,st.min*60000)/1000);c.className="wtclock done"}
+    else{var left=st.start+st.min*60000-Date.now();
+      if(left>0){c.textContent="剩 "+fmt(left/1000);c.className="wtclock run"}
+      else{c.textContent="時間到";c.className="wtclock up";if(!warned){warned=true;notify("時間到!")}}}
+  }
+  minEl.onchange=function(){var st=wtState(key,def);if(st.start)return;var v=parseInt(minEl.value,10);if(!(v>=1&&v<=180)){notify("請輸入 1 到 180 分鐘");minEl.value=st.min;return}st.min=v;wtSave(key,st);draw()};
+  document.getElementById("wstart").onclick=function(){var st=wtState(key,def);if(st.start)return;minEl.onchange();st=wtState(key,def);st.start=Date.now();st.done=null;wtSave(key,st);warned=false;draw()};
+  document.getElementById("wdone").onclick=function(){var st=wtState(key,def);if(!st.start||st.done)return;st.done=Date.now();wtSave(key,st);draw()};
+  document.getElementById("wreset").onclick=function(){ask("重新計時會清除這次的倒數,確定嗎?","重新計時",function(){var st=wtState(key,def);st.start=null;st.done=null;wtSave(key,st);warned=false;draw()})};
+  draw();clearInterval(WT);WT=setInterval(draw,1000);practicePage.draw=draw;
+}
+
 /* ---------- 單字表 ---------- */
 function vocabPage(){
   var rec=lastRec();if(!rec){noRecord();return}
@@ -440,15 +463,17 @@ function vocabPage(){
 
 /* ---------- 路由 ---------- */
 function route(){
-  stopSpeak();closeModal();clearInterval(timer);app.onclick=null;V=null;
+  var tt=document.getElementById("toast");if(tt)tt.remove();   // 上一頁的提示不帶到下一頁
+  stopSpeak();closeModal();clearInterval(timer);clearInterval(WT);practicePage.draw=null;app.onclick=null;app.oninput=null;V=null;
   var hs=location.hash.replace(/^#\/?/,"");
   if(hs==="quiz"){S=S||loadSession();quiz()}
   else if(hs==="result")result();
   else if(FILTERS[hs])review(hs);
   else if(hs==="vocab")vocabPage();
+  else if(/^w[te]-\d{3}$/.test(hs))practicePage(hs[1],hs.slice(3));
   else{S=loadSession();home()}
 }
-["visibilitychange","focus","pageshow"].forEach(function(ev){(ev==="visibilitychange"?document:window).addEventListener(ev,function(){if(V&&!V.review)tick()})});
+["visibilitychange","focus","pageshow"].forEach(function(ev){(ev==="visibilitychange"?document:window).addEventListener(ev,function(){if(V&&!V.review)tick();if(practicePage.draw)practicePage.draw()})});
 window.addEventListener("hashchange",route);
 S=loadSession();route();
 })();
