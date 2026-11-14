@@ -226,12 +226,12 @@ function review(name){
     return '<a class="chip'+(on?' on':'')+'" href="#'+t[0]+'" aria-pressed="'+on+'">'+t[1]+' '+t[2]+'</a>'}).join('');
   app.innerHTML='<div class="bar"><a class="btn" href="#result">回成績</a><span class="mute">檢討:'+FILTERS[name]+' '+V.qs.length+' 題</span><a class="btn" href="#home">首頁</a></div><h1>'+rec.year+' 學年度 檢討</h1>'+
     '<div class="rtools"><div class="row" role="group" aria-label="篩選">'+seg+'</div>'+
-    '<form id="jump" class="jump" novalidate><label for="jumpn">跳到題號</label><input id="jumpn" type="number" inputmode="numeric" min="1" max="'+mx+'" placeholder="1–'+mx+'"><button class="btn" type="submit">前往</button></form></div>'+
+    '<form id="jump" class="jump" novalidate><label for="jumpn">跳到題號</label><input id="jumpn" type="text" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="1–'+mx+'"><button class="btn" type="submit">前往</button></form></div>'+
     (V.qs.length?paperHtml(groups,true):'<p class="mute">這個篩選沒有題目('+FILTERS[name]+' 0 題)。</p>');
   app.onclick=function(ev){speechClick(ev)};
   document.getElementById("jump").onsubmit=function(ev){
-    ev.preventDefault();var n=parseInt(document.getElementById("jumpn").value,10);
-    if(!(n>=1&&n<=mx)){notify("請輸入 1 到 "+mx+" 的題號");return}
+    ev.preventDefault();var raw=document.getElementById("jumpn").value.trim().replace(/[０-９]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-65248)}),n=/^\d+$/.test(raw)?Number(raw):NaN;   // 只接受純數字,小數、科學記號、正負號、空白都擋下
+    if(!(n>=1&&n<=mx)){notify("請輸入 1 到 "+mx+" 的整數題號");return}
     var id=rec.year+"-"+n;
     if(document.getElementById("q"+id))goQ(id);
     else{pendingJump=id;notify("第 "+n+" 題不在目前的篩選中,已切換到全部");location.hash="#review-all"}
