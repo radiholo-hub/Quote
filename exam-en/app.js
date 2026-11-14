@@ -113,13 +113,13 @@ function qHtml(g,q,review){
   var id=g.year+"-"+q.n,h='<div class="q" id="q'+id+'"><p class="stem"><span class="no">'+q.n+'</span>'+(q.stem?esc(q.stem):'')+'</p>';
   if(review){
     h+='<div class="spbar">'+spBtn('q'+id,fullText(g,q),'朗讀題目與答案');
-    if(!g.bank&&q.opts&&!q.optImgs)h+=q.opts.map(function(o,k){return spBtn('o'+id+L[k],o,L[k],0.9).replace('class="sp"','class="sp w"')}).join('');
     h+='</div>';
   }
   if(q.img)h+='<img src="'+img(q.img)+'" alt="題目附圖">';
   if(g.bank){h+='<div class="letters">'+g.bank.map(function(_,i){return '<button class="opt" data-id="'+id+'" data-l="'+L[i]+'"><b>'+L[i]+'</b></button>'}).join('')+'</div>'}
   else{h+='<div class="opts">'+q.opts.map(function(o,i){
-    return '<button class="opt" data-id="'+id+'" data-l="'+L[i]+'"><b>('+L[i]+')</b><span>'+(q.optImgs?'<img src="'+img(q.optImgs[i])+'" alt="選項 '+L[i]+' 的圖">':esc(o))+'</span></button>'}).join('')+'</div>'}
+    var btn='<button class="opt" data-id="'+id+'" data-l="'+L[i]+'"><b>('+L[i]+')</b><span>'+(q.optImgs?'<img src="'+img(q.optImgs[i])+'" alt="選項 '+L[i]+' 的圖">':esc(o))+'</span></button>';
+    return review&&!q.optImgs?'<div class="optrow">'+btn+spBtn('o'+id+L[i],o,'',0.9).replace('class="sp"','class="sp side"').replace('aria-label="朗讀"','aria-label="朗讀選項 '+L[i]+'"')+'</div>':btn}).join('')+'</div>'}
   return h+'<div class="fb" id="fb'+id+'"></div><div id="ex'+id+'"></div></div>';
 }
 function findQ(id){for(var i=0;i<V.qs.length;i++)if(V.qs[i].id===id)return V.qs[i].q}

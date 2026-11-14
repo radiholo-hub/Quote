@@ -58,3 +58,6 @@ details.ex ul{padding-left:1.1em;margin:.3em 0}
 .tally{display:flex;gap:14px;margin-top:6px;font-weight:600}.tally .ok{color:var(--ok)}.tally .bad{color:var(--bad)}
 a.btn{text-decoration:none;display:inline-block}
 .bar a.btn{padding:6px 12px}
+.optrow{display:flex;gap:6px;align-items:stretch}
+.optrow .opt{flex:1;min-width:0}
+.sp.side{flex:none;align-self:center;padding:8px 10px}
