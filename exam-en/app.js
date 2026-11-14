@@ -100,7 +100,7 @@ function initVoiceBar(){
   var sel=document.getElementById("vsel"),rs=document.getElementById("vrate");if(!sel)return;
   function fill(){var vs=enVoices(),cur=pickVoice();
     sel.innerHTML=vs.length?vs.map(function(v){return '<option value="'+esc(v.voiceURI)+'"'+(cur&&v.voiceURI===cur.voiceURI?' selected':'')+'>'+esc(v.name)+' ('+esc(v.lang)+')</option>'}).join(''):'<option value="">(裝置沒有英文聲音)</option>'}
-  fill();if(TTS&&!enVoices().length)speechSynthesis.addEventListener("voiceschanged",fill,{once:true});
+  fill();if(TTS&&!enVoices().length){try{if(speechSynthesis.addEventListener)speechSynthesis.addEventListener("voiceschanged",fill,{once:true});else speechSynthesis.onvoiceschanged=fill}catch(e){}}   // 舊版瀏覽器沒有 addEventListener 時改用 onvoiceschanged
   rs.value=String(rateFactor()===1?1:rateFactor());if(!rs.value)rs.value="1";
   sel.onchange=function(){save("voice",sel.value);stopSpeak()};
   rs.onchange=function(){save("rate",+rs.value);stopSpeak()};
@@ -264,7 +264,7 @@ function review(name){
     if(document.getElementById("q"+id))goQ(id);
     else{pendingJump=id;notify("第 "+n+" 題不在目前的篩選中,已切換到全部");location.hash="#review-all"}
   };
-  initVoiceBar();
+  try{initVoiceBar()}catch(e){}
   V.qs.forEach(function(x){refresh(x.id)});
   if(pendingJump){var pj=pendingJump;pendingJump=null;goQ(pj)}
 }
@@ -302,7 +302,7 @@ function vocabPage(){
   Object.keys(ex).sort(function(a,b){return a-b}).forEach(function(n){(ex[n].vocab||[]).forEach(function(v){var k=v[0].toLowerCase()+"|"+v[1];if(!seen[k]){seen[k]=1;rows.push([v[0],v[1],n])}})});
   app.innerHTML='<h1>'+rec.year+' 學年度 單字表</h1><p class="mute">共 '+rows.length+' 個(草稿・待老師審核),點 🔊 聽發音。</p><p><a class="btn" href="#result">返回成績</a></p>'+voiceBarHtml()+'<div class="card vocab">'+
     rows.map(function(r){return '<div class="vrow"><button class="sp w" data-w="'+esc(r[0])+'">🔊</button><b>'+esc(r[0])+'</b><span>'+esc(r[1])+'</span><small class="mute">第 '+r[2]+' 題</small></div>'}).join('')+'</div>';
-  initVoiceBar();
+  try{initVoiceBar()}catch(e){}
   app.onclick=function(ev){speechClick(ev)};
 }
 
