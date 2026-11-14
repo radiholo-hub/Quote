@@ -117,7 +117,7 @@
   "vocab": [
    [
     "recall",
-    "n/v 回想"
+    "n 回想;記憶力(powers of recall)"
    ],
    [
     "vivid",
@@ -134,7 +134,7 @@
   "opts": {
    "A": "provoke 激怒、引起",
    "B": "counter 反駁,符合",
-   "C": "expose 揭露,不接 claims 反駁義",
+   "C": "expose 揭露,語法上可接 claims,但多用於揭發隱藏的真相或騙局(expose fraud/lies);本句是用證據「反駁」藥廠說法,以 counter 最貼切",
    "D": "convert 轉換"
   },
   "vocab": [
@@ -302,7 +302,7 @@
   ]
  },
  "15": {
-  "key": "數十年研究「儘管如此」仍無共識,Despite 後接名詞片語。",
+  "key": "「儘管」經過數十年研究,仍無共識,表讓步;Despite 為介系詞,後接名詞片語 decades of investigation。",
   "opts": {
    "A": "For 為了,語意不合",
    "B": "Besides 除…之外,語意不合",
@@ -492,7 +492,7 @@
   "key": "運動後恢復並維持正常「體液狀態」,fluid status。",
   "opts": {
    "H": "status 狀態,符合",
-   "A": "absorption 吸收,不與 normal fluid 搭配"
+   "A": "absorption 吸收,normal fluid absorption 語法上可以,但 restore and maintain 要維持的是體液的正常「狀態」,語意以 status 較合;且 absorption 已是第 25 題答案"
   },
   "vocab": [
    [
@@ -509,7 +509,7 @@
   "key": "水仍是補水的好「選擇」,a very good option。",
   "opts": {
    "E": "option 選擇,符合",
-   "F": "effective 為形容詞,前面有 good 修飾名詞"
+   "F": "effective 為形容詞,a very good ___ 空格需名詞,詞性不合"
   },
   "vocab": [
    [
@@ -653,7 +653,7 @@
   ]
  },
  "36": {
-  "key": "第一段說希臘的鐵圈也是運動器材,對應 workout。",
+  "key": "第一段說希臘人的金屬圈環也當作運動器材,對應 workout。",
   "opts": {
    "C": "希臘人用作運動工具,符合",
    "A": "英國是娛樂,醫療只在記錄傷害",
@@ -672,7 +672,7 @@
   ]
  },
  "37": {
-  "key": "文中出現 threw, jumped, slung, struck, rolled, twirled, spin,沒有 kicking。",
+  "key": "文中出現 threw, jumped, slung, struck, roll, twirled, spun 等動作,沒有 kicking。",
   "opts": {
    "D": "Kicking 文中未提,為答案",
    "A": "Striking 第一段提到 struck",
@@ -767,7 +767,7 @@
   ]
  },
  "42": {
-  "key": "it 指前句 Is it possible for elephants to coexist with tea business 的 it 結果,即讓象與茶業共存。",
+  "key": "make it possible 的 it 指前句 Is it possible for elephants to coexist with the prosperous tea business? 所說的「大象與茶產業共存」,即為兩者創造雙贏。",
   "opts": {
    "D": "創造象與茶農雙贏,符合",
    "A": "認證對象並非 trench",
@@ -789,7 +789,7 @@
   "key": "亞洲商人比非洲大陸首批永久居民早約九百年到達。",
   "opts": {
    "C": "亞洲商人早數世紀,符合",
-   "A": "900 年是 1000 AD 之前的推算,不是最早",
+   "A": "文中是「比西元 1000 年早 900 年」,即約西元 100 年就有亞洲商人到訪,不是西元 900 年",
    "B": "首批永久居民才來自非洲",
    "D": "波斯人 8 世紀建立聚落,非 1000 年"
   },

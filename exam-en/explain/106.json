@@ -41,9 +41,9 @@
   "key": "不會遇到任何人好幾天,表示是「偏遠的」地區,remote。",
   "opts": {
    "A": "native 本地的,與人煙稀少無關",
-   "B": "tricky 棘手的,不修飾地區位置",
+   "B": "tricky 棘手的,語法上可修飾地點,但與「好幾天遇不到人」的人煙稀少語意不合",
    "C": "remote 偏遠的,正確",
-   "D": "vacant 空缺的(房間、職位),不用於地區"
+   "D": "vacant 空著的、無人使用的(房間、職位、土地),語法上可修飾地方,但指「空置」而非「偏遠」,不合語意"
   },
   "vocab": [
    [
@@ -61,7 +61,7 @@
   "opts": {
    "A": "appoint 任命,不接 with",
    "B": "eliminate 消除,語意不合",
-   "C": "occupy 佔據,不接 with",
+   "C": "occupy 佔據,為及物動詞須接受詞(occupy oneself with 為「忙於」),此處無受詞,語意也不合",
    "D": "identify 認同(identify with),正確"
   },
   "vocab": [
@@ -98,7 +98,7 @@
   "key": "薪水大多花在房租與伙食,所以「幾乎沒有」錢可娛樂,barely 帶否定意味。",
   "opts": {
    "A": "barely 幾乎不,正確",
-   "B": "fairly 相當地,語意相反",
+   "B": "fairly 相當地,不帶否定意味,不能與 any 搭配,語意不合",
    "C": "merely 僅僅,不表否定",
    "D": "readily 欣然地,不合"
   },
@@ -175,8 +175,8 @@
   "opts": {
    "A": "dip 浸、下降",
    "B": "beam 光束,正確",
-   "C": "spark 火花,不用於陽光",
-   "D": "path 小徑,不與 light 搭配"
+   "C": "spark 火花、閃光,指瞬間的小亮點,不能形容一道持續照下的光線",
+   "D": "path 小徑、路徑,a path of light 雖可說,但描述一道光照下來,慣用 a beam of light"
   },
   "vocab": [
    [
@@ -195,7 +195,7 @@
    "A": "enclosed 附入,正確",
    "B": "installed 安裝,不合",
    "C": "preserved 保存,不合",
-   "D": "rewarded 獎賞,不接 in the card"
+   "D": "rewarded 獎賞,用法為 reward sb with sth,不能說 reward some money,語意也不合"
   },
   "vocab": [
    [
@@ -212,7 +212,7 @@
   "key": "Olympic athlete 夢想贏得的是金「牌」gold medal。",
   "opts": {
    "A": "signal 信號",
-   "B": "glory 榮耀,不與 gold 搭配成名詞",
+   "B": "glory 榮耀,為不可數名詞,不說 a gold glory,語意不合",
    "C": "medal 獎牌,正確",
    "D": "profit 利潤"
   },
@@ -287,7 +287,7 @@
  "16": {
   "key": "到鏡子前「查看」發現紅點,look into the mirror 表示往鏡中看。",
   "opts": {
-   "A": "check out 查看/結帳,常指檢查事物,不接 the mirror 的看法",
+   "A": "check out 查看、結帳;check out the mirror 指檢查鏡子本身,不是照鏡子看自己,語意不合",
    "B": "look into 看進(鏡子),本句語意最自然(亦有調查之意)",
    "C": "watch over 看守,不合",
    "D": "see through 看穿,不合"
@@ -326,14 +326,14 @@
   "key": "細菌從鼻子被「傳到」眼睛,transfer to,與 are easily ... to the eye 搭配。",
   "opts": {
    "A": "attracted 吸引",
-   "B": "contributed 貢獻(contribute to 為主動用法)",
-   "C": "exposed 暴露,應接 to 但語意為曝露於,不如傳播貼切",
+   "B": "contributed 貢獻,語法上可用被動 be contributed to,但「細菌被貢獻到眼睛」語意不通",
+   "C": "exposed 暴露,be exposed to 語法可以,但意為「暴露於…」,說細菌暴露於眼睛語意不合",
    "D": "transferred 轉移,正確"
   },
   "vocab": [
    [
     "transfer",
-    "v. 轉移、傳染"
+    "v. 轉移、傳遞"
    ],
    [
     "bacteria",
@@ -625,7 +625,7 @@
   "key": "the ___ power of the vegetable 與 medicinal 相呼應,為「療效力量」healing。",
   "opts": {
    "J": "healing 療癒的,正確",
-   "G": "spiritual 與 magical 對比的是 medical,故不選"
+   "G": "spiritual 精神的,此處 power 呼應前文 medicinal purposes,指療效而非精神意義,且 spiritual 已是 32 題答案"
   },
   "vocab": [
    [
@@ -638,7 +638,7 @@
   "key": "paintings ___ inside pyramids,為過去分詞「被發現於」,discovered 作後置修飾。",
   "opts": {
    "H": "discovered 被發現,正確",
-   "F": "decorating 為主動,畫作不能裝飾金字塔此處語意不通"
+   "F": "decorating 為及物動詞的現在分詞,須直接接受詞,空格後是介系詞片語 inside pyramids,語法不合(decorating 為 39 題答案)"
   },
   "vocab": [
    [
@@ -655,7 +655,7 @@
   "key": "They ___ as a funeral offering,function as 表「作為…」。",
   "opts": {
    "D": "functioned 充當,正確",
-   "A": "reflected 不接 as"
+   "A": "reflected 反映,作此義時須接受詞,They reflected as a funeral offering 語意不通(且為 34 題答案)"
   },
   "vocab": [
    [
@@ -672,7 +672,7 @@
   "key": "on or around various ___ of their bodies,身體的各個「部位」。",
   "opts": {
    "B": "parts 部位,正確",
-   "I": "symbols 與 bodies 不搭"
+   "I": "symbols 象徵,語法上可說 symbols of their bodies,但「身體的象徵上或周圍放洋蔥」語意不通,且為 33 題答案"
   },
   "vocab": [
    [
@@ -685,7 +685,7 @@
   "key": "mummies found with onions ___ their pelvis…,洋蔥「裝飾/擺在」身體部位,decorating 作分詞修飾。",
   "opts": {
    "F": "decorating 正確",
-   "H": "discovered 已用於 36 題,且語意不合"
+   "H": "discovered 過去分詞,後面不能直接接受詞 their pelvis(須說 discovered on/in…),語法不合;且為 36 題答案"
   },
   "vocab": [
    [
@@ -702,7 +702,7 @@
   "key": "strong scent would ___ the dead to breathe again,prompt sb to V 意為促使。",
   "opts": {
    "E": "prompt 促使,正確",
-   "C": "admired 詞性與語意不合"
+   "C": "admired 為過去式,would 後須接原形動詞,且 admire 不接 sb to V,語意不合(為 31 題答案)"
   },
   "vocab": [
    [
@@ -909,7 +909,7 @@
   "key": "第三段:作品描繪兒童、農家女等,成為十九世紀美國生活經典影像。",
   "opts": {
    "A": "生動描繪美國人生活,正確",
-   "B": "只是其中一部分題材",
+   "B": "文中只提他報導南北戰爭、畫北軍部隊,未提表達戰爭受難者心聲",
    "C": "相反,獨立於藝術慣例",
    "D": "文中未提逃離社會"
   },

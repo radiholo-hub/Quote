@@ -22,7 +22,7 @@
   "key": "後句「沒有她的協助無法經營辦公室」,可知 Jane 是最好的助理。",
   "opts": {
    "A": "assistant 助理,正確",
-   "B": "influence 影響力,不指人",
+   "B": "influence 影響(力);雖可指有影響力的人,但「最好的影響者」與後句「沒有她的協助無法經營辦公室」不合",
    "C": "contribution 貢獻,不指人",
    "D": "politician 政治人物,與辦公室協助無關"
   },
@@ -103,7 +103,7 @@
   ]
  },
  "6": {
-  "key": "agreeable person 隨和好相處,與 always say yes 呼應。",
+  "key": "agreeable person 指隨和、好相處的人,呼應 pleasant and easy to get along with;but 後句則提醒隨和的人也不一定凡事都說「好」。",
   "opts": {
    "A": "enormous 巨大的,不合",
    "B": "intimate 親密的,不指隨和",
@@ -131,7 +131,7 @@
    "A": "identical 相同的,不合",
    "B": "visible 看得見的,正確",
    "C": "available 可得的,不合",
-   "D": "remarkable 顯著的,語意相反"
+   "D": "remarkable 值得注意的;非凡的,barely remarkable to passersby 語意不通,不表「看不看得見」"
   },
   "vocab": [
    [
@@ -171,7 +171,7 @@
   "key": "go on a quest for 為尋找某物而展開探尋,符合找恐龍化石。",
   "opts": {
    "A": "trial 審判/試驗,不合",
-   "B": "route 路線,不接 for fossils",
+   "B": "route 路線;語法上可接 for,但 go on a route for fossils 不表「去尋找化石」,語意不合",
    "C": "strike 罷工,不合",
    "D": "quest 探尋,正確"
   },
@@ -304,8 +304,8 @@
   "key": "reasons other than aesthetics:設計理由不只是美觀。",
   "opts": {
    "A": "contrary to 與…相反,語意不合",
-   "B": "except for 除…之外,不接 reasons",
-   "C": "more of 不成語",
+   "B": "except for 除…之外(表排除),通常修飾整句;要表「美觀以外的其他理由」應用 other than,故不選",
+   "C": "more of 雖有 more of a … than 等用法,但 reasons more of aesthetics 語法語意皆不通",
    "D": "other than 除了,正確"
   },
   "vocab": [
@@ -420,7 +420,7 @@
   "key": "特技工作自「需要」演變而來,necessity 切合演變因果。",
   "opts": {
    "I": "necessity 必要性,正確",
-   "D": "cost 無法與 emerge out of 搭配"
+   "D": "cost 作名詞「成本」,語法上可接在 out of 後,但「特技工作由成本演變而來」語意不合"
   },
   "vocab": [
    [
@@ -477,7 +477,7 @@
   ]
  },
  "26": {
-  "key": "動作連續劇的流行「需要」專業特技演員,called for。",
+  "key": "系列動作電影的流行「需要」專職的特技演員,called for。",
   "opts": {
    "G": "called for 需要,正確",
    "H": "tried out 試用,不合"
@@ -544,7 +544,7 @@
   "key": "the realism and thrilling sensation:並列名詞,指真實特技的刺激感。",
   "opts": {
    "B": "sensation 感受,正確",
-   "D": "cost 不與 thrilling 搭配"
+   "D": "cost 為名詞,語法上可受 thrilling 修飾,但「刺激的代價」與 realism 並列、描述觀眾想要的特技效果,語意不合"
   },
   "vocab": [
    [
@@ -596,7 +596,7 @@
   "key": "後句紙燈籠沿河漂送、祖先回歸,對應結束的送火 okuribi。",
   "opts": {
    "C": "Obon concludes with okuribi,點出結尾,正確",
-   "B": "Such festive activities 需先提到舞蹈,此處尚無指涉"
+   "B": "Such festive activities 雖可回指前文活動,但本段開頭需引出節慶結尾的送火、送靈,B 說明舉辦地點,應接在舞蹈描述之後"
   },
   "vocab": [
    [

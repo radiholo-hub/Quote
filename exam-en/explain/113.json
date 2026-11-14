@@ -4,7 +4,7 @@
   "opts": {
    "A": "spicy 辛辣的,不能形容身材",
    "B": "slender 苗條的,符合語意",
-   "C": "slight 輕微的,不搭 figure",
+   "C": "slight 形容身材時意為「瘦小的、纖弱的」(a slight figure 可成立),但偏指身形單薄,不是靠運動與健康飲食追求的目標,語意不如 slender 貼切",
    "D": "slippery 滑的,語意不合"
   },
   "vocab": [
@@ -113,7 +113,7 @@
   "key": "take the credit for 表示把功勞攬在自己身上,與團隊抱怨相符。",
   "opts": {
    "A": "take advantage of 才是利用",
-   "B": "revenge 報復,不搭 take the ...for",
+   "B": "revenge 報復;take revenge for 雖是可成立的搭配(為某事報仇),但「領導者為成員的辛勞報仇」語意不合,且與團隊抱怨無關",
    "C": "remedy 補救",
    "D": "credit 功勞,正確"
   },
@@ -132,7 +132,7 @@
   "key": "主詞 hotel,受詞為 good service 與交通便利,promise 在此指「保證提供」。",
   "opts": {
    "A": "propose 提議",
-   "B": "contain 包含(容器)",
+   "B": "contain 包含;語法上可接受詞,但「旅館包含便利的大眾運輸」語意不通,交通便利是地點帶來的好處,應用 promise 表示「保證提供」",
    "C": "promise 保證會有,正確",
    "D": "confirm 確認"
   },
@@ -191,7 +191,7 @@
    "A": "call for 要求",
    "B": "pose as 假扮成,正確",
    "C": "attend to 照料",
-   "D": "engage in 從事,後不接 as 的身分"
+   "D": "engage in 從事、參與;後接活動名詞,語法上可接,但「從事一般顧客」語意不通,也沒有「假扮」之意"
   },
   "vocab": [
    [
@@ -301,7 +301,7 @@
    "A": "Aimed at 瞄準",
    "B": "Trained for 為...受訓",
    "C": "Equipped with 配備,正確",
-   "D": "Exhausted by 被耗盡"
+   "D": "Exhausted by 因……而筋疲力盡,與拿著棍子巡街叫人的語意不合"
   },
   "vocab": [
    [
@@ -495,7 +495,7 @@
   "key": "冒號後說明人們相信訊息會傳達,故主詞為 hope,為單數 is。",
   "opts": {
    "D": "hope 希望,冒號後說明相信訊息會送達",
-   "A": "其餘名詞如 sorrow 與冒號後正面內容不合"
+   "C": "sorrow 悲傷,與冒號後「相信訊息會送達」的正面內容不合"
   },
   "vocab": [
    [
@@ -559,7 +559,7 @@
   "key": "末段 Thus ... more and more patients are advised to keep moving,前一句應為「研究者逐漸了解受傷時運動的重要」作因。",
   "opts": {
    "B": "Over time, researchers have come to realize... 為 Thus 的原因",
-   "D": "counter to common practice 已在第二段使用"
+   "D": "D「這似乎與常規做法相反」放在此處無法說明下句 Thus(因此越來越多患者被建議持續活動)的原因,前段結尾也是專家共識而非違反常規,語意不接(D 為第 31 題答案)"
   },
   "vocab": [
    [
@@ -615,7 +615,7 @@
   "opts": {
    "A": "Initially Velcro did not fare well,不符",
    "B": "棉不夠耐用,正確",
-   "C": "名字來自法文字根,但並非在法國製造",
+   "C": "名字取自法文單字 velours 與 crochet,但文中並未說是在法國生產",
    "D": "靈感來自毛刺果,非求絲絨光滑"
   },
   "vocab": [
@@ -709,8 +709,8 @@
   "key": "Moran 的水彩為 first color renderings,並與 Jackson 的照片一同呈給國會,可推論當時彩色照片不普遍。",
   "opts": {
    "A": "Scribner’s 為插畫雜誌,未說推廣公園",
-   "B": "他是因 Langford 故事才去,首次前往",
-   "C": "可推論當時尚無彩色照片,正確",
+   "B": "他先受託為 Langford 的《The Wonders of Yellowstone》畫插圖,之後才親自前往黃石,故並非先去過才開始畫",
+   "C": "Moran 的水彩是該地區最早的彩色描繪,可推論當時彩色照片並不普遍,正確",
    "D": "文中未比較水彩的普及度"
   },
   "vocab": [
@@ -758,7 +758,7 @@
    ],
    [
     "transplant",
-    "v n 移植"
+    "n 移植(手術);v 移植"
    ]
   ]
  },
@@ -796,7 +796,7 @@
    ],
    [
     "waste",
-    "n v 浪費"
+    "n 浪費;廢棄物"
    ]
   ]
  }

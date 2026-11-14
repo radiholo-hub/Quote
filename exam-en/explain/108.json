@@ -94,7 +94,7 @@
  "5": {
   "key": "政府把兒童節「宣布」為國定假日,declare ... as 為慣用搭配。",
   "opts": {
-   "A": "appointed 任命,對象是人",
+   "A": "appointed 任命、指定,多用於任命人擔任職務或指定時間地點,不用於把某天「宣布」為國定假日,語意不合",
    "B": "declared 宣布,符合",
    "C": "performed 執行/表演,不合",
    "D": "involved 牽涉,不合"
@@ -117,7 +117,7 @@
  "6": {
   "key": "為達目標,Michelle「提出」開十家新店的計畫,propose a plan 為常見搭配。",
   "opts": {
-   "A": "advised 勸告,後接人或 that 子句",
+   "A": "advised 建議、勸告,語法上可接名詞,但它指向別人提出勸告;本句是 Michelle 自己「提出」開店計畫,語意不合",
    "B": "occupied 佔據,不合",
    "C": "proposed 提出,符合 a plan",
    "D": "recognized 認出,不合"
@@ -166,7 +166,7 @@
    "A": "particularly 尤其,符合",
    "B": "sensibly 明智地,不合",
    "C": "moderately 適度地,不合",
-   "D": "considerably 相當地,不接 for 片語"
+   "D": "considerably 相當地,表程度大小,不能用來引出特別強調的對象(五歲以下兒童),語意不合"
   },
   "vocab": [
    [
@@ -301,7 +301,7 @@
  "14": {
   "key": "要在需要時有人可談,就需與朋友保持經常「聯絡」,maintain contact。",
   "opts": {
-   "A": "benefit 好處,不搭 maintain",
+   "A": "benefit 好處,maintain benefits 語法可以,但「和朋友保持好處」不通,上下文要的是保持聯絡",
    "B": "contact 聯繫,符合",
    "C": "gesture 手勢,不合",
    "D": "favor 恩惠,不合"
@@ -325,7 +325,7 @@
   "key": "房屋營建、採果屬於體力的「manual labor」(勞力工作)。",
   "opts": {
    "A": "causal 因果的,不合",
-   "B": "durable 耐用的,不修飾 labor",
+   "B": "durable 耐用的,多形容物品;「耐用的勞動工作」語意不通,也不符合蓋房子、採水果等例子",
    "C": "manual 體力的,符合例子",
    "D": "violent 暴力的,不合"
   },
@@ -483,7 +483,7 @@
   ]
  },
  "22": {
-  "key": "shirt 與 together 的關係是被動,過去分詞 woven 作後置修飾,指被織成的襯衫。",
+  "key": "shirt 與 weave 是被動關係(襯衫是被編織出來的),所以用過去分詞 woven 作後置修飾,woven together with the fibers 指用鳳梨葉纖維織成的襯衫。",
   "opts": {
    "A": "wove 過去式,不能直接修飾 shirt",
    "B": "weaving 主動,襯衫不會自己織",
@@ -508,10 +508,10 @@
  "23": {
   "key": "要泛指袋子、鞋子以外的「其他」紡織品,用 other + 複數名詞。",
   "opts": {
-   "A": "else 須放在疑問詞後,不合",
+   "A": "else 只能放在疑問詞或不定代名詞之後(如 what else, something else),不能放在 textile products 這類名詞前面修飾,不合",
    "B": "those 可作限定詞修飾複數名詞,但指的是特定的那一批;本句要泛指袋子、鞋子以外的「其他」紡織品,前文沒有指向特定一批產品,所以選 other",
    "C": "other 其他,接 textile products",
-   "D": "such 須接 such as 或 such+名詞,語意不合"
+   "D": "such 這樣的,such textile products 語法可以,但前文沒有可指的「這類」產品,本句要表達包包、鞋子以外的「其他」紡織品,語意不合"
   },
   "vocab": [
    [
@@ -552,7 +552,7 @@
   ]
  },
  "25": {
-  "key": "空格後 its low cost 為成本低的原因,故用 Due to 「由於」。",
+  "key": "空格後 its low cost 是這種材料被許多一流時尚公司採用的原因,故用 Due to「由於」。",
   "opts": {
    "A": "Due to 由於,表原因,符合",
    "B": "Nothing but 只有,不合",
@@ -580,7 +580,7 @@
    "A": "beyond 超越,不合",
    "B": "into 裝入,built into 符合",
    "C": "from 來自,不合",
-   "D": "with 與,不成慣用語"
+   "D": "with 與;built with 是成立的搭配(用……建造),但本句是相機和顯示系統被「裝進」眼鏡裡,不是用眼鏡建造相機,語意不合"
   },
   "vocab": [
    [
@@ -662,7 +662,7 @@
    ],
    [
     "plain",
-    "adj. 無味的、樸素的"
+    "adj. 原味的;樸素的"
    ]
   ]
  },
@@ -690,7 +690,7 @@
   ]
  },
  "31": {
-  "key": "father 玫瑰總晚一個月送到,這常「毀了」紀念日慶祝,ruin。",
+  "key": "父親的玫瑰花束總晚一個月才送到,這常「毀了」紀念日慶祝,故選 ruined。",
   "opts": {
    "G": "ruined 毀了,符合慶祝被破壞",
    "H": "privilege 特權,詞性與語意不合"
@@ -777,7 +777,7 @@
   "key": "Mom's requests 指媽媽要的東西,與爸爸買的 purchases 形成對比。",
   "opts": {
    "D": "requests 要求,符合 Mom's",
-   "B": "purchases 已用於上一空"
+   "B": "purchases 指買來的東西;本句要和爸爸買回的 items 對比,指媽媽「要的」東西,Mom's purchases(媽媽買的東西)不合,因為去買的人是爸爸"
   },
   "vocab": [
    [
@@ -819,7 +819,7 @@
   "key": "the privilege of hearing 有聽到私事的特權,a/the 後接名詞。",
   "opts": {
    "H": "privilege 特權,符合 the ... of hearing",
-   "A": "little 不能與 the 構成名詞"
+   "A": "little 雖可作名詞(如 the little I know),但 the little of hearing everyone's private matters 語意不通,本空需要名詞「特權」"
   },
   "vocab": [
    [
@@ -900,7 +900,7 @@
   ]
  },
  "41": {
-  "key": "第二段說多數天使魚扮演其他魚的清潔工,啄食死皮組織。",
+  "key": "第二段說多數神仙魚扮演其他魚的清潔工,從牠們身上啄除壞死的組織(但那不是牠們的食物)。",
   "opts": {
    "A": "清潔工,符合 act as cleaners",
    "B": "保鏢是雄魚對雌魚的角色,不是整體工作",

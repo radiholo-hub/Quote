@@ -61,7 +61,7 @@
   "opts": {
    "A": "moist 潮濕的,對應 humid。",
    "B": "stale 不新鮮的,對植物不好。",
-   "C": "crisp 乾脆清爽的,多指食物或天氣。",
+   "C": "crisp 清爽乾冷的,crisp air 搭配可以成立,但乾爽空氣與植物需要的潮濕環境相反,語意不合。",
    "D": "fertile 肥沃的,修飾土壤而非空氣。"
   },
   "vocab": [
@@ -133,7 +133,7 @@
   ]
  },
  "8": {
-  "key": "打籃球時「onto the ground」並扭傷腳踝,表示跌倒。",
+  "key": "打籃球時跌「onto the ground」並弄傷腳踝(injured her ankle),表示跌倒,用 tumbled。",
   "opts": {
    "A": "buried 掩埋,不合。",
    "B": "punched 用拳打,不合。",
@@ -155,7 +155,7 @@
   "key": "居民檢測水中是否有化學物,需要的是 testing kits(檢測包)。",
   "opts": {
    "A": "kits 成套工具,testing kits 為檢測包。",
-   "B": "trials 試驗,不能搭 free testing 發放。",
+   "B": "trials 試驗,是一段過程而非可領取的物品,receive free testing trials 語意不合。",
    "C": "zones 區域,不合。",
    "D": "proofs 證據,不合。"
   },
@@ -270,7 +270,7 @@
   "opts": {
    "A": "departed 出發,不合。",
    "B": "resumed 恢復,合。",
-   "C": "transported 運送,及物動詞。",
+   "C": "transported 運送,為及物動詞,此處後面沒有受詞,且「公車服務運送」語意不合。",
    "D": "corresponded 相符、通信,不合。"
   },
   "vocab": [
@@ -456,7 +456,7 @@
   ]
  },
  "25": {
-  "key": "與過去事實相反的假設:若上帝要對付他,第一道閃電就已足夠,用 would have been。",
+  "key": "混合假設:if 子句 If he was(= were)表與現在事實相反(上帝並沒有在找他),主句指過去第一道閃電的結果,與過去事實相反,用 would have been。",
   "opts": {
    "A": "was 不合。",
    "B": "had been 不合,主句需 would have。",
@@ -526,8 +526,8 @@
     "v. 縮小"
    ],
    [
-    "participial phrase",
-    "片語 分詞構句"
+    "span",
+    "v. 綿延;橫跨"
    ]
   ]
  },
@@ -675,7 +675,7 @@
   "key": "疼痛若有可能「顯示」受傷,may point to an injury。",
   "opts": {
    "C": "point to 指向、顯示。",
-   "D": "argue 主張,主詞 it 不合。"
+   "D": "argue 主張,用無生命主詞語法上可以,但「疼痛可能主張受傷」語意不合;此處要的是「顯示、表示」受傷,用 point to(argue 為第 35 題答案)。"
   },
   "vocab": [
    [

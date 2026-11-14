@@ -33,7 +33,7 @@
   "vocab": [
    [
     "produce",
-    "n. 農產品 /v. 生產"
+    "n. 農產品"
    ],
    [
     "seasonal",
@@ -86,7 +86,7 @@
  "5": {
   "key": "反覆修改的對象是文章的「初稿」first draft。",
   "opts": {
-   "A": "text 文本,first text 不成搭配",
+   "A": "text 文本,語法可以,但不表示文章的「一份稿」,語意不合",
    "B": "brush 刷子,不合",
    "C": "draft 草稿,first draft 為固定搭配",
    "D": "plot 情節,不合"
@@ -107,7 +107,7 @@
   "opts": {
    "A": "casual 隨意的,不合",
    "B": "fragile 易碎的,不合",
-   "C": "remote 偏遠的,left remote 不通",
+   "C": "remote 偏遠的,left + 形容詞的結構可以,但「被閒置多年而偏遠」語意不合",
    "D": "vacant 空著的,符合 deserted house 語意"
   },
   "vocab": [
@@ -126,11 +126,11 @@
   ]
  },
  "7": {
-  "key": "courage 為不可數名詞,可用 enormous 形容「極大的」勇氣。",
+  "key": "courage 為抽象名詞,enormous 可形容程度「極大的」勇氣;gigantic 多形容實體體積,不用於勇氣。",
   "opts": {
    "A": "gigantic 巨大(多指實體大小)",
    "B": "exclusive 獨家的,不合",
-   "C": "multiple 多重的,不修飾不可數的 courage 的程度",
+   "C": "multiple 多個的,須修飾複數可數名詞,不能修飾不可數的 courage",
    "D": "enormous 極大的,可修飾抽象名詞"
   },
   "vocab": [
@@ -163,7 +163,7 @@
    ],
    [
     "financed",
-    "adj. 出資的"
+    "adj. 獲得資助的"
    ],
    [
     "reinforce",
@@ -182,7 +182,7 @@
   "vocab": [
    [
     "grace",
-    "v. 使增光 /n. 優雅"
+    "v. 使增光"
    ],
    [
     "ceremony",
@@ -317,7 +317,7 @@
   "opts": {
    "A": "crash 撞擊,不用於症狀",
    "B": "flush 臉紅/沖洗,不合",
-   "C": "burst 爆裂,不接此語意",
+   "C": "burst 爆裂、突然爆發,不用來表示疾病突然發作",
    "D": "strike 襲擊、突發,符合"
   },
   "vocab": [
@@ -357,7 +357,7 @@
  "18": {
   "key": "省略前面 detects 的內容,前句主動詞為 detects(現在式),故用助動詞 don't(其他部分並未偵測到移動)。",
   "opts": {
-   "A": "aren't 需有被動/進行,不合",
+   "A": "aren't 為 be 動詞否定,但此處省略的是一般動詞 detect,須用 don't 代替,不合",
    "B": "won't 未來式,不合",
    "C": "don't 代替 don't detect,正確",
    "D": "haven't 完成式,不合"
@@ -415,7 +415,7 @@
   "key": "be noted for 以…聞名,與 famous 相近。",
   "opts": {
    "I": "noted 著名的,be noted for 正確",
-   "C": "familiar 為 be familiar with,不接 for"
+   "C": "familiar 熟悉的,常用 be familiar with/to,不表示「以…聞名」,語意不合"
   },
   "vocab": [
    [
@@ -487,7 +487,7 @@
   "key": "除 Emmanuel 外都被換掉,它「保留」了原本優美音色,過去式 retained。",
   "opts": {
    "D": "retained 保留,受詞 its renowned sound",
-   "F": "survived 已用於上題,且不能接 its sound"
+   "F": "survived 語法上可接受詞,但「熬過它的音色」語意不通;此字也是第 24 題答案"
   },
   "vocab": [
    [
@@ -525,7 +525,7 @@
   "key": "call the faithful to prayer 召喚信徒去祈禱,the faithful 指信徒。",
   "opts": {
    "E": "faithful 加 the 為名詞,指信徒",
-   "C": "familiar 不能作為被召喚的對象"
+   "C": "familiar 熟悉的,the familiar 不指一群人,被召喚去禱告的應是信徒,語意不合"
   },
   "vocab": [
    [
@@ -563,7 +563,7 @@
   "key": "2019 大火後鐘聲「沉寂」,fall silent 為固定用法。",
   "opts": {
    "J": "silent 沉默,fall silent 正確",
-   "C": "familiar 不合 fell 之後的補語"
+   "C": "familiar 語法上可作 fell 的補語,但「變得熟悉」與大火後鐘聲停擺的語意不合"
   },
   "vocab": [
    [
@@ -787,7 +787,7 @@
    "A": "文中未說多數愛好者有攻擊傾向",
    "B": "優缺點並未比較孰多",
    "C": "COVID 只是觀影量增加,非靈感來源",
-   "D": "符合兒童與睡眠等長期影響"
+   "D": "符合:兒童看恐怖片成年後較易焦慮,且對暴力較不敏感、更能接受攻擊行為,顯示可能有長期影響"
   },
   "vocab": [
    [
@@ -865,7 +865,7 @@
   "key": "This soon filled the treasury 指前一句 emperors 建立的國家壟斷,只有政府能生產。",
   "opts": {
    "A": "the alcohol 不是能填滿國庫的事件",
-   "B": "the government 為人,不指事",
+   "B": "the government 語法上可作主詞,但使國庫充盈並助長伏特加消費的是「只准政府生產」這項專賣制度,不是政府本身",
    "C": "illegal production 是原因,非後文的結果",
    "D": "the state monopoly 符合"
   },
@@ -881,7 +881,7 @@
   ]
  },
  "46": {
-  "key": "最後一段先談反酒精運動,最後以事實說明俄羅斯雖非第一但仍接近前段,屬補充事實。",
+  "key": "最後一段先談反酒精運動,最後以事實說明俄羅斯人均飲酒量雖非第一但仍名列前茅,屬補充事實。",
   "opts": {
    "A": "提供進一步事實,如人均消費排名",
    "B": "並非重述全文",

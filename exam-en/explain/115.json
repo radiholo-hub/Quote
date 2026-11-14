@@ -4,7 +4,7 @@
   "opts": {
    "A": "hasty 匆忙的,不修飾行程",
    "B": "tight 緊湊的,符合排不出訪談",
-   "C": "diligent 勤勉的,修飾人",
+   "C": "diligent 勤勉的,用來形容人或人的努力;「勤勉的行程」語意不通,也無法說明為何要等數週",
    "D": "routine 例行的,無法導出「要等數週」"
   },
   "vocab": [
@@ -119,8 +119,8 @@
   "opts": {
    "A": "dreads 懼怕,正確",
    "B": "stresses 強調(及物時語意不合)",
-   "C": "wanders 漫步,不及物",
-   "D": "escapes 逃避,不符「想法」搭配"
+   "C": "wanders 漫遊、閒逛;雖可接地點當受詞(wander the streets),但不能接 the thought,語意不合",
+   "D": "escapes 逃避;語法上可接 the thought,但本句要表達的是害羞男孩對上台演講感到「恐懼」,「逃避這個念頭」不合句意"
   },
   "vocab": [
    [
@@ -210,7 +210,7 @@
   "key": "校園槍擊事件引起嚴重的擔憂,grave concerns 為常見搭配,意為嚴重的疑慮。",
   "opts": {
    "A": "swift 迅速的",
-   "B": "brutal 殘暴的,不修飾 concerns",
+   "B": "brutal 殘暴的,通常形容行為或事件本身(brutal attack);用來形容「憂慮」不自然,語意不合",
    "C": "harsh 嚴厲的",
    "D": "grave 嚴重的,正確"
   },
@@ -236,7 +236,7 @@
  "11": {
   "key": "前句講人類聚集分享消息,此句引出白犀牛也如此,「事實證明」的 it turns out 引出出人意料的事實。",
   "opts": {
-   "A": "what is more 此外,但並非補充同類",
+   "A": "what is more 此外、更何況,用來追加更進一步的論點;此處是引出出人意料的事實(白犀牛也會這樣做),不是追加論點",
    "B": "it turns out 結果是,正確",
    "C": "in other words 換句話說,沒有重述",
    "D": "all in all 總之,尚非結論"
@@ -418,7 +418,7 @@
   ]
  },
  "19": {
-  "key": "前面說小份量使其起初是點心,as such 意為「就其本質而言」,承上句 small portions。",
+  "key": "前文說小份量只是為了「點到心」,空格後說最初被當作小吃享用;as such 意為「因此、以這樣的性質」,承接前述小份量的性質,引出結果。",
   "opts": {
    "A": "if so 如果是這樣,語意不合",
    "B": "as such 因此、就其本身而言,正確",
@@ -509,7 +509,7 @@
   "key": "increases dementia risk in later life,失智風險增加,risk 為名詞作 increases 的受詞。",
   "opts": {
    "F": "risk 風險,正確",
-   "G": "function 已用於 22"
+   "G": "function 功能;increases dementia function(增加失智症的功能)語意不通;且 function 是 22 的答案"
   },
   "vocab": [
    [
@@ -614,7 +614,7 @@
   "key": "surprisingly ___ benefits,形容詞修飾 benefits,「驚人地顯著的」,dramatic。",
   "opts": {
    "I": "dramatic 劇烈的、顯著的,正確",
-   "H": "minimal 極小的,用於 29"
+   "H": "minimal 極少的;surprisingly minimal benefits 語法可以,但 even a five-minute nap can bring about 表示短短小睡也有大效果,用「極少的好處」語意矛盾;且 minimal 是 29 的答案"
   },
   "vocab": [
    [
@@ -656,7 +656,7 @@
   "key": "加入自然聲音以營造放鬆的「氛圍」,relaxing atmosphere 為搭配。",
   "opts": {
    "C": "atmosphere 氛圍,正確",
-   "G": "function 功能,不能這樣搭配"
+   "G": "function 功能;create a relaxing function 語意不通,後文說能讓午睡更有效,應是營造放鬆的「氛圍」;且 function 是 22 的答案"
   },
   "vocab": [
    [
@@ -740,7 +740,7 @@
   "key": "最後一段總結:各種因素共同造成微笑現象,而後接心理學家指其比看起來複雜。",
   "opts": {
    "B": "thus 總結全文,正確",
-   "A": "另一因素已用於 33"
+   "A": "A 引入「另一個因素」,但最後一段是總結全文(後接心理學家指出微笑比看起來複雜),不再提出新因素;且 A 是 33 的答案"
   },
   "vocab": [
    [
@@ -808,7 +808,7 @@
   "opts": {
    "A": "自 1914 年 8 月至 1916 年 8 月,超過兩年,正確",
    "B": "文中未說他是首位橫越者,反而失敗",
-   "C": "冰上露營五個月,島上沒有那麼久",
+   "C": "文中說五個月是在漂流的浮冰上紮營,不是在象島(Elephant Island)",
    "D": "他與五人搭救生艇求援,並非派五人"
   },
   "vocab": [
@@ -929,7 +929,7 @@
   "vocab": [
    [
     "clockwise",
-    "副 順時針地"
+    "形 順時針的 副 順時針地"
    ],
    [
     "ascend",
@@ -1015,7 +1015,7 @@
   "opts": {
    "A": "北極星是導航參考,不是目的地",
    "B": "GPS 版面隨行進方向,不固定",
-   "C": "預聖經時期地圖以東為上",
+   "C": "文中說聖經前時期的地圖以東方為上方,不是南方",
    "D": "Old Islamic maps 南在上為宗教理由,正確"
   },
   "vocab": [
