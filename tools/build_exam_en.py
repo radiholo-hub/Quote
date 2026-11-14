@@ -46,6 +46,9 @@ OPT_FIXES = [  # (年, 題號, 選項索引, 原文, 改為)
 IMG_OVERRIDES = {("110", 49): "110-49.png"}
 PASSAGE_FIXES = [  # (年, 原文, 改為)  需恰好一處
     ("112", "th 18 century", "18th century"),
+    # 110-25:解析時把日期 "25 June 1977" 誤當成空格,真正的空格在 "the first bolt ___ enough"(答案 D would have been)
+    ("110", "Finally, on 【25】 June 1977", "Finally, on 25 June 1977"),
+    ("110", "the first bolt 25 enough", "the first bolt 【25】 enough"),
 ]
 import re as _re
 def _arrows(t): return _re.sub(r"\s*(?:\u2192\s*)+", " \u2192 ", t).strip()
