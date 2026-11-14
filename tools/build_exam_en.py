@@ -202,3 +202,34 @@ for f in sorted((out / "translate").glob("*.json")):
     "// 由 tools/build_exam_en.py 合併 exam-en/translate/*.json 產生。中文翻譯為草稿,待老師審核;只在交卷後的檢討頁顯示。\nwindow.TRANS = " +
     json.dumps(trans, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
 print(f"翻譯 {len(trans)} 年,問題 {len(problems)} 項", problems[:15])
+
+# 完整原卷模式(目前 111、115):exam-en/src-data/fullpaper.json → exam-en/fullpaper.js
+fsrc = json.loads((out / "src-data" / "fullpaper.json").read_text(encoding="utf-8"))
+mixed_raw = (src / "mixed.js").read_text(encoding="utf-8")
+mixed = {y: {"q": int(q), "n": int(n), "key": k, "points": int(p)} for y, q, n, k, p in
+         re.findall(r"'(\d+)':\s*\{\s*q:\s*(\d+),\s*n:\s*(\d+),\s*key:\s*'([A-Z]+)',\s*points:\s*(\d+)", mixed_raw)}
+rule = re.search(r"MULTI_RULE:\s*'([^']+)'", (root / "gsat" / "data" / "scoring.js").read_text(encoding="utf-8")).group(1)
+def crop(spec, name):
+    fname, l, t, r, b = spec
+    im = Image.open(src / "img" / "ns" / fname).convert("L").crop((l, t, r, b))
+    box = ImageChops.invert(im).point(lambda v: 255 if v > 25 else 0).getbbox()
+    im = im.crop((max(box[0]-4, 0), max(box[1]-4, 0), min(box[2]+4, im.width), min(box[3]+4, im.height)))
+    im.save(out / "img" / name, optimize=True); return "img/" + name
+full = {}
+for y, p in fsrc.items():
+    if y.startswith("_"): continue
+    p2 = p["part2"]
+    if "introImg" in p2: p2["introImg"] = crop(p2["introImg"], f"{y}-mixed-logo.png")
+    if "img" in p2: p2["img"] = crop(p2["img"], f"{y}-mixed-fig.png")
+    m = mixed[y]
+    for it in p2["items"]:
+        if it["type"] == "multi":
+            assert it["n"] == str(m["q"]) and len(it["options"]) == m["n"] and it["points"] == m["points"], (y, "第 49 題與官方答案資料不符")
+            it["key"] = m["key"]; it["rule"] = rule
+    pts = sum(it["points"] for it in p2["items"])
+    assert pts == 10, (y, "混合題配分應為 10 分", pts)
+    full[y] = p
+(out / "fullpaper.js").write_text(
+    "// 由 tools/build_exam_en.py 依 exam-en/src-data/fullpaper.json 產生(完整原卷模式)。\nwindow.FULLPAPER = " +
+    json.dumps(full, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
+print(f"完整原卷 {sorted(full)},第 49 題答案 " + ", ".join(f"{y}:{mixed[y]['key']}/{mixed[y]['n']}選項" for y in full))
