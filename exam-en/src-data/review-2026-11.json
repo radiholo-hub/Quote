@@ -1249,5 +1249,125 @@
   "problem": "「預聖經時期」為不自然的直譯,與翻譯檔的「聖經前時期」不一致。",
   "fix": "文中說聖經前時期的地圖以東方為上方,不是南方",
   "i": 138
+ },
+ {
+  "id": "108-44",
+  "part": "translate",
+  "where": "stem",
+  "severity": "error",
+  "problem": "features 含行為,不只外觀,「外觀特徵」誤譯",
+  "fix": "下列哪一項描述了黑斑神仙魚在性別轉變期間各項特徵變化的順序?",
+  "before": "下列哪一項描述了黑斑神仙魚在性別轉變期間外觀特徵變化的順序?",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "113-36",
+  "part": "translate",
+  "where": "stem",
+  "severity": "minor",
+  "problem": "題幹括號譯文「靈光乍現的時刻」等於直接提示答案 D",
+  "fix": "作者在第一段中所說的「a lightbulb moment」是什麼意思?",
+  "before": "作者在第一段中所說的「a lightbulb moment(靈光乍現的時刻)」是什麼意思?",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "113-44",
+  "part": "translate",
+  "where": "stem",
+  "severity": "minor",
+  "problem": "procedure 指醫療程序/手術,「療程」不精確;此題考指涉,題幹不加中譯",
+  "fix": "第二段中的「this pioneering procedure」指的是什麼?",
+  "before": "第二段中的「this pioneering procedure(這項開創性的療程)」指的是什麼?",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "113-44",
+  "part": "translate",
+  "where": "opts[1]",
+  "severity": "minor",
+  "problem": "Oddsson 是接受移植的病人,「Oddsson 的皮膚移植」易誤解為他執行移植",
+  "fix": "Oddsson 接受的皮膚(魚皮)移植。",
+  "before": "(B) Oddsson 的皮膚移植。",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "114-5",
+  "part": "translate",
+  "where": "stem",
+  "severity": "minor",
+  "problem": "essay 指學生的作文/文章,不是「論文」",
+  "fix": "Mary 對她作文的第一份「草稿」不滿意,在交給老師之前修改了好幾次。",
+  "before": "Mary 對她論文的第一份「草稿」不滿意,在交給老師之前修改了好幾次。",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "114-10",
+  "part": "translate",
+  "where": "stem",
+  "severity": "minor",
+  "problem": "was sued 是被提起民事訴訟(被告),「起訴」多指刑事;abusing 譯「辱罵」較準確",
+  "fix": "這家公司的經理因「言語上」辱罵同事,稱他們是「無可救藥的魯蛇」,而被告上法院。",
+  "before": "這家公司的經理因「言語上」霸凌同事,稱他們為「無可救藥的魯蛇」而遭到起訴。",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "109-56",
+  "part": "translate",
+  "where": "stem",
+  "severity": "minor",
+  "problem": "此題問片語意思,題幹把片語整句譯成中文等於提示答案",
+  "fix": "第三段中的「the unforgiving nature of tons of onrushing rolling stock」,作者的意思是什麼?",
+  "before": "第三段中「數以噸計、疾駛而來的列車那毫不留情的本質」,作者的意思是什麼?",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "110-54",
+  "part": "translate",
+  "where": "stem",
+  "severity": "minor",
+  "problem": "題幹括號譯文「極度無障礙」接近答案,等於提示",
+  "fix": "第二段中的「ultra-accessible」意味著什麼?",
+  "before": "第二段中的「ultra-accessible(極度無障礙)」意味著什麼?",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "111-42",
+  "part": "translate",
+  "where": "stem",
+  "severity": "minor",
+  "problem": "此題考字詞指涉,題幹逐字附中譯等於提示答案",
+  "fix": "本文使用了下列哪些字詞來指稱安全帽?\na. tool b. code c. device d. helmet e. accessory f. headgear",
+  "before": "本文使用了下列哪些字詞來指稱安全帽?\na. tool(工具) b. code(代碼) c. device(裝置) d. helmet(頭盔) e. accessory(配件) f. headgear(頭部護具)",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "110-41~44",
+  "part": "translate",
+  "where": "passage 41、題目 41–44",
+  "severity": "error",
+  "problem": "prickly pear cactus 指整株植物(當地稱 nopal),譯成「仙人掌果」9 處、把莖片內部譯成「果肉」2 處,屬誤譯",
+  "fix": "梨果仙人掌/內部肉質",
+  "before": "仙人掌果/果肉",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "110-41~44",
+  "part": "explain",
+  "where": "key / vocab",
+  "severity": "minor",
+  "problem": "詳解同樣把 prickly pear 當成果實(2 處)",
+  "fix": "梨果仙人掌/內部肉質",
+  "before": "仙人掌果/果肉",
+  "round": "第二輪複查(依老師點名)"
+ },
+ {
+  "id": "115-39",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "補上原文依據,並統一「第 4 段/最後一段」的說法",
+  "fix": "最後一段(第 4 段)說明現代受歡迎的原因:材質越來越多樣(鑄鐵、鋼、木、混凝土、玻璃),且 The timeless appeal of their classical design makes spiral staircases a much-desired feature…,可回答 D。",
+  "before": "第 4 段說明螺旋樓梯因古典設計與多種材質而受現代歡迎,可回答 Why popular。",
+  "round": "第二輪複查(依老師點名)"
  }
 ]

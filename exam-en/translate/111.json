@@ -295,7 +295,7 @@
    ]
   },
   "42": {
-   "stem": "本文使用了下列哪些字詞來指稱安全帽?\na. tool(工具) b. code(代碼) c. device(裝置) d. helmet(頭盔) e. accessory(配件) f. headgear(頭部護具)",
+   "stem": "本文使用了下列哪些字詞來指稱安全帽?\na. tool b. code c. device d. helmet e. accessory f. headgear",
    "opts": [
     "(A)a、b、d、e",
     "(B)a、c、d、f",

@@ -241,7 +241,7 @@
    "opts": []
   },
   "36": {
-   "stem": "作者在第一段中所說的「a lightbulb moment(靈光乍現的時刻)」是什麼意思?",
+   "stem": "作者在第一段中所說的「a lightbulb moment」是什麼意思?",
    "opts": [
     "(A) 因禍得福。",
     "(B) 圓滿的結局。",
@@ -313,10 +313,10 @@
    ]
   },
   "44": {
-   "stem": "第二段中的「this pioneering procedure(這項開創性的療程)」指的是什麼?",
+   "stem": "第二段中的「this pioneering procedure」指的是什麼?",
    "opts": [
     "(A) 100% Fish 的使命。",
-    "(B) Oddsson 的皮膚移植。",
+    "Oddsson 接受的皮膚(魚皮)移植。",
     "(C) 海產業的根本改變。",
     "(D) 保護環境的新方法。"
    ]
