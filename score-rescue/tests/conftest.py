@@ -22,7 +22,7 @@ EXPOSE = [
     'canChallenge', 'startPlanDay', 'startMore', 'startMoreReview',
     'startChallenge', 'startFreeMore', 'showScore', 'renderPlan', 'planRanked', 'doneCount',
     'runQuiz', 'applyBlob', 'backupBlob', 'fetchPaid', 'save', 'show', 'go', 'examAllowed', 'coveredDays', 'LV_V0',
-    'examBegin', 'examSubmit', 'examRenderCurrent', 'examRenderReview', 'examFull', 'loadPaidExams', 'EXAM1_P5_TEXTS', 'EXAM1_P6', 'EXAM1_P7', 'EXAM2_P5_TEXTS', 'EXAM2_P7',
+    'examBegin', 'examSubmit', 'examRenderCurrent', 'examStartScreen', 'examRenderReview', 'examFull', 'loadPaidExams', 'EXAM1_P5_TEXTS', 'EXAM1_P6', 'EXAM1_P7', 'EXAM2_P5_TEXTS', 'EXAM2_P7',
 ]
 
 # 假 Supabase：登入中的使用者 a@b.c；window.__SB_PAID 決定付費名單裡有沒有他。

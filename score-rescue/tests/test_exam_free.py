@@ -124,7 +124,8 @@ def test_free_review_shows_answers_and_only_five_demos(open_app):
     cards = rv.locator('.ans-fold')
     assert cards.count() == 100
     assert rv.locator('.ac-lock').count() == 95, '95 題只給正解'
-    demos = [c for c in rv.locator('.ans-fold').all() if '示範詳解' in c.locator('.ac-chip').inner_text()]
+    demos = [c for c in rv.locator('.ans-fold').all() if c.get_attribute('data-demo') == '1']
+    assert all(d.locator('.ac-sum .demo-badge').count() == 1 for d in demos), '每張示範卡一個標章'
     assert len(demos) == 5
     assert all(c.locator('.ac-lock').count() == 0 for c in demos)
     assert rv.locator('.ac-opts .right, .ac-opts [class*="right"]').count() >= 95
@@ -231,7 +232,8 @@ def test_result_puts_review_right_below_parts_and_colors(open_app):
     app.page.click('#qJump summary')
     app.page.locator('#qJump .qchip').nth(3).click()
     assert not app.js("document.getElementById('qJump').open")
-    assert app.count('#examReviewBody .unlock-box [data-act="examUnlock"]') == 2
+    assert app.count('#examReviewBody [data-act="examUnlock"]') == 1, '全頁只有一個解鎖按鈕'
+    assert app.page.locator('#examReviewBody .ac-lock').first.text_content().startswith('🔒 完整詳解：完整方案開放')
 
 
 def test_action_buttons_are_wine_and_buy_buttons_orange():
@@ -240,3 +242,51 @@ def test_action_buttons_are_wine_and_buy_buttons_orange():
     assert fire <= {'轉帳購買完整方案', '轉帳後加官方 LINE 回報', '解鎖完整方案', '解鎖本回完整詳解'}, fire
     pri = {t for c, t in acts if c == 'pri'}
     assert {'開始免費詞性前測', '免費前測', '下一題'} <= pri
+
+
+
+def test_start_screen_button_first_and_rules_folded(open_app):
+    app = open_app(paid=False, init=sbk(False))
+    app.js("()=>__t.examStartScreen(1)")
+    body = app.page.locator('#examStartBody')
+    keys = body.locator('.exam-keys').inner_text()
+    assert '閱讀 100 題' in keys and '75 分鐘' in keys and '時間到自動交卷' in keys and '不保留進度' in keys
+    order = app.js("()=>['.exam-keys','[data-act=\"examBegin\"]','.exam-rules'].map(q=>document.querySelector('#examStartBody '+q).getBoundingClientRect().top)")
+    assert order == sorted(order), '重點 → 開始作答 → 測驗說明'
+    assert not app.js("document.querySelector('#examStartBody .exam-rules').open"), '細節預設收起'
+    assert app.page.locator('[data-act="examBegin"]').bounding_box()['y'] < 844, '手機第一屏就看得到開始作答'
+
+
+def test_result_demo_rows_two_lines(open_app):
+    app = open_app(paid=False, init=sbk(False))
+    app.js("()=>__t.examBegin(1)")
+    app.js("()=>{const E=__t.getEX();E.ans=E.items.map((it,i)=>i===1?null:i<30?it.a:(it.a+1)%4)}")
+    app.js("()=>__t.examSubmit()")
+    order = app.js("()=>['#examParts','#examReviewRow','#examDemoBox','#examUnlockBox'].map(q=>document.querySelector(q).getBoundingClientRect().top)")
+    assert order == sorted(order)
+    rows = app.page.locator('#examDemoBox .demo-list button')
+    assert rows.count() == 5
+    first = rows.nth(0)
+    assert first.locator('.dl1').inner_text().replace('\n', ' ').startswith('第 2 題') and '未作答' in first.locator('.dl1').inner_text()
+    assert first.locator('.dl2').inner_text().startswith('Part 5')
+    l1, l2 = first.locator('.dl1').bounding_box(), first.locator('.dl2').bounding_box()
+    assert l2['y'] >= l1['y'] + l1['height'] - 1, '重點在第二行'
+
+
+def test_mobile_part6_passage_height_and_toggle(open_app):
+    app = open_app(paid=False, init=sbk(False), width=390, height=844)
+    app.js("()=>__t.examBegin(1)")
+    app.js("()=>{const E=__t.getEX();E.cur=E.items.findIndex(x=>x.part===6)}")
+    app.js("()=>__t.examRenderCurrent()")
+    h = app.js("document.querySelector('#examBody .pass-pane .passage').getBoundingClientRect().height")
+    assert 150 < h <= 844 * 0.5 + 2, h
+    app.page.click('#ppToggle')
+    assert app.page.is_hidden('#examBody .pass-pane .passage')
+    app.page.click('#ppToggle')
+    assert app.page.is_visible('#examBody .pass-pane .passage')
+    app.js("()=>{const E=__t.getEX();E.cur=E.items.findIndex(x=>x.part===7&&x.set.passages.length>1)}")
+    app.js("()=>__t.examRenderCurrent()")
+    tabs = app.page.locator('#examBody .ptab')
+    assert tabs.count() >= 2
+    tabs.nth(1).click()
+    assert 'on' in tabs.nth(1).get_attribute('class')

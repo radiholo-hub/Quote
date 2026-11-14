@@ -213,8 +213,9 @@ def test_home_leads_with_pos_pretest(app):
     diag = card.locator('[data-start]')
     assert diag.inner_text() == '開始 30 題閱讀診斷' and 'line' in diag.get_attribute('class')
     assert btn.bounding_box()['y'] < card.bounding_box()['y']
-    order = pg.evaluate("['#posCardBtn','.hero .demo','#pricing','#diagCard'].map(q=>document.querySelector(q).getBoundingClientRect().top+scrollY)")
-    assert order == sorted(order), '手機首頁順序：前測 → 一題試答 → 方案 → 30 題診斷'
+    order = pg.evaluate("['#posCardBtn','#heroExamLink','.hero .demo','#pricing','#exams','#diagCard'].map(q=>document.querySelector(q).getBoundingClientRect().top+scrollY)")
+    assert order == sorted(order), '手機首頁順序：前測 → 模考連結 → 一題試答 → 方案 → 模考 → 30 題診斷'
+    assert pg.get_attribute('#heroExamLink', 'href') == '#exams' and '100 題・75 分鐘' in pg.inner_text('.hero-exam')
     assert pg.locator('header a.btn[href="./pos/"]').inner_text() == '免費前測'
     assert not pg.evaluate("document.getElementById('more').open") and pg.is_hidden('#sample'), '介紹與範例預設收起'
     assert pg.is_visible('#pricing [data-price]') and pg.is_visible('#promoDesc')
