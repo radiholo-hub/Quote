@@ -84,9 +84,15 @@ function speechClick(ev){
 
 
 function optText(g,q,i){return g.bank?g.bank[i]:(q.opts&&!q.optImgs?q.opts[i]:"")}
-function fullText(g,q){   // 不唸題號、不唸選項字母:題幹 → 答案單字 → 填好答案的完整句
-  var at=optText(g,q,L.indexOf(q.ans)).replace(/[.\s]+$/,""),p=[];
+function isPlaceholder(q){return !!q.optImgs||(q.opts||[]).some(function(o){return /[\u4e00-\u9fff]/.test(o)})}   // 選項是圖或「圖 A」之類占位字
+function fullText(g,q){   // 不唸題號:題幹 → 正確選項(圖題唸字母)→ 填好答案的完整句
+  var i=L.indexOf(q.ans),p=[];
   if(q.stem)p.push(q.stem);
+  if(q.img||q.optImgs){   // 圖題:題幹 + 正確選項字母;選項文字是真實文字(如 109-41)時再補唸
+    p.push("The correct answer is choice "+q.ans+(isPlaceholder(q)?"":", "+optText(g,q,i).replace(/[.\s]+$/,""))+".");
+    return p.join(" ");
+  }
+  var at=optText(g,q,i).replace(/[.\s]+$/,"");
   if(at){p.push(at+".");if(q.stem&&/_{2,}/.test(q.stem)&&!g.bank)p.push(q.stem.replace(/_{2,}/,at))}
   return p.join(" ");
 }
@@ -119,7 +125,7 @@ function qHtml(g,q,review){
   if(g.bank){h+='<div class="letters">'+g.bank.map(function(_,i){return '<button class="opt" data-id="'+id+'" data-l="'+L[i]+'"><b>'+L[i]+'</b></button>'}).join('')+'</div>'}
   else{h+='<div class="opts">'+q.opts.map(function(o,i){
     var btn='<button class="opt" data-id="'+id+'" data-l="'+L[i]+'"><b>('+L[i]+')</b><span>'+(q.optImgs?'<img src="'+img(q.optImgs[i])+'" alt="選項 '+L[i]+' 的圖">':esc(o))+'</span></button>';
-    return review&&!q.optImgs?'<div class="optrow">'+btn+spBtn('o'+id+L[i],o,'',0.9).replace('class="sp"','class="sp side"').replace('aria-label="朗讀"','aria-label="朗讀選項 '+L[i]+'"')+'</div>':btn}).join('')+'</div>'}
+    return review&&!isPlaceholder(q)?'<div class="optrow">'+btn+spBtn('o'+id+L[i],o,'',0.9).replace('class="sp"','class="sp side"').replace('aria-label="朗讀"','aria-label="朗讀選項 '+L[i]+'"')+'</div>':btn}).join('')+'</div>'}
   return h+'<div class="fb" id="fb'+id+'"></div><div id="ex'+id+'"></div></div>';
 }
 function findQ(id){for(var i=0;i<V.qs.length;i++)if(V.qs[i].id===id)return V.qs[i].q}
@@ -169,6 +175,15 @@ function finish(){
   location.hash="#result";if(location.hash==="#result")route();
 }
 
+/* ---------- 沒有可檢討的紀錄 ---------- */
+function lastRec(){var r=load("last",null);return r&&r.ans&&typeof r.ans==="object"&&paper(r.year)?r:null}
+function noRecord(){
+  var old=load("history",[]).length>0;
+  app.innerHTML='<h1>沒有可檢討的作答紀錄</h1><div class="card"><p>'+(old
+    ?'這台裝置只有舊版留下的分數,沒有逐題作答,所以不能檢討、朗讀答案或看單字表。請重新作答一份試卷,交卷後就能檢討。'
+    :'這個瀏覽器還沒有交卷紀錄。作答並交卷一份試卷後,才能看成績、檢討與單字表。')+
+    '</p><p class="mute">成績與作答只存在這個瀏覽器,換裝置或清除網站資料後不會保留。</p><a class="btn primary" href="#home">選擇試卷</a></div>';
+}
 /* ---------- 計分 ---------- */
 function grade(rec){
   var groups=groupsOf(rec.year),r={right:0,wrong:0,blank:0,raw:0,n:0,max:scoreInfo(rec.year).max,by:{},wrongIds:[],blankIds:[]};
@@ -180,7 +195,7 @@ function grade(rec){
   return r;
 }
 function result(){
-  var rec=load("last",null);if(!rec||!paper(rec.year)){location.hash="#home";return}
+  var rec=lastRec();if(!rec){noRecord();return}
   var g=grade(rec),si=scoreInfo(rec.year),used=(rec.tEnd-rec.t0)/1000;
   var h='<h1>'+rec.year+' 學年度 成績</h1><div class="card"><div class="score">答對 '+g.right+' / '+g.n+' 題</div>'+
     '<div class="tally"><span class="ok">答對 '+g.right+'</span><span class="bad">答錯 '+g.wrong+'</span><span>未作答 '+g.blank+'</span></div>'+
@@ -199,17 +214,33 @@ function result(){
 /* ---------- 檢討 ---------- */
 var FILTERS={"review-all":"全部題目","review-wrong":"答錯","review-blank":"未作答","review-miss":"答錯與未作答"};
 function review(name){
-  var rec=load("last",null);if(!rec||!paper(rec.year)){location.hash="#home";return}
+  var rec=lastRec();if(!rec){noRecord();return}
   var g=grade(rec),keep=null;
   if(name==="review-wrong")keep=g.wrongIds;else if(name==="review-blank")keep=g.blankIds;else if(name==="review-miss")keep=g.wrongIds.concat(g.blankIds);
   var set={};if(keep)keep.forEach(function(i){set[i]=1});
   var groups=groupsOf(rec.year).map(function(x){return Object.assign({},x,{qs:x.qs.filter(function(q){return !keep||set[x.year+"-"+q.n]})})}).filter(function(x){return x.qs.length});
   S=null;V={groups:groups,review:true,qs:allQs(groups),ans:rec.ans};
+  var total=g.n,mx=0;groupsOf(rec.year).forEach(function(x){x.qs.forEach(function(q){if(q.n>mx)mx=q.n})});
+  var seg=[["review-all","全部",total],["review-wrong","答錯",g.wrong],["review-blank","未作答",g.blank]].map(function(t){
+    var on=(t[0]===name)||(name==="review-miss"&&false);
+    return '<a class="chip'+(on?' on':'')+'" href="#'+t[0]+'" aria-pressed="'+on+'">'+t[1]+' '+t[2]+'</a>'}).join('');
   app.innerHTML='<div class="bar"><a class="btn" href="#result">回成績</a><span class="mute">檢討:'+FILTERS[name]+' '+V.qs.length+' 題</span><a class="btn" href="#home">首頁</a></div><h1>'+rec.year+' 學年度 檢討</h1>'+
-    (V.qs.length?paperHtml(groups,true):'<p class="mute">沒有符合的題目。</p>');
+    '<div class="rtools"><div class="row" role="group" aria-label="篩選">'+seg+'</div>'+
+    '<form id="jump" class="jump" novalidate><label for="jumpn">跳到題號</label><input id="jumpn" type="number" inputmode="numeric" min="1" max="'+mx+'" placeholder="1–'+mx+'"><button class="btn" type="submit">前往</button></form></div>'+
+    (V.qs.length?paperHtml(groups,true):'<p class="mute">這個篩選沒有題目('+FILTERS[name]+' 0 題)。</p>');
   app.onclick=function(ev){speechClick(ev)};
+  document.getElementById("jump").onsubmit=function(ev){
+    ev.preventDefault();var n=parseInt(document.getElementById("jumpn").value,10);
+    if(!(n>=1&&n<=mx)){notify("請輸入 1 到 "+mx+" 的題號");return}
+    var id=rec.year+"-"+n;
+    if(document.getElementById("q"+id))goQ(id);
+    else{pendingJump=id;notify("第 "+n+" 題不在目前的篩選中,已切換到全部");location.hash="#review-all"}
+  };
   V.qs.forEach(function(x){refresh(x.id)});
+  if(pendingJump){var pj=pendingJump;pendingJump=null;goQ(pj)}
 }
+var pendingJump=null;
+function goQ(id){var el=document.getElementById("q"+id);if(!el)return;el.scrollIntoView({block:"start",behavior:"auto"});el.classList.add("flash");setTimeout(function(){el.classList.remove("flash")},1800)}
 function refresh(id){
   var q=findQ(id),a=(V.review?V.ans:S.ans)[id],box=document.getElementById("q"+id);
   if(!box)return;
@@ -237,7 +268,7 @@ function exHtml(id,q){
 
 /* ---------- 單字表 ---------- */
 function vocabPage(){
-  var rec=load("last",null);if(!rec||!paper(rec.year)){location.hash="#home";return}
+  var rec=lastRec();if(!rec){noRecord();return}
   var ex=(window.EXPLAIN||{})[rec.year]||{},seen={},rows=[];
   Object.keys(ex).sort(function(a,b){return a-b}).forEach(function(n){(ex[n].vocab||[]).forEach(function(v){var k=v[0].toLowerCase()+"|"+v[1];if(!seen[k]){seen[k]=1;rows.push([v[0],v[1],n])}})});
   app.innerHTML='<h1>'+rec.year+' 學年度 單字表</h1><p class="mute">共 '+rows.length+' 個(草稿・待老師審核),點 🔊 聽發音。</p><p><a class="btn" href="#result">返回成績</a></p><div class="card vocab">'+

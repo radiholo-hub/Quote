@@ -61,3 +61,11 @@ a.btn{text-decoration:none;display:inline-block}
 .optrow{display:flex;gap:6px;align-items:stretch}
 .optrow .opt{flex:1;min-width:0}
 .sp.side{flex:none;align-self:center;padding:8px 10px}
+.q{scroll-margin-top:72px}
+.q.flash{box-shadow:0 0 0 3px var(--accent)}
+.rtools{display:flex;flex-direction:column;gap:10px;margin:8px 0 12px}
+.chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+a.chip{text-decoration:none}
+.jump{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.jump label{font-weight:600}
+.jump input{width:7em;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
