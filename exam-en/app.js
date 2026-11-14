@@ -64,7 +64,7 @@ function home(){
 
 /* ---------- 語音(只在交卷後):使用裝置內建的英文語音 ---------- */
 var TTS="speechSynthesis" in window,spk={};
-function clean(t){return String(t).replace(/【\d+】/g," blank ").replace(/_{2,}/g," blank ").replace(/\s+/g," ").trim()}
+function clean(t){return String(t).replace(/\s*→\s*/g,", then ").replace(/【\d+】/g," blank ").replace(/_{2,}/g," blank ").replace(/\s+/g," ").trim()}
 function stopSpeak(){if(TTS)speechSynthesis.cancel();[].forEach.call(document.querySelectorAll(".sp.on"),function(b){b.classList.remove("on")})}
 function speak(text,rate,btn){
   if(!TTS){notify("這個瀏覽器不支援語音朗讀");return}
@@ -82,23 +82,42 @@ function speechClick(ev){
   return false;
 }
 
+
+function optText(g,q,i){return g.bank?g.bank[i]:(q.opts&&!q.optImgs?q.opts[i]:"")}
+function fullText(g,q){
+  var i=L.indexOf(q.ans),at=optText(g,q,i),p=[(q.stem?"Question ":"Blank ")+q.n+"."];
+  if(q.stem)p.push(q.stem);
+  if(!g.bank&&q.opts&&!q.optImgs)q.opts.forEach(function(o,k){p.push("Option "+L[k]+": "+o+".")});
+  p.push("The answer is "+q.ans+(at?", "+at.replace(/[.\s]+$/,""):"")+".");
+  if(at&&q.stem&&/_{2,}/.test(q.stem)&&!g.bank)p.push("Complete sentence: "+q.stem.replace(/_{2,}/,at));
+  return p.join(" ");
+}
+function filledPassage(g){
+  var orig=groupsOf(g.year).filter(function(x){return x.passage===g.passage})[0]||g,m={};
+  orig.qs.forEach(function(q){m[q.n]=optText(orig,q,L.indexOf(q.ans))});
+  return g.passage.join(" ").replace(/【(\d+)】/g,function(_,n){return m[n]||" blank "});
+}
 /* ---------- 題目畫面(作答與檢討共用) ---------- */
 function paperHtml(groups,review){
   var h="",lastKey="";
   groups.forEach(function(g,gi){
     var key=g.year+g.type;
     if(key!==lastKey){h+='<div class="sec">'+g.year+' · '+g.name+'</div>';lastKey=key}
-    if(g.passage&&review)h+='<div class="spbar">'+spBtn('p'+gi,g.passage.join(' '),'朗讀文章')+spBtn('ps'+gi,g.passage.join(' '),'慢速',0.7)+'</div>';
+    if(g.passage&&review)h+='<div class="spbar">'+spBtn('p'+gi,g.passage.join(' '),'朗讀文章')+spBtn('ps'+gi,g.passage.join(' '),'慢速',0.7)+(g.bank||g.type==="cloze"?spBtn('pf'+gi,filledPassage(g),'填入答案朗讀'):'')+'</div>';
     if(g.passage)h+='<div class="passage">'+g.passage.map(function(p){return '<p>'+esc(p).replace(/【(\d+)】/g,function(_,n){return '<span class="blank" data-b="'+g.year+'-'+n+'">'+n+'</span>'})+'</p>'}).join('')+'</div>';
     if(g.bank){var sent=g.type==="structure";
-      h+='<div class="bank'+(sent?' sent':'')+'">'+g.bank.map(function(w,i){return '<div><b>('+L[i]+')</b> '+esc(w)+'</div>'}).join('')+'</div>'}
+      h+='<div class="bank'+(sent?' sent':'')+'">'+g.bank.map(function(w,i){return '<div><b>('+L[i]+')</b> '+esc(w)+(review?' '+spBtn('b'+gi+L[i],"Option "+L[i]+": "+w+".",'',0.9).replace('class="sp"','class="sp w"'):'')+'</div>'}).join('')+'</div>'}
     g.qs.forEach(function(q){h+=qHtml(g,q,review)});
   });
   return h;
 }
 function qHtml(g,q,review){
   var id=g.year+"-"+q.n,h='<div class="q" id="q'+id+'"><p class="stem"><span class="no">'+q.n+'</span>'+(q.stem?esc(q.stem):'')+'</p>';
-  if(review&&!g.bank&&!q.optImgs)h+='<div class="spbar">'+spBtn('q'+id,(q.stem||'')+' '+q.opts.map(function(o,i){return L[i]+'. '+o}).join('. '),'朗讀題目')+'</div>';
+  if(review){
+    h+='<div class="spbar">'+spBtn('q'+id,fullText(g,q),'朗讀題目與答案');
+    if(!g.bank&&q.opts&&!q.optImgs)h+=q.opts.map(function(o,k){return spBtn('o'+id+L[k],"Option "+L[k]+": "+o+".",L[k],0.9).replace('class="sp"','class="sp w"')}).join('');
+    h+='</div>';
+  }
   if(q.img)h+='<img src="'+img(q.img)+'" alt="題目附圖">';
   if(g.bank){h+='<div class="letters">'+g.bank.map(function(_,i){return '<button class="opt" data-id="'+id+'" data-l="'+L[i]+'"><b>'+L[i]+'</b></button>'}).join('')+'</div>'}
   else{h+='<div class="opts">'+q.opts.map(function(o,i){
