@@ -506,7 +506,7 @@
   ]
  },
  "23": {
-  "key": "increases dementia risk in later life,失智風險增加,risk 為名詞作 increases 的受詞。",
+  "key": "increases 的受詞是整個名詞片語 dementia risk,其中 risk 是中心名詞。這裡是指增加晚年罹患失智症的風險。",
   "opts": {
    "F": "risk 風險,正確",
    "G": "function 功能;increases dementia function(增加失智症的功能)語意不通;且 function 是 22 的答案"
@@ -850,7 +850,7 @@
   ]
  },
  "39": {
-  "key": "最後一段(第 4 段)說明現代受歡迎的原因:材質越來越多樣(鑄鐵、鋼、木、混凝土、玻璃),且 The timeless appeal of their classical design makes spiral staircases a much-desired feature…,可回答 D。",
+  "key": "最後一段末句 The timeless appeal of their classical design makes spiral staircases a much-desired feature in luxury homes, offices, and public buildings nowadays.,作者明確指出螺旋梯因經典設計的持久魅力而在現代受到青睞,可回答 D。同段提到的多種材質(鑄鐵、鋼、木、混凝土、玻璃)是背景資訊。",
   "opts": {
    "A": "文中未指出第一座建在何處",
    "B": "未提設計者",
