@@ -10,5 +10,7 @@ window.VOCAB_REVIEWS = {
   // 115 年第 1 題(試卷第 1 頁;官方答案表第 1 題為 B):tight schedule,形容詞,字義「行程緊湊」;正確答案 1 次。
   "tight-adj|115|115:vocab:1|1|answer|選項 (B)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-08"},
   // 2026-11-11 教師(負責人)人工審核 amateur 一筆。115 年第 2 題(試卷第 1 頁;官方答案表第 2 題為 C):選項 (C) amateur,在 an amateur art designer 中作形容詞,修飾 art designer,字義「業餘的」;正確答案 1 次。
-  "amateur-adj|115|115:vocab:1|2|answer|選項 (C)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-11"}
+  "amateur-adj|115|115:vocab:1|2|answer|選項 (C)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-11"},
+  // 2026-11-13 教師(負責人)人工審核 dread 一筆。115 年第 6 題(官方答案表第 6 題為 A):選項 (A) dreads,在 Timmy dreads the thought of speaking… 中作動詞(原形 dread),字義「害怕、畏懼」;正確答案 1 次。
+  "dread-v|115|115:vocab:1|6|answer|選項 (A)": {"verdict": "confirmed", "by": "教師（負責人）", "at": "2026-11-13"}
 };

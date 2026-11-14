@@ -1,0 +1,259 @@
+{
+ "question": "115-6",
+ "status": "passed",
+ "reviewer": "教師（負責人）",
+ "signedAt": "2026-11-13",
+ "scope": "115 學年度學測英文第 6 題:教學文字內容(中文翻譯、解題步驟、選項解析、文法補充)、引用的相關單字與片語、重點字的歷屆出題紀錄,以及原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。",
+ "evidence": {
+  "reviewHtmlSha256": "10ceed55b262faf95b1debb57ac6464faaa4b0b2bdca51ab7c1227bed227bfd7",
+  "note": "簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。"
+ },
+ "contentFingerprint": {
+  "algorithm": "sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()",
+  "value": "adcdee883305ae16189dcee9a3bd0c074056f6c5d48f658057b8e4761aeff862",
+  "covers": "題目與選項與官方答案、詳解內容、引用的單字詞條、畫面列出的衍生字、片語、延伸練習、重點字的歷屆出題紀錄、每個發音按鈕對應的 mp3 檔名、審核項目 ID 清單(mp3 檔案內容不在其中,見 audio 區塊)",
+  "excludes": "status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條"
+ },
+ "items": [
+  {
+   "id": "115-6:q",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:zh",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:key1",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:key2",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:key3",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:optA",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:optB",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:optC",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:optD",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:dread-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:dread-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:dread-v:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:dread-v:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:dread-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:dread-v:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:dread-v:ex1",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:dread-v:fam:dreadful-adj",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:dread-v:syn",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:dread-v:conf1",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:stress-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:stress-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:stress-v:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:stress-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:wander-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:wander-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:wander-v:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:wander-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:escape-v:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:escape-v:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:escape-v:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:w:escape-v:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:ph:public-appearance",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:pat1",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:pat2",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:gram",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:rec:dread-v:sum",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:rec:dread-v:確認1",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:ext:x115-6-a",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:ext:x115-6-b",
+   "result": "passed"
+  },
+  {
+   "id": "115-6:final",
+   "result": "passed"
+  }
+ ],
+ "audio": {
+  "status": "pending",
+  "scope": "正式（production）試聽簽核尚未進行:沒有任何音檔視為已通過。目前 repository 內的音檔是舊 edge-tts 檔(非官方來源,不部署);正式音檔需以 Azure 付費層(azure-paid)產生,並由教師聆聽後以 approve-audio 正式簽核。教學文字的簽核不受影響。",
+  "approvedFiles": [],
+  "buttons": [
+   {
+    "item": "115-6:optA",
+    "file": "193b6b56e2dbc1.mp3"
+   },
+   {
+    "item": "115-6:optB",
+    "file": "1937144c02c37c.mp3"
+   },
+   {
+    "item": "115-6:optC",
+    "file": "1c297b1e4bce0d.mp3"
+   },
+   {
+    "item": "115-6:optD",
+    "file": "5f01711ccc7cf.mp3"
+   },
+   {
+    "item": "115-6:w:dread-v:def",
+    "file": "193b6b56e2dbc1.mp3"
+   },
+   {
+    "item": "115-6:w:dread-v:coll1",
+    "file": "dde8971c0b17b.mp3"
+   },
+   {
+    "item": "115-6:w:dread-v:coll2",
+    "file": "1bb9df41134874.mp3"
+   },
+   {
+    "item": "115-6:w:dread-v:ex1",
+    "file": "990e24c866ce.mp3"
+   },
+   {
+    "item": "115-6:w:dread-v:fam:dreadful-adj",
+    "file": "f58de8df899bc.mp3"
+   },
+   {
+    "item": "115-6:w:stress-v:def",
+    "file": "1937144c02c37c.mp3"
+   },
+   {
+    "item": "115-6:w:stress-v:coll1",
+    "file": "8f260db7bcb7.mp3"
+   },
+   {
+    "item": "115-6:w:wander-v:def",
+    "file": "1c297b1e4bce0d.mp3"
+   },
+   {
+    "item": "115-6:w:wander-v:coll1",
+    "file": "10c2bcb0919e6c.mp3"
+   },
+   {
+    "item": "115-6:w:escape-v:def",
+    "file": "5f01711ccc7cf.mp3"
+   },
+   {
+    "item": "115-6:w:escape-v:coll1",
+    "file": "81a7392aa9fcf.mp3"
+   },
+   {
+    "item": "115-6:ph:public-appearance",
+    "file": "11a8548de85974.mp3"
+   }
+  ],
+  "buttonCount": 16,
+  "distinctFileCount": 0,
+  "totalAudioFiles": 187,
+  "notIncludedCount": 187,
+  "notIncluded": "所有音檔都不得視為已通過正式簽核。"
+ },
+ "vocabularyOccurrenceRecords": {
+  "entry": "dread-v",
+  "note": "dread 的歷屆出題紀錄(已確認 1 次:正確答案 1、干擾選項 0、題幹 0、文章用字 0;待審核 0、被排除 0;2026-11-13 教師(負責人)將 115 年第 6 題選項 (A) dreads 由待審核裁定為已確認)納入本簽核;紀錄資料在 gsat/exam/vocab_index.js(由 tools/build_vocab_index.py 逐字計算)。stress、wander、escape 的歷屆紀錄維持既有狀態(stress 待審核 4 筆、wander 已確認 4 筆、escape 待審核 6 筆),不在本簽核範圍。本簽核不涉及其他詞條與其他待審核紀錄。"
+ }
+}
