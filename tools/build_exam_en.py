@@ -41,6 +41,9 @@ OPT_FIXES = [  # (年, 題號, 選項索引, 原文, 改為)
     ("110", 47, 1, "During World War I. th", "During World War I."),
     ("110", 47, 2, "In the 16 century.", "In the 16th century."),
 ]
+# 圖片來源覆蓋:gsat/exam/img 的 110-fig.jpg 被裁掉 C 的下框架與 D 的底座、支腳。
+# 完整版取自大考中心 110 學年度學測英文原卷印刷頁碼第 6 頁(第 49 題四張選項圖,含 (A)–(D) 標示),放在 exam-en/src-img/。
+IMG_OVERRIDES = {("110", 49): "110-49.png"}
 PASSAGE_FIXES = [  # (年, 原文, 改為)  需恰好一處
     ("112", "th 18 century", "18th century"),
 ]
@@ -61,6 +64,9 @@ def apply_fixes(data):
         q = one(y, n); assert q["stem"].count(old) == 1, ("stem", y, n); q["stem"] = q["stem"].replace(old, new)
     for y, n, i, old, new in OPT_FIXES:
         q = one(y, n); assert q["opts"][i] == old, ("opt", y, n); q["opts"][i] = new
+    for (y, n), fname in IMG_OVERRIDES.items():
+        q = one(y, n); assert q.get("img"), ("img", y, n); assert (out / "src-img" / fname).exists(), fname
+        q["img"] = "exam/img/" + fname
     for y, old, new in PASSAGE_FIXES:
         hit = 0
         for sec, g in qs(y):
@@ -112,13 +118,18 @@ for e in exams:
     data.append({"year": e["year"], "sections": secs})
 
 apply_fixes(data)
+imgs = {x for d in data for sec in d["sections"] for g in sec["groups"] for q in g["questions"] for x in ([q["img"]] if q.get("img") else []) + q.get("optImgs", [])}
 (out / "data.js").write_text(
     "// 由 tools/build_exam_en.py 產生,勿手改。\nwindow.DATA = " +
     json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
 (out / "img").mkdir(exist_ok=True)
+# 重新產生時清掉不再使用的舊圖(例如被裁切的 110-fig.jpg)
+for old in (out / "img").glob("*"):
+    if old.name not in {pathlib.Path(p).name for p in imgs}: old.unlink()
 for p in sorted(imgs):
-    f = src / "img" / pathlib.Path(p).name
-    if f.exists(): shutil.copy(f, out / "img" / f.name)
+    name = pathlib.Path(p).name
+    f = (out / "src-img" / name) if (out / "src-img" / name).exists() else src / "img" / name
+    if f.exists(): shutil.copy(f, out / "img" / name)
     else: print("missing image", p)
 print(f"{len(data)} 份試卷, {sum(len(g['questions']) for d in data for s in d['sections'] for g in s['groups'])} 題, {len(imgs)} 張圖")
 
