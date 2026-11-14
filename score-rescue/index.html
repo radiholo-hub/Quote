@@ -99,6 +99,13 @@ mark{background:linear-gradient(transparent 58%,var(--hi) 58%);color:inherit;pad
 .pos-card h2{font-size:1.15rem;line-height:1.4}
 .pos-card p{color:var(--muted,#5b5b5b);font-size:.98rem}
 .pos-card .btn{margin-top:6px}
+#diagSec{padding-top:0}
+#diagCard{max-width:none;margin-top:0;border:1px solid #E4DCC6;border-left:4px solid var(--ink);border-radius:12px;box-shadow:0 1px 2px rgba(60,45,20,.06);padding:22px 24px}
+@media (min-width:641px){#diagCard{grid-template-columns:1fr auto;column-gap:24px;align-items:center}#diagCard h2,#diagCard p{grid-column:1}#diagCard .btn{grid-column:2;grid-row:1/span 2;margin-top:0;justify-self:end}}
+.hero-exam{margin-top:12px;font-size:.98rem}
+.exam-keys{margin:14px 0 0;padding:16px 18px 16px 34px;background:#fff;border:1.5px solid var(--line);border-radius:12px;display:grid;gap:8px;font-size:1.02rem}
+.exam-rules>summary{cursor:pointer;font-weight:700;color:var(--wine);min-height:40px;display:flex;align-items:center}
+.hero-exam .link{font-weight:700;color:var(--wine)}
 @media (max-width:640px){.pos-card{justify-items:stretch}.pos-card .btn{width:100%}}
 .resume-bar{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
 .note{margin-top:14px;font-size:.92rem;color:var(--muted)}
@@ -556,9 +563,14 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 .demo-box{background:#FFF8DC;border:2px solid #E8C547}
 .demo-box h3{color:var(--wine)}
 .demo-list{display:grid;gap:8px;margin:12px 0 14px;padding:0;list-style:none}
-.demo-list button{width:100%;text-align:left;display:flex;gap:10px;align-items:baseline;padding:10px 12px;border:1.5px solid #E8C547;border-radius:10px;background:#fff;font:inherit;cursor:pointer}
+.demo-list button{width:100%;text-align:left;display:grid;gap:2px;padding:10px 14px;border:1.5px solid #E8C547;border-radius:10px;background:#fff;font:inherit;cursor:pointer}
+.demo-list .dl1{display:flex;align-items:center;gap:10px}
+.demo-list .dl2{font-size:.95rem;color:var(--ink)}
+.demo-list .ds{font-size:.85rem;font-weight:800;white-space:nowrap}
+.demo-list .ds.right{color:var(--ok)}.demo-list .ds.wrong{color:var(--bad,#C0392B)}.demo-list .ds.skip{color:#5B5B5B}
 .demo-list .dn{font-weight:800;color:var(--wine);white-space:nowrap}
 .ans-card[data-demo]{border:2px solid #E8C547;box-shadow:0 0 0 4px #FFF8DC}
+.ac-sum .demo-badge{grid-column:1/-1;justify-self:start}
 .demo-badge{display:inline-block;font-size:.78rem;font-weight:800;background:#E8C547;color:#3A2A00;border-radius:999px;padding:2px 9px;margin-right:6px}
 .mini-opt{display:flex;align-items:center;gap:12px;min-height:46px;padding:8px 14px;background:#fff;border:1.5px solid var(--line);border-radius:8px;text-align:left;cursor:pointer;font-size:.98rem}
 @media (hover:hover){.mini-opt:hover{border-color:#6B2D3C}}
@@ -586,7 +598,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 .wrap.narrow.wide{max-width:1120px}
 .exam-split{display:block}
 .pass-pane{position:sticky;top:64px;z-index:6;background:var(--paper);padding:8px 0 10px;box-shadow:0 8px 8px -8px rgba(39,43,51,.28)}
-.pass-pane .passage{max-height:34vh;margin-bottom:0}
+.pass-pane .passage{max-height:50vh;margin-bottom:0}   /* 短文自然高度；長文最多約半個螢幕，可收合 */
 .ptabs{display:flex;gap:6px;margin-bottom:8px}
 .ptab{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-height:38px;padding:0 10px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-weight:700;font-size:.82rem;cursor:pointer;color:var(--muted)}
 .ptab.on{border-color:var(--ink);background:var(--ink);color:#fff}
@@ -682,7 +694,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
   .q-actions{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
   .exam-actions{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
   .exam-actions .btn{flex:1}
-  .pass-pane .passage{max-height:26vh}
+  .pass-pane .passage{max-height:48vh}
   .exam-card .ec-right{margin-left:0;width:100%;flex-wrap:wrap}
   .modal{align-items:end;padding:0}
   .modal-box{max-width:none;border-radius:16px 16px 0 0;padding:26px 18px calc(22px + env(safe-area-inset-bottom))}
@@ -727,6 +739,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
           <a class="btn pri lg" id="posCardBtn" href="./pos/">開始免費詞性前測</a>
         </div>
         <p class="note">免費 · 不用註冊 · 約 5–8 分鐘</p>
+        <p class="hero-exam"><a class="link" id="heroExamLink" href="#exams">免費做第 1 回閱讀模考 →</a> <span class="fine">100 題・75 分鐘</span></p>
         <p class="resume-bar" id="resumeBar" hidden><button class="btn pri" type="button" id="resumeBtn" data-act="resumeDiag">繼續診斷</button> <button class="link fine" type="button" data-act="dropDraft">放棄，重新開始</button></p>
       </div>
       <div class="sheet demo">
@@ -757,6 +770,12 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
         </article>
       </div>
       <p class="plan-note">目前採轉帳付款，轉帳後加官方 LINE 回報，並告訴我們你要用來登入的 Email；我們登記後，你用那個 Email 登入就會自動解鎖，通常數小時內處理。</p>
+    </section>
+
+    <section class="wrap sec" id="exams">
+      <h2>模擬試題，練習實戰節奏</h2>
+      <p class="lead">跟正式多益一樣的題型與配分，閱讀 100 題（聽力製作中）。第 1 回免費作答，交卷看預估分數、各 Part 表現和每題正解；完整逐題詳解與第 2、3 回在完整方案。</p>
+      <div class="exam-cards" id="examCards"></div>
     </section>
 
     <section class="wrap sec" id="diagSec">
@@ -798,11 +817,6 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
 
     </details>
 
-    <section class="wrap sec" id="exams">
-      <h2>模擬試題，練習實戰節奏</h2>
-      <p class="lead">跟正式多益一樣的題型與配分，閱讀 100 題（聽力製作中）。第 1 回免費作答，交卷看預估分數、各 Part 表現和每題正解；完整逐題詳解與第 2、3 回在完整方案。</p>
-      <div class="exam-cards" id="examCards"></div>
-    </section>
   </main>
   <footer><div class="wrap"><span id="buildTag" style="float:right;font-size:.75rem;opacity:.6"></span>© Score Rescue 英文助攻隊　·　TOEIC® 是 ETS 的註冊商標，本網站與 ETS 無關。　·　<a href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener" class="line-link">加官方 LINE 聯絡我們</a>　·　<button class="link fine" type="button" data-privacy>隱私權說明</button></div></footer>
 </div>
@@ -2329,6 +2343,9 @@ function examStartScreen(examId){
   const e=EXAMS.find(x=>x.id===examId);
   $('#examStartBody').innerHTML=
    '<h1>'+e.title+'</h1>'+
+   '<ul class="exam-keys"><li><b>閱讀 100 題</b>（Part 5、6、7；聽力製作中）</li><li><b>75 分鐘</b>倒數計時，<b>時間到自動交卷</b>，沒作答的題目算錯</li><li>中途離開<b>不保留進度</b>，建議一次做完</li></ul>'+
+   '<div class="cta-row" style="margin-top:18px"><button class="btn pri lg" type="button" data-act="examBegin" data-exam="'+examId+'">開始作答</button></div>'+
+   '<details class="more exam-rules" style="margin-top:22px"><summary>測驗說明</summary><div style="margin-top:10px">'+
    '<p class="lead">這裡只有<b>閱讀測驗</b>（Reading，共 100 題，分三個部分），目前還沒有聽力測驗（Listening）。作答時可以在題目間自由切換，全部完成後一次交卷看結果。</p>'+
    '<section class="sheet" style="margin-top:24px"><h3>測驗結構</h3><ul style="margin-top:12px;display:grid;gap:8px;font-size:.98rem">'+
    '<li><b>Part 5</b>　單句選填空，30 題</li>'+
@@ -2346,7 +2363,7 @@ function examStartScreen(examId){
    '<li>還沒作答到的題目，交卷後一律算錯，不會留空等你補答</li>'+
    '<li>平常練習就習慣抓時間寫完，上考場才不會因為時間分配不好而來不及做完</li>'+
    '</ul></section>'+
-   '<div class="cta-row"><button class="btn pri lg" type="button" data-act="examBegin" data-exam="'+examId+'">開始作答</button></div>';
+   '</div></details>';
   show('exam-start');
 }
 
@@ -2638,7 +2655,8 @@ function examRenderResult(examId){
   const dn=examId===1&&free&&sc.items?examDemoNums(sc.items):[];
   const demoBox=dn.length?'<section class="sheet demo-box" id="examDemoBox"><h3>免費看老師怎麼解：5 題示範詳解</h3>'+
     '<p>這 5 題附完整解析：先找哪裡、為什麼選、其他選項錯在哪。</p><ul class="demo-list">'+
-    dn.map((n,k)=>{const mine=sc.ans[n-1],ok=mine===sc.items[n-1].a;return '<li><button type="button" data-act="examDemos" data-exam="'+examId+'" data-jump="'+n+'"><span class="dn">第 '+n+' 題</span><span>'+esc(EXAM_DEMO_LABEL[k]||'')+'</span><span class="fine" style="margin-left:auto">'+(ok?'✓ 答對':'✕ 答錯')+'</span></button></li>'}).join('')+
+    dn.map((n,k)=>{const mine=sc.ans[n-1],st=mine==null||mine<0?['skip','– 未作答']:mine===sc.items[n-1].a?['right','✓ 答對']:['wrong','✕ 答錯'];
+      return '<li><button type="button" data-act="examDemos" data-exam="'+examId+'" data-jump="'+n+'"><span class="dl1"><span class="dn">第 '+n+' 題</span><span class="ds '+st[0]+'">'+st[1]+'</span></span><span class="dl2">'+esc(EXAM_DEMO_LABEL[k]||'')+'</span></button></li>'}).join('')+
     '</ul><button class="btn pri" type="button" data-act="examDemos" data-exam="'+examId+'">看 5 題示範詳解</button></section>':'';
   $('#examResultBody').innerHTML=
    (sc.total===100?estScoreHTML(sc,e.title):'<section class="sheet score-big"><p class="lab">'+e.title+'</p><p class="n">'+sc.correct+' / '+sc.total+'</p><p class="fine">答對題數</p></section>')+
@@ -2747,7 +2765,7 @@ function examRenderReview(examId,demosOnly){
   lastReviewExam=examId;
   const full=examFull();
   if(full)logEvent('exam_review_full');else logEvent('exam_review_free');
-  const lockHTML='<p class="ac-lock">這題的完整詳解在完整方案。<button class="link" type="button" data-act="examUnlock" data-exam="'+examId+'">解鎖本回完整詳解</button></p>';
+  const lockHTML='<p class="ac-lock">🔒 完整詳解：完整方案開放（免費版顯示正解）</p>';
   const items=sc.items.map(it=>full?examHydrate(it,examId):examFreeItem(it,examId));
   const p6ans={};
   items.forEach(it=>{if(it.part===6)(p6ans[it.passageIndex]=p6ans[it.passageIndex]||[]).push(it.o[it.a])});
@@ -2758,7 +2776,7 @@ function examRenderReview(examId,demosOnly){
   const cardOf=(it,i)=>{
     if(it.locked)return examLockedCard(it,i,sc.ans[i],lockHTML);
     const mine=sc.ans[i],stt=st(it,mine),num=i+1;
-    const base={fold:true,idp:'xc',num:num,st:stt,part:it.part,my:mine==null?-1:mine,o:it.o,a:it.a,chip:(it.demoTag?'示範詳解　':'')+(stt==='wrong'?(mine==null||mine<0?'✕ 未作答':'✕ 答錯'):'✓ 答對')};
+    const base={fold:true,idp:'xc',num:num,st:stt,part:it.part,my:mine==null?-1:mine,o:it.o,a:it.a,chip:(stt==='wrong'?(mine==null||mine<0?'✕ 未作答':'✕ 答錯'):'✓ 答對')};
     if(it.part===5){
       const bq=BANK.find(x=>x.q===it.q)||{};
       return acCard(Object.assign(base,{label:'Part 5 · '+(TAGS[it.tag]&&TAGS[it.tag].name||''),q:it.q,tr:it.tr||bq.tr,y:it.y||bq.y,c:it.clue||bq.c,w:it.w||bq.w,n:it.n||bq.n,k:it.k||bq.k,d:it.explain,tag:it.tag}));
@@ -2805,13 +2823,12 @@ function examRenderReview(examId,demosOnly){
     '<div class="qtabs" role="tablist">'+stTab('wrong','答錯／未作答',cnt.wrong)+stTab('right','答對',cnt.right)+stTab('all','全部',items.length)+'</div>'+
     '<div class="qtabs ptabs">'+ptab('all','全部 Part')+ptab('5','Part 5')+ptab('6','Part 6')+ptab('7','Part 7')+'</div>'+
     '<details class="qjump" id="qJump"><summary>跳到題號</summary>'+chips+'</details>'+'<div id="xList">'+cards+'</div>'+
-    (full?'':'<section class="sheet unlock-box" style="margin-top:20px"><p>看過示範詳解，想把其他 95 題也弄懂？</p><button class="btn fire" type="button" data-act="examUnlock" data-exam="'+examId+'">解鎖本回完整詳解</button></section>')+
     '<div class="cta-row" style="margin-top:24px"><button class="btn line lg" type="button" data-go="home">回首頁</button></div>';
   $('#examReviewBody').innerHTML=h;
   const box=$('#examReviewBody'),list=$$('.ans-fold',box);
   /* 示範詳解：答錯的直接展開；從結果頁「看 5 題示範詳解」進來時只列這 5 題 */
   items.forEach((it,i)=>{if(!it.demoTag)return;const c=$('#xc-'+(i+1));if(!c)return;c.dataset.demo='1';if(c.dataset.st==='wrong')c.open=true;
-    const sn=c.querySelector('.ac-sn');if(sn)sn.insertAdjacentHTML('afterbegin','<span class="demo-badge">老師示範詳解</span>')});
+    const sm=c.querySelector('.ac-sum');if(sm)sm.insertAdjacentHTML('afterbegin','<span class="demo-badge">老師示範詳解</span>')});
   $$('[data-jump-demo]',box).forEach(b=>b.addEventListener('click',()=>{const c=$('#xc-'+b.dataset.jumpDemo);if(!c)return;if(c.hidden){fs='all';fp='all';fdemo=false;apply()}c.open=true;c.scrollIntoView({behavior:'smooth',block:'start'})}));
   let fs=demosOnly?'all':defSt,fp='all',fdemo=!!demosOnly&&!full;
   if(fdemo){
