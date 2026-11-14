@@ -51,3 +51,10 @@ details.ex ul{padding-left:1.1em;margin:.3em 0}
 .vrow{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,2fr) auto;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
 .vrow:last-child{border:0}
 @media(max-width:480px){.vrow{grid-template-columns:auto 1fr auto}.vrow span{grid-column:2/4}}
+.modal{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:16px}
+.modal .box{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:18px;max-width:420px;width:100%}
+.modal .row{justify-content:flex-end}
+#toast{position:fixed;left:16px;right:16px;bottom:16px;z-index:40;padding:12px 14px;border-radius:10px;background:var(--accent);color:#fff;font-weight:600}
+.tally{display:flex;gap:14px;margin-top:6px;font-weight:600}.tally .ok{color:var(--ok)}.tally .bad{color:var(--bad)}
+a.btn{text-decoration:none;display:inline-block}
+.bar a.btn{padding:6px 12px}

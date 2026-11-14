@@ -184,10 +184,10 @@
   ]
  },
  "9": {
-  "key": "玩具不收好可能被絆倒受傷,stumble on 絆到。",
+  "key": "玩具沒收好,可能被它們「絆倒」而受傷,stumble on 指被…絆到。",
   "opts": {
    "A": "stumble 絆倒,符合 hurt yourself",
-   "B": "graze 擦傷/放牧,不接 on 且不通",
+   "B": "graze on grass 可表示吃草,但本題是玩具讓人絆倒受傷,語意不合",
    "C": "navigate 導航,不合",
    "D": "dwell 居住,不合"
   },
@@ -460,10 +460,10 @@
   ]
  },
  "21": {
-  "key": "鳳梨葉可「當作」皮革的替代品,serve as 表擔任、充當。",
+  "key": "鳳梨葉可以「充當」皮革的替代品,serve as 最直接表示擔任、充當。",
   "opts": {
    "A": "bring along 帶著,不合",
-   "B": "turn out 結果是,後不接 a substitute",
+   "B": "turn out 可用 turn out to be 表示「結果證實是」,但本句不是說結果,而是說鳳梨葉可「充當」皮革替代品,所以用 serve as",
    "C": "account for 解釋/佔,不合",
    "D": "serve as 充當,符合"
   },
@@ -506,10 +506,10 @@
   ]
  },
  "23": {
-  "key": "bags, shoes, and 「其他」紡織品,other + 複數名詞。",
+  "key": "要泛指袋子、鞋子以外的「其他」紡織品,用 other + 複數名詞。",
   "opts": {
    "A": "else 須放在疑問詞後,不合",
-   "B": "those 代名詞,不接名詞",
+   "B": "those 可作限定詞修飾複數名詞,但指的是特定的那一批;本句要泛指袋子、鞋子以外的「其他」紡織品,前文沒有指向特定一批產品,所以選 other",
    "C": "other 其他,接 textile products",
    "D": "such 須接 such as 或 such+名詞,語意不合"
   },
@@ -598,9 +598,9 @@
   ]
  },
  "27": {
-  "key": "與前面 The size of the food 對比,代替 the size 並接 of their hand,用 that。",
+  "key": "與前面 The size of the food 對比,that of their hand 中的 that 代替 the size,拿食物的大小和手的大小比較。",
   "opts": {
-   "A": "this 不能代替前面名詞",
+   "A": "this 也能代替前面的名詞,但本句是 that of + 名詞 的比較結構:that 代替 the size,用來比較食物的大小和手的大小,不用 this",
    "B": "that 代替 the size,符合",
    "C": "some 不合",
    "D": "other 不合"
@@ -711,10 +711,10 @@
   ]
  },
  "32": {
-  "key": "whenever Dad 「堅持」要去,insist on going,後接 on。",
+  "key": "whenever Dad 「堅持」要去,insist on + V-ing。",
   "opts": {
    "E": "insisted 堅持,符合 insist on",
-   "D": "requests 名詞,不能當動詞"
+   "D": "requests 也可以是第三人稱單數動詞,但本段是過去的敘事語境,時態不合;且空格後接 on going,insist on + V-ing 才成立,request 不這樣用"
   },
   "vocab": [
    [

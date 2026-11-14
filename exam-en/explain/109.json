@@ -2,7 +2,7 @@
  "1": {
   "key": "空格前 reached 常與 conclusion 搭配,表「得出結論」。",
   "opts": {
-   "A": "balance 平衡,不能 reach。",
+   "A": "reach a balance 是可以用的搭配,意思是達到平衡;但本句 that 子句交代的是班上討論後得出的結論(去花蓮畢業旅行),所以選 conclusion",
    "B": "conclusion 結論,reach a conclusion 為慣用語,正確。",
    "C": "definition 定義,語意不合。",
    "D": "harmony 和諧,不接 that 子句。"
@@ -459,7 +459,7 @@
   "key": "此能力「獨有」於葉片疏水的植物。",
   "opts": {
    "A": "curious 好奇的。",
-   "B": "relative 相對的,不接 to 表此意。",
+   "B": "relative to 是存在的搭配,表示「相對於、與…有關」;但本句要表達此能力只見於某一類植物,應用 unique to(為…所獨有)",
    "C": "unique 獨特的,be unique to 為專有。",
    "D": "primitive 原始的。"
   },
@@ -477,7 +477,7 @@
  "26": {
   "key": "旅遊公司想「鼓勵」大家一月度假。",
   "opts": {
-   "A": "increase 增加(不接 to V)。",
+   "A": "increase 是及物動詞,但把它填入同一個句框:increase people to take January vacations,句意不通;旅遊公司要的是 encourage people to take vacations「鼓勵人們度假」",
    "B": "require 要求。",
    "C": "command 命令。",
    "D": "encourage sb to V 鼓勵,正確。"
@@ -641,7 +641,7 @@
   "key": "will not ___ the trait:父母無基因,子女不會「展現」該特徵。",
   "opts": {
    "B": "exhibit 展現,正確(原形接 will not)。",
-   "E": "fade 褪去,不及物不接受詞。"
+   "E": "fade 可作及物或不及物動詞,意思是「褪去、淡化」;但本空需要「展現某項特徵」,fade 不能表達這層意思,所以選 exhibit"
   },
   "vocab": [
    [

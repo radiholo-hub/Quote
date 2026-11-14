@@ -115,7 +115,7 @@
   ]
  },
  "6": {
-  "key": "shy 且害怕公開露面,故對對大批聽眾演講感到「畏懼」,dread 接名詞或動名詞。",
+  "key": "shy 且害怕公開露面,所以對大批聽眾演講的想法感到「畏懼」,dread 接名詞或動名詞。",
   "opts": {
    "A": "dreads 懼怕,正確",
    "B": "stresses 強調(及物時語意不合)",
@@ -163,7 +163,7 @@
  "8": {
   "key": "shouted at passers-by and ___ them with glass bottles,被逮捕,表示攻擊行為,assault 為「襲擊」。",
   "opts": {
-   "A": "shattered 打碎(受詞不能是人)",
+   "A": "shattered 是「打碎」;本題描述酒駕者拿玻璃瓶攻擊路人,要表達的是「襲擊」,應用 assaulted",
    "B": "assaulted 襲擊,正確",
    "C": "overturned 翻覆",
    "D": "condemned 譴責,不是用瓶子"
@@ -189,7 +189,7 @@
    "A": "crash 撞毀",
    "B": "tumble 跌倒",
    "C": "elbow 用手肘推擠,正確",
-   "D": "struggle 掙扎,不接 my way(須 struggle through)"
+   "D": "struggle one’s way through 可以用,表示費力穿過;但 elbow one’s way through 明確表示用手肘擠開人群,更符合趕公車的情境。依大考中心對本題的正式回覆,答案維持 C"
   },
   "vocab": [
    [
@@ -217,15 +217,19 @@
   "vocab": [
    [
     "grave",
-    "形 嚴重的;墳墓"
+    "adj. 嚴重的"
+   ],
+   [
+    "grave",
+    "n. 墳墓"
    ],
    [
     "brutal",
-    "形 殘忍的"
+    "adj. 殘忍的"
    ],
    [
     "concern",
-    "名 憂慮"
+    "n. 憂慮"
    ]
   ]
  },
@@ -303,7 +307,7 @@
   "opts": {
    "A": "hardly surprising 不足為奇,語意反了",
    "B": "more acceptable 更可接受",
-   "C": "truly important 真正重要,不接 that 子句",
+   "C": "It is truly important that ... 是合法句型;C 錯在文意:成員互相了解會讓打架比較不可能,而不是讓打架變得重要",
    "D": "less likely 較不可能,正確"
   },
   "vocab": [
@@ -395,7 +399,7 @@
   "opts": {
    "A": "passed on to 傳給",
    "B": "brought up as 被養育成",
-   "C": "thought to have 被認為有,後面需受詞且語法不合",
+   "C": "後面的 an enjoyable dining experience 可以作 have 的受詞;但 thought to have 變成「被認為擁有一種用餐體驗」,不符文意。D 的 meant to be 才能說明點心本來就是怎樣的一種用餐體驗",
    "D": "meant to be 本意是,正確"
   },
   "vocab": [
@@ -463,7 +467,7 @@
   "key": "in fact 後說明午睡是讓身心充電,因此午睡絕非「無生產力」的,選 unproductive。",
   "opts": {
    "E": "unproductive 無生產力的,與 recharge 對比",
-   "D": "delay 為動詞,不能接在 means 後作補語"
+   "D": "delay 是動詞,而空格需要形容詞作連綴動詞 is 的補語;by no means 整組是副詞片語「絕非」,空格不是 means 的補語"
   },
   "vocab": [
    [
@@ -631,7 +635,7 @@
   "key": "找安靜的地方,光線「極少」或用遮光窗簾,minimal light 與 dark space 呼應。",
   "opts": {
    "H": "minimal 極少的,正確",
-   "I": "dramatic 不能修飾 light 且與暗相悖"
+   "I": "dramatic 可修飾 light;但文中線索是適合小睡的暗處和遮光窗簾,所以要選 minimal light(極少的光)"
   },
   "vocab": [
    [
@@ -869,12 +873,12 @@
   ]
  },
  "40": {
-  "key": "them 前句 the stairs 被設計為不平,守軍熟悉階梯並迅速撤退 up them,指 stairs。",
+  "key": "them 指前文的 stairs。前文說階梯被設計成不平,守軍熟悉階梯,因此能迅速 retreat up them(沿著階梯往上撤退);只有階梯是可以「往上走」的東西。",
   "opts": {
    "A": "stairs 樓梯,正確",
-   "B": "confines 空間,非可「往上走」之物",
-   "C": "attackers 為主詞",
-   "D": "defenders 為主詞"
+   "B": "confines 指空間範圍,不是可以 retreat up(沿著往上走)的東西",
+   "C": "attackers 是攻方;前文的階梯線索說的是守軍沿階梯撤退,them 不是指攻方",
+   "D": "defenders 是撤退的人;retreat up them 的 them 是他們往上走的對象,不能指他們自己"
   },
   "vocab": [
    [
@@ -964,7 +968,7 @@
   "key": "there is no physical evidence to support this,this 指前句「印度地圖很可能朝東」。",
   "opts": {
    "A": "dakshina 是後面的證據",
-   "B": "physical evidence 為 support 的受詞",
+   "B": "physical evidence 不是 support 的受詞;there is no physical evidence to support this 中,support 的受詞是 this,指前一句「古印度的地圖很可能以東方為上」的說法",
    "C": "Ancient India 只是地點",
    "D": "East-orientation 指東向地圖,正確"
   },
