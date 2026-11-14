@@ -73,3 +73,9 @@ a.chip{text-decoration:none}
 .wcard h3{margin:0 0 4px;font-size:1.05rem}
 .wcard ol{margin:8px 0 0;padding-left:1.4em;line-height:1.8}
 .wcard img{display:block;max-width:100%;height:auto;margin-top:10px;border-radius:6px}
+.voicebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.voicebar label{font-weight:600}
+.voicebar select{max-width:100%;min-width:0;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit;font-size:.9em}
+.vg{display:flex;gap:8px;align-items:center;min-width:0}
+.vg-voice{flex:1 1 100%}
+#vsel{flex:1 1 auto;min-width:0}

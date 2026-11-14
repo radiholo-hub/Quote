@@ -66,14 +66,45 @@ function home(){
 var TTS="speechSynthesis" in window,spk={};
 function clean(t){return String(t).replace(/\s*→\s*/g,", then ").replace(/【\d+】/g," blank ").replace(/_{2,}/g," blank ").replace(/\s+/g," ").trim()}
 function stopSpeak(){if(TTS)speechSynthesis.cancel();[].forEach.call(document.querySelectorAll(".sp.on"),function(b){b.classList.remove("on")})}
+/* 挑選聲音:優先自然/神經網路/高品質聲音,避開 Apple 的趣味聲音與 Eloquence 合成聲 */
+var BAD_VOICE=/eloquence|fred|albert|bad news|bahh|bells|boing|bubbles|cellos|zarvox|whisper|trinoids|organ|jester|junior|ralph|kathy|superstar|wobble|grandma|grandpa|rocko|shelley|sandy|flo\b|reed|eddy|good news|hysterical|pipe/i;
+function voiceScore(v){var n=v.name||"",s=0;
+  if(/^en[-_]US/i.test(v.lang))s+=30;else if(/^en[-_](GB|AU|CA|IE|NZ)/i.test(v.lang))s+=20;else if(/^en/i.test(v.lang))s+=10;else return -1;
+  if(/natural|neural/i.test(n))s+=12;if(/online/i.test(n))s+=4;if(/premium|enhanced|高品質|增強/i.test(n))s+=10;if(/google/i.test(n))s+=8;
+  if(/samantha|ava|allison|susan|zoe|evan|nathan|aria|jenny|guy|libby|sonia|serena|daniel|karen|moira|tessa/i.test(n))s+=4;
+  if(BAD_VOICE.test(n))s-=60;return s}
+function enVoices(){if(!TTS)return [];return speechSynthesis.getVoices().filter(function(v){return voiceScore(v)>=0}).sort(function(a,b){return voiceScore(b)-voiceScore(a)})}
+function pickVoice(){var vs=enVoices(),want=load("voice","");return vs.filter(function(v){return v.voiceURI===want})[0]||vs[0]||null}
+function rateFactor(){var r=+load("rate",1);return r>=0.6&&r<=1.4?r:1}
+function chunks(t){   // 依句子切段再合併到約 180 字,太碎會斷斷續續、太長部分瀏覽器會中途停掉
+  var parts=t.match(/[^.!?]+[.!?]+["”’)]*\s*|[^.!?]+$/g)||[t],out=[],cur="";
+  parts.forEach(function(p){if((cur+p).length>180&&cur){out.push(cur.trim());cur=p}else cur+=p});
+  if(cur.trim())out.push(cur.trim());return out;
+}
 function speak(text,rate,btn){
   if(!TTS){notify("這個瀏覽器不支援語音朗讀");return}
   var was=btn&&btn.classList.contains("on");stopSpeak();if(was)return;
-  var vs=speechSynthesis.getVoices(),v=vs.filter(function(x){return /^en[-_]US/i.test(x.lang)})[0]||vs.filter(function(x){return /^en/i.test(x.lang)})[0];
-  var parts=clean(text).match(/[^.!?;]+[.!?;]*/g)||[clean(text)];
+  var v=pickVoice(),parts=chunks(clean(text)),r=Math.min(1.5,(rate||0.95)*rateFactor());
   if(btn)btn.classList.add("on");
-  parts.forEach(function(p,i){var u=new SpeechSynthesisUtterance(p.trim());u.lang="en-US";u.rate=rate||0.95;if(v)u.voice=v;
+  parts.forEach(function(p,i){var u=new SpeechSynthesisUtterance(p);u.lang=v?v.lang:"en-US";u.rate=r;u.pitch=1;if(v)u.voice=v;
     if(i===parts.length-1)u.onend=u.onerror=function(){if(btn)btn.classList.remove("on")};speechSynthesis.speak(u)});
+}
+/* 朗讀設定(檢討頁、單字表):選聲音、語速、試聽;設定存在這台裝置 */
+function voiceBarHtml(){
+  if(!TTS)return '<p class="mute">這個瀏覽器不支援語音朗讀。</p>';
+  return '<div class="voicebar"><span class="vg vg-voice"><label for="vsel">朗讀聲音</label><select id="vsel"></select></span>'+
+    '<span class="vg"><label for="vrate">語速</label><select id="vrate"><option value="0.8">慢</option><option value="1">標準</option><option value="1.15">快</option></select>'+
+    '<button type="button" class="sp" id="vtry">🔊 試聽</button></span></div>';
+}
+function initVoiceBar(){
+  var sel=document.getElementById("vsel"),rs=document.getElementById("vrate");if(!sel)return;
+  function fill(){var vs=enVoices(),cur=pickVoice();
+    sel.innerHTML=vs.length?vs.map(function(v){return '<option value="'+esc(v.voiceURI)+'"'+(cur&&v.voiceURI===cur.voiceURI?' selected':'')+'>'+esc(v.name)+' ('+esc(v.lang)+')</option>'}).join(''):'<option value="">(裝置沒有英文聲音)</option>'}
+  fill();if(TTS&&!enVoices().length)speechSynthesis.addEventListener("voiceschanged",fill,{once:true});
+  rs.value=String(rateFactor()===1?1:rateFactor());if(!rs.value)rs.value="1";
+  sel.onchange=function(){save("voice",sel.value);stopSpeak()};
+  rs.onchange=function(){save("rate",+rs.value);stopSpeak()};
+  document.getElementById("vtry").onclick=function(ev){ev.stopPropagation();speak("Hello. This is how the English questions will sound. Please listen carefully.",0.95,this)};
 }
 function spBtn(key,text,label,rate){spk[key]=[text,rate||0.95];return '<button class="sp" data-sp="'+key+'" aria-label="朗讀">🔊'+(label?' '+label:'')+'</button>'}
 function speechClick(ev){
@@ -222,7 +253,7 @@ function review(name){
     var on=(t[0]===name)||(name==="review-miss"&&false);
     return '<a class="chip'+(on?' on':'')+'" href="#'+t[0]+'" aria-pressed="'+on+'">'+t[1]+' '+t[2]+'</a>'}).join('');
   app.innerHTML='<div class="bar"><a class="btn" href="#result">回成績</a><span class="mute">檢討:'+FILTERS[name]+' '+V.qs.length+' 題</span><a class="btn" href="#home">首頁</a></div><h1>'+rec.year+' 學年度 檢討</h1>'+
-    '<div class="rtools"><div class="row" role="group" aria-label="篩選">'+seg+'</div>'+
+    '<div class="rtools"><div class="row" role="group" aria-label="篩選">'+seg+'</div>'+voiceBarHtml()+
     '<form id="jump" class="jump" novalidate><label for="jumpn">跳到題號</label><input id="jumpn" type="text" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="1–'+mx+'"><button class="btn" type="submit">前往</button></form></div>'+
     (V.qs.length?paperHtml(groups,true):'<p class="mute">這個篩選沒有題目('+FILTERS[name]+' 0 題)。</p>')+(name==="review-all"?writingHtml(rec.year):'');
   app.onclick=function(ev){speechClick(ev)};
@@ -233,6 +264,7 @@ function review(name){
     if(document.getElementById("q"+id))goQ(id);
     else{pendingJump=id;notify("第 "+n+" 題不在目前的篩選中,已切換到全部");location.hash="#review-all"}
   };
+  initVoiceBar();
   V.qs.forEach(function(x){refresh(x.id)});
   if(pendingJump){var pj=pendingJump;pendingJump=null;goQ(pj)}
 }
@@ -268,8 +300,9 @@ function vocabPage(){
   var rec=lastRec();if(!rec){noRecord();return}
   var ex=(window.EXPLAIN||{})[rec.year]||{},seen={},rows=[];
   Object.keys(ex).sort(function(a,b){return a-b}).forEach(function(n){(ex[n].vocab||[]).forEach(function(v){var k=v[0].toLowerCase()+"|"+v[1];if(!seen[k]){seen[k]=1;rows.push([v[0],v[1],n])}})});
-  app.innerHTML='<h1>'+rec.year+' 學年度 單字表</h1><p class="mute">共 '+rows.length+' 個(草稿・待老師審核),點 🔊 聽發音。</p><p><a class="btn" href="#result">返回成績</a></p><div class="card vocab">'+
+  app.innerHTML='<h1>'+rec.year+' 學年度 單字表</h1><p class="mute">共 '+rows.length+' 個(草稿・待老師審核),點 🔊 聽發音。</p><p><a class="btn" href="#result">返回成績</a></p>'+voiceBarHtml()+'<div class="card vocab">'+
     rows.map(function(r){return '<div class="vrow"><button class="sp w" data-w="'+esc(r[0])+'">🔊</button><b>'+esc(r[0])+'</b><span>'+esc(r[1])+'</span><small class="mute">第 '+r[2]+' 題</small></div>'}).join('')+'</div>';
+  initVoiceBar();
   app.onclick=function(ev){speechClick(ev)};
 }
 
