@@ -85,17 +85,6 @@ function speechClick(ev){
 
 function optText(g,q,i){return g.bank?g.bank[i]:(q.opts&&!q.optImgs?q.opts[i]:"")}
 function isPlaceholder(q){return !!q.optImgs||(q.opts||[]).some(function(o){return /[\u4e00-\u9fff]/.test(o)})}   // 選項是圖或「圖 A」之類占位字
-function fullText(g,q){   // 不唸題號:題幹 → 正確選項(圖題唸字母)→ 填好答案的完整句
-  var i=L.indexOf(q.ans),p=[];
-  if(q.stem)p.push(q.stem);
-  if(q.img||q.optImgs){   // 圖題:題幹 + 正確選項字母;選項文字是真實文字(如 109-41)時再補唸
-    p.push("The correct answer is choice "+q.ans+(isPlaceholder(q)?"":", "+optText(g,q,i).replace(/[.\s]+$/,""))+".");
-    return p.join(" ");
-  }
-  var at=optText(g,q,i).replace(/[.\s]+$/,"");
-  if(at){p.push(at+".");if(q.stem&&/_{2,}/.test(q.stem)&&!g.bank)p.push(q.stem.replace(/_{2,}/,at))}
-  return p.join(" ");
-}
 function filledPassage(g){
   var orig=groupsOf(g.year).filter(function(x){return x.passage===g.passage})[0]||g,m={};
   orig.qs.forEach(function(q){m[q.n]=optText(orig,q,L.indexOf(q.ans))});
@@ -117,10 +106,7 @@ function paperHtml(groups,review){
 }
 function qHtml(g,q,review){
   var id=g.year+"-"+q.n,h='<div class="q" id="q'+id+'"><p class="stem"><span class="no">'+q.n+'</span>'+(q.stem?esc(q.stem):'')+'</p>';
-  if(review){
-    h+='<div class="spbar">'+spBtn('q'+id,fullText(g,q),'朗讀題目與答案');
-    h+='</div>';
-  }
+  if(review&&q.stem)h+='<div class="spbar">'+spBtn('q'+id,q.stem,'朗讀題目')+'</div>';   // 只唸題目,不唸答案;沒有題幹的題型(綜合測驗、文意選填、篇章結構)不顯示
   if(q.img)h+='<img src="'+img(q.img)+'" alt="題目附圖">';
   if(g.bank){h+='<div class="letters">'+g.bank.map(function(_,i){return '<button class="opt" data-id="'+id+'" data-l="'+L[i]+'"><b>'+L[i]+'</b></button>'}).join('')+'</div>'}
   else{h+='<div class="opts">'+q.opts.map(function(o,i){
