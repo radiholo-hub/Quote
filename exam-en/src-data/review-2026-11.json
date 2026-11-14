@@ -1,0 +1,1253 @@
+[
+ {
+  "id": "106-3",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「tricky 不修飾地區位置」過度概括;a tricky part of the trail/route 等說法完全成立,tricky 可修飾地點或路段。問題在語意,不在語法。",
+  "fix": "tricky 棘手的,語法上可修飾地點,但與「好幾天遇不到人」的人煙稀少語意不合",
+  "i": 0
+ },
+ {
+  "id": "106-3",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "error",
+  "problem": "「vacant 不用於地區」錯誤;vacant land、vacant lot 都是常見搭配。vacant 指無人使用、空置,與「偏遠、人跡罕至」語意不同。",
+  "fix": "vacant 空著的、無人使用的(房間、職位、土地),語法上可修飾地方,但指「空置」而非「偏遠」,不合語意",
+  "i": 1
+ },
+ {
+  "id": "106-4",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "error",
+  "problem": "「occupy 不接 with」過度概括;occupy oneself with、be occupied with(忙於)都成立。本題錯在 occupy 為及物動詞,空格後沒有受詞,且語意不合。",
+  "fix": "occupy 佔據,為及物動詞須接受詞(occupy oneself with 為「忙於」),此處無受詞,語意也不合",
+  "i": 2
+ },
+ {
+  "id": "106-6",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "fairly(相當地)並非與 barely「語意相反」;它本身不帶否定意味,無法與後面的 any 搭配,語意也不合。",
+  "fix": "fairly 相當地,不帶否定意味,不能與 any 搭配,語意不合",
+  "i": 3
+ },
+ {
+  "id": "106-10",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「path 不與 light 搭配」過度概括;a path of light(一道光路)是可以成立的說法,只是 a beam of light 才是描述光束射下的慣用說法。",
+  "fix": "path 小徑、路徑,a path of light 雖可說,但描述一道光照下來,慣用 a beam of light",
+  "i": 4
+ },
+ {
+  "id": "106-10",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「spark 不用於陽光」說法含糊;a spark of light 可以成立,但 spark 指瞬間的小火花或閃光,無法「穿過窗戶落到地板上」。",
+  "fix": "spark 火花、閃光,指瞬間的小亮點,不能形容一道持續照下的光線",
+  "i": 5
+ },
+ {
+  "id": "106-11",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「不接 in the card」理由不對;reward 的用法是 reward sb (with sth),受詞是被獎賞的人,rewarded some money 語法與語意皆不通。",
+  "fix": "rewarded 獎賞,用法為 reward sb with sth,不能說 reward some money,語意也不合",
+  "i": 6
+ },
+ {
+  "id": "106-12",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「不與 gold 搭配成名詞」語句不通。",
+  "fix": "glory 榮耀,為不可數名詞,不說 a gold glory,語意不合",
+  "i": 7
+ },
+ {
+  "id": "106-16",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「不接 the mirror 的看法」語句不通;check out the mirror 語法可以,但意思是查看鏡子本身,而不是照鏡子看自己的臉。",
+  "fix": "check out 查看、結帳;check out the mirror 指檢查鏡子本身,不是照鏡子看自己,語意不合",
+  "i": 8
+ },
+ {
+  "id": "106-18",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「contribute to 為主動用法」過度概括;contribute 也可用被動(Money was contributed to the fund)。本題錯在語意:細菌不會被「貢獻」到眼睛。",
+  "fix": "contributed 貢獻,語法上可用被動 be contributed to,但「細菌被貢獻到眼睛」語意不通",
+  "i": 9
+ },
+ {
+  "id": "106-18",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "說明語句不通,理由也不準確;be exposed to 語法成立,但意思是「暴露於…」,應以眼睛或人為主詞,細菌「暴露於眼睛」語意不合。",
+  "fix": "exposed 暴露,be exposed to 語法可以,但意為「暴露於…」,說細菌暴露於眼睛語意不合",
+  "i": 10
+ },
+ {
+  "id": "106-18",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "transfer 並無「傳染」之義(傳染為 infect/transmit),應為轉移、傳遞。",
+  "fix": "[[\"transfer\",\"v. 轉移、傳遞\"],[\"bacteria\",\"n. 細菌\"]]",
+  "i": 11
+ },
+ {
+  "id": "106-35",
+  "part": "explain",
+  "where": "opts.G",
+  "severity": "minor",
+  "problem": "「spiritual 與 magical 對比的是 medical」語句不通,邏輯混亂。應說明空格與前文 medicinal purposes 呼應,指療效;且 spiritual 已是 32 題答案。",
+  "fix": "spiritual 精神的,此處 power 呼應前文 medicinal purposes,指療效而非精神意義,且 spiritual 已是 32 題答案",
+  "i": 12
+ },
+ {
+  "id": "106-36",
+  "part": "explain",
+  "where": "opts.F",
+  "severity": "error",
+  "problem": "「畫作不能裝飾金字塔」錯誤;paintings decorating the walls 完全成立。真正原因是 decorate 為及物動詞須接受詞,空格後是介系詞片語 inside pyramids,語法不通;且 decorating 為 39 題答案。",
+  "fix": "decorating 為及物動詞的現在分詞,須直接接受詞,空格後是介系詞片語 inside pyramids,語法不合(decorating 為 39 題答案)",
+  "i": 13
+ },
+ {
+  "id": "106-37",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「reflected 不接 as」過度概括(be reflected as 可成立)。本題錯在 reflect 作「反映」時為及物動詞須接受詞,They reflected as a funeral offering 語意不通。",
+  "fix": "reflected 反映,作此義時須接受詞,They reflected as a funeral offering 語意不通(且為 34 題答案)",
+  "i": 14
+ },
+ {
+  "id": "106-38",
+  "part": "explain",
+  "where": "opts.I",
+  "severity": "minor",
+  "problem": "「與 bodies 不搭」過度概括;symbols of their bodies 語法可以,只是語意不合,且 symbols 已是 33 題答案。",
+  "fix": "symbols 象徵,語法上可說 symbols of their bodies,但「身體的象徵上或周圍放洋蔥」語意不通,且為 33 題答案",
+  "i": 15
+ },
+ {
+  "id": "106-39",
+  "part": "explain",
+  "where": "opts.H",
+  "severity": "minor",
+  "problem": "先以「已用於 36 題」排除,未先說明為何不合本空。discovered 作過去分詞後面不能直接接名詞 their pelvis(須有介系詞)。",
+  "fix": "discovered 過去分詞,後面不能直接接受詞 their pelvis(須說 discovered on/in…),語法不合;且為 36 題答案",
+  "i": 16
+ },
+ {
+  "id": "106-40",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「詞性不合」錯誤;admired 也是動詞,問題在 would 後須接原形動詞,且 admire sb to V 不成立、語意不合,且 admired 為 31 題答案。",
+  "fix": "admired 為過去式,would 後須接原形動詞,且 admire 不接 sb to V,語意不合(為 31 題答案)",
+  "i": 17
+ },
+ {
+  "id": "106-51",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「只是其中一部分題材」暗示文中有提到,但文章只說他報導南北戰爭、畫北軍部隊,完全沒提到表達戰爭受難者的心聲。",
+  "fix": "文中只提他報導南北戰爭、畫北軍部隊,未提表達戰爭受難者心聲",
+  "i": 18
+ },
+ {
+  "id": "106-56",
+  "part": "translate",
+  "where": "opts[1]",
+  "severity": "minor",
+  "problem": "tea breaks 是工作時的「茶歇」,不是「下午茶」;譯成「下午茶休息時間」會和 afternoon tea 混淆,也和文章譯法「茶歇時間」不一致。",
+  "fix": "(B) 英國人在十八世紀每天有兩次茶歇時間。",
+  "i": 19
+ },
+ {
+  "id": "107-41",
+  "part": "translate",
+  "where": "passage 41 第1段",
+  "severity": "error",
+  "problem": "“not exceeding ten miles square” 指邊長不超過十英里的正方形(面積約一百平方英里),不是「十平方英里」;譯文把面積數字譯錯。",
+  "fix": "1790 年,喬治‧華盛頓總統宣布,聯邦政府將設在一個「邊長不超過十英里的正方形……位於波多馬克河畔」的特區。",
+  "i": 20
+ },
+ {
+  "id": "107-44",
+  "part": "translate",
+  "where": "opts[3]",
+  "severity": "error",
+  "problem": "選項 D 原文 “not larger than ten miles square” 指邊長不超過十英里的正方形區域,譯成「不超過十平方英里」數字錯誤,且與文章原意不符。",
+  "fix": "(D) 白宮位於一個不大於邊長十英里正方形的區域內。",
+  "i": 21
+ },
+ {
+  "id": "107-26",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "error",
+  "problem": "「which 無先行詞不合」是過度概括:which 可當疑問代名詞引導名詞子句(know which they are dreaming of),不需先行詞。不合的原因是語意:which 指在特定範圍中選哪一個,此處沒有可供選擇的範圍。",
+  "fix": "which 作疑問代名詞可引導名詞子句,語法上可以,但 which 指『在特定範圍中的哪一個』,此處沒有可供選擇的範圍,語意不合",
+  "i": 22
+ },
+ {
+  "id": "107-31",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "error",
+  "problem": "「account 為名詞,不合此處修飾語」暗示名詞不能修飾名詞,是過度概括(名詞可修飾名詞)。不合的真正原因是 account stories 不是成立的搭配,而且 account 本身就是『說法』,與 stories 語意重複。",
+  "fix": "account 為名詞(說法、敘述),放在 stories 前組成 account stories 不是成立的搭配,且與 stories 語意重複;此處需要形容詞描述這些說法彼此對立,故不合",
+  "i": 23
+ },
+ {
+  "id": "107-34",
+  "part": "explain",
+  "where": "opts.F",
+  "severity": "minor",
+  "problem": "用「前文已用」排除 secret,卻沒先說明它為何不合本空。turned out to be secret 語法可以,只是語意與後文因果不合。",
+  "fix": "secret 秘密的:turned out to be secret 語法可以,但『結果是秘密的』與後文『最終促成明朝建立』的因果不合;另外 secret 已用於第 33 題",
+  "i": 24
+ },
+ {
+  "id": "107-24",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "「名詞 waters 前需過去分詞作形容詞」過度概括:名詞前只需要形容詞性的修飾語,現在分詞 polluting 在語法上也可以修飾 waters。選 polluted 的理由是語意上水域是『被污染』的,要用表被動的過去分詞。",
+  "fix": "名詞 waters 前需形容詞(分詞)修飾;水域是『被』污染的,故用表被動的過去分詞 polluted,而非表主動『造成污染的』polluting。",
+  "i": 25
+ },
+ {
+  "id": "107-19",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「which 後面缺主詞/受詞結構不符」說法顛倒且不通順:問題不在後面缺主詞或受詞,而是後面子句已經完整,which 在子句中沒有可擔任的角色。",
+  "fix": "which 為關係代名詞,須在子句中作主詞或受詞,但後面的 it can subconsciously puzzle over... 結構完整,不缺主詞或受詞,故不合",
+  "i": 26
+ },
+ {
+  "id": "107-5",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「不接 ankle 作受詞」過度概括:slip 有及物用法,只是 slip one's ankle 不是表示受傷的搭配。扭傷腳踝的慣用說法是 twist/sprain one's ankle。",
+  "fix": "slipped 滑倒、滑動:slip 多作不及物動詞表滑倒,slip one's ankle 不是表示受傷的慣用搭配,扭傷腳踝要用 twist/sprain one's ankle",
+  "i": 27
+ },
+ {
+  "id": "107-42",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "前句 Lincoln did the same 緊接在 Jefferson 舉辦元旦、國慶招待會之後,把它直接等同於『舉辦就職開放參觀』,推論依據不精確。判斷關鍵應是 the inaugural crowds 呼應第一句的 inaugural open house。",
+  "fix": "this practice 指本段開頭 Jefferson 開始的就職開放參觀(inaugural open house);後文 the inaugural crowds became far too large 說明這種做法使就職人潮過多、引發安全問題,才需要人潮管制。",
+  "i": 28
+ },
+ {
+  "id": "107-50",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "用詞錯誤:本段講的是海水『淡化』(desalination),不是『淨化』。",
+  "fix": "第二段說海水淡化需大量能源、技術昂貴,所以成本高。",
+  "i": 29
+ },
+ {
+  "id": "107-7",
+  "part": "translate",
+  "where": "stem",
+  "severity": "minor",
+  "problem": "「」只標出「嚴格」,但答案 demanding 對應的是整個「要求嚴格的」,標示範圍不完整。",
+  "fix": "新來的經理非常「要求嚴格」。例如,員工做同樣的工作,期限卻比以前短了許多。",
+  "i": 30
+ },
+ {
+  "id": "107-42",
+  "part": "translate",
+  "where": "opts[1]",
+  "severity": "minor",
+  "problem": "「讓群眾舒適地容納其中」語句不通,主客顛倒;原文 Accommodating the crowds comfortably 是『舒適地容納群眾』。",
+  "fix": "(B) 舒適地容納群眾。",
+  "i": 31
+ },
+ {
+  "id": "107-16",
+  "part": "translate",
+  "where": "passage 16 第3段",
+  "severity": "minor",
+  "problem": "「大膽跨出【20】超越自己平常的例行公事」中「跨出」與「超越」重複,語句不自然。",
+  "fix": "另一個提升創造力的方法是勇於冒險。這是因為許多突破都發生在人們大膽跨【20】出自己平常的例行公事或專業領域之外的時候。舉例來說,可以藉由學習新技能或到新的國家旅行來做到這一點。",
+  "i": 32
+ },
+ {
+  "id": "107-31",
+  "part": "translate",
+  "where": "passage 31 第2段",
+  "severity": "minor",
+  "problem": "「推翻蒙古人的革命【33】祕密計畫字條,被藏在……」結構不通順,沒有把『寫有……計畫的字條』表達清楚。",
+  "fix": "其中一個說法將這種餅乾的起源【32】追溯到 13、14 世紀的中國,當時正由蒙古人統治。根據傳說,寫有推翻蒙古人之革命【33】祕密計畫的字條,被藏在原本通常包著甜豆沙餡的月餅裡。這場革命結果【34】成功了,並最終促成明朝的建立。這個故事聽起來或許相當可信,但似乎沒有確切證據顯示,它啟發了我們今天所知的幸運餅乾這種【35】點心的誕生。",
+  "i": 33
+ },
+ {
+  "id": "107-45",
+  "part": "translate",
+  "where": "passage 45 第1段",
+  "severity": "minor",
+  "problem": "「遠遠更不幸的是,每 150 人中有 1 人……」語句不自然。",
+  "fix": "西尼羅病是一種熱帶疾病,起源於鳥類,鳥類將它傳給蚊子,蚊子再透過叮咬感染人類。大多數感染西尼羅病的人完全沒有任何症狀,但如果出現症狀,通常是在被蚊子叮咬後 3 到 14 天之間。大約每 5 人中有 1 人會發燒、頭痛和全身痠痛,通常持續一週左右。每 150 人中則有 1 人遠遠沒那麼幸運,會出現高燒、顫抖、癱瘓和昏迷。有些人——尤其是年長者和免疫系統較弱的人——會因此死亡。",
+  "i": 34
+ },
+ {
+  "id": "108-22",
+  "part": "explain",
+  "where": "key",
+  "severity": "error",
+  "problem": "說「shirt 與 together 的關係是被動」不通,together 是副詞;被動關係應是 shirt 與 weave 之間(襯衫是被編織的)。",
+  "fix": "shirt 與 weave 是被動關係(襯衫是被編織出來的),所以用過去分詞 woven 作後置修飾,woven together with the fibers 指用鳳梨葉纖維織成的襯衫。",
+  "i": 35
+ },
+ {
+  "id": "108-25",
+  "part": "explain",
+  "where": "key",
+  "severity": "error",
+  "problem": "「its low cost 為成本低的原因」語意循環、說錯;its low cost 是此材料被許多時尚公司採用的原因。",
+  "fix": "空格後 its low cost 是這種材料被許多一流時尚公司採用的原因,故用 Due to「由於」。",
+  "i": 36
+ },
+ {
+  "id": "108-41",
+  "part": "explain",
+  "where": "key",
+  "severity": "error",
+  "problem": "「啄食死皮組織」暗示神仙魚吃這些組織,但原文明說 This is not their food,會誤導。",
+  "fix": "第二段說多數神仙魚扮演其他魚的清潔工,從牠們身上啄除壞死的組織(但那不是牠們的食物)。",
+  "i": 37
+ },
+ {
+  "id": "108-6",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "error",
+  "problem": "「advise 後接人或 that 子句」是過度概括;advise 也可直接接名詞受詞(如 advise caution)。排除理由應是語意:advise 是勸別人,不是自己提出計畫。",
+  "fix": "advised 建議、勸告,語法上可接名詞,但它指向別人提出勸告;本句是 Michelle 自己「提出」開店計畫,語意不合",
+  "i": 38
+ },
+ {
+  "id": "108-8",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「considerably 不接 for 片語」是過度概括的語法說法;真正問題是語意:considerably 表程度「相當大地」,不能引出要特別強調的對象。",
+  "fix": "considerably 相當地,表程度大小,不能用來引出特別強調的對象(五歲以下兒童),語意不合",
+  "i": 39
+ },
+ {
+  "id": "108-5",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「appoint 對象是人」過度概括;appoint 也可接時間、地點(appoint a date 指定日期)。應說明語意不合。",
+  "fix": "appointed 任命、指定,多用於任命人擔任職務或指定時間地點,不用於把某天「宣布」為國定假日,語意不合",
+  "i": 40
+ },
+ {
+  "id": "108-14",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「benefit 不搭 maintain」是錯誤說法,maintain benefits(維持福利)是可成立的搭配;應改為語意不合。",
+  "fix": "benefit 好處,maintain benefits 語法可以,但「和朋友保持好處」不通,上下文要的是保持聯絡",
+  "i": 41
+ },
+ {
+  "id": "108-15",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「durable 不修飾 labor」是過度概括的語法說法,應說明語意不合。",
+  "fix": "durable 耐用的,多形容物品;「耐用的勞動工作」語意不通,也不符合蓋房子、採水果等例子",
+  "i": 42
+ },
+ {
+  "id": "108-23",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「else 須放在疑問詞後」過度概括,else 也可放在不定代名詞後(something else);真正原因是 else 不能放在名詞前修飾名詞。",
+  "fix": "else 只能放在疑問詞或不定代名詞之後(如 what else, something else),不能放在 textile products 這類名詞前面修飾,不合",
+  "i": 43
+ },
+ {
+  "id": "108-23",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "說 such「須接 such as 或 such+名詞」卻又排除,但 such textile products 正是 such+名詞,語法可成立;應說明是語意不合。",
+  "fix": "such 這樣的,such textile products 語法可以,但前文沒有可指的「這類」產品,本句要表達包包、鞋子以外的「其他」紡織品,語意不合",
+  "i": 44
+ },
+ {
+  "id": "108-26",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「with 不成慣用語」不正確,built with 是成立搭配(用……建造/配備);排除理由應是語意。",
+  "fix": "with 與;built with 是成立的搭配(用……建造),但本句是相機和顯示系統被「裝進」眼鏡裡,不是用眼鏡建造相機,語意不合",
+  "i": 45
+ },
+ {
+  "id": "108-35",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "error",
+  "problem": "以「已用於上一空」排除 purchases,沒先說明它為何不合本空。",
+  "fix": "purchases 指買來的東西;本句要和爸爸買回的 items 對比,指媽媽「要的」東西,Mom's purchases(媽媽買的東西)不合,因為去買的人是爸爸",
+  "i": 46
+ },
+ {
+  "id": "108-37",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「little 不能與 the 構成名詞」過度概括,the little 可作名詞(the little I know)。應說明語意不合。",
+  "fix": "little 雖可作名詞(如 the little I know),但 the little of hearing everyone's private matters 語意不通,本空需要名詞「特權」",
+  "i": 47
+ },
+ {
+  "id": "108-31",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "「father 玫瑰」中英夾雜、語句不通。",
+  "fix": "父親的玫瑰花束總晚一個月才送到,這常「毀了」紀念日慶祝,故選 ruined。",
+  "i": 48
+ },
+ {
+  "id": "108-29",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "plain 譯為「無味的」不準確,plain snack 指原味、沒有特別調味的普通點心,並非沒有味道。",
+  "fix": "[\"plain\",\"adj. 原味的;樸素的\"]",
+  "i": 49
+ },
+ {
+  "id": "108-26",
+  "part": "translate",
+  "where": "passage 26 第1段",
+  "severity": "minor",
+  "problem": "「他們手的【27】那個大小」語句不自然。",
+  "fix": "他們即將吃下的食物尺寸被放大,而他們手的【27】大小則維持正常。",
+  "i": 50
+ },
+ {
+  "id": "108-31",
+  "part": "translate",
+  "where": "passage 31 第2段",
+  "severity": "minor",
+  "problem": "cared little 是「不太在乎、幾乎不在乎」(程度),譯成「很少在乎」偏向頻率。",
+  "fix": "他們說得沒錯,因為我父親【40】根本不太在乎誰對誰做了什麼。",
+  "i": 51
+ },
+ {
+  "id": "108-53",
+  "part": "translate",
+  "where": "passage 53 第1段",
+  "severity": "minor",
+  "problem": "crawlers 譯為「爬蟲」易誤解為爬蟲類(爬行動物),此處指爬行的小蟲。",
+  "fix": "有蟲咬的困擾嗎?許多被蟲咬引起的皮膚疹困擾的人,會使用「噴霧殺蟲劑」或「殺蟲彈」來消滅家中惱人的爬行小蟲。",
+  "i": 52
+ },
+ {
+  "id": "108-53",
+  "part": "translate",
+  "where": "passage 53 第2段",
+  "severity": "minor",
+  "problem": "little—if any—effect 直譯成「幾乎沒有效果——如果有的話」不通順。",
+  "fix": "在用這些品牌對五組不同的活床蝨測試兩小時後,科學家發現這些噴霧殺蟲劑對這些昆蟲即使有效果也微乎其微。",
+  "i": 53
+ },
+ {
+  "id": "109-22",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "error",
+  "problem": "說明暗示 With a view to 只能接 V-ing、因此不能用於本空,屬文法過度概括。with a view to 後面也可接名詞(with a view to future expansion),本空接名詞 other possible transmission routes 在語法上可以;排除它的理由應是語意:「為了其他傳播途徑」缺少「尋找」的意思,不合上下文。",
+  "fix": "With a view to 為了、以…為目的,後可接 V-ing 或名詞,語法上可接本句名詞;但「為了其他可能的傳播途徑」語意不完整,本句要表達的是研究人員「為了尋找」其他傳播途徑而觀察,故不選。",
+  "i": 54
+ },
+ {
+  "id": "109-28",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "error",
+  "problem": "「On that 語法不當」說法錯誤。On that 是合法的介系詞片語(表「關於那點;隨即」),放句首語法可以成立,排除理由應是語意不合:前句說沒有證據,後句說概念仍存在,需要表轉折的連接語。",
+  "fix": "On that 關於那一點/隨即,語法上可以放句首,但無法表達前後句「沒有證據,概念卻仍持續」的轉折關係,語意不合。",
+  "i": 55
+ },
+ {
+  "id": "109-55",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "error",
+  "problem": "選項 D 說的是「結合聲音與視覺的裝置會吸引更多鹿到鐵軌上」,說明卻寫「45% 是鹿目擊減少」,內容和選項不相符,沒有解釋 D 為什麼錯。",
+  "fix": "文中的新裝置只用聲音(鹿的噴鼻聲加狗吠),目的是讓鹿驚慌逃離而非吸引鹿;測試結果是鹿的目擊次數減少 45%,故錯。",
+  "i": 56
+ },
+ {
+  "id": "109-1",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「harmony 不接 that 子句」屬過度概括(harmony 後可接關係子句,如 the harmony that we enjoy),且 reach harmony 也是可成立的搭配;排除理由應是語意。",
+  "fix": "harmony 和諧,reach harmony 語法上可以,但 that 子句交代的是討論後得出的決定(去花蓮畢業旅行),「達成和諧」語意不合。",
+  "i": 57
+ },
+ {
+  "id": "109-2",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「語氣不符」用詞不當,charmed 被排除是因為語意不合上下文(差點被當到近乎滿分的對比應讓人驚訝,而非著迷),不是語氣問題。",
+  "fix": "charmed 使著迷,與前後「差點被當→近乎滿分」的對比不合,語意不符。",
+  "i": 58
+ },
+ {
+  "id": "109-26",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「把它填入同一個句框」語句不通;且未點出 increase 沒有 increase sb to V 的用法。",
+  "fix": "increase 增加,雖是及物動詞,但沒有 increase sb to V 的用法,「增加人們去一月度假」語意也不通;旅遊公司要的是 encourage people to take vacations「鼓勵人們度假」。",
+  "i": 59
+ },
+ {
+  "id": "109-31",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「chubby 不修飾 phenomenon」屬「X 不能修飾 Y」型過度概括;chubby 是形容詞,放在此位置語法可以,排除理由是語意。",
+  "fix": "chubby 圓胖的,形容詞放此位置語法可以,但「相對圓胖的現象」語意不通。",
+  "i": 60
+ },
+ {
+  "id": "109-34",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "vocab 把 transfer 的名詞與動詞混在一起標「名詞/動詞」;本題用的是名詞(the transfer of…),應只列名詞並給完整意思。",
+  "fix": "[\"transfer\",\"名詞 轉移;傳遞\"]",
+  "i": 61
+ },
+ {
+  "id": "109-38",
+  "part": "explain",
+  "where": "opts.G",
+  "severity": "minor",
+  "problem": "把 range 說成「範圍」(名詞),但本題選項中 range 作動詞(題庫翻譯亦標 v.),且空格前 may 後需原形動詞;說明的詞性與內容不符。",
+  "fix": "range (範圍)涵蓋、在…之間變動,是動詞,放 may 後語法可以,但通常接 from A to B,「酒窩隨時間涵蓋」語意不通。",
+  "i": 62
+ },
+ {
+  "id": "109-19",
+  "part": "translate",
+  "where": "passage 16 第2段",
+  "severity": "minor",
+  "problem": "「是癌症病患【19】否則會用來遮蓋頭部的帽子和假髮的絕佳替代品」把 otherwise 直譯為「否則」塞進關係子句,中文不通順;此處 otherwise 意為「(若沒有這些頭冠)原本、不然的話」。",
+  "fix": "這些彩繪的指甲花皇冠以花卉圖案、宗教符號和充滿希望的訊息為特色,是帽子和假髮的絕佳替代品——若沒有這些頭冠,癌症病患【19】原本會用帽子和假髮來遮蓋頭部。",
+  "i": 63
+ },
+ {
+  "id": "110-4",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「多指食物或天氣」暗示 crisp 不能修飾 air,但 crisp air(清爽乾冷的空氣)是常見搭配;不選的理由應是語意:乾冷清爽與 humid 叢林所需的潮濕空氣相反。",
+  "fix": "crisp 清爽乾冷的,crisp air 搭配可以成立,但乾爽空氣與植物需要的潮濕環境相反,語意不合。",
+  "i": 64
+ },
+ {
+  "id": "110-8",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "題幹為 injured her ankle(弄傷腳踝),詳解寫成「扭傷腳踝」,與原文不符。",
+  "fix": "打籃球時跌「onto the ground」並弄傷腳踝(injured her ankle),表示跌倒,用 tumbled。",
+  "i": 65
+ },
+ {
+  "id": "110-9",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「不能搭 free testing 發放」語意不清,沒有說明真正不合的原因:trials 是過程,不是可以「收到」的物品。",
+  "fix": "trials 試驗,是一段過程而非可領取的物品,receive free testing trials 語意不合。",
+  "i": 66
+ },
+ {
+  "id": "110-15",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "只寫「及物動詞」,沒有說明為何不合,說明不完整。",
+  "fix": "transported 運送,為及物動詞,此處後面沒有受詞,且「公車服務運送」語意不合。",
+  "i": 67
+ },
+ {
+  "id": "110-16",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "句子像是修改時留下的殘句(「不能概括為後面不接 V-ing」),讀起來不通,句尾也缺句號。",
+  "fix": "though 可用於省略式讓步子句(如 though tired),語法上可以接分詞,但 though encountering them 表示「雖然遇到牠們」,與「沒遇見牠們就不一樣」的語意不合,應選 without。",
+  "i": 68
+ },
+ {
+  "id": "110-21",
+  "part": "translate",
+  "where": "passage 21 第3段",
+  "severity": "minor",
+  "problem": "原文為 on 25 June 1977,譯文只寫「1977 年 6 月」,漏譯日期 25 日。",
+  "fix": "最後,在 1977 年 6 月 25 日,第七次、也是最後一次閃電擊中了正在池塘釣魚的蘇利文。",
+  "i": 69
+ },
+ {
+  "id": "110-25",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "if 子句是 If he was(與現在事實相反,上帝現在並沒有在找他),主句講過去第一道閃電的結果,屬混合假設;只說「與過去事實相反的假設」容易讓學生以為 if 子句也該用 had been。",
+  "fix": "混合假設:if 子句 If he was(= were)表與現在事實相反(上帝並沒有在找他),主句指過去第一道閃電的結果,與過去事實相反,用 would have been。",
+  "i": 70
+ },
+ {
+  "id": "110-28",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "participial phrase 是文法術語,不是文章中的詞彙,詞性標成「片語」也不對(應是名詞「分詞片語」)。建議換成文中的單字。",
+  "fix": "[[\"shrink\",\"v. 縮小\"],[\"span\",\"v. 綿延;橫跨\"]]",
+  "i": 71
+ },
+ {
+  "id": "110-37",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「主詞 it 不合」說得太絕對:argue 可以用無生命主詞(如 The evidence argues that…),也可以作「表明」解。不選的真正原因是語意,而且 argue 已經是第 35 題的答案。",
+  "fix": "argue 主張,用無生命主詞語法上可以,但「疼痛可能主張受傷」語意不合;此處要的是「顯示、表示」受傷,用 point to(argue 為第 35 題答案)。",
+  "i": 72
+ },
+ {
+  "id": "111-6",
+  "part": "explain",
+  "where": "key",
+  "severity": "error",
+  "problem": "說「與 always say yes 呼應」把邏輯講反了:原句是 but don't expect that he or she will always say yes,是轉折提醒「隨和不等於凡事說好」,不是呼應。真正支持答案的線索是 pleasant and easy to get along with。",
+  "fix": "agreeable person 指隨和、好相處的人,呼應 pleasant and easy to get along with;but 後句則提醒隨和的人也不一定凡事都說「好」。",
+  "i": 73
+ },
+ {
+  "id": "111-2",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「influence 不指人」過度概括:influence 可指「有影響力的人」(如 She is a good influence on me)。排除理由應是語意不合,不是不能指人。",
+  "fix": "influence 影響(力);雖可指有影響力的人,但「最好的影響者」與後句「沒有她的協助無法經營辦公室」不合",
+  "i": 74
+ },
+ {
+  "id": "111-7",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "remarkable 意為「值得注意的、非凡的」,不是 visible 的反義詞,說「語意相反」不正確。",
+  "fix": "remarkable 值得注意的;非凡的,barely remarkable to passersby 語意不通,不表「看不看得見」",
+  "i": 75
+ },
+ {
+  "id": "111-9",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「route 不接 for fossils」過度概括:a route for ... 語法上可成立,問題在語意,go on a route for dinosaur fossils 不表「尋找」。",
+  "fix": "route 路線;語法上可接 for,但 go on a route for fossils 不表「去尋找化石」,語意不合",
+  "i": 76
+ },
+ {
+  "id": "111-16",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「except for 不接 reasons」過度概括。except for 可以接名詞;問題在 except for 表「排除」,通常修飾整句或放句首,不用來表示「(美觀)以外的其他(理由)」,這種意思要用 other than。",
+  "fix": "except for 除…之外(表排除),通常修飾整句;要表「美觀以外的其他理由」應用 other than,故不選",
+  "i": 77
+ },
+ {
+  "id": "111-16",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「more of 不成語」不精確:more of 是常見用法(如 more of a hobby than a job)。不選的原因是 reasons more of aesthetics 語法、語意都不通。",
+  "fix": "more of 雖有 more of a … than 等用法,但 reasons more of aesthetics 語法語意皆不通",
+  "i": 78
+ },
+ {
+  "id": "111-22",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「cost 無法與 emerge out of 搭配」過度概括:名詞 cost 放在 out of 後面語法上可行,真正的問題是語意不合。",
+  "fix": "cost 作名詞「成本」,語法上可接在 out of 後,但「特技工作由成本演變而來」語意不合",
+  "i": 79
+ },
+ {
+  "id": "111-30",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「cost 不與 thrilling 搭配」過度概括:形容詞 thrilling 修飾名詞 cost 語法可以,問題是語意不合。",
+  "fix": "cost 為名詞,語法上可受 thrilling 修飾,但「刺激的代價」與 realism 並列、描述觀眾想要的特技效果,語意不合",
+  "i": 80
+ },
+ {
+  "id": "111-33",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "說 B「此處尚無指涉」不正確:前一段已有迎火、供品等活動,Such festive activities 可以回指。不放這裡的理由應是:本段開頭要引出結尾的送火與送靈,而 B 說明舉辦地點,接在舞蹈描述後才通順。",
+  "fix": "Such festive activities 雖可回指前文活動,但本段開頭需引出節慶結尾的送火、送靈,B 說明舉辦地點,應接在舞蹈描述之後",
+  "i": 81
+ },
+ {
+  "id": "111-26",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "serial action movies 是「系列動作電影」(電影院放映的連續短片),不是電視「連續劇」;dedicated 是「專職的」,不是「專業的」。",
+  "fix": "系列動作電影的流行「需要」專職的特技演員,called for。",
+  "i": 82
+ },
+ {
+  "id": "111-21",
+  "part": "translate",
+  "where": "passage 21 第3段",
+  "severity": "minor",
+  "problem": "「這樣的需求更加增加」語意重複,不通順。",
+  "fix": "大約從 1910 年開始,觀眾喜歡上了系列動作片,這類電影【26】需要專職的特技演員來演出危險場面。隨著西部片興起,這樣的需求隨之增加,許多騎術精湛的牛仔找到了特技演員這個新【27】職業。Tom Mix 和 Yakima Canutt 是其中最有名的兩位。1960 和 70 年代【28】見證了大多數現代特技技術的發展,例如氣壓彈射器和血包爆破裝置。這些技術一直持續演進至今。",
+  "i": 83
+ },
+ {
+  "id": "112-43",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "error",
+  "problem": "說明計算錯誤且誤導。文中說亞洲商人在首批非洲永久定居者(約西元 1000 年)抵達前 900 年就已到訪,即約西元 100 年;(A) 錯在把「早 900 年」誤當成「西元 900 年」,而非「900 年是推算、不是最早」。",
+  "fix": "文中是「比西元 1000 年早 900 年」,即約西元 100 年就有亞洲商人到訪,不是西元 900 年",
+  "i": 84
+ },
+ {
+  "id": "112-26",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "error",
+  "problem": "「absorption 不與 normal fluid 搭配」為錯誤的過度概括:normal fluid absorption(正常的體液吸收)語法與搭配都可成立。不合的原因是語意:restore and maintain 的對象應是體液的平衡「狀態」;且 absorption 已是第 25 題答案。",
+  "fix": "absorption 吸收,normal fluid absorption 語法上可以,但 restore and maintain 要維持的是體液的正常「狀態」,語意以 status 較合;且 absorption 已是第 25 題答案",
+  "i": 85
+ },
+ {
+  "id": "112-7",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "error",
+  "problem": "「expose 揭露,不接 claims 反駁義」語句不通,且「不接 claims」屬過度概括(expose 可接 claims,如 expose the claims as false)。不選的原因是語意:本句強調證據「反駁、對抗」藥廠說法,counter 最直接;expose 多接 the truth / fraud / lies 等被隱藏的事物。",
+  "fix": "expose 揭露,語法上可接 claims,但多用於揭發隱藏的真相或騙局(expose fraud/lies);本句是用證據「反駁」藥廠說法,以 counter 最貼切",
+  "i": 86
+ },
+ {
+  "id": "112-27",
+  "part": "explain",
+  "where": "opts.F",
+  "severity": "minor",
+  "problem": "說明語句不通(「前面有 good 修飾名詞」),沒講清楚排除理由:a very good ___ 需要名詞,effective 是形容詞,詞性不合。",
+  "fix": "effective 為形容詞,a very good ___ 空格需名詞,詞性不合",
+  "i": 87
+ },
+ {
+  "id": "112-42",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "語句不通(「…的 it 結果」)。make it possible 中的 it 指前句所問的「大象與興盛的茶產業共存」這件事。",
+  "fix": "make it possible 的 it 指前句 Is it possible for elephants to coexist with the prosperous tea business? 所說的「大象與茶產業共存」,即為兩者創造雙贏。",
+  "i": 88
+ },
+ {
+  "id": "112-15",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "「數十年研究『儘管如此』仍無共識」用詞錯誤,「儘管如此」為連接副詞,與 despite + 名詞片語的意思不對應,語句不通。",
+  "fix": "「儘管」經過數十年研究,仍無共識,表讓步;Despite 為介系詞,後接名詞片語 decades of investigation。",
+  "i": 89
+ },
+ {
+  "id": "112-36",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "原文為 often made of metal(金屬),說明寫成「鐵圈」,材質翻譯不精確。",
+  "fix": "第一段說希臘人的金屬圈環也當作運動器材,對應 workout。",
+  "i": 90
+ },
+ {
+  "id": "112-37",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "文中出現的是 spun(Hoops spun their way…),列成 spin 與其他過去式不一致;且 rolled 原文為 roll them down the road。",
+  "fix": "文中出現 threw, jumped, slung, struck, roll, twirled, spun 等動作,沒有 kicking。",
+  "i": 91
+ },
+ {
+  "id": "112-6",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "recall 標成「n/v 回想」,把名詞與動詞混在一起;本題是名詞用法(powers of recall 記憶力)。",
+  "fix": "[[\"recall\",\"n 回想;記憶力(powers of recall)\"],[\"vivid\",\"adj 生動的\"],[\"resolve\",\"n 決心\"]]",
+  "i": 92
+ },
+ {
+  "id": "113-1",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "error",
+  "problem": "「slight 不搭 figure」為錯誤的過度概括。a slight figure 是常見搭配,意為「瘦小、纖弱的身材」;不選 C 的原因是語意:瘦小纖弱並非運動與健康飲食所追求的目標。",
+  "fix": "slight 形容身材時意為「瘦小的、纖弱的」(a slight figure 可成立),但偏指身形單薄,不是靠運動與健康飲食追求的目標,語意不如 slender 貼切",
+  "i": 93
+ },
+ {
+  "id": "113-7",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "error",
+  "problem": "「revenge 不搭 take the ... for」錯誤。take revenge (on sb) for sth(為某事報仇)是成立的搭配;應說明語法可以,但語意不合。",
+  "fix": "revenge 報復;take revenge for 雖是可成立的搭配(為某事報仇),但「領導者為成員的辛勞報仇」語意不合,且與團隊抱怨無關",
+  "i": 94
+ },
+ {
+  "id": "113-8",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「contain 包含(容器)」暗示 contain 只能用於容器,為過度概括,也沒說明為何不合本句。",
+  "fix": "contain 包含;語法上可接受詞,但「旅館包含便利的大眾運輸」語意不通,交通便利是地點帶來的好處,應用 promise 表示「保證提供」",
+  "i": 95
+ },
+ {
+  "id": "113-11",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「後不接 as 的身分」說法令人困惑:空格後並沒有 as。engage in 後接名詞在語法上可行,不選的原因是語意不通。",
+  "fix": "engage in 從事、參與;後接活動名詞,語法上可接,但「從事一般顧客」語意不通,也沒有「假扮」之意",
+  "i": 96
+ },
+ {
+  "id": "113-17",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "Exhausted by 譯為「被耗盡」不夠精確,用來修飾人時應是「因……而筋疲力盡」,和翻譯選項不一致。",
+  "fix": "Exhausted by 因……而筋疲力盡,與拿著棍子巡街叫人的語意不合",
+  "i": 97
+ },
+ {
+  "id": "113-21",
+  "part": "translate",
+  "where": "passage 21 第1段",
+  "severity": "minor",
+  "problem": "fateful day 譯為「命運多舛的日子」不恰當。「命運多舛」形容一生多災多難,不能形容單一的一天;fateful 應譯為「決定命運的、災難性的」。",
+  "fix": "人們來到這裡,和失去的親人說話,說出那個【22】改變命運的日子裡來不及說出口的話。",
+  "i": 98
+ },
+ {
+  "id": "113-30",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "error",
+  "problem": "選項字母對應錯誤:A 是 passed on,但說明寫的是 sorrow(C)的內容。",
+  "fix": "刪除 opts.A,改為 \"C\":\"sorrow 悲傷,與冒號後「相信訊息會送達」的正面內容不合\"",
+  "i": 99
+ },
+ {
+  "id": "113-34",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "error",
+  "problem": "用「已在第二段使用」來排除 D,卻沒有先說明 D 為何不合本空,屬於靠刪去法而非語意判斷。",
+  "fix": "D「這似乎與常規做法相反」放在此處無法說明下句 Thus(因此越來越多患者被建議持續活動)的原因,前段結尾也是專家共識而非違反常規,語意不接(D 為第 31 題答案)",
+  "i": 100
+ },
+ {
+  "id": "113-37",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "velours 與 crochet 是兩個完整的法文單字,不是「字根」。",
+  "fix": "名字取自法文單字 velours 與 crochet,但文中並未說是在法國生產",
+  "i": 101
+ },
+ {
+  "id": "113-42",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "說明寫「當時尚無彩色照片」,比選項「not common(不普遍)」說得更絕對,屬於過度推論。",
+  "fix": "Moran 的水彩是該地區最早的彩色描繪,可推論當時彩色照片並不普遍,正確",
+  "i": 102
+ },
+ {
+  "id": "113-42",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「首次前往」沒有直接反駁選項。關鍵在於他先為 Langford 的故事畫黃石插圖,之後才親自前往,所以不是先去過才畫。",
+  "fix": "他先受託為 Langford 的《The Wonders of Yellowstone》畫插圖,之後才親自前往黃石,故並非先去過才開始畫",
+  "i": 103
+ },
+ {
+  "id": "113-44",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "vocab 把 transplant 的名詞與動詞混在同一筆(v n 移植),沒有分開說明。",
+  "fix": "[\"transplant\",\"n 移植(手術);v 移植\"]",
+  "i": 104
+ },
+ {
+  "id": "113-46",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "vocab 把 waste 的名詞與動詞混在同一筆(n v 浪費);本文用的是名詞。",
+  "fix": "[\"waste\",\"n 浪費;廢棄物(v 浪費)\"]",
+  "i": 105
+ },
+ {
+  "id": "114-2",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "produce 名詞(農產品)與動詞(生產)混在同一條,且兩者重音不同,易讓學生混淆;本題只用名詞。",
+  "fix": "[\"produce\",\"n. 農產品\"],[\"seasonal\",\"adj. 季節性的\"]",
+  "i": 106
+ },
+ {
+  "id": "114-5",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「first text 不成搭配」過度概括;first text 語法上可說,問題在 text 指文本內容,不指作品的某一版本。",
+  "fix": "text 文本,語法可以,但不表示文章的「一份稿」,語意不合",
+  "i": 107
+ },
+ {
+  "id": "114-6",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「left remote 不通」過度概括;left + adj. 結構本身成立,是語意不合(房子不會因多年閒置而「變偏遠」)。",
+  "fix": "remote 偏遠的,left + 形容詞的結構可以,但「被閒置多年而偏遠」語意不合",
+  "i": 108
+ },
+ {
+  "id": "114-7",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "以「courage 為不可數名詞」作為選 enormous 的理由不相干;關鍵在語意:需要「極大的」修飾抽象的勇氣,gigantic 多指實體大小。",
+  "fix": "courage 為抽象名詞,enormous 可形容程度「極大的」勇氣;gigantic 多形容實體體積,不用於勇氣。",
+  "i": 109
+ },
+ {
+  "id": "114-7",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「不修飾不可數的 courage 的程度」語句不通;正確原因是 multiple 須接複數可數名詞。",
+  "fix": "multiple 多個的,須修飾複數可數名詞,不能修飾不可數的 courage",
+  "i": 110
+ },
+ {
+  "id": "114-8",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "financed 在 publicly financed 中為過去分詞「被資助的」,譯為「出資的」方向相反(出資者才是出資的)。",
+  "fix": "[\"financed\",\"adj. 獲得資助的\"]",
+  "i": 111
+ },
+ {
+  "id": "114-9",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "grace 的動詞(使增光)與名詞(優雅)混在同一條。",
+  "fix": "[\"grace\",\"v. 使增光\"],[\"ceremony\",\"n. 典禮\"]",
+  "i": 112
+ },
+ {
+  "id": "114-16",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「不接此語意」語句不通,未說明 burst 為何不合。",
+  "fix": "burst 爆裂、突然爆發,不用來表示疾病突然發作",
+  "i": 113
+ },
+ {
+  "id": "114-18",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「aren't 需有被動/進行」過度概括(be 動詞也可接形容詞);真正理由是被省略的動詞是一般動詞 detect,須用助動詞 do。",
+  "fix": "aren't 為 be 動詞否定,但此處省略的是一般動詞 detect,須用 don't 代替,不合",
+  "i": 114
+ },
+ {
+  "id": "114-21",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「familiar 為 be familiar with」不完整(也有 be familiar to),說法過度概括;應說明它不表「以…聞名」。",
+  "fix": "familiar 熟悉的,常用 be familiar with/to,不表示「以…聞名」,語意不合",
+  "i": 115
+ },
+ {
+  "id": "114-25",
+  "part": "explain",
+  "where": "opts.F",
+  "severity": "error",
+  "problem": "「不能接 its sound」錯誤:survive 是及物動詞,語法上可接受詞;問題在語意(鐘「熬過」自己的音色不通)。另外只以「已用於上題」排除,未先說明為何不合本空。",
+  "fix": "survived 語法上可接受詞,但「熬過它的音色」語意不通;此字也是第 24 題答案",
+  "i": 116
+ },
+ {
+  "id": "114-27",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「不能作為被召喚的對象」過度概括;應說明 the familiar 不指一群人,與「召喚去禱告」的語意不合。",
+  "fix": "familiar 熟悉的,the familiar 不指一群人,被召喚去禱告的應是信徒,語意不合",
+  "i": 117
+ },
+ {
+  "id": "114-29",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「不合 fell 之後的補語」過度概括;fall + 形容詞可成立(如 fall ill),familiar 是語意不合。",
+  "fix": "familiar 語法上可作 fell 的補語,但「變得熟悉」與大火後鐘聲停擺的語意不合",
+  "i": 118
+ },
+ {
+  "id": "114-41",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "把睡眠受干擾列為「長期影響」的證據不正確;文中睡眠影響僅及隔天,長期影響的依據是兒童成年後焦慮、對暴力較不敏感。",
+  "fix": "符合:兒童看恐怖片成年後較易焦慮,且對暴力較不敏感、更能接受攻擊行為,顯示可能有長期影響",
+  "i": 119
+ },
+ {
+  "id": "114-45",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "error",
+  "problem": "「the government 為人」錯誤:政府是機構不是人;排除理由應是語意:填滿國庫並助長飲酒的是「只准政府生產」的專賣制度,而非政府本身。",
+  "fix": "the government 語法上可作主詞,但使國庫充盈並助長伏特加消費的是「只准政府生產」這項專賣制度,不是政府本身",
+  "i": 120
+ },
+ {
+  "id": "114-46",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "「仍接近前段」易誤解為「前一段」,應為排名前列。",
+  "fix": "最後一段先談反酒精運動,最後以事實說明俄羅斯人均飲酒量雖非第一但仍名列前茅,屬補充事實。",
+  "i": 121
+ },
+ {
+  "id": "114-20",
+  "part": "translate",
+  "where": "opts[1]",
+  "severity": "error",
+  "problem": "by far 譯為「顯然;到目前為止最……」錯誤,把 by far 與 so far 混淆;by far 意為「遠遠、大幅」(多接比較級/最高級)。",
+  "fix": "(B)遠遠地;大幅地(修飾比較級/最高級)",
+  "i": 122
+ },
+ {
+  "id": "114-25",
+  "part": "translate",
+  "where": "passage 21 第2段",
+  "severity": "minor",
+  "problem": "which retained 為非限定關係子句,譯成「因為它保有」多加了因果關係。",
+  "fix": "但由於音質不佳,所有的鐘在2013年都被更換了──只有 Emmanuel 例外,它【25】保有了那著名而絕佳的音色。",
+  "i": 123
+ },
+ {
+  "id": "114-33",
+  "part": "translate",
+  "where": "passage 31 第3段",
+  "severity": "minor",
+  "problem": "「能讓熟睡的房客升起成坐姿」措辭不自然。",
+  "fix": "甚至還有無聲鬧鐘系統,能將熟睡的房客抬升成坐姿,同時讓燈光逐漸變亮。",
+  "i": 124
+ },
+ {
+  "id": "115-1",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「diligent 修飾人」過度概括;diligent 也可修飾努力、工作(diligent work / diligent efforts)。真正的問題是 schedule 不能是「勤勉的」,語意不合。",
+  "fix": "diligent 勤勉的,用來形容人或人的努力;「勤勉的行程」語意不通,也無法說明為何要等數週",
+  "i": 125
+ },
+ {
+  "id": "115-6",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "error",
+  "problem": "「wander 不及物」錯誤;wander 可作及物動詞接地點(wander the streets)。應說語法上不能接 the thought、語意不合。",
+  "fix": "wanders 漫遊、閒逛;雖可接地點當受詞(wander the streets),但不能接 the thought,語意不合",
+  "i": 126
+ },
+ {
+  "id": "115-6",
+  "part": "explain",
+  "where": "opts.D",
+  "severity": "minor",
+  "problem": "「不符『想法』搭配」把可成立的搭配說成不存在;escape the thought (that...) 是可用的說法。應改為語意不合。",
+  "fix": "escapes 逃避;語法上可接 the thought,但本句要表達的是害羞男孩對上台演講感到「恐懼」,「逃避這個念頭」不合句意",
+  "i": 127
+ },
+ {
+  "id": "115-10",
+  "part": "explain",
+  "where": "opts.B",
+  "severity": "minor",
+  "problem": "「brutal 不修飾 concerns」屬「X 不能修飾 Y」式的過度概括;應說明 brutal 通常形容行為或事件本身,與 concerns 搭配不自然、語意不合。",
+  "fix": "brutal 殘暴的,通常形容行為或事件本身(brutal attack);用來形容「憂慮」不自然,語意不合",
+  "i": 128
+ },
+ {
+  "id": "115-10",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "詞性標示用 adj./n. 英文縮寫,與其他各題的「形/名/動」格式不一致。",
+  "fix": "[[\"grave\",\"形 嚴重的;嚴肅的\"],[\"grave\",\"名 墳墓\"],[\"brutal\",\"形 殘忍的\"],[\"concern\",\"名 憂慮\"]]",
+  "i": 129
+ },
+ {
+  "id": "115-11",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "「並非補充同類」說法有問題:白犀牛做的正是同一類事。what is more 不合的原因是它用於追加更進一步的論點,而本句是引出出人意料的事實。",
+  "fix": "what is more 此外、更何況,用來追加更進一步的論點;此處是引出出人意料的事實(白犀牛也會這樣做),不是追加論點",
+  "i": 130
+ },
+ {
+  "id": "115-19",
+  "part": "explain",
+  "where": "key",
+  "severity": "minor",
+  "problem": "解題關鍵說「前面說小份量使其起初是點心」,但「最初被當作小吃」是空格後的內容,前文只說小份量是為了「點到心」;因果敘述位置錯置。",
+  "fix": "前文說小份量只是為了「點到心」,空格後說最初被當作小吃享用;as such 意為「因此、以這樣的性質」,承接前述小份量的性質,引出結果。",
+  "i": 131
+ },
+ {
+  "id": "115-23",
+  "part": "explain",
+  "where": "opts.G",
+  "severity": "minor",
+  "problem": "只用「已用於 22」排除,未先說明 function 為何不合本空。",
+  "fix": "function 功能;increases dementia function(增加失智症的功能)語意不通;且 function 是 22 的答案",
+  "i": 132
+ },
+ {
+  "id": "115-28",
+  "part": "explain",
+  "where": "opts.H",
+  "severity": "minor",
+  "problem": "只用「用於 29」排除,未先說明 minimal 為何不合本空(surprisingly minimal benefits 語法可以,但與「即使只有五分鐘也能帶來」的語意矛盾)。",
+  "fix": "minimal 極少的;surprisingly minimal benefits 語法可以,但 even a five-minute nap can bring about 表示短短小睡也有大效果,用「極少的好處」語意矛盾;且 minimal 是 29 的答案",
+  "i": 133
+ },
+ {
+  "id": "115-30",
+  "part": "explain",
+  "where": "opts.G",
+  "severity": "minor",
+  "problem": "「不能這樣搭配」過度概括,未說明理由;且 function 已是 22 的答案。應說明語意不合。",
+  "fix": "function 功能;create a relaxing function 語意不通,後文說能讓午睡更有效,應是營造放鬆的「氛圍」;且 function 是 22 的答案",
+  "i": 134
+ },
+ {
+  "id": "115-34",
+  "part": "explain",
+  "where": "opts.A",
+  "severity": "minor",
+  "problem": "只用「已用於 33」排除,未先說明 A 為何不合本空。",
+  "fix": "A 引入「另一個因素」,但最後一段是總結全文(後接心理學家指出微笑比看起來複雜),不再提出新因素;且 A 是 33 的答案",
+  "i": 135
+ },
+ {
+  "id": "115-37",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「島上沒有那麼久」文中無依據;C 錯在地點:文中五個月是在浮冰上紮營,不是在象島。",
+  "fix": "文中說五個月是在漂流的浮冰上紮營,不是在象島(Elephant Island)",
+  "i": 136
+ },
+ {
+  "id": "115-42",
+  "part": "explain",
+  "where": "vocab",
+  "severity": "minor",
+  "problem": "clockwise 在文中作副詞(turn clockwise upwards),在選項 B 作形容詞(clockwise design),只標「副」不完整。",
+  "fix": "[\"clockwise\",\"形 順時針的 副 順時針地\"]",
+  "i": 137
+ },
+ {
+  "id": "115-46",
+  "part": "explain",
+  "where": "opts.C",
+  "severity": "minor",
+  "problem": "「預聖經時期」為不自然的直譯,與翻譯檔的「聖經前時期」不一致。",
+  "fix": "文中說聖經前時期的地圖以東方為上方,不是南方",
+  "i": 138
+ }
+]
