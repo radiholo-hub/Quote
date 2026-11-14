@@ -50,11 +50,11 @@ function notify(msg){
 function home(){
   var h=load("history",[]),best={},last=lastRec();
   h.forEach(function(r){if(r.year&&r.raw!=null&&(!best[r.year]||r.raw>best[r.year]))best[r.year]=r.raw});
-  app.innerHTML='<h1>學測英文考古題</h1><p class="mute">每學年一份「第壹部分單選題」整卷,不含混合題(111 學年度起)、中譯英與作文。計時 100 分鐘,時間到會鎖住作答、只能交卷;交卷後才顯示答案與詳解。<br>填空簡答、中譯英與作文不在本站計分,由老師人工批改。</p>'+
+  app.innerHTML='<h1>學測英文考古題</h1><p class="mute">每學年一份試卷:第壹部分單選題,以及中譯英、英文作文題目(111 學年度起的第貳部分混合題未收錄)。計時 100 分鐘,時間到會鎖住作答、只能交卷;交卷後才顯示單選題答案與詳解。<br>中譯英與作文請寫在紙本答案卷上,由老師人工批改,本站不提供參考答案、不計分。</p>'+
   (S?'<div class="card"><b>未完成:'+S.year+' 學年度</b><p class="mute">已答 '+Object.keys(S.ans).length+' 題'+(S.locked||expired()?'(時間已到,請交卷)':'')+'</p><button class="btn primary" id="resume">繼續作答</button></div>':'')+
   (last?'<div class="card"><b>最近一次交卷:'+last.year+' 學年度</b><p class="mute">'+esc(last.date||"")+'</p><a class="btn" href="#result">回成績與檢討</a></div>':'')+
   '<div class="grid papers">'+DATA.map(function(e){var n=allQs(groupsOf(e.year)).length;
-    return '<button class="paper" data-y="'+e.year+'"><b>'+e.year+'</b><span>學年度</span><small>'+n+' 題單選'+(best[e.year]!=null?' · 最高 '+best[e.year]+' 分':'')+'</small></button>'}).join('')+'</div>'+
+    return '<button class="paper" data-y="'+e.year+'"><b>'+e.year+'</b><span>學年度</span><small>'+n+' 題單選 + 中譯英、作文'+(best[e.year]!=null?' · 最高 '+best[e.year]+' 分':'')+'</small></button>'}).join('')+'</div>'+
   (h.length?'<h2>最近成績</h2>'+h.slice(0,8).map(function(r){return '<div class="mute">'+esc(r.year||"")+' 學年度:答對 '+r.score+' / '+r.n+' 題'+(r.raw!=null?',原始分數 '+r.raw+' / '+r.max:'')+'('+esc(r.date)+')</div>'}).join(''):'');
   app.onclick=function(ev){var b=ev.target.closest(".paper");if(!b)return;
     var go=function(){S={year:b.dataset.y,ans:{},t0:Date.now(),limit:LIMIT,locked:false};persist();location.hash="#quiz"};
@@ -114,13 +114,24 @@ function qHtml(g,q,review){
     return review&&!isPlaceholder(q)?'<div class="optrow">'+btn+spBtn('o'+id+L[i],o,'',0.9).replace('class="sp"','class="sp side"').replace('aria-label="朗讀"','aria-label="朗讀選項 '+L[i]+'"')+'</div>':btn}).join('')+'</div>'}
   return h+'<div class="fb" id="fb'+id+'"></div><div id="ex'+id+'"></div></div>';
 }
+/* ---------- 非選擇題(中譯英、英文作文):只有題目,不提供答案,由老師批改 ---------- */
+function writingHtml(year){
+  var w=(window.WRITING||{})[year];if(!w)return "";
+  var part=+year<=110?"第貳部分:非選擇題(占 28 分)":"第參部分:非選擇題(占 28 分)";
+  return '<section class="writing" id="writing"><div class="sec">'+year+' · '+part+'</div>'+
+    '<p class="mute">'+(+year>=111?'本站未收錄第貳部分混合題。':'')+'請把答案寫在紙本答案卷上,交給老師批改。本站只提供題目,不提供參考答案,也不計分。</p>'+
+    '<div class="card wcard"><h3>一、中譯英(占 8 分)</h3><p class="mute">說明:依題號將以下中文句子譯成正確、通順、達意的英文。每題 4 分,共 8 分。</p><ol>'+
+    w.trans.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ol></div>'+
+    '<div class="card wcard"><h3>二、英文作文(占 20 分)</h3><p class="mute">說明:依提示寫一篇英文作文,文長至少 120 個單詞(words)。</p><p><b>提示:</b>'+esc(w.essay)+'</p>'+
+    (w.img?'<img src="'+w.img+'" alt="'+year+' 學年度英文作文附圖">':'')+'</div></section>';
+}
 function findQ(id){for(var i=0;i<V.qs.length;i++)if(V.qs[i].id===id)return V.qs[i].q}
 
 /* ---------- 作答 ---------- */
 function quiz(){
   if(!S){location.hash="#home";return}
   var groups=groupsOf(S.year);V={groups:groups,review:false,qs:allQs(groups)};
-  app.innerHTML='<div class="bar"><span id="prog"></span><span id="clock" class="mute"></span><button class="btn primary" id="submit">交卷</button></div><h1>'+S.year+' 學年度 第壹部分單選題</h1>'+paperHtml(groups,false);
+  app.innerHTML='<div class="bar"><span id="prog"></span><span id="clock" class="mute"></span><button class="btn primary" id="submit">交卷</button></div><h1>'+S.year+' 學年度 英文考科</h1>'+paperHtml(groups,false)+writingHtml(S.year);
   app.onclick=function(ev){var b=ev.target.closest(".opt");if(!b||b.disabled)return;pick(b.dataset.id,b.dataset.l)};
   document.getElementById("submit").onclick=submit;
   V.qs.forEach(function(x){refresh(x.id)});prog();tick();
@@ -213,7 +224,7 @@ function review(name){
   app.innerHTML='<div class="bar"><a class="btn" href="#result">回成績</a><span class="mute">檢討:'+FILTERS[name]+' '+V.qs.length+' 題</span><a class="btn" href="#home">首頁</a></div><h1>'+rec.year+' 學年度 檢討</h1>'+
     '<div class="rtools"><div class="row" role="group" aria-label="篩選">'+seg+'</div>'+
     '<form id="jump" class="jump" novalidate><label for="jumpn">跳到題號</label><input id="jumpn" type="text" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="1–'+mx+'"><button class="btn" type="submit">前往</button></form></div>'+
-    (V.qs.length?paperHtml(groups,true):'<p class="mute">這個篩選沒有題目('+FILTERS[name]+' 0 題)。</p>');
+    (V.qs.length?paperHtml(groups,true):'<p class="mute">這個篩選沒有題目('+FILTERS[name]+' 0 題)。</p>')+(name==="review-all"?writingHtml(rec.year):'');
   app.onclick=function(ev){speechClick(ev)};
   document.getElementById("jump").onsubmit=function(ev){
     ev.preventDefault();var raw=document.getElementById("jumpn").value.trim().replace(/[０-９]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-65248)}),n=/^\d+$/.test(raw)?Number(raw):NaN;   // 只接受純數字,小數、科學記號、正負號、空白都擋下

@@ -143,3 +143,24 @@ for f in sorted((out / "explain").glob("*.json")):
 missing = [f"{d['year']}-{q['n']}" for d in data for s in d['sections'] for g in s['groups'] for q in g['questions']
            if str(q['n']) not in ex.get(d['year'], {})]
 print(f"詳解 {sum(len(v) for v in ex.values())} 題,缺 {len(missing)} 題", missing[:10])
+
+# 非選擇題(中譯英、英文作文)題目:exam-en/src-data/writing.json → exam-en/writing.js;作文附圖從原卷頁裁切
+from PIL import Image, ImageChops
+wsrc = json.loads((out / "src-data" / "writing.json").read_text(encoding="utf-8"))
+writing = {}
+for y, w in wsrc.items():
+    if y.startswith("_"): continue
+    assert len(w["trans"]) == 2 and w["essay"], y
+    item = {"trans": w["trans"], "essay": w["essay"]}
+    if "img" in w:
+        fname, l, t, r, b = w["img"]
+        im = Image.open(src / "img" / "ns" / fname).convert("L").crop((l, t, r, b))
+        box = ImageChops.invert(im).point(lambda v: 255 if v > 25 else 0).getbbox()   # 去白邊
+        im = im.crop((max(box[0]-4, 0), max(box[1]-4, 0), min(box[2]+4, im.width), min(box[3]+4, im.height)))
+        name = f"{y}-essay.png"; im.save(out / "img" / name, optimize=True); item["img"] = "img/" + name
+    writing[y] = item
+assert sorted(writing) == sorted(d["year"] for d in data), "每一年都要有非選擇題"
+(out / "writing.js").write_text(
+    "// 由 tools/build_exam_en.py 依 exam-en/src-data/writing.json 產生。只有題目,不含參考答案;由老師人工批改。\nwindow.WRITING = " +
+    json.dumps(writing, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
+print(f"非選擇題 {len(writing)} 年,作文附圖 {sum('img' in v for v in writing.values())} 張")

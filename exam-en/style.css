@@ -69,3 +69,7 @@ a.chip{text-decoration:none}
 .jump{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .jump label{font-weight:600}
 .jump input{width:7em;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+.writing{margin-top:24px}
+.wcard h3{margin:0 0 4px;font-size:1.05rem}
+.wcard ol{margin:8px 0 0;padding-left:1.4em;line-height:1.8}
+.wcard img{display:block;max-width:100%;height:auto;margin-top:10px;border-radius:6px}
