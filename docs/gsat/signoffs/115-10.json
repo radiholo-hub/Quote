@@ -1,0 +1,283 @@
+{
+ "question": "115-10",
+ "status": "passed",
+ "reviewer": "教師（負責人）",
+ "signedAt": "2026-11-14",
+ "scope": "115 學年度學測英文第 10 題:教學文字內容(中文翻譯、解題步驟、選項解析、文法補充)、引用的相關單字與片語、重點字的歷屆出題紀錄,以及原創延伸練習。只限這一題的文字教學內容;不含發音(音檔尚未進行正式試聽簽核,見 audio 區塊),不含其他題目,也不含其餘歷屆詞彙待審核紀錄。",
+ "evidence": {
+  "reviewHtmlSha256": "995674ac74caedf07676155c0552302ee248e6519a7ae6b5a6c71725605cc60c",
+  "note": "簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。"
+ },
+ "contentFingerprint": {
+  "algorithm": "sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()",
+  "value": "e08695cb3d44bdf811a77acb079e45cf6b7c49dd9a6d764950f796c6fba6ae2d",
+  "covers": "題目與選項與官方答案、詳解內容、引用的單字詞條、畫面列出的衍生字、片語、延伸練習、重點字的歷屆出題紀錄、每個發音按鈕對應的 mp3 檔名、審核項目 ID 清單(mp3 檔案內容不在其中,見 audio 區塊)",
+  "excludes": "status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條"
+ },
+ "items": [
+  {
+   "id": "115-10:q",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:zh",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:key1",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:key2",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:key3",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:optA",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:optB",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:optC",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:optD",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:coll3",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:ex1",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:fam:gravely-adv",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:fam:gravity-n",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:syn",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:ant",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:grave-adj:conf1",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:swift-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:swift-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:swift-adj:also",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:swift-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:brutal-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:brutal-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:brutal-adj:note",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:brutal-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:harsh-adj:def",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:harsh-adj:forms",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:harsh-adj:coll1",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:w:harsh-adj:coll2",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:ph:raise-concerns",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:pat1",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:pat2",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:gram",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:rec:grave-adj:sum",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:rec:grave-adj:確認1",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:ext:x115-10-a",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:ext:x115-10-b",
+   "result": "passed"
+  },
+  {
+   "id": "115-10:final",
+   "result": "passed"
+  }
+ ],
+ "audio": {
+  "status": "pending",
+  "scope": "正式（production）試聽簽核尚未進行:沒有任何音檔視為已通過。目前 repository 內的音檔是舊 edge-tts 檔(非官方來源,不部署);正式音檔需以 Azure 付費層(azure-paid)產生,並由教師聆聽後以 approve-audio 正式簽核。教學文字的簽核不受影響。",
+  "approvedFiles": [],
+  "buttons": [
+   {
+    "item": "115-10:optA",
+    "file": "fa30ca744b335.mp3"
+   },
+   {
+    "item": "115-10:optB",
+    "file": "17c057bfd67217.mp3"
+   },
+   {
+    "item": "115-10:optC",
+    "file": "1f7c4ba16c6b2f.mp3"
+   },
+   {
+    "item": "115-10:optD",
+    "file": "1fd748cc52ee2c.mp3"
+   },
+   {
+    "item": "115-10:w:grave-adj:def",
+    "file": "1fd748cc52ee2c.mp3"
+   },
+   {
+    "item": "115-10:w:grave-adj:coll1",
+    "file": "1fa2ee75b397cb.mp3"
+   },
+   {
+    "item": "115-10:w:grave-adj:coll2",
+    "file": "1d2d3f8944b7a.mp3"
+   },
+   {
+    "item": "115-10:w:grave-adj:coll3",
+    "file": "266d700dbfc39.mp3"
+   },
+   {
+    "item": "115-10:w:grave-adj:ex1",
+    "file": "18d5011643daae.mp3"
+   },
+   {
+    "item": "115-10:w:grave-adj:fam:gravely-adv",
+    "file": "137900341d44d7.mp3"
+   },
+   {
+    "item": "115-10:w:grave-adj:fam:gravity-n",
+    "file": "58275bbc36fe4.mp3"
+   },
+   {
+    "item": "115-10:w:swift-adj:def",
+    "file": "fa30ca744b335.mp3"
+   },
+   {
+    "item": "115-10:w:swift-adj:coll1",
+    "file": "1e8d9bfabf75e.mp3"
+   },
+   {
+    "item": "115-10:w:brutal-adj:def",
+    "file": "17c057bfd67217.mp3"
+   },
+   {
+    "item": "115-10:w:brutal-adj:coll1",
+    "file": "13a4319ba22521.mp3"
+   },
+   {
+    "item": "115-10:w:harsh-adj:def",
+    "file": "1f7c4ba16c6b2f.mp3"
+   },
+   {
+    "item": "115-10:w:harsh-adj:coll1",
+    "file": "2f2fa91ebaa47.mp3"
+   },
+   {
+    "item": "115-10:w:harsh-adj:coll2",
+    "file": "1d33be9dba73b7.mp3"
+   },
+   {
+    "item": "115-10:ph:raise-concerns",
+    "file": "16dd2811af7a86.mp3"
+   }
+  ],
+  "buttonCount": 19,
+  "distinctFileCount": 0,
+  "totalAudioFiles": 187,
+  "notIncludedCount": 187,
+  "notIncluded": "所有音檔都不得視為已通過正式簽核。"
+ },
+ "vocabularyOccurrenceRecords": {
+  "entry": "grave-adj",
+  "note": "grave 的歷屆出題紀錄(已確認 1 次:正確答案 1、干擾選項 0、題幹 0、文章用字 0;待審核 0、被排除 0;2026-11-14 教師(負責人)將 115 年第 10 題選項 (D) grave 由待審核裁定為已確認)納入本簽核;紀錄資料在 gsat/exam/vocab_index.js(由 tools/build_vocab_index.py 逐字計算)。同日教師也將 115 年第 10 題選項 (A) swift(干擾選項,形容詞)由待審核裁定為已確認;swift 現為已確認 1、待審核 0。brutal(已確認 1)、harsh(已確認 3)維持既有狀態。這三個選項字的歷屆紀錄不在重點字 fingerprint 範圍內,由測試固定。字族 gravity 的 2 筆待審核紀錄不在本簽核範圍,維持待審核。本簽核不涉及其他詞條與其他待審核紀錄。"
+ }
+}

@@ -322,10 +322,63 @@ def test_q6_signed_text_is_shown_as_reviewed_without_touching_global_entry_statu
 
 
 @needs_exam
-def test_unsigned_questions_keep_the_draft_presentation(make_page):
-    """第 7 題沒有教師簽核:詳解、單字卡、延伸練習、延伸練習頁都維持原本的草稿呈現。"""
+def test_q7_signed_text_is_shown_as_reviewed_without_touching_global_entry_status(make_page):
+    """第 7 題已有教師文字簽核:詳解顯示已審核、passion 單字卡標示「本題教師已確認」;全域詞條狀態不變。"""
     page = make_page('desktop')
     review_q(page, 7)
+    box = page.locator('.explain.v2')
+    assert box.get_attribute('data-explain') == 'reviewed' and box.locator('.tag').first.inner_text() == '已審核'
+    txt = box.inner_text()
+    assert '待審核草稿' not in txt and '草稿・待人工審核' not in txt and 'his life’s passion' in txt and '看 which 子句' not in txt
+    assert box.locator('.wcard[data-entry=passion-n] [data-role=signed]').inner_text() == '本題教師已確認'
+    assert page.evaluate("window.VOCAB.entries['passion-n'].status") == 'draft'
+
+
+@needs_exam
+def test_q8_signed_text_is_shown_as_reviewed_without_touching_global_entry_status(make_page):
+    """第 8 題已有教師文字簽核:詳解顯示已審核、assault 單字卡標示「本題教師已確認」;全域詞條狀態不變。"""
+    page = make_page('desktop')
+    review_q(page, 8)
+    box = page.locator('.explain.v2')
+    assert box.get_attribute('data-explain') == 'reviewed' and box.locator('.tag').first.inner_text() == '已審核'
+    txt = box.inner_text()
+    assert '待審核草稿' not in txt and '草稿・待人工審核' not in txt and 'assaulted them with glass bottles' in txt and '只有 assault' not in txt
+    assert box.locator('.wcard[data-entry=assault-v] [data-role=signed]').inner_text() == '本題教師已確認'
+    assert page.evaluate("window.VOCAB.entries['assault-v'].status") == 'draft'
+
+
+@needs_exam
+def test_q9_signed_text_is_shown_as_reviewed_with_the_struggle_note(make_page):
+    """第 9 題已有教師文字簽核:詳解顯示已審核、elbow 單字卡標示「本題教師已確認」;struggle 的辨析提示學生看得到;全域詞條狀態不變。"""
+    page = make_page('desktop')
+    review_q(page, 9)
+    box = page.locator('.explain.v2')
+    assert box.get_attribute('data-explain') == 'reviewed' and box.locator('.tag').first.inner_text() == '已審核'
+    txt = box.inner_text()
+    assert '待審核草稿' not in txt and '草稿・待人工審核' not in txt and 'struggle one’s way through the crowd 在自然英文中也可以成立' in txt and '不代表這個英文用法本身錯誤' in txt
+    assert box.locator('[data-role=key] li').count() == 4 and '只有 elbow' not in txt
+    assert box.locator('.wcard[data-entry=elbow-v] [data-role=signed]').inner_text() == '本題教師已確認'
+    assert page.evaluate("window.VOCAB.entries['elbow-v'].status") == 'draft'
+
+
+@needs_exam
+def test_q10_signed_text_is_shown_as_reviewed_without_touching_global_entry_status(make_page):
+    """第 10 題已有教師文字簽核:詳解顯示已審核、grave 單字卡標示「本題教師已確認」;全域詞條狀態不變。"""
+    page = make_page('desktop')
+    review_q(page, 10)
+    box = page.locator('.explain.v2')
+    assert box.get_attribute('data-explain') == 'reviewed' and box.locator('.tag').first.inner_text() == '已審核'
+    txt = box.inner_text()
+    assert '待審核草稿' not in txt and '草稿・待人工審核' not in txt and 'grave concerns' in txt and '找最常修飾' not in txt
+    assert box.locator('.wcard[data-entry=grave-adj] [data-role=signed]').inner_text() == '本題教師已確認'
+    assert page.evaluate("window.VOCAB.entries['grave-adj'].status") == 'draft'
+
+
+@needs_exam
+def test_a_question_without_signoff_keeps_the_draft_presentation(make_page):
+    """十題都已簽核,所以用 init script 把第 10 題在頁面載入時改回草稿來模擬「沒有教師簽核」的題目:詳解、單字卡、延伸練習、延伸練習頁都維持原本的草稿呈現。"""
+    page = make_page('desktop', init=["let _e; Object.defineProperty(window,'EXPLAIN',{configurable:true,get(){return _e},set(v){ if(v&&v['115-10']) v['115-10'].status='draft'; _e=v; }});"])
+    review_q(page, 10)
     box = page.locator('.explain.v2')
     assert box.get_attribute('data-explain') == 'draft' and box.locator('.tag').first.inner_text() == '草稿・待人工審核'
     assert '待審核草稿' in box.locator('.wcard').first.inner_text() and '待審核草稿' in box.locator('details.lsec[data-sec="7"]').inner_text()
@@ -340,7 +393,7 @@ def test_other_questions_and_shared_entries_global_status_are_not_changed_by_the
     page = make_page('desktop')
     page.goto(URL + '#/')
     d = page.evaluate("({q: Object.entries(window.EXPLAIN).map(([k, e]) => [k, e.status]), v: [...new Set(Object.values(window.VOCAB.entries).map(e => e.status))], x: [...new Set(window.EXT_PRACTICE.map(e => e.status))]})")
-    assert dict(d['q']) == {**{f'115-{n}': 'draft' for n in range(7, 11)}, '115-1': 'reviewed', '115-2': 'reviewed', '115-3': 'reviewed', '115-4': 'reviewed', '115-5': 'reviewed', '115-6': 'reviewed'} and d['v'] == ['draft'] and d['x'] == ['draft']
+    assert dict(d['q']) == {f'115-{n}': 'reviewed' for n in range(1, 11)} and d['v'] == ['draft'] and d['x'] == ['draft']
 
 
 # ---------------------------------------------------------------- 版面
