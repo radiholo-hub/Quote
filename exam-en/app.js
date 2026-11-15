@@ -174,10 +174,30 @@ function noteHtml(t){return esc(t).replace(/\n/g,'<br>')}
 function transBlock(w){return '<div class="card wcard"><h3>'+esc(w.transTitle)+'</h3><p class="mute">'+noteHtml(w.transNote)+'</p><ol>'+w.trans.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ol></div>'}
 function essayBlock(w,year){return '<div class="card wcard"><h3>'+esc(w.essayTitle)+'</h3><p class="mute">'+noteHtml(w.essayNote)+'</p><p><b>提示：</b>'+esc(w.essay)+'</p>'+(w.img?'<img src="'+w.img+'" alt="'+year+' 學年度英文作文附圖">':'')+'</div>'}
 /* 非選擇題(中譯英、英文作文):只有原題,紙筆作答,網站不提供答案與評分 */
-function writingHtml(year,full){
+function writingHtml(year,full,live){
   var w=(window.WRITING||{})[year];if(!w)return "";
   return '<section class="writing" id="writing"><div class="sec">'+year+' · '+esc(w.partTitle)+'</div><p class="mute">'+esc(w.partNote)+'</p>'+
-    '<p class="papernote">'+PAPER_NOTE+(+year>=111&&!full?'(此模式未收錄第貳部分混合題。)':'')+'</p>'+transBlock(w)+essayBlock(w,year)+'</section>';
+    '<p class="papernote">'+PAPER_NOTE+(+year>=111&&!full?'(此模式未收錄第貳部分混合題。)':'')+'</p>'+(live?swHtml():'')+transBlock(w)+essayBlock(w,year)+'</section>';
+}
+/* ---------- 非選擇題碼錶:往上計時,可暫停;只供參考,不影響整卷 100 分鐘倒數 ---------- */
+function swHtml(){return '<div class="swbar" id="swbar"><div class="swhead"><span class="swlabel">非選擇題碼錶</span><span class="swtime" id="swtime">0:00</span></div>'+
+  '<div class="swbtns"><button type="button" class="btn" id="swgo">開始</button><button type="button" class="btn" id="swpause">暫停</button><button type="button" class="btn" id="swreset">歸零</button></div>'+
+  '<p class="mute swnote">只記錄你寫中譯英、作文花的時間,不影響整卷 100 分鐘倒數,也不限制作答時間。</p></div>'}
+function swEnd(){return S?Math.min(Date.now(),S.t0+S.limit*1000):Date.now()}   // 整卷到期後不再累加
+function swElapsed(){var w=(S&&S.sw)||{acc:0,start:null};return w.acc+(w.start?Math.max(0,swEnd()-w.start):0)}
+function swDraw(){
+  var t=document.getElementById("swtime");if(!t||!S)return;var w=S.sw||{acc:0,start:null},e=swElapsed(),off=S.locked||expired();
+  t.textContent=fmt(e/1000);t.className="swtime"+(w.start&&!off?" run":"");
+  var go=document.getElementById("swgo"),pa=document.getElementById("swpause"),re=document.getElementById("swreset");
+  go.textContent=w.acc>0&&!w.start?"繼續":"開始";go.disabled=!!w.start||off;pa.disabled=!w.start||off;re.disabled=e===0||off;
+}
+function swPause(){if(S&&S.sw&&S.sw.start){S.sw.acc+=Math.max(0,swEnd()-S.sw.start);S.sw.start=null}}
+function swBind(){
+  if(!document.getElementById("swbar"))return;
+  document.getElementById("swgo").onclick=function(){if(!S||S.locked||expired())return;S.sw=S.sw||{acc:0,start:null};if(!S.sw.start){S.sw.start=Date.now();persist()}swDraw()};
+  document.getElementById("swpause").onclick=function(){swPause();persist();swDraw()};
+  document.getElementById("swreset").onclick=function(){ask("碼錶要歸零嗎?(不影響整卷倒數)","歸零",function(){S.sw={acc:0,start:null};persist();swDraw()})};
+  swDraw();
 }
 function findQ(id){for(var i=0;i<V.qs.length;i++)if(V.qs[i].id===id)return V.qs[i].q}
 
@@ -278,7 +298,7 @@ function quiz(){
   var groups=groupsOf(S.year);V={groups:groups,review:false,qs:allQs(groups)};
   var full=isFull(S);
   app.innerHTML='<div class="bar"><span id="prog"></span><span id="clock" class="mute"></span><button class="btn primary" id="submit">交卷</button></div><h1>'+S.year+' 學年度 英文考科'+(full?'(完整原卷)':'')+'</h1>'+
-    (full?coverHtml(S.year):'')+paperHtml(groups,false,full?FP[S.year].part1:null)+(full?part2Html(S.year,null)+writingHtml(S.year,true):writingHtml(S.year));
+    (full?coverHtml(S.year):'')+paperHtml(groups,false,full?FP[S.year].part1:null)+(full?part2Html(S.year,null)+writingHtml(S.year,true,true):writingHtml(S.year,false,true));
   app.onclick=function(ev){var m=ev.target.closest(".mopt");if(m){if(!m.disabled)toggleMulti(m.dataset.m,m.dataset.l);return}
     var b=ev.target.closest(".opt");if(!b||b.disabled)return;pick(b.dataset.id,b.dataset.l)};
   app.oninput=function(ev){var el=ev.target;if(!el.matches||!el.matches(".fin"))return;
@@ -287,6 +307,7 @@ function quiz(){
     clearTimeout(quiz.t);quiz.t=setTimeout(persist,300)};
   document.getElementById("submit").onclick=submit;
   V.qs.forEach(function(x){refresh(x.id)});prog();tick();
+  swBind();
   clearInterval(timer);timer=setInterval(tick,1000);
 }
 function toggleMulti(n,l){
@@ -313,10 +334,10 @@ function tick(){
   if(!S||!V||V.review)return;
   var c=document.getElementById("clock");if(!c)return;
   if(expired()){lock();return}
-  var left=S.t0+S.limit*1000-Date.now();c.textContent="剩 "+fmt(left/1000);
+  var left=S.t0+S.limit*1000-Date.now();c.textContent="剩 "+fmt(left/1000);swDraw();
 }
 function lock(){
-  var first=!S.locked;S.locked=true;persist();
+  var first=!S.locked;swPause();S.locked=true;persist();swDraw();
   var c=document.getElementById("clock");if(c)c.textContent="時間到";
   [].forEach.call(document.querySelectorAll(".opt"),function(b){b.disabled=true});
   [].forEach.call(document.querySelectorAll(".fin"),function(b){b.readOnly=true});
@@ -326,7 +347,8 @@ function finish(){
   if(!S)return;
   clearInterval(timer);
   var tEnd=Math.min(Date.now(),S.t0+S.limit*1000);   // 用時不超過 100 分鐘
-  var rec={year:S.year,mode:S.mode||"mc",fill:S.fill||{},multi:S.multi||{},ans:S.ans,t0:S.t0,tEnd:tEnd,locked:!!(S.locked||expired()),date:new Date().toISOString().slice(0,16).replace("T"," ")};
+  swPause();
+  var rec={sw:(S.sw&&S.sw.acc)||0,year:S.year,mode:S.mode||"mc",fill:S.fill||{},multi:S.multi||{},ans:S.ans,t0:S.t0,tEnd:tEnd,locked:!!(S.locked||expired()),date:new Date().toISOString().slice(0,16).replace("T"," ")};
   var g=grade(rec);
   var hist=load("history",[]);var gf=isFull(rec)?gradeFull(rec):null;hist.unshift({year:rec.year,mode:rec.mode,score:g.right,n:g.n,raw:g.raw,max:g.max,mixed:gf?gf.scored:null,date:rec.date.slice(0,10)});save("history",hist.slice(0,30));
   save("last",rec);save("session",null);S=null;
@@ -370,7 +392,7 @@ function result(){
   var h='<h1>'+rec.year+' 學年度 成績'+(isFull(rec)?'(完整原卷)':'')+'</h1><div class="card"><div class="score">答對 '+g.right+' / '+g.n+' 題</div>'+
     '<div class="tally"><span class="ok">答對 '+g.right+'</span><span class="bad">答錯 '+g.wrong+'</span><span>未作答 '+g.blank+'</span></div>'+
     '<div style="margin-top:10px"><b>原始分數 '+g.raw+' / '+g.max+'</b><div class="mute">依官方配分的單選題原始分數('+si.txt+')。'+(isFull(rec)?'':'不含混合題、中譯英與作文,')+'不是整份學測的分數或級分。</div></div>'+
-    '<div class="mute" style="margin-top:8px">用時 '+fmt(used)+(rec.locked?'(時間到,作答已鎖定)':'')+'</div>'+
+    '<div class="mute" style="margin-top:8px">用時 '+fmt(used)+(rec.locked?'(時間到,作答已鎖定)':'')+(rec.sw?' · 非選擇題碼錶 '+fmt(rec.sw/1000)+'(只供參考)':'')+'</div>'+
     '<div style="margin-top:10px">'+Object.keys(g.by).map(function(k){return '<div>'+k+':'+g.by[k].right+' / '+g.by[k].n+'</div>'}).join('')+'</div></div>'+
     (isFull(rec)?fullResultHtml(rec,g):paperCard()+(+rec.year>=111?'<p class="mute">此模式未收錄第貳部分混合題。</p>':'')+'<p><b>網站只顯示已計分部分(單選題)的得分與滿分,不是整卷總分。</b></p>')+'<div class="row">'+
     '<a class="btn primary" href="#review-all">檢討全部題目</a>'+

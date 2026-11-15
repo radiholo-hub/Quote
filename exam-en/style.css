@@ -142,3 +142,12 @@ img.colimg{display:block;max-width:100%;height:auto;margin:0 auto 8px;border-rad
 .frac span:first-child{border-bottom:1px solid currentColor;padding:0 2px}
 .secnote{border:1px solid var(--ink);padding:4px 8px;margin:4px 0 8px;font-size:.92em}
 .p1title{font-size:1.05em}
+/* 非選擇題碼錶 */
+.swbar{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:8px 0;background:var(--card)}
+.swhead{display:flex;align-items:baseline;gap:10px}
+.swlabel{font-weight:600;font-size:.9em}
+.swtime{font-size:1.3rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--mute)}
+.swtime.run{color:var(--accent)}
+.swbtns{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.swbtns .btn{padding:5px 12px;font-size:.9em}
+.swnote{font-size:.8em;margin:6px 0 0}
