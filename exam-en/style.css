@@ -129,3 +129,16 @@ img.logo{float:right;width:84px;height:auto;margin:0 0 6px 10px}
 .ophint{font-size:.8em;color:var(--mute);margin:6px 0 0;padding-left:2px}
 .boxlabel{font-family:Georgia,"Times New Roman",serif;margin:4px 0 2px}
 img.colimg{display:block;max-width:100%;height:auto;margin:0 auto 8px;border-radius:4px}
+/* 封面 */
+.papercover{font-family:"Noto Serif TC","Songti TC",serif}
+.covtag{font:600 .8em system-ui;color:var(--mute);margin:0 0 8px}
+.covhead{text-align:center;line-height:1.7}.covsub{font-size:1.5em;margin-top:2px}
+.covsign{text-align:center;font-weight:700;background:var(--line);padding:4px 6px;border-radius:4px}
+.covbox{border:1.5px solid var(--ink);padding:8px 12px;margin-top:10px}
+.covbox ul{margin:.2em 0 .6em;padding-left:1.3em}.covbox li{margin:.25em 0;line-height:1.7}
+.covtitle{text-align:center;font-size:1.1em;margin:.2em 0 .6em}
+.webnote ul{margin:.2em 0;padding-left:1.3em}.webnote{border-style:dashed}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-style:italic;font-size:.85em;line-height:1.1;margin:0 2px}
+.frac span:first-child{border-bottom:1px solid currentColor;padding:0 2px}
+.secnote{border:1px solid var(--ink);padding:4px 8px;margin:4px 0 8px;font-size:.92em}
+.p1title{font-size:1.05em}

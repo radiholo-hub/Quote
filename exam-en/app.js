@@ -141,11 +141,13 @@ function qTrHtml(g,q){
     ((e.opts||[]).length?'<ul class="tropts">'+e.opts.map(function(x,i){return '<li><b>('+L[i]+')</b> '+esc(x)+'</li>'}).join('')+'</ul>':'')+'</details>';
 }
 /* ---------- 題目畫面(作答與檢討共用) ---------- */
-function paperHtml(groups,review){
+function paperHtml(groups,review,p1){
   var h="",lastKey="";
+  if(p1)h+='<div class="sec p1title">'+groups[0].year+' · '+esc(p1.title)+'</div>';
   groups.forEach(function(g,gi){
     var key=g.year+g.type;
-    if(key!==lastKey){h+='<div class="sec">'+g.year+' · '+g.name+'</div>';lastKey=key}
+    if(key!==lastKey){var o=p1&&p1.sections[g.type];
+      h+=o?'<div class="sec">'+esc(o.title)+'</div><p class="secnote">'+esc(o.note)+'</p>':'<div class="sec">'+g.year+' · '+g.name+'</div>';lastKey=key}
     if(g.passage&&review)h+='<div class="spbar">'+spBtn('p'+gi,g.passage.join(' '),'朗讀文章')+spBtn('ps'+gi,g.passage.join(' '),'慢速',0.7)+(g.bank||g.type==="cloze"?spBtn('pf'+gi,filledPassage(g),'填入答案朗讀'):'')+'</div>';
     if(g.passage)h+='<div class="passage">'+g.passage.map(function(p){return '<p>'+esc(p).replace(/【(\d+)】/g,function(_,n){return '<span class="blank" data-b="'+g.year+'-'+n+'">'+n+'</span>'})+'</p>'}).join('')+'</div>';
     if(g.bank){var sent=g.type==="structure";
@@ -255,13 +257,28 @@ function part2Html(year,rv,g){
   p.items.forEach(function(it){h+=itemHtml(year,it,rv,g)});
   return h+'</section>';
 }
+/* ---------- 封面作答注意事項(紙本原文)與網站操作方式(分開顯示) ---------- */
+function fracify(t){return esc(t).replace("{FRAC}",'<span class="frac" aria-label="(n−2k)/n"><span>n−2k</span><span>n</span></span>')}
+function coverHtml(year){
+  var c=(FP[year]||{}).cover;if(!c)return "";
+  return '<section class="cover" id="cover"><div class="card papercover"><p class="covtag">紙本試題本封面(原文)</p>'+
+    '<div class="covhead"><div>'+esc(c.org)+'</div><div>'+esc(c.exam)+'</div><div class="covsub">'+esc(c.subject)+'</div></div>'+
+    (c.signature?'<p class="covsign">'+esc(c.signature)+'</p>':'')+
+    '<div class="covbox"><p class="covtitle">─作答注意事項─</p><p>'+esc(c.time)+'</p><p>'+esc(c.methodTitle)+'</p><ul>'+c.method.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>'+
+    '<p>'+esc(c.scoringTitle)+'</p><ul>'+c.scoring.map(function(x){return '<li>'+fracify(x)+'</li>'}).join('')+'</ul></div></div>'+
+    '<div class="card webnote"><p class="covtag">網站操作方式(本站說明,不是試題本內容)</p><ul>'+
+    '<li>全卷共用一個 100 分鐘倒數,時間到會鎖住作答,只能交卷。</li>'+
+    '<li>選擇題直接點選選項;第 49 題可複選。填充、簡答在作答欄輸入。</li>'+
+    '<li>中譯英與英文作文請寫在紙上,網站不評分。</li>'+
+    '<li>交卷前不顯示答案、翻譯或詳解。</li></ul></div></section>';
+}
 /* ---------- 作答 ---------- */
 function quiz(){
   if(!S){location.hash="#home";return}
   var groups=groupsOf(S.year);V={groups:groups,review:false,qs:allQs(groups)};
   var full=isFull(S);
   app.innerHTML='<div class="bar"><span id="prog"></span><span id="clock" class="mute"></span><button class="btn primary" id="submit">交卷</button></div><h1>'+S.year+' 學年度 英文考科'+(full?'(完整原卷)':'')+'</h1>'+
-    (full?'<div class="sec">'+S.year+' · 第壹部分、選擇題(占 62 分)</div>':'')+paperHtml(groups,false)+(full?part2Html(S.year,null)+writingHtml(S.year,true):writingHtml(S.year));
+    (full?coverHtml(S.year):'')+paperHtml(groups,false,full?FP[S.year].part1:null)+(full?part2Html(S.year,null)+writingHtml(S.year,true):writingHtml(S.year));
   app.onclick=function(ev){var m=ev.target.closest(".mopt");if(m){if(!m.disabled)toggleMulti(m.dataset.m,m.dataset.l);return}
     var b=ev.target.closest(".opt");if(!b||b.disabled)return;pick(b.dataset.id,b.dataset.l)};
   app.oninput=function(ev){var el=ev.target;if(!el.matches||!el.matches(".fin"))return;
@@ -381,7 +398,7 @@ function review(name){
   app.innerHTML='<div class="bar"><a class="btn" href="#result">回成績</a><span class="mute">檢討:'+FILTERS[name]+' '+V.qs.length+' 題</span><a class="btn" href="#home">首頁</a></div><h1>'+rec.year+' 學年度 檢討</h1>'+
     '<div class="rtools"><div class="row" role="group" aria-label="篩選">'+seg+'</div>'+voiceBarHtml()+
     '<form id="jump" class="jump" novalidate><label for="jumpn">跳到題號</label><input id="jumpn" type="text" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="1–'+mx+'"><button class="btn" type="submit">前往</button></form></div>'+
-    (V.qs.length?paperHtml(groups,true):'<p class="mute">這個篩選沒有題目('+FILTERS[name]+' 0 題)。</p>')+(name==="review-all"?(isFull(rec)?part2Html(rec.year,rec,gradeFull(rec))+writingHtml(rec.year,true):writingHtml(rec.year)):'');
+    (V.qs.length?paperHtml(groups,true,isFull(rec)?FP[rec.year].part1:null):'<p class="mute">這個篩選沒有題目('+FILTERS[name]+' 0 題)。</p>')+(name==="review-all"?(isFull(rec)?part2Html(rec.year,rec,gradeFull(rec))+writingHtml(rec.year,true):writingHtml(rec.year)):'');
   app.onclick=function(ev){speechClick(ev)};
   document.getElementById("jump").onsubmit=function(ev){
     ev.preventDefault();var raw=document.getElementById("jumpn").value.trim().replace(/[０-９]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-65248)}),n=/^\d+$/.test(raw)?Number(raw):NaN;   // 只接受純數字,小數、科學記號、正負號、空白都擋下

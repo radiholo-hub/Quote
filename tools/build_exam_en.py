@@ -232,6 +232,13 @@ for y, p in fsrc.items():
         if it["type"] == "multi":
             assert it["n"] == str(m["q"]) and len(it["options"]) == m["n"] and it["points"] == m["points"], (y, "第 49 題與官方答案資料不符")
             it["key"] = m["key"]; it["rule"] = rule
+    if "part1" in p:   # 五大題標題「占 N 分」必須等於題庫題數 × 每題分數
+        d = next(d for d in data if d["year"] == y)
+        for sec in d["sections"]:
+            nq = sum(len(g["questions"]) for g in sec["groups"]); w = 1 if sec["groups"][0]["questions"][0]["n"] <= 30 else 2
+            title = p["part1"]["sections"][sec["type"]]["title"]
+            want = int(re.search(r"占(\d+)分", title).group(1))
+            assert nq * w == want, (y, sec["type"], nq, w, want)
     pts = sum(it["points"] for it in p2["items"])
     assert pts == 10, (y, "混合題配分應為 10 分", pts)
     full[y] = p
