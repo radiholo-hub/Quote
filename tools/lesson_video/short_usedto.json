@@ -10,8 +10,8 @@
    "id": "hook",
    "view": {
     "kind": "card",
-    "h": "只差一個 be，<br>答案就不一樣：<br>used to／be used to",
-    "top": 600
+    "h": "只差一個 be，<br>答案就不一樣：<br>used to<br>be used to",
+    "top": 560
    },
    "say": [
     [
