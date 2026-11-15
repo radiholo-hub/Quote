@@ -172,7 +172,7 @@ function qHtml(g,q,review){
 var PAPER_NOTE='紙筆作答,網站未評分:請寫在紙上。本站不提供答案、詳解、範文或評分。';
 function noteHtml(t){return esc(t).replace(/\n/g,'<br>')}
 function transBlock(w){return '<div class="card wcard"><h3>'+esc(w.transTitle)+'</h3><p class="mute">'+noteHtml(w.transNote)+'</p><ol>'+w.trans.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ol></div>'}
-function essayBlock(w,year){return '<div class="card wcard"><h3>'+esc(w.essayTitle)+'</h3><p class="mute">'+noteHtml(w.essayNote)+'</p><p><b>提示:</b>'+esc(w.essay)+'</p>'+(w.img?'<img src="'+w.img+'" alt="'+year+' 學年度英文作文附圖">':'')+'</div>'}
+function essayBlock(w,year){return '<div class="card wcard"><h3>'+esc(w.essayTitle)+'</h3><p class="mute">'+noteHtml(w.essayNote)+'</p><p><b>提示：</b>'+esc(w.essay)+'</p>'+(w.img?'<img src="'+w.img+'" alt="'+year+' 學年度英文作文附圖">':'')+'</div>'}
 /* 非選擇題(中譯英、英文作文):只有原題,紙筆作答,網站不提供答案與評分 */
 function writingHtml(year,full){
   var w=(window.WRITING||{})[year];if(!w)return "";
