@@ -290,3 +290,21 @@ def test_mobile_part6_passage_height_and_toggle(open_app):
     assert tabs.count() >= 2
     tabs.nth(1).click()
     assert 'on' in tabs.nth(1).get_attribute('class')
+
+
+def test_mock1_link_opens_exam1_start(browser):
+    from conftest import STUB
+    ctx = browser.new_context(viewport={'width': 390, 'height': 844})
+    ctx.route('**/supabase-js@2*', lambda r: r.fulfill(status=200, content_type='application/javascript', body=STUB))
+    p = ctx.new_page()
+    try:
+        p.goto((ROOT / 'index.html').as_uri() + '?debug=1#mock1')
+        p.wait_for_selector('#view-exam-start:not([hidden]) [data-act="examBegin"]')
+        assert '模擬試題 第 1 回' in p.inner_text('#examStartBody')
+        assert '#mock1' not in p.url, '網址清掉 #mock1，重新整理回首頁'
+        p.goto((ROOT / 'index.html').as_uri() + '?debug=1#exams')
+        p.wait_for_timeout(300)
+        top = p.evaluate("document.getElementById('exams').getBoundingClientRect().top")
+        assert abs(top) < 120, top
+    finally:
+        ctx.close()
