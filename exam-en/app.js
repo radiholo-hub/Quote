@@ -198,11 +198,14 @@ function gradeFull(rec){
       scored+=sc;scoredMax+=it.points;
     }else it.blanks.forEach(function(b,bi){
       var a=(rec.fill||{})[b.id]||"",n=normAns(a),st,sc=null;
-      var ok=b.answers.map(normAns).indexOf(n)>=0;
-      if(ok&&it.pairs)ok=it.pairs.some(function(combo){if(normAns(combo[bi])!==n)return false;
-        return it.blanks.every(function(o,oi){if(oi===bi)return true;var v=normAns((rec.fill||{})[o.id]);return !v||v===normAns(combo[oi])||o.answers.map(normAns).indexOf(v)<0})});   // 例:兩格都填 health 互相衝突 → 待評
-      if(!n){st="blank";sc=0}else if(ok){st="ok";sc=b.points}else st="pending";
-      var r={it:it,b:b,id:b.id,label:"第 "+(it.blanks.length>1&&it.n.indexOf("-")<0?it.n+" 題"+b.label:b.id+" 題")+(it.type==="short"?"(簡答)":"(填充)"),points:b.points,score:sc,status:st,ans:a};
+      function part(o,v){var pp=(o.partial||{})[v];return pp||null}
+      function eff(o,v){var pp=part(o,v);return pp&&pp.as?normAns(pp.as):v}   // 官方部分給分的字形,成對比對時視同原字
+      function pairOK(v){return it.pairs.some(function(combo){if(normAns(combo[bi])!==v)return false;
+        return it.blanks.every(function(o,oi){if(oi===bi)return true;var w=eff(o,normAns((rec.fill||{})[o.id]));return !w||w===normAns(combo[oi])||o.answers.map(normAns).indexOf(w)<0})})}   // 例:兩格都填 health 互相衝突 → 待評
+      var ok=b.answers.concat(b.alsoFull||[]).map(normAns).indexOf(n)>=0;if(ok&&it.pairs)ok=pairOK(n);
+      var pp=!ok&&n?part(b,n):null;if(pp&&it.pairs&&!pairOK(eff(b,n)))pp=null;
+      if(!n){st="blank";sc=0}else if(ok){st="ok";sc=b.points}else if(pp){st="partial";sc=pp.points}else st="pending";
+      var r={it:it,b:b,why:pp?pp.why:"",id:b.id,label:"第 "+(it.blanks.length>1&&it.n.indexOf("-")<0?it.n+" 題"+b.label:b.id+" 題")+(it.type==="short"?"(簡答)":"(填充)"),points:b.points,score:sc,status:st,ans:a};
       res.push(r);if(sc!==null){scored+=sc;scoredMax+=b.points}else pend.push(r);
     });
   });
@@ -215,6 +218,7 @@ function blankHtml(year,b,rv){
 }
 function resultLine(r){
   if(r.status==="ok")return '<div class="fb ok">'+esc(r.label)+':✔ 與滿分參考答案相符,'+r.points+' 分</div>';
+  if(r.status==="partial")return '<div class="fb pend">'+esc(r.label)+':部分給分 '+r.score+' / '+r.points+'(大考中心判分案例:'+esc(r.why)+')</div>';
   if(r.status==="blank")return '<div class="fb bad">'+esc(r.label)+':空白,0 分(評分原則:空白得 0 分)</div>';
   return '<div class="fb pend">'+esc(r.label)+':待人工評閱(滿分 '+r.points+' 分;字形或拼字錯誤可得 1 分,需老師判定)</div>';
 }
@@ -237,7 +241,7 @@ function itemHtml(year,it,rv,g){
   if(rv&&g){
     mine.forEach(function(r){
       if(r.it.type==="multi"){h+='<div class="fb '+(r.score===r.points?'ok':'bad')+'">'+(r.status==="blank"?'全未作答,0 分。':'你的選擇:'+(r.sel.join("、")||"無")+';正確答案:'+it.key.split("").join("、")+';答錯 '+r.k+' 個選項,得 '+r.points+'×('+it.options.length+'−2×'+r.k+')/'+it.options.length+' = '+r.score+' 分。')+'</div><p class="mute">計分規則(試卷封面):'+esc(it.rule)+'</p>'}
-      else{h+=resultLine(r);h+='<p class="mute">評分原則滿分參考答案('+esc(r.b.label)+'):'+(it.pairs?it.pairs.map(function(c){return c[it.blanks.indexOf(r.b)]}).map(esc).join(" / ")+'(與另一格成對:'+it.pairs.map(function(c){return c.join("/")}).join(" 或 ")+')':r.b.answers.map(esc).join(" / "))+'</p>'}
+      else{h+=resultLine(r);h+='<p class="mute">評分原則滿分參考答案('+esc(r.b.label)+'):'+(it.pairs?it.pairs.map(function(c){return c[it.blanks.indexOf(r.b)]}).map(esc).join(" / ")+'(與另一格成對:'+it.pairs.map(function(c){return c.join("/")}).join(" 或 ")+')':r.b.answers.map(esc).join(" / ")+(r.b.alsoFull?';另依大考中心判分案例給滿分:'+r.b.alsoFull.map(esc).join("、"):''))+'</p>'}
     });
   }
   return h+'</div>';

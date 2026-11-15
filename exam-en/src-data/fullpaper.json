@@ -1,5 +1,5 @@
 {
- "_note": "完整原卷模式(111、115)。第貳部分混合題、第參部分說明依 gsat/exam/img/ns/<年>-q*.jpg(大考中心正式試卷頁)逐字轉錄;混合題非選擇題答案依 <年>-ref*.jpg(大考中心非選擇題評分原則)的「滿分參考答案」;第 49 題答案與選項數依 gsat/exam/mixed.js(選擇題答案),計分規則依 gsat/data/scoring.js 的 MULTI_RULE(試卷封面)。img 為 [頁圖檔名, 左, 上, 右, 下],產生時去白邊。 pairs:同一題組多格答案須成對(112 年 47/48 為 taste/health 或 health/taste);##文字## 為原卷粗體、**文字** 為粗體加底線;boxLabel=outside 表示原卷把標籤放在框外。 verified:混合題、計分與作答流程都驗收完才設為 true,首頁才出現「完整原卷」入口。",
+ "_note": "完整原卷模式(111、115)。第貳部分混合題、第參部分說明依 gsat/exam/img/ns/<年>-q*.jpg(大考中心正式試卷頁)逐字轉錄;混合題非選擇題答案依 <年>-ref*.jpg(大考中心非選擇題評分原則)的「滿分參考答案」;第 49 題答案與選項數依 gsat/exam/mixed.js(選擇題答案),計分規則依 gsat/data/scoring.js 的 MULTI_RULE(試卷封面)。img 為 [頁圖檔名, 左, 上, 右, 下],產生時去白邊。 pairs:同一題組多格答案須成對(112 年 47/48 為 taste/health 或 health/taste);##文字## 為原卷粗體、**文字** 為粗體加底線;boxLabel=outside 表示原卷把標籤放在框外。 verified:混合題、計分與作答流程都驗收完才設為 true,首頁才出現「完整原卷」入口。 partial:官方明示的部分給分案例({作答:{points, as(成對比對時視同哪個字), why}});只收有依據的案例,不做模糊比對。",
  "111": {
   "part2": {
    "title": "第貳部分、混合題(占 10 分)",
@@ -266,7 +266,14 @@
        "answers": [
         "taste",
         "health"
-       ]
+       ],
+       "partial": {
+        "tastes": {
+         "points": 1,
+         "as": "taste",
+         "why": "字形錯誤(taste→tastes)"
+        }
+       }
       },
       {
        "id": "48",
@@ -275,7 +282,14 @@
        "answers": [
         "health",
         "taste"
-       ]
+       ],
+       "partial": {
+        "tastes": {
+         "points": 1,
+         "as": "taste",
+         "why": "字形錯誤(taste→tastes)"
+        }
+       }
       }
      ],
      "pairs": [
@@ -287,7 +301,8 @@
        "health",
        "taste"
       ]
-     ]
+     ],
+     "partialSource": "依老師提供的大考中心判分案例;repo 內評分原則頁只有通則「字形錯誤或拼字錯誤,得 1 分」,原件未在 repo 內"
     },
     {
      "n": "49",
@@ -388,9 +403,16 @@
        "points": 2,
        "answers": [
         "adapting"
-       ]
+       ],
+       "partial": {
+        "adapt": {
+         "points": 1,
+         "why": "字形錯誤(adapting→adapt)"
+        }
+       }
       }
-     ]
+     ],
+     "partialSource": "依老師提供的大考中心判分案例;repo 內評分原則頁只有通則「字形錯誤或拼字錯誤,得 1 分」,原件未在 repo 內"
     },
     {
      "n": "49",
@@ -419,9 +441,14 @@
        "answers": [
         "a predator",
         "a fox"
+       ],
+       "alsoFull": [
+        "predators",
+        "foxes"
        ]
       }
-     ]
+     ],
+     "extraSource": "predators、foxes 給滿分:依老師提供的大考中心判分案例"
     }
    ]
   },
