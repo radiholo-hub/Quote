@@ -1,0 +1,287 @@
+{
+ "title": "短片｜Ms. Chen is used to ___ with overseas clients.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "used to 和 be used to，<br>只差一個 be，<br>答案就不一樣。",
+    "top": 600
+   },
+   "say": [
+    [
+     "en",
+     "used to"
+    ],
+    [
+     "zh",
+     "和"
+    ],
+    [
+     "en",
+     "be used to"
+    ],
+    [
+     "zh",
+     "，只差一個"
+    ],
+    [
+     "en",
+     "be"
+    ],
+    [
+     "zh",
+     "，答案就不一樣。"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "Ms. Chen [is used to]|______ with overseas clients.",
+      "zh": "陳小姐習慣和海外客戶溝通。"
+     }
+    ],
+    "o": [
+     "communicate",
+     "to communicate",
+     "communicating",
+     "communicated"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "Ms. Chen is used to blank with overseas clients."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "Ms. Chen [is used to]|______ with overseas clients.",
+      "zh": "陳小姐習慣和海外客戶溝通。"
+     }
+    ],
+    "o": [
+     "communicate",
+     "to communicate",
+     "communicating",
+     "communicated"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "Ms. Chen [is used to]|______ with overseas clients.",
+      "zh": "陳小姐習慣和海外客戶溝通。"
+     }
+    ],
+    "o": [
+     "communicate",
+     "to communicate",
+     "communicating",
+     "communicated"
+    ],
+    "ring": [
+     {
+      "w": "is used to",
+      "c": "red",
+      "label": "看到 to"
+     }
+    ],
+    "ban": {
+     "t": "to 後面 → 填原形 communicate？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "前面有 to，所以填原形"
+    ],
+    [
+     "en",
+     "communicate"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "Ms. Chen [is used to]|______ with overseas clients.",
+      "zh": "陳小姐習慣和海外客戶溝通。"
+     }
+    ],
+    "o": [
+     "communicate",
+     "to communicate",
+     "communicating",
+     "communicated"
+    ],
+    "ans": 2,
+    "fill": "communicating",
+    "ring": [
+     {
+      "w": "is used to",
+      "c": "blue",
+      "label": "be used to＝習慣"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "換成名詞：is used to the time difference ✓<br>→ to 是介系詞，動作用 V-ing",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "be used to"
+    ],
+    [
+     "zh",
+     "是習慣的意思。把空格換成名詞："
+    ],
+    [
+     "en",
+     "is used to the time difference"
+    ],
+    [
+     "zh",
+     "，說得通，所以這個 to 是介系詞。動作要用"
+    ],
+    [
+     "en",
+     "vee-ing"
+    ],
+    [
+     "zh",
+     "，選 C，"
+    ],
+    [
+     "en",
+     "communicating."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：少了 is",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "Ms. Chen [used to]|______ with overseas clients.",
+      "zh": "陳小姐以前常和海外客戶溝通。"
+     }
+    ],
+    "fill": "communicate",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "used to",
+      "c": "blue",
+      "label": "沒有 be＝以前常"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "used to＋原形＝以前常…<br>be used to＋V-ing＝習慣…",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "如果少了"
+    ],
+    [
+     "en",
+     "is"
+    ],
+    [
+     "zh",
+     "，變成"
+    ],
+    [
+     "en",
+     "used to"
+    ],
+    [
+     "zh",
+     "，意思是以前常常，後面接原形："
+    ],
+    [
+     "en",
+     "used to communicate."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "完整方案 第 5 課",
+    "h": "to V 還是 V-ing？<br>先看前面的搭配",
+    "sub": "6 分半影片＋14 題練習",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}
