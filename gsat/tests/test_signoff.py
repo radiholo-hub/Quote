@@ -306,13 +306,13 @@ def test_signoff_json_contains_no_exam_text(recs):
 
 # ---------------- explain.js 的唯一來源與「整檔重新產生不能無聲覆蓋簽核」 ----------------
 def test_no_tool_in_the_repo_generates_explain_js_or_the_other_signed_data_files():
-    """explain.js 是版本控制下的唯一來源:repo 內沒有任何工具會產生它(只有 stage_site.sh 在輸出資料夾放公開版空殼)。"""
+    """explain.js 是版本控制下的唯一來源:repo 內沒有任何工具會產生它(只有 stage_site.sh 與 gsat_public_exams.py 在「輸出資料夾」放公開版空殼或複本，不碰來源)。"""
     import re
     writers = []
     for p in sorted((REPO / 'tools').iterdir()):
         if p.is_file() and p.suffix in ('.py', '.sh', '.js'):
             t = p.read_text(encoding='utf8', errors='ignore')
-            if re.search(r'window\.EXPLAIN\s*=', t) and p.name != 'stage_site.sh':
+            if re.search(r'window\.EXPLAIN\s*=', t) and p.name not in ('stage_site.sh', 'gsat_public_exams.py'):          # 公開輸出工具只寫到別的資料夾（空殼／複本），且拒絕輸出到來源 gsat/exam 裡
                 writers.append(p.name)
     assert writers == [], f'不應有工具產生 explain.js:{writers}'
 

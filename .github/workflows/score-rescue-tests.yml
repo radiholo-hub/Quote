@@ -14,6 +14,7 @@ on:
       - 'tools/make_score_rescue_audio.py'
       - 'tools/audio_changes.sh'
       - 'tools/stage_site.sh'
+      - 'tools/gsat_public_exams.py'
       - 'tools/gsat_audio_provenance.py'
       - 'docs/gsat/audio-provenance.json'
       - '.github/workflows/score-rescue-tests.yml'
@@ -42,6 +43,7 @@ jobs:
             tools/make_score_rescue_audio.py
             tools/audio_changes.sh
             tools/stage_site.sh
+            tools/gsat_public_exams.py
             tools/gsat_audio_provenance.py
           sparse-checkout-cone-mode: false
       - name: Install test tools

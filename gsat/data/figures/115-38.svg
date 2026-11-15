@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 700" width="790" height="700" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="四張簡化的南極威德爾海地圖，每張標示 South Georgia 與 Elephant Island，並用箭頭畫出一條航行路線：(A) 從 South Georgia 出發繞威德爾海一整圈（順時針）；(B) 繞一整圈（逆時針）；(C) 從 South Georgia 沿威德爾海東側往南再往西，在西南側停下，沒有經過 Elephant Island；(D) 從 South Georgia 到 Elephant Island，再往南走一小段。">
+<title>威德爾海航行路線示意圖（原創替代圖）</title>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#555"/></marker></defs>
+<rect width="790" height="700" fill="#fff"/>
+<g transform="translate(0 0)">
+<rect x="0" y="0" width="395" height="350" fill="#fff"/>
+<path d="M0 350V300L22 285L28 250L38 218L52 192L66 176L76 168L84 182L80 212L92 244L118 266L148 282L180 282L206 270L236 276L262 290L300 292L330 280L360 290L395 286V350Z" fill="#c9c9c9"/>
+<g font-size="13" font-weight="bold" fill="#6d6d6d"><text x="14" y="210">PACIFIC</text><text x="14" y="226">OCEAN</text><text x="196" y="26">ATLANTIC OCEAN</text><text x="230" y="318" fill="#6d6d6d" font-size="14">ANTARCTICA</text></g>
+<g font-size="13" font-weight="bold" fill="#8a8a8a"><text x="190" y="168">WEDDELL</text><text x="198" y="184">SEA</text></g>
+<text x="12" y="24" font-size="22" fill="#111">(A)</text>
+<path d="M272 66 C320 90 352 120 350 170" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M350 170 C352 215 330 250 300 266" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M300 266 C270 280 225 272 200 245" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M200 245 C176 218 170 160 168 130" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M168 122 C190 85 230 70 262 63" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<circle cx="270" cy="62" r="5" fill="#111"/><text x="284" y="56" font-size="15" font-weight="bold" fill="#111">South Georgia</text>
+<circle cx="165" cy="125" r="5" fill="#111"/><text x="30" y="130" font-size="15" font-weight="bold" fill="#111">Elephant Island</text>
+</g>
+<rect x="0" y="0" width="395" height="350" fill="none" stroke="#555" stroke-width="1.5"/>
+<g transform="translate(395 0)">
+<rect x="0" y="0" width="395" height="350" fill="#fff"/>
+<path d="M0 350V300L22 285L28 250L38 218L52 192L66 176L76 168L84 182L80 212L92 244L118 266L148 282L180 282L206 270L236 276L262 290L300 292L330 280L360 290L395 286V350Z" fill="#c9c9c9"/>
+<g font-size="13" font-weight="bold" fill="#6d6d6d"><text x="14" y="210">PACIFIC</text><text x="14" y="226">OCEAN</text><text x="196" y="26">ATLANTIC OCEAN</text><text x="230" y="318" fill="#6d6d6d" font-size="14">ANTARCTICA</text></g>
+<g font-size="13" font-weight="bold" fill="#8a8a8a"><text x="190" y="168">WEDDELL</text><text x="198" y="184">SEA</text></g>
+<text x="12" y="24" font-size="22" fill="#111">(B)</text>
+<path d="M262 63 C230 70 190 85 170 120" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M168 130 C170 160 176 218 200 245" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M200 245 C225 272 270 280 300 266" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M300 266 C330 250 352 215 350 170" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M350 170 C352 120 320 90 274 66" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<circle cx="270" cy="62" r="5" fill="#111"/><text x="284" y="56" font-size="15" font-weight="bold" fill="#111">South Georgia</text>
+<circle cx="165" cy="125" r="5" fill="#111"/><text x="30" y="130" font-size="15" font-weight="bold" fill="#111">Elephant Island</text>
+</g>
+<rect x="395" y="0" width="395" height="350" fill="none" stroke="#555" stroke-width="1.5"/>
+<g transform="translate(0 350)">
+<rect x="0" y="0" width="395" height="350" fill="#fff"/>
+<path d="M0 350V300L22 285L28 250L38 218L52 192L66 176L76 168L84 182L80 212L92 244L118 266L148 282L180 282L206 270L236 276L262 290L300 292L330 280L360 290L395 286V350Z" fill="#c9c9c9"/>
+<g font-size="13" font-weight="bold" fill="#6d6d6d"><text x="14" y="210">PACIFIC</text><text x="14" y="226">OCEAN</text><text x="196" y="26">ATLANTIC OCEAN</text><text x="230" y="318" fill="#6d6d6d" font-size="14">ANTARCTICA</text></g>
+<g font-size="13" font-weight="bold" fill="#8a8a8a"><text x="190" y="168">WEDDELL</text><text x="198" y="184">SEA</text></g>
+<text x="12" y="24" font-size="22" fill="#111">(C)</text>
+<path d="M272 66 C320 90 352 120 350 170" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M350 170 C352 215 330 250 300 266" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M300 266 C270 280 225 272 205 248" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M205 248 C192 238 188 222 187 208" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<circle cx="270" cy="62" r="5" fill="#111"/><text x="284" y="56" font-size="15" font-weight="bold" fill="#111">South Georgia</text>
+<circle cx="165" cy="125" r="5" fill="#111"/><text x="30" y="130" font-size="15" font-weight="bold" fill="#111">Elephant Island</text>
+<circle cx="187" cy="206" r="4.5" fill="#111"/>
+</g>
+<rect x="0" y="350" width="395" height="350" fill="none" stroke="#555" stroke-width="1.5"/>
+<g transform="translate(395 350)">
+<rect x="0" y="0" width="395" height="350" fill="#fff"/>
+<path d="M0 350V300L22 285L28 250L38 218L52 192L66 176L76 168L84 182L80 212L92 244L118 266L148 282L180 282L206 270L236 276L262 290L300 292L330 280L360 290L395 286V350Z" fill="#c9c9c9"/>
+<g font-size="13" font-weight="bold" fill="#6d6d6d"><text x="14" y="210">PACIFIC</text><text x="14" y="226">OCEAN</text><text x="196" y="26">ATLANTIC OCEAN</text><text x="230" y="318" fill="#6d6d6d" font-size="14">ANTARCTICA</text></g>
+<g font-size="13" font-weight="bold" fill="#8a8a8a"><text x="190" y="168">WEDDELL</text><text x="198" y="184">SEA</text></g>
+<text x="12" y="24" font-size="22" fill="#111">(D)</text>
+<path d="M262 63 C230 70 190 85 170 120" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<path d="M168 130 C176 150 182 170 184 190" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" marker-end="url(#ah)"/>
+<circle cx="270" cy="62" r="5" fill="#111"/><text x="284" y="56" font-size="15" font-weight="bold" fill="#111">South Georgia</text>
+<circle cx="165" cy="125" r="5" fill="#111"/><text x="30" y="130" font-size="15" font-weight="bold" fill="#111">Elephant Island</text>
+<circle cx="184" cy="193" r="4.5" fill="#111"/>
+</g>
+<rect x="395" y="350" width="395" height="350" fill="none" stroke="#555" stroke-width="1.5"/>
+</svg>

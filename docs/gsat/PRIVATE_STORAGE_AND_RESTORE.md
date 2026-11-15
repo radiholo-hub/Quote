@@ -14,7 +14,7 @@
 |---|---|
 | 上線分支 `claude/daily-quotes-website-lbh2wi` 有沒有 `gsat/` 內容 | 沒有(`git ls-tree -r origin/claude/daily-quotes-website-lbh2wi --name-only \| grep -c '^gsat/'` = 0) |
 | 公開分支裡考題文字是否漏在 `gsat/exam/` 以外 | 用 8 個連續單字比對(21,308 個考題片段 × 91 個非考題檔案):只有 `tools/parse_gsat.py` 內含一題被改寫的題幹(112 年第 44 題地圖題)與 `gsat/data/ext_practice.js` 有一句通用的題型用語(`Which of the following is closest in meaning…`,不是考題內容)。**`parse_gsat.py` 與 `build_nonmc.py` 要歸入私有組**(§2)。 |
-| 公開版網站會不會包含考題 | 不會:`tools/stage_site.sh` 預設放空殼;`gsat/tests/test_deploy.py` 驗證 |
+| 公開版網站會不會包含考題 | 選擇題文字、答案、詳解、出現索引會(負責人 2026-11-15 回報已有網站公開授權);圖片、PDF、評分原則頁面不會:`tools/stage_site.sh` 透過 `tools/gsat_public_exams.py` 只輸出 allowlist;`gsat/tests/test_deploy.py`、`test_public_exams.py` 驗證。`GSAT_PUBLISH_EXAMS=0` 可緊急退回空殼 |
 | 本機 checkout 是淺層(shallow)複本 | 是。所以**不能**在這個環境製作「完整歷史」的 bundle;備份改成「PR 相對於上線分支的提交 bundle」+ 還原時從 GitHub 取得上線分支(§2),已實際演練成功 |
 | 殘留的 PR 參照 | `refs/pull/61/head` 由 GitHub 保留,刪除分支後仍可能經 SHA 取得,需聯絡 GitHub Support(HISTORY_CLEANUP_PLAN.md §5) |
 | 誤提交的檔案 | `tools/__pycache__/*.pyc` 已移除並加入 `.gitignore`(普通提交,沒有改寫歷史) |

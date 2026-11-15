@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 620" width="760" height="620" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="四種街頭交通號誌的示意圖：(A) 頂端有小人像、有兩個圓形燈的燈座；(B) 柱子上伸出兩根橫桿；(C) 柱子頂端有燈籠，兩側各有一根向下斜的活動臂；(D) 標有 STOP 與 GO 的箱形號誌。">
+<title>交通號誌示意圖（原創替代圖）</title><rect width="760" height="620" fill="#fff"/>
+<g stroke="#555" stroke-width="1.5" fill="none"><rect x="4" y="4" width="752" height="612"/><path d="M380 4V616M4 310H756"/></g>
+<g font-size="22" fill="#111"><text x="14" y="30">(A)</text><text x="394" y="30">(B)</text><text x="14" y="336">(C)</text><text x="394" y="336">(D)</text></g>
+<g stroke="#2b2b2b" stroke-width="3">
+<rect x="168" y="212" width="44" height="86" fill="#555"/><rect x="158" y="196" width="64" height="22" fill="#444"/>
+<path d="M128 90 L252 90 L262 120 L262 180 L252 196 L128 196 L118 180 L118 120 Z" fill="#6a6a6a"/>
+<circle cx="190" cy="125" r="22" fill="#1d1d1d"/><circle cx="190" cy="168" r="22" fill="#1d1d1d"/>
+<path d="M178 90 l8-26 l14 6 l8-26" fill="none" stroke-width="5" stroke-linecap="round"/><circle cx="186" cy="56" r="7" fill="#333"/>
+<rect x="168" y="298" width="44" height="2" fill="#444"/>
+</g>
+<rect x="170" y="298" width="40" height="8" fill="#444"/>
+<g stroke="#2b2b2b" stroke-width="3" fill="#333">
+<rect x="560" y="70" width="22" height="236" fill="#e8e8e8"/><rect x="560" y="70" width="6" height="236" fill="#333"/>
+<path d="M570 100 L660 62 L668 80 L574 116 Z"/><path d="M570 150 L650 118 L658 136 L574 168 Z"/>
+</g>
+<g stroke="#2b2b2b" stroke-width="3">
+<rect x="180" y="500" width="20" height="104" fill="#777"/><rect x="172" y="470" width="36" height="34" fill="#666"/>
+<path d="M190 470 L120 540 L132 556 L190 498 L248 556 L260 540 Z" fill="#555" transform="translate(0 -4)"/>
+<path d="M160 470 L160 410 L172 396 L190 384 L208 396 L220 410 L220 470 Z" fill="#8a8a8a"/><rect x="176" y="414" width="28" height="38" fill="#ddd"/><circle cx="190" cy="433" r="8" fill="#b33"/>
+<path d="M190 384 L190 356" stroke-width="4"/><path d="M180 368 L190 340 L200 368 Z" fill="#8a8a8a"/>
+</g>
+<g stroke="#2b2b2b" stroke-width="3">
+<rect x="572" y="500" width="14" height="104" fill="#777"/>
+<path d="M520 420 L550 388 L630 388 L660 420 Z" fill="#444"/><rect x="520" y="420" width="140" height="80" fill="#333"/>
+<path d="M560 500 L540 520 M600 500 L640 520" stroke-width="3"/>
+</g>
+<g fill="#eee" font-family="Arial, sans-serif" font-weight="bold"><text x="570" y="452" font-size="24">STOP</text><text x="530" y="486" font-size="22">GO</text></g>
+</svg>

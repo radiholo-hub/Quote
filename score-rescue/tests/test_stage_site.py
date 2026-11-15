@@ -28,6 +28,14 @@ def repo(tmp_path):
     (r / 'tools').mkdir(exist_ok=True)
     shutil.copy(SCRIPT, r / 'tools' / 'stage_site.sh')
     shutil.copy(SCRIPT.parent / 'gsat_audio_provenance.py', r / 'tools' / 'gsat_audio_provenance.py')
+    shutil.copy(SCRIPT.parent / 'gsat_public_exams.py', r / 'tools' / 'gsat_public_exams.py')
+    # 公開輸出工具會解析 gsat/exam 的資料格式，所以用最小的有效內容取代上面的佔位文字
+    (r / 'gsat' / 'data' / 'figures').mkdir(parents=True)
+    (r / 'gsat' / 'data' / 'figures' / '115-38.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"/>')       # 原創替代圖 allowlist 裡的檔案
+    ex = r / 'gsat' / 'exam'
+    (ex / 'exams.js').write_text('window.EXAMS = [{"year":"115","sections":[{"type":"vocab","name":"詞彙","groups":[{"questions":[{"n":1,"stem":"Q?","opts":["a","b"]},{"n":38,"stem":"Fig?","opts":["圖 A","圖 B"],"img":"exam/img/a.jpg"}]}]}]}];\n')
+    for f, v in (('answers.js', "window.ANSWERS = {'115': \"AB\"};\n"), ('explain.js', 'window.EXPLAIN = {};\n'), ('vocab_index.js', 'window.VOCAB_INDEX = {};\n')):
+        (ex / f).write_text('// 維護者註解\n' + v)
     (r / 'docs' / 'gsat').mkdir(parents=True)
     (r / 'docs' / 'gsat' / 'audio-provenance.json').write_text('{"schema":1,"productionEngines":["azure-paid"],"files":{}}')
     return r
@@ -76,19 +84,29 @@ def files_under(d):
     return sorted(str(p.relative_to(d)) for p in d.rglob('*') if p.is_file())
 
 
-def stage_gsat(repo, publish):
+def stage_gsat(repo, publish=None):
+    """publish=None 不設定（預設發布 allowlist）；'0' 緊急關閉（只放空殼）。"""
     env = {k: v for k, v in os.environ.items() if not k.startswith(('CF_PAGES', 'GSAT_'))}
-    if publish:
-        env['GSAT_PUBLISH_EXAMS'] = '1'
+    if publish is not None:
+        env['GSAT_PUBLISH_EXAMS'] = publish
     p = subprocess.run(['bash', 'tools/stage_site.sh', '_site'], cwd=repo, env=env, capture_output=True, text=True)
     assert p.returncode == 0, p.stdout + p.stderr
     return repo / '_site' / 'gsat'
 
 
-def test_gsat_default_does_not_publish_exam_content(repo):
-    """歷屆試題的著作權授權未確認：預設部署只有空殼，不含試題、答案、圖片與詳解，也不含測試檔。"""
-    g = stage_gsat(repo, publish=False)
-    assert files_under(g) == ['app.js', 'data/mock.js', 'exam/answers.js', 'exam/exams.js', 'exam/explain.js', 'exam/mixed.js', 'exam/nonmc.js', 'exam/vocab_index.js', 'index.html']
+def test_gsat_default_publishes_only_the_exam_allowlist(repo):
+    """歷屆試題文字／答案／詳解／索引依 allowlist 公開；圖片、img/、測試檔不公開；非選擇題與混合題只有空殼。"""
+    g = stage_gsat(repo)
+    assert files_under(g) == ['app.js', 'data/figures/115-38.svg', 'data/mock.js', 'exam/answers.js', 'exam/exams.js', 'exam/explain.js', 'exam/mixed.js', 'exam/nonmc.js', 'exam/vocab_index.js', 'index.html']
+    exams = (g / 'exam' / 'exams.js').read_text(encoding='utf8')
+    assert '"stem":"Q?"' in exams and 'exam/img' not in exams and '"img":"data/figures/115-38.svg"' in exams and '"imgSource":"original replacement illustration"' in exams   # 附圖題改用 allowlist 的原創替代圖
+    assert (g / 'exam' / 'nonmc.js').read_text() == 'window.NONMC={};\n' and (g / 'exam' / 'mixed.js').read_text() == 'window.MIXED={};\n'
+    assert not (g / 'exam' / 'img').exists() and '維護者註解' not in (g / 'exam' / 'answers.js').read_text(encoding='utf8')
+
+
+def test_gsat_emergency_off_switch_publishes_only_empty_shells(repo):
+    g = stage_gsat(repo, publish='0')
+    assert files_under(g) == ['app.js', 'data/figures/115-38.svg', 'data/mock.js', 'exam/answers.js', 'exam/exams.js', 'exam/explain.js', 'exam/mixed.js', 'exam/nonmc.js', 'exam/vocab_index.js', 'index.html']
     assert (g / 'exam' / 'exams.js').read_text() == 'window.EXAMS=[];\n'
     assert (g / 'exam' / 'answers.js').read_text() == 'window.ANSWERS={};\n'
     assert (g / 'exam' / 'nonmc.js').read_text() == 'window.NONMC={};\n'
@@ -97,16 +115,16 @@ def test_gsat_default_does_not_publish_exam_content(repo):
     assert (g / 'exam' / 'vocab_index.js').read_text() == 'window.VOCAB_INDEX=null;\n'
 
 
-def test_gsat_publish_flag_is_refused(repo):
-    """權利不明素材不公開：GSAT_PUBLISH_EXAMS=1 不再能把 gsat/exam/ 放進公開網站，整理直接失敗且不留輸出。"""
+def test_gsat_unknown_publish_flag_value_is_refused(repo):
+    """GSAT_PUBLISH_EXAMS 只接受空值、1、0；其他值視為設定錯誤，整理直接失敗且不留輸出。"""
     env = {k: v for k, v in os.environ.items() if not k.startswith(('CF_PAGES', 'GSAT_'))}
-    env['GSAT_PUBLISH_EXAMS'] = '1'
+    env['GSAT_PUBLISH_EXAMS'] = 'true'
     p = subprocess.run(['bash', 'tools/stage_site.sh', '_site'], cwd=repo, env=env, capture_output=True, text=True)
     assert p.returncode != 0 and not (repo / '_site').exists()
 
 
 def test_gsat_audio_without_official_provenance_is_not_deployed(repo):
-    g = stage_gsat(repo, publish=False)
+    g = stage_gsat(repo)
     assert not (g / 'audio' / 'abc.mp3').exists()                         # 沒有來源紀錄的 mp3 不部署
     assert (repo / '_site' / 'audio' / '001.mp3').exists() and (repo / '_site' / 'score-rescue' / 'audio' / 'ab.mp3').exists()        # 多益與每日佳句的音檔不受影響
 

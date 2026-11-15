@@ -51,7 +51,7 @@ function buildBank() {
       add({ id: 'e' + ex.year + '_' + q.n, src: 'exam', year: ex.year, n: q.n, type: s.type, group: g.passage ? 'e' + ex.year + '_' + s.type + '_' + g.questions[0].n : null,
         paras: g.passage, blank: g.passage && s.type !== 'reading' ? q.n : null,
         q: (s.type === 'cloze' || s.type === 'bank' || s.type === 'structure') ? '第 ' + q.n + ' 題空格' : q.stem,
-        o: o, optImgs: q.optImgs, img: q.img, a: a, w: ((cfg && cfg.sections[s.type]) || [0, 1])[1], label: ex.year + ' 學測 第 ' + q.n + ' 題', ok: !reason && a >= 0 && a < o.length });
+        o: o, optImgs: q.optImgs, img: q.img, imgSource: q.imgSource, figureWithheld: !!q.figureWithheld, a: a, w: ((cfg && cfg.sections[s.type]) || [0, 1])[1], label: ex.year + ' 學測 第 ' + q.n + ' 題', ok: !reason && !q.figureWithheld && a >= 0 && a < o.length });
     });
   }
   // 詳解：答案必須和官方答案一致，不一致的整則捨棄（避免詳解和官方答案互相矛盾）
@@ -167,7 +167,9 @@ function questionNode(q, st) {
   const isExam = q.src === 'exam';
   right.append(h('div', { class: 'fine qmeta' }, h('span', { class: 'src ' + (isExam ? 'exam' : 'orig'), 'data-source': isExam ? 'exam' : 'original' }, isExam ? '歷屆真題' : '原創練習題'), ' ' + (q.label ? q.label + '・' : '') + q.typeName));
   right.append(h('div', { class: 'qtext' }, q.q));
-  if (q.img) right.append(h('img', { class: 'qimg', src: q.img, alt: '題目附圖', loading: 'lazy' }));
+  if (q.img) right.append(h('img', { class: 'qimg', src: q.img, alt: '題目附圖', loading: 'lazy', 'data-source': q.imgSource ? 'replacement' : 'official' }));
+  if (q.img && q.imgSource) right.append(h('div', { class: 'fine', 'data-role': 'fig-replacement' }, '附圖是原創替代圖(依題意重新繪製,保留作答需要的資訊,不是大考中心原圖)。'));
+  if (q.figureWithheld) right.append(h('div', { class: 'notice mt', role: 'note', 'data-role': 'fig-withheld' }, '這一題需要看附圖才能作答,附圖本版暫不公開。請對照大考中心官方試卷作答(下方選項只是代號)。', h('a', { href: CFG.officialUrl, target: '_blank', rel: 'noopener noreferrer' }, ' 前往大考中心官網')));
   const opts = h('div', { role: 'radiogroup', 'aria-label': '選項' });
   q.o.forEach((t, i) => {
     let cls = 'opt';
@@ -243,7 +245,7 @@ function viewHome() {
   }
   const entry = (href, title, desc, badge) => h('a', { class: 'entry', href: href, style: 'text-decoration:none;color:inherit' }, h('b', {}, title), h('span', {}, desc), badge ? h('div', {}, h('span', { class: 'badge' }, badge)) : null);
   root.append(h('div', { class: 'grid3 mt' },
-    entry('#/exam', '歷屆試題', examsOn() ? ys.length + ' 個學年度・正式模擬考(100 分鐘)與自由練習' : '正式模擬考與自由練習', examsOn() ? '' : '授權確認後開放'),
+    entry('#/exam', '歷屆試題', examsOn() ? ys.length + ' 個學年度・正式模擬考(100 分鐘)與自由練習' : '正式模擬考與自由練習', examsOn() ? '' : '暫時沒有提供'),
     entry('#/practice', '分類練習', '依題型與題數自選,交卷後看答案與詳解'),
     entry('#/review', '錯題補強', wrong ? wrong + ' 題待補強・連續答對 2 次才算掌握' : '答錯的題目會集中在這裡', '')));
   const done = Object.values(DB.q).reduce((s, v) => s + v.a, 0), right = Object.values(DB.q).reduce((s, v) => s + v.c, 0);
@@ -260,7 +262,7 @@ function viewExam(p) {
   if (p[0]) return viewBrief(p[0]);
   const root = h('div', {}, back('#/'), h('h1', { class: 'brand' }, '歷屆試題'));
   if (!examsOn()) {
-    root.append(h('div', { class: 'notice mt' }, '歷屆試題的著作權授權還在確認,目前不隨網站公開。你可以先到大考中心官網下載原卷自行練習,或使用「分類練習」的原創題。'),
+    root.append(h('div', { class: 'notice mt' }, '歷屆試題目前沒有隨網站提供。你可以先到大考中心官網下載原卷自行練習,或使用「分類練習」的原創題。'),
       h('p', { class: 'mt' }, h('a', { class: 'btn', href: CFG.officialUrl, target: '_blank', rel: 'noopener noreferrer' }, '前往大考中心官網下載')));
     return root;
   }
@@ -271,7 +273,7 @@ function viewExam(p) {
     const meta = c ? '選擇題 ' + inf.n + ' 題・' + c.mc + ' 分' + (c.mixed ? ' + 混合題 ' + c.mixed + ' 分' : '') + ' + 非選擇題 ' + (c.translation + c.essay) + ' 分' : '';
     list.append(h('div', { class: 'card mt' }, h('b', {}, ex.year + ' 學年度學測英文'), h('div', { class: 'fine' }, meta),
       h('div', { class: 'row mt' }, inf.ready ? h('a', { class: 'btn sm', href: '#/exam/' + ex.year }, '開始作答') : h('button', { class: 'btn sm', disabled: true }, inf.reason),
-        h('a', { class: 'btn line sm', href: '#/ns/' + ex.year }, '非選擇題'))));
+        NS[ex.year] ? h('a', { class: 'btn line sm', href: '#/ns/' + ex.year }, '非選擇題') : null)));
   });
   root.append(list);
   return root;
@@ -283,7 +285,10 @@ function viewBrief(y) {
   const rows = Object.keys(c.sections).map(t => h('tr', {}, h('td', {}, TN[t]), h('td', {}, c.sections[t][0] + ' 題'), h('td', {}, '每題 ' + c.sections[t][1] + ' 分'), h('td', {}, c.sections[t][0] * c.sections[t][1] + ' 分')));
   root.append(h('table', { class: 'mt' }, h('tr', {}, h('th', {}, '題型'), h('th', {}, '題數'), h('th', {}, '配分'), h('th', {}, '小計')), rows,
     h('tr', {}, h('th', {}, '選擇題合計'), h('th', {}), h('th', {}), h('th', {}, c.mc + ' 分'))));
-  root.append(h('p', { class: 'fine mt' }, c.multiSelect ? '本年度另有混合題 ' + c.mixed + ' 分(含一題多選題)與非選擇題 ' + (c.translation + c.essay) + ' 分,在「非選擇題」頁作答與自評,成績會合併顯示。' : '本年度另有非選擇題 ' + (c.translation + c.essay) + ' 分(中譯英 ' + c.translation + '、作文 ' + c.essay + '),在「非選擇題」頁作答與自評,成績會合併顯示。'));
+  const withheld = qsOfYear(y).filter(q => q.figureWithheld).map(q => q.n);
+  if (withheld.length) root.append(h('p', { class: 'notice mt', 'data-role': 'fig-withheld-list' }, '第 ' + withheld.join('、') + ' 題需要看附圖才能作答,附圖本版暫不公開(這一題仍列在試卷裡、配分不變);請對照大考中心官方試卷。'));
+  if (!NS[y]) root.append(h('p', { class: 'notice info mt', 'data-role': 'ns-unavailable' }, '本年度的混合題與非選擇題需要試卷頁面圖片,本版暫不公開,這裡只計選擇題;可到大考中心官網下載原卷自行作答。'));
+  else root.append(h('p', { class: 'fine mt' }, c.multiSelect ? '本年度另有混合題 ' + c.mixed + ' 分(含一題多選題)與非選擇題 ' + (c.translation + c.essay) + ' 分,在「非選擇題」頁作答與自評,成績會合併顯示。' : '本年度另有非選擇題 ' + (c.translation + c.essay) + ' 分(中譯英 ' + c.translation + '、作文 ' + c.essay + '),在「非選擇題」頁作答與自評,成績會合併顯示。'));
   const S = loadSession();
   const begin = (kind, label, o) => { if (S && !confirm('已有一份作答還沒完成,開始新的會取代它。繼續嗎?')) return; startSession(kind, label, qsOfYear(y), o); };
   root.append(h('section', { class: 'card mt2', 'data-mode': 'formal', 'aria-labelledby': 'm-formal' }, h('h2', { id: 'm-formal' }, '正式模擬考'),
@@ -487,7 +492,8 @@ function summaryNode(y, attempt) {
   box.append(h('div', { class: 'stat mt' }, h('div', { 'data-role': 'scored' }, h('b', {}, S.scoredMax ? fmt(S.scoredGot) + ' / ' + fmt(S.scoredMax) : '尚無'), '已評分部分'), h('div', { 'data-role': 'pending' }, h('b', {}, fmt(S.pendingMax)), '待評分滿分'),
     h('div', { 'data-role': 'total' }, h('b', {}, S.complete ? fmt(S.scoredGot) + ' / ' + S.total : '— / ' + S.total), S.complete ? '全卷總分(含自評)' : '全卷總分(尚未評完)')));
   box.append(h('p', { class: 'fine mt' }, S.complete ? '全部項目都已評分。自評分數僅供參考,不是大考中心官方評分,也不換算級分。' : '還有 ' + fmt(S.pendingMax) + ' 分待評分,評完後才會顯示全卷總分。'),
-    h('div', { class: 'row mt' }, h('a', { class: 'btn line sm', href: '#/ns/' + y }, S.complete ? '回到非選擇題' : '去作答與自評')));
+    h('div', { class: 'row mt' }, NS[y] ? h('a', { class: 'btn line sm', href: '#/ns/' + y }, S.complete ? '回到非選擇題' : '去作答與自評')
+      : h('a', { class: 'btn line sm', href: CFG.officialUrl, target: '_blank', rel: 'noopener noreferrer' }, '非選擇題頁面本版暫不公開:到大考中心官網下載原卷')));
   return box;
 }
 // 成績單會跟著輸入即時更新（寫作頁填自評分數時，同一頁上方的成績單立刻變動）

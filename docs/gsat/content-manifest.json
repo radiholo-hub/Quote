@@ -778,6 +778,34 @@
    "category": "original"
   },
   {
+   "path": "gsat/data/figures/109-41.svg",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/figures/110-49.svg",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/figures/111-35.svg",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/figures/112-44.svg",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/figures/113-35.svg",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/figures/114-36.svg",
+   "category": "original"
+  },
+  {
+   "path": "gsat/data/figures/115-38.svg",
+   "category": "original"
+  },
+  {
    "path": "gsat/data/mock.js",
    "category": "original"
   },
@@ -1194,7 +1222,7 @@
   },
   {
    "path": "gsat/exam/mixed.js",
-   "category": "exam-answers",
+   "category": "exam-index",
    "year": null,
    "bytes": 652,
    "sha256": "8469b79b6bb44ebe44e632f51ad21e7c695ccf68487a77a6de111c82579752d1"
