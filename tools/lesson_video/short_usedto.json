@@ -10,10 +10,22 @@
    "id": "hook",
    "view": {
     "kind": "card",
-    "h": "used to 和 be used to，<br>只差一個 be，<br>答案就不一樣。",
+    "h": "只差一個 be，<br>答案就不一樣：<br>used to／be used to",
     "top": 600
    },
    "say": [
+    [
+     "zh",
+     "只差一個"
+    ],
+    [
+     "en",
+     "be"
+    ],
+    [
+     "zh",
+     "，答案就不一樣："
+    ],
     [
      "en",
      "used to"
@@ -24,19 +36,7 @@
     ],
     [
      "en",
-     "be used to"
-    ],
-    [
-     "zh",
-     "，只差一個"
-    ],
-    [
-     "en",
-     "be"
-    ],
-    [
-     "zh",
-     "，答案就不一樣。"
+     "be used to."
     ]
    ],
    "hold": 0.2
@@ -51,14 +51,14 @@
     "lines": [
      {
       "s": "Ms. Chen [is used to]|______ with overseas clients.",
-      "zh": "陳小姐習慣和海外客戶溝通。"
+      "zh": "陳小姐習慣和海外客戶合作。"
      }
     ],
     "o": [
-     "communicate",
-     "to communicate",
-     "communicating",
-     "communicated"
+     "work",
+     "to work",
+     "working",
+     "worked"
     ]
    },
    "say": [
@@ -78,14 +78,14 @@
     "lines": [
      {
       "s": "Ms. Chen [is used to]|______ with overseas clients.",
-      "zh": "陳小姐習慣和海外客戶溝通。"
+      "zh": "陳小姐習慣和海外客戶合作。"
      }
     ],
     "o": [
-     "communicate",
-     "to communicate",
-     "communicating",
-     "communicated"
+     "work",
+     "to work",
+     "working",
+     "worked"
     ]
    },
    "pause": 3
@@ -100,14 +100,14 @@
     "lines": [
      {
       "s": "Ms. Chen [is used to]|______ with overseas clients.",
-      "zh": "陳小姐習慣和海外客戶溝通。"
+      "zh": "陳小姐習慣和海外客戶合作。"
      }
     ],
     "o": [
-     "communicate",
-     "to communicate",
-     "communicating",
-     "communicated"
+     "work",
+     "to work",
+     "working",
+     "worked"
     ],
     "ring": [
      {
@@ -117,7 +117,7 @@
      }
     ],
     "ban": {
-     "t": "to 後面 → 填原形 communicate？",
+     "t": "to 後面 → 填原形 work？",
      "c": "red"
     }
    },
@@ -128,7 +128,7 @@
     ],
     [
      "en",
-     "communicate"
+     "work"
     ],
     [
      "zh",
@@ -147,17 +147,17 @@
     "lines": [
      {
       "s": "Ms. Chen [is used to]|______ with overseas clients.",
-      "zh": "陳小姐習慣和海外客戶溝通。"
+      "zh": "陳小姐習慣和海外客戶合作。"
      }
     ],
     "o": [
-     "communicate",
-     "to communicate",
-     "communicating",
-     "communicated"
+     "work",
+     "to work",
+     "working",
+     "worked"
     ],
     "ans": 2,
-    "fill": "communicating",
+    "fill": "working",
     "ring": [
      {
       "w": "is used to",
@@ -201,7 +201,7 @@
     ],
     [
      "en",
-     "communicating."
+     "working."
     ]
    ],
    "hold": 0.6
@@ -216,10 +216,10 @@
     "lines": [
      {
       "s": "Ms. Chen [used to]|______ with overseas clients.",
-      "zh": "陳小姐以前常和海外客戶溝通。"
+      "zh": "陳小姐以前常和海外客戶合作。"
      }
     ],
-    "fill": "communicate",
+    "fill": "work",
     "showzh": true,
     "ring": [
      {
@@ -260,7 +260,7 @@
     ],
     [
      "en",
-     "used to communicate."
+     "used to work."
     ]
    ],
    "hold": 0.6
