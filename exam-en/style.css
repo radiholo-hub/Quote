@@ -127,3 +127,5 @@ img.logo{float:right;width:84px;height:auto;margin:0 0 6px 10px}
 .wtctl{align-items:center}
 .wtctl input{width:5em;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
 .ophint{font-size:.8em;color:var(--mute);margin:6px 0 0;padding-left:2px}
+.boxlabel{font-family:Georgia,"Times New Roman",serif;margin:4px 0 2px}
+img.colimg{display:block;max-width:100%;height:auto;margin:0 auto 8px;border-radius:4px}

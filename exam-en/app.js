@@ -55,7 +55,7 @@ function home(){
   (last?'<div class="card"><b>最近一次交卷:'+last.year+' 學年度</b><p class="mute">'+esc(last.date||"")+'</p><a class="btn" href="#result">回成績與檢討</a></div>':'')+
   '<div class="grid papers">'+DATA.map(function(e){var n=allQs(groupsOf(e.year)).length;
     return '<div class="pcard"><button class="paper" data-y="'+e.year+'"><b>'+e.year+'</b><span>學年度</span><small>'+n+' 題單選 + 中譯英、作文'+(best[e.year]!=null?' · 最高 '+best[e.year]+' 分':'')+'</small></button>'+
-      (FP[e.year]?'<button class="fullbtn" data-full="'+e.year+'">完整原卷<br><small>含混合題、作答欄</small></button>':'')+'</div>'}).join('')+'</div>'+
+      (FP[e.year]&&FP[e.year].verified?'<button class="fullbtn" data-full="'+e.year+'">完整原卷<br><small>含混合題、作答欄</small></button>':'')+'</div>'}).join('')+'</div>'+
   (h.length?'<h2>最近成績</h2>'+h.slice(0,8).map(function(r){return '<div class="mute">'+esc(r.year||"")+' 學年度:答對 '+r.score+' / '+r.n+' 題'+(r.mode==="full"?'(完整原卷)':'')+(r.raw!=null?',單選原始分數 '+r.raw+' / '+r.max:'')+(r.mixed!=null?',混合題已計分 '+r.mixed:'')+'('+esc(r.date)+')</div>'}).join(''):'');
   app.onclick=function(ev){var f=ev.target.closest(".fullbtn"),b=f||ev.target.closest(".paper");if(!b)return;
     var y=f?f.dataset.full:b.dataset.y;
@@ -183,7 +183,7 @@ function findQ(id){for(var i=0;i<V.qs.length;i++)if(V.qs[i].id===id)return V.qs[
 /* ---------- 完整原卷模式(111、115):混合題、中譯英、作文都可作答 ---------- */
 var FP=window.FULLPAPER||{};
 function isFull(r){return !!(r&&r.mode==="full"&&FP[r.year])}
-function md(t){return esc(t).replace(/\*\*(.+?)\*\*/g,'<b><u>$1</u></b>').replace(/\n/g,'<br>')}
+function md(t){return esc(t).replace(/\*\*(.+?)\*\*/g,'<b><u>$1</u></b>').replace(/##(.+?)##/g,'<b>$1</b>').replace(/\n/g,'<br>')}   // **粗體加底線**、##粗體##(照原卷)
 function normAns(t){return String(t||"").toLowerCase().replace(/[‘’]/g,"'").replace(/\s+/g," ").replace(/^[\s.,!?;:"'“”]+|[\s.,!?;:"'“”]+$/g,"").trim()}
 function itemAnchors(it){return it.n.split("-")}
 /* 計分:填充/簡答「與評分原則滿分答案完全相同」才給分;空白依評分原則 0 分;其他(可能 1 分或 0 分)列待評。多選依封面規則。 */
@@ -196,9 +196,12 @@ function gradeFull(rec){
       var sc=sel.length?Math.max(0,it.points*(n-2*k)/n):0;sc=Math.round(sc*100)/100;
       res.push({it:it,id:it.n,label:"第 "+it.n+" 題(多選)",points:it.points,score:sc,status:sel.length?"multi":"blank",sel:sel,k:k,detail:detail});
       scored+=sc;scoredMax+=it.points;
-    }else it.blanks.forEach(function(b){
+    }else it.blanks.forEach(function(b,bi){
       var a=(rec.fill||{})[b.id]||"",n=normAns(a),st,sc=null;
-      if(!n){st="blank";sc=0}else if(b.answers.map(normAns).indexOf(n)>=0){st="ok";sc=b.points}else st="pending";
+      var ok=b.answers.map(normAns).indexOf(n)>=0;
+      if(ok&&it.pairs)ok=it.pairs.some(function(combo){if(normAns(combo[bi])!==n)return false;
+        return it.blanks.every(function(o,oi){if(oi===bi)return true;var v=normAns((rec.fill||{})[o.id]);return !v||v===normAns(combo[oi])||o.answers.map(normAns).indexOf(v)<0})});   // 例:兩格都填 health 互相衝突 → 待評
+      if(!n){st="blank";sc=0}else if(ok){st="ok";sc=b.points}else st="pending";
       var r={it:it,b:b,id:b.id,label:"第 "+(it.blanks.length>1&&it.n.indexOf("-")<0?it.n+" 題"+b.label:b.id+" 題")+(it.type==="short"?"(簡答)":"(填充)"),points:b.points,score:sc,status:st,ans:a};
       res.push(r);if(sc!==null){scored+=sc;scoredMax+=b.points}else pend.push(r);
     });
@@ -234,17 +237,17 @@ function itemHtml(year,it,rv,g){
   if(rv&&g){
     mine.forEach(function(r){
       if(r.it.type==="multi"){h+='<div class="fb '+(r.score===r.points?'ok':'bad')+'">'+(r.status==="blank"?'全未作答,0 分。':'你的選擇:'+(r.sel.join("、")||"無")+';正確答案:'+it.key.split("").join("、")+';答錯 '+r.k+' 個選項,得 '+r.points+'×('+it.options.length+'−2×'+r.k+')/'+it.options.length+' = '+r.score+' 分。')+'</div><p class="mute">計分規則(試卷封面):'+esc(it.rule)+'</p>'}
-      else{h+=resultLine(r);h+='<p class="mute">評分原則滿分參考答案('+esc(r.b.label)+'):'+r.b.answers.map(esc).join(" / ")+'</p>'}
+      else{h+=resultLine(r);h+='<p class="mute">評分原則滿分參考答案('+esc(r.b.label)+'):'+(it.pairs?it.pairs.map(function(c){return c[it.blanks.indexOf(r.b)]}).map(esc).join(" / ")+'(與另一格成對:'+it.pairs.map(function(c){return c.join("/")}).join(" 或 ")+')':r.b.answers.map(esc).join(" / "))+'</p>'}
     });
   }
   return h+'</div>';
 }
 function part2Html(year,rv,g){
-  var p=FP[year].part2,h='<section class="fullp" id="part2"><div class="sec">'+year+' · '+esc(p.title)+'</div><p class="mute">'+esc(p.note)+'</p><p class="glabel"><u>'+esc(p.group)+'</u></p>';
-  h+='<div class="passage">'+(p.introImg?'<img class="logo" src="'+p.introImg+'" alt="Refugee Olympic Team 標誌">':'')+p.intro.map(function(x){return '<p>'+esc(x)+'</p>'}).join('')+'</div>';
-  if(p.columns)h+='<div class="cols">'+p.columns.map(function(c){return '<div class="passage">'+c.map(function(x){return '<p>'+esc(x)+'</p>'}).join('')+'</div>'}).join('')+'</div>';
+  var p=FP[year].part2,h='<section class="fullp" id="part2"><div class="sec">'+year+' · '+esc(p.title)+'</div><p class="mute">'+esc(p.note)+'</p>'+(p.group?'<p class="glabel"><u>'+esc(p.group)+'</u></p>':'');   // 原卷沒有題組標記的年度(如 112)不顯示
+  h+='<div class="passage">'+(p.introImg?'<img class="logo" src="'+p.introImg+'" alt="Refugee Olympic Team 標誌">':'')+p.intro.map(function(x){return '<p>'+md(x)+'</p>'}).join('')+'</div>';
+  if(p.columns)h+='<div class="cols">'+p.columns.map(function(c,ci){return '<div class="passage">'+(p.colImgs?'<img class="colimg" src="'+p.colImgs[ci]+'" alt="'+esc((p.colImgAlts||[])[ci]||"")+'">':'')+c.map(function(x){return '<p>'+esc(x)+'</p>'}).join('')+'</div>'}).join('')+'</div>';
   if(p.img)h+='<img class="fig" src="'+p.img+'" alt="'+year+' 學年度混合題附圖(商店位置圖)">';
-  if(p.boxes)h+='<div class="boxes">'+p.boxes.map(function(b){return '<div class="passage box"><b>'+esc(b[0])+'</b><p>'+esc(b[1])+'</p></div>'}).join('')+'</div>';
+  if(p.boxes)h+='<div class="boxes">'+p.boxes.map(function(b){return p.boxLabel==="outside"?'<div><div class="boxlabel">'+esc(b[0])+'</div><div class="passage box"><p>'+esc(b[1])+'</p></div></div>':'<div class="passage box"><b>'+esc(b[0])+'</b><p>'+esc(b[1])+'</p></div>'}).join('')+'</div>';
   p.items.forEach(function(it){h+=itemHtml(year,it,rv,g)});
   return h+'</section>';
 }

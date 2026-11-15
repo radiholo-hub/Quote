@@ -1,66 +1,549 @@
 {
- "_note": "完整原卷模式(111、115)。第貳部分混合題、第參部分說明依 gsat/exam/img/ns/<年>-q*.jpg(大考中心正式試卷頁)逐字轉錄;混合題非選擇題答案依 <年>-ref*.jpg(大考中心非選擇題評分原則)的「滿分參考答案」;第 49 題答案與選項數依 gsat/exam/mixed.js(選擇題答案),計分規則依 gsat/data/scoring.js 的 MULTI_RULE(試卷封面)。img 為 [頁圖檔名, 左, 上, 右, 下],產生時去白邊。",
+ "_note": "完整原卷模式(111、115)。第貳部分混合題、第參部分說明依 gsat/exam/img/ns/<年>-q*.jpg(大考中心正式試卷頁)逐字轉錄;混合題非選擇題答案依 <年>-ref*.jpg(大考中心非選擇題評分原則)的「滿分參考答案」;第 49 題答案與選項數依 gsat/exam/mixed.js(選擇題答案),計分規則依 gsat/data/scoring.js 的 MULTI_RULE(試卷封面)。img 為 [頁圖檔名, 左, 上, 右, 下],產生時去白邊。 pairs:同一題組多格答案須成對(112 年 47/48 為 taste/health 或 health/taste);##文字## 為原卷粗體、**文字** 為粗體加底線;boxLabel=outside 表示原卷把標籤放在框外。 verified:混合題、計分與作答流程都驗收完才設為 true,首頁才出現「完整原卷」入口。",
  "111": {
   "part2": {
    "title": "第貳部分、混合題(占 10 分)",
    "note": "說明:本部分共有1題組,每一子題配分標於題末。限在答題卷標示題號的作答區內作答,並依規定用筆作答。",
    "group": "第 47 至 49 題為題組",
-   "intro": ["To support refugees and people facing crises around the world, the International Olympic Committee created the Refugee Olympic Team. Refugee athletes have been invited to compete in the Olympic Games since 2016. Here are two refugee athletes and their stories."],
-   "introImg": ["111-q1.jpg", 640, 112, 742, 232],
+   "intro": [
+    "To support refugees and people facing crises around the world, the International Olympic Committee created the Refugee Olympic Team. Refugee athletes have been invited to compete in the Olympic Games since 2016. Here are two refugee athletes and their stories."
+   ],
+   "introImg": [
+    "111-q1.jpg",
+    640,
+    112,
+    742,
+    232
+   ],
    "columns": [
-    ["Yusra Mardini is a swimmer who grew up in the war-torn country of Syria. Due to the unstable political situation there, Yusra sometimes had to train in pools under roofs that had been blown open by bombings.",
+    [
+     "Yusra Mardini is a swimmer who grew up in the war-torn country of Syria. Due to the unstable political situation there, Yusra sometimes had to train in pools under roofs that had been blown open by bombings.",
      "In 2015 when she was just a 17-year-old, her house was destroyed in the civil war, so she decided to flee her home country. She managed to reach Turkey through Lebanon. From Turkey, she boarded a small boat that held 20 people and set sail into the deep waters of the Aegean Sea. But 30 minutes later, the engine stopped and the boat began to sink. Yusra dove into the cold water, and—with the help of her sister and two men—swam and pushed the boat for over three hours to reach the Greek island of Lesbos. They saved everyone aboard.",
-     "Yusra eventually settled in Germany and has since worked to inspire others to pursue their dreams. Her incredible story and superior swimming skills won her the opportunity to participate in the Olympic Games. She was a member of the Refugee Olympic Team for both the 2016 Rio Games and 2021 Tokyo Games."],
-    ["Popole Misenga was born in the Democratic Republic of the Congo. When he was nine, the country’s civil war claimed the life of his mother and left him homeless. Escaping from the war zone, he wandered alone for a week in a rainforest before being rescued and taken to a center for displaced children in the capital, Kinshasa.",
+     "Yusra eventually settled in Germany and has since worked to inspire others to pursue their dreams. Her incredible story and superior swimming skills won her the opportunity to participate in the Olympic Games. She was a member of the Refugee Olympic Team for both the 2016 Rio Games and 2021 Tokyo Games."
+    ],
+    [
+     "Popole Misenga was born in the Democratic Republic of the Congo. When he was nine, the country’s civil war claimed the life of his mother and left him homeless. Escaping from the war zone, he wandered alone for a week in a rainforest before being rescued and taken to a center for displaced children in the capital, Kinshasa.",
      "There, Popole discovered judo, from which he gained strength in body and mind. “Judo helped me by giving me serenity, discipline, commitment—everything,” he said. He trained hard and became a professional judoka. However, each time he lost a competition, his coaches would lock him in a cage for days, feeding him only coffee and bread. Finally, when he was cruelly abused for not winning medals at the 2013 World Championships in Brazil, he decided to seek protection.",
-     "Popole was granted asylum in 2014 by Brazilian government and later continued judo training at a youth facility. He made his Olympic debut at Rio 2016. He also represented the Refugee Olympic Team in 2021 Tokyo Games."]
+     "Popole was granted asylum in 2014 by Brazilian government and later continued judo training at a youth facility. He made his Olympic debut at Rio 2016. He also represented the Refugee Olympic Team in 2021 Tokyo Games."
+    ]
    ],
    "items": [
-    {"n": "47", "type": "fill", "points": 4,
+    {
+     "n": "47",
+     "type": "fill",
+     "points": 4,
      "instr": "請根據選文內容,從兩則故事中各選出一個單詞(word),分別填入下列兩句的空格,並視語法需要作適當的字形變化,使句子語意完整、語法正確,且符合全文文意。(填空,4分)",
-     "lines": ["With her amazing courage and swimming skills, Yusra Mardini was not only able to save lives but also fulfill her dream of {47A} in the Olympic Games.",
-               "Judo helped Popole Misenga to be strong both physically and mentally, and gave him the courage to escape from the {47B} of his coaches."],
-     "blanks": [{"id": "47A", "label": "(A)", "points": 2, "answers": ["participating", "swimming", "participation"]},
-                {"id": "47B", "label": "(B)", "points": 2, "answers": ["abuse", "abuses", "abusing", "cruelty", "cruelties"]}]},
-    {"n": "48", "type": "short", "points": 2,
+     "lines": [
+      "With her amazing courage and swimming skills, Yusra Mardini was not only able to save lives but also fulfill her dream of {47A} in the Olympic Games.",
+      "Judo helped Popole Misenga to be strong both physically and mentally, and gave him the courage to escape from the {47B} of his coaches."
+     ],
+     "blanks": [
+      {
+       "id": "47A",
+       "label": "(A)",
+       "points": 2,
+       "answers": [
+        "participating",
+        "swimming",
+        "participation"
+       ]
+      },
+      {
+       "id": "47B",
+       "label": "(B)",
+       "points": 2,
+       "answers": [
+        "abuse",
+        "abuses",
+        "abusing",
+        "cruelty",
+        "cruelties"
+       ]
+      }
+     ]
+    },
+    {
+     "n": "48",
+     "type": "short",
+     "points": 2,
      "instr": "Which word in Popole Misenga’s story means “protection given by a country or embassy to refugees from another country”?(簡答,2分)",
-     "blanks": [{"id": "48", "label": "48", "points": 2, "answers": ["asylum"]}]},
-    {"n": "49", "type": "multi", "points": 4,
+     "blanks": [
+      {
+       "id": "48",
+       "label": "48",
+       "points": 2,
+       "answers": [
+        "asylum"
+       ]
+      }
+     ]
+    },
+    {
+     "n": "49",
+     "type": "multi",
+     "points": 4,
      "instr": "請從下列(A)到(F)中,選出對Yusra Mardini和Popole Misenga都正確的選項。(多選題,4分)",
-     "options": ["Being an Olympic medalist.", "Growing up in an orphanage.", "Joining the Olympic Games more than once.", "Leaving his/her hometown because of war.", "Showing talent in sports after going to a foreign country.", "Traveling through several countries before securing protection."]}
+     "options": [
+      "Being an Olympic medalist.",
+      "Growing up in an orphanage.",
+      "Joining the Olympic Games more than once.",
+      "Leaving his/her hometown because of war.",
+      "Showing talent in sports after going to a foreign country.",
+      "Traveling through several countries before securing protection."
+     ]
+    }
    ]
   },
-  "part3": {"title": "第參部分、非選擇題(占 28 分)", "note": "說明:本部分共有二大題,請依各題指示作答,答案必須寫在答題卷標示題號之作答區內,作答時不必抄題。"}
+  "part3": {
+   "title": "第參部分、非選擇題(占 28 分)",
+   "note": "說明:本部分共有二大題,請依各題指示作答,答案必須寫在答題卷標示題號之作答區內,作答時不必抄題。"
+  },
+  "verified": true
  },
  "115": {
   "part2": {
    "title": "第貳部分、混合題(占 10 分)",
    "note": "說明:本部分共有1題組,每一子題配分標於題末。限在答題卷標示題號的作答區內作答,並依規定用筆作答。",
    "group": "第 47 至 50 題為題組",
-   "intro": ["Located along the sparkling coastline of the Pacific Ocean, Wonder Village is a famous indigenous district in eastern Taiwan. The historic village exhibits the traditional way of life of the tribe there. However, it does not live in the past. As numerous new restaurants and shops have sprung up in recent years, it has become not only a cultural center but also a unique commercial zone. The following six shops are examples of some of the specialty stores there."],
-   "img": ["115-q1.jpg", 86, 268, 744, 574],
+   "intro": [
+    "Located along the sparkling coastline of the Pacific Ocean, Wonder Village is a famous indigenous district in eastern Taiwan. The historic village exhibits the traditional way of life of the tribe there. However, it does not live in the past. As numerous new restaurants and shops have sprung up in recent years, it has become not only a cultural center but also a unique commercial zone. The following six shops are examples of some of the specialty stores there."
+   ],
+   "img": [
+    "115-q1.jpg",
+    86,
+    268,
+    744,
+    574
+   ],
    "boxes": [
-    ["A. Oh Eco", "Greatly concerned about the presence of fake “green” products on the market, Alice Bao decided to open this shop. She sells environmentally friendly items such as reusable bottles, bamboo toothbrushes, and soy candles. “Here everyone looks out for each other and the neighborhood,” she says. “There’s a sense of community in the area.”"],
-    ["B. After Work", "Neighborhood beer lovers rejoiced when After Work moved in last summer. “We knew we were coming into a really cool neighborhood,” says co-owner Joey Ma. Aside from handcrafted beer, the menu boasts hand-made gourmet pizzas such as the Yummy Duck n’ Cheese, loaded with roast duck and, yes, creamy delicious cheese. A truly unique blend!"],
-    ["C. Aroma Paradise", "The fragrances at this scent shop are largely customized to meet the individual shopper’s taste. Owner Joseph Tang says he knew the idea would work well in this unique district: “Each store is one of a kind in Wonder Village,” he states. “Aroma Paradise wants to create a paradise for those who are looking for fragrance made for their special preferences.”"],
-    ["D. Something Different", "Looking for something unique? Yes, at this tiny antique store you can always find, as promised, something different. Open since 1996, the store features traditional-style home accessories, ranging from cabinets and chairs to picture frames and decorative mirrors."],
-    ["E. Beyond World", "Owner Foting Mayaw opened this boutique in what he calls “the most fascinating area in Taiwan.” The shop focuses on selling various “good goods” that showcase the skill and spirit of neighborhood artisans. From fashion items to rice snacks, it carries products only from local makers and small businesses owned by indigenous people."],
-    ["F. The Pinery", "This restaurant got its name from the pineapple farms that once populated the area. Indeed, the fruit appears in some innovative menu items (e.g., pineapple jam on the burger). “Wonder Village is much more than just a tourist destination,” says owner Carol Hon. “It is a place where the old meets the new: diverse, unique, and always full of surprises.”"]
+    [
+     "A. Oh Eco",
+     "Greatly concerned about the presence of fake “green” products on the market, Alice Bao decided to open this shop. She sells environmentally friendly items such as reusable bottles, bamboo toothbrushes, and soy candles. “Here everyone looks out for each other and the neighborhood,” she says. “There’s a sense of community in the area.”"
+    ],
+    [
+     "B. After Work",
+     "Neighborhood beer lovers rejoiced when After Work moved in last summer. “We knew we were coming into a really cool neighborhood,” says co-owner Joey Ma. Aside from handcrafted beer, the menu boasts hand-made gourmet pizzas such as the Yummy Duck n’ Cheese, loaded with roast duck and, yes, creamy delicious cheese. A truly unique blend!"
+    ],
+    [
+     "C. Aroma Paradise",
+     "The fragrances at this scent shop are largely customized to meet the individual shopper’s taste. Owner Joseph Tang says he knew the idea would work well in this unique district: “Each store is one of a kind in Wonder Village,” he states. “Aroma Paradise wants to create a paradise for those who are looking for fragrance made for their special preferences.”"
+    ],
+    [
+     "D. Something Different",
+     "Looking for something unique? Yes, at this tiny antique store you can always find, as promised, something different. Open since 1996, the store features traditional-style home accessories, ranging from cabinets and chairs to picture frames and decorative mirrors."
+    ],
+    [
+     "E. Beyond World",
+     "Owner Foting Mayaw opened this boutique in what he calls “the most fascinating area in Taiwan.” The shop focuses on selling various “good goods” that showcase the skill and spirit of neighborhood artisans. From fashion items to rice snacks, it carries products only from local makers and small businesses owned by indigenous people."
+    ],
+    [
+     "F. The Pinery",
+     "This restaurant got its name from the pineapple farms that once populated the area. Indeed, the fruit appears in some innovative menu items (e.g., pineapple jam on the burger). “Wonder Village is much more than just a tourist destination,” says owner Carol Hon. “It is a place where the old meets the new: diverse, unique, and always full of surprises.”"
+    ]
    ],
    "items": [
-    {"n": "47-48", "type": "fill", "points": 4,
+    {
+     "n": "47-48",
+     "type": "fill",
+     "points": 4,
      "instr": "下列簡短敘述摘記上方文章重點。請從文章中找出兩個單詞,分別填入下列句子空格中,並視句型結構需要做適當的字形變化,使句子語意完整、語法正確,並符合全文文意。**每格限填一個單詞**(word)。(填充題,4分)",
-     "lines": ["Wonder Village, a famous tourist site, is characterized by its diversity and uniqueness. It is a place where the old meets the new—where tradition coexists harmoniously with {47}, and local features are perfectly {48} with foreign elements."],
-     "blanks": [{"id": "47", "label": "47", "points": 2, "answers": ["innovation"]},
-                {"id": "48", "label": "48", "points": 2, "answers": ["blended"]}]},
-    {"n": "49", "type": "multi", "points": 4,
+     "lines": [
+      "Wonder Village, a famous tourist site, is characterized by its diversity and uniqueness. It is a place where the old meets the new—where tradition coexists harmoniously with {47}, and local features are perfectly {48} with foreign elements."
+     ],
+     "blanks": [
+      {
+       "id": "47",
+       "label": "47",
+       "points": 2,
+       "answers": [
+        "innovation"
+       ]
+      },
+      {
+       "id": "48",
+       "label": "48",
+       "points": 2,
+       "answers": [
+        "blended"
+       ]
+      }
+     ]
+    },
+    {
+     "n": "49",
+     "type": "multi",
+     "points": 4,
      "instr": "While visiting Wonder Village, the Chen family decide to buy the following items as souvenirs:\n(1) a 19th century oil lamp\n(2) recycled plastic sunglasses\n(3) an aboriginal wooden beads necklace\nWhich stores should they go to for these items?\n請選出**商店名稱前**的英文大寫字母(如A、B、C等),並劃記在「答題卷」作答區內。(多選題,4分)",
-     "options": ["Oh Eco", "After Work", "Aroma Paradise", "Something Different", "Beyond World", "The Pinery"]},
-    {"n": "50", "type": "short", "points": 2,
+     "options": [
+      "Oh Eco",
+      "After Work",
+      "Aroma Paradise",
+      "Something Different",
+      "Beyond World",
+      "The Pinery"
+     ]
+    },
+    {
+     "n": "50",
+     "type": "short",
+     "points": 2,
      "instr": "Which **phrase** is used by Joseph Tang to describe the “uniqueness” of the stores in Wonder Village?(簡答題,2分)",
-     "blanks": [{"id": "50", "label": "50", "points": 2, "answers": ["one of a kind"]}]}
+     "blanks": [
+      {
+       "id": "50",
+       "label": "50",
+       "points": 2,
+       "answers": [
+        "one of a kind"
+       ]
+      }
+     ]
+    }
    ]
   },
-  "part3": {"title": "第參部分、非選擇題(占 28 分)", "note": "說明:本部分共有二大題,請依各題指示作答,答案必須寫在「答題卷」標示題號之作答區內,作答時不必抄題。"}
+  "part3": {
+   "title": "第參部分、非選擇題(占 28 分)",
+   "note": "說明:本部分共有二大題,請依各題指示作答,答案必須寫在「答題卷」標示題號之作答區內,作答時不必抄題。"
+  },
+  "verified": true
+ },
+ "112": {
+  "part2": {
+   "title": "第貳部分、混合題(占 10 分)",
+   "note": "說明:本部分共有1題組,每一子題配分標於題末。限在答題卷標示題號的作答區內作答,並依規定用筆作答。",
+   "intro": [
+    "Even if you’re not a vegetarian, there’s a good chance you’ve heard of plant-based meat. These meat substitutes are often advertised as beneficial for the environment. ##But do the customers really like them?## Read the following chatroom discussions about GreenBurger, a product using alternative-meat patties."
+   ],
+   "boxLabel": "outside",
+   "boxes": [
+    [
+     "(A) Olivia",
+     "That’s a firm NO! I tried one when I was a prep cook for Next Level Burgers…tasted awful, just like mashed peas gone to rot."
+    ],
+    [
+     "(B) Smith",
+     "I haven’t tried them. I just don’t see the point. They are heavily processed with more calories and sodium than meat and are more expensive too! Unless you are a strict vegetarian and eschew meat for ethical reasons, meat is surely a better deal."
+    ],
+    [
+     "(C) Mika",
+     "Not really. It tastes too much like actual meat. If I wanted to eat a dead cow, I would go for real burgers. Being vegan means I try to stick to plant food. But this is just not something that will ever interest me."
+    ],
+    [
+     "(D) Thomas",
+     "GreenBurger just tastes “beany” to me, so I think that whatever form it comes in, it works better in recipes that would usually contain beans, such as in a rice bowl (as ground meat substitute). That being said, I’m definitely a carnivore and prefer meat, but I don’t see anything wrong with choosing one of the fakey-fakey meaty things once in a while—just for a change."
+    ],
+    [
+     "(E) Rico",
+     "I finally tried one last week. It didn’t taste that bad, but I was surprised to find it had 40 more calories than the meat version! Isn’t it supposed to be a healthy choice?"
+    ],
+    [
+     "(F) Linda",
+     "I liked it fine. I did NOT like the price, though. Hopefully that will come down. I’m trying to eat less beef."
+    ],
+    [
+     "(G) Ablo",
+     "Yes! My whole family does. We’ve been mostly vegan 90% of the time for the last 6 years and we cannot thank GreenBurger enough! Especially when a burger craving hits…a GreenBurger does the trick. I’ve tried all kinds of vegan “burgers,” and GreenBurgers are closer to what I’m looking for. In fact, I can have them every day—vegan or not!"
+    ],
+    [
+     "(H) Alexander",
+     "Well, they taste good if you add plenty of spices and sauces. Good for you? No, not at all. They’re highly processed and contain no vegetables. They also contain a very large amount of processed coconut oil, which is even worse than lard. It’s a killer for sure if eaten regularly. So why risk your life?"
+    ]
+   ],
+   "items": [
+    {
+     "n": "47-48",
+     "type": "fill",
+     "points": 4,
+     "instr": "請從文章中找出最適當的單詞(word)填入下列句子空格中,並視語法需要做適當的字形變化。##每格限填一個單詞(word)##。(填充,4分)",
+     "lines": [
+      "On the whole, the chatroom discussions about GreenBurger mainly focus on the issues of {47}, price, and {48} concerns."
+     ],
+     "blanks": [
+      {
+       "id": "47",
+       "label": "47",
+       "points": 2,
+       "answers": [
+        "taste",
+        "health"
+       ]
+      },
+      {
+       "id": "48",
+       "label": "48",
+       "points": 2,
+       "answers": [
+        "health",
+        "taste"
+       ]
+      }
+     ],
+     "pairs": [
+      [
+       "taste",
+       "health"
+      ],
+      [
+       "health",
+       "taste"
+      ]
+     ]
+    },
+    {
+     "n": "49",
+     "type": "multi",
+     "points": 4,
+     "instr": "From (A) to (H) in the above chatroom discussions, which ones show that GreenBurger can be a choice for the chatroom participants themselves ##only under certain circumstances##? (多選題,4分)",
+     "options": [
+      "Olivia",
+      "Smith",
+      "Mika",
+      "Thomas",
+      "Rico",
+      "Linda",
+      "Ablo",
+      "Alexander"
+     ]
+    },
+    {
+     "n": "50",
+     "type": "short",
+     "points": 2,
+     "instr": "Which ##phrase## in the chatroom discussions means “serves the purpose” or “works well”?(簡答,2分)",
+     "blanks": [
+      {
+       "id": "50",
+       "label": "50",
+       "points": 2,
+       "answers": [
+        "does the trick"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "part3": {},
+  "verified": true
+ },
+ "113": {
+  "verified": true,
+  "part2": {
+   "title": "第貳部分、混合題(占 10 分)",
+   "note": "說明:本部分共有1題組,每一子題配分標於題末。限在答題卷標示題號的作答區內作答,並依規定用筆作答。",
+   "group": "第 47 至 50 題為題組",
+   "intro": [
+    "Many animals are known to live and move in groups to secure food and avoid predators. Over the years, people have been curious about the way they deal with ##disturbances## arising from the environment, and the operations underlying their responses as a group. Studies on jackdaws and turtle ants may provide some insights into the issue."
+   ],
+   "colImgs": [
+    [
+     "113-q1.jpg",
+     118,
+     240,
+     382,
+     420
+    ],
+    [
+     "113-q1.jpg",
+     440,
+     240,
+     715,
+     420
+    ]
+   ],
+   "colImgAlts": [
+    "寒鴉照片(原卷)",
+    "龜蟻照片(原卷)"
+   ],
+   "columns": [
+    [
+     "Jackdaws are birds in the crow family often found in the English countryside. They are highly social birds and often travel in large flocks. Normally, the birds enjoy a smooth flight together as a group when “commuting” between two locations, such as from their nesting site to their feeding ground. However, if a predator (such as a fox) is present, the pattern of their flight will change immediately. Instead of paying attention to all the other members and following the group pattern, they now focus only on the birds within a fixed distance from them, based on information coming from other members. By doing so, the flock members are able to keep a safe distance between themselves, and thus avoid crashing into each other while they flee from the predator."
+    ],
+    [
+     "Turtle ants often live in the cavities of dead branches in American forests. They have evolved search strategies to link their food source to their nests. They travel entirely along tree branches and vines, laying down trails of pheromone (a chemical substance) behind them so that other ants can follow. The trails connect the ants’ colonies and sources of food, forming a sort of communication network. However, since these trails can easily be broken by wind or rain, the ants have to find new paths to get around the broken points and reestablish the network. Often they have to work together to explore alternative routes many times before they finally settle on the most efficient one. By working collectively, the ants are able to improve the efficiency of their network and adapt to their ever-changing environment."
+    ]
+   ],
+   "items": [
+    {
+     "n": "47-48",
+     "type": "fill",
+     "points": 4,
+     "instr": "下列簡短敘述摘記上方文章重點。請從文章中找出最適當的**單詞**(word)填入下列句子空格中,並視句型結構需要做適當的字形變化,使句子語意完整、語法正確,並符合全文文意。**每格限填一個單詞**(word)。(填充,4分)",
+     "lines": [
+      "Studies show that animals like jackdaws and turtle ants are able to use {47} intelligence in both solving problems and {48} to new challenging environment."
+     ],
+     "blanks": [
+      {
+       "id": "47",
+       "label": "47",
+       "points": 2,
+       "answers": [
+        "group",
+        "collective"
+       ]
+      },
+      {
+       "id": "48",
+       "label": "48",
+       "points": 2,
+       "answers": [
+        "adapting"
+       ]
+      }
+     ]
+    },
+    {
+     "n": "49",
+     "type": "multi",
+     "points": 4,
+     "instr": "From (A) to (F) below, choose the ##ONES## that are true for both jackdaws and turtle ants.(多選題,4分)",
+     "options": [
+      "They have special strategies to locate food sources.",
+      "They have complex interactions led by a leader.",
+      "They share information with their group members.",
+      "They establish rules to stay away from enemies.",
+      "They change their nesting sites from time to time.",
+      "They show behavior governed by a unique system of communication."
+     ]
+    },
+    {
+     "n": "50",
+     "type": "short",
+     "points": 2,
+     "instr": "What is the “##disturbance##” for jackdaws mentioned in the passage?(簡答,2分)",
+     "blanks": [
+      {
+       "id": "50",
+       "label": "50",
+       "points": 2,
+       "answers": [
+        "a predator",
+        "a fox"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "part3": {}
+ },
+ "114": {
+  "verified": true,
+  "part2": {
+   "title": "第貳部分、混合題(占 10 分)",
+   "note": "說明:本部分共有1題組,每一子題配分標於題末。限在答題卷標示題號的作答區內作答,並依規定用筆作答。",
+   "group": "第 47 至 50 題為題組",
+   "intro": [
+    "A zoo is a place where animals in captivity are put on display for humans to see. While early zoos put emphasis on displaying as many unusual creatures as possible, most modern zoos now focus on conservation and education. Still, many animal rights activists believe the cost of confining animals outweighs the benefits. What are your opinions? Feel free to share your ideas on this forum."
+   ],
+   "boxes": [
+    [
+     "A. Amy",
+     "Personally I’m against zoos, though I do understand some of the arguments why they should exist. I don’t agree with caging animals for our entertainment."
+    ],
+    [
+     "B. Ben",
+     "What gives humans the right to capture, confine, or breed other species? Even if an animal is endangered, does that justify restricting its freedom?"
+    ],
+    [
+     "C. Cathy",
+     "Zoos are a tradition, and a visit to a zoo is a wholesome family activity. Wildlife encounters are unforgettable experiences for children and adults alike."
+    ],
+    [
+     "D. Daniel",
+     "To me, a zoo can be a good place for endangered species which have difficulty finding suitable mates in the wild."
+    ],
+    [
+     "E. Eddie",
+     "My childhood memory of a polar bear pacing back and forth in a very small space in a zoo keeps haunting me. Is it a good idea to keep animals in sites not suited to them?"
+    ],
+    [
+     "F. Frank",
+     "Well, if zoos are an inevitability, zoo keepers must provide the best possible conditions for the animals that live in captivity—to say the least!"
+    ],
+    [
+     "G. George",
+     "Zoos have an educational aspect to it. It’s easier to learn about an animal by seeing them in person."
+    ],
+    [
+     "H. Henry",
+     "Most animals in zoos are not endangered, nor are they being prepared for release into natural habitats. In fact, it is nearly impossible to release captive-bred animals."
+    ],
+    [
+     "I. Irene",
+     "Fostering empathy…By seeing an animal up close, the public could be encouraged to be more sensitive and compassionate to a species that is facing extinction in the wild."
+    ],
+    [
+     "J. Jack",
+     "In making a case for or against zoos, both sides argue that they’re saving animals. Whether or not zoos benefit the animal community, they certainly do make money. Like it or not, zoos will continue to exist as long as there is a demand for them."
+    ]
+   ],
+   "items": [
+    {
+     "n": "47-48",
+     "type": "fill",
+     "points": 4,
+     "instr": "請根據選文內容,從文章中選出兩個單詞,分別填入下列句子空格,並視句型結構需要作適當的字形變化,使句子語意完整、語法正確,且符合全文文意。**每格限填一個單詞**##(word)##。(填充,4分)",
+     "lines": [
+      "Modern zoos serve the purposes of conserving endangered species as well as {47} visitors. However, some people are against zoos because the animals {48} there will lose the freedom they enjoy in the wild."
+     ],
+     "blanks": [
+      {
+       "id": "47",
+       "label": "47",
+       "points": 2,
+       "answers": [
+        "entertaining",
+        "educating"
+       ]
+      },
+      {
+       "id": "48",
+       "label": "48",
+       "points": 2,
+       "answers": [
+        "confined",
+        "caged"
+       ]
+      }
+     ]
+    },
+    {
+     "n": "49",
+     "type": "multi",
+     "points": 4,
+     "instr": "From (A) to (J) in the above forum discussion, which ##ONES## show a positive attitude toward zoos?\n(多選題,4分)",
+     "options": [
+      "Amy",
+      "Ben",
+      "Cathy",
+      "Daniel",
+      "Eddie",
+      "Frank",
+      "George",
+      "Henry",
+      "Irene",
+      "Jack"
+     ]
+    },
+    {
+     "n": "50",
+     "type": "short",
+     "points": 2,
+     "instr": "Which ##phrase## on the forum discussion carries the meaning of “building the ability to understand and share the feelings of others”?(簡答題,2分)",
+     "blanks": [
+      {
+       "id": "50",
+       "label": "50",
+       "points": 2,
+       "answers": [
+        "fostering empathy"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "part3": {}
  }
 }

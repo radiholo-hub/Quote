@@ -219,8 +219,14 @@ full = {}
 for y, p in fsrc.items():
     if y.startswith("_"): continue
     p2 = p["part2"]
+    if "pairs" in next((i for i in p2["items"] if i["type"] == "fill"), {}):
+        fi = next(i for i in p2["items"] if i["type"] == "fill")
+        for combo in fi["pairs"]:
+            assert len(combo) == len(fi["blanks"]), (y, "pairs 長度與空格數不符")
+            for b_, a in zip(fi["blanks"], combo): assert a in b_["answers"], (y, b_["id"], a)
     if "introImg" in p2: p2["introImg"] = crop(p2["introImg"], f"{y}-mixed-logo.png")
     if "img" in p2: p2["img"] = crop(p2["img"], f"{y}-mixed-fig.png")
+    if "colImgs" in p2: p2["colImgs"] = [crop(c, f"{y}-mixed-col{i+1}.png") for i, c in enumerate(p2["colImgs"])]
     m = mixed[y]
     for it in p2["items"]:
         if it["type"] == "multi":
