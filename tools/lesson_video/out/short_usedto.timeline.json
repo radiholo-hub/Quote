@@ -2,36 +2,36 @@
  {
   "scene": "hook",
   "start": 0.0,
-  "sec": 5.81
+  "sec": 5.77
  },
  {
   "scene": "q",
-  "start": 5.81,
+  "start": 5.77,
   "sec": 3.53
  },
  {
   "scene": "t",
-  "start": 9.35,
+  "start": 9.3,
   "sec": 3.45
  },
  {
   "scene": "n",
-  "start": 12.8,
-  "sec": 4.51
+  "start": 12.75,
+  "sec": 4.14
  },
  {
   "scene": "r",
-  "start": 17.31,
-  "sec": 15.51
+  "start": 16.9,
+  "sec": 15.24
  },
  {
   "scene": "w",
-  "start": 32.82,
-  "sec": 8.83
+  "start": 32.14,
+  "sec": 8.43
  },
  {
   "scene": "end",
-  "start": 41.65,
+  "start": 40.57,
   "sec": 6.01
  }
 ]
