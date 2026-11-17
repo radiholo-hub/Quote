@@ -76,7 +76,7 @@ window.GSATLearn = (function () {
   function recordsBlock(id, o) {
     o = o || {};
     const e = ent(id), I = IDX();
-    if (!I) return h('div', { class: 'notice info', 'data-role': 'no-index' }, '歷屆出現紀錄來自歷屆試題,試題的使用授權確認後才會開放。');
+    if (!I) return h('div', { class: 'notice info', 'data-role': 'no-index' }, '歷屆出現紀錄來自歷屆試題;歷屆試題目前沒有隨網站提供,所以這裡沒有出現紀錄。');
     const x = I.entries[id]; if (!x) return h('p', { class: 'notice' }, '這個詞條還沒有建立出現紀錄。');
     const box = h('div', { 'data-role': 'records' });
     box.append(h('div', { class: 'stat' },
@@ -222,7 +222,7 @@ window.GSATLearn = (function () {
       if (!hit.length) list.append(h('p', { class: 'notice info' }, '沒有符合的單字。'));
     }
     q.addEventListener('input', draw); draw();
-    root.append(q, list, h('p', { class: 'fine mt' }, IDX() ? '右側數字是歷屆「已確認」出現次數(詞性有疑義的比對尚未計入)。' : '歷屆出現次數需歷屆試題授權確認後才會顯示。'));
+    root.append(q, list, h('p', { class: 'fine mt' }, IDX() ? '右側數字是歷屆「已確認」出現次數(詞性有疑義的比對尚未計入)。' : '歷屆出現次數需要歷屆試題資料,目前沒有提供。'));
     return root;
   }
 

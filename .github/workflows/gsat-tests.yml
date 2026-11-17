@@ -8,6 +8,7 @@ on:
     paths:
       - 'gsat/**'
       - 'tools/stage_site.sh'
+      - 'tools/gsat_public_exams.py'
       - 'tools/parse_gsat.py'
       - 'tools/build_nonmc.py'
       - 'tools/gsat_inventory.py'
@@ -44,6 +45,7 @@ jobs:
             gsat
             docs/gsat
             tools/stage_site.sh
+            tools/gsat_public_exams.py
             tools/gsat_inventory.py
             tools/gsat_review_sheet.py
             tools/build_vocab_index.py

@@ -1,4 +1,5 @@
-"""部署閘門（著作權）：預設部署的網站不得含歷屆試題、答案、圖片，頁面要降級成「導向官方連結 + 原創題」。"""
+"""部署閘門：歷屆試題文字／答案／詳解／出現索引依 allowlist 隨網站公開（負責人已回報授權）；圖片、PDF、評分原則頁面本版不公開。
+GSAT_PUBLISH_EXAMS=0 是緊急關閉開關，退回只放空殼、頁面降級成「導向官方連結 + 原創題」。"""
 import json
 import os
 import pathlib
@@ -12,14 +13,14 @@ from conftest import DEVICES, ROOT
 REPO = ROOT.parent
 
 
-def stage(tmp_path, official_audio=False, extra_env=None, name='repo'):
+def stage(tmp_path, official_audio=False, extra_env=None, name='repo', exams=None):
     """在縮小版 repo 裡執行真正的 tools/stage_site.sh。official_audio=True 時，把現有 mp3 在「暫存副本」的來源紀錄中標成正式 TTS，
     用來驗證「只有正式來源的音檔才會部署」；真正的 docs/gsat/audio-provenance.json 不會被改動。"""
     r = tmp_path / name
     shutil.copytree(ROOT, r / 'gsat', ignore=shutil.ignore_patterns('__pycache__', '.pytest_cache', 'tests'))
     (r / 'tools').mkdir()
     (r / 'docs' / 'gsat').mkdir(parents=True)
-    for t in ('stage_site.sh', 'gsat_audio_provenance.py'):
+    for t in ('stage_site.sh', 'gsat_audio_provenance.py', 'gsat_public_exams.py'):
         shutil.copy(REPO / 'tools' / t, r / 'tools')
     shutil.copy(REPO / 'docs' / 'gsat' / 'audio-provenance.json', r / 'docs' / 'gsat')
     if official_audio:
@@ -32,6 +33,8 @@ def stage(tmp_path, official_audio=False, extra_env=None, name='repo'):
         (r / f).write_text('x')
     env = {k: v for k, v in os.environ.items() if not k.startswith(('CF_PAGES', 'GSAT_'))}
     env.update(extra_env or {})
+    if exams is not None:
+        env['GSAT_PUBLISH_EXAMS'] = exams
     p = subprocess.run(['bash', 'tools/stage_site.sh', '_site'], cwd=r, env=env, capture_output=True, text=True)
     if extra_env is not None:
         return p
@@ -45,14 +48,21 @@ def public_site(tmp_path):
 
 
 @pytest.fixture
-def public_site_official_audio(tmp_path):
-    return stage(tmp_path, official_audio=True)
+def shell_site(tmp_path):
+    """緊急關閉（GSAT_PUBLISH_EXAMS=0）的降級版：只有空殼。"""
+    return stage(tmp_path, exams='0', name='shell')
+
+
+@pytest.fixture
+def shell_site_official_audio(tmp_path):
+    return stage(tmp_path, official_audio=True, exams='0', name='shellaudio')
 
 
 def open_site(browser, site):
     ctx = browser.new_context(**DEVICES['phone'])
     page = ctx.new_page()
     page.errors, page.requests = [], []
+    page.on('dialog', lambda d: d.accept())
     page.on('pageerror', lambda e: page.errors.append(str(e)))
     page.on('console', lambda m: page.errors.append(m.text) if m.type == 'error' else None)
     page.on('request', lambda r: page.requests.append(r.url))
@@ -61,23 +71,24 @@ def open_site(browser, site):
     return ctx, page
 
 
-def test_public_build_has_no_exam_files_at_all(public_site):
+def test_public_build_exam_dir_is_exactly_the_allowlist(public_site):
     exam_dir = sorted(p.name for p in (public_site / 'exam').rglob('*'))
-    assert exam_dir == ['answers.js', 'exams.js', 'explain.js', 'mixed.js', 'nonmc.js', 'vocab_index.js']        # 只有空殼；出現索引也不外流
-    assert (public_site / 'exam' / 'vocab_index.js').read_text() == 'window.VOCAB_INDEX=null;\n'
-    assert (public_site / 'exam' / 'explain.js').read_text() == 'window.EXPLAIN={};\n'
-    big = [p for p in public_site.rglob('*') if p.is_file() and p.suffix in ('.jpg', '.png', '.pdf')]
+    assert exam_dir == ['answers.js', 'exams.js', 'explain.js', 'mixed.js', 'nonmc.js', 'vocab_index.js']        # 沒有 img/、vocab_reviews.js
+    assert (public_site / 'exam' / 'nonmc.js').read_text() == 'window.NONMC={};\n' and (public_site / 'exam' / 'mixed.js').read_text() == 'window.MIXED={};\n'
+    big = [p for p in public_site.rglob('*') if p.is_file() and p.suffix.lower() in ('.jpg', '.jpeg', '.png', '.pdf')]
     assert big == []
+    assert 'exam/img' not in ''.join(p.read_text(encoding='utf8') for p in (public_site / 'exam').glob('*.js'))
     # 原創內容（單字庫、延伸練習、語音）照常部署
     assert (public_site / 'data' / 'vocab.js').is_file() and (public_site / 'data' / 'audio_manifest.js').is_file() and (public_site / 'learn.js').is_file()
     assert list((public_site / 'audio').glob('*.mp3')) == []      # 目前 187 個 mp3 都是 edge-tts（非官方）產生的，來源不明的音檔不隨網站部署
-    assert 'Hay-on-Wye' not in ''.join(p.read_text(encoding='utf8') for p in public_site.rglob('*.js'))   # 試題文字不在
+    assert 'Hay-on-Wye' in (public_site / 'exam' / 'exams.js').read_text(encoding='utf8')          # 試題文字現在在公開輸出裡
 
 
-def test_public_build_degrades_to_official_link_and_original_practice(browser, public_site):
+def test_emergency_off_switch_degrades_to_official_link_and_original_practice(browser, shell_site):
+    public_site = shell_site
     ctx, page = open_site(browser, public_site)
     assert page.evaluate('[EXAMS.length, Object.keys(ANSWERS).length, Object.keys(NONMC).length]') == [0, 0, 0]
-    assert '授權確認後開放' in page.locator('a.entry').first.inner_text()
+    assert '暫時沒有提供' in page.locator('a.entry').first.inner_text()
     page.locator('a.entry').first.click()
     page.wait_for_selector('h1:has-text("歷屆試題")')
     link = page.get_by_role('link', name='前往大考中心官網下載')
@@ -96,25 +107,31 @@ def test_public_build_degrades_to_official_link_and_original_practice(browser, p
     assert page.locator('.explain').is_visible()
     # 非選擇題頁不放試題圖片
     page.goto((public_site / 'index.html').as_uri() + '#/ns/')
-    assert '不隨網站公開' in page.inner_text('#app')
+    assert '沒有隨網站提供' in page.inner_text('#app')
     assert [u for u in page.requests if u.lower().endswith(('.jpg', '.png', '.pdf'))] == []
     assert page.errors == []
     ctx.close()
 
 
-@pytest.mark.parametrize('value', ['1', 'true', 'yes', '2'])
-def test_publish_exams_flag_is_refused_not_honoured(tmp_path, value):
-    """權利不明素材不公開：GSAT_PUBLISH_EXAMS 設成任何非空、非 0 的值，整理都直接失敗，不產生任何輸出。"""
+@pytest.mark.parametrize('value', ['true', 'yes', '2', 'on'])
+def test_publish_exams_flag_with_an_unknown_value_is_refused(tmp_path, value):
+    """GSAT_PUBLISH_EXAMS 只接受空值、1（發布 allowlist）與 0（緊急關閉）；其他值視為設定錯誤，整理直接失敗，不產生任何輸出。"""
     p = stage(tmp_path, extra_env={'GSAT_PUBLISH_EXAMS': value})
     assert p.returncode != 0 and 'GSAT_PUBLISH_EXAMS' in p.stdout + p.stderr
     assert not (tmp_path / 'repo' / '_site').exists()
 
 
-def test_publish_exams_flag_zero_or_empty_is_harmless(tmp_path):
-    for i, v in enumerate(['', '0']):
-        p = stage(tmp_path, extra_env={'GSAT_PUBLISH_EXAMS': v}, name=f'r{i}')
+def test_publish_exams_flag_unset_or_1_publishes_and_0_is_the_shell(tmp_path):
+    for i, v in enumerate(['', '1']):
+        p = stage(tmp_path, extra_env={'GSAT_PUBLISH_EXAMS': v}, name=f'p{i}')
         assert p.returncode == 0, p.stdout + p.stderr
-        assert not (tmp_path / f'r{i}' / '_site' / 'gsat' / 'exam' / 'img').exists()
+        d = tmp_path / f'p{i}' / '_site' / 'gsat' / 'exam'
+        assert 'Hay-on-Wye' in (d / 'exams.js').read_text(encoding='utf8') and not (d / 'img').exists()
+    p = stage(tmp_path, extra_env={'GSAT_PUBLISH_EXAMS': '0'}, name='off')
+    assert p.returncode == 0, p.stdout + p.stderr
+    d = tmp_path / 'off' / '_site' / 'gsat' / 'exam'
+    assert (d / 'exams.js').read_text() == 'window.EXAMS=[];\n' and (d / 'explain.js').read_text() == 'window.EXPLAIN={};\n' and (d / 'vocab_index.js').read_text() == 'window.VOCAB_INDEX=null;\n'
+    assert sorted(x.name for x in d.iterdir()) == ['answers.js', 'exams.js', 'explain.js', 'mixed.js', 'nonmc.js', 'vocab_index.js']
 
 
 @pytest.mark.skipif(not (ROOT / 'exam' / 'img' / 'ns').is_dir(), reason='沒有 gsat/exam/img/ns')
@@ -181,7 +198,7 @@ def test_public_build_still_offers_original_writing_practice(browser, public_sit
     page.get_by_label('你的作文').fill('My school library needs help.')
     assert '字數 5 / 至少 120' in page.inner_text('#app')
     page.goto((public_site / 'index.html').as_uri() + '#/ns/')
-    assert '不隨網站公開' in page.inner_text('#app') and page.get_by_role('link', name='前往大考中心官網').count() == 1
+    assert '沒有隨網站提供' in page.inner_text('#app') and page.get_by_role('link', name='前往大考中心官網').count() == 1
     page.goto((public_site / 'index.html').as_uri() + '#/ns/111')
     assert '找不到這個年度' in page.inner_text('#app')              # 不會洩漏任何試題頁面
     assert [u for u in page.requests if u.lower().endswith(('.jpg', '.png', '.pdf'))] == []
@@ -189,15 +206,15 @@ def test_public_build_still_offers_original_writing_practice(browser, public_sit
     ctx.close()
 
 
-def test_public_build_word_pages_and_audio_work_without_any_exam_data(browser, public_site_official_audio, stub_mp3):
-    public_site = public_site_official_audio
+def test_emergency_off_word_pages_and_audio_work_without_any_exam_data(browser, shell_site_official_audio, stub_mp3):
+    public_site = shell_site_official_audio
     ctx, page = open_site(browser, public_site)
     page.add_init_script("window.__au=[];(()=>{const A=window.Audio;window.Audio=function(s){const a=new A(s);window.__au.push(a.src.split('/').pop());return a};window.Audio.prototype=A.prototype})()")
     page.reload()                                                                                                 # 初始化腳本要在載入前注入，所以重新載入一次
     page.goto((public_site / 'index.html').as_uri() + '#/word/communicate-v')
     page.wait_for_selector('[data-view=word]')
     assert page.locator('.wcard .hw').inner_text() == 'communicate' and page.locator('[data-role=family] li').count() == 3
-    assert page.locator('[data-role=no-index]').count() >= 1 and '授權確認後才會開放' in page.inner_text('#app')          # 沒有歷屆出現紀錄，也不洩漏任何次數或題號
+    assert page.locator('[data-role=no-index]').count() >= 1 and '目前沒有隨網站提供' in page.inner_text('#app')          # 沒有歷屆出現紀錄，也不洩漏任何次數或題號
     assert page.locator('[data-role=rec-table]').count() == 0 and '115' not in page.locator('[data-role=no-index]').first.inner_text()
     page.locator('.whead .spk').click()                                                                          # 真的音檔隨網站部署，可以載入
     page.wait_for_function('window.__au.length===1')

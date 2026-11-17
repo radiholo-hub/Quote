@@ -150,7 +150,7 @@ window.GSATWriting = (function () {
       h('div', { class: 'row mt' }, W.trans.map(t => h('a', { class: 'btn line sm', href: '#/ns/orig/' + t.id }, t.title))),
       h('h3', { class: 'mt2' }, '英文作文'), h('div', { class: 'row mt' }, W.essay.map(e => h('a', { class: 'btn line sm', href: '#/ns/orig/' + e.id }, e.title))));
     root.append(h('h2', { class: 'mt2' }, '歷屆正式試題(大考中心)'));
-    if (!env.EXAMS.length) root.append(h('p', { class: 'notice mt' }, '歷屆非選擇題的著作權授權還在確認,目前不隨網站公開。可到大考中心官網下載原卷自行練習。'), h('p', { class: 'mt' }, h('a', { class: 'btn line sm', href: env.CFG.officialUrl, target: '_blank', rel: 'noopener noreferrer' }, '前往大考中心官網')));
+    if (!env.EXAMS.length || !Object.keys(env.NS || {}).length) root.append(h('p', { class: 'notice mt' }, '歷屆非選擇題的試卷頁面目前沒有隨網站提供。可到大考中心官網下載原卷自行練習。'), h('p', { class: 'mt' }, h('a', { class: 'btn line sm', href: env.CFG.officialUrl, target: '_blank', rel: 'noopener noreferrer' }, '前往大考中心官網')));
     else root.append(h('div', { class: 'row mt' }, env.EXAMS.slice().reverse().map(x => h('a', { class: 'btn line sm', href: '#/ns/' + x.year }, x.year + ' 學年度'))));
     return root;
   }

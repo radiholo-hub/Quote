@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" width="320" height="400" role="img" aria-label="一隻右腳（由上往下看）穿著涼鞋；涼鞋的趾間帶子穿過腳的第二趾與第三趾之間。大趾在最左邊，由左往右依序是第一、二、三、四、五趾。">
+  <title>涼鞋示意圖（原創替代圖）</title>
+  <rect width="320" height="400" fill="#fff"/>
+  <!-- 鞋底 -->
+  <path d="M70 130 C48 170 44 240 62 300 C76 345 108 372 150 372 C196 372 226 346 232 300 C238 250 252 200 262 150 C268 118 262 96 240 88 C200 72 120 78 70 130 Z" fill="#e9e1d2" stroke="#6b5a3e" stroke-width="4"/>
+  <!-- 腳（五個腳趾：由左到右是第一趾到第五趾） -->
+  <path d="M82 150 C70 200 76 270 100 318 C118 350 160 352 190 330 C214 312 222 260 232 210 C240 176 248 150 244 130 C200 100 120 104 82 150 Z" fill="#f4d6bd" stroke="#8a5a3a" stroke-width="3"/>
+  <ellipse cx="94" cy="104" rx="30" ry="36" fill="#f4d6bd" stroke="#8a5a3a" stroke-width="3"/>
+  <ellipse cx="144" cy="84" rx="19" ry="28" fill="#f4d6bd" stroke="#8a5a3a" stroke-width="3"/>
+  <ellipse cx="184" cy="90" rx="17" ry="25" fill="#f4d6bd" stroke="#8a5a3a" stroke-width="3"/>
+  <ellipse cx="217" cy="104" rx="15" ry="22" fill="#f4d6bd" stroke="#8a5a3a" stroke-width="3"/>
+  <ellipse cx="243" cy="124" rx="12" ry="18" fill="#f4d6bd" stroke="#8a5a3a" stroke-width="3"/>
+  <!-- 趾間帶子：兩條帶子在第二趾與第三趾之間的固定點會合 -->
+  <path d="M164 128 L80 232" stroke="#3b2a14" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <path d="M164 128 L246 214" stroke="#3b2a14" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <circle cx="164" cy="122" r="9" fill="#3b2a14"/>
+  <circle cx="80" cy="232" r="7" fill="#c9a24a" stroke="#3b2a14" stroke-width="2"/>
+  <circle cx="246" cy="214" r="7" fill="#c9a24a" stroke="#3b2a14" stroke-width="2"/>
+</svg>
