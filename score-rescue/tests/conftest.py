@@ -204,3 +204,19 @@ def gate_init(user='paid', paid=True, files=None):
 
 need_private = pytest.mark.skipif(not (PRIVATE / 'l7.js').exists(),
                                   reason='沒有 private/ 課程內容（公開儲存庫不含第 4～7 課，請先執行 tools/split_paid.py）')
+
+
+# ---------- 事件只在正式站寫入（EV_HOST）----------
+# 測試用 file:// 開頁面，預設把每個瀏覽器環境標成測試（window.__EV_TEST=true），事件照常送到假的 Supabase；
+# 要測「非正式站不寫入」時，在之後的 init script 設 window.__EV_TEST=false。
+from playwright.sync_api import Browser as _Browser
+_orig_new_context = _Browser.new_context
+
+
+def _new_context_ev(self, *a, **k):
+    ctx = _orig_new_context(self, *a, **k)
+    ctx.add_init_script('if(window.__EV_TEST===undefined)window.__EV_TEST=true;')
+    return ctx
+
+
+_Browser.new_context = _new_context_ev

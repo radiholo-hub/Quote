@@ -149,6 +149,7 @@ div.opt .say.ico{width:36px;min-height:36px;margin-left:-4px}
 var SB_URL='https://uzesrnvtbplloqqgmhcl.supabase.co';
 var SB_KEY='sb_publishable_jrTIfxDHkliZJ8ySXIZyYg_jjKuA5I5';
 var DEBUG=/[?&]debug=1\b/.test(location.search);
+var EV_HOST=location.hostname==='radiholo-hub.github.io'||window.__EV_TEST===true;   // 只有正式站寫入事件；本機（127.0.0.1、file://）與預覽站（githack、pages.dev）不寫
 var sb=null,sbReady=null;
 function initSb(){
   if(DEBUG)return Promise.resolve();
@@ -169,7 +170,7 @@ function logEvent(name){
     if(sessionStorage.getItem(k)){dbg(name,'本分頁已記過');return p}
     sessionStorage.setItem(k,'1');
   }catch(e){}
-  if(DEBUG){dbg(name,'記錄');return p}
+  if(DEBUG||!EV_HOST){dbg(name,DEBUG?'記錄':'非正式站，不送出');return p}
   return (sbReady||Promise.resolve()).then(function(){
     if(!sb)return;
     return sb.from('events').insert({name:name}).then(function(){},function(){});
