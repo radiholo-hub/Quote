@@ -109,3 +109,38 @@ def test_production_host_check_in_every_page():
     for f in ['index.html', 'pos/index.html', 'pos/l2.html', 'pos/l3.html', 'pos/l4.html', 'pos/l7.html', 'pos/final.html']:
         s = (ROOT / f).read_text(encoding='utf-8')
         assert "location.hostname==='radiholo-hub.github.io'" in s, f
+
+
+def test_notrack_persists_across_pages_until_cleared(browser):
+    """?notrack=1 之後，這個瀏覽器在主站與詞性小課都不記錄，並顯示提示；?notrack=0 恢復。"""
+    from conftest import GATE_STUB
+    ctx = browser.new_context(viewport={'width': 390, 'height': 844})
+    stubs = {'main': STUB}
+    ctx.route('**/supabase-js@2*', lambda r: r.fulfill(status=200, content_type='application/javascript', body=stubs['main']))
+    page = ctx.new_page()
+    ins = []
+    page.on('console', lambda m: m.text.startswith('__ins:') and ins.append(m.text[6:]))
+    try:
+        page.goto(TEST_PAGE.as_uri() + '?notrack=1')
+        page.wait_for_function('window.__t&&window.__t.S')
+        assert page.locator('text=此瀏覽器不記錄數據').count() == 1
+        page.goto(TEST_PAGE.as_uri())   # 之後不帶參數也一樣
+        page.wait_for_function('window.__t&&window.__t.S')
+        start_diag(page)
+        page.locator('#lvOpts .opt').first.click()
+        page.wait_for_timeout(300)
+        assert ins == []
+        stubs['main'] = GATE_STUB
+        page.goto((ROOT / 'pos' / 'index.html').as_uri())
+        page.wait_for_function('window.__pos')
+        page.click('#go')
+        page.wait_for_timeout(300)
+        assert [n for t, n in page.evaluate("window.__ins||[]") if t == 'events'] == [], '詞性小課也不記'
+        page.goto((ROOT / 'pos' / 'index.html').as_uri() + '?notrack=0')
+        page.wait_for_function('window.__pos')
+        assert page.locator('text=此瀏覽器不記錄數據').count() == 0
+        page.click('#go')
+        page.wait_for_timeout(300)
+        assert 'pos_pretest_start' in [n for t, n in page.evaluate("window.__ins||[]") if t == 'events']
+    finally:
+        ctx.close()

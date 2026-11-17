@@ -150,7 +150,7 @@ ul.left{margin:4px 0 0 1.2em}
 var SB_URL='https://uzesrnvtbplloqqgmhcl.supabase.co';
 var SB_KEY='sb_publishable_jrTIfxDHkliZJ8ySXIZyYg_jjKuA5I5';
 var DEBUG=/[?&]debug=1\b/.test(location.search);
-var EV_HOST=location.hostname==='radiholo-hub.github.io'||window.__EV_TEST===true;   // 只有正式站寫入事件；本機（127.0.0.1、file://）與預覽站（githack、pages.dev）不寫
+var EV_HOST=(location.hostname==='radiholo-hub.github.io'||window.__EV_TEST===true)&&!(function(){try{var m=location.search.match(/[?&]notrack=([01])(&|$)/);if(m){if(m[1]==='1')localStorage.setItem('sr_notrack','1');else localStorage.removeItem('sr_notrack')}var off=localStorage.getItem('sr_notrack')==='1';if(off)document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('div');b.textContent='此瀏覽器不記錄數據';b.style.cssText='position:fixed;left:8px;bottom:8px;z-index:9999;font:12px/1.4 sans-serif;background:#333;color:#fff;padding:3px 8px;border-radius:6px;opacity:.75;pointer-events:none';document.body.appendChild(b)});return off}catch(e){return false}})();   // ?notrack=1：這個瀏覽器之後都不記錄（主站與詞性小課共用），?notrack=0 取消   // 只有正式站寫入事件；本機（127.0.0.1、file://）與預覽站（githack、pages.dev）不寫
 var LET=['A','B','C','D'],STORE='lessons',FINAL=[],authSb=null,gated=false;
 var LESSON_NAME={1:'形容詞還是副詞',2:'空格需要名詞嗎',3:'空格需要動詞嗎',4:'V-ing 還是 p.p.',5:'to V 還是 V-ing',6:'意思相近，怎麼選',7:'關係代名詞'};
 var app=document.getElementById('app');
@@ -169,12 +169,14 @@ function dbg(name,state){
   var r=document.createElement('div');r.textContent=name+' · '+state;r.setAttribute('data-ev',name);d.appendChild(r);
 }
 function logOnce(name,attempt){
+  if(!DEBUG&&!EV_HOST)return;
   var k='ev_'+name+'_'+attempt;
   try{if(sessionStorage.getItem(k)){dbg(name,'本次作答已記錄');return}sessionStorage.setItem(k,'1')}catch(e){}
   if(DEBUG||!EV_HOST){dbg(name,DEBUG?'記錄':'非正式站，不送出');return}
   try{if(authSb)authSb.from('events').insert({name:name}).then(function(){},function(){})}catch(e){}
 }
 function logEvent(name){   // 登入頁等一般事件：同一分頁只記一次
+  if(!DEBUG&&!EV_HOST)return;
   var k='ev_'+name;
   try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1')}catch(e){}
   if(DEBUG||!EV_HOST){dbg(name,DEBUG?'記錄':'非正式站，不送出');return}
