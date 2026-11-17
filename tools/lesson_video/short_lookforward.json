@@ -10,7 +10,7 @@
    "id": "hook",
    "view": {
     "kind": "card",
-    "h": "Email 最常見的一句，<br>很多人第一格就錯：<br>look forward to ___",
+    "h": "Email 結尾最常見：<br>look forward to<br>後面接什麼？",
     "top": 560
    },
    "say": [
@@ -20,11 +20,15 @@
     ],
     [
      "zh",
-     "最常見的一句，很多人第一格就錯："
+     "結尾最常見的"
     ],
     [
      "en",
-     "look forward to."
+     "look forward to"
+    ],
+    [
+     "zh",
+     "，後面到底接什麼？"
     ]
    ],
    "hold": 0.2
