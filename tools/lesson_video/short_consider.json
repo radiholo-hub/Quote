@@ -233,7 +233,7 @@
      }
     ],
     "ban": {
-     "t": "＋V-ing：consider、avoid、suggest、finish<br>＋to V：plan、decide、agree、hope",
+     "t": "consider、avoid、finish＋V-ing<br>plan、decide、hope＋to V",
      "c": "blue"
     }
    },
@@ -264,7 +264,7 @@
     ],
     [
      "en",
-     "avoid, suggest, finish"
+     "avoid, finish"
     ],
     [
      "zh",
@@ -276,7 +276,7 @@
     ],
     [
      "en",
-     "decide, agree, hope"
+     "decide, hope"
     ],
     [
      "zh",
