@@ -31,7 +31,7 @@ const out=[];
 for (const [k,e] of Object.entries(window.EXPLAIN)) {
   const [y,n]=k.split('-'); const ex=window.EXAMS.find(x=>x.year===y);
   for (const s of ex.sections) for (const g of s.groups) for (const q of g.questions) if (q.n==+n)
-    out.push({key:k, year:y, n:+n, type:s.name, stem:q.stem, opts:q.opts, official:window.ANSWERS[y][q.n-1], e, ext:window.EXT_PRACTICE.filter(x=>x.forQuestion===k)});
+    out.push({key:k, year:y, n:+n, type:s.name, stem:q.stem, opts:q.opts, bank:g.bank||null, passage:g.passage||null, official:window.ANSWERS[y][q.n-1], e, ext:window.EXT_PRACTICE.filter(x=>x.forQuestion===k)});
 }
 console.log(JSON.stringify({items:out, vocab:window.VOCAB, index:window.VOCAB_INDEX, man:window.AUDIO_MANIFEST}));"""
 
@@ -64,16 +64,17 @@ def fingerprint(data, key, audio_dir=AUDIO):
     item = next(i for i in data['items'] if i['key'] == key)
     e = item['e']; V = data['vocab']['entries']; F = data['vocab']['families']
     strip = lambda d: {k: v for k, v in d.items() if k not in META_KEYS}
-    main = list(dict.fromkeys(e['words'] + [e['focus']] + [o['entry'] for o in e['options'].values()]))
+    main = list(dict.fromkeys(x for x in e['words'] + [e.get('focus')] + [o.get('entry') for o in e['options'].values()] if x))     # Q11 起的選項可以沒有單字詞條
     fam = {}
     for eid in main:
         for m in F[V[eid]['family']]['members']:
             if m not in main: fam[m] = {k: V[m][k] for k in ('id', 'hw', 'pos', 'zh')}
     rows = rows_of(data, key, audio_dir)
     audio = {rid: f for rid, f in rows if f}                          # 只含檔名；檔案內容的雜湊屬於試聽簽核（audio 區塊）
-    occ = {w: data['index']['entries'][w] for w in dict.fromkeys(e['words'] + [e['focus']])}
+    occ = {w: data['index']['entries'][w] for w in dict.fromkeys(x for x in e['words'] + [e.get('focus')] if x)}
     body = {
-        'question': {'key': key, 'stem': item['stem'], 'opts': item['opts'], 'official': item['official']},
+        'question': {'key': key, 'stem': item.get('stem'), 'opts': item.get('opts'), 'official': item['official'],
+                     **({'bank': item['bank']} if item.get('bank') else {}), **({'passage': item['passage']} if item.get('passage') else {})},     # 字庫與文章只有 Q11 起的題型才有；沒有時不加欄位，Q1–Q10 的指紋因此完全不變
         'explanation': strip(e),
         'entries': {eid: strip(V[eid]) for eid in main},
         'derivedWords': fam,
@@ -102,12 +103,13 @@ def audio_block(data, buttons, files, audio_scope, audio_status):
             'notIncludedCount': total - len(files), 'notIncluded': '清單中其餘音檔不在本次簽核範圍,不得視為已通過。'}
 
 
-def draft(data, key, reviewer, date, html_sha, audio_scope, audio_status='pending', occurrence_note=None):
+def draft(data, key, reviewer, date, html_sha, audio_scope, audio_status='pending', occurrence_note=None, scope=None):
     rows = rows_of(data, key)
     buttons = [{'item': rid, 'file': f} for rid, f in rows if f]
     files = sorted({b['file'] for b in buttons})
     fp = fingerprint(data, key)
-    return {
+    focus = data['items'][[i['key'] for i in data['items']].index(key)]['e'].get('focus')
+    rec = {
         'question': key,
         'status': 'passed',
         'reviewer': reviewer,
@@ -123,10 +125,12 @@ def draft(data, key, reviewer, date, html_sha, audio_scope, audio_status='pendin
         'items': [{'id': rid, 'result': 'passed'} for rid, _ in rows],
         'audio': audio_block(data, buttons, files, audio_scope, audio_status),
         'vocabularyOccurrenceRecords': {
-            'entry': data['items'][[i['key'] for i in data['items']].index(key)]['e']['focus'],
+            'entry': focus,
             'note': occurrence_note or '三筆歷屆出題紀錄的人工裁定(skin-tight 排除、tight against 計入文章用字、tight schedule 計入正確答案)維持不變,正式裁定資料在 gsat/exam/vocab_reviews.js;本簽核不涉及其他詞條與其他待審核紀錄。',
         },
     }
+    if scope: rec['scope'] = scope
+    return rec
 
 
 def validate(rec, data, explain_entry=None, audio_dir=AUDIO, prov_rec=None):
@@ -275,6 +279,9 @@ def main():
     f = sp.add_parser('fingerprint'); f.add_argument('key')
     d = sp.add_parser('draft'); d.add_argument('key'); d.add_argument('--reviewer', required=True); d.add_argument('--date', required=True); d.add_argument('--html-sha', required=True)
     d.add_argument('--audio-scope', default='只限本題教學內容對應的發音;清單中其餘音檔不在本次簽核範圍'); d.add_argument('--audio-status', default='pending', choices=['pending', 'passed']); d.add_argument('--occurrence-note', default=None)
+    db = sp.add_parser('draft-batch'); db.add_argument('--first', type=int, required=True); db.add_argument('--last', type=int, required=True); db.add_argument('--year', default='115')
+    db.add_argument('--reviewer', required=True); db.add_argument('--date', required=True); db.add_argument('--html-shas', required=True, help='JSON 檔：{題號: 簽核當時審核 HTML 的 SHA-256}')
+    db.add_argument('--scope', required=True); db.add_argument('--occurrence-note', default=None); db.add_argument('--write', action='store_true', help='寫入 docs/gsat/signoffs/；沒有這個旗標只檢查並列出，不寫檔')
     sa = sp.add_parser('sync-audio'); sa.add_argument('--date', default=None)
     dc = sp.add_parser('record-dev-check'); dc.add_argument('key'); dc.add_argument('--reviewer', required=True); dc.add_argument('--date', required=True); dc.add_argument('--confirm-listened', action='store_true')
     ap2 = sp.add_parser('approve-audio'); ap2.add_argument('key'); ap2.add_argument('--reviewer', required=True); ap2.add_argument('--date', required=True); ap2.add_argument('--confirm-listened', action='store_true')
@@ -284,6 +291,21 @@ def main():
         print(fingerprint(data, a.key), len(rows_of(data, a.key)), '個審核項目'); return
     if a.cmd == 'draft':
         print(json.dumps(draft(data, a.key, a.reviewer, a.date, a.html_sha, a.audio_scope, a.audio_status, a.occurrence_note), ensure_ascii=False, indent=1)); return
+    if a.cmd == 'draft-batch':
+        shas = json.loads(pathlib.Path(a.html_shas).read_text(encoding='utf8')); out = []
+        for n in range(a.first, a.last + 1):
+            key = f'{a.year}-{n}'
+            if key not in shas: raise SystemExit(f'{key} 沒有審核 HTML 的 SHA-256')
+            rec = draft(data, key, a.reviewer, a.date, shas[key], '只限本題教學內容對應的發音;清單中其餘音檔不在本次簽核範圍', 'pending', a.occurrence_note, a.scope)
+            if rec['audio']['status'] != 'pending' or rec['audio']['approvedFiles']: raise SystemExit(f'{key}：audio 必須維持 pending')
+            out.append((key, rec))
+        for key, rec in out:
+            path = SIGNOFFS / f'{key}.json'
+            if a.write:
+                if path.exists(): raise SystemExit(f'{path} 已存在，不覆寫既有簽核')
+                path.write_text(json.dumps(rec, ensure_ascii=False, indent=1) + '\n', encoding='utf8')
+            print(key, rec['contentFingerprint']['value'], len(rec['items']), '個審核項目', '(已寫入)' if a.write else '(試算，未寫入)')
+        return
     if a.cmd == 'sync-audio':
         import datetime
         date = a.date or datetime.date.today().isoformat(); n = 0

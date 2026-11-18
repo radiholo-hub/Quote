@@ -152,9 +152,13 @@ def test_explanations_are_complete_and_only_signed_off_ones_claim_to_be_reviewed
             assert e['status'] == 'draft', f'{k}：沒有教師簽核紀錄(docs/gsat/signoffs/)不得標為 reviewed'
         assert isinstance(e['key'], list) and len(e['key']) >= 3 and all(len(t) >= 15 for t in e['key']), f'{k}：解題關鍵要有判斷的步驟'
         assert not any(t.strip() in ('依照上下文可知', '依上下文可知') for t in e['key']), k
-        assert sorted(e['options']) == list('ABCD') and all(o['why'].strip() and o['entry'] in V for o in e['options'].values()), f'{k}：四個選項都要有分析並引用詞條'
-        assert e['words'] and e['grammar'].strip() and e['patterns'], f'{k}：詳解必須包含重要單字、文法補充與常考句型'
-        assert all(w in V for w in e['words']) and e['focus'] in V and all(p in data['vocab']['phrases'] for p in e['phrases']), k
+        if int(k.split('-')[1]) <= 10:                                                                   # 詞彙題（Q1–Q10）：四個選項都是單字詞條
+            assert sorted(e['options']) == list('ABCD') and all(o['why'].strip() and o['entry'] in V for o in e['options'].values()), f'{k}：四個選項都要有分析並引用詞條'
+            assert e['words'] and e['grammar'].strip() and e['patterns'], f'{k}：詳解必須包含重要單字、文法補充與常考句型'
+            assert all(w in V for w in e['words']) and e['focus'] in V and all(p in data['vocab']['phrases'] for p in e['phrases']), k
+        else:                                                                                            # Q11 起：選項是片語／字庫／句子，結構另由 test_explain_drafts.py 檢查
+            assert e['options'] and all(o['why'].strip() and (o.get('entry') is None or o['entry'] in V) for o in e['options'].values()), k
+            assert all(w in V for w in e['words']) and (e.get('focus') is None or e['focus'] in V) and all(p in data['vocab']['phrases'] for p in e['phrases']), k
         assert re.search(r'[\u4e00-\u9fff]', e.get('zh', '')) and len(e['zh']) >= 15, f'{k}：缺題目中譯'
         assert 'reviewer' in e and 'reviewedAt' in e and 'reviewNotes' in e, f'{k}：缺審核欄位'
         if k in SIGNED_OFF:
@@ -168,6 +172,8 @@ def test_explanation_options_match_the_real_option_text(data):
     V = data['vocab']['entries']
     for k, e in data['expl'].items():
         y, n = k.split('-')
+        if int(n) > 10:                                                                                  # 只有詞彙題的選項是單字詞條
+            continue
         q = next(q for s, g, q in questions(data, y) if q['n'] == int(n))
         for i, L in enumerate('ABCD'):
             assert q['opts'][i].lower() in V[e['options'][L]['entry']]['forms'], f'{k} 選項 {L} {q["opts"][i]} 與詞條 {e["options"][L]["entry"]} 不符'

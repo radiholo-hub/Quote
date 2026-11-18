@@ -118,36 +118,39 @@ window.GSATLearn = (function () {
 
   // ---------- 逐題詳解 schema 2（交卷後的檢討頁） ----------
   function explainNode(q, e, st) {
-    const LET = env.LET, chosen = st.chosen, A = e.answer, ai = LET.indexOf(A), entA = ent(e.options[A].entry), key = 'x:' + q.id;
+    const LET = env.LET, chosen = st.chosen, A = e.answer, ai = LET.indexOf(A), entA = e.options[A].entry ? ent(e.options[A].entry) : null, key = 'x:' + q.id;
     const box = h('div', { class: 'explain v2', role: 'note', 'data-explain': e.status, 'data-qid': q.id });
     box.append(h('div', { class: 'row', style: 'justify-content:space-between' }, h('b', {}, '詳解'), h('span', { class: 'tag' }, e.status === 'reviewed' ? '已審核' : '草稿・待人工審核')));
     // 1 正確答案
     const verdict = chosen == null ? '你沒有作答這一題。' : chosen === q.a ? '✔ 你選的 (' + LET[chosen] + ') 是正確答案。' : '✘ 你選了 (' + LET[chosen] + ') ' + q.o[chosen] + ',答錯了。';
     const s1 = h('div', {},
-      h('p', { class: 'ans', 'data-role': 'answer' }, '正確答案:(' + A + ') ', h('b', {}, q.o[ai]), ' ', spk(entA.hw, entA.hw), h('span', { class: 'fine' }, ' ' + posZh(entA))),
-      e.zh ? h('p', { class: 'fine', 'data-role': 'zh' }, h('b', {}, '題目中譯(代入正確答案):'), e.zh) : null,
+      h('p', { class: 'ans', 'data-role': 'answer' }, '正確答案:(' + A + ') ', h('b', {}, q.o[ai]), ' ', entA ? spk(entA.hw, entA.hw) : null, entA ? h('span', { class: 'fine' }, ' ' + posZh(entA)) : null),
+      e.zh ? h('p', { class: 'fine', 'data-role': 'zh' }, h('b', {}, q.type === 'reading' ? '依據段落與題目中譯:' : q.type === 'structure' ? '插入句與前後文中譯:' : '題目中譯(代入正確答案):'), e.zh) : null,
       h('p', { class: 'verdict ' + (chosen === q.a ? 'ok' : chosen == null ? '' : 'bad'), 'data-role': 'verdict' }, verdict),
-      chosen != null && chosen !== q.a ? h('p', { 'data-role': 'why-wrong' }, h('b', {}, '為什麼不選 (' + LET[chosen] + '):'), e.options[LET[chosen]].why) : null,
+      chosen != null && chosen !== q.a ? h('p', { 'data-role': 'why-wrong' }, h('b', {}, '為什麼不選 (' + LET[chosen] + '):'), (e.options[LET[chosen]] || {}).why || '這個字庫選項在本題的比較,請看「解題關鍵」。') : null,
       h('p', { 'data-role': 'why-right' }, h('b', {}, '為什麼選 (' + A + '):'), e.options[A].why));
     // 2 解題關鍵
     const s2 = h('ol', { class: 'steps', 'data-role': 'key' }, e.key.map(t => h('li', {}, t)));
     // 3 選項解析
-    const s3 = h('div', {}, ['A', 'B', 'C', 'D'].map((L, i) => { const o = e.options[L], en = ent(o.entry);
+    const s3 = h('div', {}, Object.keys(e.options).filter(L => LET.indexOf(L) >= 0 && LET.indexOf(L) < q.o.length).sort().map(L => { const i = LET.indexOf(L), o = e.options[L], en = o.entry ? ent(o.entry) : null;
       return h('div', { class: 'optcard' + (L === A ? ' ok' : '') + (chosen === i && L !== A ? ' bad' : ''), 'data-opt': L },
-        h('div', { class: 'row' }, h('b', {}, '(' + L + ') ' + q.o[i]), spk(en.hw, en.hw), L === A ? h('span', { class: 'tag ok' }, '正確答案') : null, chosen === i ? h('span', { class: 'tag' }, '你選的') : null),
-        h('div', { class: 'fine' }, posZh(en) + (en.alsoPos ? '(另有詞性:' + en.alsoPos + ')' : '')), h('p', {}, o.why),
-        h('div', { class: 'fine' }, wlink(o.entry, '單字頁→'))); }));
+        h('div', { class: 'row' }, h('b', {}, '(' + L + ') ' + q.o[i]), en ? spk(en.hw, en.hw) : null, L === A ? h('span', { class: 'tag ok' }, '正確答案') : null, chosen === i ? h('span', { class: 'tag' }, '你選的') : null),
+        en ? h('div', { class: 'fine' }, posZh(en) + (en.alsoPos ? '(另有詞性:' + en.alsoPos + ')' : '')) : null, h('p', {}, o.why),
+        en ? h('div', { class: 'fine' }, wlink(o.entry, '單字頁→')) : null); }));
     // 4 單字與發音
     const signed = e.status === 'reviewed';
     const s4 = h('div', {}, e.words.map(w => wordCard(w, { noLink: false, signedScope: signed })));
     if (e.phrases.length) s4.append(h('div', { class: 'sub' }, '這題用到的片語'), h('ul', { class: 'colls' }, e.phrases.map(p => { const x = V.phrases[p]; return h('li', {}, spk(x.t, x.t), h('b', {}, ' ' + x.t), h('span', { class: 'fine' }, '　' + x.zh)); })));
+    if (e.notes && e.notes.length) s4.append(h('div', { class: 'sub' }, '重點字詞(尚未建立詞條,草稿)'), h('ul', { class: 'colls', 'data-role': 'notes' }, e.notes.map(n => h('li', {}, h('b', {}, n.t), h('span', { class: 'fine' }, (n.pos ? ' ' + n.pos : '') + (n.zh ? '　' + n.zh : '')),
+      n.note ? h('div', { class: 'fine' }, n.note) : null, n.coll && n.coll.length ? h('div', { class: 'fine' }, '搭配:' + n.coll.join(' / ')) : null))));
     if (e.grammar) s4.append(h('div', { class: 'sub' }, '文法補充'), h('p', { 'data-role': 'grammar' }, e.grammar));
     // 5 衍生字與延伸
-    const s5 = h('div', {}, relationBlock(e.focus));
+    const s5 = h('div', {}, e.focus ? relationBlock(e.focus) : null);
     if (e.patterns.length) s5.append(h('div', { class: 'sub' }, '常考句型'), h('ul', { 'data-role': 'patterns' }, e.patterns.map(t => h('li', {}, t))));
     // 6 歷屆出題紀錄
-    const s6 = recordsBlock(e.focus, { limit: 5 }); s6.prepend(h('p', { class: 'fine' }, '「' + ent(e.focus).hw + '」在歷屆題庫的出現紀錄:'));
-    s6.append(h('p', {}, wlink(e.focus, '看完整歷屆出現紀錄與統計方法→')));
+    let s6;
+    if (e.focus) { s6 = recordsBlock(e.focus, { limit: 5 }); s6.prepend(h('p', { class: 'fine' }, '「' + ent(e.focus).hw + '」在歷屆題庫的出現紀錄:')); s6.append(h('p', {}, wlink(e.focus, '看完整歷屆出現紀錄與統計方法→'))); }
+    else s6 = h('p', { class: 'fine', 'data-role': 'no-focus' }, '這一題的重點字詞還沒有單字詞條,所以暫時沒有歷屆出現紀錄(建立詞條後才會統計)。');
     // 7 延伸練習
     const items = EXT.filter(x => x.forQuestion === (q.year + '-' + q.n));
     const s7 = items.length ? h('div', {}, h('p', {}, '針對這一題的常見錯誤設計的原創練習,共 ' + items.length + ' 題。', signed ? signedTag(h) : draftTag(h)),

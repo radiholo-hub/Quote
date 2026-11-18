@@ -84,16 +84,16 @@ def test_official_answers_are_unchanged_by_the_figure_replacement(public_site):
             assert len(q['opts']) == 4                                                                 # 選項仍是四個，代號 A–D 不變
 
 
-def test_public_explanations_are_only_the_ten_teacher_signed_ones(public_site):
+def test_public_explanations_are_only_the_46_teacher_signed_ones(public_site):
     s = (public_site / 'exam' / 'explain.js').read_text(encoding='utf8')
     ex = json.loads(subprocess.run(['node', '-e', "global.window={};eval(require('fs').readFileSync(process.argv[1],'utf8'));console.log(JSON.stringify(window.EXPLAIN))", str(public_site / 'exam' / 'explain.js')], capture_output=True, text=True, check=True).stdout)
-    assert sorted(ex) == sorted(f'115-{n}' for n in range(1, 11)) and {e['status'] for e in ex.values()} == {'reviewed'}      # 沒有任何草稿詳解冒充已審核
+    assert sorted(ex) == sorted(f'115-{n}' for n in range(1, 47)) and {e['status'] for e in ex.values()} == {'reviewed'}      # 115 年 Q1–Q46 全部教師簽核；沒有任何草稿詳解冒充已審核
     assert all(e['reviewer'] == '教師（負責人）' and e['reviewedAt'] for e in ex.values())
     assert s.startswith('// 公開版資料') and '審核方式' not in s and 'gsat_review_sheet' not in s                  # 維護者的內部審核流程註解不外流
 
 
 def test_public_copies_are_the_source_data_without_the_maintainer_comments(public_site):
-    for f in ('answers.js', 'explain.js', 'vocab_index.js'):
+    for f in ('answers.js', 'vocab_index.js'):
         src = (ROOT / 'exam' / f).read_text(encoding='utf8').splitlines(keepends=True)
         i = next(n for n, ln in enumerate(src) if ln.startswith('window.'))
         assert (public_site / 'exam' / f).read_text(encoding='utf8').splitlines(keepends=True)[1:] == src[i:], f
@@ -231,7 +231,7 @@ def test_every_replaced_figure_question_shows_its_image_on_the_site(browser, pub
 
 def test_exam_list_and_free_practice_work_without_any_withheld_figure_notice(browser, public_site):
     ctx, page = open_site(browser, public_site)
-    assert page.evaluate('[EXAMS.length, Object.keys(ANSWERS).length, Object.keys(EXPLAIN).length]') == [10, 10, 10]
+    assert page.evaluate('[EXAMS.length, Object.keys(ANSWERS).length, Object.keys(EXPLAIN).length]') == [10, 10, 46]
     assert '10 個學年度' in page.locator('a.entry').first.inner_text()
     page.goto((public_site / 'index.html').as_uri() + '#/exam')
     page.wait_for_selector('h1:has-text("歷屆試題")')
@@ -299,15 +299,13 @@ def test_practice_source_filter_has_all_exam_and_original(browser, public_site):
     ctx.close()
 
 
-def test_q1_to_q10_show_as_reviewed_and_other_questions_do_not_pretend(browser, public_site):
+def test_q1_to_q46_show_as_reviewed_and_other_years_do_not_pretend(browser, public_site):
     ctx, page = open_site(browser, public_site)
-    for n in range(1, 11):
+    for n in range(1, 47):
         page.goto((public_site / 'index.html').as_uri() + f'#/q/e115_{n}')
         page.wait_for_selector('[data-view=q]')
         assert page.evaluate(f"__gsat.EXPL()['115-{n}'].status") == 'reviewed'
-    page.goto((public_site / 'index.html').as_uri() + '#/q/e115_11')
-    page.wait_for_selector('[data-view=q]')
-    assert page.locator('.explain.v2').count() == 0 and page.evaluate("__gsat.EXPL()['115-11']") is None          # 沒有教師簽核的題目沒有詳解、更不會標已審核
+    assert page.evaluate("Object.keys(__gsat.EXPL()).length") == 46                                              # 其他年度沒有詳解、也不會被標已審核
     page.goto((public_site / 'index.html').as_uri() + '#/q/e114_1')
     page.wait_for_selector('[data-view=q]')
     assert page.locator('.explain.v2').count() == 0
@@ -345,3 +343,40 @@ def test_scoring_and_timer_logic_still_work_on_the_public_build(browser, public_
     assert page.locator('[data-role=summary]').count() >= 1
     assert '尚無' not in page.locator('[data-role=scored]').inner_text() and '— / 100' in page.locator('[data-role=total]').inner_text()          # 選擇題照官方配分計分；沒做的非選擇題不當成 0 分
     ctx.close()
+
+
+def test_explain_drafts_in_the_source_never_reach_the_public_output():
+    """explain.js 允許放 AI 草稿（status: draft），但公開輸出只能有 reviewed：草稿、沒有 status、狀態寫錯的都被擋下；已審核題目逐字不動。"""
+    body = ('window.EXPLAIN = ' + json.dumps({
+        '115-1': {'schema': 2, 'answer': 'B', 'status': 'reviewed', 'reviewer': 'x', 'key': ['k']},
+        '115-11': {'schema': 2, 'answer': 'B', 'status': 'draft', 'key': ['k']},
+        '115-12': {'schema': 2, 'answer': 'C', 'key': ['k']},
+        '115-13': {'schema': 2, 'answer': 'D', 'status': 'Reviewed', 'key': ['k']},
+    }, ensure_ascii=False, indent=1) + ';\n')
+    out = pub.reviewed_only(body)
+    keep = json.loads(out[out.index('=') + 1:].strip().rstrip(';'))
+    assert list(keep) == ['115-1'] and keep['115-1']['status'] == 'reviewed'
+    assert pub.reviewed_only(out) == out                                                                 # 再跑一次結果不變
+    real = (ROOT / 'exam' / 'explain.js').read_text(encoding='utf8')
+    drafts = [k for k, v in json.loads(real[real.index('window.EXPLAIN = ') + 17:].strip().rstrip(';')).items() if v.get('status') != 'reviewed']
+    pubtxt = pub.public_copy(ROOT / 'exam' / 'explain.js')
+    assert all('"' + k + '"' not in pubtxt for k in drafts)                                              # 真實來源裡的草稿一題都沒有進公開輸出
+
+
+@pytest.mark.parametrize('status', ['approved', 'REVIEWED', ' reviewed', 'reviewed ', 'review', '', None, True, 1, ['reviewed'], {'status': 'reviewed'}])
+def test_unknown_or_malformed_status_is_never_published(status):
+    """status 不是剛好等於字串 reviewed（大小寫、空白、型別、缺漏、亂寫）一律不公開，不會默默當成 reviewed。"""
+    body = 'window.EXPLAIN = ' + json.dumps({'115-1': {'status': 'reviewed', 'key': ['k']}, '115-11': {'status': status, 'key': ['k']}, '115-12': 'reviewed', '115-13': None, '115-14': ['reviewed']}, ensure_ascii=False, indent=1) + ';\n'
+    out = pub.reviewed_only(body)
+    assert list(json.loads(out[out.index('=') + 1:].strip().rstrip(';'))) == ['115-1']
+
+
+def test_public_output_keeps_the_signed_entries_exactly_and_nothing_else(public_site):
+    """公開的 explain.js = 來源裡所有 reviewed 題目逐字相同（Q1–Q10）；Q11–Q46 目前全是草稿，一題都不在公開輸出。"""
+    def load(path):
+        t = pathlib.Path(path).read_text(encoding='utf8')
+        return json.loads(t[t.index('window.EXPLAIN = ') + 17:].strip().rstrip(';'))
+    src, out = load(ROOT / 'exam' / 'explain.js'), load(public_site / 'exam' / 'explain.js')
+    assert sorted(out) == sorted(f'115-{n}' for n in range(1, 47))
+    assert out == {k: v for k, v in src.items() if v.get('status') == 'reviewed'}
+    assert all(src[f'115-{n}']['status'] == 'reviewed' for n in range(1, 47))
