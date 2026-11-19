@@ -9,7 +9,7 @@
   exams.js        選擇題文字。需要附圖才能作答的題目：有 REPLACEMENTS 登記的，換成 gsat/data/figures/ 的原創替代圖（標 imgSource）；沒有登記的
                   移除圖片路徑並標 figureWithheld: true，而且預設會讓整理失敗（不允許上線一個看不到附圖卻照常計分的題目）
   answers.js      官方選擇題答案（資料逐字複製，只拿掉開頭的維護者註解）
-  explain.js      原創詳解（同上；只有教師簽核過的題目標 reviewed，其餘一律是 draft）
+  explain.js      原創詳解（只輸出 status=reviewed 的題目；AI 草稿一律不公開，見 reviewed_only）
   vocab_index.js  單字出現索引（同上；只有年度、題號、位置，不含試題文字）
   nonmc.js        空殼：非選擇題頁面只有圖片，圖片不公開，所以不放路徑
   mixed.js        空殼：混合題的多選題答案只在非選擇題頁面使用，該頁面需要試卷圖片
@@ -91,7 +91,21 @@ def public_copy(path):
         i += 1
     if i >= len(lines) or not lines[i].startswith('window.'):
         raise SystemExit(f'{pathlib.Path(path).name} 開頭格式不符：註解之後應該直接是 window.…')
-    return '// 公開版資料（由 tools/gsat_public_exams.py 自 gsat/exam 複製，勿手改）。\n' + ''.join(lines[i:])
+    body = ''.join(lines[i:])
+    if pathlib.Path(path).name == 'explain.js':
+        body = reviewed_only(body)
+    return '// 公開版資料（由 tools/gsat_public_exams.py 自 gsat/exam 複製，勿手改）。\n' + body
+
+
+def reviewed_only(body):
+    """explain.js 裡的 AI 草稿（status 不是 reviewed）不公開：預設拒絕，只有教師已簽核（reviewed）的題目才進公開輸出。
+    已簽核題目的內容逐字不動（json 重新輸出，縮排格式與來源相同）。"""
+    m = re.match(r'window\.EXPLAIN\s*=\s*', body)
+    if not m:
+        raise SystemExit('explain.js 格式不符：找不到 window.EXPLAIN =')
+    data = json.loads(body[m.end():].strip().rstrip(';'))
+    keep = {k: v for k, v in data.items() if isinstance(v, dict) and v.get('status') == 'reviewed'}
+    return 'window.EXPLAIN = ' + json.dumps(keep, ensure_ascii=False, indent=1) + ';\n'
 
 
 def build(src, out, allow_withheld=False):

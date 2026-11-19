@@ -10,6 +10,7 @@
 審核表含大考中心試題,權利尚未確認,輸出位置必須在版本庫「以外」,否則拒絕寫入。
 用法:python3 tools/gsat_review_sheet.py --out /某個版本庫以外的資料夾 [--q 115-1] [--year 115] [--no-audio]
       --q 只輸出單一題(檔名 review-<題號>.html);不加則輸出全部 explanation-review-sheet.html
+      --from-n / --to-n 只輸出題號範圍(搭配 --year);--name 指定輸出檔名
       預設把用到的 mp3 內嵌(base64),單一檔案離線可播;--no-audio 則不內嵌。"""
 import argparse, base64, html, json, math, pathlib, subprocess, sys
 
@@ -21,7 +22,7 @@ const out=[];
 for (const [k,e] of Object.entries(window.EXPLAIN)) {
   const [y,n]=k.split('-'); const ex=window.EXAMS.find(x=>x.year===y);
   for (const s of ex.sections) for (const g of s.groups) for (const q of g.questions) if (q.n==+n)
-    out.push({key:k, year:y, n:+n, type:s.name, stem:q.stem, opts:q.opts, official:window.ANSWERS[y][q.n-1], e, ext:window.EXT_PRACTICE.filter(x=>x.forQuestion===k)});
+    out.push({key:k, year:y, n:+n, type:s.name, stem:q.stem, opts:q.opts, bank:g.bank||null, passage:g.passage||null, official:window.ANSWERS[y][q.n-1], e, ext:window.EXT_PRACTICE.filter(x=>x.forQuestion===k)});
 }
 console.log(JSON.stringify({items:out, vocab:window.VOCAB, index:window.VOCAB_INDEX, man:window.AUDIO_MANIFEST}));
 """
@@ -143,20 +144,37 @@ class Sheet:
 def build_question(S, i):
     d, e, k, V = S.d, i['e'], i['key'], S.V
     h = [f'<h2 id="q{k}">{i["year"]} 學年度學科能力測驗　第 {i["n"]} 題・{esc(i["type"])}　<small class="note">詳解狀態:{esc(e["status"])}{("(教師已簽核:" + esc(str(e.get("reviewer"))) + "," + esc(str(e.get("reviewedAt"))) + ")") if e["status"] == "reviewed" else "(AI 草稿,未經人工審核)"}</small></h2>']
+    flags = e.get('aiFlags') or []
+    h.append('<p class="note" data-role="selfcheck"><b>AI 自我檢查:' + ('需老師注意(' + str(len(flags)) + ' 項,見下方黃色方塊)' if flags else '無疑義') + '</b></p>')
     if e['answer'] != i['official']: h.append('<p class="warn">⚠ 詳解答案與官方答案不一致!</p>')
     if e.get('aiFlags'): h.append('<div class="flag"><b>⚠ AI 自我檢查:較需要老師確認的地方</b><ul>' + ''.join(f'<li>{esc(x)}</li>' for x in e['aiFlags']) + '</ul></div>')
-    opts = '\n'.join(f'({"ABCD"[j]}) {o}' + ('  ← 官方答案' if "ABCD"[j] == i['official'] else '') for j, o in enumerate(i['opts']))
-    h.append('<h3>① 題目與官方答案</h3>' + S.row(f'{k}:q', '題目、選項與官方答案(請對照大考中心原卷)', f'{i["stem"]}\n{opts}\n官方答案:({i["official"]})', editable=False))
+    LT = 'ABCDEFGHIJ'
+    optlist = i.get('opts') or i.get('bank') or []
+    opts = '\n'.join(f'({LT[j]}) {o}' + ('  ← 官方答案' if LT[j] == i['official'] else '') for j, o in enumerate(optlist))
+    if i.get('passage'):
+        marks = '\n\n'.join(p.replace(f'【{i["n"]}】', f'▶▶【{i["n"]}】◀◀') for p in i['passage'])
+        h.append('<h3>文章(本題的空格以 ▶▶ ◀◀ 標出)</h3>' + S.row(f'{k}:passage', '文章(唯讀,請對照大考中心原卷)', marks, editable=False, radios=False))
+    fig = ROOT / 'gsat' / 'data' / 'figures' / f'{i["year"]}-{i["n"]}.svg'
+    if fig.is_file():
+        h.append('<h3>附圖(已核准的原創替代圖,不是大考中心原圖)</h3><p><img alt="原創替代圖" style="max-width:100%;border:1px solid #c5ccd8;background:#fff" src="data:image/svg+xml;base64,' + base64.b64encode(fig.read_bytes()).decode() + '"></p>')
+    h.append('<h3>① 題目與官方答案</h3>' + S.row(f'{k}:q', '題目、選項與官方答案(請對照大考中心原卷)', f'{i.get("stem") or "(空格題:選項見下)"}\n{opts}\n官方答案:({i["official"]})', editable=False))
     h.append('<h3>② 中文翻譯(代入正確答案;AI 草稿)</h3>' + S.row(f'{k}:zh', '中文翻譯', e.get('zh', '(缺)')))
     h.append('<h3>③ 解題關鍵與判斷步驟(每一步分開審核)</h3>' + ''.join(S.row(f'{k}:key{n + 1}', f'解題步驟 {n + 1}', t) for n, t in enumerate(e['key'])))
-    h.append('<h3>④ 四個選項的判斷(每個選項分開審核)</h3>' + ''.join(
-        S.row(f'{k}:opt{L}', f'選項 ({L}) {V[o["entry"]]["hw"]}({V[o["entry"]]["pos"]} {V[o["entry"]]["zh"]}){" ✔官方答案" if L == i["official"] else ""}', o['why'], audio=S.audio_of(V[o['entry']]['hw'])) for L, o in e['options'].items()))
-    ents = list(dict.fromkeys(e['words'] + [e['focus']] + [o['entry'] for o in e['options'].values()]))
-    h.append('<h3>⑤ 單字、搭配詞、衍生字、例句(每一項分開審核,可聽發音)</h3><p class="note">先是本題的重點字,後面是其他選項的單字(它們目前多半沒有完整例句)。</p>' + ''.join(S.entry_rows(k, x) for x in ents))
+    def optlabel(L, o):
+        en = V.get(o.get('entry')) if o.get('entry') else None
+        txt = optlist[LT.index(L)] if LT.index(L) < len(optlist) else ''
+        base = f'選項 ({L}) {txt}' + (f'・{en["hw"]}({en["pos"]} {en["zh"]})' if en else '')
+        return base + (' ✔官方答案' if L == i['official'] else '')
+    h.append('<h3>④ 選項的判斷(每個選項分開審核;字庫題只列正確答案與最容易誤選的字)</h3>' + ''.join(
+        S.row(f'{k}:opt{L}', optlabel(L, o), o['why'], audio=(S.audio_of(V[o['entry']]['hw']) if o.get('entry') else None)) for L, o in sorted(e['options'].items())))
+    ents = [x for x in dict.fromkeys(e['words'] + ([e['focus']] if e.get('focus') else []) + [o['entry'] for o in e['options'].values() if o.get('entry')]) if x]
+    notes = ''.join(S.row(f'{k}:note{n + 1}', f'重點字詞 {n + 1}({"片語" if x.get("type") == "phrase" else "單字"};尚未建立詞條)',
+                         f'{x["t"]}' + (f'  {x["pos"]}' if x.get('pos') else '') + f'  {x.get("zh", "")}' + (f'\n{x["note"]}' if x.get('note') else '') + (f'\n搭配:{" / ".join(x["coll"])}' if x.get('coll') else '')) for n, x in enumerate(e.get('notes') or []))
+    h.append('<h3>⑤ 單字、搭配詞、衍生字、例句(每一項分開審核,可聽發音)</h3><p class="note">先是本題的重點字,後面是其他選項的單字(它們目前多半沒有完整例句)。</p>' + notes + ''.join(S.entry_rows(k, x) for x in ents))
     ph = ''.join(S.row(f'{k}:ph:{p}', '片語', f'{d["vocab"]["phrases"][p]["t"]}({d["vocab"]["phrases"][p]["zh"]})', audio=S.audio_of(d['vocab']['phrases'][p]['t'])) for p in e['phrases'])
     h.append('<h3>⑥ 片語、常考句型與文法補充</h3>' + ph + ''.join(S.row(f'{k}:pat{n + 1}', f'常考句型 {n + 1}', t) for n, t in enumerate(e['patterns'])) + S.row(f'{k}:gram', '文法補充', e.get('grammar', '(缺)')))
     meta = d['index']['meta']
-    h.append(f'<h3>⑦ 歷屆出題紀錄(每一筆分開審核)</h3><p class="note">範圍:{esc(meta["scope"])}{esc(meta["notice"])}</p>' + ''.join(S.records(k, x) for x in dict.fromkeys(e['words'] + [e['focus']])))
+    h.append(f'<h3>⑦ 歷屆出題紀錄(每一筆分開審核)</h3><p class="note">範圍:{esc(meta["scope"])}{esc(meta["notice"])}</p>' + ''.join(S.records(k, x) for x in dict.fromkeys(e['words'] + ([e['focus']] if e.get('focus') else []))))
     ex = []
     for x in i['ext']:
         txt = f'{x["q"]}\n' + '\n'.join(f'({"ABCD"[j]}) {t}' for j, t in enumerate(x['options'])) + f'\n答案:({"ABCD"[x["answer"]]})\n解析:{x["explain"]}'
@@ -167,21 +185,21 @@ def build_question(S, i):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument('--out', required=True); ap.add_argument('--year'); ap.add_argument('--q'); ap.add_argument('--no-audio', action='store_true')
+    ap = argparse.ArgumentParser(); ap.add_argument('--out', required=True); ap.add_argument('--year'); ap.add_argument('--q'); ap.add_argument('--from-n', type=int); ap.add_argument('--to-n', type=int); ap.add_argument('--name'); ap.add_argument('--no-audio', action='store_true')
     a = ap.parse_args()
     out = pathlib.Path(a.out).resolve()
     if out == ROOT or ROOT in out.parents:
         sys.exit('拒絕：審核表含試題，輸出位置必須在版本庫（' + str(ROOT) + '）以外。')
     out.mkdir(parents=True, exist_ok=True)
     data = json.loads(subprocess.run(['node', '-e', JS, str(ROOT)], capture_output=True, text=True, check=True).stdout)
-    items = sorted([i for i in data['items'] if (not a.year or i['key'].startswith(a.year + '-')) and (not a.q or i['key'] == a.q)], key=lambda i: (i['year'], i['n']))
+    items = sorted([i for i in data['items'] if (not a.year or i['key'].startswith(a.year + '-')) and (not a.q or i['key'] == a.q) and (a.from_n is None or i['n'] >= a.from_n) and (a.to_n is None or i['n'] <= a.to_n)], key=lambda i: (i['year'], i['n']))
     if not items: sys.exit('沒有符合的題目')
     files = {(it['rate'], it['text'].strip()): it['file'] for it in data['man']['items']}
     files = {k: v for k, v in files.items() if (ROOT / 'gsat' / 'audio' / v).exists()}
     allf = {v for v in files.values()}
     S = Sheet(data, files, not a.no_audio)
     body = ''.join(build_question(S, i) for i in items)
-    toc = ''.join(f'<li><a href="#q{i["key"]}">{i["key"]}</a>　{esc(i["stem"][:44])}…　<b>官方({i["official"]})</b></li>' for i in items)
+    toc = ''.join(f'<li><a href="#q{i["key"]}">{i["key"]}</a>　{esc((i.get("stem") or i["type"])[:44])}…　<b>官方({i["official"]})</b>　{("⚠ 需老師注意" if i["e"].get("aiFlags") else "無疑義")}</li>' for i in items)
     DRAFT_NOTE = ('詳解、中文翻譯、單字詞條、原創例句與延伸練習都是 AI 撰寫的<b>草稿,尚未經人工審核</b>。' if all(i['e']['status'] != 'reviewed' for i in items)
                   else '詳解、中文翻譯、單字詞條、原創例句與延伸練習原為 AI 撰寫的草稿;<b>標示「教師已簽核」的題目以簽核紀錄(docs/gsat/signoffs/)為準,其餘仍是草稿、尚未經人工審核</b>。')
     emb = ''
@@ -189,7 +207,7 @@ def main():
         emb = 'var DATA=' + json.dumps({f: base64.b64encode((ROOT / 'gsat' / 'audio' / f).read_bytes()).decode() for f in sorted(S.audio_used)}) + ';'
     doc = f'''<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>教師逐項審核介面</title><style>{CSS}</style>
 <h1>學測英文詳解・教師逐項審核介面({len(items)} 題)</h1>
-<p class="warn"><b>注意:</b>本文件含大學入學考試中心試題,使用權利尚未確認,請勿公開轉貼。{DRAFT_NOTE}</p>
+<p class="warn"><b>注意:</b>本文件含正式試題內容,僅供內部教師審核,請勿公開轉貼。{DRAFT_NOTE}</p>
 <p>每個灰色/白色方塊是一個<b>獨立的審核項目</b>:選「通過／需修改／待確認」(預設待確認)、寫意見、或直接把輸入框裡的文字改成你要的版本(改過的方塊左邊會出現橘色線)。有 ▶ 的項目可以聽發音,並標記「正常／有問題」(音檔只有部分被人工試聽過、尚未全面驗收,所以逐項預設「待聽」,以你的標記為準)。
 左邊顏色:綠＝通過、紅＝需修改、灰＝待確認。選擇會自動存在這個瀏覽器;畫面最下面按「匯出」得到文字,貼回給開發者即可,不會自動改動任何資料。</p>
 <details><summary>題目清單</summary><ol>{toc}</ol></details>
@@ -198,7 +216,7 @@ def main():
 <h3>匯出</h3><textarea id="exp" readonly placeholder="按下方「匯出」後,標記過或改過的項目會列在這裡"></textarea>
 <div id="bar"><span id="cnt"></span><button id="btn">匯出</button><button id="clr">清除全部選擇</button></div>
 <script>{emb}{JSC}</script></html>'''
-    name = f'review-{a.q}.html' if a.q else 'explanation-review-sheet.html'
+    name = a.name or (f'review-{a.q}.html' if a.q else 'explanation-review-sheet.html')
     (out / name).write_text(doc, encoding='utf8')
     print(f'已輸出 {len(items)} 題到 {out / name}({(out / name).stat().st_size / 1e6:.1f} MB,內嵌 {len(S.audio_used) if not a.no_audio else 0} 個音檔)')
 
