@@ -2954,6 +2954,11 @@ $('#posCardBtn').addEventListener('click',function(e){
   const go=function(){if(!went){went=true;location.href=href}};
   logEvent('pos_home_card_click').then(go);setTimeout(go,900);
 });
+/* 模考專用連結（社群貼文用）：…/score-rescue/#mock1 直接打開第 1 回模考的開考頁；#exams 捲到首頁模考區 */
+if(location.hash==='#mock1'){
+  try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+  logEvent('exam1_link_open');examStartScreen(1);
+}else if(location.hash==='#exams'){const x=$('#exams');if(x)setTimeout(()=>x.scrollIntoView(),0)}
 /* 從詞性前測頁（pos/）點「繼續 Day 1–7 免費體驗」進來：有診斷結果就開學習路線，沒有就留在首頁先做診斷 */
 if(location.hash==='#day1-7'){
   try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
