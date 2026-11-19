@@ -6,6 +6,7 @@ import pytest
 from conftest import ROOT, needs_exam
 
 
+FULL_VOCAB_FLOW = {f'115-{n}' for n in range(1, 11)}                                                  # 114 年詞彙題只有文字詳解（重點字詞在 notes），詞條升級留待下一階段
 SIGNED_OFF = {json.loads(p.read_text(encoding='utf8'))['question'] for p in (ROOT.parent / 'docs' / 'gsat' / 'signoffs').glob('*.json')}    # 有教師簽核紀錄的題目
 
 
@@ -152,7 +153,7 @@ def test_explanations_are_complete_and_only_signed_off_ones_claim_to_be_reviewed
             assert e['status'] == 'draft', f'{k}：沒有教師簽核紀錄(docs/gsat/signoffs/)不得標為 reviewed'
         assert isinstance(e['key'], list) and len(e['key']) >= 3 and all(len(t) >= 15 for t in e['key']), f'{k}：解題關鍵要有判斷的步驟'
         assert not any(t.strip() in ('依照上下文可知', '依上下文可知') for t in e['key']), k
-        if int(k.split('-')[1]) <= 10:                                                                   # 詞彙題（Q1–Q10）：四個選項都是單字詞條
+        if k in FULL_VOCAB_FLOW:                                                                         # 115 年 Q1–Q10（完整單字詞條流程）：四個選項都是單字詞條
             assert sorted(e['options']) == list('ABCD') and all(o['why'].strip() and o['entry'] in V for o in e['options'].values()), f'{k}：四個選項都要有分析並引用詞條'
             assert e['words'] and e['grammar'].strip() and e['patterns'], f'{k}：詳解必須包含重要單字、文法補充與常考句型'
             assert all(w in V for w in e['words']) and e['focus'] in V and all(p in data['vocab']['phrases'] for p in e['phrases']), k
@@ -172,7 +173,7 @@ def test_explanation_options_match_the_real_option_text(data):
     V = data['vocab']['entries']
     for k, e in data['expl'].items():
         y, n = k.split('-')
-        if int(n) > 10:                                                                                  # 只有詞彙題的選項是單字詞條
+        if k not in FULL_VOCAB_FLOW:                                                                     # 只有完整詞條流程的 115 年 Q1–Q10，選項才是單字詞條
             continue
         q = next(q for s, g, q in questions(data, y) if q['n'] == int(n))
         for i, L in enumerate('ABCD'):

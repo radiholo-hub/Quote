@@ -1,0 +1,106 @@
+{
+ "question": "114-20",
+ "status": "passed",
+ "reviewer": "教師（負責人）",
+ "signedAt": "2026-11-19",
+ "scope": "114 學年度學測英文本題(題號見 question 欄位):教學文字內容——題目與官方答案、中文翻譯、解題步驟、選項解析、重點字詞(notes)、片語、句型與文法補充、有列出的歷屆出題紀錄、原創延伸練習(若本題有),以及已核准原創替代圖的引用關係(僅 114-36)。只限這一題的文字教學內容;不含發音(正式 production 試聽簽核尚未進行,見 audio 區塊,音檔一律 pending),不含尚未建立成正式單字詞條的未來資料,不含其他年度與其他題目,也不含任何歷屆詞彙出現紀錄(confirmed／pending)狀態的變更。",
+ "evidence": {
+  "reviewHtmlSha256": "42b744f9a4e3e50621ab044c0670840ed2f966ab7033fb639ddc94419dd1808d",
+  "note": "簽核當時教師逐項審核的 HTML 的雜湊,僅為證據。HTML 含審核狀態與版面,內容是否改變以 contentFingerprint 判定。"
+ },
+ "contentFingerprint": {
+  "algorithm": "sha256(canonical JSON);計算方式見 tools/gsat_signoff.py 的 fingerprint()",
+  "value": "856f4236efa22ea077ae44ae87de724095ddb0ea948c16e3f29370de24544353",
+  "covers": "題目與選項與官方答案、詳解內容、引用的單字詞條、畫面列出的衍生字、片語、延伸練習、重點字的歷屆出題紀錄、每個發音按鈕對應的 mp3 檔名、審核項目 ID 清單(mp3 檔案內容不在其中,見 audio 區塊)",
+  "excludes": "status / reviewer / reviewedAt / reviewNotes / aiFlags、各詞條與延伸題自己的 status、其他題目與其他詞條"
+ },
+ "items": [
+  {
+   "id": "114-20:passage",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:q",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:zh",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:key1",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:key2",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:key3",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:key4",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:optA",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:optB",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:optC",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:optD",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:note1",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:note2",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:note3",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:note4",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:note5",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:gram",
+   "result": "passed"
+  },
+  {
+   "id": "114-20:final",
+   "result": "passed"
+  }
+ ],
+ "audio": {
+  "status": "pending",
+  "scope": "正式（production）試聽簽核尚未進行:沒有任何音檔視為已通過。目前 repository 內的音檔是舊 edge-tts 檔(非官方來源,不部署);正式音檔需以 Azure 付費層(azure-paid)產生,並由教師聆聽後以 approve-audio 正式簽核。教學文字的簽核不受影響。",
+  "approvedFiles": [],
+  "buttons": [],
+  "buttonCount": 0,
+  "distinctFileCount": 0,
+  "totalAudioFiles": 187,
+  "notIncludedCount": 187,
+  "notIncluded": "所有音檔都不得視為已通過正式簽核。"
+ },
+ "vocabularyOccurrenceRecords": {
+  "entry": null,
+  "note": "本題的重點字詞(notes)尚未建立成單字詞條,沒有需要裁定的歷屆出題紀錄(若本題引用既有詞條,例如 114-6 選項 (D) 的 vacant,其歷屆出現紀錄維持既有狀態);本簽核不改變任何詞條的 confirmed／pending 統計,也不涉及其他待審核紀錄(例如 crash 的待審核紀錄仍維持待審核)。"
+ }
+}

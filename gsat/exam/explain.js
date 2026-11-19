@@ -1,9 +1,3290 @@
 // 原創詳解(自行撰寫,非第三方解析)。鍵為「年度-題號」。schema 2:引用單字詞條(gsat/data/vocab.js),字義與詞性只在詞條裡定義一次。
 // status:draft＝AI 草稿,待英文老師審核;reviewed＝已審核(審核前不得標為 reviewed)。reviewer／reviewedAt／reviewNotes 由審核者填寫。
 // 【資料來源】本檔是版本控制下的唯一來源,直接編輯;沒有任何 repo 外的產生流程,也不得再用腳本整檔重新產生(會把教師簽核欄位覆蓋回 draft;gsat/tests/test_signoff.py 會擋)。
-// 已簽核的題目(目前有 115-1 ～ 115-46)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
+// 已簽核的題目(目前有 114-1 ～ 114-46 與 115-1 ～ 115-46)必須有 docs/gsat/signoffs/<題號>.json,且內容指紋一致(python3 tools/gsat_signoff.py check);已簽核的內容被改動後檢查會失敗,需重新審核。
 // 審核方式:python3 tools/gsat_review_sheet.py --out <版本庫以外的資料夾> 產生含題目與檢核欄位的審核表(內含試題,請勿公開)。
 window.EXPLAIN = {
+ "114-1": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "空格前有冠詞 a、後面接介系詞 under,所以空格要填單數可數名詞,當 put 的受詞。四個選項都是名詞,詞性無法區分,要靠語意與搭配。",
+   "put ___ under a leaking faucet 的目的是「接水」,而且後面說 the amount of water collected in 24 hours(24 小時內被收集的水量),所以空格必須是能盛裝液體的東西。container(容器)符合,它來自動詞 contain(容納)。",
+   "比較選項:border 是邊界或邊框、timer 是計時器、marker 是標記用的筆或記號,三者都不能盛水,放在水龍頭下無法「收集」水,所以選 (C)。"
+  ],
+  "options": {
+   "A": {
+    "why": "border 是名詞,指國界、邊界或圖案的邊框(如 cross the border)。這個字本身用法正確,但邊界或邊框無法盛水,不符合本題語境。"
+   },
+   "B": {
+    "why": "timer 是名詞,指計時器(如 set a timer)。這個字本身用法正確,放一個計時器在水龍頭下也許能量「時間」,但句中說的是「收集到的水量」,需要能盛水的東西,不符合本題語境。"
+   },
+   "C": {
+    "why": "container 是可數名詞,指容器(盒、罐、桶、瓶等能裝東西的東西)。放在漏水的水龍頭下,才能把水收集起來,24 小時後看到的水量才有意義,故選 (C)。"
+   },
+   "D": {
+    "why": "marker 是名詞,指標記物或麥克筆、記號筆(如 a red marker)。這個字本身用法正確,但標記物不能盛水,不符合本題語境。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "container",
+    "pos": "n.",
+    "zh": "容器",
+    "note": "由動詞 contain(包含、容納)加上名詞字尾 -er 而來;同義字:vessel(較正式)。本題指能盛水的容器。注意 container 可指各種大小的容器,小到盒罐,大到貨櫃。",
+    "coll": [
+     "a plastic container",
+     "a food container",
+     "a shipping container",
+     "a container ship"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "contain",
+    "pos": "v.",
+    "zh": "包含、容納",
+    "note": "container 的字根動詞。contain 也可表示「控制、抑制」(contain one’s anger)。衍生字:contents(內容物)。"
+   },
+   {
+    "type": "word",
+    "t": "faucet",
+    "pos": "n.",
+    "zh": "水龍頭",
+    "note": "美式英語常用 faucet,英式英語常用 tap。leaking faucet(漏水的水龍頭)中的 leaking 是現在分詞當形容詞;leak 作動詞也可指「漏出」,作名詞指「漏洞、漏出」。",
+    "coll": [
+     "turn on/off the faucet",
+     "a dripping faucet"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "amount",
+    "pos": "n.",
+    "zh": "數量、總額",
+    "note": "amount 後接 of + 不可數名詞(the amount of water、a large amount of money);可數複數名詞則用 a number of。本題 the amount of water 的 water 不可數。",
+    "coll": [
+     "a large amount of",
+     "the amount of time"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "border",
+    "pos": "n.",
+    "zh": "邊界、邊框",
+    "note": "本題干擾字。比較:border 是兩地之間的界線;boundary 為較抽象的界線、範圍;frame 是畫框或框架。"
+   },
+   {
+    "type": "word",
+    "t": "marker",
+    "pos": "n.",
+    "zh": "標記物、麥克筆",
+    "note": "本題干擾字。marker 由動詞 mark(做記號)加 -er 而來,指做記號的人或物;mark 也構成 landmark、bookmark 等複合字。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "如果你在漏水的水龍頭下放一個容器,你會對 24 小時內收集到的水量感到驚訝。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-2": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "空格前有形容詞 fresh seasonal,後面有 to people in the community,而 offers a variety of 後面接名詞,所以空格要填名詞。四個選項都是名詞,要靠語意與搭配判斷。",
+   "主詞是 farmers’ market(農夫市集),賣的東西重點在 fresh(新鮮的)與 seasonal(當季的),這兩個修飾語最能搭配的是農產品;produce 作不可數名詞,指(尤指蔬果的)農產品。",
+   "offers a variety of ... 後面接複數名詞或不可數名詞都可以,produce 為不可數,所以直接用 a variety of fresh seasonal produce,不需要加 s。",
+   "其他選項:fashion、brand、trend 本身都是好用的名詞,但「新鮮的」多半形容食物,農夫市集又不是賣時尚、品牌或潮流的地方,語境不符,所以選 (A)。"
+  ],
+  "options": {
+   "A": {
+    "why": "produce (名詞,KK 音標 /ˈprɑdjus/,重音在第一音節),是不可數名詞,指農產品,尤指蔬菜水果。fresh seasonal produce 就是「新鮮的當季蔬果」,與農夫市集完全吻合,故選 (A)。"
+   },
+   "B": {
+    "why": "fashion 是名詞,指時尚、流行款式(如 seasonal fashion 指當季流行服飾)。這個字本身用法正確;但農夫市集賣的是食物,fresh seasonal 搭配的是可食用的農產品,不是時尚,不符合本題語境。"
+   },
+   "C": {
+    "why": "brand 是名詞,指品牌(如 a famous brand)。這個字本身用法正確;但本句 fresh seasonal 暗示的是可食用的農作物,農夫市集提供的重點是新鮮當季的食物產品,brand 不符合這個語境。"
+   },
+   "D": {
+    "why": "trend 是名詞,指趨勢、潮流(如 a growing trend)。這個字本身用法正確;但市集「提供」給居民的是具體可購買的東西,而且 fresh seasonal 暗示食物,trend 不符合本題語境。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "produce",
+    "pos": "n.",
+    "zh": "農產品(尤指蔬果)",
+    "note": "名詞(不可數)KK 音標 /ˈprɑdjus/,重音在第一音節;動詞讀作 /prəˈdjus/,意為「生產、製造、產生」,重音在第二音節。名詞 produce 常見於超市的 produce section(蔬果區)。",
+    "coll": [
+     "fresh produce",
+     "local produce",
+     "organic produce"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "produce",
+    "pos": "v.",
+    "zh": "生產、製造、產生",
+    "note": "與名詞 produce 拼法相同、重音不同。衍生字:product(產品)、production(生產)、producer(生產者)、productive(多產的、有生產力的)。"
+   },
+   {
+    "type": "word",
+    "t": "seasonal",
+    "pos": "adj.",
+    "zh": "季節性的、當季的",
+    "note": "來自 season(季節)加 -al。seasonal fruit 是當季水果;seasonal changes 是季節變化。"
+   },
+   {
+    "type": "word",
+    "t": "a variety of",
+    "pos": "phr.",
+    "zh": "各式各樣的",
+    "note": "a variety of 後面接複數名詞或不可數名詞;類似說法有 a range of、a wide selection of。注意 a variety of 當主詞的一部分時,動詞通常依後面的名詞決定單複數。",
+    "coll": [
+     "a variety of products",
+     "a wide variety of"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "community",
+    "pos": "n.",
+    "zh": "社區、社群",
+    "note": "本題 the community 指當地社區居民。常見搭配:community center(社區活動中心)、local community。"
+   },
+   {
+    "type": "word",
+    "t": "trend",
+    "pos": "n.",
+    "zh": "趨勢、潮流",
+    "note": "本題干擾字。常見搭配:follow a trend、a growing trend;形容詞 trendy 指「時髦的」。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [
+   "a variety of + 複數名詞／不可數名詞\n意思:各式各樣的……\n例如:The store sells a variety of fresh fruit.(這家店賣各式各樣的新鮮水果。)\n注意:variety 前常加 wide 加強語氣(a wide variety of);a variety of 之後若是可數名詞要用複數。"
+  ],
+  "grammar": "",
+  "zh": "當地的農夫市集很受歡迎,因為它為社區居民提供各式各樣新鮮的當季農產品。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-3": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "空格在 are already 之後、分號之前,而 are 之後可以接現在分詞(構成現在進行式)或形容詞,四個選項都是 -ing 形式,所以要判斷哪一個動詞的意思適合「回憶」當主詞。",
+   "分號後半句給出線索:I can no longer recall clearly what happened back then(我再也無法清楚回想當時發生的事),表示記憶變得不清楚。blur 作動詞表示「變模糊」,因此 memories are blurring 指記憶逐漸模糊。",
+   "blur 在此作不及物動詞(記憶自己變模糊),are already blurring 是現在進行式,表示「已經在逐漸模糊」;若是被動語態應為 are blurred。前半句 As the years have passed by 說明歲月流逝,與這種漸進的變化相合。",
+   "其他選項:trim 是修剪、drain 是排乾或耗盡、glare 是怒視或刺眼,動詞本身都用法正確,但都無法描述「記憶變得不清楚」,所以選 (A)。"
+  ],
+  "options": {
+   "A": {
+    "why": "blur 作動詞,表示「變模糊、使模糊不清」。memories are blurring 指記憶漸漸變得不清晰,正好對應後面的 can no longer recall clearly,故選 (A)。"
+   },
+   "B": {
+    "why": "trim 是動詞,指修剪、削減(如 trim the hedge、trim costs)。這個字本身用法正確,但記憶不是被「修剪」,不符合本題語境。"
+   },
+   "C": {
+    "why": "drain 是動詞,指排出(液體)、耗盡(精力或資源),如 drain the water、drained of energy。這個字本身用法正確,但本句重點是記憶「變不清楚」,而不是被排乾或耗盡,不符合本題語境。"
+   },
+   "D": {
+    "why": "glare 是動詞,指怒視(glare at sb)或(光)刺眼地照耀;形容詞 glaring 還可指「顯眼的、明顯得刺眼的」,如 a glaring mistake。這個字本身用法正確,但與記憶變模糊的語意相反或無關,不符合本題語境。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "blur",
+    "pos": "v.",
+    "zh": "(使)變模糊",
+    "note": "作不及物動詞指「變模糊」,作及物動詞指「使模糊」。名詞 blur 指模糊不清的東西;形容詞 blurry、blurred 表示「模糊的」。同義字:fade(逐漸淡去)是表達記憶變淡的常見字,但 fade 偏重「逐漸消退」;反義字:sharpen(使清晰)。",
+    "coll": [
+     "blur the line between A and B",
+     "a blurred photo",
+     "blurry memories"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "recall",
+    "pos": "v.",
+    "zh": "回想起、記起",
+    "note": "為及物動詞,後面直接接名詞或 wh- 子句,如 recall what happened。recall 比 remember 正式,常用於「回想起某事」。同義字:remember。recall 作名詞時可指召回(有瑕疵的產品)。",
+    "coll": [
+     "can’t recall the name",
+     "recall doing sth"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "no longer",
+    "pos": "phr.",
+    "zh": "不再",
+    "note": "no longer 放在助動詞之後、一般動詞之前,如 can no longer recall。同義說法:not ... any longer。"
+   },
+   {
+    "type": "word",
+    "t": "trim",
+    "pos": "v.",
+    "zh": "修剪、削減",
+    "note": "本題干擾字。如 trim the hair、trim the budget。注意與 blur 不同:trim 是人刻意去除多餘部分。"
+   },
+   {
+    "type": "word",
+    "t": "glaring",
+    "pos": "adj.",
+    "zh": "刺眼的、明顯的",
+    "note": "本題干擾字。glare 的 -ing 形式,glaring 常用於 a glaring error/mistake,指明顯到刺眼的錯誤,與「模糊」意義相反。"
+   },
+   {
+    "type": "word",
+    "t": "drain",
+    "pos": "v.",
+    "zh": "排出、耗盡",
+    "note": "本題干擾字。drain 作動詞指排出(液體)、耗盡(精力、資源);作名詞指排水管,brain drain 指人才外流。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "空格前的 are already 加上現在分詞構成現在進行式(are blurring),表示記憶正在逐漸變模糊的過程;already 位於 be 動詞之後、分詞之前。",
+  "zh": "隨著歲月流逝,我童年的許多記憶已經逐漸模糊了;我再也無法清楚回想當時發生的事。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-4": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "空格前有 by nature(本質上),後面有 and hurtful;空格與 hurtful 以 and 連接,兩者都要能描述 Racist remarks,所以空格要填形容詞。四個選項都是形容詞,要靠語意判斷。",
+   "by nature 要描述 racist remarks「本質上」的性質。種族歧視言論本質上就是會冒犯他人的話,所以用 offensive(冒犯人的、令人反感的)最精準。",
+   "比較 excessive:它表示「超過合理範圍的、過度的」。excessive and hurtful remarks 在文法與語意上可以成立;但本句有 by nature,要描述 racist remarks 本質上的性質。「過度」是程度描述,而 offensive 才直接指出種族歧視言論本質上會冒犯他人的特性,因此 (C) 最精確。",
+   "其餘選項:furious 是狂怒的、stubborn 是頑固的,形容詞本身用法正確,但都不是在描述言論本質上會冒犯他人的性質,所以選 (C)。"
+  ],
+  "options": {
+   "A": {
+    "why": "excessive 是形容詞,表示「過度的、超過合理範圍的」。excessive remarks、excessive and hurtful remarks 都可以是自然英文;但本句以 by nature 描述 racist remarks 本質上的性質,excessive 只是程度描述,offensive 才直接表示「冒犯人的」,所以 (A) 不如 (C) 精確。"
+   },
+   "B": {
+    "why": "furious 是形容詞,指狂怒的、暴怒的,通常形容人或情緒、反應(如 a furious reaction)。這個字本身用法正確,但本句在描述言論本身的性質,不是在說言論者很生氣,不符合本題語境。"
+   },
+   "C": {
+    "why": "offensive 是形容詞,指冒犯的、無禮的、令人反感的。by nature 描述 racist remarks 本質上的性質,種族歧視言論本質上就會冒犯他人,與後面的 hurtful 和 should be avoided 的語氣一致,所以選 (C)。"
+   },
+   "D": {
+    "why": "stubborn 是形容詞,指頑固的、固執的(通常形容人或態度,如 a stubborn child、a stubborn stain)。這個字本身用法正確,但言論「固執」與「傷人」不是同一個層面,不符合本題語境。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "offensive",
+    "pos": "adj.",
+    "zh": "冒犯的、無禮的;攻擊的",
+    "note": "動詞 offend(冒犯、得罪),名詞 offense/offence(冒犯;罪行)。offensive 也可作名詞,指進攻、攻勢;作形容詞時也可指進攻性的(對比 defensive 防守的)。同義字:insulting、rude;反義字:inoffensive(不會冒犯人的)、polite。",
+    "coll": [
+     "offensive language",
+     "an offensive remark",
+     "feel offended"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "hurtful",
+    "pos": "adj.",
+    "zh": "傷人的",
+    "note": "hurt(傷害)加 -ful。hurtful remarks 指傷人的話;同義字:harmful 偏向造成實際損害,hurtful 偏向傷害感情。"
+   },
+   {
+    "type": "word",
+    "t": "remark",
+    "pos": "n.",
+    "zh": "言論、評論",
+    "note": "指簡短的評論或話,為可數名詞,單複數皆常見(make a remark);racist remarks 在此用複數泛指此類言論。動詞 remark 指評論、說。",
+    "coll": [
+     "make a remark",
+     "a rude remark",
+     "racist remarks"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "by nature",
+    "pos": "phr.",
+    "zh": "生性、本質上",
+    "note": "by nature 表示「天生地」或「本質上」,如 She is shy by nature.(她生性害羞。)",
+    "coll": [
+     "be kind by nature"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "excessive",
+    "pos": "adj.",
+    "zh": "過度的",
+    "note": "本題干擾字。指超過合理限度的、過量的。名詞 excess(過量),副詞 excessively;反義字:moderate(適度的)。"
+   },
+   {
+    "type": "word",
+    "t": "avoid",
+    "pos": "v.",
+    "zh": "避免",
+    "note": "avoid 後面接名詞或動名詞(V-ing),不可直接接 to V,例如 avoid making noise。本題用被動語態 should be avoided。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "種族歧視的言論本質上就具有冒犯性且傷人,在任何場合都應該避免。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-5": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "空格前有 the first,後面接 of her essay,所以空格要填單數可數名詞,指「第一次的某個版本」。四個選項都是名詞,需靠語意判斷。",
+   "句意是 Mary 對 essay 的第一個____不滿意,所以她修改了好幾次才交給老師。revised it several times(修改好幾次)說明她對初次寫出的版本不滿意,draft(草稿、初稿)正是用來修改的第一個版本。",
+   "本題 first draft 是固定搭配,意為「初稿」;有 first draft 就有 second draft、final draft(定稿),整個故事線很連貫。",
+   "其他選項:text(文本)、brush(刷子)、plot(情節)是自然的名詞,但 the first text of her essay 並沒有「初稿」的意思,brush 與 plot 也和修改文章的情境無關,所以選 (C)。"
+  ],
+  "options": {
+   "A": {
+    "why": "text 是名詞,指文字、文本、課文,也指簡訊(text message)。這個字本身用法正確,但本題要表達「文章的初稿」,用 text 只是指文字內容,沒有「還未定稿、可再修改的版本」的概念,不符合本題語境。"
+   },
+   "B": {
+    "why": "brush 是名詞,指刷子、畫筆(如 a paintbrush),也作動詞「刷」。這個字本身用法正確,雖然 brush 也可指畫家的筆觸,但文章不是畫作,不符合本題語境。"
+   },
+   "C": {
+    "why": "draft 作名詞指草稿、草案、初稿,也可作動詞「起草」。first draft 即最初寫出來的版本,Mary 不滿意所以修改了好幾次,語意連貫,故選 (C)。"
+   },
+   "D": {
+    "why": "plot 是名詞,指(小說、戲劇的)情節,或陰謀、小塊土地,也可作動詞「策劃」。這個字本身用法正確,但 the first plot of her essay 並不是指「第一版」,不符合本題語境。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "draft",
+    "pos": "n.",
+    "zh": "草稿、初稿、草案",
+    "note": "作名詞指文件、文章的草稿;作動詞指起草(draft a letter)。另有「徵兵」(the draft)與「通風、穿堂風」(a draft/draught)的意思,語境不同。常見搭配:first draft、final draft、rough draft。",
+    "coll": [
+     "the first draft",
+     "a rough draft",
+     "a final draft"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "revise",
+    "pos": "v.",
+    "zh": "修改、修訂",
+    "note": "revise 常指修改文章、計畫或意見,也可指「複習」(英式英語)。名詞 revision。同義字:edit、rewrite;本題 revised it several times 指修改了好幾次。",
+    "coll": [
+     "revise an essay",
+     "revise a plan"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "essay",
+    "pos": "n.",
+    "zh": "(短篇)文章、作文",
+    "note": "指學校作文、論說文,write an essay 是常見搭配。"
+   },
+   {
+    "type": "word",
+    "t": "turn in",
+    "pos": "phr. v.",
+    "zh": "繳交",
+    "note": "turn in 指把作業、報告交給老師或主管,也可指就寢(口語)。同義說法:hand in、submit;本題 turning it in 的 it 指 essay,代名詞放在 turn 與 in 之間。",
+    "coll": [
+     "turn in homework",
+     "turn in a report"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "be satisfied with",
+    "pos": "phr.",
+    "zh": "對……感到滿意",
+    "note": "be satisfied with + 名詞/動名詞;not satisfied with 表示不滿意。形容詞 satisfied,動詞 satisfy,名詞 satisfaction。"
+   },
+   {
+    "type": "word",
+    "t": "plot",
+    "pos": "n.",
+    "zh": "情節;陰謀",
+    "note": "本題干擾字。如 the plot of the movie(電影的情節)。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "Not satisfied with the first draft of her essay 是 (Not being) satisfied 省略 being 的分詞構句,表原因,邏輯主詞與主句主詞 Mary 相同,意為「因為對……不滿意」。",
+  "zh": "瑪麗對她文章的初稿不滿意,因此修改了好幾次,才把它交給老師。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-6": {
+  "schema": 2,
+  "answer": "D",
+  "status": "reviewed",
+  "key": [
+   "Left ____ for years 是過去分詞構句,邏輯主詞就是主句的 the deserted house,原意 the house was left ____(房子被留在某種狀態);leave + 受詞 + 形容詞表示「使處於某狀態」,所以空格要填形容詞。",
+   "主句描述 the deserted house(廢棄的房子)filled with dust and a smell of old damp wood,表示房子多年無人居住。vacant 指「空著的、沒人居住的」,leave a house vacant 就是讓房子空著。",
+   "left vacant 表示「讓房屋空著、無人使用」;for years 說明這種狀態持續多年,與 deserted 呼應,也解釋了灰塵與潮濕木頭的氣味。其他選項 casual、fragile 無法描述房屋被放著不用的狀態。",
+   "remote 描述的是位置偏遠,而 left ... for years 要的是「被空置」的狀態,這是語意上的差異,不是文法問題;所以選 (D)。"
+  ],
+  "options": {
+   "A": {
+    "why": "casual 是形容詞,指隨意的、休閒的、非正式的(如 casual clothes)。這個字本身用法正確,但 left casual 不能表示房子的狀態,也和房子積灰塵的描述無關,不符合本題語境。"
+   },
+   "B": {
+    "why": "fragile 是形容詞,指易碎的、脆弱的(如 a fragile vase)。這個字本身用法正確,但本題說的是房子多年無人居住,而不是房子容易損壞,不符合本題語境。"
+   },
+   "C": {
+    "why": "remote 是形容詞,指偏遠的、遙遠的(a remote village),也可指遙控的(remote control)。這個字本身用法正確,文法上也能接在 left 後;但 remote 描述位置偏遠,而本句要說的是房子「被空置」多年,語意上不如 vacant,不符合本題語境。"
+   },
+   "D": {
+    "entry": "vacant-adj",
+    "why": "vacant 是形容詞,指(房屋、座位、職位)空著的、沒人用的。leave sth vacant 表示讓它空著,與 deserted 的概念一致,也說明房子為什麼積灰塵,故選 (D)。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "vacant",
+    "pos": "adj.",
+    "zh": "空著的、未被占用的",
+    "note": "形容房屋、座位、停車位、職位等沒有人使用或居住。名詞 vacancy 指空缺、空房間;同義字:empty(最泛指)、unoccupied;反義字:occupied(被占用的)。vacant 也可形容表情空洞。",
+    "coll": [
+     "a vacant seat",
+     "a vacant room",
+     "a vacant position"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "deserted",
+    "pos": "adj.",
+    "zh": "被遺棄的、荒涼無人的",
+    "note": "由動詞 desert(拋棄)的過去分詞轉成形容詞,指被人離開、無人居住或無人的地方,如 a deserted street。注意 desert 作名詞 /ˈdɛzɚt/ 指沙漠,作動詞 /dɪˈzɝt/ 指拋棄。"
+   },
+   {
+    "type": "word",
+    "t": "be filled with",
+    "pos": "phr.",
+    "zh": "充滿",
+    "note": "filled with a thick coating of dust 表示布滿一層厚厚的灰塵。與 be full of 同義。"
+   },
+   {
+    "type": "word",
+    "t": "coating",
+    "pos": "n.",
+    "zh": "一層(覆蓋物)",
+    "note": "coat 作動詞指塗上、覆蓋,coating 指覆蓋在表面的一層東西,如 a coating of dust/paint。"
+   },
+   {
+    "type": "word",
+    "t": "damp",
+    "pos": "adj.",
+    "zh": "潮濕的、有濕氣的",
+    "note": "damp 指有點濕、不乾,常帶有不舒服的意味,如 damp wood、a damp towel。同義字:moist(較中性或正面,如 moist cake)、humid(空氣潮濕)。"
+   },
+   {
+    "type": "word",
+    "t": "remote",
+    "pos": "adj.",
+    "zh": "偏遠的、遙遠的",
+    "note": "本題干擾字。常見搭配:a remote area、a remote control。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "Left vacant for years 是過去分詞構句,表被動,邏輯主詞是主句的 the deserted house;leave + 受詞 + 形容詞表示「使某物處於某種狀態」。",
+  "zh": "那間廢棄的房子空置多年,屋內布滿一層厚厚的灰塵,並瀰漫著舊濕木頭的氣味。",
+  "aiFlags": [
+   "(C) remote 並非不能接在 left 後(也可指人跡罕至),本題排除 remote 是依語意:空置多年(vacant)對偏遠(remote),並非文法問題。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-7": {
+  "schema": 2,
+  "answer": "D",
+  "status": "reviewed",
+  "key": [
+   "空格前有 showed,後面有 courage,所以空格要填形容詞,修飾不可數名詞 courage(勇氣)。",
+   "句子說女學生協助老人逃出火場,這需要很大的勇氣,因此空格要表示勇氣的「程度很大」,enormous(極大的)符合。",
+   "選項中 gigantic 與 enormous 都有「巨大」的意思。判斷依據:gigantic 來自 giant(巨人),重點是像巨人般的龐大體積,常修飾具體事物(a gigantic wave);修飾勇氣、壓力這類抽象名詞時,慣用的程度字是 enormous、great、tremendous 等。gigantic courage 比喻上並非不可能,但不是慣用的搭配。",
+   "exclusive(專屬的)與 multiple(多重的)都和「程度大」無關,所以選 (D)。"
+  ],
+  "options": {
+   "A": {
+    "why": "gigantic 是形容詞,指像巨人般巨大的,重點在龐大的體積,常修飾具體事物(a gigantic wave、a gigantic building),修飾抽象名詞時也偶見比喻用法(a gigantic task)。這個字本身用法正確,gigantic courage 比喻上也說得通;但談勇氣、壓力等程度時,英語慣用的強調字是 enormous、great、tremendous,因此本題不選 gigantic。"
+   },
+   "B": {
+    "why": "exclusive 是形容詞,指專屬的、獨家的、高級的(如 an exclusive interview、an exclusive club)。這個字本身用法正確,但 exclusive courage 無法表達「很大的勇氣」,不符合本題語境。"
+   },
+   "C": {
+    "why": "multiple 是形容詞,指多個的、多重的,多修飾可數的複數事物(multiple injuries、multiple-choice)。這個字本身用法正確;但本句談的是勇氣的程度大小,而不是「幾個」,語意不符合本題語境。"
+   },
+   "D": {
+    "why": "enormous 是形容詞,指極大的、巨大的,可形容具體事物,也可形容抽象事物(enormous pressure、enormous courage)。女學生協助老人逃出火場,所展現的勇氣之大,用 enormous 最自然,故選 (D)。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "enormous",
+    "pos": "adj.",
+    "zh": "極大的、巨大的",
+    "note": "可修飾具體與抽象名詞,語氣比 big 更強。同義字:huge、tremendous、immense;反義字:tiny。副詞 enormously。注意名詞 enormity 的意思與 enormous 不完全相同,不要直接當成「巨大」的名詞。",
+    "coll": [
+     "enormous courage",
+     "enormous pressure",
+     "an enormous amount of"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "courage",
+    "pos": "n.",
+    "zh": "勇氣",
+    "note": "不可數名詞。形容詞 courageous(勇敢的);動詞 encourage(鼓勵,字面「給予勇氣」);反義字:cowardice(膽小)。",
+    "coll": [
+     "show courage",
+     "have the courage to V",
+     "take courage"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "escape",
+    "pos": "v.",
+    "zh": "逃脫",
+    "note": "help sb escape from sth 指幫助某人逃離某處或某事。後面介系詞 from 或直接接名詞(escape the fire)。名詞 escape 指逃脫;a narrow escape 是千鈞一髮的逃脫。",
+    "coll": [
+     "escape from a fire",
+     "help sb escape"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "gigantic",
+    "pos": "adj.",
+    "zh": "巨大的",
+    "note": "本題干擾字。來自名詞 giant(巨人),多形容具體事物的巨大。"
+   },
+   {
+    "type": "word",
+    "t": "exclusive",
+    "pos": "adj.",
+    "zh": "專屬的、獨家的",
+    "note": "本題干擾字。動詞 exclude(排除);反義字:inclusive(包含的)。"
+   },
+   {
+    "type": "word",
+    "t": "multiple",
+    "pos": "adj.",
+    "zh": "多重的、多個的",
+    "note": "本題干擾字。如 multiple-choice question(選擇題)。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "那位高中女學生在協助老先生逃出火場時,展現了極大的勇氣。",
+  "aiFlags": [
+   "gigantic 修飾抽象名詞亦可見(如 a gigantic task),gigantic courage 比喻上也成立;本題是依 enormous courage 為慣用搭配的程度差異決定,學生可能質疑。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-8": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "空格在 are often ____ or delayed 中,與 delayed 以 or 並列,因此要填過去分詞;句子是被動語態(Projects are halted/delayed),主詞 Publicly financed projects 是被動作的對象。",
+   "句尾 due to a lack of resources(因資源不足)與 during tough economic times(經濟困難時期)說明原因:公共經費計畫會因缺錢而被中止或延後。halt 作動詞是「使停止」,halted 與 delayed 同為負面進度的描述。",
+   "or 連接兩個意義相近的動作:halted or delayed(中止或延遲),都是計畫進度受影響,語意連貫。",
+   "其他選項:hatch(孵化、策劃)、possess(擁有)、reinforce(強化)都是自然動詞,但 hatched a project、reinforced a project 等語意與「缺資源而受阻」相反或無關,所以選 (A)。"
+  ],
+  "options": {
+   "A": {
+    "why": "halt 作及物動詞,表示使停止、中止(halt production)。projects are halted 指計畫被迫停下來,與 delayed 並列,又呼應 lack of resources,故選 (A)。"
+   },
+   "B": {
+    "why": "hatch 作動詞,指孵化(蛋、幼鳥),也可指策劃(hatch a plan)。這個字本身用法正確,但本句是說計畫因缺資源受阻,不是被「策劃」或孵出來,與 or delayed 的語意也不協調,不符合本題語境。"
+   },
+   "C": {
+    "why": "possess 是動詞,指擁有(possess a skill)。這個字本身用法正確;但本句談的是 projects 因 a lack of resources 而受阻,possess 與這個因果無關,也無法與 delayed 並列表示進度受阻,不符合本題語境。"
+   },
+   "D": {
+    "why": "reinforce 是動詞,指加強、增強(reinforce a wall、reinforce an idea)。這個字本身用法正確,但缺乏資源時的結果應是計畫被中止或延後,而不是被強化,語意相反,不符合本題語境。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "halt",
+    "pos": "v.",
+    "zh": "(使)停止、中止",
+    "note": "作及物動詞表示使停止(halt production),作不及物動詞較書面,如 Traffic halted.。名詞 halt 指停止,如 come to a halt、bring sth to a halt。同義字:stop、suspend;反義字:continue。",
+    "coll": [
+     "halt production",
+     "come to a halt",
+     "bring sth to a halt"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "delay",
+    "pos": "v.",
+    "zh": "延遲、耽擱",
+    "note": "本題 delayed 與 halted 並列。delay 較泛,可指被耽擱的延誤,也可指刻意拖延(delay the decision);作名詞指延誤。同義字 postpone 指把活動或事情改到較晚的時間。",
+    "coll": [
+     "delay a flight",
+     "without delay"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "publicly financed",
+    "pos": "adj.",
+    "zh": "公共出資的",
+    "note": "由 finance(提供資金)的過去分詞加 publicly(公開地、由公家)構成;finance 也作名詞指財政,financial 是形容詞。"
+   },
+   {
+    "type": "word",
+    "t": "lack",
+    "pos": "n.",
+    "zh": "缺乏",
+    "note": "a lack of + 名詞,指缺少某物;作動詞時 lack sth 表示缺乏。形容詞 lacking。同義字:shortage。",
+    "coll": [
+     "a lack of resources",
+     "for lack of"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "due to",
+    "pos": "phr.",
+    "zh": "因為、由於",
+    "note": "due to 後接名詞或名詞片語表示原因,語氣正式;類似說法:because of、owing to。"
+   },
+   {
+    "type": "word",
+    "t": "reinforce",
+    "pos": "v.",
+    "zh": "加強、強化",
+    "note": "本題干擾字。由 re-(再)與 force(力量)的概念構成,字面是「再加強力量」,可記為加強、增強;名詞 reinforcement 指加強,複數常指增援部隊。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "Publicly financed projects 的 financed 是過去分詞當形容詞,修飾 projects,表示「被公家出資的」;are often halted or delayed 為被動語態,halted 與 delayed 以 or 並列。",
+  "zh": "公共出資的計畫在經濟困難時期,常因資源不足而中止或延後。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-9": {
+  "schema": 2,
+  "answer": "B",
+  "status": "reviewed",
+  "key": [
+   "空格前有主詞 the President,後面有受詞 the school’s graduation ceremony 與 with his presence,因此空格要填及物動詞(過去式),與 with 片語構成「以……來……」的結構。",
+   "本句的重點是總統雖然行程忙碌,仍以出席(presence)與暖心演說讓典禮增光。grace 作動詞表示「使增光、為……增添光彩」,常用 grace sth with one’s presence,即「蒞臨」。",
+   "Despite his busy schedule 提供轉折線索:儘管很忙,他仍出席,所以語氣是「賞光、增光」。with his presence and a heartwarming speech 是 graced 的方式補充。",
+   "其他選項:praise(稱讚)、address(對……演講)、credit(把功勞歸於)都是自然的及物動詞,但 praised the ceremony with his presence 等搭配語意不合,所以選 (B)。"
+  ],
+  "options": {
+   "A": {
+    "why": "praise 是動詞,指稱讚、讚揚(praise sb for sth)。這個字本身用法正確,但「用他的出席稱讚典禮」說不通,出席是在給典禮增光,不是稱讚,不符合本題語境。"
+   },
+   "B": {
+    "why": "grace 作動詞,表示使增光、為……增添光彩,常見 grace sth with one’s presence(蒞臨使……增光)。與 with his presence and a heartwarming speech 完全吻合,故選 (B)。"
+   },
+   "C": {
+    "why": "address 作動詞,指對……演說,如 address the audience、address a ceremony。這個字本身用法正確,也可與 speech 的意思相關,但 address the ceremony with his presence 語意不通順:出席不是「演說的方式」,不符合本題語境。"
+   },
+   "D": {
+    "why": "credit 作動詞,指把功勞歸給(credit sb with sth / credit sth to sb)。這個字本身用法正確,但「用出席把功勞歸給典禮」說不通,不符合本題語境。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "grace",
+    "pos": "v.",
+    "zh": "為……增光、使生色",
+    "note": "作動詞較正式,常用 grace sth with one’s presence(蒞臨以增添光彩)。作名詞 grace 指優雅、恩典、寬限。形容詞 graceful(優雅的)、gracious(親切有禮的)。",
+    "coll": [
+     "grace the occasion",
+     "grace sth with one’s presence"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "presence",
+    "pos": "n.",
+    "zh": "出席、在場",
+    "note": "來自 present(在場的)。反義字:absence(缺席)。presence 也可指氣勢、存在感(a strong presence)。",
+    "coll": [
+     "in the presence of sb",
+     "make one’s presence felt"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "heartwarming",
+    "pos": "adj.",
+    "zh": "暖心的、令人感動的",
+    "note": "由 heart + warm + -ing 組成。同義字:touching。"
+   },
+   {
+    "type": "word",
+    "t": "despite",
+    "pos": "prep.",
+    "zh": "儘管",
+    "note": "despite + 名詞/動名詞,不可直接接子句;同義字:in spite of。despite his busy schedule 等於 although he was busy。"
+   },
+   {
+    "type": "word",
+    "t": "address",
+    "pos": "v.",
+    "zh": "對……演說;處理",
+    "note": "address 也可指稱呼或處理(address a problem)。名詞 address 指地址或演說。本題干擾字。"
+   },
+   {
+    "type": "word",
+    "t": "credit",
+    "pos": "v.",
+    "zh": "把功勞歸於",
+    "note": "本題干擾字。credit sb with sth 或 credit sth to sb;名詞 credit 指信用、學分、功勞(give credit to)。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [
+   "grace + 場合 + with one’s presence\n意思:蒞臨某場合而使其增光\n例如:The mayor graced the party with his presence.(市長蒞臨派對,使其增光。)\n注意:語氣正式或帶客套,常用於邀請函或致謝詞。"
+  ],
+  "grammar": "",
+  "zh": "儘管行程繁忙,總統仍出席該校的畢業典禮,他的蒞臨與一場暖心的演說為典禮增添了光彩。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-10": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "空格在 for 與 abusing 之間。abusing 是動名詞(for 後面接 V-ing),要修飾動詞性質的詞語要用副詞,所以空格要填副詞。四個選項都是副詞,要靠語意判斷。",
+   "句子說經理辱罵同事,而且是 calling them “hopeless losers”(罵他們是無可救藥的失敗者),也就是用話語傷人。verbally 指「口頭上、言語上」,verbally abusing 就是言語辱罵。",
+   "線索是 calling them “hopeless losers”:這說明辱罵是靠言詞進行的,與 verbally 吻合(旁證);verbal abuse(言語辱罵)也是常見搭配。",
+   "其他選項:dominantly(占主導地位地)、legitimately(合法地)、relevantly(相關地)都是副詞,本身用法正確,但都不能表達「用言語」的方式,所以選 (A)。"
+  ],
+  "options": {
+   "A": {
+    "why": "verbally 是副詞,指口頭上、用言語地。verbally abusing his colleagues 就是用言語辱罵同事,與後面的 calling them “hopeless losers” 一致,故選 (A)。"
+   },
+   "B": {
+    "why": "dominantly 是副詞,指占主導地位地、支配性地(dominant 的副詞)。這個字本身用法正確,但本題要說明的是辱罵的「方式是言語」,不是占主導,不符合本題語境。"
+   },
+   "C": {
+    "why": "legitimately 是副詞,指合法地、正當地(legitimate 的副詞)。這個字本身用法正確,但句子說他因辱罵而被告,legitimately abusing 語意矛盾,不符合本題語境。"
+   },
+   "D": {
+    "why": "relevantly 是副詞,指相關地、切題地(relevant 的副詞)。這個字本身用法正確,但與辱罵同事的方式無關,不符合本題語境。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "verbally",
+    "pos": "adv.",
+    "zh": "口頭上、言語上",
+    "note": "形容詞 verbal(以言詞表達的,可指口說或書面文字,視語境而定);反義字:nonverbal(非言語的,如肢體、表情)。oral 專指口說(相對於書面)。",
+    "coll": [
+     "verbally abuse sb",
+     "verbal abuse",
+     "a verbal agreement"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "abuse",
+    "pos": "v.",
+    "zh": "虐待、濫用、辱罵",
+    "note": "動詞讀作 /əˈbjuz/,名詞讀作 /əˈbjus/。abuse 可指虐待(child abuse)、濫用(drug abuse)或辱罵。形容詞 abusive(辱罵的、虐待的)。",
+    "coll": [
+     "verbal abuse",
+     "abuse power",
+     "drug abuse"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "sue",
+    "pos": "v.",
+    "zh": "控告、提起訴訟",
+    "note": "sue sb for sth 指因某事控告某人,如 be sued for abusing his colleagues。名詞 lawsuit(訴訟)。"
+   },
+   {
+    "type": "word",
+    "t": "colleague",
+    "pos": "n.",
+    "zh": "同事",
+    "note": "指在同一個機構工作的人,較正式;同義字:co-worker。拼法易錯:col-league(不是 collegue)。"
+   },
+   {
+    "type": "word",
+    "t": "hopeless",
+    "pos": "adj.",
+    "zh": "無可救藥的;無望的",
+    "note": "hope 加 -less(沒有)。本題 hopeless losers 指無可救藥的失敗者,語氣為辱罵。hopeless 也可指絕望的、毫無希望的。"
+   },
+   {
+    "type": "word",
+    "t": "legitimately",
+    "pos": "adv.",
+    "zh": "合法地、正當地",
+    "note": "本題干擾字。形容詞 legitimate(正當的、合理的、合法的);同義字:justifiably、rightfully;與 legally(依法地)不完全相同。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "was sued for verbally abusing ... 中 sue sb for + V-ing 表示因某事控告某人;for 是介系詞,後面接動名詞,而 verbally 是修飾動名詞 abusing 的副詞。",
+  "zh": "那家公司的經理因言語辱罵同事而被控告,他罵他們是「無可救藥的失敗者」。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-11": {
+  "schema": 2,
+  "answer": "B",
+  "status": "reviewed",
+  "key": [
+   "先找參照時間點：第 1 句以 In 1995 開頭，None of them had any idea they were about to create… 的視角是 1995 年聚會當時，「創造」這件事在當時是「即將」(were about to) 發生。",
+   "關係子句 that ___ rapidly around the world 裡的 spread，是在「創造出這項創新」之後才發生的事，也就是從 1995 年看出去的「未來」，但整個敘事都在過去，所以用「過去未來」的 would + 原形動詞。",
+   "對照第 3 段末句 has been applied … around the world，可推知它後來確實廣為流傳（這是推論，文章並未直接寫 spread），因此 would spread 描述的是「之後實際發生」的事。本句沒有 if 條件句，也沒有 by the time… 之類更後面的參照時點，所以不需要 would have spread。",
+   "排除過去完成類：had spread／had been spreading 表示「在 1995 年那個時間點之前」就已經散播，與「即將創造」互相矛盾。"
+  ],
+  "options": {
+   "A": {
+    "why": "had spread 是過去完成式，表示在參照點（1995 年聚會當時）之前就已完成散播。但這項創新當時尚未創造出來，時間順序顛倒，所以不合。這個時態本身用法正確，只是不符本題的時間軸。"
+   },
+   "B": {
+    "why": "would spread 是「過去未來」：站在 1995 年往後看，「在創造之後」會發生的事，與 were about to create 的視角一致，且與後文 has been applied 所述的實際結果相符。"
+   },
+   "C": {
+    "why": "had been spreading 是過去完成進行式，表示在參照點之前就一直在擴散，同樣與「即將創造」矛盾；且進行式強調持續過程，與「當時還沒誕生」不合。文法成立，但時間軸不符。"
+   },
+   "D": {
+    "why": "would have spread 多用於 (1) 與過去事實相反的假設，或 (2) 站在過去、說到更後面某個時點「已經完成」的事（過去未來完成）。本句沒有 if 條件，也沒有 by the time… 之類的後續時間點，只是說「之後會迅速傳開」，所以用單純的 would spread 即可。這個選項文法上成立，只是不符本句語境。"
+   }
+  },
+  "notes": [
+   {
+    "type": "phrase",
+    "t": "be about to + V",
+    "zh": "即將做某事",
+    "note": "表示「正要、即將」，文中 were about to create 指在 1995 年當時尚未發生、但即將發生的事。",
+    "coll": [
+     "be about to leave"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "spread",
+    "pos": "v.",
+    "zh": "散播；蔓延",
+    "note": "不規則動詞，三態同形 spread-spread-spread。可作及物或不及物；本題為不及物，主詞是 innovation。常見搭配：spread rapidly/quickly, spread around the world。"
+   },
+   {
+    "type": "word",
+    "t": "innovation",
+    "pos": "n.",
+    "zh": "創新；革新",
+    "note": "衍生字：innovate (v.)、innovative (adj.，第 2 段出現)、innovator (n.)。"
+   },
+   {
+    "type": "word",
+    "t": "rapidly",
+    "pos": "adv.",
+    "zh": "迅速地",
+    "note": "同義字：quickly, swiftly；形容詞為 rapid。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [
+   "would + 原形動詞（過去未來）\n意思：站在過去某個時間點，描述在那之後會發生的事。\n例如：He did not know that the little shop would become famous. 他不知道這間小店後來會變得有名。\n注意：would have + p.p. 則用於過去的假設，或說到更後面某時點「已完成」的事（過去未來完成）；本句沒有條件句或後續參照時點，所以用 would spread。"
+  ],
+  "grammar": "本題關鍵是時間軸：參照點是 1995 年的聚會，spread 發生在參照點之後（過去未來，would spread），而不是之前（過去完成）。",
+  "zh": "他們當中沒有人料到，自己即將創造出一項日後會迅速傳遍全世界的社會創新。",
+  "aiFlags": [
+   "(D) would have spread 並非文法錯誤（可作過去未來完成），僅因本句沒有 by the time 之類的後續參照時點或條件句而不選；講解時勿說成錯誤。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-12": {
+  "schema": 2,
+  "answer": "B",
+  "status": "reviewed",
+  "key": [
+   "看句型：With their plan ___ by the rain 是「with + 受詞 + 過去分詞」的附帶狀況結構，plan 與動詞是被動關係，所以空格要填過去分詞，後面 by the rain 表示動作者。四個選項都是過去分詞，要靠語意判斷。",
+   "看上下文：前一句 The group was supposed to have a large-circle discussion in their garden（原本打算）與 Unfortunately, it started pouring（卻下起大雨），後面他們擠進客廳改成小桌談話，可見原定計畫被雨「打亂、中斷」。",
+   "選 disrupted：disrupt 是「使中斷、擾亂」，plan disrupted by the rain 正好表達原計畫被雨破壞。",
+   "其他三字語意都與「雨造成不便」脫節：facilitate 是「促進、使便利」，disclose 是「揭露」，fulfill 是「實現、達成」，都不能描述雨對計畫的影響。"
+  ],
+  "options": {
+   "A": {
+    "why": "facilitated 是 facilitate（促進、使更容易）的過去分詞，單字本身用法正確（如 facilitate communication）。但大雨讓計畫更容易進行與上下文轉折 Unfortunately 相反。"
+   },
+   "B": {
+    "why": "disrupted 意為被擾亂、被打斷，與 Unfortunately, it started pouring 呼應，也解釋了為何眾人臨時改到客廳。"
+   },
+   "C": {
+    "why": "disclosed 是 disclose（揭露、公開）的過去分詞，用於祕密、資訊等（如 disclose information），文法上可以接 by，但「計畫被雨揭露」在語意上說不通。"
+   },
+   "D": {
+    "why": "fulfilled 是 fulfill（實現、履行）的過去分詞，如 fulfill a dream/promise。「計畫被雨實現」與情節相反：計畫是被打亂了。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "disrupt",
+    "pos": "v.",
+    "zh": "擾亂；使中斷",
+    "note": "衍生字：disruption (n.)、disruptive (adj.)。常見搭配：disrupt traffic/a meeting/the schedule。同義字：interrupt（強調暫停），disturb（打擾）。",
+    "coll": [
+     "disrupt classes",
+     "be disrupted by the storm"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "facilitate",
+    "pos": "v.",
+    "zh": "促進；使便利",
+    "note": "字根 facil-（容易），與 facility（設施）、facilitator（引導者）同源。常見搭配：facilitate learning/communication。"
+   },
+   {
+    "type": "word",
+    "t": "disclose",
+    "pos": "v.",
+    "zh": "揭露；公開",
+    "note": "反義字：conceal, hide。常見搭配：disclose personal information。"
+   },
+   {
+    "type": "word",
+    "t": "fulfill",
+    "pos": "v.",
+    "zh": "實現；履行；滿足",
+    "note": "常見搭配：fulfill a dream/a promise/a requirement。英式拼法為 fulfil。"
+   },
+   {
+    "type": "word",
+    "t": "pour",
+    "pos": "v.",
+    "zh": "傾盆而下；倒",
+    "note": "文中 it started pouring 指雨下得很大。常見用法：It's pouring.、pour water into a glass。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [
+   "with + 受詞 + 過去分詞\n意思：表示附帶的狀況或原因，受詞與動詞為被動關係。\n例如：With the road blocked by snow, we had to turn back. 由於道路被雪封住，我們只好折返。\n注意：受詞與動作為主動關係時用現在分詞，如 With the sun shining, …。"
+  ],
+  "grammar": "",
+  "zh": "由於他們的計畫被雨打亂，這二十四位與會者便擠進客廳。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-13": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "看句法：so the insights and ideas might ___ and deepen 中，might 後接原形動詞，且 insights and ideas 是主詞，空格後沒有受詞，所以要填不及物動詞，並與 deepen 並列。",
+   "看上下文：參與者定時換桌（switch tables），目的是讓見解與想法在各桌之間傳開；後文 As they moved from one table to another, they noticed new ideas emerging 也在講想法因移動而流通。",
+   "選 circulate：不及物時表示「流通、循環、傳播」，ideas circulate and deepen 可描述想法在桌與桌之間流動並逐漸深化。",
+   "排除其他選項：emphasize 與 preserve 是及物動詞，這裡沒有受詞，且主詞 ideas 並不是去「強調／保存」什麼；recover 雖可不及物，意思是「恢復」，但想法並沒有先受損，與「換桌」無關。"
+  ],
+  "options": {
+   "A": {
+    "why": "circulate 可作不及物動詞，意為（想法、空氣、血液等）流通、傳播。ideas circulate 與換桌動作相呼應，與 deepen 並列合理。"
+   },
+   "B": {
+    "why": "emphasize 是及物動詞（強調），需要受詞；此處主詞 ideas 自己不會 emphasize，空格後也沒有受詞。這個字本身用法正確，但句法與語意都不符。"
+   },
+   "C": {
+    "why": "recover 是「恢復、康復」，可作不及物（recover from an illness）或及物（recover the data）。指從損傷或失去的狀態恢復，主詞通常是病人、經濟、資料等；前文沒有想法受損或遺失，且 recover 與 deepen 並列也沒有「換桌」帶來的因果。"
+   },
+   "D": {
+    "why": "preserve 是及物動詞（保存、保護），如 preserve the environment。此處沒有受詞，語意上「保存想法」也與「讓想法擴散、加深」不同。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "circulate",
+    "pos": "v.",
+    "zh": "流通；傳播；循環",
+    "note": "名詞 circulation（流通；發行量；血液循環）。及物與不及物皆可：Blood circulates in the body.；circulate a petition（傳閱請願書）。",
+    "coll": [
+     "circulate widely",
+     "circulating air"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "deepen",
+    "pos": "v.",
+    "zh": "加深；變深",
+    "note": "由 deep + -en 構成，與 strengthen, widen 類似。及物與不及物皆可：The mystery deepened.",
+    "coll": [
+     "deepen one's understanding"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "insight",
+    "pos": "n.",
+    "zh": "洞見；深入的見解",
+    "note": "可數或不可數，常見搭配：gain/provide insight(s) into sth。"
+   },
+   {
+    "type": "word",
+    "t": "periodically",
+    "pos": "adv.",
+    "zh": "定期地；週期性地",
+    "note": "形容詞為 periodic；與 regularly 類似，但強調「間隔一段時間就發生」。"
+   },
+   {
+    "type": "word",
+    "t": "emphasize",
+    "pos": "v.",
+    "zh": "強調",
+    "note": "名詞 emphasis。同義字：stress, highlight。常見搭配：emphasize the importance of sth。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "他們定時中斷談話並換桌，好讓各種見解與想法能夠流通並加深。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-14": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "看句型：the innovative discussion process ___ a new form of collective effort，空格需要填「及物動詞片語」，後面接受詞 a new form of collective effort，時態與上下文一致用過去式（敘述 1995 那個上午）。",
+   "看語意：前面說他們換桌、發現新想法冒出來、也讓後續幾輪談話更豐富，這一連串過程「產生了」一種新的集體合作形式，後面 that transformed… 再說明它帶來的影響。",
+   "選 gave rise to：give rise to 意為「引起、導致、產生」，常以過程或原因為主詞，結果為受詞，與本句因果關係一致。",
+   "排除其他選項：made up for 是「彌補」，kept track of 是「持續掌握」，looked out for 是「留意、照顧」，放進句中都不能表示「討論過程產生了新形式」。"
+  ],
+  "options": {
+   "A": {
+    "why": "made up for 意為彌補、補償（make up for lost time），文中並沒有任何要彌補的缺失。片語本身用法正確，但不符語境。"
+   },
+   "B": {
+    "why": "kept track of 意為記錄、持續掌握狀況（keep track of expenses）。此句在說討論過程「產生」新形式，並非「追蹤」它。片語正確，但語意不合。"
+   },
+   "C": {
+    "why": "gave rise to 表示導致、產生；過程作主詞，新的集體合作形式作結果，後面 transformed the depth… 再補充其影響，邏輯連貫。"
+   },
+   "D": {
+    "why": "looked out for 意為留意、提防或照顧（look out for pickpockets / look out for one's friends）。討論過程不會「留意」一種新形式，語意不符。"
+   }
+  },
+  "notes": [
+   {
+    "type": "phrase",
+    "t": "give rise to",
+    "zh": "引起；導致；產生",
+    "note": "主詞為原因或過程，受詞為結果，語氣正式，常與 lead to, result in, bring about 近義；三態 give-gave-given；rise 為名詞，後接 to，再接結果。",
+    "coll": [
+     "give rise to misunderstandings"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "make up for",
+    "zh": "彌補；補償",
+    "note": "如 make up for lost time；與 make up（組成；化妝；編造）不同。"
+   },
+   {
+    "type": "phrase",
+    "t": "keep track of",
+    "zh": "記錄；持續掌握",
+    "note": "反義是 lose track of（失去對…的掌握）。"
+   },
+   {
+    "type": "phrase",
+    "t": "look out for",
+    "zh": "留意；提防；照顧",
+    "note": "如 look out for pickpockets；與 look out（小心）、look out of the window（往窗外看）不同。"
+   },
+   {
+    "type": "word",
+    "t": "collective",
+    "pos": "adj.",
+    "zh": "集體的；共同的",
+    "note": "如 collective effort/wisdom/memory；名詞 collection 是「收藏」，不同義。"
+   },
+   {
+    "type": "word",
+    "t": "transform",
+    "pos": "v.",
+    "zh": "使徹底轉變",
+    "note": "名詞 transformation；常見搭配：transform A into B。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "整個上午下來，這種創新的討論方式催生了一種新的集體合作形式，大幅改變了他們討論的深度、廣度與品質。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-15": {
+  "schema": 2,
+  "answer": "D",
+  "status": "reviewed",
+  "key": [
+   "看位置與詞類：空格在 was 與過去分詞 created 之間，是副詞的位置；四個選項都能放在這裡，要靠前後文的邏輯關係判斷。",
+   "看上下文：第 2 段整段描述了一連串過程（換桌、新想法冒出、形成新的集體合作形式）；第 3 段第一句歸結為 The World Café was ___ created，是由前述過程得出的結果。",
+   "選 thus：thus 表示「因此、就這樣」，在這裡接前面的過程，指出 World Café 就是以這種方式誕生，帶有結果、歸結的語氣。",
+   "其他副詞:still、also、further 文法上都能放在 was 與 created 之間,要靠篇章關係判斷。still 表示「仍然、儘管如此還是」,可修飾一次性的被動事件(例如 Despite the objections, the bridge was still built.),但前文並不是在建立「雖有阻礙、最後仍被創造」的讓步對比,而是在說明 World Café 如何經由這一連串討論方式形成,所以 thus 更符合篇章關係;also 前文沒有另一項被創造的事物可形成「也」;further 偏向「進一步地」,與本句歸結形成結果的功能不如 thus。"
+  ],
+  "options": {
+   "A": {
+    "why": "still 表示「仍然、儘管如此還是」,文法上可以出現在 was still created,也可修飾一次性的被動事件,例如 Despite the objections, the bridge was still built。但本文前面並不是在建立「雖然有阻礙,最後仍被創造」的讓步對比,而是在說明 World Café 如何由這一連串討論方式形成,因此 thus 更符合篇章關係。"
+   },
+   "B": {
+    "why": "also 表示「也」，前文沒有另一個已經被創造出來的東西可以對照，所以不自然。also 放在 was 與過去分詞之間文法上合格，只是語意不如 thus。"
+   },
+   "C": {
+    "why": "further 表示「進一步地」，用於承接已完成的步驟再繼續往前推（further developed）。這裡是總結因果，而非再推進下一步。"
+   },
+   "D": {
+    "why": "thus 表示以前述方式、因此，與第 2 段的過程形成「經過這些步驟，World Café 就這樣誕生」的因果總結，同時讓第 3 段後半的 Since that rainy morning 順利延伸。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "thus",
+    "pos": "adv.",
+    "zh": "因此；就這樣",
+    "note": "為正式用語，用來連接結果或結論，位置可在句首、助動詞後、動詞前後；同義字：therefore, hence, consequently。",
+    "coll": [
+     "and thus"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "further",
+    "pos": "adv.",
+    "zh": "進一步地",
+    "note": "常見搭配：further develop/discuss/explain；形容詞作「進一步的」。"
+   },
+   {
+    "type": "word",
+    "t": "subsequent",
+    "pos": "adj.",
+    "zh": "隨後的；接下來的",
+    "note": "第 2 段出現 subsequent rounds of conversation；副詞為 subsequently。"
+   },
+   {
+    "type": "word",
+    "t": "approach",
+    "pos": "n.",
+    "zh": "方法；途徑",
+    "note": "常見搭配：an approach to sth；文中 the World Café approach 指一種談話方式。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "World Café 就這樣誕生了。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-16": {
+  "schema": 2,
+  "answer": "D",
+  "status": "reviewed",
+  "key": [
+   "看句型：It can ___ suddenly 的空格要填不及物動詞，主詞 It 指前面所說的 motion sickness（暈動症）這種不適；suddenly 說明它的出現方式。",
+   "看語意：後面 progressing from a feeling of uneasiness to a cold sweat 描述症狀如何加劇。這裡要的是「疾病、不適、災禍等突然發作、突然襲來」的動詞。",
+   "選 strike：strike 作不及物動詞時，不及物時可指疾病、災害等突然發生（Disaster struck. / Illness can strike without warning.）；及物用法如 An earthquake struck the city.，所以 It can strike suddenly 就是「突然發作」。",
+   "其他動詞各有慣用的主詞：crash 多用於車輛、電腦、飛機、浪潮等；flush 多指臉紅或沖水；burst 多指氣球、水管等爆開，或 burst into tears 之類。放進本句都不能自然地表達「症狀突然發作」。"
+  ],
+  "options": {
+   "A": {
+    "why": "crash 作不及物動詞，多指車輛、飛機、電腦系統等撞毀或當機，或股市暴跌，也可指聲響劇烈。主詞若是一種身體不適，並不會用 crash 來描述發作，語意不合。"
+   },
+   "B": {
+    "why": "flush 作不及物動詞，常指臉因害羞或發燒而發紅（Her face flushed.），也可指馬桶沖水。motion sickness 不是臉紅，也不是沖水，且後面描述的是症狀加劇，並不是變紅。"
+   },
+   "C": {
+    "why": "burst 作不及物動詞表示爆裂、突然進入某種狀態（burst into tears / burst out laughing）。但 It can burst suddenly 會被理解成這個東西像氣球一樣爆開，與症狀逐步惡化的描述不符。"
+   },
+   "D": {
+    "why": "strike 可指疾病等突然襲來；而 It can strike suddenly 後接 progressing from…，正好描述症狀發作後由不適逐步惡化。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "strike",
+    "pos": "v.",
+    "zh": "襲擊；（疾病、災難）突然發生；打擊；罷工",
+    "note": "三態 strike-struck-struck。本題用法：疾病、地震、颱風等突然襲來，如 Disaster struck.（不及物）、An earthquake struck the city.（及物）。其他常見義：strike a match（劃火柴）、It strikes me that…（我突然想到…）。",
+    "coll": [
+     "strike without warning",
+     "be struck by an illness"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "motion sickness",
+    "zh": "暈動症（暈車、暈船等）",
+    "note": "名詞片語；motion 為「移動」，暈車、暈船等都屬於 motion sickness。"
+   },
+   {
+    "type": "word",
+    "t": "progress",
+    "pos": "v.",
+    "zh": "進展；逐漸發展",
+    "note": "動詞重音在第二音節 pro-GRESS；名詞則重音在第一音節。文中 progressing from A to B 指症狀由 A 演變為 B。"
+   },
+   {
+    "type": "word",
+    "t": "nausea",
+    "pos": "n.",
+    "zh": "噁心；想吐",
+    "note": "形容詞為 nauseous 或 nauseating（令人作嘔的）；vomit 為「嘔吐」。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "它可能突然發作，從略感不適逐漸發展成冷汗直流。",
+  "aiFlags": [
+   "(A) crash、(B) flush、(C) burst 是依搭配與語意排除，並非文法錯誤；strike 指疾病突然襲來屬搭配語感。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-17": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "看句型：Motion sickness occurs when the signals … ___ 中，主詞是複數的 the signals（your brain receives 是修飾 signals 的關係子句），空格需要複數主詞搭配的動詞片語。",
+   "看下一句線索：Your brain doesn’t know whether you are stationary or moving when these parts send conflicting information，後面還說一部分偵測到身體在動，另一部分卻沒有偵測到，可見眼、耳、身體傳來的訊號互相矛盾、對不起來。",
+   "選 do not match：signals do not match 表示各路訊號彼此不一致，正好概括下文 conflicting information 的內容；do 與複數主詞 signals 一致。",
+   "排除其他選項：are not regular（不規律）、can hardly move（幾乎不能動）、are rarely cued（很少被提示）都沒有「彼此不一致」的意思，也無法對應 conflicting。"
+  ],
+  "options": {
+   "A": {
+    "why": "are not regular 意為不規律、不規則；文章談的是訊號彼此矛盾，而不是節奏規不規律。片語本身通順，但與上下文不合。"
+   },
+   "B": {
+    "why": "can hardly move 表示幾乎動不了，說訊號「幾乎無法移動、傳遞」，但文章談的是眼、耳、身體的訊號彼此不一致（conflicting information），並非訊號傳不出去，與下一句不合。"
+   },
+   "C": {
+    "why": "do not match 表示眼、耳、身體的訊號對不上，直接對應下一句的 conflicting information 與 One part … but the other parts …。"
+   },
+   "D": {
+    "why": "are rarely cued 意為很少被提示，cue 當動詞是「給暗示或提示」，用於訊號本身不自然；文章重點是訊號彼此矛盾，不是提示頻率。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "match",
+    "pos": "v.",
+    "zh": "相配；一致；使相符",
+    "note": "不及物：The colors don't match.；及物：match A with B。名詞亦作「比賽；相配的人事物」。",
+    "coll": [
+     "match up"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "conflicting",
+    "pos": "adj.",
+    "zh": "互相矛盾的；衝突的",
+    "note": "由動詞 conflict 而來，名詞 conflict 是「衝突」；常見搭配：conflicting information/reports/opinions。"
+   },
+   {
+    "type": "word",
+    "t": "stationary",
+    "pos": "adj.",
+    "zh": "靜止的；不動的",
+    "note": "易與 stationery（文具）混淆：兩字發音相同，拼字不同。"
+   },
+   {
+    "type": "word",
+    "t": "detect",
+    "pos": "v.",
+    "zh": "偵測；察覺",
+    "note": "名詞 detection，detector 是「偵測器」；文中 detects that your body is moving。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "句中 the signals your brain receives from … 是省略關係代名詞 that 的關係子句，修飾 signals；真正的主詞是複數 signals，所以空格的動詞要用複數形式（do not match）。",
+  "zh": "當大腦從眼睛、耳朵與身體接收到的訊號互相對不起來時，就會發生暈動症。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-18": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "看句型：but the other parts ___ 後面沒有其他內容，表示省略，要用助動詞代替前面的動詞片語；助動詞必須與前面完整的片語在時態、語態上對應。",
+   "找對應片語：前一半是 One part … detects that your body is moving，動詞是現在簡單式的 detects；but 轉折，說其他部分並沒有偵測到身體在動，其省略的內容是 detect that your body is moving。",
+   "選 don’t：現在簡單式一般動詞的代替要用 do/does；主詞 the other parts 為複數，且前後轉為否定，所以用 don’t（= don’t detect that your body is moving）。",
+   "排除其他選項：aren’t 需要前面有 be 動詞或進行式；won’t 需要前面有 will；haven’t 需要前面有現在完成式，都與 detects 不對應。"
+  ],
+  "options": {
+   "A": {
+    "why": "aren’t 的替代對象是 be 動詞或進行式（如 are moving）；前一半的動詞是 detects，並不是 are。aren’t 對應 be 動詞或進行式，但前一半是一般動詞 detects，省略時須用 do/does。"
+   },
+   "B": {
+    "why": "won’t 是 will not，替代前面的 will + 動詞，前面並沒有 will，也沒有談到未來。"
+   },
+   "C": {
+    "why": "don’t 代替 don’t detect that your body is moving，是現在簡單式的否定，與前一半 detects 一致，說明其他部分沒有感測到動作。"
+   },
+   "D": {
+    "why": "haven’t 是 have not，替代現在完成式（have + p.p.）；前一半是現在簡單式，不是完成式，時態不對應。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "detect",
+    "pos": "v.",
+    "zh": "偵測；察覺",
+    "note": "detect + that 子句或名詞；detect a change/movement。感官系統偵測到刺激時常用。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "助動詞省略要與前面完整動詞片語在時態與助動詞種類上對應：detects（現在簡單式）→ do/does（否定為 don’t/doesn’t），is moving → isn’t，will go → won’t，has gone → hasn’t。本題 the other parts 是複數，故為 don’t。",
+  "zh": "你的平衡感應系統有一部分偵測到身體正在移動，但其他部分卻沒有。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-19": {
+  "schema": 2,
+  "answer": "B",
+  "status": "reviewed",
+  "key": [
+   "看句型：take some ___ 中，空格要填名詞，後面 to help avoid the discomfort 說明目的（為了幫助避免不適），所以要填「採取以避免問題」的行動。",
+   "看下文線索：後面舉出 reserve seats where motion is felt the least、looking out into the distance、take medicine before your ride，這些都是事先採取的預防做法。",
+   "選 preventive measures：take measures 是固定搭配，表示採取措施；preventive 表示預防性的，與 help avoid the discomfort 完全呼應。",
+   "排除其他選項：special opportunities、potential risks、significant advantages 都不是為了避免不適而「採取」的行動，不符合後面的具體建議。"
+  ],
+  "options": {
+   "A": {
+    "why": "special opportunities 是特別的機會。take opportunities 雖然是通順的搭配，但意思是把握機會，與「為了避免不適而採取的行動」不同。"
+   },
+   "B": {
+    "why": "preventive measures 意為預防措施；take measures 是常見搭配，之後所列的選位置、看遠方、先服藥皆為預防做法。"
+   },
+   "C": {
+    "why": "potential risks 是潛在風險。take risks 是冒險，語意與避免不適相反；況且後文列舉的是對策，不是風險。"
+   },
+   "D": {
+    "why": "significant advantages 是重大優點；take advantage of 是慣用語，但這裡是 take some ___ to help avoid…，內容也不是在講優點，而是具體做法。"
+   }
+  },
+  "notes": [
+   {
+    "type": "phrase",
+    "t": "take measures",
+    "zh": "採取措施",
+    "note": "常見搭配：take measures to V / against sth；近義：take steps, take precautions。",
+    "coll": [
+     "take preventive measures",
+     "take measures against pollution"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "preventive",
+    "pos": "adj.",
+    "zh": "預防性的",
+    "note": "也可拼作 preventative；動詞 prevent，名詞 prevention；常見搭配：preventive care/medicine。"
+   },
+   {
+    "type": "word",
+    "t": "reserve",
+    "pos": "v.",
+    "zh": "預訂；保留",
+    "note": "reserve a seat/table；名詞 reservation。與 preserve（保存）易混淆。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "你可以採取一些預防措施，幫助避免這種不適。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-20": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "看句型：Looking out into the distance from the vehicle can help ___ 中，can help 已經是完整的述語，空格要填副詞片語，補充這句話的作用。",
+   "看上下文：前一句講到採取預防措施，如 reserve seats where motion is felt the least；本句再說向遠處看也有幫助；後一句 You can also take medicine… 又再加一項。這是在「並列多種預防方法」的語意下，補充另一種也有效的方法。",
+   "選 as well：as well 表示「也」，放在句尾，意指「（除了選位置之外）看向遠方也有幫助」。",
+   "排除其他選項：by far（遠遠地；用於修飾比較級或最高級）、at least（至少）、after all（畢竟，帶有補充理由或反駁的語氣）都不能表示「同樣也有幫助」。"
+  ],
+  "options": {
+   "A": {
+    "why": "as well 表示「也」，放在句末，指向遠處看除了前面的做法外同樣有幫助，與下一句 also 的語氣連貫。"
+   },
+   "B": {
+    "why": "by far 用來強調比較級或最高級（by far the best），不能單獨放在 help 後面。"
+   },
+   "C": {
+    "why": "at least 表示至少、最起碼，意思會變成「看向遠方至少還有幫助」，含有退而求其次的語氣；文章並沒有比較效果大小，只是在並列預防方法，所以不如 as well 貼切。這個片語本身自然，只是語氣與並列關係不符。"
+   },
+   "D": {
+    "why": "after all 是「畢竟」，用來補充理由或表示出人意料的事實（After all, he is only a child.）。本句只是在列舉另一種預防方式，沒有轉折或反駁的語氣。"
+   }
+  },
+  "notes": [
+   {
+    "type": "phrase",
+    "t": "as well",
+    "zh": "也；還有",
+    "note": "副詞片語，通常置於句尾，語氣比 too 稍正式；as well as 才是連接詞「以及」。",
+    "coll": [
+     "and … as well"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "after all",
+    "zh": "畢竟；終究",
+    "note": "用於補充理由，或表示結果與預期相反：We went after all.（我們終究還是去了）。"
+   },
+   {
+    "type": "phrase",
+    "t": "at least",
+    "zh": "至少；起碼",
+    "note": "如 at least ten people；也可表示「退而求其次」。"
+   },
+   {
+    "type": "phrase",
+    "t": "by far",
+    "zh": "遠遠地；到目前為止",
+    "note": "修飾比較級或最高級：by far the largest。"
+   },
+   {
+    "type": "word",
+    "t": "distance",
+    "pos": "n.",
+    "zh": "遠處；距離",
+    "note": "in the distance 指在遠處；look into the distance 為望向遠方。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "從交通工具上向遠方眺望也有幫助。",
+  "aiFlags": [
+   "(C) at least 為自然片語，僅因語氣（退而求其次）與上下文的並列關係不符；不是錯誤英文。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-21": {
+  "schema": 2,
+  "answer": "I",
+  "status": "reviewed",
+  "key": [
+   "詞性:空格在 is ___ for its intricate architecture... 中,位於 be 動詞之後、for 之前,需要形容詞(或過去分詞形容詞),描述主詞 this medieval cathedral。",
+   "上下文線索:第 1 句稱 Notre-Dame 是 one of the most famous cathedrals,本句列出建築、彩繪玻璃窗與鐘聲三項特色,表示「因這些特色而聞名」。",
+   "選定 (I) noted:be noted for 表示「以…而著名」,後接 for 引出著名的原因,與空格後的 for 直接搭配。",
+   "排除:(C) familiar 是形容詞,但常見搭配是 familiar to / familiar with,「熟悉」也不是「因某特色而聞名」;(E) faithful 是「忠誠的」,放在 is ___ for 語意不合;(J) silent 是「安靜的」,與建築、鐘聲的稱讚無關。"
+  ],
+  "options": {
+   "I": {
+    "why": "noted 是過去分詞轉成的形容詞,意思是「著名的、知名的」。be noted for 表示因某特點而出名,與 famous for 相近,語意和 for 的搭配都吻合。"
+   },
+   "C": {
+    "why": "familiar 是形容詞,本身用法正確,但它的搭配是 be familiar to sb(被某人熟悉)或 be familiar with sth(熟悉某事物),沒有 be familiar for + 特點 的用法,意思是「熟悉」,不是「因…而聞名」,所以放進 is ___ for 不合語境。"
+   },
+   "E": {
+    "why": "faithful 是形容詞「忠實的」,文法上能放在 be 動詞之後,但 faithful for its architecture 語意不通;「忠實」是形容人或事物的忠誠,不是出名的原因。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "noted",
+    "pos": "adj.",
+    "zh": "著名的",
+    "note": "be noted for 表示「以…聞名」;也可作過去分詞,note 為動詞「注意到;特別提到」。近義字:famous、well-known、renowned。",
+    "coll": [
+     "be noted for",
+     "a noted writer"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "intricate",
+    "pos": "adj.",
+    "zh": "複雜精細的",
+    "note": "形容結構、圖案等繁複精巧,如 intricate design。",
+    "coll": [
+     "intricate architecture",
+     "an intricate pattern"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "medieval",
+    "pos": "adj.",
+    "zh": "中世紀的",
+    "note": "指中世紀(約五至十五世紀)的,如 medieval castle。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "位於巴黎中心的這座中世紀大教堂,以其精細繁複的建築、令人讚嘆的彩繪玻璃窗,以及最重要的鐘聲而聞名。",
+  "aiFlags": [
+   "(C) familiar 與 (I) noted 都是形容詞,在第 21、26 題可能互相干擾:第 21 題的依據是 for 的搭配(be noted for),第 26 題的依據是 a ___ part of life 要的是「日常熟悉」而非「因特點出名」;兩題已用對稱的說法排除對方。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-22": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "詞性:there is documented ___ to the ringing of bells 是 there be 存在句,is 後面接意義上的主詞(名詞),documented 是修飾它的過去分詞形容詞,所以空格要填名詞,而且後面接 to。",
+   "上下文線索:In fact 後說「早在大教堂完工之前,就已有關於鐘聲的記載,可追溯到 12 世紀」,表示有文獻提到鐘聲。",
+   "選定 (A) reference:reference to sth 是「對…的提及;有關…的記載」,there is documented reference to the ringing of bells 即「有文獻記載提到鐘聲」。",
+   "排除:celebration、restoration 多接 of(the celebration of / the restoration of),不接 to;且「慶祝」「修復」都不是「被文獻記載、被提及」的內容,與 documented 不合。其餘字庫字多為形容詞或動詞,不能當名詞。"
+  ],
+  "options": {
+   "A": {
+    "why": "reference 是名詞,reference to 表示「提及、參考」。documented reference to... 即留有文字紀錄提到鐘聲,與 dating as far back as the 12th century 的時間線索相合。"
+   },
+   "G": {
+    "why": "celebration 是名詞,文法上可放在 documented 之後,但它的常見搭配是 celebration of(對…的慶祝),不接 to;語意變成「慶祝」,與「文獻記載鐘聲」無關。"
+   },
+   "H": {
+    "why": "restoration 是名詞,文法上可成立,但常見搭配是 restoration of,不接 to;意思是「修復」,而此處說的是大教堂完工前就有鐘聲的記載,語意不合。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "reference",
+    "pos": "n.",
+    "zh": "提及;參考",
+    "note": "reference to sth 表示對…的提及;也可指參考資料、參考文獻。動詞 refer to 為其相關用法。",
+    "coll": [
+     "make reference to",
+     "a reference to"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "document",
+    "pos": "v.",
+    "zh": "記載;以文件記錄",
+    "note": "本題 documented 作形容詞,意為「有文獻記載的」。名詞為「文件」。"
+   },
+   {
+    "type": "phrase",
+    "t": "date back to",
+    "zh": "追溯到",
+    "note": "dating as far back as the 12th century 為分詞構句,表示「可追溯到 12 世紀」。",
+    "coll": [
+     "date back to the 12th century"
+    ]
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "事實上,早在大教堂尚未完工之前,就已有文獻提到鐘聲,時間最早可追溯到 12 世紀。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-23": {
+  "schema": 2,
+  "answer": "B",
+  "status": "reviewed",
+  "key": [
+   "詞性:前句 The 10 bells vary in size 已是完整子句;each ___ a name 後面有受詞 a name,而且沒有連接詞,所以空格應是現在分詞,構成分詞構句或補充說明。",
+   "上下文線索:The largest one, named “Emmanuel” 說明每口鐘都有名字,所以空格是「帶有、擁有」名字。",
+   "選定 (B) bearing:bear a name 表示「(物)具有名字」,each bearing a name 即「每口鐘都有一個名字」。",
+   "排除:(D) retained 與 (F) survived 都是過去式或過去分詞,放在 each ___ a name 會成為沒有連接詞的第二個動詞,結構不合;語意上「保留名字」或「倖存下來名字」也與前後文不符。(A) reference 為名詞,後面接 a name 也不成句。"
+  ],
+  "options": {
+   "B": {
+    "why": "bearing 是 bear 的現在分詞,bear a name 為「具有名字」。each bearing a name 為分詞構句,說明這 10 口鐘各有名字,與下一句 named Emmanuel 的例子相接。"
+   },
+   "D": {
+    "why": "retained 是 retain 的過去式,動詞本身用法正確(retain 可以接受詞),但在 each ___ a name 中前面沒有連接詞,又會變成與 vary 並列的第二個動詞,句子結構不成立;語意「保留名字」也不符。"
+   },
+   "F": {
+    "why": "survived 本身是自然的動詞,但放進此空格會形成沒有連接詞的第二個動詞,結構不通;survived a name 也沒有意義。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "bear",
+    "pos": "v.",
+    "zh": "具有;承受;生(子)",
+    "note": "bear a name / a resemblance 表示「具有名字/相似」,bore、borne 為變化形。現在分詞 bearing 還可作名詞,指「關係」(have a bearing on)。",
+    "coll": [
+     "bear a name",
+     "bear in mind"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "vary",
+    "pos": "v.",
+    "zh": "不同;變化",
+    "note": "vary in size 指大小不一。名詞 variety、形容詞 various。",
+    "coll": [
+     "vary in size",
+     "vary from A to B"
+    ]
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "each bearing a name 是分詞構句(附帶說明),each 作為前面 the 10 bells 的分述,主動意義用現在分詞。",
+  "zh": "這 10 口鐘大小不一,每口鐘都有一個名字。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-24": {
+  "schema": 2,
+  "answer": "F",
+  "status": "reviewed",
+  "key": [
+   "詞性:It is the only one of the whole group that ___ the French Revolution:that 引導關係子句修飾 the only one,空格為動詞,後接 the French Revolution 當受詞;同一句後半 while the rest were melted down 為對比,動詞用過去式。",
+   "上下文線索:the rest were melted down for weapons 說明其他鐘都被熔掉,與之對比的 Emmanuel 即「撐過了」法國大革命。",
+   "選定 (F) survived:survive 可作及物或不及物動詞;本題 survived the French Revolution 中直接接受詞 the French Revolution,因此此處採及物用法,表示「經歷法國大革命後仍保存下來／倖存」,時態用過去式合理。",
+   "排除:(D) retained 是動詞過去式,文法上可成立,但 retained the French Revolution 表示「保留法國大革命」,語意不通;(B) bearing 為分詞,不能單獨當關係子句的動詞。"
+  ],
+  "options": {
+   "F": {
+    "why": "survive 可作及物或不及物動詞;本題 survived the French Revolution 直接接受詞 the French Revolution,所以是及物用法,表示經歷某事件後仍存在。與 while the rest were melted down 形成「唯獨它倖存、其餘被熔毀」的對比。"
+   },
+   "D": {
+    "why": "retained 在文法上可作過去式動詞,後面也能接受詞,但「保留法國大革命」邏輯不通,不符合本句要說明的「唯一倖免者」。"
+   },
+   "B": {
+    "why": "bearing 是現在分詞,放在 that 之後不能構成完整動詞;且空格需要的是過去式動詞,才能與 were melted down 的過去時間一致。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "survive",
+    "pos": "v.",
+    "zh": "倖存;經歷…仍活著",
+    "note": "可及物也可不及物;survive sth 指熬過某事件,survive on 指靠…維生。名詞 survival,survivor 為「倖存者」。",
+    "coll": [
+     "survive the war",
+     "survive on"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "melt down",
+    "pos": "v. phr.",
+    "zh": "熔化(再利用)",
+    "note": "melt sth down:受詞可放在中間或後面(melt the bells down / melt down the bells);文中 were melted down for weapons 指鐘被熔掉鑄成武器。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "在整組鐘中,只有它熬過了法國大革命,其餘的鐘都被熔掉去製造武器。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-25": {
+  "schema": 2,
+  "answer": "D",
+  "status": "reviewed",
+  "key": [
+   "詞性:Emmanuel, which ___ its renowned, excellent sound:which 引導非限定關係子句,空格為動詞,後接 its renowned, excellent sound 當受詞。",
+   "上下文線索:前半說所有鐘因音質不佳於 2013 年被更換,except for Emmanuel 表示唯獨它不換;其聲音被稱為 renowned、excellent,因此是「保留了原有聲音」。",
+   "選定 (D) retained:retain 是及物動詞,意思是「保有、保留」,retained its renowned, excellent sound 即「保有它著名而優美的音色」。",
+   "排除:(F) survived 也是及物動詞過去式,但 survived its sound 會變成「撐過自己的聲音」,語意不通;(J) silent 是形容詞,不能當動詞放在 which 之後。"
+  ],
+  "options": {
+   "D": {
+    "why": "retain 是「保持、保有」,受詞常是性質、地位、能力等抽象事物。which retained its renowned, excellent sound 說明 Emmanuel 沒有被換,仍留有好的聲音。"
+   },
+   "F": {
+    "why": "survived 本身是自然的及物動詞,但 survive its renowned sound 語意為「撐過它自己的聲音」,不通;survive 的受詞通常是災難、事件,不是聲音。"
+   },
+   "J": {
+    "why": "silent 是形容詞,which 之後需要動詞,因此詞性不符;即使 silent 作為形容詞也與 renowned sound 的語意相反。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "retain",
+    "pos": "v.",
+    "zh": "保有;保留",
+    "note": "受詞常為性質、記憶、權利等。名詞 retention。近義字:keep、preserve。",
+    "coll": [
+     "retain one's value",
+     "retain a memory"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "renowned",
+    "pos": "adj.",
+    "zh": "著名的",
+    "note": "be renowned for 與 be noted for 相近,字面「有名聲的」,名詞 renown。",
+    "coll": [
+     "be renowned for"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "acoustic",
+    "pos": "adj.",
+    "zh": "聲學的;音響的",
+    "note": "acoustic quality 指音質。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "但由於音質不佳,所有的鐘在 2013 年都被更換,只有 Emmanuel 例外,它保留了著名而優美的音色。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-26": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "詞性:a ___ part of life 中,空格位於冠詞 a 與名詞 part 之間,需要形容詞。",
+   "上下文線索:Over centuries(長久以來)+ have become a ___ part of life in Paris,表示鐘聲長期融入居民生活;(推論)因此是「熟悉的」存在。後面 known as “the cathedral’s voice” 也呼應鐘聲與城市密不可分。",
+   "選定 (C) familiar:a familiar part of life 即「生活中熟悉的一部分」,表示鐘聲長久陪伴市民,成為熟悉的存在。",
+   "排除:(I) noted 是「因某特點而著名」,多修飾人、地點或作品(a noted scholar、be noted for…),不用來形容日常、普遍的事物,而 part of life 要的是「熟悉、習慣」,所以不選;(E) faithful 是「忠實的」,a faithful part of life 無法說明鐘聲融入生活;(J) silent 與「鐘聲融入日常」語意相反。"
+  ],
+  "options": {
+   "C": {
+    "why": "familiar 是形容詞,a familiar part of life 即「熟悉的日常一部分」,和 Over centuries 的長期時間、「大教堂的聲音」呼應。"
+   },
+   "I": {
+    "why": "noted 是形容詞,文法上能放在 a ___ part,但意思是「因某特點而著名的」,多修飾人、地點或作品(a noted scholar),不用來形容日常普遍的事物;與第 21 題 be noted for 的用法一致。part of life 要的是「熟悉、習以為常」,所以不如 familiar。"
+   },
+   "E": {
+    "why": "faithful 是形容詞,文法上可放在 part 之前,但意思是「忠實的」,a faithful part of life 不能說明鐘聲長期陪伴生活,語意不合。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "familiar",
+    "pos": "adj.",
+    "zh": "熟悉的",
+    "note": "be familiar with sth(某人熟悉某事)/ be familiar to sb(某事為某人所熟悉)。名詞 familiarity,反義字 unfamiliar。",
+    "coll": [
+     "be familiar with",
+     "a familiar face"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "part of life",
+    "zh": "生活的一部分",
+    "note": "a part of life 常指日常中習以為常的事物,例如 become a part of life。",
+    "coll": [
+     "become part of life"
+    ]
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "幾個世紀以來,這些鐘已成為巴黎生活中熟悉的一部分,在巴黎被稱為「大教堂的聲音」。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-27": {
+  "schema": 2,
+  "answer": "E",
+  "status": "reviewed",
+  "key": [
+   "詞性:to call the ___ to prayer 中,空格在定冠詞 the 之後、動詞 call 的受詞位置。call 後面需要被召喚的人,所以要用「the + 形容詞」表示一群人,即 the faithful(信徒)。",
+   "上下文線索:call ___ to prayer 是「召喚…去禱告」,受詞必須是會禱告的「人」;the + 形容詞可表一群人,語意為「虔誠的信徒」的是 faithful。",
+   "選定 (E) faithful:the faithful 指「信徒們」,為「the + 形容詞」表一群人,call the faithful to prayer 即「召喚信徒前來禱告」。",
+   "排除:(C) familiar 雖是形容詞,the familiar 可指「熟悉的事物」,但 call the familiar to prayer 語意不通,禱告的是人;(J) silent 若用 the silent 指「沉默的人」,也與禱告情境無關;名詞字庫字(如 reference、celebration)不是指人。"
+  ],
+  "options": {
+   "E": {
+    "why": "faithful 作形容詞是「忠實的」,the faithful 為 the + adj. 表示一群人,指虔誠的信徒。鐘聲召喚 the faithful to prayer 符合教堂的情境。"
+   },
+   "C": {
+    "why": "familiar 是形容詞,the familiar 可指「熟悉的事物」,文法上可以構成名詞片語;但 call the familiar to prayer 語意不通。"
+   },
+   "J": {
+    "why": "silent 是形容詞,the silent 可指「沉默的人」,文法上可能構成名詞片語,但與「召喚去禱告」的情境無關,語意不合。"
+   }
+  },
+  "notes": [
+   {
+    "type": "phrase",
+    "t": "the + 形容詞",
+    "zh": "表示一群人",
+    "note": "the faithful(信徒)、the rich(富人)、the elderly(老年人)等為複數集合,動詞用複數。",
+    "coll": [
+     "the rich",
+     "the poor",
+     "the faithful"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "faithful",
+    "pos": "adj.",
+    "zh": "忠實的;虔誠的",
+    "note": "be faithful to sb/sth;名詞 faith(信仰;信心),副詞 faithfully。",
+    "coll": [
+     "be faithful to",
+     "a faithful friend"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "call sb to prayer",
+    "zh": "召喚某人前去禱告",
+    "note": "鐘聲或宣禮聲召集信徒去祈禱。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "它們用來報時、召喚信徒前來禱告,並且在火災、入侵等緊急情況時發出警示。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-28": {
+  "schema": 2,
+  "answer": "G",
+  "status": "reviewed",
+  "key": [
+   "詞性:in times of ___ and of mourning,of 後接名詞,and 連接兩個並列名詞,所以空格與 mourning(名詞)詞性相同,且語意為對比。",
+   "上下文線索:後面列出 royal weddings and coronations of kings(喜慶)與 funerals of heads of state(喪禮),對應 celebration 與 mourning。",
+   "選定 (G) celebration:times of celebration and of mourning 即「歡慶與哀悼的時刻」,兩者對比。",
+   "排除:(H) restoration 是名詞,文法上能放在 times of 之後,但「修復的時刻」與 royal weddings、coronations 不相關,也與 mourning 沒有對比;(A) reference 為名詞,times of reference 語意不通。"
+  ],
+  "options": {
+   "G": {
+    "why": "celebration 是名詞「慶祝」,與 mourning 構成對比,並總括 royal weddings 與 coronations 等喜事,和 funerals 呼應。"
+   },
+   "H": {
+    "why": "restoration 是名詞,times of restoration 文法上自然,但指「修復的時期」,與皇室婚禮、加冕等例子無關,也和 mourning 不成對比。"
+   },
+   "A": {
+    "why": "reference 是名詞,文法上可放在 of 之後,但 times of reference 不能表示婚禮或加冕等喜慶,語意不通。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "celebration",
+    "pos": "n.",
+    "zh": "慶祝;慶典",
+    "note": "動詞 celebrate,in celebration of 表示「為慶祝…」。",
+    "coll": [
+     "in celebration of",
+     "a celebration of"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "mourning",
+    "pos": "n.",
+    "zh": "哀悼",
+    "note": "動詞 mourn,in mourning 指處於服喪中。",
+    "coll": [
+     "be in mourning",
+     "a period of mourning"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "coronation",
+    "pos": "n.",
+    "zh": "加冕典禮",
+    "note": "動詞 crown,名詞 crown 為「王冠」。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "它們也曾在歡慶與哀悼的時刻響起,宣告皇室婚禮、國王加冕,以及國家元首的葬禮等大事。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-29": {
+  "schema": 2,
+  "answer": "J",
+  "status": "reviewed",
+  "key": [
+   "詞性:the bells fell ___:fall 在此是連綴動詞(fall silent、fall asleep),後接形容詞表示變成某種狀態。",
+   "上下文線索:However 表轉折,前面說鐘聲是巴黎生活的一部分,轉折後說 2019 年大火毀損了 the cathedral(文中未明說鐘本身受損);文末 The sounds of Notre-Dame bells once again filled the air 的 once again 暗示鐘聲曾經中斷,這是推論,所以空格應是「變得無聲」的 silent。",
+   "選定 (J) silent:fall silent 表示「變得安靜、沉默」,說明大火後鐘聲停了。",
+   "排除:(C) familiar 是形容詞,但 fall familiar 不是常見的連綴搭配,也無法與 once again filled the air 呼應;(E) faithful 為形容詞,fall faithful 語意不通;(I) noted 是形容詞,fall noted 沒有意義。"
+  ],
+  "options": {
+   "J": {
+    "why": "silent 是形容詞,fall silent 是固定表達「變得無聲」。與 However 轉折,以及後面 once again filled the air(再度響起)形成「靜默後重新響起」的對比。"
+   },
+   "C": {
+    "why": "familiar 是形容詞,詞性上可接在連綴動詞後,但 fall familiar 不是常見搭配,也無法說明大火之後的狀況。"
+   },
+   "E": {
+    "why": "faithful 是形容詞,詞性上可放在 fell 之後,但 fell faithful 語意不通,與鐘聲受大火影響的情境無關。"
+   }
+  },
+  "notes": [
+   {
+    "type": "phrase",
+    "t": "fall silent",
+    "zh": "變得安靜;陷入沉默",
+    "note": "fall 作連綴動詞,後接形容詞表示轉變為某種狀態,如 fall asleep、fall ill、fall silent。",
+    "coll": [
+     "fall asleep",
+     "fall ill"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "devastating",
+    "pos": "adj.",
+    "zh": "毀滅性的",
+    "note": "指造成嚴重破壞的,動詞 devastate。",
+    "coll": [
+     "a devastating fire",
+     "devastating effects"
+    ]
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "fall + 形容詞:fall 作連綴動詞表示「變成…狀態」,如 fall silent、fall asleep、fall ill。",
+  "zh": "然而,2019 年那場嚴重損毀大教堂的大火之後,這些鐘沉寂了。",
+  "aiFlags": [
+   "文章未明說鐘為何沉寂(只說大火毀損 the cathedral),fall silent 是依 once again filled the air 的暗示與 fall + 形容詞的固定表達所作的語意推論;官方答案 silent 在此仍是最合理的選項。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-30": {
+  "schema": 2,
+  "answer": "H",
+  "status": "reviewed",
+  "key": [
+   "詞性:空格在 a complex and time-consuming process of ___ 中,of 之後需要名詞或動名詞。",
+   "上下文線索:前句說大火毀損大教堂;本句說經過複雜、耗時的過程後,monument 於 2024 年 12 月 8 日 finally reopened,所以過程是把受損建築修復。",
+   "選定 (H) restoration:process of restoration 即「修復的過程」,名詞 restoration 為動詞 restore 的名詞。",
+   "排除:(G) celebration 是名詞,文法上可接 process of,但「慶祝的過程」與 reopen 前需要花長時間處理毀損不符;(A) reference 為名詞,process of reference 語意不通。"
+  ],
+  "options": {
+   "H": {
+    "why": "restoration 是名詞「修復、恢復」,動詞 restore。經過複雜耗時的修復過程後才重新開放,與前面 fire damaged 的因果相承。"
+   },
+   "G": {
+    "why": "celebration 是名詞,process of celebration 文法上可成立,但前句談的是大火造成的損毀,「慶祝」無法承接這個因果,也不會是讓建築重新開放前所需的過程。"
+   },
+   "A": {
+    "why": "reference 是名詞,文法上能放在 of 之後,但 process of reference 無法說明大教堂在大火後的處理,語意不通。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "restoration",
+    "pos": "n.",
+    "zh": "修復;恢復",
+    "note": "動詞 restore,常見 restore sth to its original state。可指文物、建築的修復或秩序的恢復。",
+    "coll": [
+     "restoration work",
+     "the restoration of a building"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "time-consuming",
+    "pos": "adj.",
+    "zh": "耗時的",
+    "note": "由 time + consuming(耗費…的)構成的複合形容詞,指「花很多時間的」;近義字 lengthy。",
+    "coll": [
+     "a time-consuming process"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "reopen",
+    "pos": "v.",
+    "zh": "重新開放",
+    "note": "re- 表「再次」。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "這座建築歷經一段複雜而耗時的修復過程,這座著名的古蹟終於在 2024 年 12 月 8 日重新開放。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-31": {
+  "schema": 2,
+  "answer": "D",
+  "status": "reviewed",
+  "key": [
+   "Before:第 1 段前兩句說 capsule hotel 是簡易又便宜的住宿,源於日本,最初是為了讓商務人士用少少的錢住在靠近商業區的地方。",
+   "Candidate:(D) Today, they provide low-budget, overnight lodging in commerce centers in large cities worldwide. 的功能是對照 initially,說明現在的情形,並把範圍從日本擴大到全世界大城市。",
+   "After:第 2 段開頭 A typical room of a capsule hotel... 轉入客房的細節,前面需要先把 capsule hotel 的背景和現況收尾。",
+   "Link:initially meant for business professionals 與 Today 形成時間對照;they 指前面的 these hotels;commerce centers 呼應前面 business districts;worldwide 為第 3 段擴展到其他城市與國家預作鋪陳。"
+  ],
+  "options": {
+   "D": {
+    "why": "Today 與前句 initially 形成時間對比,they 回指 capsule hotels,lodging 與 low-budget 呼應 without spending a lot,commerce centers 呼應 business districts,作為第 1 段的收束。"
+   },
+   "A": {
+    "why": "A 文法上成立、英文自然,但它在談「因應需求增加而創新」,第 1 段還沒有談到需求或舊式風格,所以放在這裡缺少前提;它的內容要放在第 3 段已經提到旅館擴展到各地之後(見第 33 題)。"
+   },
+   "B": {
+    "why": "B 文法上成立,但它描述房間的噪音缺點,第 1 段在介紹背景,尚未談到客房細節,與第 2 段「A typical room」也不連貫,應放在缺點段落(第 34 題)。 另外 B 以 The room’s 開頭,但第 1 段尚未出現 room,要到第 2 段 A typical room 才首次介紹,定冠詞沒有先行詞。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "accommodation",
+    "pos": "n.",
+    "zh": "住宿",
+    "note": "在此為不可數名詞,指住宿設施。近義字:lodging。",
+    "coll": [
+     "budget accommodation"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "originate",
+    "pos": "v.",
+    "zh": "起源",
+    "note": "originate in/from;文中 Originated in Japan 為過去分詞構句。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "原句(插入句):今日,它們在全球各大城市的商業中心提供價格低廉的過夜住宿。／前句:這類旅館最初是為了讓商務人士在不花很多錢的情況下,住在靠近人口密集商業區的地方。／後句:典型的膠囊旅館房間大約是一張單人床的長與寬……",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-32": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "Before:第 2 段先說房間大小約一張單人床,足夠人爬進去坐起,又說牆壁可能由木材、金屬或任何硬質材料製成,常是玻璃纖維或塑膠。",
+   "Candidate:(C) The chambers are stacked side-by-side, two units high, with the upper rooms reached by a ladder. 的功能是繼續描述 capsule 的外形配置:並排、兩層高、上層靠梯子進入。",
+   "After:下一句 Each capsule is equipped with a comfortable mattress... 開始說明單一膠囊內部的設備,承接 C 對各個 capsule 排列方式的描述,由整體排列轉入單一 capsule 的內部。",
+   "Link:chambers 是 capsules(rooms)的替代說法,承接 walls of each capsule;從單個房間的尺寸、牆壁到整體堆疊方式,再到 Each capsule 的內部設備,由外而內描述,下一句的 Each 與 C 的 chambers 一對多對應。"
+  ],
+  "options": {
+   "C": {
+    "why": "chambers 是前文 capsule 的換說法,補上堆疊與上下進出方式,再接 Each capsule 說明內部設備,描述順序自然。"
+   },
+   "B": {
+    "why": "B 文法上成立,而且 thin plastic walls 接在 often fiberglass or plastic 之後局部銜接自然,是本題最容易誤選的選項。但 (1) 第 2 段整體在描述 capsule 的大小、材質、排列與內部設備,結尾又以 such minimalist design makes these hotels both inexpensive and efficient 作正面總結,B 談的是隔音差、噪音,屬於住宿缺點,與段落功能不合;(2) 這類缺點在第 4 段才與 poor air flow、共用設施、claustrophobic 一起列出(正是第 34 題的答案位置)。所以 C 比 B 更合適。"
+   },
+   "D": {
+    "why": "D 文法上成立,但它談的是旅館整體在世界各地的現況,與第 2 段描述客房結構的主題不符,並且 they 在此沒有適合的先行詞(前面是 walls 或 capsule)。"
+   }
+  },
+  "notes": [
+   {
+    "type": "phrase",
+    "t": "stack",
+    "zh": "堆疊",
+    "note": "文中 are stacked side-by-side, two units high 為被動語態。",
+    "coll": [
+     "be stacked up"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "equip",
+    "pos": "v.",
+    "zh": "配備",
+    "note": "be equipped with 表示「配備有」。",
+    "coll": [
+     "be equipped with"
+    ]
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "前句:每個膠囊的牆壁可能由木材、金屬或任何硬質材料製成,但常見的是玻璃纖維或塑膠。／插入句:這些艙室並排堆疊,共兩層高,上層房間要靠梯子進入。／後句:每個膠囊都配有舒適的床墊、一盞小燈,有時還有電視或其他娛樂設備。",
+  "aiFlags": [
+   "B 句(薄塑膠牆傳來鼾聲)接在 often fiberglass or plastic 之後局部銜接自然,是主要干擾。排除 B 的依據是段落功能與資訊組織:第 2 段整體描述 capsule 的大小、材質、排列與設備,C 屬客房結構／排列資訊,B 屬隔音差的缺點,與第 4 段的缺點清單(poor air flow、共用設施、claustrophobic)一致,也是第 34 題的答案。官方答案 C 較佳,但 B 並非完全放不進去。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-33": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "Before:第 3 段說第一家膠囊旅館 1979 年在大阪開幕,此後迅速擴展到其他城市與國家,甚至歐洲、北美的大城市也有。",
+   "Candidate:(A) In response to rising demands, these hotels are embracing a wave of innovation. 的功能是由「擴散」轉入「改變」,說明需求增加,旅館開始創新。",
+   "After:下一句 Instead of the traditional bare pod-sized style, new chains now feature interior design... 具體說明創新的內容:取代傳統簡陋的艙式風格,改採新設計與設施。",
+   "Link:innovation 概括後面的 interior design 與 free Wi-Fi、mobile charging 等例子,屬「概括→例證」;Instead of the traditional 呼應創新的「新舊對比」;these hotels 回指前面各地的 pod hotels。"
+  ],
+  "options": {
+   "A": {
+    "why": "A 的 wave of innovation 為總述,後面 new chains now feature... 與 Guests may enjoy... 為例證,Instead of 的新舊對比也需要一句先說明正在改變。"
+   },
+   "D": {
+    "why": "D 文法上成立,但它講旅館現今遍布世界大城市,與前面已說的擴展到各國城市重複,也無法銜接 Instead of the traditional bare pod-sized style 所需要的「改變」。"
+   },
+   "C": {
+    "why": "C 文法上成立,但它在描述房間結構,應屬第 2 段;放在第 3 段,與 Instead of the traditional... 的設計創新或旅館擴展皆無關。"
+   }
+  },
+  "notes": [
+   {
+    "type": "phrase",
+    "t": "in response to",
+    "zh": "回應;因應",
+    "note": "in response to rising demands 表示因為需求上升而採取行動。",
+    "coll": [
+     "in response to the request"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "innovation",
+    "pos": "n.",
+    "zh": "創新",
+    "note": "動詞 innovate,形容詞 innovative。",
+    "coll": [
+     "technological innovation"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "embrace",
+    "pos": "v.",
+    "zh": "欣然接受;採納",
+    "note": "embrace a wave of innovation 此為引申義,表示積極採納創新。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "前句:膠囊旅館也出現在歐洲與北美,尤其是紐約、倫敦、巴黎等大城市。／插入句:為因應日益增加的需求,這些旅館正擁抱一波創新。／後句:新的連鎖旅館現在不再採用傳統簡陋、僅有膠囊艙大小的風格,而是以室內設計來吸引世界各地、隨時連網的旅客。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-34": {
+  "schema": 2,
+  "answer": "B",
+  "status": "reviewed",
+  "key": [
+   "Before:第 4 段先說膠囊旅館不一定適合每個人,第一個缺點是有些旅館的膠囊內沒有空調,通風不良。",
+   "Candidate:(B) The room’s thin plastic walls easily transmit the sound of snoring made by neighboring guests. 的功能是再列出一個缺點:薄牆擋不住鄰房鼾聲(噪音)。",
+   "After:第 4 段首句 may not be suitable for everyone 起,整段逐項列出缺點(通風不良 → 插入句 → Also 共用設施 → And 幽閉恐懼)。插入句必須與前後同為缺點、承接 may not be suitable 的主題;A(創新)、C(堆疊排列)、D(現況)都不是缺點,所以不能放。B 的 thin plastic walls ... snoring 是缺點,下一句 Also 再接另一個缺點。",
+   "Link:缺點羅列:通風不良 → 噪音 → Also 共用設施 → And 幽閉恐懼;thin plastic walls 回應第 2 段中提到牆壁常是玻璃纖維或塑膠;The room 回指 capsule。"
+  ],
+  "options": {
+   "B": {
+    "why": "B 是缺點(隔音差),與前句通風不良、後句共用設施、最後的幽閉恐懼同屬缺點清單;The room 回指 capsule,thin plastic walls 呼應第 2 段牆壁常是玻璃纖維或塑膠。B 也曾是第 32 題的干擾,該題排除它的依據是它預設已有並排配置且語氣與段落不合。"
+   },
+   "A": {
+    "why": "A 文法上成立,但它談的是旅館進步與創新,語氣為正面,偏離本段列缺點(may not be suitable for everyone)的主題,應放在第 33 題的位置。"
+   },
+   "C": {
+    "why": "C 文法上成立,但它客觀描述艙室如何堆疊與上下層進入,並不是缺點,與本段主題不合,應屬第 2 段的客房描述(見第 32 題)。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "transmit",
+    "pos": "v.",
+    "zh": "傳送;傳導",
+    "note": "transmit sound 指傳導聲音;名詞 transmission。",
+    "coll": [
+     "transmit a signal",
+     "transmit sound"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "claustrophobic",
+    "pos": "adj.",
+    "zh": "幽閉恐懼的",
+    "note": "名詞 claustrophobia。",
+    "coll": [
+     "feel claustrophobic"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "budget-conscious",
+    "pos": "adj.",
+    "zh": "注重預算的",
+    "note": "文中 budget-conscious travelers 指在意花費的旅客。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "前句:有些旅館的膠囊內可能不提供空調,導致空氣流通不佳。／插入句:房間薄薄的塑膠牆壁很容易傳來鄰房旅客的鼾聲。／後句:此外,你可能得與其他旅客共用公共設施(例如浴室)。",
+  "aiFlags": [
+   "B 與第 32 題的 B 互為干擾:第 34 題排除 A、C、D 的依據是「本段逐項列缺點」的主題,而不是 Also 本身(空調缺點已在前句,Also 並不要求中間再插一句)。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-35": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "主旨題要看全文每一段在做什麼：第 1 段介紹 Knight 提出以鐵路活動臂號誌為基礎的交通號誌；第 2 段說明該系統因瓦斯外洩爆炸而被棄用、號誌被禁；第 3 段談美國各城市的改良與 Potts 的黃燈（三色號誌）；第 4 段說自駕車出現後，號誌可能不再需要。",
+   "把各段串起來，主線是「交通管制方式如何一步步改變」：手臂號誌→紅綠燈→三色燈→也許連號誌都不需要（第 4 段）。全文依時間先後，從 1860 年代一直談到未來。",
+   "再比較四個選項的涵蓋範圍：(A) 剛好涵蓋從過去到未來的整條發展線；(B) 只涵蓋人物，(C) 只涵蓋功能，(D) 範圍太廣。",
+   "文章明說的是各階段的設計與事件；「演進」是把這些階段整合後的概括，屬於歸納，不是文中某一句話。"
+  ],
+  "options": {
+   "A": {
+    "why": "正確。「evolution of traffic control systems」涵蓋四段：Knight 的活動臂加燈（第 1 段）、被禁後 1929 年才恢復（第 2 段）、美國的改良與黃燈（第 3 段）、自駕車可能取代號誌（第 4 段）。「traffic control systems」也比 traffic lights 更廣，連第 4 段「沒有號誌的路口」都包含在內。"
+   },
+   "B": {
+    "why": "這個選項只抓到第 1、3 段的人物：Knight 與 Potts（以及第 3 段泛稱的專利申請者）。但文章的重點是這些人提出的「系統如何改變」，第 2 段的爆炸與禁令、第 4 段的自駕車都與發明者無關，所以範圍過窄，只涵蓋部分內容。"
+   },
+   "C": {
+    "why": "文章確實提到某些號誌的功能，例如手臂水平＝停、降到 45 度＝前進（第 1 段），黃燈表示 proceed with caution（第 3 段）。但這些是用來說明各階段設計的細節，不是全文主題；第 2 段（事故與禁令）、第 4 段（自駕車）都不是在比較不同號誌的功能。"
+   },
+   "D": {
+    "why": "「modern transportation」泛指各種交通運輸（車輛、鐵路、航空等）的發展；文章只談路口的號誌與管制，第 1 段的鐵路號誌與第 4 段的自駕車也只是服務於號誌這個主題，範圍過廣。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "evolution",
+    "pos": "n.",
+    "zh": "演進、發展",
+    "note": "指逐步、漸進的變化。本題 (A) 的關鍵字；相關：evolve (v.)。",
+    "coll": [
+     "the evolution of sth",
+     "evolve into"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "credit",
+    "pos": "v.",
+    "zh": "把……歸功於",
+    "note": "第 1 段 credit the first traffic light to Knight：把第一個紅綠燈的功勞歸給 Knight。",
+    "coll": [
+     "credit A to B",
+     "credit B with A"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "emergence",
+    "pos": "n.",
+    "zh": "出現、興起",
+    "note": "第 4 段 with the emergence of self-driving cars；動詞為 emerge。",
+    "coll": [
+     "the emergence of sth"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "be short-lived",
+    "zh": "短命的、短暫的",
+    "note": "第 2 段形容 Knight 的系統只維持一個月左右就停用。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 1 段：多數人認為第一個交通號誌出自諾丁漢工程師 John Peake Knight。他提出以鐵路活動臂號誌為基礎的系統，並加上紅綠瓦斯燈供夜間使用。\n第 2 段：Knight 的號誌在 1868 年 12 月裝設，但瓦斯外洩造成爆炸，專案被棄置，交通號誌直到 1929 年才在英國街頭回歸。\n第 3 段：二十世紀初美國大城市出現英國號誌的各種版本，Potts 的三色系統加入了「小心前進」的訊號。\n第 4 段：隨著自駕車出現，研究人員開始認為交通號誌或許不再必要。\n題目與正確選項：本文主要在談什麼？(A) 交通管制系統的演進。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-36": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "先回第 1 段找 Knight 的設計：他提出的是以「鐵路活動臂號誌」(railway movable-arm signal) 為基礎的系統；手臂水平伸出表示停，降到 45 度表示前進；夜間另外加上紅、綠瓦斯燈；旁邊還有警察操作。這幾項都是文章明說的。",
+   "把文章資訊整理成圖像的檢查清單：(1) 有可活動的手臂；(2) 有燈（紅綠燈供夜間使用，是「加」在手臂號誌上的）。警察是旁邊的人員，不是號誌本身的外觀，不必在圖中尋找。",
+   "逐一對照四張圖的可見特徵：(A) 只有兩個圓形燈，沒有手臂；(B) 有伸出的桿子，但沒有燈；(C) 柱頂有燈籠，兩側各有一根向下斜的活動臂，同時有手臂與燈；(D) 是標有 STOP、GO 字樣的箱形號誌，沒有手臂也沒有燈。",
+   "所以只有 (C) 同時具備「活動臂」與「燈」。區分四張圖只需用這兩項文章資訊（有無活動臂、有無燈）；文章沒有交代號誌的其他細部外觀，不要用文章以外的知識去判斷。"
+  ],
+  "options": {
+   "A": {
+    "why": "(A) 的主體是兩個圓形燈的燈箱，看不出可活動的臂（頂端的小飾物不是手臂），缺少 Knight 設計的核心「活動臂」。第 1 段說紅綠燈是「加」在活動臂號誌上、供夜間使用，只有燈而沒有活動臂，不是他提出的整套號誌。"
+   },
+   "B": {
+    "why": "(B) 有從柱子伸出的桿子，外觀可視為手臂，但畫面上沒有燈。第 1 段說 Knight 的系統是在活動臂號誌上「加」紅綠瓦斯燈供夜間使用，題目問的是他提出的整套號誌，所以只有手臂而沒有燈的 (B) 不完整。"
+   },
+   "C": {
+    "why": "正確。(C) 柱頂有燈籠，兩側各有一根向下斜的活動臂，對應第 1 段「活動臂（手臂降低表示前進）＋夜間用的紅綠燈」兩項特徵。"
+   },
+   "D": {
+    "why": "(D) 是標有 STOP、GO 文字的箱形號誌，既無活動臂也無燈，與第 1 段描述的「活動臂」與「紅綠燈」兩項特徵都不符。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "movable",
+    "pos": "adj.",
+    "zh": "可移動的、可活動的",
+    "note": "movable-arm signal 指手臂可以升起或放下的號誌。構詞：move + -able。"
+   },
+   {
+    "type": "word",
+    "t": "command",
+    "pos": "v.",
+    "zh": "命令、指示",
+    "note": "第 1 段 arms … commanded drivers to stop：手臂的位置對駕駛下達「停」的指令。",
+    "coll": [
+     "command sb to V"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "move on",
+    "zh": "繼續前進",
+    "note": "第 1 段 told drivers to move on，指手臂降下時駕駛可以前進。"
+   },
+   {
+    "type": "word",
+    "t": "resemble",
+    "pos": "v.",
+    "zh": "像、類似",
+    "note": "第 1 段 resembling a traffic director's gestures：像交通指揮者的手勢（現在分詞，說明手臂訊號的特色）。",
+    "coll": [
+     "resemble sb/sth"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "station",
+    "pos": "v.",
+    "zh": "派駐、安置",
+    "note": "第 1 段 A police officer was stationed by the side：被派駐在號誌旁。名詞 station 為「站、所」。",
+    "coll": [
+     "be stationed at/by"
+    ]
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 1 段：他提出一套以鐵路活動臂號誌為基礎的號誌系統：水平伸出的手臂命令駕駛停車，降到 45 度的手臂則告訴駕駛可以前進，類似交通指揮者的手勢。夜間則在號誌上加裝紅色與綠色的瓦斯燈。一名警察被派駐在旁邊操作這套系統。\n題目與正確選項：下列哪一張圖顯示 Knight 提出的交通號誌？(C) 圖 C。",
+  "aiFlags": [
+   "本題使用的是已核准的原創替代圖（非官方原圖），答案維持官方答案 (C)。圖中的細節（柱頂燈籠、頂端小飾物、(B) 的斜桿等）是繪圖者的設定，不是文章資訊；選項說明只用「有無活動臂」「有無燈」兩項文章資訊區分四張圖。(B) 的桿子外觀像伸出的手臂，學生容易只看到手臂而忽略沒有燈；另外文章說手臂水平表示停、降下表示前進，單張靜態圖只能畫出一種手臂位置。請老師確認 (A)(B) 與 (C) 的差異是否足以讓學生只靠「活動臂＋燈」判斷。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-37": {
+  "schema": 2,
+  "answer": "D",
+  "status": "reviewed",
+  "key": [
+   "true/false 題要逐項回文章查證，並注意四個選項各出自哪一段：(A) 第 2 段、(B) 第 3 段、(C) 第 1 段、(D) 第 4 段。",
+   "(A) 第 2 段說爆炸「injuring the policeman operating it」，受傷的是操作的警察，不是 Knight，所以錯。(B) 第 3 段說美國大城市已有芝加哥的活動臂、舊金山的紅綠燈等版本，Potts 的貢獻是黃燈這項 major breakthrough，所以不是美國第一個。",
+   "(C) 第 1 段說 Knight 的號誌是以鐵路的 movable-arm signal 為基礎，手臂的動作只是「resembling a traffic director's gestures」，指外觀像指揮者的手勢，並非說這個號誌源自指揮者的想法，所以不是「originated from the idea of a traffic director」。",
+   "(D) 第 4 段明說研究人員開始認為自駕車出現後號誌不再必要，車輛會自動調整速度通過路口。文章用 may / begun to suggest 的語氣，所以選項的 may not need 與原文一致。"
+  ],
+  "options": {
+   "A": {
+    "why": "第 2 段說瓦斯外洩造成燈具爆炸，受傷的是「the policeman operating it」，也就是在旁邊操作的警察。第 1 段 Knight 是設計者，文章沒有說他在現場或受傷。"
+   },
+   "B": {
+    "why": "第 3 段說美國大城市早已出現英國號誌的各種版本（芝加哥用活動臂、舊金山用紅綠燈），Potts 的貢獻是加入黃燈的 major breakthrough（1920 年裝於底特律），並非美國第一個交通號誌。"
+   },
+   "C": {
+    "why": "第 1 段說 Knight 把鐵路的號誌系統調整用在倫敦路口，手臂動作「resembling a traffic director's gestures」。意思是動作看起來像交通指揮者的手勢，來源是鐵路活動臂號誌，不是指揮者的點子。這是把「像」誤讀成「源自」的陷阱。"
+   },
+   "D": {
+    "why": "正確。第 4 段：自駕車的出現使研究人員開始提出「號誌不再必要」，車輛會自動調整速度並與其他車保持安全距離通過路口，所以未來車輛可能不需要紅綠燈。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "deem",
+    "pos": "v.",
+    "zh": "認為、視為",
+    "note": "第 2 段 Deemed a public hazard：被視為公共危險。常用被動、分詞結構，後接名詞或形容詞。",
+    "coll": [
+     "be deemed (to be) + n./adj."
+    ]
+   },
+   {
+    "type": "word",
+    "t": "hazard",
+    "pos": "n.",
+    "zh": "危險物、危害",
+    "note": "第 2 段 a public hazard；同義：danger、risk。",
+    "coll": [
+     "a health hazard",
+     "a fire hazard"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "ban",
+    "pos": "v.",
+    "zh": "禁止",
+    "note": "第 2 段 traffic lights were banned；名詞也是 ban。",
+    "coll": [
+     "ban sb from V-ing",
+     "a ban on sth"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "breakthrough",
+    "pos": "n.",
+    "zh": "突破、重大進展",
+    "note": "第 3 段 A major breakthrough：Potts 的黃燈是重大進展。",
+    "coll": [
+     "a major breakthrough in sth"
+    ]
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 1 段：Knight 的號誌以鐵路活動臂號誌為基礎，手臂的動作類似交通指揮者的手勢。\n第 2 段：瓦斯外洩一個月後造成燈具爆炸，傷到操作號誌的警察。\n第 3 段：二十世紀初英國號誌的版本出現在美國大城市；Potts 的三色系統 1920 年裝設於底特律。\n第 4 段：隨著自駕車出現，研究人員開始認為交通號誌或許不再必要，車輛會自動調整速度通過路口。\n題目與正確選項：根據本文，下列哪項敘述正確？(D) 未來的車輛通過路口時可能不需要交通號誌。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-38": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "句子是 “This design was adopted in later traffic light designs across the world.”,開頭的 This design 要回指緊鄰前面剛介紹的某個設計,而且這句談「後來的號誌設計」,適合放在某段末尾作結。先找各段末句:哪一段結尾正好介紹了一套「設計」。",
+   "第 3 段末句:Installed in Detroit in 1920, Potts’ three-color system allowed for the added signal “proceed with caution” to be displayed.,主詞正是 Potts’ three-color system(一套號誌設計)。接著放 This design was adopted in later traffic light designs across the world,This design 自然回指這套三色系統,說明它後來被各地的設計採用,是最直接的前後銜接。",
+   "比較其他段末:第 1 段末句是 A police officer was stationed by the side to operate the system,緊鄰的是警察的人員安排,雖然該段介紹 Knight 的設計,但最近一句不是一套設計,This design 的直接回指較弱;第 2 段末句說專案被棄置、號誌被禁到 1929 年,緊鄰的是結果與禁令,沒有一套可被「採用」的設計可讓 This design 銜接。",
+   "第 4 段末句談自駕車與未來的交通管理方式,方向是未來、不再需要號誌,與「後來的號誌設計被世界各地採用」的歷史發展不合。所以選 (C) 第 3 段。"
+  ],
+  "options": {
+   "A": {
+    "why": "第 1 段確實介紹了 Knight 的設計,所以把 This design 理解成 Knight 的設計並非不可能;但該段最後一句已轉成 A police officer was stationed by the side to operate the system(人員安排),把插入句放在段末,This design 與最近一句的連結不如第 3 段末緊接 Potts’ three-color system 那麼直接,所以不如 (C)。"
+   },
+   "B": {
+    "why": "第 2 段結尾說專案被棄置、號誌被禁到 1929 年,重點是結果與禁令,緊鄰的句子沒有一套可讓 This design 自然回指的設計或系統,接在這裡缺少清楚的指涉對象,所以不如 (C)。"
+   },
+   "C": {
+    "why": "正確。第 3 段末句的主詞是 Potts’ three-color system,緊接著 This design was adopted in later traffic light designs across the world 時,This design 自然回指這套三色系統,說明它後來被世界各地的號誌設計採用,作為段落的收尾,指涉與語意都最直接。"
+   },
+   "D": {
+    "why": "第 4 段談自駕車出現、號誌可能不再必要,是談未來的交通管理方式;而 This design was adopted in later traffic light designs 說的是過去號誌設計的後續影響,方向與本段不合,所以不選。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "adopt",
+    "pos": "v.",
+    "zh": "採用、採納",
+    "note": "adopt a design/method/policy；第 3 段另有 were adopted in San Francisco。不要和 adapt（調整、改編）混淆。",
+    "coll": [
+     "adopt a method",
+     "be adopted by sb"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "adapt",
+    "pos": "v.",
+    "zh": "使適應、改編",
+    "note": "第 1 段 this could not be adapted for use on London intersections：把鐵路號誌改用於路口。與 adopt 只差一個字母。",
+    "coll": [
+     "adapt A for B",
+     "adapt to sth"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "file",
+    "pos": "v.",
+    "zh": "提出（申請）",
+    "note": "第 3 段 Patents … were filed：專利被提出申請。",
+    "coll": [
+     "file a patent",
+     "file a lawsuit"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "innovation",
+    "pos": "n.",
+    "zh": "創新、新發明",
+    "note": "第 3 段 innovations on Knight's ideas：在 Knight 構想上的創新。動詞為 innovate。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 3 段：二十世紀初的美國，不同城市採用不同的號誌；一項重大突破是 Detroit 警察 William Potts 發明的黃燈。1920 年在底特律裝設的 Potts 三色系統，可以顯示增加的「小心前進」訊號。\n插入句：這個設計後來被世界各地的交通號誌設計所採用。\n第 4 段：隨著自駕車出現，研究人員開始認為交通號誌或許不再必要。\n題目與正確選項：這個句子最適合放在哪一段末作為最後一句？(C) 第 3 段。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-39": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "題目問的是研究屬於哪個學術領域，要先看文章研究的「對象」與「內容」：第 1 段 new studies untangle the benefits and risks of horror movies；第 2 段研究者討論 safe fear、take the perspective of the characters、learning vicariously、therapeutic、release bottled-up emotions；第 3 段談 anxiety、trauma、sleep、irritability。",
+   "這些全是在研究「人看恐怖片之後的心理與情緒反應」：恐懼、焦慮、創傷、情緒釋放、睡眠和易怒、兒童日後的焦慮。這些屬於研究心理與行為的 Psychology。這題是推論題：文章沒有直接寫出學科名稱，所以要從研究內容歸類。",
+   "文章集中談的是 fear、anxiety、trauma、情緒釋放(emotional relief)、易怒、睡眠受擾,以及兒童對暴力的敏感度,這些主要是個人的心理、情緒與行為反應,所以 Psychology 是四個選項中最直接、最符合的領域。Education 與 Philosophy 和文章內容的關聯較弱。Communication 並非毫無關聯,因為恐怖片是媒體,media effects 也可能屬傳播研究;但本文沒有把焦點放在訊息傳播、媒介渠道、傳播模式或 audience communication behavior,而是聚焦於觀影者本身的心理反應,所以 A 比 D 更合適。"
+  ],
+  "options": {
+   "A": {
+    "why": "正確。文章研究的是觀眾看恐怖片的情緒與心理影響：safe fear、rehearse the plot、release bottled-up emotions、anxiety、trauma、irritability，這些都是心理學研究的核心課題。"
+   },
+   "B": {
+    "why": "文章第 3 段提到兒童受影響，但那只是一類觀眾；研究的主題不是教學、課程或學習成效，所以最可能屬於的領域不是教育。這個領域本身與學習有關，但不符合全文的研究內容。第 2 段的 learning vicariously 談的是觀影時的心理歷程，不是教學設計或學習成效，仍屬心理學問題。"
+   },
+   "C": {
+    "why": "文章沒有討論人生、倫理或抽象概念的論證，研究的是看電影的反應與影響，所以不是哲學。"
+   },
+   "D": {
+    "why": "恐怖片是影視媒體，因此 Communication 並非毫無關聯；但文中研究關注的是觀眾個人的恐懼、焦慮、睡眠等心理狀態，而不是訊息如何傳遞、媒體傳播效果或閱聽習慣，所以 Psychology 比 Communication 更貼切。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "vicariously",
+    "pos": "adv.",
+    "zh": "間接地（藉由他人經驗）",
+    "note": "在本題指從他人（角色）的經驗中學習或感受，不是親身經歷。形容詞 vicarious。",
+    "coll": [
+     "learn vicariously",
+     "live vicariously through sb"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "therapeutic",
+    "pos": "adj.",
+    "zh": "有治療效果的、有療效的",
+    "note": "第 2 段 can be therapeutic：對情緒有舒緩作用。名詞 therapy、therapist。"
+   },
+   {
+    "type": "word",
+    "t": "trauma",
+    "pos": "n.",
+    "zh": "心理創傷",
+    "note": "第 3 段 trauma may be triggered：創傷反應可能被觸發。形容詞 traumatic。",
+    "coll": [
+     "suffer trauma"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "irritability",
+    "pos": "n.",
+    "zh": "易怒、煩躁",
+    "note": "第 3 段 fatigue and irritability；形容詞 irritable，動詞 irritate。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 1 段：新的研究已開始釐清恐怖片的好處與風險。\n第 2 段：研究者認為觀眾透過這種方式間接學習；刺激與興奮可以有療癒效果，讓觀眾釋放壓抑的情緒，並在電影結束後感到放鬆。\n第 3 段：研究也發現恐怖片對某些人有負面影響，如焦慮、創傷被觸發、睡眠受擾與疲倦易怒。\n題目與正確選項：文中提到的研究最可能屬於哪個領域？(A) 心理學。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-40": {
+  "schema": 2,
+  "answer": "B",
+  "status": "reviewed",
+  "key": [
+   "先回第 2 段找 learning vicariously 的上下文：as people are drawn into the story, they tend to take the perspective of the characters and rehearse the plot unconsciously. Researchers believe that viewers are learning vicariously this way, picking up tips on how to handle threats in the real world.",
+   "this way 指前一句的做法：觀眾代入角色的視角、在腦中預演劇情。picking up tips 說明學到的是「面對危險的方法」，而且觀眾自己並沒有真的遇到危險（第 2 段前面說他們身在家中或影院座位上）。所以 vicariously 的意思是透過看他人（角色）的經歷而學習，也就是 observation。",
+   "比較選項：(B) 觀察而獲得知識，符合；(D) 說從親身經驗取得資訊，恰好相反，因為觀眾並未親自遇到威脅；(C) 面對面互動，文中沒有與人互動；(A) 無保留地提問，與電影觀賞無關。"
+  ],
+  "options": {
+   "A": {
+    "why": "「Making inquiries without reservation」是毫不保留地提問、詢問。文章中觀眾只是看電影，沒有向誰提問；picking up tips 也不是靠發問取得。與上下文無關。"
+   },
+   "B": {
+    "why": "正確。「Gaining knowledge through observation」對應第 2 段：觀眾代入角色、預演劇情，從角色面對威脅的過程中學到應對方式；觀眾本身不在危險中，是透過看別人的處境學習。"
+   },
+   "C": {
+    "why": "「face-to-face interaction」要有人與人當面互動；文中觀眾是看電影，與角色並沒有互動。"
+   },
+   "D": {
+    "why": "「personal experience」指親身經驗，但第 2 段前面強調觀眾是 in the comfort of their own home or theater seats rather than under the threat of any real danger，並沒有親自經歷危險，所以與 vicariously 的意思相反。這是最容易誤選的選項。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "vicariously",
+    "pos": "adv.",
+    "zh": "間接地、替代性地",
+    "note": "從別人的經驗中得到感受或學習。vicarious experience＝透過他人得到的間接經驗。常見搭配 live vicariously through sb。",
+    "coll": [
+     "learn vicariously",
+     "experience sth vicariously"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "take the perspective of sb",
+    "zh": "從某人的角度看事情",
+    "note": "第 2 段 take the perspective of the characters：代入角色的視角。也可說 from sb's perspective。"
+   },
+   {
+    "type": "phrase",
+    "t": "pick up",
+    "zh": "學到、無意間習得",
+    "note": "第 2 段 picking up tips：不經刻意學習就學到。pick up a language / an idea 也是此意。",
+    "coll": [
+     "pick up a skill"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "rehearse",
+    "pos": "v.",
+    "zh": "預演、排練",
+    "note": "第 2 段 rehearse the plot unconsciously：在腦中預演劇情。名詞 rehearsal。",
+    "coll": [
+     "rehearse a speech"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "unconsciously",
+    "pos": "adv.",
+    "zh": "無意識地",
+    "note": "第 2 段形容觀眾不自覺地預演；反義 consciously。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 2 段：當人們被故事吸引，往往會站在角色的角度，並在不知不覺中預演劇情。研究者認為觀眾以這種方式間接學習，學到在真實世界中處理威脅的訣竅。\n題目與正確選項：作者在第 2 段說的「learning vicariously」是什麼意思？(B) 透過觀察而獲得知識。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-41": {
+  "schema": 2,
+  "answer": "D",
+  "status": "reviewed",
+  "key": [
+   "推論題的做法：把每個選項拿回文章核對，區分「文章明說」與「可以合理推論」。要選的是文章有證據支持的推論，而不是文章沒說的推測。",
+   "(D) 的依據在第 3 段最後：兒童（14 歲以下）看恐怖片，日後成年較可能發展出焦慮，並且對真實暴力較不敏感、更能接受攻擊行為，這是文章明說的長期影響。但有兩個跳躍：(1) 證據僅限兒童；(2) 「焦慮與對暴力的態度」不等於 personality。選項用 may 與 personality 做概括，是最接近的推論。",
+   "(A) 文章只說兒童暴露在血腥暴力下會更接受攻擊，沒說多數恐怖片愛好者有攻擊行為；(B) 第 2、3 段分別列出好處與壞處，沒有比較多寡；(C) 疫情期間是觀看量高，不是說疫情啟發創作。A、B、C 都有明確不符之處，所以 D 是最佳選項（偏向刪去法）。"
+  ],
+  "options": {
+   "A": {
+    "why": "第 3 段只說 Children under 14 這類族群，接觸 graphic violence 後 more accepting of aggression（較能接受攻擊行為）。這是對兒童的影響，而不是說多數恐怖片愛好者容易有攻擊行為；也沒說 aggressive behavior 本身。以偏概全。"
+   },
+   "B": {
+    "why": "文章先列三項好處（第 2 段），再列幾項風險（第 3 段），沒有比較誰多誰少，更沒有說好處「far more」。這是文章沒有的資訊。"
+   },
+   "C": {
+    "why": "第 2 段末說 during the COVID-19 pandemic，恐怖片與疫情驚悚片是 digital movie apps 上觀看次數最多的電影；這是疫情期間觀眾的選擇，並非說疫情啟發了恐怖片創作。文章沒有談電影的創作靈感，把「被觀看」改成「被啟發」。"
+   },
+   "D": {
+    "why": "正確。第 3 段：兒童看恐怖片，日後成年較可能出現焦慮，也可能對真實暴力較不敏感、更能接受攻擊。這是長期影響；說可能影響性格是由這些說法所做的推論，選項用 may，語氣與文章的證據程度相當。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "exposure",
+    "pos": "n.",
+    "zh": "接觸、暴露",
+    "note": "第 3 段 exposure to graphic violence：長期接觸血腥暴力內容。動詞 expose。",
+    "coll": [
+     "exposure to sth"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "aggression",
+    "pos": "n.",
+    "zh": "攻擊（行為）、侵略",
+    "note": "第 3 段 more accepting of aggression；形容詞 aggressive（好攻擊的，文章選項 (A) 用到）。"
+   },
+   {
+    "type": "word",
+    "t": "sensitive",
+    "pos": "adj.",
+    "zh": "敏感的",
+    "note": "第 3 段 more sensitive to anxiety / less sensitive to real-life violence：對某事物較敏感／較不敏感。名詞 sensitivity。",
+    "coll": [
+     "be sensitive to sth"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "graphic",
+    "pos": "adj.",
+    "zh": "（描寫）生動露骨的",
+    "note": "graphic violence：血腥、毫不修飾的暴力畫面，與「圖形」的意思不同。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 3 段（依據句）：14 歲以下的兒童看恐怖片，日後成年發展出焦慮的機率較高。更糟的是，接觸血腥的暴力與流血畫面，可能讓他們對現實中的暴力較不敏感，並更能接受攻擊行為。\n第 2 段末：疫情期間，恐怖片與疫情驚悚片是數位電影應用程式上觀看次數最多的電影。\n題目與正確選項：從本文可以推論出下列哪項關於恐怖片的敘述？(D) 觀看恐怖片可能對人格有長期影響。",
+  "aiFlags": [
+   "(D) 的證據僅限 14 歲以下兒童，且 personality 一詞在文中未出現，是出題者對「焦慮傾向與對暴力的態度」的概括；答案維持官方答案 (D)，屬最接近的推論。"
+  ],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-42": {
+  "schema": 2,
+  "answer": "B",
+  "status": "reviewed",
+  "key": [
+   "這是寫作手法／組織題，要看各段的功能而不是內容細節：第 1 段先說恐怖片有人怕、有人愛，並指出新研究釐清「benefits and risks」。",
+   "第 2 段列出好處（One benefit … Secondly … In addition），第 3 段 However 轉折，列出負面影響（negative effects … Furthermore … Finally）。全文就是同一議題「看恐怖片」的正反兩面。",
+   "比較其他選項：(A) 全文雖然用「safe fear」，但只是第 2 段的一個用語，不是全文用定義與例子在說明一個概念；(C) 第 3 段雖有因果（看片→失眠），但全文不是在講一個問題的成因與結果；(D) 文章沒有提供解決爭議的步驟。"
+  ],
+  "options": {
+   "A": {
+    "why": "第 2 段確實提到「so-called safe fear」並解釋，但它只是三個好處中的第一個，且之後的段落轉向壞處。全文不是圍繞單一概念下定義再舉例，所以只涵蓋一小部分。"
+   },
+   "B": {
+    "why": "正確。第 1 段預告「benefits and risks」；第 2 段談好處（safe fear、vicarious learning、therapeutic）；第 3 段以 However 轉折談壞處（焦慮、創傷、睡眠、兒童）。這是呈現同一議題的對立面向。"
+   },
+   "C": {
+    "why": "第 3 段有「恐懼殘留→睡不著→疲倦易怒」這類因果，但這是壞處中的一項。全文也同時談好處，不是把某個問題當中心去談原因與結果，所以不是整體的組織方式。"
+   },
+   "D": {
+    "why": "文章沒有談到雙方爭論或如何調解，也沒有步驟式的說明；只是呈現研究發現的好處與風險。"
+   }
+  },
+  "notes": [
+   {
+    "type": "phrase",
+    "t": "revolve around",
+    "zh": "以……為中心、圍繞",
+    "note": "第 2 段 One benefit … revolves around the concept of 'safe fear'：其中一個好處與「安全的恐懼」這個概念有關。",
+    "coll": [
+     "revolve around sb/sth"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "untangle",
+    "pos": "v.",
+    "zh": "釐清、解開（纏結的事物）",
+    "note": "第 1 段 untangle the benefits and risks：把好處與風險理清。原意是解開纏結。"
+   },
+   {
+    "type": "word",
+    "t": "however",
+    "pos": "adv.",
+    "zh": "然而",
+    "note": "第 3 段 However 標示從好處轉到壞處，是判斷「正反兩面」的關鍵。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 1 段：新的研究開始釐清恐怖片的好處與風險。\n第 2 段：恐怖片的好處包括「安全的恐懼」、間接學習與情緒釋放。\n第 3 段：然而，研究者也發現恐怖片對某些人有負面影響，如焦慮、創傷、睡眠受擾，以及對兒童的影響。\n題目與正確選項：作者如何發展本文的想法？(B) 呈現一個議題的對立觀點。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-43": {
+  "schema": 2,
+  "answer": "C",
+  "status": "reviewed",
+  "key": [
+   "先看第 1 段怎麼鋪陳：Russia is widely portrayed as the most alcohol-dependent country … Critics say drinking is almost an inherent trait of the Russian people. However, there is more to the story. 「However」後預告接下來要提出不同的說法，也就是對「喝酒是俄羅斯人與生俱來的特質」的質疑。",
+   "再看第 2 段內容：古代俄羅斯很少喝酒類飲料（unusual）；基督教傳入前沒有葡萄園，所以沒有葡萄酒；人們只喝低酒精飲料；伏特加不是俄羅斯人發明的，源自 14 世紀末從法國傳入的葡萄酒精，15 世紀才有俄羅斯自製的伏特加，直到 18 世紀中葉酒精含量都還相對低。這些全是在反駁「俄羅斯人天生愛喝酒」。這是對第 1 段與第 2 段的連結：文章明說第 2 段的事實，「為了反駁」是依 However 與內容做的推論。",
+   "比較選項：(A) 談古代歐洲酒類內容，範圍錯誤（談的是俄羅斯）；(B) 法國的影響只是其中一個事實；(D) 基督教只是用來標示時間點，並未說伏特加消費與基督教有關。"
+  ],
+  "options": {
+   "A": {
+    "why": "第 2 段談的是古代「俄羅斯」的酒類，不是歐洲整體；第 3 段才提到中世紀歐洲（德國人）。而且段落重點不是「酒的內容成分」，而是說明飲酒並不是俄羅斯人與生俱有的習慣。"
+   },
+   "B": {
+    "why": "第 2 段確實提到 vodka 原本是從法國傳入的葡萄酒精，但這只是證明「伏特加不是俄羅斯的發明」的一個細節；整段還包括沒有葡萄園、只喝低酒精飲料、酒精含量長期偏低，不是只在強調法國的影響。"
+   },
+   "C": {
+    "why": "正確。第 1 段批評者說飲酒近乎俄羅斯人的天性，並以 However 預告還有另一面；第 2 段用古代俄羅斯很少飲酒、沒有葡萄酒、伏特加是外來的且酒精度低等事實，質疑這個想法，所以目的是反駁「俄羅斯人天生愛喝酒」。"
+   },
+   "D": {
+    "why": "文章只用 Before the adoption of Christianity 作為時間點（那時還沒有葡萄園、沒有葡萄酒）。並沒有說基督教使俄羅斯人喝更多伏特加，所以不存在「將伏特加消費與基督教連結」。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "inherent",
+    "pos": "adj.",
+    "zh": "與生俱來的、固有的",
+    "note": "第 1 段 an inherent trait：天生的特質；與 born drinkers 的意思相呼應。",
+    "coll": [
+     "inherent in sth",
+     "an inherent part of"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "portray",
+    "pos": "v.",
+    "zh": "描繪、刻畫",
+    "note": "第 1 段 widely portrayed as：普遍被描繪成。",
+    "coll": [
+     "portray A as B"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "vineyard",
+    "pos": "n.",
+    "zh": "葡萄園",
+    "note": "第 2 段 there were no vineyards and therefore no wine：沒有葡萄園，因此沒有葡萄酒。"
+   },
+   {
+    "type": "word",
+    "t": "content",
+    "pos": "n.",
+    "zh": "含量、內容",
+    "note": "第 2 段 low alcohol content：酒精含量低。注意這裡重音在第一音節，與形容詞 content（滿足的）不同。",
+    "coll": [
+     "alcohol content",
+     "the content of sth"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "assumption",
+    "pos": "n.",
+    "zh": "假定、假設",
+    "note": "選項 (C) 中的 the assumption that…：認為……的想法，常是被質疑的。動詞 assume。",
+    "coll": [
+     "the assumption that…"
+    ]
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 1 段：俄羅斯被普遍描繪成世界上最依賴酒精的國家。批評者說喝酒幾乎是俄羅斯人與生俱來的特質。然而，事情並不止於此。\n第 2 段：古代俄羅斯很少喝含酒精的飲料。在俄羅斯接受基督教（10 世紀）之前，沒有葡萄園，因此沒有葡萄酒，人們只喝酒精含量低的飲料。伏特加不是俄羅斯人發明的，原本是 14 世紀末從法國傳入的葡萄酒精。俄羅斯自製的伏特加在 15 世紀出現，一直到 18 世紀中葉，酒精含量都相對較低。\n題目與正確選項：本文第 2 段的主要目的是什麼？(C) 反駁俄羅斯人天生愛喝酒的假設。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-44": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "true/false 題，逐項回文章查證。與伏特加生產有關的資訊主要在第 2 段（起源與傳入）、第 3 段（德國人）與第 4 段（19 世紀國家壟斷）。",
+   "(A) 第 2 段：The first Russian-made vodka appeared in the 15th century，所以俄羅斯的伏特加生產始於 15 世紀，符合。",
+   "(B) 第 2 段說伏特加原本是從法國傳入的 grape alcohol（葡萄酒精），沒有提到小麥，所以「用小麥做的第一款伏特加」是文章沒有的資訊。(C) 第 3 段說中世紀歐洲最會喝酒的是德國人，是喝的量，不是產量。(D) 第 4 段說 19 世紀國家壟斷，只有政府可以生產，並非鼓勵人民自己做。"
+  ],
+  "options": {
+   "A": {
+    "why": "正確。第 2 段明說 The first Russian-made vodka appeared in the 15th century，即俄羅斯的伏特加生產始於 15 世紀。"
+   },
+   "B": {
+    "why": "第 2 段說伏特加最初是 a grape alcohol introduced from France，是用葡萄做的酒精，文章完全沒有提到小麥；也沒說「第一個」是用什麼原料。選項改了原料，是文章中沒有的資訊。"
+   },
+   "C": {
+    "why": "第 3 段只說 The heaviest drinkers in medieval Europe were actually Germans，指的是喝最多，而不是生產最多；文中也沒有說德國生產伏特加。"
+   },
+   "D": {
+    "why": "第 4 段說 19 世紀皇帝建立國家壟斷，because of illegal production of low-quality vodka，只有政府被允許生產。這與「鼓勵民眾自己製作」相反。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "monopoly",
+    "pos": "n.",
+    "zh": "壟斷、專賣",
+    "note": "第 4 段 a state monopoly：由國家獨占生產與販賣；常見 have a monopoly on sth。",
+    "coll": [
+     "a monopoly on/of sth",
+     "state monopoly"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "medieval",
+    "pos": "adj.",
+    "zh": "中世紀的",
+    "note": "第 3 段 medieval Europe；名詞 the Middle Ages 指同一時期。"
+   },
+   {
+    "type": "word",
+    "t": "indulge",
+    "pos": "v.",
+    "zh": "沉溺、放縱",
+    "note": "第 3 段引文 indulge in excessive drinking：沉溺於過度飲酒。常用 indulge in sth。",
+    "coll": [
+     "indulge in sth"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "contradictory",
+    "pos": "adj.",
+    "zh": "互相矛盾的",
+    "note": "第 3 段 contradictory information：互相衝突的資訊；動詞 contradict，名詞 contradiction。"
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 2 段：伏特加是俄羅斯的國民飲料，但不是俄羅斯人發明的。這種液體原本是 14 世紀末從法國傳入的葡萄酒精。第一款俄羅斯製的伏特加出現在 15 世紀，直到 18 世紀中葉，這種飲料的酒精含量都還相對較低。\n第 3 段：中世紀歐洲喝得最多的人其實是德國人。\n第 4 段：19 世紀皇帝開始建立國家壟斷，只有政府被允許生產這種酒。\n題目與正確選項：關於伏特加生產，下列何者正確？(A) 俄羅斯的伏特加生產始於 15 世紀。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-45": {
+  "schema": 2,
+  "answer": "D",
+  "status": "reviewed",
+  "key": [
+   "指涉題先找 This 所在的句子與前一句：「Thus, only the government was permitted to produce the alcohol. This soon filled the state treasury with huge revenues, but it also encouraged vodka consumption.」",
+   "Thus 句是第 1 句 state monopoly 的結果說明：只有政府可以生產。This 指整個這項安排，也就是 state monopoly（國家壟斷）；它帶來國庫的龐大收入，也助長伏特加的消費。",
+   "逐項檢查：This 單獨使用時通常指前面敘述的情況或做法，而不是某個人或機構，所以先排除 the government；酒（alcohol）本身不會「填滿國庫」；illegal production 是建立壟斷的原因，不是帶來國庫收入的東西。這題是語意回指，不是找唯一的字面名詞。"
+  ],
+  "options": {
+   "A": {
+    "why": "alcohol 在前一句 produce the alcohol 中出現，但是動作的受詞。「酒」本身不會 filled the treasury with revenues，也不會 encouraged vodka consumption。"
+   },
+   "B": {
+    "why": "the government 是上一句的主詞，也能讓人聯想到國庫，所以是干擾選項。但 This 這個指示代名詞通常指前面所說的情況、做法，而非人或機構；語意上是「只有政府可以生產」這個安排使國庫增加收入並鼓勵飲酒。"
+   },
+   "C": {
+    "why": "illegal production 在第 4 段第 1 句出現（largely due to the rise of illegal production），是建立壟斷的原因（因為非法生產興起），不是使國庫充滿收入、鼓勵飲酒的東西。"
+   },
+   "D": {
+    "why": "正確。This 回指前面所說的 state monopoly（國家壟斷：只有政府能生產）。文章說這項做法很快使國庫收入豐厚，但也鼓勵了伏特加的消費。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "monopoly",
+    "pos": "n.",
+    "zh": "壟斷、專賣",
+    "note": "第 4 段 a state monopoly；establish a state monopoly 指建立國家壟斷。",
+    "coll": [
+     "establish a monopoly",
+     "have a monopoly on sth"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "treasury",
+    "pos": "n.",
+    "zh": "國庫",
+    "note": "the state treasury：國家的財庫。注意不要和 treasure（寶藏）混淆。"
+   },
+   {
+    "type": "word",
+    "t": "revenue",
+    "pos": "n.",
+    "zh": "收入、歲入",
+    "note": "多指政府或企業的收入；government revenue 為政府歲入。",
+    "coll": [
+     "tax revenue",
+     "revenue from sth"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "fill A with B",
+    "zh": "用 B 填滿 A",
+    "note": "第 4 段 filled the state treasury with huge revenues。",
+    "coll": [
+     "fill A with B",
+     "be filled with B"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "permit",
+    "pos": "v.",
+    "zh": "允許",
+    "note": "第 4 段 only the government was permitted to produce：被動語態，只有政府被允許生產。",
+    "coll": [
+     "be permitted to V"
+    ]
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 4 段：19 世紀，皇帝開始建立國家壟斷，主要是因為劣質伏特加的非法生產增加。因此，只有政府被允許生產這種酒。這很快使國庫充滿龐大的收入，但也助長了伏特加的消費。\n題目與正確選項：第 4 段中的「This」指的是什麼？(D) 國家壟斷。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
+ "114-46": {
+  "schema": 2,
+  "answer": "A",
+  "status": "reviewed",
+  "key": [
+   "先看最後一段（第 5 段）每句在做什麼：Meanwhile, a powerful anti-alcohol movement started in the 19th century（新增事實）；政策與公眾團體被建立（事實）；運動持續多年，但問題仍在；俄羅斯在人均飲酒量並非第一，但仍接近頂端（事實）。",
+   "整段是在補充新的資訊：反酒精運動與目前的排名；沒有回頭總結前四段（沒有 In summary 之類的整合），也沒有提出新的預測。這是文章明說的內容，結論方式屬於功能判斷。",
+   "比較選項：(B) 要重述前面主要想法，但這段是新資料；(C) 「the problem remains」是承接前面提過的酒精問題，不是新問題；(D) 全段只談過去與現況，沒有預測未來。因此 (A) 最適當。"
+  ],
+  "options": {
+   "A": {
+    "why": "正確。第 5 段以 Meanwhile 帶出 19 世紀的反酒精運動、政策與公眾組織，再說問題仍在，並指出俄羅斯的人均飲酒量並非第一但仍接近頂端；全是新增的事實與資料，用來收尾。"
+   },
+   "B": {
+    "why": "總結主要想法需要重述前文（例如酒精並非俄羅斯人天性、國家壟斷助長消費）。第 5 段是另外補充反酒精運動與現況排名，沒有重述前面內容，所以不是總結。"
+   },
+   "C": {
+    "why": "第 5 段說 the problem remains，這個「問題」指前面已談過的酒精（過度飲酒）問題，不是新提出的問題；段落是補充運動與現況，並沒有開啟新的討論。"
+   },
+   "D": {
+    "why": "第 5 段用過去式與現在式談 19 世紀以來的運動與現狀，沒有 will、may 之類預測未來的語句，所以不是預測。"
+   }
+  },
+  "notes": [
+   {
+    "type": "word",
+    "t": "movement",
+    "pos": "n.",
+    "zh": "（社會）運動",
+    "note": "第 5 段 an anti-alcohol movement；a social movement、a political movement。",
+    "coll": [
+     "launch a movement",
+     "a movement against sth"
+    ]
+   },
+   {
+    "type": "phrase",
+    "t": "per capita",
+    "zh": "每人平均",
+    "note": "第 5 段 alcohol consumption per capita：人均酒精消費量。",
+    "coll": [
+     "GDP per capita"
+    ]
+   },
+   {
+    "type": "word",
+    "t": "alcoholism",
+    "pos": "n.",
+    "zh": "酗酒、酒精成癮",
+    "note": "第 5 段 the spread of alcoholism；由 alcohol + -ism 構成，指成癮狀態。"
+   },
+   {
+    "type": "phrase",
+    "t": "occupy first place",
+    "zh": "位居第一",
+    "note": "第 5 段 does not occupy first place：並未位居第一。occupy 在此指佔據某名次。",
+    "coll": [
+     "take/occupy first place"
+    ]
+   }
+  ],
+  "words": [],
+  "phrases": [],
+  "patterns": [],
+  "grammar": "",
+  "zh": "第 5 段：同時，19 世紀開始出現強大的反酒精運動，政府制定政策、成立公眾組織以防止酗酒在國內蔓延。這個運動持續多年，然而問題仍在。雖然俄羅斯在人均酒精消費量上並非第一，但仍接近榜首。\n題目與正確選項：作者在最後一段如何結束本文？(A) 提供進一步的事實。",
+  "aiFlags": [],
+  "reviewer": "教師（負責人）",
+  "reviewedAt": "2026-11-19",
+  "reviewNotes": "2026-11-19 教師（負責人）確認：本題教學文字內容已完成教師審核並正式簽核通過。簽核範圍僅限文字教學內容；正式 production 發音尚未進行人工試聽簽核，音檔狀態以 signoff 的 audio 區塊為準。"
+ },
  "115-1": {
   "schema": 2,
   "answer": "B",

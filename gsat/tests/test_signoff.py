@@ -56,11 +56,11 @@ def test_every_reviewed_question_has_a_complete_valid_signoff(data, recs):
 
 
 def test_all_46_questions_are_signed_off_and_q11_to_q46_audio_stays_pending(data, recs):
-    assert set(recs) == {f'115-{n}' for n in range(1, 47)}
-    assert [i for i in data['items'] if i['key'] not in recs] == [] and len(data['items']) == 46
-    for n in range(11, 47):                                                                # Q11–Q46：2026-11-18 教師文字簽核；音檔一律 pending，沒有任何通過的音檔
-        r = recs[f'115-{n}']
-        assert (r['status'], r['reviewer'], r['signedAt']) == ('passed', '教師（負責人）', '2026-11-18'), n
+    assert set(recs) == {f'{y}-{n}' for y in (114, 115) for n in range(1, 47)}
+    assert [i for i in data['items'] if i['key'] not in recs] == [] and len(data['items']) == 92                  # 114、115 年 Q1–Q46 都有簽核紀錄
+    for key, date in [(f'115-{n}', '2026-11-18') for n in range(11, 47)] + [(f'114-{n}', '2026-11-19') for n in range(1, 47)]:      # 115 Q11–Q46（2026-11-18）、114 Q1–Q46（2026-11-19）教師文字簽核；音檔一律 pending
+        r = recs[key]; n = key
+        assert (r['status'], r['reviewer'], r['signedAt']) == ('passed', '教師（負責人）', date), n
         assert r['audio']['status'] == 'pending' and r['audio']['approvedFiles'] == [] and r['audio']['distinctFileCount'] == 0 and not r['audio'].get('productionApproved'), n
         assert all(x['result'] == 'passed' for x in r['items']) and 'audio' in r['scope'], n
     q1 = next(i for i in data['items'] if i['key'] == Q1)['e']
@@ -975,7 +975,7 @@ def test_q10_text_signoff_is_complete_and_audio_is_not_approved(data, recs):
     assert it['ext'][1]['options'] == ['grave', 'cheerful', 'playful', 'casual'] and it['ext'][1]['answer'] == 0 and it['ext'][1]['targets'] == ['grave-adj']
     prov = json.loads((REPO / 'docs' / 'gsat' / 'audio-provenance.json').read_text(encoding='utf8'))['files']
     assert len(prov) == 187 and not any(x['productionApproved'] for x in prov.values())
-    assert {f'115-{n}' for n in range(1, 47)} == {i['key'] for i in data['items'] if i['e']['status'] == 'reviewed'}
+    assert {f'{y}-{n}' for y in (114, 115) for n in range(1, 47)} == {i['key'] for i in data['items'] if i['e']['status'] == 'reviewed'}                       # 114、115 年 Q1–Q46 是 reviewed
 
 
 def test_q1_to_q9_fingerprints_are_unchanged_by_q10_signoff(data, recs):
