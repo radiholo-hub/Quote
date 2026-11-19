@@ -393,7 +393,7 @@ def test_other_questions_and_shared_entries_global_status_are_not_changed_by_the
     page = make_page('desktop')
     page.goto(URL + '#/')
     d = page.evaluate("({q: Object.entries(window.EXPLAIN).map(([k, e]) => [k, e.status]), v: [...new Set(Object.values(window.VOCAB.entries).map(e => e.status))], x: [...new Set(window.EXT_PRACTICE.map(e => e.status))]})")
-    assert dict(d['q']) == {f'115-{n}': 'reviewed' for n in range(1, 47)} and d['v'] == ['draft'] and d['x'] == ['draft']       # 115 年 Q1–Q46 教師文字簽核；單字詞條與延伸練習仍是 draft
+    assert dict(d['q']) == {f'{y}-{n}': 'reviewed' for y in (114, 115) for n in range(1, 47)} and d['v'] == ['draft'] and d['x'] == ['draft']       # 115 年 Q1–Q46 教師文字簽核；單字詞條與延伸練習仍是 draft
 
 
 # ---------------------------------------------------------------- 版面
