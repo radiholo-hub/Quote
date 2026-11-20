@@ -22,7 +22,7 @@ EXPOSE = [
     'canChallenge', 'startPlanDay', 'startMore', 'startMoreReview',
     'startChallenge', 'startFreeMore', 'showScore', 'renderPlan', 'planRanked', 'doneCount',
     'runQuiz', 'applyBlob', 'backupBlob', 'fetchPaid', 'save', 'show', 'go', 'examAllowed', 'coveredDays', 'LV_V0',
-    'examBegin', 'examSubmit', 'examRenderCurrent', 'examStartScreen', 'examRenderReview', 'examFull', 'loadPaidExams', 'EXAM1_P5_TEXTS', 'EXAM1_P6', 'EXAM1_P7', 'EXAM2_P5_TEXTS', 'EXAM2_P7',
+    'examBegin', 'examSubmit', 'examRenderCurrent', 'examStartScreen', 'PAY_INFO', 'openModal', 'examRenderReview', 'examFull', 'loadPaidExams', 'EXAM1_P5_TEXTS', 'EXAM1_P6', 'EXAM1_P7', 'EXAM2_P5_TEXTS', 'EXAM2_P7',
 ]
 
 # 假 Supabase：登入中的使用者 a@b.c；window.__SB_PAID 決定付費名單裡有沒有他。
@@ -133,8 +133,8 @@ def open_app(browser):
     """open_app(paid=False, width=390)：開一個新分頁並載入網站。paid 決定假伺服器回覆的付費狀態。"""
     pages = []
 
-    def _open(paid=False, width=390, height=900, init=None):
-        ctx = browser.new_context(viewport={'width': width, 'height': height})
+    def _open(paid=False, width=390, height=900, init=None, scale=1):
+        ctx = browser.new_context(viewport={'width': width, 'height': height}, device_scale_factor=scale)
         ctx.add_init_script('window.__SB_PAID=%s;' % ('true' if paid else 'false'))
         if init:
             ctx.add_init_script(init)

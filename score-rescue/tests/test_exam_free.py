@@ -239,7 +239,7 @@ def test_result_puts_review_right_below_parts_and_colors(open_app):
 def test_action_buttons_are_wine_and_buy_buttons_orange():
     acts = re.findall(r'class="btn (fire|pri)[^"]*"[^>]*>([^<]{1,20})<', PAGE)
     fire = {t for c, t in acts if c == 'fire'}
-    assert fire <= {'轉帳購買完整方案', '轉帳後加官方 LINE 回報', '解鎖完整方案', '解鎖本回完整詳解'}, fire
+    assert fire <= {'轉帳購買完整方案', '轉帳後加官方 LINE 回報', '前往綠界付款', '解鎖完整方案', '解鎖本回完整詳解'}, fire
     pri = {t for c, t in acts if c == 'pri'}
     assert {'開始免費詞性前測', '免費前測', '下一題'} <= pri
 

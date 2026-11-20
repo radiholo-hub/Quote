@@ -259,6 +259,12 @@ body.ans-bg .q-actions{background:linear-gradient(to top,#F7F3E8 65%,rgba(247,24
 .ac-body .ac-sec:first-of-type{margin-top:14px}
 .ptabs{margin-top:8px}
 .est-score{text-align:center;margin-top:0}
+.pay-steps{margin:14px 0 16px 1.3em;display:grid;gap:8px;font-size:1rem;line-height:1.6}
+.pay-online .btn{width:100%}
+.pay-online .fine{margin-top:10px}
+.pay-alt{margin-top:18px}
+.pay-alt>summary{cursor:pointer;font-weight:700;color:var(--muted);min-height:40px;display:flex;align-items:center}
+.pay-alt.solo>summary{display:none}
 .free-tag{display:inline-block;font-size:.72rem;font-weight:800;color:#fff;background:var(--fire);border-radius:999px;padding:2px 8px;vertical-align:middle}
 .exam-card.free{border-color:var(--fire)}
 .part-tbl td:last-child{text-align:right;font-weight:700}
@@ -948,9 +954,21 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
     <button class="x" id="mClose" type="button" aria-label="關閉">×</button>
     <h2 id="mTitle">轉帳訂購</h2>
-    <p class="lead">轉帳後加官方 LINE 回報，我們確認到款即開通，通常數小時內處理完成。</p>
+    <p class="lead" id="mLead">轉帳後加官方 LINE 回報，我們確認到款即開通，通常數小時內處理完成。</p>
     <p class="plan-line" id="mPlan"></p>
 
+    <div class="pay-online" id="payOnline" hidden>
+      <ol class="pay-steps">
+        <li>按下方按鈕，到綠界付款頁（信用卡、ATM、超商代碼都可以）</li>
+        <li>付款時填寫<b>要用來登入的 Email</b>（請再檢查一次拼字）</li>
+        <li>確認到款後開通，通常數小時內；之後用同一個 Email 登入就會自動解鎖</li>
+      </ol>
+      <a class="btn fire lg" id="payLinkBtn" href="#" target="_blank" rel="noopener">前往綠界付款</a>
+      <p class="fine">付款完成後沒有開通？加<a class="link" id="payLineLink" href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener">官方 LINE</a>，傳付款時填的 Email。</p>
+    </div>
+
+    <details class="pay-alt" id="payAlt">
+    <summary>改用銀行轉帳</summary>
     <div class="pay-box">
       <p class="pay-h">轉帳資訊</p>
       <dl class="pay-grid">
@@ -964,6 +982,7 @@ label.check input{width:22px;height:22px;margin-top:2px;flex:none}
       <a class="btn fire lg" id="lineBtn" href="https://line.me/R/ti/p/@419zbhxy" target="_blank" rel="noopener">轉帳後加官方 LINE 回報</a>
       <p class="fine">加好友後傳：轉帳後五碼 ＋ 你要用來登入的 Email，我們登記後，登入就會自動解鎖。</p>
     </div>
+    </details>
   </div>
 </div>
 
@@ -2874,6 +2893,7 @@ $('#examQuitBtn').addEventListener('click',function(){
 
 /* ---------- 轉帳訂購視窗 ---------- */
 const PAY_INFO={
+  payUrl:'',   // 綠界Pay 收款連結；有填就以線上付款為主，轉帳收進「改用銀行轉帳」
   bank:'822　中國信託',
   acct:'071516237859',
   lineId:'@419zbhxy'
@@ -2890,6 +2910,13 @@ function openModal(plan){
   $('#payBank').textContent=PAY_INFO.bank;
   $('#payAcct').textContent=PAY_INFO.acct;
   $('#lineBtn').href='https://line.me/R/ti/p/'+PAY_INFO.lineId;
+  const online=!!PAY_INFO.payUrl,alt=$('#payAlt');
+  $('#payOnline').hidden=!online;
+  $('#mTitle').textContent=online?'購買完整方案':'轉帳訂購';
+  $('#mLead').hidden=online;
+  if(online){$('#payLinkBtn').href=PAY_INFO.payUrl;$('#payLineLink').href='https://line.me/R/ti/p/'+PAY_INFO.lineId;alt.open=false}
+  else alt.open=true;
+  alt.classList.toggle('solo',!online);
   $('#modal').hidden=false;
   $('#mClose').focus();
 }
@@ -2905,6 +2932,7 @@ $('#modal').addEventListener('keydown',e=>{
   else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus()}
 });
 $('#copyAcct').addEventListener('click',function(){copyText(PAY_INFO.acct,this)});
+$('#payLinkBtn').addEventListener('click',()=>logEvent('pay_link_click'));
 
 /* ---------- 全域點擊 ---------- */
 document.addEventListener('click',e=>{
