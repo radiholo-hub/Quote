@@ -1314,9 +1314,10 @@ async function pushNow(){
 }
 /* 匿名使用次數:只記「發生了什麼事」,不含 Email、不含任何個人資料;同一個分頁同一種事件只記一次 */
 const EV_DEBUG=/[?&]debug=1(&|$)/.test(location.search);   // 預覽用：?debug=1 不送任何事件
+const EV_HOST=(location.hostname==='radiholo-hub.github.io'||window.__EV_TEST===true)&&!(function(){try{var m=location.search.match(/[?&]notrack=([01])(&|$)/);if(m){if(m[1]==='1')localStorage.setItem('sr_notrack','1');else localStorage.removeItem('sr_notrack')}var off=localStorage.getItem('sr_notrack')==='1';if(off)document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('div');b.textContent='此瀏覽器不記錄數據';b.style.cssText='position:fixed;left:8px;bottom:8px;z-index:9999;font:12px/1.4 sans-serif;background:#333;color:#fff;padding:3px 8px;border-radius:6px;opacity:.75;pointer-events:none';document.body.appendChild(b)});return off}catch(e){return false}})();   // ?notrack=1：這個瀏覽器之後都不記錄（主站與詞性小課共用），?notrack=0 取消   // 只有正式站寫入事件；本機（127.0.0.1、file://）與預覽站（githack、pages.dev）不寫
 function logEvent(name){
   try{
-    if(!sb||EV_DEBUG)return Promise.resolve();
+    if(!sb||EV_DEBUG||!EV_HOST)return Promise.resolve();
     const k='ev_'+name;
     if(sessionStorage.getItem(k))return Promise.resolve();
     sessionStorage.setItem(k,'1');
@@ -1775,7 +1776,7 @@ const LEVELS=[
  {lv:0,title:'不知道，幫我判斷',desc:'沒考過或不確定，先用 6 題判斷'}
 ];
 let pendingLevel=2,placeIds=new Set();
-function openLevel(){show('level')}
+function openLevel(){logEvent('diag_level_view');show('level')}   // 漏斗：選分數頁 → diag_start（開始 30 題）→ diag_at5…25 → diag_done
 function startDiagAt(level,skip){
   S.draft=null;logEvent('diag_start');
   runQuiz({list:drawDiag(level,skip),mode:'diag',title:'弱點診斷',back:'home',level:level,onDone:finishDiag});
@@ -1829,7 +1830,7 @@ function roadPreviewHTML(r){
     '<p class="lead">'+(names.length?'依你的結果，路線會從「'+names.join(' → ')+'」依序補起，':'依你的結果，')+'先做 Day 1–7 看看適不適合你。</p>'+
     '<ol class="road">'+rows+'</ol>'+
     '<div class="cta-row"><button class="btn pri lg" type="button" data-go="plan">開始 Day 1（免費）</button>'+
-    '<button class="btn line" type="button" data-modal="30">了解完整方案（NT$'+pr.now+(pr.promo?' 限時特價':'')+'）</button></div></section>';
+    '<button class="btn line" type="button" data-modal="30" data-src="result" id="resPlanBtn">了解完整方案（NT$'+pr.now+(pr.promo?' 限時特價':'')+'）</button></div></section>';
 }
 function compareHTML(r){
   const f=S.first;
@@ -1881,6 +1882,18 @@ function renderResult(){
   const sc=$('#shareCopy'),sl=$('#shareLine');
   if(sc)sc.addEventListener('click',function(){logEvent('share_click');copyText(shareText(r),this)});
   if(sl)sl.addEventListener('click',()=>logEvent('share_click'));
+  watchPlanBtn();
+}
+/* 結果頁的「了解完整方案」：按鈕至少一半出現在視窗內才算看到（只進入結果頁不算） */
+let planObs=null;
+function watchPlanBtn(){
+  const b=$('#resPlanBtn');
+  if(planObs){planObs.disconnect();planObs=null}
+  if(!b||!('IntersectionObserver' in window))return;
+  planObs=new IntersectionObserver(es=>{
+    if(es.some(e=>e.isIntersecting&&e.intersectionRatio>=0.5&&!$('#view-result').hidden)){logEvent('result_plan_seen');planObs.disconnect();planObs=null}
+  },{threshold:[0.5]});
+  planObs.observe(b);
 }
 
 /* ---------- 免費解析 ---------- */
@@ -2912,7 +2925,7 @@ document.addEventListener('click',e=>{
   if(!el)return;
   if(el.hasAttribute('data-start'))openLevel();
   else if(el.dataset.go)go(el.dataset.go);
-  else if(el.dataset.modal!==undefined)openModal(el.dataset.modal);
+  else if(el.dataset.modal!==undefined){if(el.dataset.src==='result')logEvent('result_plan_click');openModal(el.dataset.modal)}
   else if(el.dataset.act==='explain'){renderExplain();show('explain')}
   else if(el.dataset.act==='drill')startDrill();
   else if(el.dataset.act==='day')startPlanDay(+el.dataset.day||1);
