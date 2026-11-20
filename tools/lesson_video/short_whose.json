@@ -30,7 +30,7 @@
     "fit": true,
     "lines": [
      {
-      "s": "The employee ______ car is parked|outside should move it.",
+      "s": "The [employee] ______ [car] is parked|outside should move it.",
       "zh": "車停在外面的那位員工應該把車移走。"
      }
     ],
@@ -57,7 +57,7 @@
     "fit": true,
     "lines": [
      {
-      "s": "The employee ______ car is parked|outside should move it.",
+      "s": "The [employee] ______ [car] is parked|outside should move it.",
       "zh": "車停在外面的那位員工應該把車移走。"
      }
     ],
@@ -79,7 +79,7 @@
     "fit": true,
     "lines": [
      {
-      "s": "The employee ______ car is parked|outside should move it.",
+      "s": "The [employee] ______ [car] is parked|outside should move it.",
       "zh": "車停在外面的那位員工應該把車移走。"
      }
     ],
@@ -126,7 +126,7 @@
     "fit": true,
     "lines": [
      {
-      "s": "The employee ______ car is parked|outside should move it.",
+      "s": "The [employee] ______ [car] is parked|outside should move it.",
       "zh": "車停在外面的那位員工應該把車移走。"
      }
     ],
@@ -238,7 +238,7 @@
    "view": {
     "kind": "card",
     "kick": "完整方案 第 7 課",
-    "h": "who、which、whose？<br>先看空格後面接什麼",
+    "h": "who 還是 whose？<br>先看空格後面",
     "sub": "7 分鐘影片＋練習題",
     "top": 380,
     "cta": true
