@@ -1,0 +1,302 @@
+{
+ "title": "短片｜The manager suggested that he ___ the report by Friday.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "主詞是 he，<br>動詞卻不加 s？",
+    "top": 560
+   },
+   "say": [
+    [
+     "zh",
+     "主詞是"
+    ],
+    [
+     "en",
+     "he"
+    ],
+    [
+     "zh",
+     "，動詞卻不加"
+    ],
+    [
+     "en",
+     "s?"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The manager [suggested] that [he]|______ the report by Friday.",
+      "zh": "經理建議他在週五前修改報告。"
+     }
+    ],
+    "o": [
+     "revises",
+     "revise",
+     "revised",
+     "revising"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "The manager suggested that he blank the report by Friday."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The manager [suggested] that [he]|______ the report by Friday.",
+      "zh": "經理建議他在週五前修改報告。"
+     }
+    ],
+    "o": [
+     "revises",
+     "revise",
+     "revised",
+     "revising"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The manager [suggested] that [he]|______ the report by Friday.",
+      "zh": "經理建議他在週五前修改報告。"
+     }
+    ],
+    "o": [
+     "revises",
+     "revise",
+     "revised",
+     "revising"
+    ],
+    "ring": [
+     {
+      "w": "he",
+      "c": "red",
+      "label": "第三人稱單數"
+     }
+    ],
+    "ban": {
+     "t": "he → 動詞加 s → revises？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "主詞是"
+    ],
+    [
+     "en",
+     "he"
+    ],
+    [
+     "zh",
+     "，所以動詞加"
+    ],
+    [
+     "en",
+     "s"
+    ],
+    [
+     "zh",
+     "，選"
+    ],
+    [
+     "en",
+     "revises"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The manager [suggested] that [he]|______ the report by Friday.",
+      "zh": "經理建議他在週五前修改報告。"
+     }
+    ],
+    "o": [
+     "revises",
+     "revise",
+     "revised",
+     "revising"
+    ],
+    "ans": 1,
+    "fill": "revise",
+    "ring": [
+     {
+      "w": "suggested",
+      "c": "blue",
+      "label": "建議"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "suggest that＋(should) 原形<br>should 省略，還是原形",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "關鍵在前面的"
+    ],
+    [
+     "en",
+     "suggested"
+    ],
+    [
+     "zh",
+     "。建議別人做的事，後面是"
+    ],
+    [
+     "en",
+     "should"
+    ],
+    [
+     "zh",
+     "加原形，"
+    ],
+    [
+     "en",
+     "should"
+    ],
+    [
+     "zh",
+     "常常省略，動詞還是原形。選 B，"
+    ],
+    [
+     "en",
+     "revise."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "把 should 放回去",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The manager suggested that he [should]|______ the report by Friday.",
+      "zh": "經理建議他（應該）在週五前修改報告。"
+     }
+    ],
+    "fill": "revise",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "should",
+      "c": "blue",
+      "label": "可以省略"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "recommend、request、insist<br>也一樣＋(should) 原形",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "把"
+    ],
+    [
+     "en",
+     "should"
+    ],
+    [
+     "zh",
+     "放回去就看得出來："
+    ],
+    [
+     "en",
+     "should revise."
+    ],
+    [
+     "zh",
+     "多益常見的"
+    ],
+    [
+     "en",
+     "recommend, request, insist"
+    ],
+    [
+     "zh",
+     "也一樣，後面的子句動詞用原形。"
+    ]
+   ],
+   "hold": 0.8
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "每天一題 Part 5",
+    "h": "suggest that＋主詞<br>動詞用原形",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}

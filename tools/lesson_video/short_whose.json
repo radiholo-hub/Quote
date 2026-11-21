@@ -1,0 +1,255 @@
+{
+ "title": "短片｜The employee ___ car is parked outside should move it.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "空格後面<br>直接接名詞，<br>要選哪一個？",
+    "top": 560
+   },
+   "say": [
+    [
+     "zh",
+     "空格後面直接接名詞，要選哪一個？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [employee] ______ [car] is parked|outside should move it.",
+      "zh": "車停在外面的那位員工應該把車移走。"
+     }
+    ],
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "whom"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "The employee blank car is parked outside should move it."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [employee] ______ [car] is parked|outside should move it.",
+      "zh": "車停在外面的那位員工應該把車移走。"
+     }
+    ],
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "whom"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [employee] ______ [car] is parked|outside should move it.",
+      "zh": "車停在外面的那位員工應該把車移走。"
+     }
+    ],
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "whom"
+    ],
+    "ring": [
+     {
+      "w": "employee",
+      "c": "red",
+      "label": "人"
+     }
+    ],
+    "ban": {
+     "t": "前面是人 → who？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "前面是人，所以選"
+    ],
+    [
+     "en",
+     "who"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [employee] ______ [car] is parked|outside should move it.",
+      "zh": "車停在外面的那位員工應該把車移走。"
+     }
+    ],
+    "o": [
+     "who",
+     "whose",
+     "which",
+     "whom"
+    ],
+    "ans": 1,
+    "fill": "whose",
+    "ring": [
+     {
+      "w": "car",
+      "c": "blue",
+      "label": "直接接名詞"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "員工的車 → 所屬<br>whose＋名詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "看空格後面：直接接名詞"
+    ],
+    [
+     "en",
+     "car"
+    ],
+    [
+     "zh",
+     "，意思是那位員工的車，表示所屬，要用"
+    ],
+    [
+     "en",
+     "whose."
+    ],
+    [
+     "zh",
+     "選 B。"
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：後面接動詞",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The employee ______ [parked]|outside should move the car.",
+      "zh": "停在外面的那位員工應該把車移走。"
+     }
+    ],
+    "fill": "who",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "parked",
+      "c": "blue",
+      "label": "直接接動詞"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "who＋動詞<br>whose＋名詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "如果空格後面直接接動詞"
+    ],
+    [
+     "en",
+     "parked"
+    ],
+    [
+     "zh",
+     "，才用"
+    ],
+    [
+     "en",
+     "who."
+    ],
+    [
+     "zh",
+     "記住：先看空格後面接什麼。"
+    ]
+   ],
+   "hold": 0.8
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "完整方案 第 7 課",
+    "h": "who 還是 whose？<br>先看空格後面",
+    "sub": "7 分鐘影片＋練習題",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}
