@@ -1,0 +1,37 @@
+[
+ {
+  "scene": "hook",
+  "start": 0.0,
+  "sec": 3.82
+ },
+ {
+  "scene": "q",
+  "start": 3.82,
+  "sec": 4.81
+ },
+ {
+  "scene": "t",
+  "start": 8.63,
+  "sec": 3.45
+ },
+ {
+  "scene": "n",
+  "start": 12.08,
+  "sec": 5.31
+ },
+ {
+  "scene": "r",
+  "start": 17.39,
+  "sec": 11.26
+ },
+ {
+  "scene": "w",
+  "start": 28.64,
+  "sec": 11.06
+ },
+ {
+  "scene": "end",
+  "start": 39.7,
+  "sec": 6.01
+ }
+]
