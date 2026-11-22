@@ -1,0 +1,287 @@
+{
+ "title": "短片｜The manager, as well as two assistants, ___ attending.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "明明有三個人，<br>為什麼用 is？",
+    "top": 560
+   },
+   "say": [
+    [
+     "zh",
+     "明明有三個人，為什麼用"
+    ],
+    [
+     "en",
+     "is?"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 60,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [manager], [as well as] two [assistants],|______ attending the conference.",
+      "zh": "經理和兩位助理都會參加這場研討會。"
+     }
+    ],
+    "o": [
+     "is",
+     "are",
+     "be",
+     "being"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "The manager, as well as two assistants, blank attending the conference."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 60,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [manager], [as well as] two [assistants],|______ attending the conference.",
+      "zh": "經理和兩位助理都會參加這場研討會。"
+     }
+    ],
+    "o": [
+     "is",
+     "are",
+     "be",
+     "being"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 60,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [manager], [as well as] two [assistants],|______ attending the conference.",
+      "zh": "經理和兩位助理都會參加這場研討會。"
+     }
+    ],
+    "o": [
+     "is",
+     "are",
+     "be",
+     "being"
+    ],
+    "ring": [
+     {
+      "w": "assistants",
+      "c": "red",
+      "label": "複數"
+     }
+    ],
+    "ban": {
+     "t": "三個人 → 複數 → are？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "經理加兩位助理，三個人，所以選"
+    ],
+    [
+     "en",
+     "are"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 60,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The [manager], [as well as] two [assistants],|______ attending the conference.",
+      "zh": "經理和兩位助理都會參加這場研討會。"
+     }
+    ],
+    "o": [
+     "is",
+     "are",
+     "be",
+     "being"
+    ],
+    "ans": 0,
+    "fill": "is",
+    "ring": [
+     {
+      "w": "manager",
+      "c": "blue",
+      "label": "真正主詞"
+     },
+     {
+      "w": "as well as",
+      "c": "red",
+      "label": "補充說明"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "逗號裡的 as well as… 先淡化<br>主詞是單數 manager → is",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "兩個逗號中間的"
+    ],
+    [
+     "en",
+     "as well as two assistants"
+    ],
+    [
+     "zh",
+     "只是補充，先淡化。真正的主詞是單數"
+    ],
+    [
+     "en",
+     "manager"
+    ],
+    [
+     "zh",
+     "，選 A，"
+    ],
+    [
+     "en",
+     "is."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：換成 and",
+    "fs": 60,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The manager [and] two assistants|______ attending the conference.",
+      "zh": "經理和兩位助理都會參加這場研討會。"
+     }
+    ],
+    "fill": "are",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "and",
+      "c": "blue",
+      "label": "主詞變複數"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "A and B → 複數<br>along with、together with 同 as well as",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "換成"
+    ],
+    [
+     "en",
+     "and"
+    ],
+    [
+     "zh",
+     "，主詞才變成複數，用"
+    ],
+    [
+     "en",
+     "are."
+    ],
+    [
+     "en",
+     "Along with"
+    ],
+    [
+     "zh",
+     "和"
+    ],
+    [
+     "en",
+     "together with"
+    ],
+    [
+     "zh",
+     "跟"
+    ],
+    [
+     "en",
+     "as well as"
+    ],
+    [
+     "zh",
+     "一樣，不算進主詞。"
+    ]
+   ],
+   "hold": 0.8
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "每天一題 Part 5",
+    "h": "as well as 不算進主詞<br>動詞看前面那個",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}
