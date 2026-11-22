@@ -218,7 +218,7 @@
      }
     ],
     "ban": {
-     "t": "A and B → 複數<br>along with、together with 同 as well as",
+     "t": "A and B → 複數<br>along with 同 as well as",
      "c": "blue"
     }
    },
@@ -271,7 +271,7 @@
    "view": {
     "kind": "card",
     "kick": "每天一題 Part 5",
-    "h": "as well as 不算進主詞<br>動詞看前面那個",
+    "h": "as well as<br>不算進主詞",
     "top": 380,
     "cta": true
    },
