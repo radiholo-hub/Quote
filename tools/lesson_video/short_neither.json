@@ -1,0 +1,290 @@
+{
+ "title": "短片｜Neither the manager nor the assistants ___ attending.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "主詞有兩個，<br>動詞要看哪一個？",
+    "top": 560
+   },
+   "say": [
+    [
+     "zh",
+     "主詞有兩個，動詞要看哪一個？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 58,
+    "fit": true,
+    "lines": [
+     {
+      "s": "Neither the [manager] nor the [assistants]|______ attending the conference.",
+      "zh": "經理和助理們都不會參加這場研討會。"
+     }
+    ],
+    "o": [
+     "is",
+     "are",
+     "be",
+     "being"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "Neither the manager nor the assistants blank attending the conference."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 58,
+    "fit": true,
+    "lines": [
+     {
+      "s": "Neither the [manager] nor the [assistants]|______ attending the conference.",
+      "zh": "經理和助理們都不會參加這場研討會。"
+     }
+    ],
+    "o": [
+     "is",
+     "are",
+     "be",
+     "being"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 58,
+    "fit": true,
+    "lines": [
+     {
+      "s": "Neither the [manager] nor the [assistants]|______ attending the conference.",
+      "zh": "經理和助理們都不會參加這場研討會。"
+     }
+    ],
+    "o": [
+     "is",
+     "are",
+     "be",
+     "being"
+    ],
+    "ring": [
+     {
+      "w": "manager",
+      "c": "red",
+      "label": "單數"
+     }
+    ],
+    "ban": {
+     "t": "昨天學過：看前面 → is？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "昨天的"
+    ],
+    [
+     "en",
+     "as well as"
+    ],
+    [
+     "zh",
+     "看前面的主詞，所以這題也選"
+    ],
+    [
+     "en",
+     "is"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 58,
+    "fit": true,
+    "lines": [
+     {
+      "s": "Neither the [manager] nor the [assistants]|______ attending the conference.",
+      "zh": "經理和助理們都不會參加這場研討會。"
+     }
+    ],
+    "o": [
+     "is",
+     "are",
+     "be",
+     "being"
+    ],
+    "ans": 1,
+    "fill": "are",
+    "ring": [
+     {
+      "w": "assistants",
+      "c": "blue",
+      "label": "離動詞最近"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "neither A nor B<br>動詞跟著 B",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Neither A nor B"
+    ],
+    [
+     "zh",
+     "不一樣，動詞要跟離它最近的"
+    ],
+    [
+     "en",
+     "B."
+    ],
+    [
+     "en",
+     "Assistants"
+    ],
+    [
+     "zh",
+     "是複數，選 B，"
+    ],
+    [
+     "en",
+     "are."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：A、B 換位置",
+    "fs": 58,
+    "fit": true,
+    "lines": [
+     {
+      "s": "Neither the assistants nor the [manager]|______ attending the conference.",
+      "zh": "助理們和經理都不會參加這場研討會。"
+     }
+    ],
+    "fill": "is",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "manager",
+      "c": "blue",
+      "label": "B 變單數"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "either A or B<br>not only A but also B 也一樣",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "把位置換過來，"
+    ],
+    [
+     "en",
+     "B"
+    ],
+    [
+     "zh",
+     "變成單數的"
+    ],
+    [
+     "en",
+     "manager"
+    ],
+    [
+     "zh",
+     "，就用"
+    ],
+    [
+     "en",
+     "is."
+    ],
+    [
+     "en",
+     "Either A or B"
+    ],
+    [
+     "zh",
+     "和"
+    ],
+    [
+     "en",
+     "not only A but also B"
+    ],
+    [
+     "zh",
+     "也一樣，動詞都看"
+    ],
+    [
+     "en",
+     "B."
+    ]
+   ],
+   "hold": 0.8
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "每天一題 Part 5",
+    "h": "動詞看<br>離它最近的 B",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}
