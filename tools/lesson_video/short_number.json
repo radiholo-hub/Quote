@@ -250,7 +250,7 @@
    "view": {
     "kind": "card",
     "kick": "每天一題 Part 5",
-    "h": "the number of → 單數<br>a number of → 複數",
+    "h": "看 the 還是 a<br>the → 單數<br>a → 複數",
     "top": 380,
     "cta": true
    },
