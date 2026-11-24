@@ -84,10 +84,10 @@ def test_official_answers_are_unchanged_by_the_figure_replacement(public_site):
             assert len(q['opts']) == 4                                                                 # 選項仍是四個，代號 A–D 不變
 
 
-def test_public_explanations_are_only_the_92_teacher_signed_ones(public_site):
+def test_public_explanations_are_only_the_138_teacher_signed_ones(public_site):
     s = (public_site / 'exam' / 'explain.js').read_text(encoding='utf8')
     ex = json.loads(subprocess.run(['node', '-e', "global.window={};eval(require('fs').readFileSync(process.argv[1],'utf8'));console.log(JSON.stringify(window.EXPLAIN))", str(public_site / 'exam' / 'explain.js')], capture_output=True, text=True, check=True).stdout)
-    assert sorted(ex) == sorted(f'{y}-{n}' for y in (114, 115) for n in range(1, 47)) and {e['status'] for e in ex.values()} == {'reviewed'}      # 114、115 年 Q1–Q46 全部教師簽核；沒有任何草稿詳解冒充已審核
+    assert sorted(ex) == sorted(f'{y}-{n}' for y in (113, 114, 115) for n in range(1, 47)) and {e['status'] for e in ex.values()} == {'reviewed'}      # 114、115 年 Q1–Q46 全部教師簽核；沒有任何草稿詳解冒充已審核
     assert all(e['reviewer'] == '教師（負責人）' and e['reviewedAt'] for e in ex.values())
     assert s.startswith('// 公開版資料') and '審核方式' not in s and 'gsat_review_sheet' not in s                  # 維護者的內部審核流程註解不外流
 
@@ -231,7 +231,7 @@ def test_every_replaced_figure_question_shows_its_image_on_the_site(browser, pub
 
 def test_exam_list_and_free_practice_work_without_any_withheld_figure_notice(browser, public_site):
     ctx, page = open_site(browser, public_site)
-    assert page.evaluate('[EXAMS.length, Object.keys(ANSWERS).length, Object.keys(EXPLAIN).length]') == [10, 10, 92]
+    assert page.evaluate('[EXAMS.length, Object.keys(ANSWERS).length, Object.keys(EXPLAIN).length]') == [10, 10, 138]
     assert '10 個學年度' in page.locator('a.entry').first.inner_text()
     page.goto((public_site / 'index.html').as_uri() + '#/exam')
     page.wait_for_selector('h1:has-text("歷屆試題")')
@@ -301,13 +301,13 @@ def test_practice_source_filter_has_all_exam_and_original(browser, public_site):
 
 def test_q1_to_q46_show_as_reviewed_and_other_years_do_not_pretend(browser, public_site):
     ctx, page = open_site(browser, public_site)
-    for y in (114, 115):
+    for y in (113, 114, 115):
         for n in range(1, 47):
             page.goto((public_site / 'index.html').as_uri() + f'#/q/e{y}_{n}')
             page.wait_for_selector('[data-view=q]')
             assert page.evaluate(f"__gsat.EXPL()['{y}-{n}'].status") == 'reviewed'
-    assert page.evaluate("Object.keys(__gsat.EXPL()).length") == 92                                              # 其他年度沒有詳解、也不會被標已審核
-    page.goto((public_site / 'index.html').as_uri() + '#/q/e113_1')
+    assert page.evaluate("Object.keys(__gsat.EXPL()).length") == 138                                              # 其他年度沒有詳解、也不會被標已審核
+    page.goto((public_site / 'index.html').as_uri() + '#/q/e112_1')
     page.wait_for_selector('[data-view=q]')
     assert page.locator('.explain.v2').count() == 0
     # 真的作答：答錯第 5 題，交卷後在詳解看到「已審核」
@@ -378,6 +378,6 @@ def test_public_output_keeps_the_signed_entries_exactly_and_nothing_else(public_
         t = pathlib.Path(path).read_text(encoding='utf8')
         return json.loads(t[t.index('window.EXPLAIN = ') + 17:].strip().rstrip(';'))
     src, out = load(ROOT / 'exam' / 'explain.js'), load(public_site / 'exam' / 'explain.js')
-    assert sorted(out) == sorted(f'{y}-{n}' for y in (114, 115) for n in range(1, 47))
+    assert sorted(out) == sorted(f'{y}-{n}' for y in (113, 114, 115) for n in range(1, 47))
     assert out == {k: v for k, v in src.items() if v.get('status') == 'reviewed'}
-    assert all(src[f'{y}-{n}']['status'] == 'reviewed' for y in (114, 115) for n in range(1, 47))
+    assert all(src[f'{y}-{n}']['status'] == 'reviewed' for y in (113, 114, 115) for n in range(1, 47))
