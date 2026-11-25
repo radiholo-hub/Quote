@@ -1,0 +1,311 @@
+{
+ "title": "短片｜The board is considering ___ the deadline.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "to V 還是 V-ing？<br>這題沒有 to，<br>要看前面的動詞",
+    "top": 560
+   },
+   "say": [
+    [
+     "en",
+     "to V"
+    ],
+    [
+     "zh",
+     "還是"
+    ],
+    [
+     "en",
+     "vee-ing"
+    ],
+    [
+     "zh",
+     "？這題前面沒有"
+    ],
+    [
+     "en",
+     "to"
+    ],
+    [
+     "zh",
+     "，要看前面的動詞。"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The board is [considering]|______ the deadline.",
+      "zh": "董事會正在考慮延長截止日期。"
+     }
+    ],
+    "o": [
+     "extend",
+     "to extend",
+     "extending",
+     "extended"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "The board is considering blank the deadline."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The board is [considering]|______ the deadline.",
+      "zh": "董事會正在考慮延長截止日期。"
+     }
+    ],
+    "o": [
+     "extend",
+     "to extend",
+     "extending",
+     "extended"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The board is [considering]|______ the deadline.",
+      "zh": "董事會正在考慮延長截止日期。"
+     }
+    ],
+    "o": [
+     "extend",
+     "to extend",
+     "extending",
+     "extended"
+    ],
+    "ring": [
+     {
+      "w": "considering",
+      "c": "red",
+      "label": "考慮…要做"
+     }
+    ],
+    "ban": {
+     "t": "還沒做的事 → to extend？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "考慮的是還沒做的事，所以選"
+    ],
+    [
+     "en",
+     "to extend"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The board is [considering]|______ the deadline.",
+      "zh": "董事會正在考慮延長截止日期。"
+     }
+    ],
+    "o": [
+     "extend",
+     "to extend",
+     "extending",
+     "extended"
+    ],
+    "ans": 2,
+    "fill": "extending",
+    "ring": [
+     {
+      "w": "considering",
+      "c": "blue",
+      "label": "consider＋V-ing"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "consider 後面的動作固定用 V-ing<br>不能接 to V",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "consider"
+    ],
+    [
+     "zh",
+     "後面的動作，固定用"
+    ],
+    [
+     "en",
+     "vee-ing"
+    ],
+    [
+     "zh",
+     "，不能接"
+    ],
+    [
+     "en",
+     "to V"
+    ],
+    [
+     "zh",
+     "。選 C，"
+    ],
+    [
+     "en",
+     "extending."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：換成 plan",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The board [plans]|______ the deadline.",
+      "zh": "董事會打算延長截止日期。"
+     }
+    ],
+    "fill": "to extend",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "plans",
+      "c": "blue",
+      "label": "plan＋to V"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "avoid、finish 也＋V-ing<br>decide、hope 也＋to V",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "換成"
+    ],
+    [
+     "en",
+     "plan"
+    ],
+    [
+     "zh",
+     "就要接"
+    ],
+    [
+     "en",
+     "to V:"
+    ],
+    [
+     "en",
+     "plans to extend."
+    ],
+    [
+     "zh",
+     "多益常考的，像"
+    ],
+    [
+     "en",
+     "avoid, finish"
+    ],
+    [
+     "zh",
+     "接"
+    ],
+    [
+     "en",
+     "vee-ing,"
+    ],
+    [
+     "en",
+     "decide, hope"
+    ],
+    [
+     "zh",
+     "接"
+    ],
+    [
+     "en",
+     "to V."
+    ]
+   ],
+   "hold": 0.8
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "完整方案 第 5 課",
+    "h": "to V 還是 V-ing？<br>先看前面的搭配",
+    "sub": "6 分半影片＋14 題練習",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}

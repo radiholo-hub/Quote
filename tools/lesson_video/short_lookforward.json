@@ -1,0 +1,299 @@
+{
+ "title": "短片｜We look forward to ___ from you soon.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "Email 結尾最常見：<br>look forward to<br>後面接什麼？",
+    "top": 560
+   },
+   "say": [
+    [
+     "en",
+     "Email"
+    ],
+    [
+     "zh",
+     "結尾最常見的"
+    ],
+    [
+     "en",
+     "look forward to"
+    ],
+    [
+     "zh",
+     "，後面到底接什麼？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "We [look forward to]|______ from you soon.",
+      "zh": "我們期待很快收到您的回覆。"
+     }
+    ],
+    "o": [
+     "hear",
+     "to hear",
+     "hearing",
+     "heard"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "We look forward to blank from you soon."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "We [look forward to]|______ from you soon.",
+      "zh": "我們期待很快收到您的回覆。"
+     }
+    ],
+    "o": [
+     "hear",
+     "to hear",
+     "hearing",
+     "heard"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "We [look forward to]|______ from you soon.",
+      "zh": "我們期待很快收到您的回覆。"
+     }
+    ],
+    "o": [
+     "hear",
+     "to hear",
+     "hearing",
+     "heard"
+    ],
+    "ring": [
+     {
+      "w": "look forward to",
+      "c": "red",
+      "label": "看到 to"
+     }
+    ],
+    "ban": {
+     "t": "to 後面 → 填原形 hear？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "前面有"
+    ],
+    [
+     "en",
+     "to"
+    ],
+    [
+     "zh",
+     "，所以填原形"
+    ],
+    [
+     "en",
+     "hear"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "We [look forward to]|______ from you soon.",
+      "zh": "我們期待很快收到您的回覆。"
+     }
+    ],
+    "o": [
+     "hear",
+     "to hear",
+     "hearing",
+     "heard"
+    ],
+    "ans": 2,
+    "fill": "hearing",
+    "ring": [
+     {
+      "w": "look forward to",
+      "c": "blue",
+      "label": "期待＋名詞"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "換成名詞：look forward to your reply ✓<br>→ to 是介系詞，動作用 V-ing",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "把空格換成名詞試試："
+    ],
+    [
+     "en",
+     "look forward to your reply"
+    ],
+    [
+     "zh",
+     "，說得通，所以這個"
+    ],
+    [
+     "en",
+     "to"
+    ],
+    [
+     "zh",
+     "是介系詞。動作要用"
+    ],
+    [
+     "en",
+     "vee-ing"
+    ],
+    [
+     "zh",
+     "，選 C，"
+    ],
+    [
+     "en",
+     "hearing."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：換成 hope",
+    "fs": 62,
+    "fit": true,
+    "lines": [
+     {
+      "s": "We [hope to]|______ from you soon.",
+      "zh": "我們希望很快收到您的回覆。"
+     }
+    ],
+    "fill": "hear",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "hope to",
+      "c": "blue",
+      "label": "hope your reply ✗"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "hope to＋原形<br>look forward to＋V-ing",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "換成"
+    ],
+    [
+     "en",
+     "hope"
+    ],
+    [
+     "zh",
+     "就不一樣：不能說"
+    ],
+    [
+     "en",
+     "hope your reply"
+    ],
+    [
+     "zh",
+     "，這個"
+    ],
+    [
+     "en",
+     "to"
+    ],
+    [
+     "zh",
+     "後面接原形："
+    ],
+    [
+     "en",
+     "hope to hear."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "完整方案 第 5 課",
+    "h": "to V 還是 V-ing？<br>先看前面的搭配",
+    "sub": "6 分半影片＋14 題練習",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}

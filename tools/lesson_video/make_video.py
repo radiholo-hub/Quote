@@ -44,17 +44,30 @@ def silence(p, sec):
     sh('ffmpeg', '-y', '-f', 'lavfi', '-i', 'anullsrc=r=24000:cl=mono', '-t', '%.3f' % sec, '-c:a', 'pcm_s16le', str(p))
 
 
-async def tts(text, lang, p):
+ZH_PUNCT = '，。、；：！？,.;:!? '
+
+
+async def tts(text, lang, p, opt=None):
     import edge_tts
+    opt = opt or {}
     voice, rate = VOICE[lang]
+    if lang == 'zh':
+        voice = opt.get('voice_zh', voice); rate = opt.get('rate_zh', rate)
+    if opt.get('clean'):
+        # 片段開頭的標點單獨合成時會讓語調怪怪的，拿掉（停頓由片段間隔處理）
+        text = text.lstrip(ZH_PUNCT) or text
     for attempt in range(4):
         try:
             mp3 = p.with_suffix('.mp3')
             await edge_tts.Communicate(text, voice, rate=rate).save(str(mp3))
             # 裁掉每段語音頭尾自帶的靜音，中英文接起來才不會一頓一頓
             # 再把每段統一到同樣的響度，中文、英文兩個聲音聽起來一樣大聲
-            trim = ('silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,'
-                    'loudnorm=I=-18:TP=-2:LRA=11')
+            trim = 'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse'
+            if opt.get('norm', 'piece') == 'piece':
+                trim += ',loudnorm=I=-18:TP=-2:LRA=11'
+            else:
+                # 'cue'：短片段單獨做 loudnorm 容易忽大忽小，改成整個場景接好後再統一響度；這裡只把中英兩個聲音大致拉平
+                trim += ',volume=%s' % ('0dB' if lang == 'en' else opt.get('zh_gain', '0dB'))
             sh('ffmpeg', '-y', '-i', str(mp3), '-af', trim, '-ar', '24000', '-ac', '1', '-c:a', 'pcm_s16le', str(p))
             return
         except Exception as e:  # 網路偶爾中斷就重試
@@ -67,7 +80,7 @@ def estimate(text, lang):
     return max(0.6, len(text) / (4.6 if lang == 'zh' else 13.0))
 
 
-def build_audio(cues, tmp, silent):
+def build_audio(cues, tmp, silent, opt=None):
     """每個場景一段音訊；回傳每段長度（秒）。"""
     lens = []
     for i, cue in enumerate(cues):
@@ -79,14 +92,19 @@ def build_audio(cues, tmp, silent):
             if silent:
                 silence(p, estimate(text, lang))
             else:
-                asyncio.run(tts(text, lang, p))
+                asyncio.run(tts(text, lang, p, opt))
             parts.append(p)
             g = tmp / ('c%02d_%02dg.wav' % (i, j)); silence(g, GAP_PIECE); parts.append(g)
         g = tmp / ('c%02d_end.wav' % i); silence(g, GAP_CUE + cue.get('hold', 0)); parts.append(g)
         lst = tmp / ('c%02d.txt' % i)
         lst.write_text(''.join("file '%s'\n" % x.name for x in parts))
         out = tmp / ('cue%02d.wav' % i)
-        sh('ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', str(lst), '-c', 'copy', str(out))
+        if (opt or {}).get('norm') == 'cue' and not silent:
+            raw = tmp / ('cue%02d_raw.wav' % i)
+            sh('ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', str(lst), '-c', 'copy', str(raw))
+            sh('ffmpeg', '-y', '-i', str(raw), '-af', 'loudnorm=I=-18:TP=-2:LRA=11', '-ar', '24000', '-ac', '1', '-c:a', 'pcm_s16le', str(out))
+        else:
+            sh('ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', str(lst), '-c', 'copy', str(out))
         lens.append(dur(out))
     lst = tmp / 'all.txt'
     lst.write_text(''.join("file 'cue%02d.wav'\n" % i for i in range(len(cues))))
@@ -149,7 +167,7 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as t:
         tmp = pathlib.Path(t)
-        lens = build_audio(cues, tmp, silent)
+        lens = build_audio(cues, tmp, silent, data.get('tts'))
         shots = build_frames(data, cues, lens, tmp)
         lst = tmp / 'frames.txt'
         body = ''.join("file '%s'\nduration %.3f\n" % (p.name, d) for p, d in shots)
