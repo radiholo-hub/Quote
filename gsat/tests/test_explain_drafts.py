@@ -101,3 +101,20 @@ def test_public_output_has_exactly_the_138_signed_explanations(D):
     pubd = json.loads(txt[txt.index('window.EXPLAIN = ') + 17:].strip().rstrip(';'))
     assert sorted(pubd) == sorted(Y113 + Y114 + SIGNED + Y115) and {v['status'] for v in pubd.values()} == {'reviewed'}       # 只有已簽核的 113、114、115 年詳解
     assert not any(int(k.split('-')[0]) < 113 for k in pubd)                                 # 112 年以下沒有詳解、不公開
+
+
+def test_public_output_drops_the_teacher_internal_fields_but_keeps_everything_the_student_ui_reads(D):
+    """公開詳解不含審核者、日期、審核備註與 AI 提示；學生端要用的欄位（含 status）都在。不寫死年度。"""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('gsat_public_exams', ROOT.parent / 'tools' / 'gsat_public_exams.py')
+    pub = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(pub)
+    txt = pub.public_copy(ROOT / 'exam' / 'explain.js')
+    pubd = json.loads(txt[txt.index('window.EXPLAIN = ') + 17:].strip().rstrip(';'))
+    reviewed = {k for k, v in D['explain'].items() if v['status'] == 'reviewed'}
+    assert set(pubd) == reviewed and reviewed                                                  # 公開的就是所有 reviewed 題，沒有多也沒有少
+    for k, v in pubd.items():
+        assert not any(f in v for f in ('aiFlags', 'reviewer', 'reviewedAt', 'reviewNotes')), k
+        assert v['status'] == 'reviewed' and {'answer', 'key', 'options', 'zh'} <= set(v), k   # 學生端 learn.js 讀的欄位都還在
+        assert all(v[f] == D['explain'][k][f] for f in v), k                                   # 公開的每個欄位與來源逐字相同
+
