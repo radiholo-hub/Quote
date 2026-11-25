@@ -191,7 +191,7 @@
     "fit": true,
     "lines": [
      {
-      "s": "The meeting will start at nine|______ the manager [does not call] to cancel it.",
+      "s": "The meeting will start at nine|______ the manager|[does not call] to cancel it.",
       "zh": "如果經理沒有打電話來取消，會議就九點開始。"
      }
     ],
