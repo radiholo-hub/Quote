@@ -1,0 +1,266 @@
+{
+ "title": "短片｜The meeting will start at nine ___ the manager calls to cancel it.",
+ "size": [
+  1080,
+  1920
+ ],
+ "scene": "short.html",
+ "cues": [
+  {
+   "id": "hook",
+   "view": {
+    "kind": "card",
+    "h": "「除非…否則」，<br>空格要填 otherwise？",
+    "top": 560
+   },
+   "say": [
+    [
+     "zh",
+     "除非、否則，空格要填"
+    ],
+    [
+     "en",
+     "otherwise"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "q",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 60,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The meeting will start at nine|______ [the manager calls] to cancel it.",
+      "zh": "會議九點開始，除非經理打電話來取消。"
+     }
+    ],
+    "o": [
+     "unless",
+     "if not",
+     "without",
+     "otherwise"
+    ]
+   },
+   "say": [
+    [
+     "en",
+     "The meeting will start at nine blank the manager calls to cancel it."
+    ]
+   ]
+  },
+  {
+   "id": "t",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 60,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The meeting will start at nine|______ [the manager calls] to cancel it.",
+      "zh": "會議九點開始，除非經理打電話來取消。"
+     }
+    ],
+    "o": [
+     "unless",
+     "if not",
+     "without",
+     "otherwise"
+    ]
+   },
+   "pause": 3
+  },
+  {
+   "id": "n",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 60,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The meeting will start at nine|______ [the manager calls] to cancel it.",
+      "zh": "會議九點開始，除非經理打電話來取消。"
+     }
+    ],
+    "o": [
+     "unless",
+     "if not",
+     "without",
+     "otherwise"
+    ],
+    "ring": [
+     {
+      "w": "blank",
+      "c": "red",
+      "label": "除非…否則"
+     }
+    ],
+    "ban": {
+     "t": "中文「除非…否則」→ otherwise？",
+     "c": "red"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "中文常說「除非、否則」，所以選"
+    ],
+    [
+     "en",
+     "otherwise"
+    ],
+    [
+     "zh",
+     "嗎？"
+    ]
+   ],
+   "hold": 0.2
+  },
+  {
+   "id": "r",
+   "view": {
+    "kind": "sent",
+    "t": "多益 Part 5｜空格填什麼？",
+    "fs": 60,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The meeting will start at nine|______ [the manager calls] to cancel it.",
+      "zh": "會議九點開始，除非經理打電話來取消。"
+     }
+    ],
+    "o": [
+     "unless",
+     "if not",
+     "without",
+     "otherwise"
+    ],
+    "ans": 0,
+    "fill": "unless",
+    "ring": [
+     {
+      "w": "the manager calls",
+      "c": "blue",
+      "label": "子句（主詞＋動詞）"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "子句 → 連接詞 unless<br>otherwise 副詞、without 介系詞",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "zh",
+     "不對。空格後面"
+    ],
+    [
+     "en",
+     "the manager calls"
+    ],
+    [
+     "zh",
+     "有主詞和動詞，是子句，要用連接詞，選 A，"
+    ],
+    [
+     "en",
+     "unless."
+    ]
+   ],
+   "hold": 0.6
+  },
+  {
+   "id": "w",
+   "view": {
+    "kind": "sent",
+    "t": "對照：unless＝if not",
+    "fs": 60,
+    "fit": true,
+    "lines": [
+     {
+      "s": "The meeting will start at nine|______ the manager [does not call] to cancel it.",
+      "zh": "如果經理沒有打電話來取消，會議就九點開始。"
+     }
+    ],
+    "fill": "if",
+    "showzh": true,
+    "ring": [
+     {
+      "w": "does not call",
+      "c": "blue",
+      "label": "用 if 才加 not"
+     },
+     {
+      "w": "blank",
+      "c": "ok"
+     }
+    ],
+    "ban": {
+     "t": "unless 本身就是 if not<br>後面不能再加 not",
+     "c": "blue"
+    }
+   },
+   "say": [
+    [
+     "en",
+     "Unless"
+    ],
+    [
+     "zh",
+     "本身就是"
+    ],
+    [
+     "en",
+     "if not"
+    ],
+    [
+     "zh",
+     "。換成"
+    ],
+    [
+     "en",
+     "if"
+    ],
+    [
+     "zh",
+     "，後面才要加"
+    ],
+    [
+     "en",
+     "not."
+    ]
+   ],
+   "hold": 0.8
+  },
+  {
+   "id": "end",
+   "view": {
+    "kind": "card",
+    "kick": "每天一題 Part 5",
+    "h": "unless＝if not<br>後面不再加 not",
+    "top": 380,
+    "cta": true
+   },
+   "say": [
+    [
+     "zh",
+     "免費做 15 題詞性前測，連結在個人檔案。"
+    ]
+   ],
+   "hold": 1.5
+  }
+ ]
+}
