@@ -88,7 +88,7 @@ def test_public_explanations_are_only_the_138_teacher_signed_ones(public_site):
     s = (public_site / 'exam' / 'explain.js').read_text(encoding='utf8')
     ex = json.loads(subprocess.run(['node', '-e', "global.window={};eval(require('fs').readFileSync(process.argv[1],'utf8'));console.log(JSON.stringify(window.EXPLAIN))", str(public_site / 'exam' / 'explain.js')], capture_output=True, text=True, check=True).stdout)
     assert sorted(ex) == sorted(f'{y}-{n}' for y in (113, 114, 115) for n in range(1, 47)) and {e['status'] for e in ex.values()} == {'reviewed'}      # 114、115 年 Q1–Q46 全部教師簽核；沒有任何草稿詳解冒充已審核
-    assert all(e['reviewer'] == '教師（負責人）' and e['reviewedAt'] for e in ex.values())
+    assert not any(f in e for e in ex.values() for f in pub.INTERNAL_EXPLAIN_FIELDS)                  # 教師內部欄位（審核者、日期、備註、AI 提示）只存在於來源，不公開；簽核狀態以 docs/gsat/signoffs/ 為準
     assert s.startswith('// 公開版資料') and '審核方式' not in s and 'gsat_review_sheet' not in s                  # 維護者的內部審核流程註解不外流
 
 
@@ -357,6 +357,7 @@ def test_explain_drafts_in_the_source_never_reach_the_public_output():
     out = pub.reviewed_only(body)
     keep = json.loads(out[out.index('=') + 1:].strip().rstrip(';'))
     assert list(keep) == ['115-1'] and keep['115-1']['status'] == 'reviewed'
+    assert 'reviewer' not in keep['115-1'] and keep['115-1']['key'] == ['k']                            # 審核者欄位不公開，公開欄位逐字保留
     assert pub.reviewed_only(out) == out                                                                 # 再跑一次結果不變
     real = (ROOT / 'exam' / 'explain.js').read_text(encoding='utf8')
     drafts = [k for k, v in json.loads(real[real.index('window.EXPLAIN = ') + 17:].strip().rstrip(';')).items() if v.get('status') != 'reviewed']
@@ -379,5 +380,206 @@ def test_public_output_keeps_the_signed_entries_exactly_and_nothing_else(public_
         return json.loads(t[t.index('window.EXPLAIN = ') + 17:].strip().rstrip(';'))
     src, out = load(ROOT / 'exam' / 'explain.js'), load(public_site / 'exam' / 'explain.js')
     assert sorted(out) == sorted(f'{y}-{n}' for y in (113, 114, 115) for n in range(1, 47))
-    assert out == {k: v for k, v in src.items() if v.get('status') == 'reviewed'}
+    assert out == {k: {f: x for f, x in v.items() if f in pub.PUBLIC_EXPLAIN_FIELDS} for k, v in src.items() if v.get('status') == 'reviewed'}      # 公開欄位的內容逐字不動，只少了內部欄位
     assert all(src[f'{y}-{n}']['status'] == 'reviewed' for y in (113, 114, 115) for n in range(1, 47))
+
+
+# ---------------------------------------------------------------- 公開詳解的欄位安全（教師內部欄位不得公開）
+INTERNAL = ('aiFlags', 'reviewer', 'reviewedAt', 'reviewNotes')
+GOOD = {'schema': 2, 'answer': 'B', 'status': 'reviewed', 'key': ['k1', 'k2'], 'options': {'A': {'why': 'w'}, 'B': {'why': 'w', 'entry': 'tight-adj'}},
+        'notes': [{'type': 'word', 't': 'x', 'pos': 'n.', 'zh': '字', 'note': 'n', 'coll': ['c']}], 'words': [], 'phrases': [], 'patterns': ['p'], 'grammar': 'g', 'zh': '中譯', 'focus': 'tight-adj'}
+INTERNAL_VALUES = {'aiFlags': ['需老師注意'], 'reviewer': '教師（負責人）', 'reviewedAt': '2026-01-01', 'reviewNotes': '內部備註'}
+
+
+def explain_body(entries):
+    return 'window.EXPLAIN = ' + json.dumps(entries, ensure_ascii=False, indent=1) + ';\n'
+
+
+def explain_of(text):
+    return json.loads(text[text.index('window.EXPLAIN = ') + 17:].strip().rstrip(';'))
+
+
+def keys_at_any_depth(x):
+    """資料結構中任何層級出現過的所有物件欄位名（結構化檢查，不看字串內容，所以教學文字提到這些字不會誤判）。"""
+    if isinstance(x, dict):
+        for k, v in x.items():
+            yield k
+            yield from keys_at_any_depth(v)
+    elif isinstance(x, list):
+        for v in x:
+            yield from keys_at_any_depth(v)
+
+
+def unknown_fields_of_reviewed(src):
+    """只檢查會公開的題目（status 剛好是 reviewed）；草稿不公開，也不受欄位白名單約束（與 reviewed_only() 一致）。"""
+    return sorted({f for v in src.values() if isinstance(v, dict) and v.get('status') == 'reviewed' for f in v} - set(pub.PUBLIC_EXPLAIN_FIELDS) - set(INTERNAL))
+
+
+def test_projection_removes_the_four_internal_fields_and_keeps_the_public_ones_verbatim():
+    entry = dict(GOOD, **INTERNAL_VALUES)
+    out = explain_of(pub.reviewed_only(explain_body({'900-1': entry})))['900-1']
+    assert not any(f in out for f in INTERNAL) and out == GOOD
+    assert list(out) == [f for f in GOOD]                                                              # 欄位順序也與來源相同
+    assert list(INTERNAL) == list(pub.INTERNAL_EXPLAIN_FIELDS) and set(GOOD) == set(pub.PUBLIC_EXPLAIN_FIELDS)    # 白名單與規格一致（沒有多、沒有少）
+    once = pub.reviewed_only(explain_body({'900-1': entry}))
+    assert pub.reviewed_only(once) == once                                                             # 再跑一次結果不變
+
+
+@pytest.mark.parametrize('field', ['internalNote', 'reviewComment', 'ai_flags', 'Reviewer', 'draftOf', 'extra'])
+def test_unknown_top_level_field_fails_closed_with_the_question_and_field_name(field):
+    with pytest.raises(SystemExit) as e:
+        pub.reviewed_only(explain_body({'900-7': dict(GOOD, **{field: 'x'})}))
+    assert '900-7' in str(e.value) and field in str(e.value)                                           # 訊息指出題號與欄位名稱，不會靜默忽略
+
+
+def test_unknown_field_in_a_draft_does_not_block_and_is_never_published():
+    out = explain_of(pub.reviewed_only(explain_body({'900-1': GOOD, '900-2': dict(GOOD, status='draft', brandNewField=1)})))
+    assert list(out) == ['900-1']                                                                       # 草稿本來就不公開，也不會因它的新欄位讓整理失敗
+
+
+def test_draft_with_unknown_fields_neither_fails_the_source_check_nor_reaches_the_public_output():
+    src = {'900-1': dict(GOOD, **INTERNAL_VALUES), '900-2': dict(GOOD, status='draft', brandNewField=1, aiFlags=['x']), '900-3': dict(GOOD, status='REVIEWED', other=2), '900-4': {'schema': 2, 'zzz': 1}}
+    assert unknown_fields_of_reviewed(src) == []                                                        # 來源檢查只看 reviewed：草稿、狀態寫錯、沒有 status 的都不算
+    out = explain_of(pub.reviewed_only(explain_body(src)))
+    assert list(out) == ['900-1'] and 'brandNewField' not in explain_body(out)                          # 草稿絕對不進公開輸出（含它們的未知欄位）
+    assert unknown_fields_of_reviewed({'900-1': dict(GOOD, brandNewField=1)}) == ['brandNewField']      # reviewed 題目有未知欄位仍然會被抓到
+
+
+@pytest.mark.parametrize('where, entry_patch', [
+    ('options.B.aiFlags', lambda e: e['options']['B'].update(aiFlags=['x'])),
+    ('options.A.reviewer', lambda e: e['options']['A'].update(reviewer='x')),
+    ('notes[0].reviewNotes', lambda e: e['notes'][0].update(reviewNotes='x')),
+    ('key[1].reviewedAt', lambda e: e['key'].__setitem__(1, {'reviewedAt': 'x'})),
+    ('patterns[0].aiFlags', lambda e: e['patterns'].__setitem__(0, {'aiFlags': []})),
+    ('options.A.deep.aiFlags', lambda e: e['options']['A'].update(deep={'x': [{'aiFlags': ['y']}]})),
+])
+def test_internal_fields_hidden_in_nested_objects_or_arrays_fail_closed(where, entry_patch):
+    import copy
+    entry = copy.deepcopy(GOOD); entry_patch(entry)
+    with pytest.raises(SystemExit) as e:
+        pub.reviewed_only(explain_body({'900-3': entry}))
+    assert '900-3' in str(e.value) and where.split('.')[-1] in str(e.value)
+
+
+def test_teaching_text_that_merely_mentions_an_internal_field_name_is_not_rejected():
+    entry = dict(GOOD, grammar='例如 reviewer 和 aiFlags 這兩個字只是教學文字', zh='reviewNotes')
+    out = explain_of(pub.reviewed_only(explain_body({'900-1': entry})))['900-1']
+    assert out['grammar'] == entry['grammar'] and out['zh'] == 'reviewNotes'                         # 只檢查欄位名稱（結構），不檢查字串內容
+
+
+def test_real_source_public_copy_has_only_reviewed_entries_whitelisted_fields_and_matches_the_source():
+    """不寫死年度：來源裡所有 reviewed 題目都要公開、公開欄位與來源完全相同；未來新增年度自動涵蓋。"""
+    src = explain_of((ROOT / 'exam' / 'explain.js').read_text(encoding='utf8'))
+    out = explain_of(pub.public_copy(ROOT / 'exam' / 'explain.js'))
+    reviewed = {k for k, v in src.items() if v.get('status') == 'reviewed'}
+    assert reviewed and set(out) == reviewed and all(v['status'] == 'reviewed' for v in out.values())
+    for k, v in out.items():
+        assert set(v) <= set(pub.PUBLIC_EXPLAIN_FIELDS), k
+        assert not any(f in set(keys_at_any_depth(v)) for f in INTERNAL), k                          # 任何層級都沒有內部欄位
+        assert v == {f: src[k][f] for f in src[k] if f in pub.PUBLIC_EXPLAIN_FIELDS}, k             # 公開欄位與來源逐字一致
+    assert unknown_fields_of_reviewed(src) == []                                                      # reviewed 題目目前沒有任何白名單之外的欄位（草稿不在檢查範圍，與 reviewed_only 的設計一致）
+
+
+_JS_TOKEN = re.compile(r"(?P<c>//[^\n]*|/\*.*?\*/)|(?P<s>\"(?:\\.|[^\"\\\n])*\"|'(?:\\.|[^'\\\n])*'|`(?:\\.|[^`\\])*`)|(?P<i>[A-Za-z_$][\w$]*)", re.S)
+
+
+def js_internal_hits(src):
+    """不執行任何程式：把 JS／資料檔切成「註解、字串、識別字」，只在程式結構裡找內部欄位——
+    識別字（物件鍵、.欄位、變數）或「後面接冒號／包在中括號裡的字串鍵」。字串內容本身（教學文字）與註解不算，所以不會誤判。"""
+    hits = []
+    for m in _JS_TOKEN.finditer(src):
+        if m.group('i') in INTERNAL:
+            hits.append(m.group('i'))
+        elif m.group('s') and m.group('s')[1:-1] in INTERNAL:
+            before, after = src[:m.start()].rstrip()[-1:], src[m.end():].lstrip()[:1]
+            if after == ':' or (before == '[' and after == ']'):
+                hits.append(m.group('s')[1:-1])
+    return hits
+
+
+def strict_json_assignments(src):
+    """若整個檔案只是「window.NAME = <JSON>;」（開頭的 // 註解可有），回傳解析後的資料串列；否則回傳 None。純資料解析，不執行。"""
+    body = re.sub(r'\A(?:\s*//[^\n]*\n)+', '', src)
+    pos, out, dec = 0, [], json.JSONDecoder()
+    while body[pos:].strip():
+        m = re.compile(r'\s*window\.[A-Za-z_]+\s*=\s*').match(body, pos)
+        if not m:
+            return None
+        try:
+            val, pos = dec.raw_decode(body, m.end())
+        except ValueError:
+            return None
+        pos = re.compile(r'\s*;?').match(body, pos).end()
+        out.append(val)
+    return out
+
+
+KNOWN_NON_STRUCTURED = {'.css', '.svg', '.mp3', '.gitignore'}      # 沒有 JSON／鍵值結構（樣式、向量圖、音檔、git 設定），不做欄位檢查；svg 另有圖片 allowlist 測試把關
+
+
+def scan_public_tree(root):
+    """掃描公開 gsat/ 的整棵樹（含任意層子資料夾），回傳 [(相對路徑, 內部欄位位置)]，以及沒有分類的檔案。
+    .json：解析後逐層檢查欄位名稱；.js：整個檔案用 js_internal_hits（不執行），純 JSON 資料檔另外解析後逐層檢查欄位名稱；
+    .html：內嵌 <script> 以同樣方式檢查（application/json 先解析），不看標籤文字與屬性（內容由程式產生）；其餘副檔名需列在 KNOWN_NON_STRUCTURED，否則視為「沒有分類」讓測試失敗，逼人決定。"""
+    root, hits, unclassified = pathlib.Path(root), [], []
+    for p in sorted(x for x in root.rglob('*') if x.is_file()):
+        rel, ext = str(p.relative_to(root)), p.suffix.lower() or p.name
+        src = p.read_text(encoding='utf8') if ext in ('.js', '.json', '.html') else ''
+        if ext == '.json':
+            hits += [(rel, f) for f in INTERNAL if f in set(keys_at_any_depth(json.loads(src)))]
+        elif ext == '.js':
+            hits += [(rel, f) for f in js_internal_hits(src)]
+            data = strict_json_assignments(src)
+            hits += [(rel, f) for f in INTERNAL if data and f in set(keys_at_any_depth(data))]
+        elif ext == '.html':
+            for attrs, body in re.findall(r'<script([^>]*)>(.*?)</script>', src, re.S | re.I):
+                if 'json' in attrs.lower() and body.strip():
+                    hits += [(rel, f) for f in INTERNAL if f in set(keys_at_any_depth(json.loads(body)))]
+                else:
+                    hits += [(rel, f) for f in js_internal_hits(body)]
+        elif ext not in KNOWN_NON_STRUCTURED:
+            unclassified.append(rel)
+    return hits, unclassified
+
+
+def test_whole_public_gsat_tree_has_no_internal_fields_in_any_structured_data(public_site):
+    """真實 staging 的整棵 gsat/ 樹（遞迴）：所有 js／json／html 都做結構化檢查，沒有執行任何學生端程式。
+    排除與理由：css／svg／mp3／.gitignore 沒有鍵值結構；教學文字與註解不看（只看欄位名稱的位置）。"""
+    hits, unclassified = scan_public_tree(public_site)
+    assert unclassified == [] and hits == []
+    files = {str(p.relative_to(public_site)) for p in public_site.rglob('*') if p.is_file()}
+    assert {'exam/explain.js', 'exam/vocab_index.js', 'data/vocab.js', 'data/ext_practice.js', 'app.js', 'learn.js', 'index.html'} <= files     # 掃描範圍確實涵蓋根目錄的應用程式檔與各子目錄的資料檔
+
+
+def test_tree_scan_detects_internal_fields_in_subdirectories_and_ignores_teaching_text(tmp_path):
+    root = tmp_path / 'gsat'
+    (root / 'data' / 'sub').mkdir(parents=True); (root / 'lib' / 'deep' / 'er').mkdir(parents=True); (root / 'pages').mkdir()
+    (root / 'data' / 'sub' / 'extra.json').write_text(json.dumps({'x': [{'ok': 1, 'aiFlags': []}]}), encoding='utf8')            # 巢狀資料夾裡的 JSON
+    (root / 'lib' / 'deep' / 'er' / 'strict.js').write_text('// c\nwindow.A = {"k": [{"reviewer": "x"}]};\n', encoding='utf8')         # 嚴格 JSON 資料檔
+    (root / 'lib' / 'deep' / 'loose.js').write_text("window.B = {list: [{reviewNotes: 'x'}]};\n", encoding='utf8')                  # 非嚴格 JSON（無引號鍵）
+    (root / 'lib' / 'code.js').write_text("(function(){ const e = EXPL()[k]; return e.reviewedAt || e['aiFlags']; })();\n", encoding='utf8')   # 程式碼讀取內部欄位
+    (root / 'pages' / 'p.html').write_text('<html><script>var q = {aiFlags: 1};</script><script type="application/json">{"a": {"reviewer": 1}}</script></html>', encoding='utf8')
+    (root / 'odd.txt').write_text('x', encoding='utf8')                                                                                 # 沒有分類的副檔名
+    hits, unclassified = scan_public_tree(root)
+    assert sorted({h[0] for h in hits}) == ['data/sub/extra.json', 'lib/code.js', 'lib/deep/er/strict.js', 'lib/deep/loose.js', 'pages/p.html']
+    assert {f for h in hits if h[0] == 'lib/code.js' for f in [h[1]]} == {'reviewedAt', 'aiFlags'} and sorted(h[1] for h in hits if h[0] == 'pages/p.html') == ['aiFlags', 'reviewer']
+    assert unclassified == ['odd.txt']
+    clean = tmp_path / 'clean'; (clean / 'data' / 'sub').mkdir(parents=True)
+    (clean / 'data' / 'sub' / 'text.json').write_text(json.dumps({'grammar': 'reviewer: aiFlags: reviewNotes 這些字只是教學文字', 'zh': 'reviewedAt'}), encoding='utf8')
+    (clean / 'data' / 'sub' / 'text.js').write_text("// reviewer aiFlags 註解\nwindow.C = {grammar: 'reviewer: x', zh: \"aiFlags\", n: `reviewNotes`};\n", encoding='utf8')
+    (clean / 'status.js').write_text('window.D = {"status": "draft", "reviewed": "教師（負責人）"};\n', encoding='utf8')             # 合法的 draft 狀態與 vocab_index 的 reviewed 欄位不是內部欄位
+    assert scan_public_tree(clean) == ([], [])
+
+
+def test_legit_vocab_and_extension_status_and_vocab_index_records_are_untouched(public_site):
+    """原有合法的單字／延伸練習狀態不被誤刪：vocab.js、ext_practice.js 逐字複製；vocab_index.js 只少開頭的維護者註解。"""
+    for f in ('vocab.js', 'ext_practice.js'):
+        assert (public_site / 'data' / f).read_bytes() == (ROOT / 'data' / f).read_bytes(), f
+    assert (public_site / 'exam' / 'vocab_index.js').read_text(encoding='utf8') == pub.public_copy(ROOT / 'exam' / 'vocab_index.js')
+    src_vi = (ROOT / 'exam' / 'vocab_index.js').read_text(encoding='utf8')
+    out_vi = (public_site / 'exam' / 'vocab_index.js').read_text(encoding='utf8')
+    assert out_vi.count('"reviewed":') == src_vi.count('"reviewed":') and out_vi.count('"reviewed":') > 0       # 單字出現紀錄的 reviewed 欄位保留（不在本次範圍）
+    vocab = strict_json_assignments((public_site / 'data' / 'vocab.js').read_text(encoding='utf8'))[0]
+    ext = strict_json_assignments((public_site / 'data' / 'ext_practice.js').read_text(encoding='utf8'))[0]
+    assert {e['status'] for e in vocab['entries'].values()} == {'draft'} and {e['status'] for e in ext} == {'draft'}      # 單字詞條與延伸練習的 draft 狀態仍在（畫面「待審核草稿」標籤依它）；純資料解析，不執行任何程式
+

@@ -97,14 +97,45 @@ def public_copy(path):
     return '// 公開版資料（由 tools/gsat_public_exams.py 自 gsat/exam 複製，勿手改）。\n' + body
 
 
+# 公開詳解的欄位白名單（學生端 gsat/learn.js、app.js 實際用到的欄位）。教師審核流程的欄位只存在於來源，不進公開輸出：
+# aiFlags 是 AI 作者留給教師的「需確認」提示，reviewer／reviewedAt／reviewNotes 是審核紀錄（簽核狀態以 docs/gsat/signoffs/ 為準）。
+# 兩份清單以外的欄位一律讓整理失敗（fail-closed）：新增欄位時必須明確決定它屬於公開還是內部。
+PUBLIC_EXPLAIN_FIELDS = ('schema', 'answer', 'status', 'key', 'options', 'notes', 'words', 'phrases', 'patterns', 'grammar', 'zh', 'focus')
+INTERNAL_EXPLAIN_FIELDS = ('aiFlags', 'reviewer', 'reviewedAt', 'reviewNotes')
+
+
+def _reject_nested_internal(qid, value, path):
+    """內部欄位不得藏在公開欄位的巢狀物件或陣列裡（任何層級）。"""
+    if isinstance(value, dict):
+        for k, v in value.items():
+            if k in INTERNAL_EXPLAIN_FIELDS:
+                raise SystemExit(f'explain.js 題號 {qid} 的 {path}.{k} 是教師內部欄位，不能出現在公開欄位的巢狀內容裡')
+            _reject_nested_internal(qid, v, f'{path}.{k}')
+    elif isinstance(value, list):
+        for i, v in enumerate(value):
+            _reject_nested_internal(qid, v, f'{path}[{i}]')
+
+
+def public_explain_entry(qid, entry):
+    """已審核詳解的公開版本：只保留白名單欄位（內容與順序逐字照來源），移除教師內部欄位；遇到未知欄位或巢狀內部欄位就整理失敗。"""
+    unknown = [f for f in entry if f not in PUBLIC_EXPLAIN_FIELDS and f not in INTERNAL_EXPLAIN_FIELDS]
+    if unknown:
+        raise SystemExit(f'explain.js 題號 {qid} 有未知欄位：{"、".join(unknown)}。請先決定它是公開欄位還是教師內部欄位，'
+                         f'再更新 tools/gsat_public_exams.py 的 PUBLIC_EXPLAIN_FIELDS／INTERNAL_EXPLAIN_FIELDS')
+    out = {f: v for f, v in entry.items() if f in PUBLIC_EXPLAIN_FIELDS}
+    for f, v in out.items():
+        _reject_nested_internal(qid, v, f)
+    return out
+
+
 def reviewed_only(body):
     """explain.js 裡的 AI 草稿（status 不是 reviewed）不公開：預設拒絕，只有教師已簽核（reviewed）的題目才進公開輸出。
-    已簽核題目的內容逐字不動（json 重新輸出，縮排格式與來源相同）。"""
+    已簽核題目只輸出白名單欄位（教師內部欄位移除，其餘內容逐字不動；json 重新輸出，縮排格式與來源相同）。"""
     m = re.match(r'window\.EXPLAIN\s*=\s*', body)
     if not m:
         raise SystemExit('explain.js 格式不符：找不到 window.EXPLAIN =')
     data = json.loads(body[m.end():].strip().rstrip(';'))
-    keep = {k: v for k, v in data.items() if isinstance(v, dict) and v.get('status') == 'reviewed'}
+    keep = {k: public_explain_entry(k, v) for k, v in data.items() if isinstance(v, dict) and v.get('status') == 'reviewed'}
     return 'window.EXPLAIN = ' + json.dumps(keep, ensure_ascii=False, indent=1) + ';\n'
 
 
